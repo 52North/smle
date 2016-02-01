@@ -1,1 +1,1 @@
-# smle<sub>/ˈsmaɪli/</sub> &mdash; The Friendly SensorML Editor ☺
+# smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺
