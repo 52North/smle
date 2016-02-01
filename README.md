@@ -1,2 +1,1 @@
-# smle
-Pronounced /ˈsmaɪli/ (smiley). The friendly SensorML editor.
+# smle<sub>/ˈsmaɪli/</sub> &mdash; The Friendly SensorML Editor ☺
