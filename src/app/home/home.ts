@@ -1,27 +1,42 @@
-import {Component} from 'angular2/core';
-import {FORM_DIRECTIVES} from 'angular2/common';
-import {PhysicalSystem} from '../model/sensorML';
+import {Component, OnInit} from 'angular2/core';
+import {Router} from 'angular2/router';
+import {DescriptionService} from '../services/description.service';
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'home',  // <home></home>
-  directives: [...FORM_DIRECTIVES],
-  // We need to tell Angular's compiler which custom pipes are in our template.
-  pipes: [],
-  // Our list of styles in our component. We may add more to compose many styles together
-  styles: [require('./home.scss')],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require('./home.html')
+  selector: 'home',
+  template: `
+    <h2>Descriptions</h2>
+    <ul>
+      <li *ngFor="#id of descriptions"
+        [class.selected]="isSelected(id)"
+        (click)="onSelect(id)">
+        <code>{{id}}</code>
+      </li>
+    </ul>
+  `
 })
-export class Home {
-  // Set our default values
-  data = { value: '' };
-  sensorML = new PhysicalSystem();
+export class Home implements OnInit {
+
+  descriptions: string[];
+  private _selected: string;
+
+  constructor(
+    private _service: DescriptionService,
+    private _router: Router) {
+  }
+
+  isSelected(id: string): boolean {
+    return this._selected === id;
+  }
+
+  onSelect(id: string): void  {
+    this._router.navigate(['Editor', {id: id}])
+  }
+
   ngOnInit() {
-    console.log('hello `Home` component');
-    // this.title.getData().subscribe(data => this.data = data);
+    console.log("Getting description identifiers");
+    this._service.getDescriptions()
+      .then(ids => this.descriptions = ids);
   }
 
 }

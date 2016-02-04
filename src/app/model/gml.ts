@@ -123,7 +123,4 @@ export class TimePeriod {
 export type TimeInstant = Date;
 export type Time = TimeInstant | TimePeriod;
 
-export class Point {
-  x: number;
-  y: number;
-}
+export class Point { x: number; y: number; }

@@ -38,7 +38,6 @@ export class RouterActive {
         this.renderer.setElementClass(this.element.nativeElement, this._attrOrProp(), active);
       }
     });
-
   }
 
   private _defaultAttrValue(attr?: string) {

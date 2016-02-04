@@ -81,12 +81,12 @@ export class BinaryEncoding extends AbstractEncoding {
   byteLength: number;
 }
 
-export enum ByteEncoding {
+export const enum ByteEncoding {
   base64,
   raw
 }
 
-export enum ByteOrder {
+export const enum ByteOrder {
   bigEndian,
   littleEndian
 }

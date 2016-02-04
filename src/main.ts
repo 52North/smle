@@ -20,18 +20,22 @@ if ('production' === process.env.ENV) {
  * App Component
  * our top level component that holds all of our components
  */
-import {App} from './app/app';
+import {Application} from './app/app';
+import {DescriptionService} from './app/services/description.service';
+import {InMemoryDescriptionService} from './app/services/inMemoryDescription.service';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
  * our Services and Providers into Angular's dependency injection
  */
 document.addEventListener('DOMContentLoaded', function main() {
-  bootstrap(App, [
+  bootstrap(Application, [
     ...ENV_PROVIDERS,
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
-    provide(LocationStrategy, { useClass: HashLocationStrategy })
+    provide(LocationStrategy, { useClass: HashLocationStrategy }),
+    provide(DescriptionService, { useClass: InMemoryDescriptionService }),
+
   ]).catch(err => console.error(err));
 });
 

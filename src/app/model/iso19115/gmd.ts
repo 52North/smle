@@ -65,7 +65,7 @@ export class LegalConstraints {
 /**
  * limitation(s) placed upon the access or use of the data
  */
-export enum Restriction {
+export const enum Restriction {
   /**
    * exclusive right to the publication, production, or sale of the rights to a literary, dramatic, musical, or artistic work, or to the use of a commercial print or label, granted by law for a specified period of time to an author, composer, artist, distributor
    */
@@ -104,7 +104,7 @@ export enum Restriction {
 /**
  * function performed by the responsible party
  */
-export enum Role {
+export const enum Role {
   /**
    * party that supplies the resource
    */
@@ -146,7 +146,7 @@ export enum Role {
 /**
  * function performed by the resource
  */
-export enum OnlineFunction {
+export const enum OnlineFunction {
   /**
    * online instructions for transferring data from one storage device or system to another
    */
