@@ -1,8 +1,14 @@
-import {AbstractProcess, ProcessMethod} from '../sensorML';
+import { AbstractProcess } from './core';
+import { AbstractSWEIdentifiable } from '../swe';
 
 export class SimpleProcess extends AbstractProcess {
-    method: ProcessMethod;
-    constructor() {
-        super();
-    }
+  method: ProcessMethod;
+}
+
+export class ProcessMethod extends AbstractSWEIdentifiable {
+  algorithm: AbstractAlgorithm;
+}
+
+export interface AbstractAlgorithm {
+  id: string;
 }

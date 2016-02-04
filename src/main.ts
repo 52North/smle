@@ -32,9 +32,7 @@ document.addEventListener('DOMContentLoaded', function main() {
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy })
-  ])
-  .catch(err => console.error(err));
-
+  ]).catch(err => console.error(err));
 });
 
 // For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app

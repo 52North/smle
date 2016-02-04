@@ -1,15 +1,7 @@
-import {Router} from 'angular2/router';
-import {isPresent} from 'angular2/src/facade/lang';
-import {
-  Directive,
-  Query,
-  QueryList,
-  Attribute,
-  ElementRef,
-  Renderer,
-  Optional
-} from 'angular2/core';
-import {Instruction, RouterLink} from 'angular2/router';
+import { Router } from 'angular2/router';
+import { isPresent } from 'angular2/src/facade/lang';
+import { Directive, Query, QueryList, Attribute, ElementRef, Renderer, Optional} from 'angular2/core';
+import { Instruction, RouterLink } from 'angular2/router';
 
 /**
  * RouterActive dynamically finds the first element with routerLink and toggles the active class
@@ -36,7 +28,7 @@ export class RouterActive {
     @Query(RouterLink) public routerLink: QueryList<RouterLink>,
     @Optional() @Attribute('router-active') routerActiveAttr?: string) {
 
-      this.routerActiveAttr = this._defaultAttrValue(routerActiveAttr);
+    this.routerActiveAttr = this._defaultAttrValue(routerActiveAttr);
   }
 
   ngOnInit() {

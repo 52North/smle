@@ -14,11 +14,11 @@ import {Home} from './home/home';
  */
 @Component({
   selector: 'app',
-  providers: [ ...FORM_PROVIDERS ],
-  directives: [ ...ROUTER_DIRECTIVES, RouterActive ],
+  providers: [...FORM_PROVIDERS],
+  directives: [...ROUTER_DIRECTIVES, RouterActive],
   encapsulation: ViewEncapsulation.None,
   pipes: [],
-  styles: [ require('./app.scss') ],
+  styles: [require('./app.scss')],
   template: require('./app.html')
 })
 @RouteConfig([

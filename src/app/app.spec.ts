@@ -1,9 +1,9 @@
 import {
-  it,
-  inject,
-  injectAsync,
-  beforeEachProviders,
-  TestComponentBuilder
+it,
+inject,
+injectAsync,
+beforeEachProviders,
+TestComponentBuilder
 } from 'angular2/testing';
 
 // Load the implementations that should be tested
@@ -15,7 +15,7 @@ describe('App', () => {
     App
   ]);
 
-  it('should have a url', inject([ App ], (app) => {
+  it('should have a url', inject([App], (app) => {
     expect(app.url).toEqual('https://twitter.com/AngularClass');
   }));
 
