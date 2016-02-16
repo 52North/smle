@@ -1,6 +1,7 @@
 
 /**
- * Information required enabling contact with the  responsible person and/or organisation
+ * Information required enabling contact with the  responsible person and/or
+ * organisation
  */
 export class Contact {
   phone: Phone;
@@ -19,7 +20,8 @@ export class Phone {
 }
 
 /**
- * Information about online sources from which the dataset, specification, or community profile name and extended metadata elements can be obtained.
+ * Information about online sources from which the dataset, specification, or
+ * community profile name and extended metadata elements can be obtained.
  */
 export class OnlineResource {
   linkage: string;
@@ -43,7 +45,8 @@ export class Address {
 }
 
 /**
- * Identification of, and means of communication with, person(s) and organisations associated with the dataset
+ * Identification of, and means of communication with, person(s) and
+ * organisations associated with the dataset
  */
 export class ResponsibleParty {
   individualName: string;
@@ -67,11 +70,15 @@ export class LegalConstraints {
  */
 export const enum Restriction {
   /**
-   * exclusive right to the publication, production, or sale of the rights to a literary, dramatic, musical, or artistic work, or to the use of a commercial print or label, granted by law for a specified period of time to an author, composer, artist, distributor
+   * exclusive right to the publication, production, or sale of the rights to a
+   * literary, dramatic, musical, or artistic work, or to the use of a
+   * commercial print or label, granted by law for a specified period of time to
+   * an author, composer, artist, distributor
    */
   copyright,
   /**
-   * government has granted exclusive right to make, sell, use or license an invention or discovery
+   * government has granted exclusive right to make, sell, use or license an
+   * invention or discovery
    */
   patent,
   /**
@@ -79,7 +86,8 @@ export const enum Restriction {
    */
   patentPending,
   /**
-   * a name, symbol, or other device identifying a product, officially registered and legally restricted to the use of the owner or manufacturer
+   * a name, symbol, or other device identifying a product, officially
+   * registered and legally restricted to the use of the owner or manufacturer
    */
   trademark,
   /**
@@ -87,7 +95,8 @@ export const enum Restriction {
    */
   license,
   /**
-   * rights to financial benefit from and control of distribution of non-tangible property that is a result of creativity
+   * rights to financial benefit from and control of distribution of
+   * non-tangible property that is a result of creativity
    */
   intellectualPropertyRights,
   /**
@@ -110,7 +119,8 @@ export const enum Role {
    */
   resourceProvider,
   /**
-   * party that accepts accountability and responsability for the data and ensures appropriate care and maintenance of the resource
+   * party that accepts accountability and responsability for the data and
+   * ensures appropriate care and maintenance of the resource
    */
   custodian,
   /**
@@ -122,7 +132,8 @@ export const enum Role {
    */
   originator,
   /**
-   * party who can be contacted for acquiring knowledge about or acquisition of the resource
+   * party who can be contacted for acquiring knowledge about or acquisition
+   * of the resource
    */
   pointOfContact,
   /**
@@ -130,7 +141,8 @@ export const enum Role {
    */
   principalInvestigator,
   /**
-   * party wha has processed the data in a manner such that the resource has been modified
+   * party wha has processed the data in a manner such that the resource has
+   * been modified
    */
   processor,
   /**
@@ -148,7 +160,8 @@ export const enum Role {
  */
 export const enum OnlineFunction {
   /**
-   * online instructions for transferring data from one storage device or system to another
+   * online instructions for transferring data from one storage device or system
+   * to another
    */
   download,
   /**

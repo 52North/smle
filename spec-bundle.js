@@ -1,4 +1,3 @@
-// @AngularClass
 /*
  * When testing with webpack and ES6, we have to do some extra
  * things get testing to work right. Because we are gonna write test
@@ -8,6 +7,7 @@
  * file for our client, when we run test, it well compile and bundle them
  * all here! Crazy huh. So we need to do some setup
 */
+'use strict';
 Error.stackTraceLimit = Infinity;
 require('phantomjs-polyfill');
 require('es6-promise');

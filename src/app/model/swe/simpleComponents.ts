@@ -7,7 +7,8 @@ import {AbstractSWE, AbstractSWEIdentifiable, TimePosition} from './basicTypes';
  */
 export abstract class AbstractDataComponent extends AbstractSWEIdentifiable {
   /**
-   * Reference to semantic information defining the precise nature of the component
+   * Reference to semantic information defining the precise nature of the
+   * component
    */
   definition: string;
   /**
@@ -15,7 +16,8 @@ export abstract class AbstractDataComponent extends AbstractSWEIdentifiable {
    */
   optional: boolean = false;
   /**
-   * Specifies if the value of a data component can be updated externally (i.e. is variable)
+   * Specifies if the value of a data component can be updated externally
+   * (i.e. is variable)
    */
   updatable: boolean;
 }
@@ -29,14 +31,16 @@ class AbstractNumericAllowedValues extends AbstractAllowedValues {
 }
 
 /**
- * Defines the permitted values for the component as an enumerated list and/or a list of inclusive ranges
+ * Defines the permitted values for the component as an enumerated list and/or
+ * a list of inclusive ranges
  */
 export class AllowedValues extends AbstractNumericAllowedValues {
   values: number[] | [number, number][];
 }
 
 /**
- * Defines permitted values for the component, as an enumerated list of tokens or a regular expression pattern
+ * Defines permitted values for the component, as an enumerated list of tokens
+ * or a regular expression pattern
  */
 export class AllowedTokens extends AbstractAllowedValues {
   values: string[];
@@ -44,7 +48,8 @@ export class AllowedTokens extends AbstractAllowedValues {
 }
 
 /**
- * Defines the permitted values for the component, as a time range or an enumerated list of time values
+ * Defines the permitted values for the component, as a time range or an
+ * enumerated list of time values
  */
 export class AllowedTimes extends AbstractNumericAllowedValues {
   values: TimePosition[] | [TimePosition, TimePosition][];
@@ -53,11 +58,14 @@ export class AllowedTimes extends AbstractNumericAllowedValues {
 
 export class AbstractSimpleComponent extends AbstractDataComponent {
   /**
-   * Frame of reference (usually temporal or spatial) with respect to which the value of the component is expressed. A reference frame anchors a value to a real world datum.
+   * Frame of reference (usually temporal or spatial) with respect to which the
+   * value of the component is expressed. A reference frame anchors a value to
+   * a real world datum.
    */
   referenceFrame: string;
   /**
-   * Specifies the reference axis (refer to gml:axisID). The reference frame URI should also be specified unless it is inherited from parent Vector
+   * Specifies the reference axis (refer to gml:axisID). The reference frame
+   * URI should also be specified unless it is inherited from parent Vector
    */
   axisId: string;
   quality: SweQuality[];
@@ -74,17 +82,20 @@ class AbstractSweRange extends AbstractSimpleComponent {
  */
 export class SweBoolean extends AbstractSimpleComponent {
   /**
-   * Value is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is optional, to enable structure to act as a schema for values
+   * provided using other encodings
    */
   value: boolean;
 }
 
 /**
- * Scalar component with decimal representation and a unit of measure used to store value of a continuous quantity
+ * Scalar component with decimal representation and a unit of measure used to
+ * store value of a continuous quantity
  */
 export class SweQuantity extends AbstractSimpleComponent {
   /**
-   * Value is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is optional, to enable structure to act as a schema for values
+   * provided using other encodings
    */
   value: number;
   /**
@@ -99,7 +110,9 @@ export class SweQuantity extends AbstractSimpleComponent {
  */
 export class SweQuantityRange extends AbstractSweRange {
   /**
-   * Value is a pair of double numbers separated by a space. It is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is a pair of double numbers separated by a space. It is optional, to
+   * enable structure to act as a schema for values provided using other
+   * encodings
    */
   value: [number, number];
   /**
@@ -110,11 +123,13 @@ export class SweQuantityRange extends AbstractSweRange {
 }
 
 /**
- * Scalar component with integer representation used for a discrete counting value
+ * Scalar component with integer representation used for a discrete counting
+ * value
  */
 export class SweCount extends AbstractSimpleComponent {
   /**
-   * Value is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is optional, to enable structure to act as a schema for values
+   * provided using other encodings
    */
   value: number;
   constraint: AllowedValues;
@@ -125,26 +140,33 @@ export class SweCount extends AbstractSimpleComponent {
  */
 export class SweCountRange extends AbstractSweRange {
   /**
-   * Value is a pair of integer numbers separated by a space. It is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is a pair of integer numbers separated by a space. It is optional, to
+   * enable structure to act as a schema for values provided using other
+   * encodings
    */
   value: [number, number];
   constraint: AllowedValues;
 }
 
 /**
- * Scalar component used to represent a time quantity either as ISO 8601 (e.g. 2004-04-18T12:03:04.6Z) or as a duration relative to a time of reference
+ * Scalar component used to represent a time quantity either as ISO 8601
+ * (e.g. 2004-04-18T12:03:04.6Z) or as a duration relative to a time of
+ * reference
  */
 export class SweTime extends AbstractSimpleComponent {
   /**
-   * Value is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is optional, to enable structure to act as a schema for values
+   * provided using other encodings
    */
   value: TimePosition;
   /**
-   * Specifies the origin of the temporal reference frame as an ISO8601 date (used to specify time after an epoch that is to say in a custom frame)
+   * Specifies the origin of the temporal reference frame as an ISO8601 date
+   * (used to specify time after an epoch that is to say in a custom frame)
    */
   referenceTime: Date;
   /**
-   * Temporal frame of reference whose origin is located by the value of this component
+   * Temporal frame of reference whose origin is located by the value of this
+   * component
    */
   localFrame: string;
   /**
@@ -159,15 +181,19 @@ export class SweTime extends AbstractSimpleComponent {
  */
 export class SweTimeRange extends AbstractSweRange {
   /**
-   * Value is a pair of time values expressed in ISO-8601 or as decimal numbers separated by a space. It is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is a pair of time values expressed in ISO-8601 or as decimal numbers
+   * separated by a space. It is optional, to enable structure to act as a
+   * schema for values provided using other encodings
    */
   value: [TimePosition, TimePosition];
   /**
-   * Specifies the origin of the temporal reference frame as an ISO8601 date (used to specify time after an epoch that is to say in a custom frame)
+   * Specifies the origin of the temporal reference frame as an ISO8601 date
+   * (used to specify time after an epoch that is to say in a custom frame)
    */
   referenceTime: Date;
   /**
-   * Temporal frame of reference whose origin is located by the value of this component
+   * Temporal frame of reference whose origin is located by the value of this
+   * component
    */
   localFrame: string;
   /**
@@ -178,62 +204,87 @@ export class SweTimeRange extends AbstractSweRange {
 }
 
 /**
- * Free text component used to store comments or any other type of textual statement
+ * Free text component used to store comments or any other type of textual
+ * statement
  */
 export class SweText extends AbstractSimpleComponent {
   /**
-   * Value is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is optional, to enable structure to act as a schema for values
+   * provided using other encodings
    */
   value: string;
   constraint: AllowedTokens;
 }
 
 /**
- * Scalar component used to represent a categorical value as a simple token identifying a term in a code space
+ * Scalar component used to represent a categorical value as a simple token
+ * identifying a term in a code space
  */
 export class SweCategory extends AbstractSimpleComponent {
   /**
-   * Value is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is optional, to enable structure to act as a schema for values
+   * provided using other encodings
    */
   value: string;
   /**
-   * Name of the dictionary where the possible values for this component are listed and defined
+   * Name of the dictionary where the possible values for this component are
+   * listed and defined
    */
   codeSpace: string;
   constraint: AllowedTokens;
 }
 
 /**
- * Pair of categorical values used to specify a range in an ordinal reference system (specified by the code space)
+ * Pair of categorical values used to specify a range in an ordinal
+ * reference system (specified by the code space)
  */
 export class SweCategoryRange extends AbstractSweRange {
   /**
-   * Value is a pair of tokens separated by a space (if tokens contain spaces, they must be espaced by using XML entities). It is optional, to enable structure to act as a schema for values provided using other encodings
+   * Value is a pair of tokens separated by a space (if tokens contain spaces,
+   * they must be espaced by using XML entities). It is optional, to enable
+   * structure to act as a schema for values provided using other encodings
    */
   value: [string, string];
   /**
-   * Name of the dictionary defining an ordered set of values with respect to which the range is expressed (ordinal reference system)
+   * Name of the dictionary defining an ordered set of values with respect to
+   * which the range is expressed (ordinal reference system)
    */
   codeSpace: string;
   constraint: AllowedTokens;
 }
 
 /**
- * Provides an indication of the reliability of the parent component value in the form of a decimal number (ex: relative accuracy), a range (ex: bidirectional tolerance), a categorical value (ex: good, bad) or plain textual statement
+ * Provides an indication of the reliability of the parent component value in
+ * the form of a decimal number (ex: relative accuracy), a range (ex:
+ * bidirectional tolerance), a categorical value (ex: good, bad) or plain
+ * textual statement
  */
-export type SweQuality = SweQuantity | SweQuantityRange | SweCategory | SweText;
+export type SweQuality = SweQuantity
+  | SweQuantityRange
+  | SweCategory
+  | SweText;
 
 /**
  * Re-usable group providing a choice of range data components
  */
-export type SweAnyRange = SweQuantityRange | SweTimeRange | SweCountRange | SweCategoryRange;
+export type SweAnyRange = SweQuantityRange
+  | SweTimeRange
+  | SweCountRange
+  | SweCategoryRange;
 
 /**
  * Re-usable group providing a choice of numeric data components
  */
-export type SweAnyNumerical = SweCount | SweQuantity | SweTime;
+export type SweAnyNumerical = SweCount
+  | SweQuantity
+  | SweTime;
 
 /**
  * Re-usable group providing a choice of scalar data components
  */
-export type SweAnyScalar = SweBoolean | SweCount | SweQuantity | SweTime | SweCategory | SweText;
+export type SweAnyScalar = SweBoolean
+  | SweCount
+  | SweQuantity
+  | SweTime
+  | SweCategory
+  | SweText;

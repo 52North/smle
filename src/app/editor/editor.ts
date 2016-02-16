@@ -1,7 +1,7 @@
 import {Component, Injectable, OnInit} from 'angular2/core';
 import {Router, RouteParams} from 'angular2/router';
 import {AbstractProcess, SimpleProcess} from '../model/sensorML';
-import {DescriptionService} from '../services/description.service';
+import {DescriptionRepository} from '../services/description.service';
 
 @Component({
   selector: 'editor',
@@ -15,11 +15,11 @@ import {DescriptionService} from '../services/description.service';
 })
 @Injectable()
 export class Editor implements OnInit {
-  private _id: string;
   description: AbstractProcess;
+  private _id: string;
 
   constructor(
-    private _service: DescriptionService,
+    private _service: DescriptionRepository,
     routeParams: RouteParams) {
     this._id = routeParams.get('id');
   }

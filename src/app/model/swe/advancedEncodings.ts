@@ -3,15 +3,18 @@ import { AbstractSWE } from './basicTypes';
 import { AbstractEncoding } from './simpleEncodings';
 
 /**
- * Binary encoding parameters used to encode a block of values at once. This is used for encrypting or compressing a complete array of values for instance
+ * Binary encoding parameters used to encode a block of values at once. This is
+ * used for encrypting or compressing a complete array of values for instance
  */
 export class SweBlock extends AbstractSWE {
   /**
-   * Name of the compression method used to encrypt the block of values described by the referenced data component
+   * Name of the compression method used to encrypt the block of values
+   * described by the referenced data component
    */
   compression: string;
   /**
-   * Name of the encryption method used to encrypt the block of values described by the referenced data component
+   * Name of the encryption method used to encrypt the block of values described
+   * by the referenced data component
    */
   encryption: string;
   /**
@@ -27,7 +30,8 @@ export class SweBlock extends AbstractSWE {
    */
   byteLength: number;
   /**
-   * Reference to the aggregate data component that this binary block encoding settings apply to
+   * Reference to the aggregate data component that this binary block encoding
+   * settings apply to
    */
   ref: string;
 }
@@ -41,7 +45,8 @@ export class SweComponent extends AbstractSWE {
    */
   encryption: string;
   /**
-   * Number of significant bits actually used for a binary encoded numerical value (all remaining bits shall be set to 0)
+   * Number of significant bits actually used for a binary encoded numerical
+   * value (all remaining bits shall be set to 0)
    */
   significantBits: number;
 
@@ -52,12 +57,14 @@ export class SweComponent extends AbstractSWE {
   byteLength: number;
 
   /**
-   * Binary data type used to encode the value(s) of the referenced data component
+   * Binary data type used to encode the value(s) of the referenced data
+   * component
    */
   dataType: string;
 
   /**
-   * Reference to the data component that these binary encoding settings apply to
+   * Reference to the data component that these binary encoding settings apply
+   * to
    */
   ref: string;
 }
@@ -68,7 +75,9 @@ export class SweComponent extends AbstractSWE {
 export class BinaryEncoding extends AbstractEncoding {
   members: Array<SweBlock | SweComponent>;
   /**
-   * Byte order convention used to encode this binary data (big endian = most significant byte first, MSB or little endian = least significant byte first, LSB)
+   * Byte order convention used to encode this binary data (big endian = most
+   * significant byte first, MSB or little endian = least significant byte
+   * first, LSB)
    */
   byteOrder: ByteOrder;
   /**

@@ -59,8 +59,8 @@
     "es6-shim": "^0.33.3",
     "es7-reflect-metadata": "^1.5.5",
     "jquery": "^2.2.0",
-    "rxjs": "5.0.0-beta.0",
-    "zone.js": "0.5.10"
+    "rxjs": "^5.0.0-beta.0",
+    "zone.js": "^0.5.10"
   },
   "devDependencies": {
     "bootstrap-sass": "^3.3.6",
@@ -87,7 +87,7 @@
     "ncp": "^2.0.0",
     "node-sass": "^3.4.2",
     "ogc-schemas": "^2.6.0",
-    "phantomjs-polyfill": "0.0.1",
+    "phantomjs-polyfill": "^0.0.1",
     "phantomjs-prebuilt": "^2.1.3",
     "protractor": "^3.0.0",
     "raw-loader": "0.5.1",
@@ -98,7 +98,7 @@
     "sass-loader": "^3.1.2",
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.0",
-    "ts-helper": "0.0.1",
+    "ts-helper": "^0.0.1",
     "ts-loader": "^0.8.0",
     "ts-node": "^0.5.5",
     "tsconfig-lint": "^0.5.0",
@@ -106,11 +106,11 @@
     "tslint-loader": "^2.1.0",
     "typedoc": "^0.3.12",
     "typescript": "^1.7.5",
-    "typings": "^0.6.3",
+    "typings": "^0.6.6",
     "url-loader": "^0.5.7",
     "w3c-schemas": "^1.4.0",
     "webpack": "^1.12.12",
     "webpack-dev-server": "^1.14.1",
-    "webpack-md5-hash": "0.0.4"
+    "webpack-md5-hash": "^0.0.4"
   }
 }

@@ -4,7 +4,8 @@ export abstract class XmlService<T> {
 }
 
 const stylesheet: Document = new DOMParser().parseFromString(
-  `<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  `<xsl:stylesheet version="1.0"
+                   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="node()|@*">
       <xsl:copy>
@@ -25,14 +26,18 @@ export abstract class AbstractXmlService<T> extends XmlService<T> {
     var document: Document;
     if (xml instanceof Document) {
       document = xml;
-    } else if (xml instanceof String) {
+    } else if (typeof (xml) === 'string') {
       let deserializer = new DOMParser();
-      document = deserializer.parseFromString(xml, 'application/xml');
+      document = deserializer.parseFromString(xml as string, 'application/xml');
     } else {
       return null;
     }
     return this.decode(document);
   }
+
+  protected abstract decode(document: Document): T;
+
+  protected abstract encode(object: T): Document;
 
   private prettyPrint(source: Document): Document {
     return source;
@@ -40,8 +45,4 @@ export abstract class AbstractXmlService<T> extends XmlService<T> {
     //processor.importStylesheet(stylesheet);
     //return processor.transformToDocument(source);
   }
-
-  protected abstract decode(document: Document): T;
-
-  protected abstract encode(object: T): Document;
 }

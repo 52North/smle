@@ -1,8 +1,5 @@
-// @AngularClass
 
-/*
- * Helper: root(), and rootDir() are defined at the bottom
- */
+'use strict';
 var path = require('path');
 var webpack = require('webpack');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
@@ -66,7 +63,7 @@ module.exports = {
       { test: /\.html$/,  loader: 'raw-loader' },
 
       // support for SCSS files
-      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], exclude: /node_modules/ }
+      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], exclude: /node_modules/ },
 
       // if you add a loader include the resolve file extension above
     ]

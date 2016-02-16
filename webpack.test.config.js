@@ -1,8 +1,4 @@
-// @AngularClass
-
-/*
- * Helper: root(), and rootDir() are defined at the bottom
- */
+'use strict';
 var path = require('path');
 // Webpack Plugins
 var ProvidePlugin = require('webpack/lib/ProvidePlugin');
@@ -17,22 +13,25 @@ module.exports = {
     cache: false,
     extensions: prepend(['.ts','.js','.json','.css','.html'], '.async') // ensure .async.ts etc also works
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
+  debug: true,
+  output: {
+    path: root('dist'),
+    filename: '[name].bundle.js',
+    sourceMapFilename: '[name].map',
+    chunkFilename: '[id].chunk.js'
+  },
   module: {
     preLoaders: [
       {
         test: /\.ts$/,
         loader: 'tslint-loader',
-        exclude: [
-          root('node_modules')
-        ]
+        exclude: [ root('node_modules') ]
       },
       {
         test: /\.js$/,
         loader: "source-map-loader",
-        exclude: [
-          root('node_modules/rxjs')
-        ]
+        exclude: [ root('node_modules/rxjs') ]
       }
     ],
     loaders: [
@@ -55,7 +54,9 @@ module.exports = {
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.html$/, loader: 'raw-loader' },
       { test: /\.css$/, loader: 'raw-loader' },
-      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], exclude: /node_modules/ }
+      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], exclude: /node_modules/ },
+      { test: /\.xml$/, loader: 'raw-loader' }
+
     ],
     postLoaders: [
       // instrument only testing sources with Istanbul
@@ -75,7 +76,6 @@ module.exports = {
     ]
   },
   stats: { colors: true, reasons: true },
-  debug: false,
   plugins: [
     new DefinePlugin({
       // Environment helpers
@@ -119,10 +119,10 @@ function rootNode(args) {
 
 function prepend(extensions, args) {
   args = args || [];
-  if (!Array.isArray(args)) { args = [args] }
+  if (!Array.isArray(args)) { args = [args]; }
   return extensions.reduce(function(memo, val) {
     return memo.concat(val, args.map(function(prefix) {
-      return prefix + val
+      return prefix + val;
     }));
   }, ['']);
 }

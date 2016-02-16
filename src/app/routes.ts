@@ -22,4 +22,4 @@ export const ROUTES: RouteDefinition[] = [
     path: '/**',
     redirectTo: ['Index']
   }
-]
+];

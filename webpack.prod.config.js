@@ -1,8 +1,4 @@
-// @AngularClass
-
-/*
- * Helper: root(), and rootDir() are defined at the bottom
- */
+'use strict';
 var path = require('path');
 var zlib = require('zlib');
 // Webpack Plugins
@@ -192,7 +188,7 @@ module.exports = {
 
 // Helper functions
 function gzipMaxLevel(buffer, callback) {
-  return zlib['gzip'](buffer, {level: 9}, callback)
+  return zlib.gzip(buffer, {level: 9}, callback);
 }
 
 function root(args) {
@@ -207,10 +203,10 @@ function rootNode(args) {
 
 function prepend(extensions, args) {
   args = args || [];
-  if (!Array.isArray(args)) { args = [args] }
+  if (!Array.isArray(args)) { args = [args]; }
   return extensions.reduce(function(memo, val) {
     return memo.concat(val, args.map(function(prefix) {
-      return prefix + val
+      return prefix + val;
     }));
   }, ['']);
 }

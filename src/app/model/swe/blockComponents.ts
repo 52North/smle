@@ -26,11 +26,14 @@ export class SweDataStream extends AbstractSWEIdentifiable {
 }
 
 /**
- * Implementation of ISO-11404 Array datatype. This defines an array of identical data components with a elementCount. Values are given as a block and can be encoded in different ways
+ * Implementation of ISO-11404 Array datatype. This defines an array of
+ * identical data components with a elementCount. Values are given as a block
+ * and can be encoded in different ways
  */
 export class SweDataArray extends AbstractDataComponent {
   /**
-   * Specifies the size of the array (i.e. the number of elements of the defined type it contains)
+   * Specifies the size of the array (i.e. the number of elements of the defined
+   * type it contains)
    */
   elementCount: number;
   /**
@@ -42,7 +45,9 @@ export class SweDataArray extends AbstractDataComponent {
    */
   encoding: AbstractEncoding;
   /**
-   * If present, contains an encoded block of the values contained in the array. Values are optional so that the array definition can be used a as a schema for values provided externally
+   * If present, contains an encoded block of the values contained in the array.
+   * Values are optional so that the array definition can be used a as a schema
+   * for values provided externally
    */
   values: EncodedValues;
 }

@@ -1,11 +1,12 @@
 
 import {
-AbstractProcess,
-SimpleProcess,
-AggregateProcess,
-PhysicalComponent,
-PhysicalSystem
+  AbstractProcess,
+  SimpleProcess,
+  AggregateProcess,
+  PhysicalComponent,
+  PhysicalSystem
 } from '../model/sensorML';
+
 import { AbstractXmlService } from './xml.service';
 
 export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {
@@ -32,26 +33,59 @@ export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {
 type StringMap = { [key: string]: string };
 
 abstract class Encoder<T> {
-  abstract encode(object: T, parent: Node);
+  abstract encode(object: T, parent: Node): void;
+}
+
+interface Resolver {
+  getPrefix(namespace: string): string;
+  getNamespace(prefix: string): string;
+  getPrefixes(): string[];
+  getNamespaces(): string[];
+}
+
+export class SensorMLNamespaceResolver implements Resolver {
+  private _prefixToNamespace: { [Key: string]: string } = {
+    gco: 'http://www.isotc211.org/2005/gco',
+    gmd: 'http://www.isotc211.org/2005/gmd',
+    gml: 'http://www.opengis.net/gml/3.2',
+    sml: 'http://www.opengis.net/sensorml/2.0',
+    xsi: 'http://www.w3.org/2001/XMLSchema-instance',
+    swe: 'http://www.opengis.net/swe/2.0',
+    xlink: 'http://www.w3.org/1999/xlink'
+  };
+  private _namespaceToPrefix: { [Key: string]: string } = {
+    'http://www.isotc211.org/2005/gco': 'gco',
+    'http://www.isotc211.org/2005/gmd': 'gmd',
+    'http://www.opengis.net/gml/3.2': 'gml',
+    'http://www.opengis.net/sensorml/2.0': 'sml',
+    'http://www.w3.org/2001/XMLSchema-instance': 'xsi',
+    'http://www.opengis.net/swe/2.0': 'swe',
+    'http://www.w3.org/1999/xlink': 'xlink'
+  };
+
+  getPrefix(namespace: string): string {
+    return this._namespaceToPrefix[namespace];
+  }
+
+  getNamespace(prefix: string): string {
+    return this._prefixToNamespace[prefix];
+  }
+
+  getNamespaces(): string[] {
+    return Object.keys(this._namespaceToPrefix);
+  }
+
+  getPrefixes(): string[] {
+    return Object.keys(this._prefixToNamespace);
+  }
 }
 
 abstract class DocumentEncoder<T> extends Encoder<T> {
-  private _namespaceToPrefix: StringMap;
-  private _prefixToNamespace: StringMap;
-
   constructor(private prefix: string,
-              private name: string,
-              private schemaURL: string,
-              namespaces: StringMap) {
+    private name: string,
+    private schemaURL: string,
+    private resolver: Resolver) {
     super();
-
-    this._prefixToNamespace = namespaces;
-    this._namespaceToPrefix =
-      Object.keys(this._prefixToNamespace).reduce(
-        (o, p) => {
-          o[this._prefixToNamespace[p]] = p;
-          return o;
-        }, <StringMap>{})
   }
 
   encodeDocument(object: T): Document {
@@ -61,66 +95,76 @@ abstract class DocumentEncoder<T> extends Encoder<T> {
   }
 
   getPrefix(namespace: string) {
-    return this._namespaceToPrefix[namespace];
+    return this.resolver.getPrefix(namespace);
   }
 
   getNamespace(prefix: string) {
-    return this._prefixToNamespace[prefix];
+    return this.resolver.getNamespace(prefix);
   }
 
-  private createDocument(prefix: string, name: string, schemaURL: string): Document {
-    let p2n = this._prefixToNamespace;
-    let ns = Object.keys(p2n)
-      .map(prefix => `xmlns:${prefix}="${p2n[prefix]}"`)
+  private createDocument(prefix: string,
+    name: string, schemaURL: string): Document {
+
+    let namespaces = this.resolver.getPrefixes()
+      .map(prefix => `xmlns:${prefix}="${this.resolver.getNamespace(prefix)}"`)
       .join(' ');
-    let sl = `xsi:schemaLocation="${p2n[prefix]} ${schemaURL}"`;
-    let s = `<${prefix}:${name} ${ns} ${sl}></${prefix}:${name}>`;
+    let namespace = this.resolver.getNamespace(prefix);
+    let sl = `xsi:schemaLocation="${namespace} ${schemaURL}"`;
+    let s = `<${prefix}:${name} ${namespaces} ${sl}></${prefix}:${name}>`;
     return new DOMParser().parseFromString(s, 'application/xml');
   }
 }
 
 abstract class SensorMLDocumentEncoder<T> extends DocumentEncoder<T> {
-  constructor(name: string, schemaURL: string = 'http://schemas.opengis.net/sensorML/2.0/sensorML.xsd') {
-    super('sml', name, schemaURL, {
-      gco: "http://www.isotc211.org/2005/gco",
-      gmd: "http://www.isotc211.org/2005/gmd",
-      gml: "http://www.opengis.net/gml/3.2",
-      sml: "http://www.opengis.net/sensorml/2.0",
-      swe: "http://www.opengis.net/swe/2.0",
-      xsi: "http://www.w3.org/2001/XMLSchema-instance",
-      xlink: "http://www.w3.org/1999/xlink"
-    });
+  constructor(name: string, schemaURL: string
+    = 'http://schemas.opengis.net/sensorML/2.0/sensorML.xsd') {
+    super('sml', name, schemaURL, new SensorMLNamespaceResolver());
   }
 }
 
 class SimpleProcessEncoder extends SensorMLDocumentEncoder<SimpleProcess> {
+
   constructor() {
-    super('SimpleProcess', 'http://schemas.opengis.net/sensorML/2.0/simple_process.xsd');
+    super('SimpleProcess',
+      'http://schemas.opengis.net/sensorML/2.0/simple_process.xsd');
   }
+
   encode(object: SimpleProcess, parent: Node) {
   }
 }
 
-class AggregateProcessEncoder extends SensorMLDocumentEncoder<AggregateProcess>{
+class AggregateProcessEncoder
+  extends SensorMLDocumentEncoder<AggregateProcess> {
+
   constructor() {
-    super('AggregateProcess', 'http://schemas.opengis.net/sensorML/2.0/aggregate_process.xsd');
+    super('AggregateProcess',
+      'http://schemas.opengis.net/sensorML/2.0/aggregate_process.xsd');
   }
+
   encode(object: AggregateProcess, parent: Node) {
   }
 }
 
-class PhysicalSystemEncoder extends SensorMLDocumentEncoder<PhysicalSystem>{
+class PhysicalSystemEncoder
+  extends SensorMLDocumentEncoder<PhysicalSystem> {
+
   constructor() {
-    super('PhysicalSystem', 'http://schemas.opengis.net/sensorML/2.0/physical_system.xsd');
+    super('PhysicalSystem',
+      'http://schemas.opengis.net/sensorML/2.0/physical_system.xsd');
   }
+
   encode(object: PhysicalSystem, parent: Node) {
   }
 }
 
-class PhysicalComponentEncoder extends SensorMLDocumentEncoder<PhysicalComponent> {
+class PhysicalComponentEncoder
+  extends SensorMLDocumentEncoder<PhysicalComponent> {
+
   constructor() {
-    super('PhysicalComponent', 'http://schemas.opengis.net/sensorML/2.0/physical_component.xsd');
+    super('PhysicalComponent',
+      'http://schemas.opengis.net/sensorML/2.0/physical_component.xsd');
   }
+
   encode(object: PhysicalComponent, parent: Node) {
   }
 }

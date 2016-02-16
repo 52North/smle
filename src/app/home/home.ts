@@ -1,6 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {DescriptionService} from '../services/description.service';
+import {DescriptionRepository} from '../services/description.service';
 
 @Component({
   selector: 'home',
@@ -21,7 +21,7 @@ export class Home implements OnInit {
   private _selected: string;
 
   constructor(
-    private _service: DescriptionService,
+    private _service: DescriptionRepository,
     private _router: Router) {
   }
 
@@ -30,11 +30,11 @@ export class Home implements OnInit {
   }
 
   onSelect(id: string): void  {
-    this._router.navigate(['Editor', {id: id}])
+    this._router.navigate(['Editor', {id: id}]);
   }
 
   ngOnInit() {
-    console.log("Getting description identifiers");
+    console.log('Getting description identifiers');
     this._service.getDescriptions()
       .then(ids => this.descriptions = ids);
   }

@@ -38,5 +38,3 @@ export class Mode extends DescribedObject {
 
 export class AbstractMode extends AbstractSWE {
 }
-
-

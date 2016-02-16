@@ -1,16 +1,29 @@
 import { Router } from 'angular2/router';
 import { isPresent } from 'angular2/src/facade/lang';
-import { Directive, Query, QueryList, Attribute, ElementRef, Renderer, Optional} from 'angular2/core';
+import {
+  Directive,
+  Query,
+  QueryList,
+  Attribute,
+  ElementRef,
+  Renderer,
+  Optional
+} from 'angular2/core';
 import { Instruction, RouterLink } from 'angular2/router';
 
 /**
- * RouterActive dynamically finds the first element with routerLink and toggles the active class
+ * RouterActive dynamically finds the first element with routerLink and toggles
+ * the active class
  *
  * ## Use
  *
  * ```
- * <li router-active="active"><a [routerLink]=" ['/Home'] ">Home</a></li>
- * <li [routerActive]=" activeStringValue "><a [routerLink]=" ['/Home'] ">Home</a></li>
+ * <li router-active="active">
+ *   <a [routerLink]=" ['/Home'] ">Home</a>
+ * </li>
+ * <li [routerActive]="activeStringValue">
+ *   <a [routerLink]=" ['/Home'] ">Home</a>
+ * </li>
  * ```
  */
 @Directive({
@@ -35,7 +48,9 @@ export class RouterActive {
     this.router.subscribe(() => {
       if (this.routerLink.first) {
         let active = this.routerLink.first.isRouteActive;
-        this.renderer.setElementClass(this.element.nativeElement, this._attrOrProp(), active);
+        this.renderer.setElementClass(
+          this.element.nativeElement,
+          this._attrOrProp(), active);
       }
     });
   }
@@ -45,6 +60,7 @@ export class RouterActive {
   }
 
   private _attrOrProp() {
-    return isPresent(this.routerActive) ? this.routerActive : this.routerActiveAttr;
+    return isPresent(this.routerActive)
+        ? this.routerActive : this.routerActiveAttr;
   }
 }

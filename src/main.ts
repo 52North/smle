@@ -3,12 +3,16 @@
  */
 import {provide, enableProdMode} from 'angular2/core';
 import {bootstrap, ELEMENT_PROBE_PROVIDERS} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
+import {
+  ROUTER_PROVIDERS,
+  LocationStrategy,
+  HashLocationStrategy
+} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
 import 'jquery';
 
-const ENV_PROVIDERS = [];
+const ENV_PROVIDERS: any[] = [];
 
 if ('production' === process.env.ENV) {
   enableProdMode();
@@ -21,8 +25,9 @@ if ('production' === process.env.ENV) {
  * our top level component that holds all of our components
  */
 import {Application} from './app/app';
-import {DescriptionService} from './app/services/description.service';
-import {InMemoryDescriptionService} from './app/services/inMemoryDescription.service';
+import {DescriptionRepository} from './app/services/description.service';
+import {InMemoryDescriptionService}
+from './app/services/inMemoryDescription.service';
 
 /*
  * Bootstrap our Angular app with a top level component `App` and inject
@@ -34,10 +39,6 @@ document.addEventListener('DOMContentLoaded', function main() {
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy }),
-    provide(DescriptionService, { useClass: InMemoryDescriptionService }),
-
-  ]).catch(err => console.error(err));
+    provide(DescriptionRepository, { useClass: InMemoryDescriptionService }),
+  ]).catch((err: any) => console.error(err));
 });
-
-// For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app
-// Also see custom_typings.d.ts as you also need to do `typings install x` where `x` is your module

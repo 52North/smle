@@ -4,7 +4,8 @@
     "module": "commonjs",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "noImplicitAny": true
   },
   "exclude": [
     "node_modules",
@@ -12,13 +13,65 @@
     "typings/main"
   ],
   "filesGlob": [
-    "./src/**/*.ts",
-    "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "src/custom_typings.d.ts",
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "!node_modules/**/*.ts",
     "typings/browser.d.ts"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": {
+    "rewriteTsconfig": true,
+    "formatOnSave": true
+  },
+  "formatCodeOptions": {
+    "indentSize": 2,
+    "tabSize": 2,
+    "convertTabsToSpaces": true,
+    "newLineCharacter": "\n",
+    "insertSpaceAfterCommaDelimiter": true,
+    "insertSpaceAfterSemicolonInForStatements": true,
+    "insertSpaceBeforeAndAfterBinaryOperators": true,
+    "insertSpaceAfterKeywordsInControlFlowStatements": true,
+    "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+    "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+    "placeOpenBraceOnNewLineForFunctions": false,
+    "placeOpenBraceOnNewLineForControlBlocks": false
+  },
+  "files": [
+    "src/app/app.e2e.ts",
+    "src/app/app.spec.ts",
+    "src/app/app.ts",
+    "src/app/directives/router-active.ts",
+    "src/app/editor/editor.ts",
+    "src/app/home/home.ts",
+    "src/app/model/gml.ts",
+    "src/app/model/iso19115.ts",
+    "src/app/model/iso19115/gmd.ts",
+    "src/app/model/sensorML.ts",
+    "src/app/model/sensorML/aggregateProcess.ts",
+    "src/app/model/sensorML/configuration.ts",
+    "src/app/model/sensorML/core.ts",
+    "src/app/model/sensorML/physicalComponent.ts",
+    "src/app/model/sensorML/physicalSystem.ts",
+    "src/app/model/sensorML/simpleProcess.ts",
+    "src/app/model/swe.ts",
+    "src/app/model/swe/advancedEncodings.ts",
+    "src/app/model/swe/basicTypes.ts",
+    "src/app/model/swe/blockComponents.ts",
+    "src/app/model/swe/choiceComponents.ts",
+    "src/app/model/swe/recordComponents.ts",
+    "src/app/model/swe/simpleComponents.ts",
+    "src/app/model/swe/simpleEncodings.ts",
+    "src/app/routes.ts",
+    "src/app/services/description.service.ts",
+    "src/app/services/inMemoryDescription.service.ts",
+    "src/app/services/sensorMLXml.service.spec.ts",
+    "src/app/services/sensorMLXml.service.ts",
+    "src/app/services/xml.service.ts",
+    "src/custom_typings.d.ts",
+    "src/main.ts",
+    "src/polyfills.ts",
+    "typings/browser.d.ts"
+  ]
 }

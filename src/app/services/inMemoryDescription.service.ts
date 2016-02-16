@@ -1,11 +1,9 @@
-
-
 import { AbstractProcess } from '../model/sensorML';
 import { Injectable } from 'angular2/core';
-import { DescriptionService } from './description.service';
+import { DescriptionRepository } from './description.service';
 
 @Injectable()
-export class InMemoryDescriptionService extends DescriptionService {
+export class InMemoryDescriptionService extends DescriptionRepository {
   private _descriptions: { [key: string]: AbstractProcess } = {};
   /*
   constructor(processes?: AbstractProcess[]) {
@@ -22,26 +20,26 @@ export class InMemoryDescriptionService extends DescriptionService {
     return Promise.resolve(Object.keys(this._descriptions));
   }
 
-  getDescription(id) {
+  getDescription(id: string): Promise<AbstractProcess> {
     return Promise.resolve(this._descriptions[id]);
   }
 
-  saveDescription(description) {
+  saveDescription(description: AbstractProcess): Promise<void> {
     let id = this._getId(description);
     if (this._descriptions[id]) {
-      return Promise.reject(new Error("already saved"));
+      return Promise.reject(new Error('already saved'));
     }
     this._descriptions[id] = description;
-    return Promise.resolve()
+    return Promise.resolve();
   }
 
-  updateDescription(description) {
+  updateDescription(description: AbstractProcess): Promise<void> {
     let id = this._getId(description);
     if (!this._descriptions[id]) {
-      return Promise.reject(new Error("not yet saved"));
+      return Promise.reject(new Error('not yet saved'));
     }
     this._descriptions[id] = description;
-    return Promise.resolve()
+    return Promise.resolve();
   }
 
   private _getId(description: AbstractProcess): string {
