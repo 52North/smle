@@ -1,10 +1,10 @@
 
-import {AbstractSWEIdentifiable, EncodedValues} from './basicTypes';
-import {AbstractDataComponent} from './simpleComponents';
-import {AbstractEncoding} from './simpleEncodings';
+import { AbstractSWEIdentifiable, EncodedValues } from './basicTypes';
+import { AbstractDataComponent } from './simpleComponents';
+import { SweEncoding } from './simpleEncodings';
 
 /**
- * Defines the structure of the element that will be repeated in the stream<
+ * Defines the structure of the element that will be repeated in the stream
  */
 export class SweDataStream extends AbstractSWEIdentifiable {
   /**
@@ -18,7 +18,7 @@ export class SweDataStream extends AbstractSWEIdentifiable {
   /**
    * Method used to encode the stream values
    */
-  encoding: AbstractEncoding;
+  encoding: SweEncoding;
   /**
    * Encoded values for the stream (can be out of band)
    */
@@ -39,15 +39,22 @@ export class SweDataArray extends AbstractDataComponent {
   /**
    * Defines the structure of the element that will be repeated in the array
    */
-  elementType: AbstractDataComponent;
+  elementType: SweElementType;
   /**
    * Specifies the type of method used to encode the array values
    */
-  encoding: AbstractEncoding;
+  encoding: SweEncoding;
   /**
    * If present, contains an encoded block of the values contained in the array.
    * Values are optional so that the array definition can be used a as a schema
    * for values provided externally
    */
-  values: EncodedValues;
+  values: any;
 }
+
+export class SweElementType {
+  name: string;
+  type: AbstractDataComponent;
+}
+
+export type SweBlockComponent = SweDataArray;

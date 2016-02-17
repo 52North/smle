@@ -1,6 +1,6 @@
 
-import { AbstractSWE, AbstractEncoding, AbstractDataComponent,
-AllowedTimes, AllowedTokens, AllowedValues, EncodedValues } from '../swe';
+import { AbstractSWE, SweEncoding, AbstractDataComponent,
+  AllowedTimes, AllowedTokens, AllowedValues, EncodedValues } from '../swe';
 import { CodeWithAuthority } from '../gml';
 import { DescribedObject } from './core';
 
@@ -13,7 +13,7 @@ export class ValueSetting extends AbstractSetting {
 }
 
 export class ArrayValueSetting extends AbstractSetting {
-  encoding: AbstractEncoding;
+  encoding: SweEncoding;
   value: EncodedValues;
 }
 

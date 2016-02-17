@@ -4,7 +4,7 @@ import { AbstractDataComponent, SweCategory } from './simpleComponents';
  * Implementation of a choice of two or more Data Components (also called
  * disjoint union)
  */
-export class DataChoice extends AbstractDataComponent {
+export class SweDataChoice extends AbstractDataComponent {
   /**
    * This category component marks the data stream element that will indicate
    * the actual choice made. Possible choices are listed in the Category
@@ -12,5 +12,13 @@ export class DataChoice extends AbstractDataComponent {
    */
   choiceValue: SweCategory[];
 
-  items: AbstractDataComponent[];
+  items: SweDataChoiceItem[];
 }
+
+
+export class SweDataChoiceItem {
+  name: string;
+  item: AbstractDataComponent;
+}
+
+export type SweChoiceComponent = SweDataChoice;

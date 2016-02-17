@@ -41,20 +41,12 @@ describe('SensorMLXmlService', () => {
 
   it('should serialize the document', () => {
     let ps = new PhysicalSystem();
-    let xml = service.serialize(ps);
-    let doc = XPathDocument.parse(xml);
+    let doc = XPathDocument.parse(service.serialize(ps));
 
-    expect(xml).toBeNull();
-    expect(doc.node('/sml:PhysicalSystem')).toBeNull();
+    expect(doc.eval('/sml:PhysicalSystem')).toBeNull();
   });
 
 });
-
-
-function parse(xml: string): Document {
-  let parser = new DOMParser();
-  return parser.parseFromString(xml, 'application/xml');
-}
 
 class XPathDocument {
   constructor(public document: Document) {
@@ -66,20 +58,9 @@ class XPathDocument {
     return new XPathDocument(document);
   }
 
-  eval(expr: string, context?: Node) {
-    let ctx = context || this.document.documentElement;
-    let rslv: XPathNSResolver = {
-      lookupNamespaceURI(prefix: string): string {
-        return new SensorMLNamespaceResolver().getNamespace(prefix);
-      }
-    };
-    return this.document.evaluate(
-      expr, ctx, rslv, XPathResult.ANY_TYPE, null);
-  }
-
-  node(expr: string, context?: Node)
+  eval(expr: string, context?: Node)
     : boolean | string | number | Node | Node[] {
-    var result = this.eval(expr, context);
+    var result = this._eval(expr, context);
 
     switch (result.resultType) {
       case XPathResult.FIRST_ORDERED_NODE_TYPE:
@@ -111,5 +92,16 @@ class XPathDocument {
       default:
         throw new Error('Unsupported result type: ' + result.resultType);
     }
+  }
+
+  private _eval(expr: string, context?: Node) {
+    let ctx = context || this.document.documentElement;
+    let rslv: XPathNSResolver = {
+      lookupNamespaceURI(prefix: string): string {
+        return new SensorMLNamespaceResolver().getNamespace(prefix);
+      }
+    };
+    return this.document.evaluate(
+      expr, ctx, rslv, XPathResult.ANY_TYPE, null);
   }
 }

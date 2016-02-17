@@ -1,5 +1,5 @@
 
-import {AbstractDataComponent} from './simpleComponents';
+import { AbstractDataComponent, SweAnyNumerical } from './simpleComponents';
 
 /**
  * Implementation of ISO-11404 Record datatype. This allows grouping (sequence)
@@ -11,7 +11,12 @@ export class SweDataRecord extends AbstractDataComponent {
    * Definition of the field provided as a nested data component. The field can
    * be scalar or can itself be an aggregate such as a record, choice or array
    */
-  fields: AbstractDataComponent[];
+  fields: SweField[] = [];
+}
+
+export class SweField {
+  name: string;
+  component: AbstractDataComponent;
 }
 
 /**
@@ -23,7 +28,7 @@ export class SweVector extends AbstractDataComponent {
    * Definition of the coordinate provided as a data component with a numerical
    * representation
    */
-  coordinates: AbstractDataComponent[];
+  coordinates: SweCoordinate[] = [];
   /**
    * Frame of reference (usually spatial) with respect to which the coordinates
    * of this vector are expressed. A reference frame anchors a vector value to
@@ -36,3 +41,10 @@ export class SweVector extends AbstractDataComponent {
    */
   localFrame: string;
 }
+
+export class SweCoordinate {
+  name: string;
+  coordinate: SweAnyNumerical;
+}
+
+export type SweRecordComponent = SweDataRecord | SweVector;

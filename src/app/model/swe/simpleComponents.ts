@@ -1,5 +1,5 @@
-import {CodeWithAuthority} from '../gml';
-import {AbstractSWE, AbstractSWEIdentifiable, TimePosition} from './basicTypes';
+import { CodeWithAuthority } from '../gml';
+import { AbstractSWE, AbstractSWEIdentifiable, TimePosition } from './basicTypes';
 
 
 /**
@@ -35,7 +35,7 @@ class AbstractNumericAllowedValues extends AbstractAllowedValues {
  * a list of inclusive ranges
  */
 export class AllowedValues extends AbstractNumericAllowedValues {
-  values: number[] | [number, number][];
+  values: Array<number | [number, number]> = [];
 }
 
 /**
@@ -43,7 +43,7 @@ export class AllowedValues extends AbstractNumericAllowedValues {
  * or a regular expression pattern
  */
 export class AllowedTokens extends AbstractAllowedValues {
-  values: string[];
+  values: string[] = [];
   pattern: string;
 }
 
@@ -52,7 +52,7 @@ export class AllowedTokens extends AbstractAllowedValues {
  * enumerated list of time values
  */
 export class AllowedTimes extends AbstractNumericAllowedValues {
-  values: TimePosition[] | [TimePosition, TimePosition][];
+  values: Array<TimePosition | [TimePosition, TimePosition]> = [];
 }
 
 
@@ -71,6 +71,12 @@ export class AbstractSimpleComponent extends AbstractDataComponent {
   quality: SweQuality[];
   value: any;
   constraint: AbstractAllowedValues;
+  nilValues: SweNilValue[];
+}
+
+export class SweNilValue {
+  value: string;
+  reason: string;
 }
 
 class AbstractSweRange extends AbstractSimpleComponent {
@@ -101,8 +107,13 @@ export class SweQuantity extends AbstractSimpleComponent {
   /**
    * Unit of measure used to express the value of this data component
    */
-  uom: string;
+  uom: UOM;
   constraint: AllowedValues;
+}
+
+export class UOM {
+  code: string;
+  href: string;
 }
 
 /**
@@ -118,7 +129,7 @@ export class SweQuantityRange extends AbstractSweRange {
   /**
    * Unit of measure used to express the value of this data component
    */
-  uom: string;
+  uom: UOM;
   constraint: AllowedValues;
 }
 
@@ -172,7 +183,7 @@ export class SweTime extends AbstractSimpleComponent {
   /**
    * Temporal unit of measure used to express the value of this data component
    */
-  uom: string;
+  uom: UOM;
   constraint: AllowedTimes;
 }
 
@@ -199,7 +210,7 @@ export class SweTimeRange extends AbstractSweRange {
   /**
    * Temporal unit of measure used to express the value of this data component
    */
-  uom: string;
+  uom: UOM;
   constraint: AllowedTimes;
 }
 
@@ -259,32 +270,24 @@ export class SweCategoryRange extends AbstractSweRange {
  * bidirectional tolerance), a categorical value (ex: good, bad) or plain
  * textual statement
  */
-export type SweQuality = SweQuantity
-  | SweQuantityRange
-  | SweCategory
-  | SweText;
+export type SweQuality = SweQuantity | SweQuantityRange | SweCategory | SweText;
 
 /**
  * Re-usable group providing a choice of range data components
  */
-export type SweAnyRange = SweQuantityRange
-  | SweTimeRange
-  | SweCountRange
-  | SweCategoryRange;
+export type SweAnyRange = SweQuantityRange | SweTimeRange | SweCountRange | SweCategoryRange;
 
 /**
  * Re-usable group providing a choice of numeric data components
  */
-export type SweAnyNumerical = SweCount
-  | SweQuantity
-  | SweTime;
+export type SweAnyNumerical = SweCount | SweQuantity | SweTime;
 
 /**
  * Re-usable group providing a choice of scalar data components
  */
-export type SweAnyScalar = SweBoolean
-  | SweCount
-  | SweQuantity
-  | SweTime
-  | SweCategory
-  | SweText;
+export type SweAnyScalar = SweBoolean | SweCount | SweQuantity | SweTime | SweCategory | SweText;
+
+/**
+ * Re-usable group providing a choice of simple data components
+ */
+export type SweSimpleComponent = SweAnyScalar | SweAnyRange;

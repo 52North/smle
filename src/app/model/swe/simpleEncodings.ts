@@ -1,18 +1,18 @@
 import {AbstractSWE} from './basicTypes';
 
-export abstract class AbstractEncoding extends AbstractSWE {
+export abstract class SweEncoding extends AbstractSWE {
 }
 
 /**
  * Parameters of the XML encoding method
  */
-export class XmlEncoding extends AbstractEncoding {
+export class SweXmlEncoding extends SweEncoding {
 }
 
 /**
  * Parameters of the text encoding method
  */
-export class TextEncoding extends AbstractEncoding {
+export class SweTextEncoding extends SweEncoding {
   /**
    * Indicates whether white spaces (i.e. space, tab, CR, LF) should be
    * collapsed with separators when parsing the data stream

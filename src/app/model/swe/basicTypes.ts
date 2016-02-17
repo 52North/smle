@@ -1,20 +1,17 @@
 
-import {CodeWithAuthority} from '../gml';
+export type TimePosition = TimeIndeterminateValue | Date;
 
-export type TimePosition = TimeIndeterminateValue | Date | number;
-
-export enum TimeIndeterminateValue {
-  /**
-   * "now" indicates that the specified value shall be replaced with the current
-   * temporal position whenever the value is accessed.
-   */
-  now
-}
+/**
+ * "now" indicates that the specified value shall be replaced with the current
+ * temporal position whenever the value is accessed.
+ */
+export type TimeIndeterminateValue = 'now';
 
 /**
  * Base substitution groups for all SWE Common objects other than value objects
  */
 export abstract class AbstractSWE {
+  id: string;
   /**
    * Extension slot for future extensions to this standard.
    */
@@ -31,7 +28,7 @@ export abstract class AbstractSWEIdentifiable extends AbstractSWE {
    * identify a particular component of the dataset, a process input/output
    * or a universal constant
    */
-  identifier: CodeWithAuthority;
+  identifier: string;
   /**
    * Textual label for the data component . This is often used for displaying
    * a human readable name for a dataset field or a process input/output

@@ -1,12 +1,12 @@
 
 import { AbstractSWE } from './basicTypes';
-import { AbstractEncoding } from './simpleEncodings';
+import { SweEncoding } from './simpleEncodings';
 
 /**
  * Binary encoding parameters used to encode a block of values at once. This is
  * used for encrypting or compressing a complete array of values for instance
  */
-export class SweBlock extends AbstractSWE {
+export class SweBinaryBlock extends AbstractSWE {
   /**
    * Name of the compression method used to encrypt the block of values
    * described by the referenced data component
@@ -39,7 +39,7 @@ export class SweBlock extends AbstractSWE {
 /**
  * Binary encoding parameters used for encoding a single data component.
  */
-export class SweComponent extends AbstractSWE {
+export class SweBinaryComponent extends AbstractSWE {
   /**
    * Name of the encryption method used  to encrypt the value of this field
    */
@@ -72,30 +72,23 @@ export class SweComponent extends AbstractSWE {
 /**
  * Parameters of the binary encoding method
  */
-export class BinaryEncoding extends AbstractEncoding {
-  members: Array<SweBlock | SweComponent>;
+export class SweBinaryEncoding extends SweEncoding {
+  members: Array<SweBinaryBlock | SweBinaryComponent>;
   /**
    * Byte order convention used to encode this binary data (big endian = most
    * significant byte first, MSB or little endian = least significant byte
    * first, LSB)
    */
-  byteOrder: ByteOrder;
+  byteOrder: SweByteOrder;
   /**
    * Byte encoding method used to encode the binary data (raw or base 64)
    */
-  byteEncoding: ByteEncoding;
+  byteEncoding: SweByteEncoding;
   /**
    * Total length in bytes of the binary stream (if known in advance)
    */
   byteLength: number;
 }
 
-export const enum ByteEncoding {
-  base64,
-  raw
-}
-
-export const enum ByteOrder {
-  bigEndian,
-  littleEndian
-}
+export type SweByteEncoding = 'base64' | 'raw';
+export type SweByteOrder = 'bigEndian' | 'littleEndian';

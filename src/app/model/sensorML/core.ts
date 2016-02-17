@@ -1,9 +1,9 @@
 import {
-  AbstractDataComponent,
   AbstractSWE,
   AbstractSWEIdentifiable,
   SweDataStream,
-  SweDataRecord
+  SweDataRecord,
+  SweDataComponent
 } from '../swe';
 
 import {
@@ -40,7 +40,7 @@ export abstract class DescribedObject extends AbstractFeature {
    * A property that allows one to extend a document using a schema in a
    * different namespace from the current schema.
    */
-  extension: any[];
+  extension: any[] = [];
   /**
    * A tag that identifies the language (e.g. english, french, etc.) for the
    * overall document using a two-letters code as defined by ISO 639-1.
@@ -49,27 +49,27 @@ export abstract class DescribedObject extends AbstractFeature {
   /**
    * Short keywords describing the context of this document to aid in discovery.
    */
-  keywords: KeywordList[];
+  keywords: KeywordList[] = [];
   /**
    * Identifiers useful for discovery of the process (e.g. short name, mission
    * id, wing id, serial number, etc.)
    */
-  identification: Term[];
+  identification: Term[] = [];
   /**
    * Classifiers useful for discovery of the process (e.g. process type, sensor
    * type, intended application, etc.)
    */
-  classification: Term[];
+  classification: Term[] = [];
   /**
    * The time instance or time range during which this instance description
    * is valid.
    */
-  validTime: Time[];
+  validTime: Time[] = [];
   /**
    * Overall security tagging of process description; individual tagging of
    * properties can be done using extension element.
    */
-  securityConstraints: any[];
+  securityConstraints: any[] = [];
   /**
    * Legal constraints applied to this description (e.g. copyrights, legal
    * use, etc.)
@@ -79,28 +79,38 @@ export abstract class DescribedObject extends AbstractFeature {
    * Useful properties of this process that do not further qualify the output
    * values (e.g. component dimensions, battery life, operational limits, etc).
    */
-  characteristics: AbstractDataComponent[];
+  characteristics: Characteristics[] = [];
   /**
    * Properties that further clarify or quantify the output of the process (e.g.
    * dynamic range, sensitivity, threshold, etc.). These can assist in the
    * discovery of processes that meet particular requirements.
    */
-  capabilities: AbstractDataComponent[];
+  capabilities: SweDataComponent[] = [];
   /**
    * Persons or responsible parties that are relevant to this process (e.g.
    * designer, manufacturer, expert, etc.)
    */
-  contacts: ResponsibleParty[];
+  contacts: ResponsibleParty[] = [];
   /**
    * Additional external online documentation of relevance to this process (e.g.
    * user's guides, product manuals, specification sheets, images, technical
    * papers, etc.)
    */
-  documentation: OnlineResource[];
+  documentation: OnlineResource[] = [];
   /**
    * A collection of time-tagged events relevant to this process.
    */
-  history: Event[];
+  history: Event[] = [];
+}
+
+export class Characteristics {
+  name: string;
+  characteristics: Characteristic[] = [];
+}
+
+export class Characteristic {
+  name: string;
+  component: SweDataComponent;
 }
 
 /**
@@ -151,32 +161,32 @@ export abstract class AbstractProcess extends DescribedObject {
   /**
    * Value settings that further constrain the properties of the base process.
    */
-  configuration: AbstractSetting[];
+  configuration: AbstractSetting[] = [];
   /**
    * A collection of features relevant to a process (e.g. the Gulf of Mexico,
    * the White House, the set of all Fibonacci Numbers, etc.); can also support
    * a sampling feature. The primary purpose of the Features of Interest is to
    * support discovery.
    */
-  featureOfInterest: AbstractFeature[];
+  featureOfInterest: AbstractFeature[] = [];
   /**
    * The list of data components (and their properties and semantics) that the
    * process will accept as input; In the standard linear equation y=mx+b; x is
    * the input, m and b are the parameters, and y is the output.
    */
-  inputs: Array<AbstractDataComponent | ObservableProperty | DataInterface>;
+  inputs: Array<SweDataComponent | ObservableProperty | DataInterface> = [];
   /**
    * The list of data components (and their properties and semantics) that the
    * process will accept as parameters; In the standard linear equation y=mx+b;
    * x is the input, m and b are the parameters, and y is the output.
    */
-  outputs: Array<AbstractDataComponent | ObservableProperty | DataInterface>;
+  outputs: Array<SweDataComponent | ObservableProperty | DataInterface> = [];
   /**
    * The list of data components (and their properties and semantics) that the
    * process will accept as parameters; In the standard linear equation y=mx+b;
    * x is the input, m and b are the parameters, and y is the output.
    */
-  parameters: Array<AbstractDataComponent | ObservableProperty | DataInterface>;
+  parameters: Array<SweDataComponent | ObservableProperty | DataInterface> = [];
   /**
    * A collection of parameters that can be set at once through the selection of
    * a particular predefined mode.
@@ -192,36 +202,36 @@ export class Event extends AbstractSWEIdentifiable {
   /**
    * keywords useful for discovery of the event
    */
-  keywords: KeywordList[];
+  keywords: KeywordList[] = [];
   /**
    * Identifiers relevant to the event
    */
-  identification: Term[];
+  identification: Term[] = [];
   /**
    * Type of event (useful for discovery)
    */
-  classification: Term[];
+  classification: Term[] = [];
   /**
    * Persons or parties relevant to this event
    */
-  contacts: ResponsibleParty[];
+  contacts: ResponsibleParty[] = [];
   /**
    * Additional documentation relevant to this event
    */
-  documentation: OnlineResource[];
+  documentation: OnlineResource[] = [];
   /**
    * DateTime of the event
    */
-  time: Array<Time>;
+  time: Time[] = [];
   /**
    * Properties of interest to the event (e.g. calibration values, condition
    * category, error codes, etc)
    */
-  properties: AbstractDataComponent[];
+  properties: SweDataComponent[] = [];
   /**
    * Configuration settings adjusted during event
    */
-  configuration: AbstractSetting[];
+  configuration: AbstractSetting[] = [];
 }
 
 export class KeywordList {
@@ -233,5 +243,5 @@ export class KeywordList {
   /**
    * a short word or phrase that will aid in discovery of this object
    */
-  keywords: string[];
+  keywords: string[] = [];
 }
