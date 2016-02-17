@@ -1,32 +1,17 @@
-
-import {
-  Contact,
-  Phone,
-  OnlineResource,
-  Address,
-  ResponsibleParty,
-  LegalConstraints,
-  Role,
-  OnlineFunction,
-  Restriction
-} from '../model/iso19115';
-
 import {
   AbstractProcess,
   SimpleProcess,
   AggregateProcess,
   PhysicalComponent,
   PhysicalSystem,
-  Term,
-  Characteristics,
-  Characteristic
 } from '../model/sensorML';
 
 
 import { AbstractXmlService } from './xml.service';
 import * as Namespaces from './xml/namespaces';
-import * as Prefixes from './xml/namespaces';
+import * as Prefixes from './xml/prefixes';
 import { SweEncoder } from './xml/swe';
+import { SmlEncoder } from './xml/sensorML';
 import { IsoEncoder } from './xml/iso19115';
 
 export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {

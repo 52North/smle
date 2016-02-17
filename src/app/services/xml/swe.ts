@@ -41,6 +41,7 @@ import {
 } from '../../model/swe';
 
 export class SweEncoder {
+
   public encodeDataComponent(component: AbstractDataComponent, document: Document): Node {
     if (component instanceof SweVector) {
       return this.encodeVector(component, document);
