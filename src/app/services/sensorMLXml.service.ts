@@ -1,5 +1,17 @@
 
 import {
+  Contact,
+  Phone,
+  OnlineResource,
+  Address,
+  ResponsibleParty,
+  LegalConstraints,
+  Role,
+  OnlineFunction,
+  Restriction
+} from '../model/iso19115';
+
+import {
   AbstractProcess,
   SimpleProcess,
   AggregateProcess,
@@ -1085,6 +1097,266 @@ abstract class SensorMLDocumentEncoder<T> extends DocumentEncoder<T> {
     return qualityNode;
   }
 
+  protected encodeGmdContact(contact: Contact, document: Document): Node {
+
+    let node = document.createElementNS(NS_GMD, 'CI_Contact');
+
+    if (contact.phone) {
+      let phoneNode = document.createElementNS(NS_GMD, 'gmd:phone');
+      phoneNode.appendChild(this.encodeGmdPhone(contact.phone, document));
+      node.appendChild(phoneNode);
+    }
+
+    if (contact.address) {
+      let addressNode = document.createElementNS(NS_GMD, 'gmd:address');
+      addressNode.appendChild(this.encodeGmdAddress(contact.address, document));
+      node.appendChild(addressNode);
+    }
+
+    if (contact.onlineResource) {
+      let onlineResourceNode = document.createElementNS(NS_GMD, 'gmd:onlineResource');
+      onlineResourceNode.appendChild(this.encodeGmdOnlineResource(contact.onlineResource, document));
+      node.appendChild(onlineResourceNode);
+    }
+
+    if (contact.hoursOfService) {
+      let hoursOfServiceNode = document.createElementNS(NS_GMD, 'gmd:hoursOfService');
+      hoursOfServiceNode.appendChild(this.encodeGcoCharacterString(contact.hoursOfService, document));
+      node.appendChild(hoursOfServiceNode);
+    }
+
+    if (contact.contactInstructions) {
+      let contactInstructionsNode = document.createElementNS(NS_GMD, 'gmd:contactInstructions');
+      contactInstructionsNode.appendChild(this.encodeGcoCharacterString(contact.contactInstructions, document));
+      node.appendChild(contactInstructionsNode);
+    }
+
+    return node;
+
+  }
+
+  protected encodeGmdPhone(phone: Phone, document: Document): Node {
+    let node = document.createElementNS(NS_GMD, 'gmd:CI_Telephone');
+
+    if (phone.voice) {
+      phone.voice.forEach(voice => {
+        let voiceNode = document.createElementNS(NS_GMD, 'gmd:voice');
+        voiceNode.appendChild(this.encodeGcoCharacterString(voice, document));
+        node.appendChild(voiceNode);
+      });
+    }
+
+    if (phone.facsimile) {
+      phone.facsimile.forEach(facsimile => {
+        let facsimileNode = document.createElementNS(NS_GMD, 'gmd:facsimile');
+        facsimileNode.appendChild(this.encodeGcoCharacterString(facsimile, document));
+        node.appendChild(facsimileNode);
+      });
+    }
+
+    return node;
+  }
+
+  protected encodeGmdOnlineResource(onlineResource: OnlineResource, document: Document): Node {
+    let node = document.createElementNS(NS_GMD, 'gmd:OnlineResource');
+
+    if (onlineResource.linkage) {
+      let linkageNode = document.createElementNS(NS_GMD, 'gmd:linkage');
+      linkageNode.appendChild(this.encodeGcoUrl(onlineResource.linkage, document));
+      node.appendChild(linkageNode);
+    }
+
+    if (onlineResource.protocol) {
+      let protocolNode = document.createElementNS(NS_GMD, 'gmd:protocol');
+      protocolNode.appendChild(this.encodeGcoCharacterString(onlineResource.protocol, document));
+      node.appendChild(protocolNode);
+    }
+
+    if (onlineResource.applicationProfile) {
+      let applicationProfileNode = document.createElementNS(NS_GMD, 'gmd:applicationProfile');
+      applicationProfileNode.appendChild(
+        this.encodeGcoCharacterString(onlineResource.applicationProfile, document));
+      node.appendChild(applicationProfileNode);
+    }
+
+    if (onlineResource.name) {
+      let nameNode = document.createElementNS(NS_GMD, 'gmd:name');
+      nameNode.appendChild(this.encodeGcoCharacterString(onlineResource.name, document));
+      node.appendChild(nameNode);
+    }
+
+    if (onlineResource.description) {
+      let descriptionNode = document.createElementNS(NS_GMD, 'gmd:description');
+      descriptionNode.appendChild(this.encodeGcoCharacterString(onlineResource.description, document));
+      node.appendChild(descriptionNode);
+    }
+
+    if (onlineResource.function) {
+      let functionNode = document.createElementNS(NS_GMD, 'gmd:function');
+      functionNode.appendChild(this.encodeGmdOnlineFunction(onlineResource.function, document));
+      node.appendChild(functionNode);
+    }
+
+    return node;
+  }
+
+  protected encodeGmdAddress(address: Address, document: Document): Node {
+    let node = document.createElementNS(NS_GMD, 'gmd:CI_Address');
+
+    if (address.deliveryPoint) {
+      address.deliveryPoint.forEach(deliveryPoint => {
+        let deliveryPointNode = document.createElementNS(NS_GMD, 'gmd:deliveryPoint');
+        deliveryPointNode.appendChild(this.encodeGcoCharacterString(deliveryPoint, document));
+        node.appendChild(deliveryPointNode);
+      });
+    }
+
+    if (address.city) {
+      let cityNode = document.createElementNS(NS_GMD, 'gmd:city');
+      cityNode.appendChild(this.encodeGcoCharacterString(address.city, document));
+      node.appendChild(cityNode);
+    }
+
+    if (address.administrativeArea) {
+      let administrativeAreaNode = document.createElementNS(NS_GMD, 'gmd:administrativeArea');
+      administrativeAreaNode.appendChild(this.encodeGcoCharacterString(address.administrativeArea, document));
+      node.appendChild(administrativeAreaNode);
+    }
+
+    if (address.postalCode) {
+      let postalCodeNode = document.createElementNS(NS_GMD, 'gmd:postalCode');
+      postalCodeNode.appendChild(this.encodeGcoCharacterString(address.postalCode, document));
+      node.appendChild(postalCodeNode);
+    }
+
+    if (address.country) {
+      let countryNode = document.createElementNS(NS_GMD, 'gmd:country');
+      countryNode.appendChild(this.encodeGcoCharacterString(address.country, document));
+      node.appendChild(countryNode);
+    }
+
+    if (address.electronicMailAddress) {
+      address.electronicMailAddress.forEach(electronicMailAddress => {
+        let electronicMailAddressNode = document.createElementNS(NS_GMD, 'gmd:electronicMailAddress');
+        electronicMailAddressNode.appendChild(this.encodeGcoCharacterString(electronicMailAddress, document));
+        node.appendChild(electronicMailAddressNode);
+      });
+    }
+
+    return node;
+  }
+
+  protected encodeGmdResponsibleParty(responsibleParty: ResponsibleParty, document: Document): Node {
+    let node = document.createElementNS(NS_GMD, 'CI_ResponsibleParty');
+
+    if (responsibleParty.individualName) {
+      let individualNameNode = document.createElementNS(NS_GMD, 'gmd:individualName');
+      individualNameNode.appendChild(this.encodeGcoCharacterString(responsibleParty.individualName, document));
+      node.appendChild(individualNameNode);
+    }
+
+    if (responsibleParty.organisationName) {
+      let organisationNameNode = document.createElementNS(NS_GMD, 'gmd:origanisationName');
+      organisationNameNode.appendChild(this.encodeGcoCharacterString(responsibleParty.organisationName, document));
+      node.appendChild(organisationNameNode);
+    }
+
+    if (responsibleParty.positionName) {
+      let positionNameNode = document.createElementNS(NS_GMD, 'gmd:positionName');
+      positionNameNode.appendChild(this.encodeGcoCharacterString(responsibleParty.positionName, document));
+      node.appendChild(positionNameNode);
+    }
+
+    if (responsibleParty.contactInfo) {
+      let contactInfoNode = document.createElementNS(NS_GMD, 'gmd:contactInfo');
+      contactInfoNode.appendChild(this.encodeGmdContact(responsibleParty.contactInfo, document));
+      node.appendChild(contactInfoNode);
+    }
+
+    if (responsibleParty.role) {
+      let role = document.createElementNS(NS_GMD, 'gmd:role');
+      role.appendChild(this.encodeGmdRole(responsibleParty.role, document));
+      node.appendChild(role);
+    }
+
+    return node;
+  }
+
+  protected encodeGmdRole(role: Role, document: Document): Node {
+    return this.encodeCodeListValue(document, NS_GMD, 'gmd', 'CI_RoleCode', role);
+  }
+
+  protected encodeGmdOnlineFunction(onlineFunction: OnlineFunction, document: Document): Node {
+    return this.encodeCodeListValue(document, NS_GMD, 'gmd', 'CI_OnLineFunctionCode', onlineFunction);
+  }
+
+  protected encodeGmdRestriction(restriction: Restriction, document: Document): Node {
+    return this.encodeCodeListValue(document, NS_GMD, 'gmd', 'MD_RestrictionCode', restriction);
+  }
+  protected encodeCodeListValue(
+    document: Document,
+    namespace: string,
+    prefix: string,
+    elementName: string,
+    codelListValue: string,
+    codeList: string = 'http://schemas.opengis.net/iso/19139/20070417/resources/codelist/gmxCodelists.xml',
+    codeSpace: string = 'ISOTC211/19115',
+    name?: string): Node {
+
+    let node = document.createElementNS(namespace, `${prefix}:${elementName}`);
+
+    node.setAttribute('codeList', `${codeList}#${elementName}`);
+    node.setAttribute('codeListValue', codelListValue);
+    node.setAttribute('codeSpace', codeSpace);
+
+    if (name) {
+      node.textContent = name;
+    }
+
+    return node;
+  }
+
+  protected encodeGcoCharacterString(value: string, document: Document): Node {
+    let node = document.createElementNS(NS_GCO, 'gco:CharacterString');
+    node.textContent = value;
+    return node;
+  }
+
+  protected encodeGcoUrl(value: string, document: Document): Node {
+    let node = document.createElementNS(NS_GCO, 'gco:URL');
+    node.textContent = value;
+    return node;
+  }
+
+  protected encodeGmdLegalConstraints(legalConstraints: LegalConstraints, document: Document): Node {
+    let node = document.createElementNS(NS_GMD, 'gmd:MD_LegalConstraints');
+
+    if (legalConstraints.accessConstraints) {
+      legalConstraints.accessConstraints.forEach(contraint => {
+        let accessConstraintsNode = document.createElementNS(NS_GMD, 'gmd:accessConstraints');
+        accessConstraintsNode.appendChild(this.encodeGmdRestriction(contraint, document));
+        node.appendChild(accessConstraintsNode);
+      });
+    }
+
+    if (legalConstraints.useConstraints) {
+      legalConstraints.useConstraints.forEach(contraint => {
+        let useConstraintsNode = document.createElementNS(NS_GMD, 'gmd:useConstraints');
+        useConstraintsNode.appendChild(this.encodeGmdRestriction(contraint, document));
+        node.appendChild(useConstraintsNode);
+      });
+    }
+
+    if (legalConstraints.otherConstraints) {
+      legalConstraints.otherConstraints.forEach(contraint => {
+        let otherConstraintsNode = document.createElementNS(NS_GMD, 'gmd:otherConstraints');
+        otherConstraintsNode.appendChild(this.encodeGcoCharacterString(contraint, document));
+        node.appendChild(otherConstraintsNode);
+      });
+    }
+
+    return node;
+  }
 }
 
 class SimpleProcessEncoder extends SensorMLDocumentEncoder<SimpleProcess> {

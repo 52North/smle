@@ -38,7 +38,7 @@ export class OnlineResource {
 export class Address {
   deliveryPoint: string[];
   city: string;
-  adminstrativeArea: string;
+  administrativeArea: string;
   postalCode: string;
   country: string;
   electronicMailAddress: string[];
@@ -68,116 +68,113 @@ export class LegalConstraints {
 /**
  * limitation(s) placed upon the access or use of the data
  */
-export const enum Restriction {
+export type Restriction =
   /**
    * exclusive right to the publication, production, or sale of the rights to a
    * literary, dramatic, musical, or artistic work, or to the use of a
    * commercial print or label, granted by law for a specified period of time to
    * an author, composer, artist, distributor
    */
-  copyright,
+  'copyright' |
   /**
    * government has granted exclusive right to make, sell, use or license an
    * invention or discovery
    */
-  patent,
+  'patent' |
   /**
    * produced or sold information awaiting a patent
    */
-  patentPending,
+  'patentPending' |
   /**
    * a name, symbol, or other device identifying a product, officially
    * registered and legally restricted to the use of the owner or manufacturer
    */
-  trademark,
+  'trademark' |
   /**
    * formal permission to do something
    */
-  license,
+  'license' |
   /**
    * rights to financial benefit from and control of distribution of
    * non-tangible property that is a result of creativity
    */
-  intellectualPropertyRights,
+  'intellectualPropertyRights' |
   /**
    * withheld from general circulation or disclosure
    */
-  restricted,
+  'restricted' |
   /**
    * limitation not listed
    */
-  otherRestrictions
-}
+  'otherRestrictions';
 
 
 /**
  * function performed by the responsible party
  */
-export const enum Role {
+export type Role =
   /**
    * party that supplies the resource
    */
-  resourceProvider,
+  'resourceProvider' |
   /**
    * party that accepts accountability and responsability for the data and
    * ensures appropriate care and maintenance of the resource
    */
-  custodian,
+  'custodian' |
   /**
    * party who uses the resource
    */
-  user,
+  'user' |
   /**
    * party who created the resource
    */
-  originator,
+  'originator' |
   /**
    * party who can be contacted for acquiring knowledge about or acquisition
    * of the resource
    */
-  pointOfContact,
+  'pointOfContact' |
   /**
    * key party responsible for gathering information and conducting research
    */
-  principalInvestigator,
+  'principalInvestigator' |
   /**
    * party wha has processed the data in a manner such that the resource has
    * been modified
    */
-  processor,
+  'processor' |
   /**
    * party who published the resource
    */
-  publisher,
+  'publisher' |
   /**
    * party who authored the resource
    */
-  author
-}
+  'author';
 
 /**
  * function performed by the resource
  */
-export const enum OnlineFunction {
+export type OnlineFunction =
   /**
    * online instructions for transferring data from one storage device or system
    * to another
    */
-  download,
+  'download' |
   /**
    * online information about the resource
    */
-  information,
+  'information' |
   /**
    * online instructions for requesting the resource from the provider
    */
-  offlineAccess,
+  'offlineAccess' |
   /**
    * online order process for obtening the resource
    */
-  order,
+  'order' |
   /**
    * online search interface for seeking out information about the resource
    */
-  search
-}
+  'search';
