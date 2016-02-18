@@ -1,12 +1,12 @@
-
 import {
-  Envelope,
-  TimeInstant,
-  TimePeriod,
   AbstractFeature,
   AbstractGML,
   CodeType,
-  Referenced
+  Envelope,
+  Point,
+  Referenced,
+  TimeInstant,
+  TimePeriod
 } from '../../model/gml';
 import * as Namespaces from './namespaces';
 
@@ -92,9 +92,23 @@ export class GmlEncoder {
   }
 
   public encodeFeature(object: AbstractFeature, document: Document): Node {
-
+    // todo handle feature encoding
+    throw new Error('Not yet implemented');
   }
 
+  public encodePoint(object: Point, document: Document): Node {
+    let node = document.createElementNS(Namespaces.GML, 'gml:Point');
+    this.encodeReferenced(node, object, document);
+    node.appendChild(this.encodePos([[object.x, object.y]], document));
+    return node;
+  }
+
+  public encodePos(object: [number, number][], document: Document): Node {
+    let node = document.createElementNS(Namespaces.GML, 'gml:pos');
+    node.setAttribute('count', object.length.toString());
+    node.textContent = object.map(x => x.join(' ')).join(' ');
+    return node;
+  }
 
   public encodeAbstractFeature(node: Element, object: AbstractFeature, document: Document): void {
     this.encodeAbstractGML(node, object, document);

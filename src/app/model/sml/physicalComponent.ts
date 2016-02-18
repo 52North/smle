@@ -1,9 +1,11 @@
 import {
   AbstractSWEIdentifiable,
-   SweVector,
-   SweDataArray,
-   SweDataRecord
- } from '../swe';
+  SweVector,
+  SweDataArray,
+  SweDataRecord,
+  SweTime,
+  SweText
+} from '../swe';
 import { Point, Time } from '../gml';
 import { AbstractProcess } from './core';
 import { ProcessMethod } from './simpleProcess';
@@ -17,7 +19,7 @@ export abstract class AbstractPhysicalProcess extends AbstractProcess {
    * References the physical component or system (e.g. platform) to which to
    * which this component or system is attached.
    */
-  attachedTo: AbstractPhysicalProcess;
+  attachedTo: string;
   /**
    * A spatial reference frame of the physical component itself; this reference
    * frame is absolute and defines the relationship of the reference frame to
@@ -26,26 +28,26 @@ export abstract class AbstractPhysicalProcess extends AbstractProcess {
    * specified in the position so they are not specified as part of the
    * SpatialFrame.
    */
-  localReferenceFrame: SpatialFrame[];
+  localReferenceFrame: SpatialFrame[] = [];
   /**
    * Supports local time reference frames such as "time past mission start".
    * Note that units are handled in timePosition so they are not specified in
    * the TemporalFrame.
    */
-  localTimeFrame: TemporalFrame[];
+  localTimeFrame: TemporalFrame[] = [];
   /**
    * Provides positional information relating the component's spatial reference
    * frame to an external spatial reference frame. Positional information can be
    * given by location, by full body state, by a time-tagged trajectory, or by a
    * measuring or computational process.
    */
-  position: Position[];
+  position: Position[] = [];
   /**
    * Provides Time positions typically reference a local time frame to an
    * external time frame. For example, a timer-start-time might be given
    * relative to an "absolute" GPS time.
    */
-  timePosition: Time[];
+  timePosition: SweTime[] = [];
 }
 
 /**
@@ -88,12 +90,17 @@ export class SpatialFrame extends AbstractSWEIdentifiable {
    * their relationship according to the right-handed rule (e.g. axis 1 cross
    * axis 2 = axis 3).
    */
-  axis: string[];
+  axis: Axis[];
 }
 
-type Position = string
-              | Point
-              | SweVector
-              | SweDataRecord
-              | SweDataArray
-              | AbstractProcess;
+export class Axis {
+  name: string;
+  description: string;
+}
+
+export type Position = Point
+  | SweText
+  | SweVector
+  | SweDataRecord
+  | SweDataArray
+  | AbstractProcess;

@@ -1,58 +1,62 @@
-
 import {
-  InputOrOutputOrParameter,
+  AbstractAlgorithm,
+  AbstractMetadataList,
+  AbstractModes,
   AbstractNamedMetadataList,
+  AbstractPhysicalProcess,
   AbstractProcess,
-  SimpleProcess,
+  AbstractSetting,
   AggregateProcess,
+  AggregatingProcess,
+  ArrayValueSetting,
+  Axis,
+  Capabilitiy,
+  CapabilityList,
+  Characteristic,
+  CharacteristicList,
+  ClassifierList,
+  ComponentList,
+  Connection,
+  ConnectionList,
+  ConstraintSetting,
+  ContactList,
+  DataInterface,
+  DescribedObject,
+  DocumentList,
+  Event,
+  EventList,
+  FeatureList,
+  IdentifierList,
+  Input,
+  InputList,
+  InputOrOutputOrParameter,
+  KeywordList,
+  Mode,
+  ModeChoice,
+  ModeSetting,
+  NamedSweDataComponent,
+  ObservableProperty,
+  Output,
+  OutputList,
+  Parameter,
+  ParameterList,
   PhysicalComponent,
   PhysicalSystem,
-  Term,
-  IdentifierList,
-  Connection,
-  AbstractSetting,
-  ValueSetting,
-  ArrayValueSetting,
-  ConstraintSetting,
-  ModeSetting,
-  Mode,
+  Position,
+  ProcessMethod,
+  ProcessMethodProcess,
+  Settings,
+  SimpleProcess,
+  SpatialFrame,
   Status,
   StatusSetting,
-  AbstractMetadataList,
-  DataInterface,
-  ObservableProperty,
-  InputList,
-  OutputList,
-  Event,
-  KeywordList,
-  ClassifierList,
-  ParameterList,
-  FeatureList,
-  CapabilityList,
-  Input,
-  Output,
-  ModeChoice,
-  NamedSweDataComponent,
-  Capabilitiy,
-  Parameter,
-  DocumentList,
-  ContactList,
-  EventList,
-  ComponentList,
-  ConnectionList,
-  AbstractPhysicalProcess,
   TemporalFrame,
-  SpatialFrame,
-  ProcessMethod,
-  AbstractAlgorithm,
-  CharacteristicList,
-  Settings,
-  Characteristic,
-  AbstractModes,
-  DescribedObject
+  Term,
+  ValueSetting
 } from '../../model/sml';
 
-import { SweDataComponent } from '../../model/swe';
+import { Point } from '../../model/gml';
+import { SweDataComponent, SweText, SweVector, SweDataRecord, SweDataArray, SweMatrix } from '../../model/swe';
 import * as Namespaces from './namespaces';
 import { SweEncoder } from './swe';
 import { IsoEncoder } from './iso';
@@ -723,13 +727,7 @@ export class SmlEncoder {
       node = document.createElementNS(Namespaces.SML, 'sml:SimpleProcess');
     }
     this.encodeAbstractProcess(node, object, document);
-
-
-    if (object.method) {
-      let methodNode = document.createElementNS(Namespaces.SML, 'sml:method');
-      methodNode.appendChild(this.encodeProcessMethod(object.method, document));
-      node.appendChild(methodNode);
-    }
+    this.encodeProcessMethodProcess(node, object, document);
 
     return node;
   }
@@ -759,18 +757,7 @@ export class SmlEncoder {
       node = document.createElementNS(Namespaces.SML, 'sml:AggregateProcess');
     }
     this.encodeAbstractProcess(node, object, document);
-
-    if (object.components) {
-      let componentsNode = document.createElementNS(Namespaces.SML, 'sml:components');
-      componentsNode.appendChild(this.encodeComponentList(object.components, document));
-      node.appendChild(componentsNode);
-    }
-
-    if (object.connections) {
-      let connectionsNode = document.createElementNS(Namespaces.SML, 'sml:connections');
-      connectionsNode.appendChild(this.encodeConnectionList(object.connections, document));
-      node.appendChild(connectionsNode);
-    }
+    this.encodeAggregatingProcess(node, object, document);
 
     return node;
   }
@@ -821,6 +808,173 @@ export class SmlEncoder {
         node.appendChild(componentNode);
       });
     }
+    return node;
+  }
+
+  public encodeAbstractPhysicalProcess(node: Element, object: AbstractPhysicalProcess, document: Document): void {
+
+    this.encodeAbstractProcess(node, object, document);
+
+    if (object.attachedTo) {
+      let attachedToNode = document.createElementNS(Namespaces.SML, 'sml:attachedTo');
+      attachedToNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', object.attachedTo);
+      node.appendChild(attachedToNode);
+    }
+
+    if (object.localReferenceFrame) {
+      object.localReferenceFrame.forEach(frame => {
+        let frameNode = document.createElementNS(Namespaces.SML, 'sml:localReferenceFrame');
+        frameNode.appendChild(this.encodeSpatialFrame(frame, document));
+        node.appendChild(frameNode);
+      });
+    }
+
+    if (object.localTimeFrame) {
+      object.localTimeFrame.forEach(frame => {
+        let frameNode = document.createElementNS(Namespaces.SML, 'sml:localTimeFrame');
+        frameNode.appendChild(this.encodeTemporalFrame(frame, document));
+        node.appendChild(frameNode);
+      });
+    }
+
+    if (object.position) {
+      object.position.forEach(position => {
+        let positionNode = document.createElementNS(Namespaces.SML, 'sml:position');
+        positionNode.appendChild(this.encodePosition(position, document));
+        node.appendChild(positionNode);
+      });
+    }
+
+    if (object.timePosition) {
+      object.timePosition.forEach(position => {
+        let positionNode = document.createElementNS(Namespaces.SML, 'sml:timePosition');
+        positionNode.appendChild(this.sweEncoder.encodeTime(position, document));
+        node.appendChild(positionNode);
+      });
+    }
+
+  }
+
+  public encodePosition(object: Position, document: Document): Node {
+    if (object instanceof Point) {
+      return this.gmlEncoder.encodePoint(object, document);
+    }
+    if (object instanceof SweText) {
+      return this.sweEncoder.encodeText(object, document);
+    }
+    if (object instanceof SweVector) {
+      return this.sweEncoder.encodeVector(object, document);
+    }
+    if (object instanceof SweDataRecord) {
+      return this.sweEncoder.encodeDataRecord(object, document);
+    }
+    if (object instanceof SweMatrix) {
+      return this.sweEncoder.encodeMatrix(object, document);
+    }
+    if (object instanceof SweDataArray) {
+      return this.sweEncoder.encodeDataArray(object, document);
+    }
+    if (object instanceof AbstractProcess) {
+      return this.encodeProcess(object, document);
+    }
+  }
+
+  public encodeProcess(object: AbstractProcess, document: Document): Node {
+    if (object instanceof SimpleProcess) {
+      return this.encodeSimpleProcess(object, document);
+    }
+    if (object instanceof AggregateProcess) {
+      return this.encodeAggregateProcess(object, document);
+    }
+    if (object instanceof PhysicalSystem) {
+      return this.encodePhysicalSystem(object, document);
+    }
+    if (object instanceof PhysicalComponent) {
+      return this.encodePhysicalComponent(object, document);
+    }
+
+    throw new Error('Unsupported process type');
+  }
+
+  public encodeSpatialFrame(object: SpatialFrame, document: Document): Node {
+    let node = document.createElementNS(Namespaces.SML, 'sml:SpatialFrame');
+    this.sweEncoder.encodeAbstractSweIdentifiable(node, object, document);
+
+    if (object.origin) {
+      let originNode = document.createElementNS(Namespaces.SML, 'sml:origin');
+      originNode.textContent = object.origin;
+      node.appendChild(originNode);
+    }
+
+    if (object.axis) {
+      object.axis.forEach(axis => {
+        let axisNode = document.createElementNS(Namespaces.SML, 'sml:axis');
+        if (axis.name) {
+          axisNode.setAttribute('name', axis.name);
+        }
+        if (axis.description) {
+          axisNode.textContent = axis.description;
+        }
+        node.appendChild(axisNode);
+      });
+    }
+
+    return node;
+  }
+
+  public encodeTemporalFrame(object: TemporalFrame, document: Document): Node {
+    let node = document.createElementNS(Namespaces.SML, 'sml:TemporalFrame');
+    this.sweEncoder.encodeAbstractSweIdentifiable(node, object, document);
+
+    if (object.origin) {
+      let originNode = document.createElementNS(Namespaces.SML, 'sml:origin');
+      originNode.textContent = object.origin;
+      node.appendChild(originNode);
+    }
+
+    return node;
+  }
+
+  public encodePhysicalSystem(object: PhysicalSystem, document: Document, node?: Element): Node {
+    if (!node) {
+      node = document.createElementNS(Namespaces.SML, 'sml:PhysicalSystem');
+    }
+
+    this.encodeAbstractPhysicalProcess(node, object, document);
+    this.encodeAggregatingProcess(node, object, document);
+
+    return node;
+  }
+
+  public encodeAggregatingProcess(node: Element, object: AggregatingProcess, document: Document): void {
+    if (object.components) {
+      let componentsNode = document.createElementNS(Namespaces.SML, 'sml:components');
+      componentsNode.appendChild(this.encodeComponentList(object.components, document));
+      node.appendChild(componentsNode);
+    }
+
+    if (object.connections) {
+      let connectionsNode = document.createElementNS(Namespaces.SML, 'sml:connections');
+      connectionsNode.appendChild(this.encodeConnectionList(object.connections, document));
+      node.appendChild(connectionsNode);
+    }
+  }
+
+  public encodeProcessMethodProcess(node: Element, object: ProcessMethodProcess, document: Document): void {
+
+    if (object.method) {
+      let methodNode = document.createElementNS(Namespaces.SML, 'sml:method');
+      methodNode.appendChild(this.encodeProcessMethod(object.method, document));
+      node.appendChild(methodNode);
+    }
+  }
+
+  public encodePhysicalComponent(object: PhysicalComponent, document: Document, node?: Element): Node {
+    if (!node) {
+      node = document.createElementNS(Namespaces.SML, 'sml:PhysicalComponent');
+    }
+    this.encodeAbstractPhysicalProcess(node, object, document);
+    this.encodeProcessMethodProcess(node, object, document);
     return node;
   }
 }

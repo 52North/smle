@@ -9,7 +9,7 @@
  * If no srsName attribute is given, the CRS shall be specified as part of the
  * larger context this geometry element is part of.
  */
-export class Referenced {
+export interface Referenced {
   srsName: string;
   srsDimension: number;
   /**
@@ -31,6 +31,13 @@ export class Referenced {
   uomLabels: string[];
 }
 
+export abstract class AbstractReferenced implements Referenced {
+  srsName: string;
+  srsDimension: number;
+  axisLabels: string[];
+  uomLabels: string[];
+}
+
 /**
  * Envelope defines an extent using a pair of positions defining opposite
  * corners in arbitrary dimensions. The first direct position is the "lower
@@ -39,7 +46,7 @@ export class Referenced {
  * "upper corner" (a coordinate position consisting of all the maximal ordinates
  * for each dimension for all points within the envelope).
  */
-export class Envelope extends Referenced {
+export class Envelope extends AbstractReferenced {
 
   private _coords = new Array<number>(4);
 
@@ -175,4 +182,17 @@ export class TimePeriod {
 export type TimeInstant = Date;
 export type Time = TimeInstant | TimePeriod;
 
-export class Point { x: number; y: number; }
+
+export class AbstractGeometry extends AbstractGML implements Referenced {
+  srsName: string;
+  srsDimension: number;
+  axisLabels: string[];
+  uomLabels: string[];
+}
+
+export class AbstractGeometricPrimitive extends AbstractGeometry { }
+
+export class Point extends AbstractGeometricPrimitive {
+  x: number;
+  y: number;
+}

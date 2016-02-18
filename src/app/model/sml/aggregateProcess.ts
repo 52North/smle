@@ -6,7 +6,20 @@ import { AbstractSWE } from '../swe';
  * A process that consist of a collection of linked component processes
  * resulting in a specified output.
  */
-export class AggregateProcess extends AbstractProcess {
+export class AggregateProcess extends AbstractProcess implements AggregatingProcess {
+  components: ComponentList = new ComponentList();
+  connections: ConnectionList = new ConnectionList();
+}
+
+export class ComponentList extends AbstractSWE {
+  components: Component[] = [];
+}
+
+export class ConnectionList extends AbstractSWE {
+  connections: Connection[] = [];
+}
+
+export interface AggregatingProcess {
   /**
    * A description of a component of the aggregate process. If by reference, the
    * uniqueID of the referenced process must be provided using the xlink:title
@@ -19,14 +32,6 @@ export class AggregateProcess extends AbstractProcess {
    * parameters of the components within an aggregate process.
    */
   connections: ConnectionList;
-}
-
-export class ComponentList extends AbstractSWE {
-  components: Component[] = [];
-}
-
-export class ConnectionList extends AbstractSWE {
-  connections: Connection[] = [];
 }
 
 /**
