@@ -879,18 +879,18 @@ export class SmlEncoder {
     }
   }
 
-  public encodeProcess(object: AbstractProcess, document: Document): Node {
+  public encodeProcess(object: AbstractProcess, document: Document, node?: Element): Node {
     if (object instanceof SimpleProcess) {
-      return this.encodeSimpleProcess(object, document);
+      return this.encodeSimpleProcess(object, document, node);
     }
     if (object instanceof AggregateProcess) {
-      return this.encodeAggregateProcess(object, document);
+      return this.encodeAggregateProcess(object, document, node);
     }
     if (object instanceof PhysicalSystem) {
-      return this.encodePhysicalSystem(object, document);
+      return this.encodePhysicalSystem(object, document, node);
     }
     if (object instanceof PhysicalComponent) {
-      return this.encodePhysicalComponent(object, document);
+      return this.encodePhysicalComponent(object, document, node);
     }
 
     throw new Error('Unsupported process type');

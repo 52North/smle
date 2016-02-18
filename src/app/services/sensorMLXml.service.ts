@@ -6,7 +6,6 @@ import {
   PhysicalSystem,
 } from '../model/sml';
 
-
 import { AbstractXmlService } from './xml.service';
 import * as Namespaces from './xml/namespaces';
 import * as Prefixes from './xml/prefixes';
@@ -15,28 +14,15 @@ import { SmlEncoder } from './xml/sml';
 import { IsoEncoder } from './xml/iso';
 
 export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {
+  private encoder = new SensorMLDocumentEncoder();
 
   decode(document: Document): AbstractProcess {
     throw new Error('unsupported');
   }
 
   encode(description: AbstractProcess): Document {
-    if (description instanceof SimpleProcess) {
-      return new SimpleProcessEncoder().encodeDocument(description);
-    } else if (description instanceof AggregateProcess) {
-      return new AggregateProcessEncoder().encodeDocument(description);
-    } else if (description instanceof PhysicalComponent) {
-      return new PhysicalComponentEncoder().encodeDocument(description);
-    } else if (description instanceof PhysicalSystem) {
-      return new PhysicalSystemEncoder().encodeDocument(description);
-    } else {
-      throw new Error('Unsupported process type: ' + description);
-    }
+    return this.encoder.encode(description);
   }
-}
-
-abstract class Encoder<T> {
-  abstract encode(object: T, parent: Node): void;
 }
 
 interface Resolver {
@@ -88,18 +74,16 @@ export class SensorMLNamespaceResolver implements Resolver {
   }
 }
 
-abstract class DocumentEncoder<T> extends Encoder<T> {
-  constructor(private prefix: string,
-    private name: string,
-    private schemaURL: string,
-    private resolver: Resolver) {
-    super();
-  }
+class SensorMLDocumentEncoder {
+  private resolver = new SensorMLNamespaceResolver();
+  private smlEncoder = new SmlEncoder();
 
-  encodeDocument(object: T): Document {
-    let document = this.createDocument(this.prefix, this.name, this.schemaURL);
-    this.encode(object, document.documentElement);
-    return document;
+  public encode(object: AbstractProcess): Document {
+
+    let doc = this.createDocumentForProcess(object);
+    this.smlEncoder.encodeProcess(object, doc, doc.documentElement);
+
+    return doc;
   }
 
   getPrefix(namespace: string) {
@@ -110,9 +94,21 @@ abstract class DocumentEncoder<T> extends Encoder<T> {
     return this.resolver.getNamespace(prefix);
   }
 
-  private createDocument(prefix: string,
-    name: string, schemaURL: string): Document {
+  private createDocumentForProcess(object: AbstractProcess): Document {
+    if (object instanceof SimpleProcess) {
+      return this.createDocument('sml', SimpleProcess.NAME, SimpleProcess.SCHEMA);
+    } else if (object instanceof AggregateProcess) {
+      return this.createDocument('sml', AggregateProcess.NAME, AggregateProcess.SCHEMA);
+    } else if (object instanceof PhysicalComponent) {
+      return this.createDocument('sml', PhysicalComponent.NAME, PhysicalComponent.SCHEMA);
+    } else if (object instanceof PhysicalSystem) {
+      return this.createDocument('sml', PhysicalSystem.NAME, PhysicalSystem.SCHEMA);
+   } else {
+      throw new Error('Unsupported process type');
+    }
+  }
 
+  private createDocument(prefix: string, name: string, schemaURL: string): Document {
     let namespaces = this.resolver.getPrefixes()
       .map(prefix => `xmlns:${prefix}="${this.resolver.getNamespace(prefix)}"`)
       .join(' ');
@@ -120,62 +116,5 @@ abstract class DocumentEncoder<T> extends Encoder<T> {
     let sl = `xsi:schemaLocation="${namespace} ${schemaURL}"`;
     let s = `<${prefix}:${name} ${namespaces} ${sl}></${prefix}:${name}>`;
     return new DOMParser().parseFromString(s, 'application/xml');
-  }
-}
-
-abstract class SensorMLDocumentEncoder<T> extends DocumentEncoder<T> {
-
-  constructor(name: string, schemaURL: string
-    = 'http://schemas.opengis.net/sensorML/2.0/sensorML.xsd') {
-    super('sml', name, schemaURL, new SensorMLNamespaceResolver());
-  }
-
-
-}
-
-class SimpleProcessEncoder extends SensorMLDocumentEncoder<SimpleProcess> {
-
-  constructor() {
-    super('SimpleProcess',
-      'http://schemas.opengis.net/sensorML/2.0/simple_process.xsd');
-  }
-
-  encode(object: SimpleProcess, parent: Node) {
-  }
-}
-
-class AggregateProcessEncoder
-  extends SensorMLDocumentEncoder<AggregateProcess> {
-
-  constructor() {
-    super('AggregateProcess',
-      'http://schemas.opengis.net/sensorML/2.0/aggregate_process.xsd');
-  }
-
-  encode(object: AggregateProcess, parent: Node) {
-  }
-}
-
-class PhysicalSystemEncoder
-  extends SensorMLDocumentEncoder<PhysicalSystem> {
-
-  constructor() {
-    super('PhysicalSystem',
-      'http://schemas.opengis.net/sensorML/2.0/physical_system.xsd');
-  }
-
-  encode(object: PhysicalSystem, parent: Node) {
-  }
-}
-
-class PhysicalComponentEncoder
-  extends SensorMLDocumentEncoder<PhysicalComponent> {
-
-  constructor() {
-    super('PhysicalComponent',
-      'http://schemas.opengis.net/sensorML/2.0/physical_component.xsd');
-  }
-
-  encode(object: PhysicalComponent, parent: Node) {
   }
 }

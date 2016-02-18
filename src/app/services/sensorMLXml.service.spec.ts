@@ -52,13 +52,7 @@ class XPathDocument {
   constructor(public document: Document) {
   }
 
-  static parse(xml: string): XPathDocument {
-    let parser = new DOMParser();
-    let document = parser.parseFromString(xml, 'application/xml');
-    return new XPathDocument(document);
-  }
-
-  eval(expr: string, context?: Node)
+  public eval(expr: string, context?: Node)
     : boolean | string | number | Node | Node[] {
     var result = this._eval(expr, context);
 
@@ -103,5 +97,11 @@ class XPathDocument {
     };
     return this.document.evaluate(
       expr, ctx, rslv, XPathResult.ANY_TYPE, null);
+  }
+
+  static parse(xml: string): XPathDocument {
+    let parser = new DOMParser();
+    let document = parser.parseFromString(xml, 'application/xml');
+    return new XPathDocument(document);
   }
 }

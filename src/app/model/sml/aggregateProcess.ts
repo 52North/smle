@@ -9,6 +9,11 @@ import { AbstractSWE } from '../swe';
 export class AggregateProcess extends AbstractProcess implements AggregatingProcess {
   components: ComponentList = new ComponentList();
   connections: ConnectionList = new ConnectionList();
+
+  public static get SCHEMA(): string { return 'http://schemas.opengis.net/sensorML/2.0/aggregate_process.xsd'; }
+
+  public static get NAME(): string { return 'AggregateProcess'; }
+
 }
 
 export class ComponentList extends AbstractSWE {

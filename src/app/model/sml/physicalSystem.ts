@@ -10,4 +10,7 @@ import { ComponentList, ConnectionList, AggregatingProcess } from './aggregatePr
 export class PhysicalSystem extends AbstractPhysicalProcess implements AggregatingProcess {
   components: ComponentList = new ComponentList();
   connections: ConnectionList = new ConnectionList();
+  public static get SCHEMA(): string { return 'http://schemas.opengis.net/sensorML/2.0/physical_system.xsd'; }
+
+  public static get NAME(): string { return 'PhysicalSystem'; }
 }

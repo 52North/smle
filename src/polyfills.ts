@@ -22,7 +22,7 @@ if ('production' === process.env.ENV) {
 
   // RxJS
   // In production manually include the operators you use
-
+  /*
   // Observable Operators
   require('rxjs/add/operator/combineLatest-static');
   require('rxjs/add/operator/concat-static');
@@ -133,6 +133,7 @@ if ('production' === process.env.ENV) {
   require('rxjs/add/operator/withLatestFrom');
   require('rxjs/add/operator/zip');
   require('rxjs/add/operator/zipAll');
+  */
 }
 
 // For vendors for example jQuery, Lodash, angular2-jwt just import them anywhere in your app

@@ -20,6 +20,8 @@ require('zone.js/dist/jasmine-patch.js');
 
 
 var testing = require('angular2/testing');
+throw new Error('9');
+
 var browser = require('angular2/platform/testing/browser');
 testing.setBaseTestProviders(
   browser.TEST_BROWSER_PLATFORM_PROVIDERS,
