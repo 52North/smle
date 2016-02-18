@@ -9,7 +9,7 @@
  * If no srsName attribute is given, the CRS shall be specified as part of the
  * larger context this geometry element is part of.
  */
-class Referenced {
+export class Referenced {
   srsName: string;
   srsDimension: number;
   /**
@@ -104,6 +104,8 @@ export class CodeWithAuthority extends CodeType {
  * is effectively an abstract superclass for all GML objects.
  */
 export abstract class AbstractGML {
+
+  gmlId: string;
   /**
    * The value of this property is a text description of the object.
    * gml:description uses gml:StringOrRefType as its content model, so it may
@@ -137,7 +139,7 @@ export abstract class AbstractGML {
    * unique either globally or within an application domain. gml:identifier is a
    * pre-defined property for such identifiers.
    */
-  identifier: CodeType[];
+  identifier: CodeType;
 }
 
 

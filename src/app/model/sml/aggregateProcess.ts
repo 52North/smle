@@ -1,4 +1,6 @@
+
 import { AbstractProcess } from './core';
+import { AbstractSWE } from '../swe';
 
 /**
  * A process that consist of a collection of linked component processes
@@ -11,12 +13,20 @@ export class AggregateProcess extends AbstractProcess {
    * attribute while the URL to the process description must be provided by the
    * xlink:href attribute.
    */
-  components: AbstractProcess[];
+  components: ComponentList;
   /**
    * The explicit definition of data links between outputs, inputs, and
    * parameters of the components within an aggregate process.
    */
-  connections: Connection[];
+  connections: ConnectionList;
+}
+
+export class ComponentList extends AbstractSWE {
+  components: Component[] = [];
+}
+
+export class ConnectionList extends AbstractSWE {
+  connections: Connection[] = [];
 }
 
 /**
@@ -31,5 +41,11 @@ export class Connection {
   /**
    * The input or parameter into which the data flows.
    */
-  destinination: string;
+  destination: string;
+}
+
+
+export class Component {
+  name: string;
+  href: string;
 }

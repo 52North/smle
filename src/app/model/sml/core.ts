@@ -17,11 +17,11 @@ import {
   ResponsibleParty,
   OnlineResource,
   LegalConstraints
-} from '../iso19115';
+} from '../iso';
 
 import {
-  AbstractMode,
-  AbstractSetting
+  AbstractModes,
+  Settings
 } from './configuration';
 
 export class Term extends AbstractSWE {
@@ -54,12 +54,12 @@ export abstract class DescribedObject extends AbstractFeature {
    * Identifiers useful for discovery of the process (e.g. short name, mission
    * id, wing id, serial number, etc.)
    */
-  identification: Term[] = [];
+  identification: IdentifierList[] = [];
   /**
    * Classifiers useful for discovery of the process (e.g. process type, sensor
    * type, intended application, etc.)
    */
-  classification: Term[] = [];
+  classification: ClassifierList[] = [];
   /**
    * The time instance or time range during which this instance description
    * is valid.
@@ -74,43 +74,33 @@ export abstract class DescribedObject extends AbstractFeature {
    * Legal constraints applied to this description (e.g. copyrights, legal
    * use, etc.)
    */
-  legalConstraints: LegalConstraints;
+  legalConstraints: LegalConstraints[] = [];
   /**
    * Useful properties of this process that do not further qualify the output
    * values (e.g. component dimensions, battery life, operational limits, etc).
    */
-  characteristics: Characteristics[] = [];
+  characteristics: CharacteristicList[] = [];
   /**
    * Properties that further clarify or quantify the output of the process (e.g.
    * dynamic range, sensitivity, threshold, etc.). These can assist in the
    * discovery of processes that meet particular requirements.
    */
-  capabilities: SweDataComponent[] = [];
+  capabilities: CapabilityList[] = [];
   /**
    * Persons or responsible parties that are relevant to this process (e.g.
    * designer, manufacturer, expert, etc.)
    */
-  contacts: ResponsibleParty[] = [];
+  contacts: ContactList[] = [];
   /**
    * Additional external online documentation of relevance to this process (e.g.
    * user's guides, product manuals, specification sheets, images, technical
    * papers, etc.)
    */
-  documentation: OnlineResource[] = [];
+  documentation: DocumentList[] = [];
   /**
    * A collection of time-tagged events relevant to this process.
    */
-  history: Event[] = [];
-}
-
-export class Characteristics {
-  name: string;
-  characteristics: Characteristic[] = [];
-}
-
-export class Characteristic {
-  name: string;
-  component: SweDataComponent;
+  history: EventList[] = [];
 }
 
 /**
@@ -137,7 +127,7 @@ export class DataInterface extends AbstractSWEIdentifiable {
  * definition, but does not have units of measure.
  */
 export class ObservableProperty extends AbstractSWEIdentifiable {
-  definition: CodeWithAuthority;
+  definition: string;
 }
 
 /**
@@ -149,7 +139,7 @@ export abstract class AbstractProcess extends DescribedObject {
    * an online ontology or dictionary. The value of the property must be a
    * resolvable URI.
    */
-  definition: CodeWithAuthority;
+  definition: string;
   /**
    * A reference to a base process from which this process inherits properties
    * and constraints (e.g. original equipment manufacturer's model description,
@@ -157,42 +147,43 @@ export abstract class AbstractProcess extends DescribedObject {
    * provided using the xlink:title attribute while the URL to the process
    * description must be provided by the xlink:href attribute.
    */
-  typeOf: AbstractProcess;
+  typeOf: string = null;
   /**
    * Value settings that further constrain the properties of the base process.
    */
-  configuration: AbstractSetting[] = [];
+  configuration: Settings;
   /**
    * A collection of features relevant to a process (e.g. the Gulf of Mexico,
    * the White House, the set of all Fibonacci Numbers, etc.); can also support
    * a sampling feature. The primary purpose of the Features of Interest is to
    * support discovery.
    */
-  featureOfInterest: AbstractFeature[] = [];
+  featureOfInterest: FeatureList = new FeatureList();
   /**
    * The list of data components (and their properties and semantics) that the
    * process will accept as input; In the standard linear equation y=mx+b; x is
    * the input, m and b are the parameters, and y is the output.
    */
-  inputs: Array<SweDataComponent | ObservableProperty | DataInterface> = [];
+  inputs: InputList = new InputList();
   /**
    * The list of data components (and their properties and semantics) that the
    * process will accept as parameters; In the standard linear equation y=mx+b;
    * x is the input, m and b are the parameters, and y is the output.
    */
-  outputs: Array<SweDataComponent | ObservableProperty | DataInterface> = [];
+  outputs: OutputList = new OutputList();
   /**
    * The list of data components (and their properties and semantics) that the
    * process will accept as parameters; In the standard linear equation y=mx+b;
    * x is the input, m and b are the parameters, and y is the output.
    */
-  parameters: Array<SweDataComponent | ObservableProperty | DataInterface> = [];
+  parameters: ParameterList = new ParameterList();
   /**
    * A collection of parameters that can be set at once through the selection of
    * a particular predefined mode.
    */
-  modes: AbstractMode[];
+  modes: AbstractModes[] = [];
 }
+
 
 /**
  * A time tagged Event with description and relevant property values.
@@ -206,23 +197,23 @@ export class Event extends AbstractSWEIdentifiable {
   /**
    * Identifiers relevant to the event
    */
-  identification: Term[] = [];
+  identification: IdentifierList[] = [];
   /**
    * Type of event (useful for discovery)
    */
-  classification: Term[] = [];
+  classification: ClassifierList[] = [];
   /**
    * Persons or parties relevant to this event
    */
-  contacts: ResponsibleParty[] = [];
+  contacts: ContactList[] = [];
   /**
    * Additional documentation relevant to this event
    */
-  documentation: OnlineResource[] = [];
+  documentation: DocumentList[] = [];
   /**
    * DateTime of the event
    */
-  time: Time[] = [];
+  time: Time = null;
   /**
    * Properties of interest to the event (e.g. calibration values, condition
    * category, error codes, etc)
@@ -231,10 +222,18 @@ export class Event extends AbstractSWEIdentifiable {
   /**
    * Configuration settings adjusted during event
    */
-  configuration: AbstractSetting[] = [];
+  configuration: Settings;
 }
 
-export class KeywordList {
+export abstract class AbstractMetadataList extends AbstractSWEIdentifiable {
+  definition: string;
+}
+
+export abstract class AbstractNamedMetadataList extends AbstractMetadataList {
+  name: string;
+}
+
+export class KeywordList extends AbstractMetadataList {
   /**
    * online dictionary or ontology which defines a collection of possible
    * keywords
@@ -245,3 +244,65 @@ export class KeywordList {
    */
   keywords: string[] = [];
 }
+
+
+export class ClassifierList extends AbstractMetadataList {
+  classifiers: Term[] = [];
+}
+
+export class IdentifierList extends AbstractMetadataList {
+  identifiers: Term[] = [];
+}
+
+export class CharacteristicList extends AbstractNamedMetadataList {
+  characteristics: Characteristic[] = [];
+}
+
+export class FeatureList extends AbstractMetadataList {
+  features: AbstractFeature[] = [];
+}
+
+export class CapabilityList extends AbstractNamedMetadataList {
+  capabilities: Capabilitiy[] = [];
+}
+
+export class DocumentList extends AbstractMetadataList {
+  documents: OnlineResource[] = [];
+}
+
+export class ContactList extends AbstractMetadataList {
+  contacts: ResponsibleParty[] = [];
+}
+
+export class EventList extends AbstractMetadataList {
+  events: Event[] = [];
+}
+
+export class NamedSweDataComponent {
+  name: string;
+  component: SweDataComponent;
+}
+
+export type Capabilitiy = NamedSweDataComponent;
+export type Characteristic = NamedSweDataComponent;
+
+export class InputList extends AbstractSWE {
+  inputs: Input[] = [];
+}
+
+export class OutputList extends AbstractSWE {
+  outputs: Output[] = [];
+}
+
+export class ParameterList extends AbstractSWE {
+  parameters: Parameter[] = [];
+}
+
+export class InputOrOutputOrParameter {
+  name: string;
+  value: SweDataComponent | ObservableProperty | DataInterface;
+}
+
+export type Input = InputOrOutputOrParameter;
+export type Output = InputOrOutputOrParameter;
+export type Parameter = InputOrOutputOrParameter;

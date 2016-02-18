@@ -1,8 +1,8 @@
 import * as Namespaces from './namespaces';
 
-import { Contact, Phone, OnlineResource, Address, ResponsibleParty } from '../../model/iso19115';
-import { Role, OnlineFunction } from '../../model/iso19115';
-import { LegalConstraints, Restriction } from '../../model/iso19115';
+import { Contact, Phone, OnlineResource, Address, ResponsibleParty } from '../../model/iso';
+import { Role, OnlineFunction } from '../../model/iso';
+import { LegalConstraints, Restriction } from '../../model/iso';
 
 export class IsoEncoder {
 

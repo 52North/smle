@@ -1,4 +1,4 @@
-import { AbstractProcess } from '../model/sensorML';
+import { AbstractProcess } from '../model/sml';
 import { Injectable } from 'angular2/core';
 import { DescriptionRepository } from './description.service';
 

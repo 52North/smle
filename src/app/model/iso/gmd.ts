@@ -65,6 +65,159 @@ export class LegalConstraints {
   otherConstraints: string[];
 }
 
+export class Keywords {
+  keywords: string[] = [];
+  type: KeywordType;
+  thesaurusName: Citation;
+}
+
+export class Citation {
+  title: string;
+  alternateTitle: string[];
+  date: IsoDate;
+  edition: string;
+  editionDate: Date;
+  identifier: Identifier;
+  citedResponsibleParty: ResponsibleParty[];
+  presentationForm: PresentationForm[];
+  series: Series;
+  otherCitationDetais: string;
+  collectiveTitle: string;
+  isbn: string;
+  issn: string;
+}
+
+export class Identifier {
+  authority: Citation;
+  code: string;
+}
+
+export class Series {
+  name: string;
+  issueIdentification: string;
+  page: string;
+}
+
+
+export class IsoDate {
+  type: DateType;
+  date: Date;
+}
+/**
+ * identification of when a given event occurred
+ */
+export type DateType =
+  /**
+   * date identifies when the resource was brought into existence
+   */
+  'creation' |
+  /**
+   * date identifies when the resource was issued
+   */
+  'publication' |
+  /**
+   * date identifies when the resource was examined or re-examined and imporved or amended
+   */
+  'revision';
+
+
+/**
+ * mode in which the data is represented
+ */
+export type PresentationForm =
+  /**
+   * digital representation of a primarily textual item (can contain illustrations also)
+   */
+  'documentDigital' |
+  /**
+   * representation of a primarily textual item (can contain illustrations also)
+   * on paper, photograhic material, or other media
+   */
+  'imageDigital' |
+  /**
+   * likeness of natural or man-made features, objects, and activities acquired
+   * through the sensing of visual or any other segment of the electromagnetic
+   * spectrum by sensors, such as thermal infrared, and high resolution radar
+   * and stored in digital format
+   */
+  'documentHardcopy' |
+  /**
+   * likeness of natural or man-made features, objects, and activities acquired
+   * through the sensing of visual or any other segment of the electromagnetic
+   * spectrum by sensors, such as thermal infrared, and high resolution radar
+   * and reproduced on paper, photographic material, or other media for use
+   * directly by the human user
+   */
+  'imageHardcopy' |
+  /**
+   * map represented in raster or vector form
+   */
+  'mapDigital' |
+  /**
+   * map printed on paper, photographic material, or other media for use
+   * directly by the human user
+   */
+  'mapHardcopy' |
+  /**
+   * multi-dimensional digital representation of a feature, process, etc.
+   */
+  'modelDigital' |
+  /**
+   * 3-dimensional, physical model
+   */
+  'modelHardcopy' |
+  /**
+   * vertical cross-section in digital form
+   */
+  'profileDigital' |
+  /**
+   * vertical cross-section printed on paper, etc.
+   */
+  'profileHardcopy' |
+  /**
+   * digital representation of facts or figures systematically displayed,
+   * especially in columns
+   */
+  'tableDigital' |
+  /**
+   * representation of facts or figures systematically displayed, especially
+   * in columns, printed onpapers, photographic material, or other media
+   */
+  'tableHardcopy' |
+  /**
+   * digital video recording
+   */
+  'videoDigital' |
+  /**
+   * video recording on film
+   */
+  'videoHardcopy';
+
+/**
+ * methods used to group similar keywords
+ */
+export type KeywordType =
+  /**
+   * keyword identifies a branch of instruction or specialized learning
+   */
+  'discipline' |
+  /**
+   * keyword identifies a location
+   */
+  'place' |
+  /**
+   * keyword identifies the layer(s) of any deposited substance
+   */
+  'stratum' |
+  /**
+   * keyword identifies a time period related to the dataset
+   */
+  'temporal' |
+  /**
+   * keyword identifies a particular subject or topic
+   */
+  'theme';
+
 /**
  * limitation(s) placed upon the access or use of the data
  */

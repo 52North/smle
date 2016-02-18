@@ -12,7 +12,7 @@ import {
   SensorMLNamespaceResolver
 } from './sensorMLXml.service';
 
-import { PhysicalSystem } from '../model/sensorML';
+import { PhysicalSystem } from '../model/sml';
 
 
 describe('SensorMLXmlService', () => {

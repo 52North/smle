@@ -41,5 +41,4 @@ export abstract class AbstractSWEIdentifiable extends AbstractSWE {
   description: string;
 }
 
-export class EncodedValues {
-}
+export type EncodedValues = any;

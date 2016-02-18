@@ -4,15 +4,15 @@ import {
   AggregateProcess,
   PhysicalComponent,
   PhysicalSystem,
-} from '../model/sensorML';
+} from '../model/sml';
 
 
 import { AbstractXmlService } from './xml.service';
 import * as Namespaces from './xml/namespaces';
 import * as Prefixes from './xml/prefixes';
 import { SweEncoder } from './xml/swe';
-import { SmlEncoder } from './xml/sensorML';
-import { IsoEncoder } from './xml/iso19115';
+import { SmlEncoder } from './xml/sml';
+import { IsoEncoder } from './xml/iso';
 
 export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {
 

@@ -6,7 +6,7 @@ export class SimpleProcess extends AbstractProcess {
 }
 
 export class ProcessMethod extends AbstractSWEIdentifiable {
-  algorithm: AbstractAlgorithm;
+  algorithm: AbstractAlgorithm[];
 }
 
 export interface AbstractAlgorithm {

@@ -1,6 +1,6 @@
 
 import { AbstractSWEIdentifiable, EncodedValues } from './basicTypes';
-import { AbstractDataComponent } from './simpleComponents';
+import { AbstractDataComponent, SweCount } from './simpleComponents';
 import { SweEncoding } from './simpleEncodings';
 
 /**
@@ -10,11 +10,11 @@ export class SweDataStream extends AbstractSWEIdentifiable {
   /**
    * Number of elements of the defined type that the stream contains
    */
-  elementCount: number;
+  elementCount: SweCount[];
   /**
    * Definition and structure of one stream element
    */
-  elementType: AbstractDataComponent;
+  elementType: SweElementType;
   /**
    * Method used to encode the stream values
    */
@@ -49,7 +49,12 @@ export class SweDataArray extends AbstractDataComponent {
    * Values are optional so that the array definition can be used a as a schema
    * for values provided externally
    */
-  values: any;
+  values: EncodedValues;
+}
+
+export class SweMatrix extends SweDataArray {
+  referenceFrame: string;
+  localFrame: string;
 }
 
 export class SweElementType {
@@ -57,4 +62,4 @@ export class SweElementType {
   type: AbstractDataComponent;
 }
 
-export type SweBlockComponent = SweDataArray;
+export type SweBlockComponent = SweDataArray | SweMatrix;

@@ -1,4 +1,4 @@
-import { AbstractProcess } from '../model/sensorML';
+import { AbstractProcess } from '../model/sml';
 
 
 export abstract class DescriptionRepository {

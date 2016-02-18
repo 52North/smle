@@ -11,6 +11,7 @@ import {
   AllowedValues,
   SweBinaryEncoding,
   SweByteEncoding,
+  SweMatrix,
   SweByteOrder,
   SweNilValue,
   SweAnyRange,
@@ -38,6 +39,7 @@ import {
   SweVector,
   SweTextEncoding,
   SweXmlEncoding,
+  SweDataStream
 } from '../../model/swe';
 
 export class SweEncoder {
@@ -48,6 +50,9 @@ export class SweEncoder {
     }
     if (component instanceof SweDataRecord) {
       return this.encodeDataRecord(component, document);
+    }
+    if (component instanceof SweMatrix) {
+      return this.encodeMatrix(component, document);
     }
     if (component instanceof SweDataArray) {
       return this.encodeDataArray(component, document);
@@ -147,33 +152,25 @@ export class SweEncoder {
     return node;
   }
 
+  public encodeMatrix(component: SweMatrix, document: Document): Node {
+    let node = document.createElementNS(Namespaces.SWE, 'swe:Matrix');
+    this.encodeAbstractDataArray(node, component, document);
+
+    if (component.referenceFrame) {
+      node.setAttribute('referenceFrame', component.referenceFrame);
+    }
+
+    if (component.localFrame) {
+      node.setAttribute('localFrame', component.localFrame);
+    }
+
+    return node;
+  }
+
+
   public encodeDataArray(component: SweDataArray, document: Document): Node {
     let node = document.createElementNS(Namespaces.SWE, 'swe:DataArray');
-
-    this.encodeAbstractDataComponent(node, component, document);
-
-    if (component.elementCount != null) {
-      let countNode = document.createElementNS(Namespaces.SWE, 'swe:elementCount');
-      countNode.textContent = component.elementCount.toString();
-      node.appendChild(countNode);
-    }
-
-    if (component.elementType) {
-      node.appendChild(this.encodeElementType(component.elementType, document));
-    }
-
-    if (component.encoding) {
-      let encodingNode = document.createElementNS(Namespaces.SWE, 'swe:encoding');
-      encodingNode.appendChild(this.encodeAbstractEncoding(component.encoding, document));
-      node.appendChild(encodingNode);
-    }
-
-    if (component.values) {
-      let valuesNode = document.createElementNS(Namespaces.SWE, 'swe:values');
-      valuesNode.textContent = component.values.toString();
-      node.appendChild(component.values);
-    }
-
+    this.encodeAbstractDataArray(node, component, document);
     return node;
   }
 
@@ -459,6 +456,18 @@ export class SweEncoder {
     }
 
     return node;
+  }
+
+  public encodeConstraint(object: AllowedTimes | AllowedTokens | AllowedValues, document: Document): Node {
+    if (object instanceof AllowedTimes) {
+      return this.encodeAllowedTimes(object, document);
+    }
+    if (object instanceof AllowedTokens) {
+      return this.encodeAllowedTokens(object, document);
+    }
+    if (object instanceof AllowedValues) {
+      return this.encodeAllowedValues(object, document);
+    }
   }
 
   public encodeCategoryRange(component: SweCategoryRange, document: Document): Node {
@@ -769,7 +778,7 @@ export class SweEncoder {
   }
 
 
-  private encodeAbstractSwe(node: Element, component: AbstractSWE, document: Document): void {
+  public encodeAbstractSwe(node: Element, component: AbstractSWE, document: Document): void {
 
     if (component.id) {
       node.setAttribute('id', component.id);
@@ -781,7 +790,7 @@ export class SweEncoder {
 
   }
 
-  private encodeAbstractSweIdentifiable(node: Element, component: AbstractSWEIdentifiable, document: Document): void {
+  public encodeAbstractSweIdentifiable(node: Element, component: AbstractSWEIdentifiable, document: Document): void {
 
     this.encodeAbstractSwe(node, component, document);
 
@@ -804,7 +813,7 @@ export class SweEncoder {
     }
   }
 
-  private encodeAbstractDataComponent(node: Element, component: AbstractDataComponent, document: Document): void {
+  public encodeAbstractDataComponent(node: Element, component: AbstractDataComponent, document: Document): void {
 
     this.encodeAbstractSweIdentifiable(node, component, document);
 
@@ -821,7 +830,7 @@ export class SweEncoder {
     }
   }
 
-  private encodeAbstractSimpleComponent(node: Element, component: AbstractSimpleComponent, document: Document): void {
+  public encodeAbstractSimpleComponent(node: Element, component: AbstractSimpleComponent, document: Document): void {
 
     this.encodeAbstractDataComponent(node, component, document);
 
@@ -845,5 +854,57 @@ export class SweEncoder {
     }
   }
 
+  public encodeDataStream(object: SweDataStream, document: Document): Node {
+    let node = document.createElementNS(Namespaces.SML, 'sml:DataStream');
 
+    this.encodeAbstractSweIdentifiable(node, object, document);
+
+    if (object.elementCount) {
+      let elementCountNode = document.createElementNS(Namespaces.SWE, 'swe:elementCount');
+      object.elementCount.forEach(elementCount =>
+        elementCountNode.appendChild(this.encodeCount(elementCount, document)));
+      node.appendChild(elementCountNode);
+    }
+
+    if (object.elementType) {
+      node.appendChild(this.encodeElementType(object.elementType, document));
+    }
+
+    if (object.encoding) {
+      let encodingNode = document.createElementNS(Namespaces.SWE, 'swe:encoding');
+      encodingNode.appendChild(this.encodeAbstractEncoding(object.encoding, document));
+      node.appendChild(encodingNode);
+    }
+
+    if (object.values) {
+
+    }
+    return node;
+  }
+
+  private encodeAbstractDataArray(node: Element, component: SweDataArray, document: Document): void {
+    this.encodeAbstractDataComponent(node, component, document);
+
+    if (component.elementCount != null) {
+      let countNode = document.createElementNS(Namespaces.SWE, 'swe:elementCount');
+      countNode.textContent = component.elementCount.toString();
+      node.appendChild(countNode);
+    }
+
+    if (component.elementType) {
+      node.appendChild(this.encodeElementType(component.elementType, document));
+    }
+
+    if (component.encoding) {
+      let encodingNode = document.createElementNS(Namespaces.SWE, 'swe:encoding');
+      encodingNode.appendChild(this.encodeAbstractEncoding(component.encoding, document));
+      node.appendChild(encodingNode);
+    }
+
+    if (component.values) {
+      let valuesNode = document.createElementNS(Namespaces.SWE, 'swe:values');
+      valuesNode.textContent = component.values.toString();
+      node.appendChild(component.values);
+    }
+  }
 }

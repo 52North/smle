@@ -6,7 +6,7 @@ export * from './swe/simpleEncodings';
 export * from './swe/choiceComponents';
 export * from './swe/advancedEncodings';
 
-import { SweDataArray } from './swe/blockComponents';
+import { SweDataArray, SweMatrix } from './swe/blockComponents';
 import { SweVector, SweDataRecord } from './swe/recordComponents';
 import { SweText, SweTime, SweCount, SweBoolean, SweQuantity, SweCategory } from './swe/simpleComponents';
 import { SweTimeRange, SweCountRange, SweQuantityRange, SweCategoryRange } from './swe/simpleComponents';
@@ -15,6 +15,7 @@ import { SweDataChoice } from './swe/choiceComponents';
 export type SweDataComponent =
   SweVector
   | SweDataRecord
+  | SweMatrix
   | SweDataArray
   | SweText
   | SweTime
@@ -44,6 +45,7 @@ export interface SweDataComponentVisitor<T> {
   visitSweTime(component: SweTime): T;
   visitSweCategory(component: SweCategory): T;
   visitSweText(component: SweText): T;
+  visitSweMatrix(component: SweMatrix): T;
 }
 
 export function visitComponent<T>(component: SweDataComponent, visitor: SweDataComponentVisitor<T>): T {
@@ -52,6 +54,9 @@ export function visitComponent<T>(component: SweDataComponent, visitor: SweDataC
   }
   if (component instanceof SweDataRecord) {
     return visitor.visitSweDataRecord(component);
+  }
+  if (component instanceof SweMatrix) {
+    return visitor.visitSweMatrix(component);
   }
   if (component instanceof SweDataArray) {
     return visitor.visitSweDataArray(component);
