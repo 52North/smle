@@ -3,4 +3,5 @@ typings/
 dist/
 .vscode/
 coverage/
+doc/
 npm-debug.log

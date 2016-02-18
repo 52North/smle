@@ -2,7 +2,7 @@
 import 'es6-shim';
 // (these modules are what are in 'angular2/bundles/angular2-polyfills' so don't use that here)
 import 'es6-promise';
-import 'zone.js/lib/browser/zone-microtask';
+import 'zone.js/dist/zone-microtask';
 
 if ('production' === process.env.ENV) {
 
@@ -18,7 +18,7 @@ if ('production' === process.env.ENV) {
   // In production Reflect with es7-reflect-metadata/reflect-metadata is added
   // by webpack.prod.config ProvidePlugin
   (<any>Error)['stackTraceLimit'] = Infinity;
-  Zone['longStackTraceZone'] = require('zone.js/lib/zones/long-stack-trace.js');
+  Zone['longStackTraceZone'] = require('zone.js/dist/long-stack-trace-zone.js');
 
   // RxJS
   // In production manually include the operators you use
