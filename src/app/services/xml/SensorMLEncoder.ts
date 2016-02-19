@@ -1,67 +1,68 @@
-import {
-  AbstractAlgorithm,
-  AbstractMetadataList,
-  AbstractModes,
-  AbstractNamedMetadataList,
-  AbstractPhysicalProcess,
-  AbstractProcess,
-  AbstractSetting,
-  AggregateProcess,
-  AggregatingProcess,
-  ArrayValueSetting,
-  Axis,
-  Capabilitiy,
-  CapabilityList,
-  Characteristic,
-  CharacteristicList,
-  ClassifierList,
-  ComponentList,
-  Connection,
-  ConnectionList,
-  ConstraintSetting,
-  ContactList,
-  DataInterface,
-  DescribedObject,
-  DocumentList,
-  Event,
-  EventList,
-  FeatureList,
-  IdentifierList,
-  Input,
-  InputList,
-  InputOrOutputOrParameter,
-  KeywordList,
-  Mode,
-  ModeChoice,
-  ModeSetting,
-  NamedSweDataComponent,
-  ObservableProperty,
-  Output,
-  OutputList,
-  Parameter,
-  ParameterList,
-  PhysicalComponent,
-  PhysicalSystem,
-  Position,
-  ProcessMethod,
-  ProcessMethodProcess,
-  Settings,
-  SimpleProcess,
-  SpatialFrame,
-  Status,
-  StatusSetting,
-  TemporalFrame,
-  Term,
-  ValueSetting
-} from '../../model/sml';
-
-import { Point } from '../../model/gml';
-import { SweDataComponent, SweText, SweVector, SweDataRecord, SweDataArray, SweMatrix } from '../../model/swe';
-import { Namespaces } from './Namespaces';
-import { SensorMLNamespaceResolver } from './SensorMLNamespaceResolver';
-import { SweEncoder } from './SweEncoder';
-import { IsoEncoder } from './IsoEncoder';
+import { AbstractAlgorithm } from '../../model/sml/AbstractAlgorithm';
+import { AbstractMetadataList } from '../../model/sml/AbstractMetadataList';
+import { AbstractModes } from '../../model/sml/AbstractModes';
+import { AbstractNamedMetadataList } from '../../model/sml/AbstractNamedMetadataList';
+import { AbstractPhysicalProcess } from '../../model/sml/AbstractPhysicalProcess';
+import { AbstractProcess } from '../../model/sml/AbstractProcess';
+import { AbstractSetting } from '../../model/sml/AbstractSetting';
+import { AggregateProcess } from '../../model/sml/AggregateProcess';
+import { AggregatingProcess } from '../../model/sml/AggregatingProcess';
+import { ArrayValueSetting } from '../../model/sml/ArrayValueSetting';
+import { Axis } from '../../model/sml/Axis';
+import { Capability } from '../../model/sml/Capability';
+import { CapabilityList } from '../../model/sml/CapabilityList';
+import { Characteristic } from '../../model/sml/Characteristic';
+import { CharacteristicList } from '../../model/sml/CharacteristicList';
+import { ClassifierList } from '../../model/sml/ClassifierList';
+import { ComponentList } from '../../model/sml/ComponentList';
+import { Connection } from '../../model/sml/Connection';
+import { ConnectionList } from '../../model/sml/ConnectionList';
+import { ConstraintSetting } from '../../model/sml/ConstraintSetting';
+import { ContactList } from '../../model/sml/ContactList';
+import { DataInterface } from '../../model/sml/DataInterface';
+import { DescribedObject } from '../../model/sml/DescribedObject';
+import { DocumentList } from '../../model/sml/DocumentList';
+import { Event } from '../../model/sml/Event';
+import { EventList } from '../../model/sml/EventList';
+import { FeatureList } from '../../model/sml/FeatureList';
 import { GmlEncoder } from './GmlEncoder';
+import { IdentifierList } from '../../model/sml/IdentifierList';
+import { Input } from '../../model/sml/Input';
+import { InputList } from '../../model/sml/InputList';
+import { InputOrOutputOrParameter } from '../../model/sml/InputOrOutputOrParameter';
+import { IsoEncoder } from './IsoEncoder';
+import { KeywordList } from '../../model/sml/KeywordList';
+import { Mode } from '../../model/sml/Mode';
+import { ModeChoice } from '../../model/sml/ModeChoice';
+import { ModeSetting } from '../../model/sml/ModeSetting';
+import { NamedSweDataComponent } from '../../model/sml/NamedSweDataComponent';
+import { Namespaces } from './Namespaces';
+import { ObservableProperty } from '../../model/sml/ObservableProperty';
+import { Output } from '../../model/sml/Output';
+import { OutputList } from '../../model/sml/OutputList';
+import { Parameter } from '../../model/sml/Parameter';
+import { ParameterList } from '../../model/sml/ParameterList';
+import { PhysicalComponent } from '../../model/sml/PhysicalComponent';
+import { PhysicalSystem } from '../../model/sml/PhysicalSystem';
+import { Point } from '../../model/gml';
+import { Position } from '../../model/sml/Position';
+import { ProcessMethod } from '../../model/sml/ProcessMethod';
+import { ProcessMethodProcess } from '../../model/sml/ProcessMethodProcess';
+import { SensorMLNamespaceResolver } from './SensorMLNamespaceResolver';
+import { Settings } from '../../model/sml/Settings';
+import { SimpleProcess } from '../../model/sml/SimpleProcess';
+import { SpatialFrame } from '../../model/sml/SpatialFrame';
+import { StatusSetting } from '../../model/sml/StatusSetting';
+import { SweDataArray } from '../../model/swe/SweDataArray';
+import { SweDataComponent } from '../../model/swe/SweDataComponent';
+import { SweDataRecord } from '../../model/swe/SweDataRecord';
+import { SweEncoder } from './SweEncoder';
+import { SweMatrix } from '../../model/swe/SweMatrix';
+import { SweText } from '../../model/swe/SweText';
+import { SweVector } from '../../model/swe/SweVector';
+import { TemporalFrame } from '../../model/sml/TemporalFrame';
+import { Term } from '../../model/sml/Term';
+import { ValueSetting } from '../../model/sml/ValueSetting';
 
 export class SensorMLEncoder {
 

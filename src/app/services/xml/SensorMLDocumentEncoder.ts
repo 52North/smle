@@ -1,9 +1,11 @@
+import { AbstractProcess } from '../../model/sml/AbstractProcess';
+import { AggregateProcess } from '../../model/sml/AggregateProcess';
 import { Namespaces } from './Namespaces';
-import { SensorMLNamespaceResolver } from './SensorMLNamespaceResolver';
+import { PhysicalComponent } from '../../model/sml/PhysicalComponent';
+import { PhysicalSystem } from '../../model/sml/PhysicalSystem';
 import { SensorMLEncoder } from './SensorMLEncoder';
-import { AbstractProcess } from '../../model/sml';
-import { SimpleProcess, AggregateProcess } from '../../model/sml';
-import { PhysicalComponent, PhysicalSystem } from '../../model/sml';
+import { SensorMLNamespaceResolver } from './SensorMLNamespaceResolver';
+import { SimpleProcess } from '../../model/sml/SimpleProcess';
 
 export class SensorMLDocumentEncoder {
   private resolver = new SensorMLNamespaceResolver();

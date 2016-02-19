@@ -1,46 +1,43 @@
+import { AbstractDataComponent } from '../../model/swe/AbstractDataComponent';
+import { AbstractSimpleComponent } from '../../model/swe/AbstractSimpleComponent';
+import { AbstractSWE } from '../../model/swe/AbstractSWE';
+import { AbstractSWEIdentifiable } from '../../model/swe/AbstractSWEIdentifiable';
+import { AllowedTimes } from '../../model/swe/AllowedTimes';
+import { AllowedTokens } from '../../model/swe/AllowedTokens';
+import { AllowedValues } from '../../model/swe/AllowedValues';
 import { Namespaces } from './Namespaces';
-
-import {
-  AbstractDataComponent,
-  AbstractSimpleComponent,
-  AbstractSWE,
-  AbstractSWEIdentifiable,
-  AllowedTimes,
-  AllowedTokens,
-  AllowedValues,
-  SweAnyRange,
-  SweAnyScalar,
-  SweBinaryBlock,
-  SweBinaryComponent,
-  SweBinaryEncoding,
-  SweBoolean,
-  SweByteEncoding,
-  SweByteOrder,
-  SweCategory,
-  SweCategoryRange,
-  SweCoordinate,
-  SweCount,
-  SweCountRange,
-  SweDataArray,
-  SweDataChoice,
-  SweDataComponent,
-  SweDataRecord,
-  SweDataStream,
-  SweElementType,
-  SweEncoding,
-  SweField,
-  SweMatrix,
-  SweNilValue,
-  SweQuality,
-  SweQuantity,
-  SweQuantityRange,
-  SweText,
-  SweTextEncoding,
-  SweTime,
-  SweTimeRange,
-  SweVector,
-  SweXmlEncoding
-} from '../../model/swe';
+import { SweAnyRange } from '../../model/swe/SweAnyRange';
+import { SweAnyScalar } from '../../model/swe/SweAnyScalar';
+import { SweBinaryBlock } from '../../model/swe/SweBinaryBlock';
+import { SweBinaryComponent } from '../../model/swe/SweBinaryComponent';
+import { SweBinaryEncoding } from '../../model/swe/SweBinaryEncoding';
+import { SweBoolean } from '../../model/swe/SweBoolean';
+import { SweByteEncoding } from '../../model/swe/SweByteEncoding';
+import { SweByteOrder } from '../../model/swe/SweByteOrder';
+import { SweCategory } from '../../model/swe/SweCategory';
+import { SweCategoryRange } from '../../model/swe/SweCategoryRange';
+import { SweCoordinate } from '../../model/swe/SweCoordinate';
+import { SweCount } from '../../model/swe/SweCount';
+import { SweCountRange } from '../../model/swe/SweCountRange';
+import { SweDataArray } from '../../model/swe/SweDataArray';
+import { SweDataChoice } from '../../model/swe/SweDataChoice';
+import { SweDataComponent } from '../../model/swe/SweDataComponent';
+import { SweDataRecord } from '../../model/swe/SweDataRecord';
+import { SweDataStream } from '../../model/swe/SweDataStream';
+import { SweElementType } from '../../model/swe/SweElementType';
+import { SweEncoding } from '../../model/swe/SweEncoding';
+import { SweField } from '../../model/swe/SweField';
+import { SweMatrix } from '../../model/swe/SweMatrix';
+import { SweNilValue } from '../../model/swe/SweNilValue';
+import { SweQuality } from '../../model/swe/SweQuality';
+import { SweQuantity } from '../../model/swe/SweQuantity';
+import { SweQuantityRange } from '../../model/swe/SweQuantityRange';
+import { SweText } from '../../model/swe/SweText';
+import { SweTextEncoding } from '../../model/swe/SweTextEncoding';
+import { SweTime } from '../../model/swe/SweTime';
+import { SweTimeRange } from '../../model/swe/SweTimeRange';
+import { SweVector } from '../../model/swe/SweVector';
+import { SweXmlEncoding } from '../../model/swe/SweXmlEncoding';
 
 export class SweEncoder {
 

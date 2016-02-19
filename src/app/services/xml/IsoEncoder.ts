@@ -1,7 +1,13 @@
+import { Address } from '../../model/iso/gmd/Address';
+import { Contact } from '../../model/iso/gmd/Contact';
+import { LegalConstraints } from '../../model/iso/gmd/LegalConstraints';
 import { Namespaces } from './Namespaces';
-import { Contact, Phone, OnlineResource, Address, ResponsibleParty } from '../../model/iso';
-import { Role, OnlineFunction } from '../../model/iso';
-import { LegalConstraints, Restriction } from '../../model/iso';
+import { OnlineFunction } from '../../model/iso/gmd/OnlineFunction';
+import { OnlineResource } from '../../model/iso/gmd/OnlineResource';
+import { Phone } from '../../model/iso/gmd/Phone';
+import { ResponsibleParty } from '../../model/iso/gmd/ResponsibleParty';
+import { Restriction } from '../../model/iso/gmd/Restriction';
+import { Role } from '../../model/iso/gmd/Role';
 
 export class IsoEncoder {
 

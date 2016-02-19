@@ -9,7 +9,7 @@ const physicalSystemType =
 
 import { SensorMLXmlService } from './SensorMLXmlService';
 import { SensorMLNamespaceResolver } from './xml/SensorMLNamespaceResolver';
-import { PhysicalSystem } from '../model/sml';
+import { PhysicalSystem } from '../model/sml/PhysicalSystem';
 
 
 describe('SensorMLXmlService', () => {
