@@ -711,7 +711,7 @@ export class SweEncoder {
       allowedTimes.values.forEach(allowedTime => {
         var value: string;
         if (allowedTime instanceof Date) {
-          value = (<Date>allowedTime).toISOString();
+          value = allowedTime.toISOString();
         } else if (allowedTime instanceof String) {
           value = allowedTime;
         }
@@ -725,9 +725,9 @@ export class SweEncoder {
       allowedTimes.values.forEach(allowedTime => {
         if (allowedTime instanceof Array) {
           var value = allowedTime.map(v => {
-            if (allowedTime instanceof Date) {
-              return (<Date>v).toISOString();
-            } else if (allowedTime instanceof String) {
+            if (v instanceof Date) {
+              return v.toISOString();
+            } else {
               return v;
             }
           });
