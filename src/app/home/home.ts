@@ -1,6 +1,6 @@
-import {Component, OnInit} from 'angular2/core';
-import {Router} from 'angular2/router';
-import {DescriptionRepository} from '../services/description.service';
+import { Component, OnInit} from 'angular2/core';
+import { Router } from 'angular2/router';
+import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
   selector: 'home',
@@ -29,8 +29,8 @@ export class Home implements OnInit {
     return this._selected === id;
   }
 
-  onSelect(id: string): void  {
-    this._router.navigate(['Editor', {id: id}]);
+  onSelect(id: string): void {
+    this._router.navigate(['Editor', { id: id }]);
   }
 
   ngOnInit() {

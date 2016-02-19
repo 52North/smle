@@ -1,7 +1,7 @@
-import {Component, Injectable, OnInit} from 'angular2/core';
-import {Router, RouteParams} from 'angular2/router';
-import {AbstractProcess, SimpleProcess} from '../model/sml';
-import {DescriptionRepository} from '../services/description.service';
+import { Component, Injectable, OnInit } from 'angular2/core';
+import { Router, RouteParams } from 'angular2/router';
+import { AbstractProcess, SimpleProcess } from '../model/sml';
+import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
   selector: 'editor',
