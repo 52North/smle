@@ -4,7 +4,7 @@ import { SweQuality } from './SweQuality';
 import { AbstractAllowedValues } from './AbstractAllowedValues';
 import { SweNilValue } from './SweNilValue';
 
-export class AbstractSimpleComponent extends AbstractDataComponent {
+export abstract class AbstractSimpleComponent extends AbstractDataComponent {
   /**
    * Frame of reference (usually temporal or spatial) with respect to which the
    * value of the component is expressed. A reference frame anchors a value to
