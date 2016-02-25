@@ -95,7 +95,7 @@ export class SensorMLEncoder {
       termNode.appendChild(labelNode);
     }
 
-    if (term.extension) {
+    if (term.extension && term.extension.length > 0) {
       throw new Error('Extensions are not supported!');
     }
 
@@ -333,7 +333,7 @@ export class SensorMLEncoder {
 
     this.gmlEncoder.encodeAbstractFeature(node, object, document);
 
-    if (object.extension) {
+    if (object.extension && object.extension.length > 0) {
       throw new Error('Extensions are currently unsupported');
     }
 
@@ -369,7 +369,7 @@ export class SensorMLEncoder {
       });
     }
 
-    if (object.securityConstraints) {
+    if (object.securityConstraints && object.securityConstraints.length > 0) {
       throw new Error('Currently not supported');
     }
 

@@ -2,6 +2,7 @@
 'use strict';
 var path = require('path');
 var webpack = require('webpack');
+var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
@@ -25,7 +26,10 @@ module.exports = {
   // cache: false,
 
   // our angular app
-  entry: { 'polyfills': './src/polyfills.ts', 'main': './src/main.ts' },
+  entry: {
+    'polyfills': './src/polyfills.ts',
+    'main': './src/main.ts'
+  },
 
   // Config for our build files
   output: {
@@ -40,6 +44,10 @@ module.exports = {
     extensions: prepend(['.ts','.js','.json','.css','.html'], '.async') // ensure .async.ts etc also works
   },
 
+  postcss: function() {
+    return [autoprefixer];
+  },
+
   module: {
     preLoaders: [
       // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ root('node_modules') ] },
@@ -47,25 +55,14 @@ module.exports = {
       { test: /\.js$/, loader: "source-map-loader", exclude: [ root('node_modules/rxjs') ] }
     ],
     loaders: [
-      // Support Angular 2 async routes via .async.ts
       { test: /\.async\.ts$/, loaders: ['es6-promise-loader', 'ts-loader'], exclude: [ /\.(spec|e2e)\.ts$/ ] },
-
-      // Support for .ts files.
       { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e|async)\.ts$/ ] },
-
-      // Support for *.json files.
       { test: /\.json$/,  loader: 'json-loader' },
-
-      // Support for CSS as raw text
       { test: /\.css$/,   loader: 'raw-loader' },
-
-      // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader' },
-
-      // support for SCSS files
-      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], exclude: /node_modules/ },
-
-      // if you add a loader include the resolve file extension above
+      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/index.html') ] },
+      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
+      { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
+      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
     ]
   },
 
@@ -75,22 +72,25 @@ module.exports = {
     // static assets
     new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html', inject: false }),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     // replace
     new webpack.DefinePlugin({
       'process.env': {
         'ENV': JSON.stringify(metadata.ENV),
         'NODE_ENV': JSON.stringify(metadata.ENV)
       }
+    }),
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      jquery: 'jquery',
+      'Tether': 'tether',
+      'window.Tether': "tether"
     })
   ],
 
   // Other module loader config
-  tslint: {
-    emitErrors: false,
-    failOnHint: false,
-    resourcePath: 'src'
-  },
+  tslint: { emitErrors: false, failOnHint: false, resourcePath: 'src' },
   // our Webpack Development Server config
   devServer: {
     port: metadata.port,
@@ -100,7 +100,14 @@ module.exports = {
     watchOptions: { aggregateTimeout: 300, poll: 1000 }
   },
   // we need this due to problems with es6-shim
-  node: {global: 'window', progress: false, crypto: 'empty', module: false, clearImmediate: false, setImmediate: false}
+  node: {
+    global: 'window',
+    progress: false,
+    crypto: 'empty',
+    module: false,
+    clearImmediate: false,
+    setImmediate: false
+  }
 };
 
 // Helper functions

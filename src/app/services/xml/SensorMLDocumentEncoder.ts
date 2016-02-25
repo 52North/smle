@@ -15,16 +15,7 @@ export class SensorMLDocumentEncoder {
 
     let doc = this.createDocumentForProcess(object);
     this.encoder.encodeProcess(object, doc, doc.documentElement);
-
     return doc;
-  }
-
-  getPrefix(namespace: string) {
-    return this.resolver.getPrefix(namespace);
-  }
-
-  getNamespace(prefix: string) {
-    return this.resolver.getNamespace(prefix);
   }
 
   private createDocumentForProcess(object: AbstractProcess): Document {

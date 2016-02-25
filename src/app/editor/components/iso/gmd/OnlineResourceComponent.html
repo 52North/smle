@@ -1,0 +1,47 @@
+<div class="container">
+  <h4>Online Resource</h4>
+  <form>
+    <div class="form-group row">
+      <label class="col-sm-2" for="linkage">Linkage</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="element.linkage" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="protocol">Protocol</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="element.protocol">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="applicationProfile">Application Profile</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="element.applicationProfile">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="name">name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="element.name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="description">Description</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="element.description">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2" for="function">Function</label>
+      <div class="col-sm-10">
+        <select class="form-control" [(ngModel)]="element.function">
+          <option value="download">Download</option>
+          <option value="information">Information</option>
+          <option value="offlineAccess">OfflineAccess</option>
+          <option value="order">Order</option>
+          <option value="search">Search</option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>

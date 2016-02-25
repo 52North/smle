@@ -1,5 +1,5 @@
 
-export interface XmlService<T> {
-  serialize(description: T): string;
-  deserialize(xml: string | Document): T;
+export abstract class XmlService<T> {
+  abstract serialize(description: T): string;
+  abstract deserialize(xml: string | Document): T;
 }

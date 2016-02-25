@@ -8,9 +8,9 @@ import { OnlineResource } from './OnlineResource';
  * organisation
  */
 export class Contact {
-  phone: Phone;
-  address: Address;
-  onlineResource: OnlineResource;
+  phone: Phone = new Phone();
+  address: Address = new Address();
+  onlineResource: OnlineResource = new OnlineResource();
   hoursOfService: string;
   contactInstructions: string;
 }

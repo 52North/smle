@@ -1,0 +1,15 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Descriptions</h3>
+      <ul>
+        <li *ngFor="#id of descriptions"
+          [class.selected]="isSelected(id)"
+          (click)="onSelect(id)">
+          <code>{{id}}</code>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

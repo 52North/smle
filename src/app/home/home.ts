@@ -4,16 +4,7 @@ import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
   selector: 'home',
-  template: `
-    <h2>Descriptions</h2>
-    <ul>
-      <li *ngFor="#id of descriptions"
-        [class.selected]="isSelected(id)"
-        (click)="onSelect(id)">
-        <code>{{id}}</code>
-      </li>
-    </ul>
-  `
+  template: require('./home.html')
 })
 export class Home implements OnInit {
 

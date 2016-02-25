@@ -10,9 +10,9 @@ const stylesheet: Document = new DOMParser().parseFromString(
         <xsl:apply-templates select="node()|@*"/>
       </xsl:copy>
     </xsl:template>
-  </xsl:stylesheet>`, 'application/xslt+xml');
+  </xsl:stylesheet>`, 'application/xml');
 
-export abstract class AbstractXmlService<T> implements XmlService<T> {
+export abstract class AbstractXmlService<T> extends XmlService<T> {
   serialize(description: T) {
     let serializer = new XMLSerializer();
     let document = this.encode(description);
