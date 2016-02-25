@@ -1,41 +1,58 @@
-<div class="container">
-  <h4>Address</h4>
-  <form>
-    <div class="form-group row">
-      <label class="col-sm-2" for="city">City</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.city">
+<div class="card">
+
+  <cardHeader title="Address" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></cardHeader>
+
+  <div [hidden]="collapsed">
+
+    <div class="card-block">
+
+      <div class="container" [hidden]="!editing">
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" [(ngModel)]="model.city">
+        </div>
+
+        <div class="form-group">
+          <label for="postalCode">Postal Code</label>
+          <input type="text" class="form-control" [(ngModel)]="model.postalCode">
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input type="text" class="form-control" [(ngModel)]="model.country">
+        </div>
+
+        <div class="form-group">
+          <label for="administrativeArea">Administrative Area</label>
+          <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
+        </div>
+
+        <div class="form-group">
+          <label for="deliveryPoint">Delivery Point</label>
+          <strings [list]="model.deliveryPoint"></strings>
+        </div>
+
+        <div class="form-group">
+          <label for="electronicMailAddress">Electronic Mail Address</label>
+          <strings [list]="model.electronicMailAddress"></strings>
+        </div>
       </div>
+
+      <dl class="dl-horizontal" [hidden]="editing">
+        <dt class="col-sm-3 text-truncate">City</dt>
+        <dd class="col-sm-9">{{ model.city }}</dd>
+        <dt class="col-sm-3 text-truncate">Postal Code</dt>
+        <dd class="col-sm-9">{{ model.postalCode }}</dd>
+        <dt class="col-sm-3 text-truncate">Country</dt>
+        <dd class="col-sm-9">{{ model.country }}</dd>
+        <dt class="col-sm-3 text-truncate">Administrative Area</dt>
+        <dd class="col-sm-9">{{ model.administrativeArea }}</dd>
+        <dt class="col-sm-3 text-truncate">Delivery Point</dt>
+        <dd class="col-sm-9">{{ model.deliveryPoint.join(', ') }}</dd>
+        <dt class="col-sm-3 text-truncate">Electronic Mail Address</dt>
+        <dd class="col-sm-9">{{ model.electronicMailAddress.join(', ') }}</dd>
+      </dl>
+
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="postalCode">Postal Code</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.postalCode">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="country">Country</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.country">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="administrativeArea">Administrative Area</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.administrativeArea">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="deliveryPoint">Delivery Point</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.deliveryPoint">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="electronicMailAddress">Electronic Mail Address</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.electronicMailAddress">
-      </div>
-    </div>
-  </form>
+  </div>
 </div>

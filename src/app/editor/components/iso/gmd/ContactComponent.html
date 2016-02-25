@@ -1,44 +1,43 @@
-<div class="container">
-  <h4>Contact</h4>
-  <form>
-    <div class="form-group row">
-      <label class="col-sm-2" for="element.phone">Phone</label>
-      <div class="col-sm-10">
-        <phone [(element)]="element.phone"></phone>
+<div class="card">
+  <cardHeader title="Contact" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></cardHeader>
+
+  <div [hidden]="collapsed">
+
+    <div class="card-block">
+
+      <div class="container" [hidden]="!editing">
+        <div class="form-group">
+          <isoPhone [model]="model.phone"></isoPhone>
+        </div>
+        <div class="form-group">
+          <isoAddress [model]="model.address"></isoAddress>
+        </div>
+        <div class="form-group">
+          <isoOnlineResource [model]="model.onlineResource"></isoOnlineResource>
+        </div>
+        <div class="form-group">
+          <label for="model.contactInstructions">Contact Instructions</label>
+          <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
+        </div>
+        <div class="form-group">
+          <label for="model.hoursOfService">Hours Of Service</label>
+          <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
+        </div>
       </div>
+
+      <dl class="dl-horizontal" [hidden]="editing">
+        <dt class="col-sm-3 text-truncate">Phone</dt>
+        <dd class="col-sm-9">{{ model.phone }}</dd>
+        <dt class="col-sm-3 text-truncate">Address</dt>
+        <dd class="col-sm-9">{{ model.address }}</dd>
+        <dt class="col-sm-3 text-truncate">Online Resource</dt>
+        <dd class="col-sm-9">{{ model.onlineResource }}</dd>
+        <dt class="col-sm-3 text-truncate">Contact Instructions</dt>
+        <dd class="col-sm-9">{{ model.contactInstructions }}</dd>
+        <dt class="col-sm-3 text-truncate">Hours Of Service</dt>
+        <dd class="col-sm-9">{{ model.hoursOfService }}</dd>
+      </dl>
+
     </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="element.address">Address</label>
-      <div class="col-sm-10">
-        <address element="element.address"></address>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="element.onlineResource">Online Resource</label>
-      <div class="col-sm-10">
-        <onlineResource element="element.onlineResource"></onlineResource>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="element.administrativeArea">Administrative Area</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.administrativeArea">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="element.contactInstructions">Contact Instructions</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.contactInstructions">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-2" for="element.hoursOfService">Hours Of Service</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="element.hoursOfService">
-      </div>
-    </div>
-  </form>
-  <code>
-    {{element | json}}
-  </code>
+  </div>
 </div>

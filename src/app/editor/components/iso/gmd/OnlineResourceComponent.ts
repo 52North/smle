@@ -1,13 +1,16 @@
 
-import { Component, Input } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
-import { EditorComponent }  from '../../EditorComponent';
-
+import { AbstractComponent }  from '../../AbstractEditorComponent';
+import { CardHeaderComponent } from '../../CardHeaderComponent';
 @Component({
-  selector: 'onlineResource',
-  template: require('./OnlineResourceComponent.html')
+  selector: 'isoOnlineResource',
+  template: require('./OnlineResourceComponent.html'),
+  directives: [CardHeaderComponent]
 })
-export class OnlineResourceComponent implements EditorComponent<OnlineResource> {
-  @Input()
-  public element: OnlineResource;
+export class OnlineResourceComponent extends AbstractComponent<OnlineResource> {
+
+  protected createModel(): OnlineResource {
+    return new OnlineResource();
+  }
 }

@@ -1,14 +1,19 @@
 
-import { Input, Component, Output, EventEmitter } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { Contact } from '../../../../model/iso/gmd/Contact';
-import { EditorComponent }  from '../../EditorComponent';
+import { AbstractComponent }  from '../../AbstractEditorComponent';
+import { AddressComponent } from './AddressComponent';
+import { PhoneComponent } from './PhoneComponent';
+import { OnlineResourceComponent } from './OnlineResourceComponent';
+import { CardHeaderComponent } from '../../CardHeaderComponent';
 
 @Component({
-  selector: 'contact',
-  template: require('./ContactComponent.html')
+  selector: 'isoContact',
+  template: require('./ContactComponent.html'),
+  directives: [CardHeaderComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
-export class ContactComponent implements EditorComponent<Contact> {
-  @Input()
-  public element = new Contact();
-  public elementChange: EventEmitter<Contact> = new EventEmitter();
+export class ContactComponent extends AbstractComponent<Contact> {
+  protected createModel(): Contact {
+    return new Contact();
+  }
 }

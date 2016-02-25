@@ -1,14 +1,17 @@
 
-import { Component, Input} from 'angular2/core';
-import { Control } from 'angular2/common';
+import { Component } from 'angular2/core';
 import { Phone } from '../../../../model/iso/gmd/Phone';
-import { EditorComponent }  from '../../EditorComponent';
+import { AbstractComponent }  from '../../AbstractEditorComponent';
+import { CardHeaderComponent } from '../../CardHeaderComponent';
 
 @Component({
-  selector: 'phone',
-  template: require('./PhoneComponent.html')
+  selector: 'isoPhone',
+  template: require('./PhoneComponent.html'),
+  directives: [CardHeaderComponent]
 })
-export class PhoneComponent implements EditorComponent<Phone> {
-  @Input()
-  public element: Phone;
+export class PhoneComponent extends AbstractComponent<Phone> {
+
+  protected createModel(): Phone {
+    return new Phone();
+  }
 }
