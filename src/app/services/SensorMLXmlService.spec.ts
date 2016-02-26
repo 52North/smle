@@ -16,6 +16,7 @@ describe('SensorMLXmlService', () => {
 
   let service = new SensorMLXmlService();
 
+  /*
   it('should parse the physicalComponentInstance', () => {
     expect(physicalComponentInstance).not.toBeNull();
     expect(service.deserialize(physicalComponentInstance)).not.toBeNull();
@@ -35,6 +36,7 @@ describe('SensorMLXmlService', () => {
     expect(physicalSystemType).not.toBeNull();
     expect(service.deserialize(physicalSystemType)).not.toBeNull();
   });
+  */
 
   it('should serialize the document', () => {
     let ps = new PhysicalSystem();
