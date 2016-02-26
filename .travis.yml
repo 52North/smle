@@ -1,14 +1,18 @@
+sudo: false
 language: node_js
 node_js:
   - "5.6.0"
-before_script: npm install
 script: npm run ci
-
 after_success: chmod +x ./.travis.sh && ./.travis.sh
-after_failure: true
 env:
   global:
-    secure: |-
-      q17geOV/9E+PEzKK5LtAVvuuH089zNsty83En3dI4FX+0KjGvUpHO8YB18R6
-      5kWFqHH9SVSgl5pLWpasrKDvOIOZcPaLtIcTI+GdC2UaOn5Q16+JztTQpzJm
-      s9KtEgCCpnWXujcW5oo31QDlpS53n1g/2wPCbCQon4iKFY3idgA=
+    - CXX=g++-4.8
+    - secure: q17geOV/9E+PEzKK5LtAVvuuH089zNsty83En3dI4FX+0KjGvUpHO8YB18R65kWFqHH9SVSgl5pLWpasrKDvOIOZcPaLtIcTI+GdC2UaOn5Q16+JztTQpzJms9KtEgCCpnWXujcW5oo31QDlpS53n1g/2wPCbCQon4iKFY3idgA=
+addons:
+  apt:
+      sources:
+        - ubuntu-toolchain-r-test
+      packages:
+        - g++-4.8
+        - chromium-browser
+        - chromium-chromedriver
