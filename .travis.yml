@@ -1,4 +1,6 @@
-lanugage: node_js
+language: node_js
+node_js:
+  - "5.6.0"
 before_script: npm install
 script: npm run ci
 
