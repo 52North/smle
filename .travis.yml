@@ -2,3 +2,11 @@ lanugage: node_js
 before_script: npm install
 script: npm run ci
 
+after_success: chmod +x ./.travis.sh && ./.travis.sh
+after_failure: true
+env:
+  global:
+    secure: |-
+      q17geOV/9E+PEzKK5LtAVvuuH089zNsty83En3dI4FX+0KjGvUpHO8YB18R6
+      5kWFqHH9SVSgl5pLWpasrKDvOIOZcPaLtIcTI+GdC2UaOn5Q16+JztTQpzJm
+      s9KtEgCCpnWXujcW5oo31QDlpS53n1g/2wPCbCQon4iKFY3idgA=
