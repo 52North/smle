@@ -2,7 +2,10 @@ sudo: false
 language: node_js
 node_js:
   - "5.6.0"
-script: npm run ci
+#script: npm run ci
+before_script:
+  - sed 's/static length: number = 0;//' -i node_modules/es7-reflect-metadata/src/shim/set.ts
+  - sed 's/static length: number = 0;//' -i node_modules/es7-reflect-metadata/src/shim/map.ts
 after_success: chmod +x ./.travis.sh && ./.travis.sh
 env:
   global:
@@ -14,5 +17,3 @@ addons:
         - ubuntu-toolchain-r-test
       packages:
         - g++-4.8
-        - chromium-browser
-        - chromium-chromedriver

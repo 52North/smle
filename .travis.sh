@@ -9,13 +9,9 @@ branch="gh-pages"
 deploy_dir=$(mktemp -d)
 repo_url="https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
 
-
 git config --global user.name "${github_name}"
 git config --global user.email "${github_mail}"
 git clone --depth 1 --branch "${branch}" "${repo_url}" "${deploy_dir}"
-
-
-
 
 rm -rf "${deploy_dir:?}/${TRAVIS_BRANCH}"
 cp -rv dist "${deploy_dir}/${TRAVIS_BRANCH}"
