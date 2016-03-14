@@ -1,5 +1,5 @@
 <div class="card">
-  <cardHeader title="Responsible Party" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></cardHeader>
+  <card-header title="Responsible Party" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
 
   <div [hidden]="collapsed">
 
@@ -19,7 +19,7 @@
           <input type="text" class="form-control" [(ngModel)]="model.positionName">
         </div>
         <div class="form-group">
-          <isoContact [model]="model.contact"></isoContact>
+          <iso-contact [model]="model.contact"></iso-contact>
         </div>
         <div class="form-group">
           <label for="function">Role</label>

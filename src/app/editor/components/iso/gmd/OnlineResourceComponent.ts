@@ -4,7 +4,7 @@ import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
 import { AbstractComponent }  from '../../AbstractEditorComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
 @Component({
-  selector: 'isoOnlineResource',
+  selector: 'iso-online-resource',
   template: require('./OnlineResourceComponent.html'),
   directives: [CardHeaderComponent]
 })

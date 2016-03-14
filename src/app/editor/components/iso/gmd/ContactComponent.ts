@@ -8,7 +8,7 @@ import { OnlineResourceComponent } from './OnlineResourceComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
 
 @Component({
-  selector: 'isoContact',
+  selector: 'iso-contact',
   template: require('./ContactComponent.html'),
   directives: [CardHeaderComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })

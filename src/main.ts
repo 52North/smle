@@ -1,45 +1,67 @@
-import { provide, enableProdMode } from 'angular2/core';
-import { bootstrap, ELEMENT_PROBE_PROVIDERS } from 'angular2/platform/browser';
-import { ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy } from 'angular2/router';
-import { HTTP_PROVIDERS } from 'angular2/http';
 import { Application } from './app/app';
 import { APP_PROVIDERS } from './app/providers';
+import { APP_DIRECTIVES } from './app/directives';
+import * as browser from 'angular2/platform/browser';
+import * as ngCore from 'angular2/core';
+import {
+  ROUTER_PROVIDERS,
+  ROUTER_DIRECTIVES,
+  LocationStrategy,
+  HashLocationStrategy
+} from 'angular2/router';
+import { FORM_PROVIDERS } from 'angular2/common';
+import { HTTP_PROVIDERS } from 'angular2/http';
 
-const ENV_PROVIDERS: any[] = [];
 
-if ('production' === process.env.ENV) {
-  enableProdMode();
+const APPLICATION_PROVIDERS = [
+  ...HTTP_PROVIDERS,
+  ...ROUTER_PROVIDERS,
+  ...FORM_PROVIDERS,
+  ...APP_PROVIDERS,
+  ngCore.provide(LocationStrategy, { useClass: HashLocationStrategy })
+];
+
+const APPLICATION_DIRECTIVES = [
+  ...ROUTER_DIRECTIVES,
+  ...APP_DIRECTIVES
+];
+
+const APPLICATION_PIPES = [
+
+];
+
+if ('production' === ENV) {
+  ngCore.enableProdMode();
+  APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE);
 } else {
-  ENV_PROVIDERS.push(ELEMENT_PROBE_PROVIDERS);
+  APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS);
 }
 
-import 'jquery';
-import 'bootstrap-loader';
-
-function main() {
-  bootstrap(Application, [
-    ...ENV_PROVIDERS,
-    ...HTTP_PROVIDERS,
-    ...ROUTER_PROVIDERS,
-    ...APP_PROVIDERS
+export function main() {
+  return browser.bootstrap(Application, [
+    ...APPLICATION_PROVIDERS,
+    ngCore.provide(ngCore.PLATFORM_DIRECTIVES, { useValue: APPLICATION_DIRECTIVES, multi: true }),
+    ngCore.provide(ngCore.PLATFORM_PIPES, { useValue: APPLICATION_PIPES, multi: true })
   ]).catch((err: any) => console.error(err));
 }
 
-/*
- * Bootstrap our Angular app with a top level component `App` and inject
- * our Services and Providers into Angular's dependency injection
- */
-document.addEventListener('DOMContentLoaded', main);
+function bootstrapDomReady() {
+  // bootstrap after document is ready
+  return document.addEventListener('DOMContentLoaded', main);
+}
 
-/*
- * Modified for using hot module reload
- */
-
-// typescript lint error 'Cannot find name "module"' fix
-declare let module: any;
-
-// activate hot module reload
-if (module.hot) {
-  main();
-  module.hot.accept();
+if ('development' === ENV) {
+  // activate hot module reload
+  if (HMR) {
+    if (document.readyState === 'complete') {
+      main();
+    } else {
+      bootstrapDomReady();
+    }
+    module.hot.accept();
+  } else {
+    bootstrapDomReady();
+  }
+} else {
+  bootstrapDomReady();
 }

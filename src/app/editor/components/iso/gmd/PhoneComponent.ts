@@ -5,7 +5,7 @@ import { AbstractComponent }  from '../../AbstractEditorComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
 
 @Component({
-  selector: 'isoPhone',
+  selector: 'iso-phone',
   template: require('./PhoneComponent.html'),
   directives: [CardHeaderComponent]
 })

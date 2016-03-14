@@ -12,7 +12,7 @@ class AddressList {
 }
 
 @Component({
-  selector: 'isoAddressList',
+  selector: 'iso-address-list',
   template: require('./AddressListComponent.html'),
   directives: [AddressComponent]
 })

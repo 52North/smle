@@ -1,7 +1,7 @@
 import { Input, OnInit } from 'angular2/core';
 
 export abstract class AbstractComponent<T> implements OnInit {
-  @Input('model')
+  @Input()
   public model: T;
   public editing: boolean = true;
   public collapsed: boolean = false;
