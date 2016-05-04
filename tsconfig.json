@@ -38,23 +38,25 @@
     "placeOpenBraceOnNewLineForFunctions": false,
     "placeOpenBraceOnNewLineForControlBlocks": false
   },
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "resolveGlobs": true,
+    "forkChecker": true,
+    "cacheDirectory": "node_modules/.awesome-typescript-loader-cache"
+  },
   "files": [
     "src/app/app.e2e.ts",
     "src/app/app.spec.ts",
     "src/app/app.ts",
     "src/app/directives.ts",
-    "src/app/directives/router-active.ts",
-    "src/app/editor/components.ts",
     "src/app/editor/components/AbstractEditorComponent.ts",
     "src/app/editor/components/CardHeaderComponent.ts",
-    "src/app/editor/components/iso.ts",
-    "src/app/editor/components/iso/gmd.ts",
     "src/app/editor/components/iso/gmd/AddressComponent.ts",
     "src/app/editor/components/iso/gmd/AddressListComponent.ts",
     "src/app/editor/components/iso/gmd/ContactComponent.ts",
     "src/app/editor/components/iso/gmd/OnlineResourceComponent.ts",
     "src/app/editor/components/iso/gmd/PhoneComponent.ts",
-    "src/app/editor/components/iso/gmd/ResponsibleParty.ts",
+    "src/app/editor/components/iso/gmd/ResponsiblePartyComponent.ts",
     "src/app/editor/components/StringsComponent.ts",
     "src/app/editor/editor.ts",
     "src/app/home/home.ts",
@@ -218,9 +220,10 @@
     "src/app/services/xml/SweEncoder.ts",
     "src/app/services/xml/XPathDocument.ts",
     "src/app/services/XmlService.ts",
-    "src/custom_typings.d.ts",
+    "src/custom-typings.d.ts",
     "src/main.ts",
     "src/polyfills.ts",
+    "src/vendor.ts",
     "typings/browser.d.ts"
   ]
 }

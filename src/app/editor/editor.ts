@@ -2,24 +2,17 @@ import { Component, Injectable, OnInit, Input } from 'angular2/core';
 import { Router, RouteParams } from 'angular2/router';
 import { AbstractProcess, SimpleProcess } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
-import { Contact } from '../model/iso';
-import * as editorComponents from './components';
-
-
-const EDITOR_DIRECTIVES = Object.keys(editorComponents)
-  .map((key) => editorComponents[key]);
+import { ResponsiblePartyComponent } from './components/iso/gmd/ResponsiblePartyComponent';
 
 @Component({
   selector: 'editor',
   template: require('./editor.html'),
-  directives: [...EDITOR_DIRECTIVES],
-  providers: [...EDITOR_DIRECTIVES]
+  directives: [ResponsiblePartyComponent],
 })
 export class Editor implements OnInit {
   @Input()
   public description: AbstractProcess;
   private id: string;
-  private contact = new Contact();
 
   constructor(
     private service: DescriptionRepository,

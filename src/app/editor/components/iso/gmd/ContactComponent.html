@@ -1,5 +1,5 @@
 <div class="card">
-  <cardHeader title="Contact" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></cardHeader>
+  <card-header title="Contact" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
 
   <div [hidden]="collapsed">
 
@@ -7,13 +7,13 @@
 
       <div class="container" [hidden]="!editing">
         <div class="form-group">
-          <isoPhone [model]="model.phone"></isoPhone>
+          <iso-phone [model]="model.phone"></iso-phone>
         </div>
         <div class="form-group">
-          <isoAddress [model]="model.address"></isoAddress>
+          <iso-address [model]="model.address"></iso-address>
         </div>
         <div class="form-group">
-          <isoOnlineResource [model]="model.onlineResource"></isoOnlineResource>
+          <iso-online-resource [model]="model.onlineResource"></iso-online-resource>
         </div>
         <div class="form-group">
           <label for="model.contactInstructions">Contact Instructions</label>

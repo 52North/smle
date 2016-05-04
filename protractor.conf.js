@@ -1,5 +1,8 @@
 // @AngularClass
 'use strict';
+
+require('ts-node/register');
+
 exports.config = {
   baseUrl: 'http://localhost:3000/',
 
@@ -7,7 +10,7 @@ exports.config = {
   specs: [],
   exclude: [],
 
-  framework: 'jasmine',
+  framework: 'jasmine2',
 
   allScriptsTimeout: 110000,
 

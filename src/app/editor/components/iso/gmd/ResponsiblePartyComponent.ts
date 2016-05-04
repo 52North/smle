@@ -5,8 +5,8 @@ import { CardHeaderComponent } from '../../CardHeaderComponent';
 import { ContactComponent } from './ContactComponent';
 
 @Component({
-  selector: 'isoResponsibleParty',
-  template: require('./ResponsibleParty.html'),
+  selector: 'iso-responsible-party',
+  template: require('./ResponsiblePartyComponent.html'),
   directives: [CardHeaderComponent, ContactComponent]
 })
 export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty> {

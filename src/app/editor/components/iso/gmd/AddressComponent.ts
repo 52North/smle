@@ -5,7 +5,7 @@ import { CardHeaderComponent } from '../../CardHeaderComponent';
 import { StringsComponent } from '../../StringsComponent';
 
 @Component({
-  selector: 'isoAddress',
+  selector: 'iso-address',
   template: require('./AddressComponent.html'),
   directives: [CardHeaderComponent, StringsComponent]
 })

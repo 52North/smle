@@ -1,18 +1,22 @@
 
 'use strict';
-var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var helpers = require('./webpack.helpers');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var HtmlWebpackPlugin  = require('html-webpack-plugin');
+var ForkCheckerPlugin  = require('awesome-typescript-loader').ForkCheckerPlugin;
+
 var ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+var HMR = helpers.hasProcessFlag('hot');
 
 var metadata = {
   title: 'smle',
   baseUrl: '/',
   host: 'localhost',
   port: 3000,
-  ENV: ENV
+  ENV: ENV,
+  HMR: HMR
 };
 /*
  * Config
@@ -20,28 +24,27 @@ var metadata = {
 module.exports = {
   // static data for index.html
   metadata: metadata,
-  // for faster builds use 'eval'
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
+  // cache: true,
   debug: true,
-  // cache: false,
 
   // our angular app
   entry: {
     'polyfills': './src/polyfills.ts',
+    'vendor': './src/vendor.ts',
     'main': './src/main.ts'
   },
 
   // Config for our build files
   output: {
-    path: root('dist'),
+    path: helpers.root('dist'),
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
     chunkFilename: '[id].chunk.js'
   },
 
   resolve: {
-    // ensure loader extensions match
-    extensions: prepend(['.ts','.js','.json','.css','.html'], '.async') // ensure .async.ts etc also works
+    extensions: ['', '.ts', '.js']
   },
 
   postcss: function() {
@@ -52,14 +55,13 @@ module.exports = {
     preLoaders: [
       // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ root('node_modules') ] },
       // TODO(gdi2290): `exclude: [ root('node_modules/rxjs') ]` fixed with rxjs 5 beta.2 release
-      { test: /\.js$/, loader: "source-map-loader", exclude: [ root('node_modules/rxjs') ] }
+      { test: /\.js$/, loader: "source-map-loader", exclude: [ helpers.root('node_modules/rxjs') ] }
     ],
     loaders: [
-      { test: /\.async\.ts$/, loaders: ['es6-promise-loader', 'ts-loader'], exclude: [ /\.(spec|e2e)\.ts$/ ] },
-      { test: /\.ts$/, loader: 'ts-loader', exclude: [ /\.(spec|e2e|async)\.ts$/ ] },
+      { test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [ /\.(spec|e2e|async)\.ts$/ ] },
       { test: /\.json$/,  loader: 'json-loader' },
       { test: /\.css$/,   loader: 'raw-loader' },
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ root('src/index.html') ] },
+      { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
       { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
       { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
       { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
@@ -67,18 +69,17 @@ module.exports = {
   },
 
   plugins: [
+    new ForkCheckerPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'polyfills', filename: 'polyfills.bundle.js', minChunks: Infinity }),
+    new webpack.optimize.CommonsChunkPlugin({ name: [ 'app', 'vendor', 'polyfills' ], minChunks: Infinity }),
     // static assets
     new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html' }),
+    new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'none' }),
     // replace
     new webpack.DefinePlugin({
-      'process.env': {
-        'ENV': JSON.stringify(metadata.ENV),
-        'NODE_ENV': JSON.stringify(metadata.ENV)
-      }
+      'ENV': JSON.stringify(metadata.ENV),
+      'HMR': HMR
     }),
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
@@ -90,14 +91,20 @@ module.exports = {
   ],
 
   // Other module loader config
-  tslint: { emitErrors: false, failOnHint: false, resourcePath: 'src' },
+  tslint: {
+    emitErrors: false,
+    failOnHint: false,
+    resourcePath: 'src'
+  },
   // our Webpack Development Server config
   devServer: {
     port: metadata.port,
     host: metadata.host,
-    // contentBase: 'src/',
     historyApiFallback: true,
-    watchOptions: { aggregateTimeout: 300, poll: 1000 }
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    }
   },
   // we need this due to problems with es6-shim
   node: {
@@ -109,24 +116,3 @@ module.exports = {
     setImmediate: false
   }
 };
-
-// Helper functions
-
-function root(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return path.join.apply(path, [__dirname].concat(args));
-}
-
-function prepend(extensions, args) {
-  args = args || [];
-  if (!Array.isArray(args)) { args = [args]; }
-  return extensions.reduce(function(memo, val) {
-    return memo.concat(val, args.map(function(prefix) {
-      return prefix + val;
-    }));
-  }, ['']);
-}
-function rootNode(args) {
-  args = Array.prototype.slice.call(arguments, 0);
-  return root.apply(path, ['node_modules'].concat(args));
-}

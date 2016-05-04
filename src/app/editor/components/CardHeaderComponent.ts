@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from 'angular2/core';
 
 @Component({
-  selector: 'cardHeader',
+  selector: 'card-header',
   template: `
   <div class="card-header">
     <button type="button" class="btn btn-link" (click)="toggleCollapsed()">
