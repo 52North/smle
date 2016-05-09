@@ -3,8 +3,7 @@ import {
   inject,
   injectAsync,
   beforeEachProviders,
-  TestComponentBuilder
-} from 'angular2/testing';
+} from '@angular/core/testing';
 
 // Load the implementations that should be tested
 import {Application} from './app';

@@ -1,4 +1,5 @@
-import { Component } from 'angular2/core';
+
+import { Component } from '@angular/core';
 import { Address } from '../../../../model/iso/gmd/Address';
 import { AbstractComponent } from '../../AbstractEditorComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';

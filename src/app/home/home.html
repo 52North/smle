@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <h3>Descriptions</h3>
       <ul>
-        <li *ngFor="#id of descriptions"
+        <li *ngFor="let id of descriptions"
           [class.selected]="isSelected(id)"
           (click)="onSelect(id)">
           <code>{{id}}</code>

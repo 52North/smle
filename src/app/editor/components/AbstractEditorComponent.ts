@@ -1,4 +1,5 @@
-import { Input, OnInit } from 'angular2/core';
+
+import { Input, OnInit } from '@angular/core';
 
 export abstract class AbstractComponent<T> implements OnInit {
   @Input()

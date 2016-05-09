@@ -1,5 +1,5 @@
 import { AbstractProcess } from '../model/sml';
-import { Injectable } from 'angular2/core';
+import { Injectable } from '@angular/core';
 import { DescriptionRepository } from './DescriptionRepository';
 
 @Injectable()

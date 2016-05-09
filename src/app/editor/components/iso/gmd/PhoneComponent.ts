@@ -1,5 +1,4 @@
-
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 import { Phone } from '../../../../model/iso/gmd/Phone';
 import { AbstractComponent }  from '../../AbstractEditorComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';

@@ -1,6 +1,6 @@
 
-import { Component, Input } from 'angular2/core';
-import { Control, ControlArray, FormBuilder } from 'angular2/common';
+import { Component, Input } from '@angular/core';
+import { Control, ControlArray, FormBuilder } from '@angular/common';
 
 @Component({
   selector: 'strings',
