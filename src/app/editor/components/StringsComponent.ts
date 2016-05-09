@@ -6,7 +6,7 @@ import { Control, ControlArray, FormBuilder } from '@angular/common';
   selector: 'strings',
   template: `
     <ul class="list-group">
-      <li *ngFor="#item of list; #i = index" class="list-group-item">
+      <li *ngFor="let item of list; let i = index" class="list-group-item">
         {{item}}
         <button type="button" class="btn btn-link" (click)="remove(i)">
           <i class="fa fa-minus-circle"></i>
