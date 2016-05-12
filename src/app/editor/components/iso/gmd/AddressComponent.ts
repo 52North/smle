@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import { Address } from '../../../../model/iso/gmd/Address';
-import { AbstractComponent } from '../../AbstractEditorComponent';
+import { AbstractComponent } from '../../AbstractComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
 import { StringsComponent } from '../../StringsComponent';
 

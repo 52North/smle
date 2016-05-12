@@ -1,7 +1,8 @@
 
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
-import { AbstractComponent } from '../../AbstractEditorComponent';
+import { Contact } from '../../../../model/iso/gmd/Contact';
+import { AbstractComponent } from '../../AbstractComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
 import { ContactComponent } from './ContactComponent';
 
@@ -10,8 +11,19 @@ import { ContactComponent } from './ContactComponent';
   template: require('./ResponsiblePartyComponent.html'),
   directives: [CardHeaderComponent, ContactComponent]
 })
-export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty> {
+export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty>{
+
   protected createModel(): ResponsibleParty {
     return new ResponsibleParty();
   }
+
+
+  onAddContact() {
+    this.model.contactInfo = new Contact();
+  }
+
+  onRemoveContact() {
+    this.model.contactInfo = null;
+  }
+
 }

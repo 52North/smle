@@ -14,12 +14,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       <button type="button" class="btn btn-link" (click)="onReset()" [hidden]="!editing">
         <i class="fa fa-fw fa-undo"></i> Reset
       </button>
-      <button type="button" class="btn btn-link" (click)="toggleEditing()" [hidden]="!editing">
+      <!--<button type="button" class="btn btn-link" (click)="toggleEditing()" [hidden]="!editing">
         <i class="fa fa-fw fa-save"></i> Save
       </button>
       <button type="button" class="btn btn-link" (click)="toggleEditing()" [hidden]="editing">
         <i class="fa fa-fw fa-edit"></i> Edit
-      </button>
+      </button>-->
     </div>
   </div>`
 })
@@ -39,7 +39,7 @@ export class CardHeaderComponent {
 
   public toggleCollapsed(): void {
     this.collapsed = !this.collapsed;
-    this.collapsedChange.next(this.collapsed);
+    this.collapsedChange.emit(this.collapsed);
   }
 
   public toggleEditing(): void {

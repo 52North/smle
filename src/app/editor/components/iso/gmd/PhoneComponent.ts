@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Phone } from '../../../../model/iso/gmd/Phone';
-import { AbstractComponent }  from '../../AbstractEditorComponent';
+import { AbstractComponent }  from '../../AbstractComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
 
 @Component({
