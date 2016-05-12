@@ -36,9 +36,13 @@ export class SensorMLDocumentEncoder {
     let namespaces = this.resolver.getPrefixes()
       .map(prefix => `xmlns:${prefix}="${this.resolver.getNamespace(prefix)}"`)
       .join(' ');
+//    console.log("NAMESPACES: "+ namespaces);
     let namespace = this.resolver.getNamespace(prefix);
+//    console.log("NAMESPACE: " + namespace);
     let sl = `xsi:schemaLocation="${namespace} ${schemaURL}"`;
+//    console.log("SCHEMALOCATION: " + sl);
     let s = `<${prefix}:${name} ${namespaces} ${sl}></${prefix}:${name}>`;
+//    console.log("SCHEMA: " + s);
     return new DOMParser().parseFromString(s, 'application/xml');
   }
 }

@@ -1,15 +1,12 @@
-import { Component, Injectable, OnInit, Input, Injector, DynamicComponentLoader, ViewContainerRef, ComponentRef } from '@angular/core';
-import { Router, RouteParams } from '@angular/router-deprecated';
-import { AbstractProcess, SimpleProcess, AggregateProcess, PhysicalComponent, PhysicalSystem, ContactList } from '../model/sml';
+import { Component, OnInit, Input, DynamicComponentLoader, ViewContainerRef } from '@angular/core';
+import { RouteParams } from '@angular/router-deprecated';
+import { AbstractProcess, SimpleProcess, ContactList } from '../model/sml';
 import { ResponsibleParty, Contact } from '../model/iso/gmd';
 import { DescriptionRepository } from '../services/DescriptionRepository';
-import { SensorMLDocumentEncoder } from '../services/xml/SensorMLDocumentEncoder';
 import { ResponsiblePartyComponent } from './components/iso/gmd/ResponsiblePartyComponent';
-import { ContactComponent } from './components/iso/gmd/ContactComponent';
 import { AddressListComponent } from './components/iso/gmd/AddressListComponent';
 import { ContactsComponent } from './components/sml/ContactsComponent';
 import { SensorMLPipe } from './pipes/SensorMLPipe';
-//import { AbstractComponent } from './components/AbstractEditorComponent';
 
 @Component({
   selector: 'editor',
@@ -26,9 +23,7 @@ export class Editor implements OnInit {
 
   constructor(
     private service: DescriptionRepository,
-    routeParams: RouteParams,
-    private dcl: DynamicComponentLoader,
-    private vcr: ViewContainerRef
+    routeParams: RouteParams
   ) {
     this.id = routeParams.get('id');
   }

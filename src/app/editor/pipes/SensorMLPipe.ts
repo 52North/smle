@@ -1,7 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
-import { XPathDocument } from '../../services/xml/XPathDocument';
 
 @Pipe({
   name: 'toSensorml',

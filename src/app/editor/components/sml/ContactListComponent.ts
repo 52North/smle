@@ -1,4 +1,4 @@
-import { Component, Input, DynamicComponentLoader, ViewContainerRef, ComponentRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { AbstractComponent } from '../AbstractComponent';
 import { CardHeaderComponent } from '../CardHeaderComponent';
 import { ContactList } from '../../../model/sml';
@@ -12,13 +12,6 @@ import { ResponsiblePartyComponent } from '../iso/gmd/ResponsiblePartyComponent'
 })
 export class ContactListComponent extends AbstractComponent<ContactList> {
 
-  constructor(
-    private dcl: DynamicComponentLoader,
-    private viewContainerRef: ViewContainerRef
-  ) {
-    super();
-  }
-
   protected createModel() {
     return new ContactList();
   }
@@ -31,12 +24,4 @@ export class ContactListComponent extends AbstractComponent<ContactList> {
     this.model.contacts.push(new ResponsibleParty());
   }
   
-//    public onAdd() {
-//      let that = this;
-//      this.dcl.loadNextToLocation(ResponsiblePartyComponent, this.viewContainerRef)
-//        .then((comRef: ComponentRef<AbstractComponent<ResponsiblePartyComponent>>) => {
-//          debugger;
-//          that.model.contacts.push(comRef.instance.model.model);
-//        });
-//    }
 }

@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Address } from '../../../../model/iso/gmd/Address';
 import { AbstractComponent } from '../../AbstractComponent';

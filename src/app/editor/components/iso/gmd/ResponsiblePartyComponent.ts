@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
 import { Contact } from '../../../../model/iso/gmd/Contact';
 import { AbstractComponent } from '../../AbstractComponent';
@@ -16,7 +16,6 @@ export class ResponsiblePartyComponent extends AbstractComponent<ResponsiblePart
   protected createModel(): ResponsibleParty {
     return new ResponsibleParty();
   }
-
 
   onAddContact() {
     this.model.contactInfo = new Contact();

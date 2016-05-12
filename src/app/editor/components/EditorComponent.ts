@@ -1,20 +1,12 @@
-
-import { Input, OnInit, Output, EventEmitter } from '@angular/core';
-
 export abstract class EditorComponent {
-  @Input()
+  
   public model;
-  
-  editing: boolean;
 
-  public abstract onReset(): void;
-  
-//  public onReset(): void {
-//    debugger;
-//    for (let prop in this.model) { delete this.model[prop] }
-//    $.extend(this.model, this.createModel());
-//  }
+  public editing: boolean = true;
 
-  protected abstract createModel();
-//  protected abstract createModel(): T;
+  protected extendModel(): void {
+    jQuery.extend(this.model, this.createModel());
+  }
+  
+  protected abstract createModel(): any;
 }
