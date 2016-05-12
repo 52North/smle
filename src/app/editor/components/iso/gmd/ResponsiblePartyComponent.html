@@ -2,9 +2,8 @@
   <card-header title="Responsible Party" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
 
   <div [hidden]="collapsed">
-    <pre>{{ model | json }}</pre>
     <div class="card-block">
-      <div class="container" [hidden]="!editing">
+      <div [hidden]="!editing">
         <div class="form-group">
           <label for="model.individualName">Individual Name</label>
           <input type="text" class="form-control" [(ngModel)]="model.individualName">

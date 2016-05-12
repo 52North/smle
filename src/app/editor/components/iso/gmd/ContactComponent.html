@@ -2,10 +2,9 @@
   <card-header title="Contact" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
 
   <div [hidden]="collapsed">
-    <pre>{{model | json}}</pre>
     <div class="card-block">
 
-      <div class="container" [hidden]="!editing">
+      <div [hidden]="!editing">
         <div class="form-group">
           <iso-phone [model]="model.phone"></iso-phone>
         </div>
