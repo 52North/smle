@@ -41,8 +41,7 @@ describe('SensorMLXmlService', () => {
   it('should serialize the document', () => {
     let ps = new PhysicalSystem();
     let doc = XPathDocument.parse(service.serialize(ps));
-
-    expect(doc.eval('/sml:PhysicalSystem')).toBeNull();
+    expect(doc.eval('/sml:PhysicalSystem')).not.toBeNull();
   });
 
 });
