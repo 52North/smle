@@ -35,18 +35,23 @@ export class Editor implements OnInit {
       this.service.getDescription(this.id)
         .then(description => this.description = description);
     }
-//    let contactList = new ContactList();
-//    let respParty = new ResponsibleParty();
-//    let contact = new Contact();
-//
-//    contact.hoursOfService = "test";
-//
-//    respParty.individualName = "individualName_test";
-//    respParty.organisationName = "organisationName_test";
-//    respParty.role= "originator";
-//    respParty.contactInfo = contact;
-//
-//    contactList.contacts.push(respParty);
-//    this.description.contacts.push(contactList);
+    //    let contactList = new ContactList();
+    //    let respParty = new ResponsibleParty();
+    //    let contact = new Contact();
+    //
+    //    contact.hoursOfService = "test";
+    //
+    //    respParty.individualName = "individualName_test";
+    //    respParty.organisationName = "organisationName_test";
+    //    respParty.role= "originator";
+    //    respParty.contactInfo = contact;
+    //
+    //    contactList.contacts.push(respParty);
+    //    this.description.contacts.push(contactList);
   }
+
+  saveDescription(): void {
+    this.service.saveDescription(this.description);
+  }
+
 }

@@ -1,4 +1,5 @@
 import { AbstractProcess } from '../model/sml';
+import { CodeType } from '../model/gml';
 import { Injectable } from '@angular/core';
 import { DescriptionRepository } from './DescriptionRepository';
 
@@ -21,6 +22,9 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
   }
 
   getDescription(id: string): Promise<AbstractProcess> {
+    if (!this._descriptions[id]) {
+      return Promise.reject<AbstractProcess>(new Error('does not exist'));
+    };
     return Promise.resolve(this._descriptions[id]);
   }
 
@@ -43,6 +47,9 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
   }
 
   private _getId(description: AbstractProcess): string {
-    return description.identifier[0].value;
+    if (description.identifier == null || description.identifier.value == null) {
+      description.identifier = new CodeType(Date.now().toString());
+    }
+    return description.identifier.value;
   }
 }
