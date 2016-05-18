@@ -5,3 +5,4 @@ dist/
 coverage/
 doc/
 npm-debug.log
+nbproject/

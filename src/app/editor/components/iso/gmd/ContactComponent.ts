@@ -1,5 +1,4 @@
-
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 import { Contact } from '../../../../model/iso/gmd/Contact';
 import { AbstractComponent }  from '../../AbstractEditorComponent';
 import { AddressComponent } from './AddressComponent';

@@ -1,5 +1,5 @@
-import { Component, Injectable, OnInit, Input } from 'angular2/core';
-import { Router, RouteParams } from 'angular2/router';
+import { Component, Injectable, OnInit, Input } from '@angular/core';
+import { Router, RouteParams } from '@angular/router-deprecated';
 import { AbstractProcess, SimpleProcess } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 import { ResponsiblePartyComponent } from './components/iso/gmd/ResponsiblePartyComponent';

@@ -104,7 +104,8 @@ module.exports = {
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
-    }
+    },
+    outputPath: helpers.root('dist')
   },
   // we need this due to problems with es6-shim
   node: {

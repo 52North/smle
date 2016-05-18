@@ -1,7 +1,7 @@
 
 
-import { Component } from 'angular2/core';
-import { FormBuilder, AbstractControl, ControlArray, ControlGroup } from 'angular2/common';
+import { Component } from '@angular/core';
+import { FormBuilder, AbstractControl, ControlArray, ControlGroup } from '@angular/common';
 import { Address } from '../../../../model/iso/gmd/Address';
 import { AbstractComponent } from '../../AbstractEditorComponent';
 import { AddressComponent } from './AddressComponent';

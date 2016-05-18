@@ -1,5 +1,4 @@
-
-import { Component } from 'angular2/core';
+import { Component } from '@angular/core';
 import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
 import { AbstractComponent }  from '../../AbstractEditorComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';

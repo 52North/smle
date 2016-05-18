@@ -1,16 +1,15 @@
 import { Application } from './app/app';
 import { APP_PROVIDERS } from './app/providers';
 import { APP_DIRECTIVES } from './app/directives';
-import * as browser from 'angular2/platform/browser';
-import * as ngCore from 'angular2/core';
+import * as browser from '@angular/platform-browser';
+import * as browserDynamic from '@angular/platform-browser-dynamic';
+import * as ngCore from '@angular/core';
 import {
   ROUTER_PROVIDERS,
-  ROUTER_DIRECTIVES,
-  LocationStrategy,
-  HashLocationStrategy
-} from 'angular2/router';
-import { FORM_PROVIDERS } from 'angular2/common';
-import { HTTP_PROVIDERS } from 'angular2/http';
+  ROUTER_DIRECTIVES
+} from '@angular/router-deprecated';
+import { FORM_PROVIDERS, LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HTTP_PROVIDERS } from '@angular/http';
 
 
 const APPLICATION_PROVIDERS = [
@@ -32,13 +31,13 @@ const APPLICATION_PIPES = [
 
 if ('production' === ENV) {
   ngCore.enableProdMode();
-  APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE);
+//  APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE); // TODO check how to fix
 } else {
   APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS);
 }
 
 export function main() {
-  return browser.bootstrap(Application, [
+  return browserDynamic.bootstrap(Application, [
     ...APPLICATION_PROVIDERS,
     ngCore.provide(ngCore.PLATFORM_DIRECTIVES, { useValue: APPLICATION_DIRECTIVES, multi: true }),
     ngCore.provide(ngCore.PLATFORM_PIPES, { useValue: APPLICATION_PIPES, multi: true })

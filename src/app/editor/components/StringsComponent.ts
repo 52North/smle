@@ -1,12 +1,12 @@
 
-import { Component, Input } from 'angular2/core';
-import { Control, ControlArray, FormBuilder } from 'angular2/common';
+import { Component, Input } from '@angular/core';
+import { Control, ControlArray, FormBuilder } from '@angular/common';
 
 @Component({
   selector: 'strings',
   template: `
     <ul class="list-group">
-      <li *ngFor="#item of list; #i = index" class="list-group-item">
+      <li *ngFor="let item of list; let i = index" class="list-group-item">
         {{item}}
         <button type="button" class="btn btn-link" (click)="remove(i)">
           <i class="fa fa-minus-circle"></i>
