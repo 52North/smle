@@ -6,7 +6,7 @@
 
     <div class="card-block">
 
-      <div class="container" [hidden]="!editing">
+      <div [hidden]="!editing">
         <div class="form-group">
           <label for="city">City</label>
           <input type="text" class="form-control" [(ngModel)]="model.city">

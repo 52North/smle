@@ -2,10 +2,8 @@
   <card-header title="Responsible Party" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
 
   <div [hidden]="collapsed">
-
     <div class="card-block">
-
-      <div class="container" [hidden]="!editing">
+      <div [hidden]="!editing">
         <div class="form-group">
           <label for="model.individualName">Individual Name</label>
           <input type="text" class="form-control" [(ngModel)]="model.individualName">
@@ -19,7 +17,13 @@
           <input type="text" class="form-control" [(ngModel)]="model.positionName">
         </div>
         <div class="form-group">
-          <iso-contact [model]="model.contact"></iso-contact>
+          <button *ngIf="!model.contactInfo" type="button" class="btn btn-link" (click)="onAddContact()">
+            <i class="fa fa-fw fa-plus"></i>Add Contact
+          </button>
+          <button *ngIf="model.contactInfo"type="button" class="btn btn-link" (click)="onRemoveContact()">
+            <i class="fa fa-fw fa-minus"></i>Add Contact
+          </button>
+          <iso-contact *ngIf="model.contactInfo" [model]="model.contactInfo"></iso-contact>
         </div>
         <div class="form-group">
           <label for="function">Role</label>

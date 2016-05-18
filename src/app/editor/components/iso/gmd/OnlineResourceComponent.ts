@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
-import { AbstractComponent }  from '../../AbstractEditorComponent';
+import { AbstractComponent }  from '../../AbstractComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
 @Component({
   selector: 'iso-online-resource',
