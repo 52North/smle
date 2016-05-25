@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, DynamicComponentLoader, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
-import { AbstractProcess, SimpleProcess, ContactList } from '../model/sml';
-import { ResponsibleParty, Contact, Role } from '../model/iso/gmd';
+import { AbstractProcess, SimpleProcess } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 import { ResponsiblePartyComponent } from './components/iso/gmd/ResponsiblePartyComponent';
 import { AddressListComponent } from './components/iso/gmd/AddressListComponent';
@@ -35,19 +34,6 @@ export class Editor implements OnInit {
       this.service.getDescription(this.id)
         .then(description => this.description = description);
     }
-    //    let contactList = new ContactList();
-    //    let respParty = new ResponsibleParty();
-    //    let contact = new Contact();
-    //
-    //    contact.hoursOfService = "test";
-    //
-    //    respParty.individualName = "individualName_test";
-    //    respParty.organisationName = "organisationName_test";
-    //    respParty.role= "originator";
-    //    respParty.contactInfo = contact;
-    //
-    //    contactList.contacts.push(respParty);
-    //    this.description.contacts.push(contactList);
   }
 
   saveDescription(): void {
