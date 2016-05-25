@@ -106,7 +106,7 @@ export class SweEncoder {
 
   public encodeVector(component: SweVector, document: Document): Node {
 
-    let node = document.createElementNS(Namespaces.SWE, 'swe:DataRecord');
+    let node = document.createElementNS(Namespaces.SWE, 'swe:Vector');
 
     this.encodeAbstractDataComponent(node, component, document);
 
@@ -372,7 +372,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -403,7 +403,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTimes(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -441,7 +441,7 @@ export class SweEncoder {
     this.encodeAbstractSimpleComponent(node, component, document);
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -478,7 +478,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -513,7 +513,7 @@ export class SweEncoder {
     this.encodeAbstractSimpleComponent(node, component, document);
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -544,7 +544,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -575,7 +575,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTimes(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -616,7 +616,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -637,7 +637,7 @@ export class SweEncoder {
     this.encodeAbstractSimpleComponent(node, component, document);
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
       node.appendChild(constraintNode);
     }
