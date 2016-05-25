@@ -1,5 +1,5 @@
 export abstract class EditorComponent {
-  
+
   public model;
 
   public editing: boolean = true;
@@ -7,6 +7,6 @@ export abstract class EditorComponent {
   protected extendModel(): void {
     jQuery.extend(this.model, this.createModel());
   }
-  
+
   protected abstract createModel(): any;
 }

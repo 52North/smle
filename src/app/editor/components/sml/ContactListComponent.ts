@@ -23,5 +23,5 @@ export class ContactListComponent extends AbstractComponent<ContactList> {
   public onAdd() {
     this.model.contacts.push(new ResponsibleParty());
   }
-  
+
 }
