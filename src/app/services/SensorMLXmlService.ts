@@ -11,12 +11,14 @@ import { Namespaces } from './xml/Namespaces';
 import { Prefixes } from './xml/Prefixes';
 import { SensorMLNamespaceResolver } from './xml/SensorMLNamespaceResolver';
 import { SensorMLDocumentEncoder } from './xml/SensorMLDocumentEncoder';
+import { SensorMLDocumentDecoder } from './xml/SensorMLDocumentDecoder';
 
 export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {
   private encoder = new SensorMLDocumentEncoder();
+  private decoder = new SensorMLDocumentDecoder();
 
   decode(document: Document): AbstractProcess {
-    throw new Error('unsupported');
+    return this.decoder.decode(document);
   }
 
   encode(description: AbstractProcess): Document {
