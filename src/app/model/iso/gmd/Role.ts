@@ -41,4 +41,8 @@ export type Role =
   /**
    * party who authored the resource
    */
-  'author';
+  'author' |
+  /**
+   * party who owned the resource
+   */
+  'owner'
