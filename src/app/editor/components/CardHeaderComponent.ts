@@ -28,7 +28,7 @@ export class CardHeaderComponent {
   @Output()
   public reset: EventEmitter<any> = new EventEmitter();
   @Input()
-  public collapsed: boolean;
+  public collapsed: boolean = false;
   @Output()
   public collapsedChange: EventEmitter<any> = new EventEmitter();
   @Input()
@@ -37,7 +37,8 @@ export class CardHeaderComponent {
   public editingChange: EventEmitter<any> = new EventEmitter();
 
   public toggleCollapsed(): void {
-    this.collapsed = !this.collapsed;
+    //this.collapsed = !this.collapsed;
+    this.collapsed = false;
     this.collapsedChange.emit(this.collapsed);
   }
 
