@@ -1,6 +1,5 @@
 <div class="card">
     <card-header title="Responsible Party" (reset)="onReset()" (close)="close()"></card-header>
-
     <div class="card-block">
         <div class="form-group">
             <label for="model.individualName">Individual Name</label>
@@ -15,13 +14,13 @@
             <input type="text" class="form-control" [(ngModel)]="model.positionName">
         </div>
         <div class="form-group">
-            <button *ngIf="!model.contactInfo" type="button" class="btn btn-link" (click)="onAddContact()">
-                <i class="fa fa-fw fa-plus"></i>Add Contact
-            </button>
-            <button *ngIf="model.contactInfo" type="button" class="btn btn-link" (click)="onRemoveContact()">
-                <i class="fa fa-fw fa-minus"></i>Add Contact
-            </button>
-            <iso-contact *ngIf="model.contactInfo" [model]="model.contactInfo"></iso-contact>
+            <a *ngIf="model.contactInfo" (click)="openNewContactInfoItem(model.contactInfo)">Contact Info</a>
+            <a *ngIf="model.contactInfo" class="btn btn-link" (click)="onRemoveContact()">
+                <i class="fa fa-fw fa-minus"></i> Remove
+            </a>
+            <a *ngIf="!model.contactInfo" class="btn btn-link" (click)="onAddContact()">
+                <i class="fa fa-fw fa-plus"></i> Add Contact Info
+            </a>
         </div>
         <div class="form-group">
             <label for="function">Role</label>

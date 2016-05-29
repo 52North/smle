@@ -1,4 +1,4 @@
-import {Component, Input,ComponentResolver,ViewContainerRef} from '@angular/core';
+import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {AbstractArrayComponent} from '../AbstractArrayComponent';
 import {CardHeaderComponent} from '../CardHeaderComponent';
 import {ContactList} from '../../../model/sml';
@@ -10,8 +10,7 @@ import {ContactListComponent} from './ContactListComponent';
     directives: [CardHeaderComponent, ContactListComponent]
 })
 export class ContactsComponent extends AbstractArrayComponent<ContactList> {
-    constructor(componentResolver:ComponentResolver,
-                viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 

@@ -1,22 +1,16 @@
 <div class="card">
     <card-header title="Contacts" (reset)="onReset()" (close)="close()"></card-header>
-
-    <div>
+    <div class="card-block">
         <ul class="list-group list-group-flush">
             <li *ngFor="let item of model; let i = index" class="list-group-item">
-                <div>
-                    <!--<sml-contact-list [model]="item"></sml-contact-list>-->
-                    <a (click)="openNewContactListItem(item)">Contact List {{i}}</a>
-                    <button type="button" class="btn btn-link" (click)="onRemove(i)">
-                        <i class="fa fa-remove"></i> Remove Contact
-                    </button>
-                </div>
+                <a (click)="openNewContactListItem(item)">Contact List {{i}}</a>
+                <a class="btn btn-link" (click)="onRemove(i)"> <i class="fa fa-remove"></i> Remove</a>
             </li>
         </ul>
-        <div class="card-footer">
-            <button type="button" class="btn btn-link" (click)="onAdd()">
-                <i class="fa fa-fw fa-plus"></i> Add Contact
-            </button>
-        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="btn btn-link" (click)="onAdd()">
+            <i class="fa fa-fw fa-plus"></i> Add
+        </button>
     </div>
 </div>

@@ -1,9 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-export class CloseEventData {
-
-}
-
 @Component({
   selector: 'card-header',
   template: require('./CardHeaderComponent.html')

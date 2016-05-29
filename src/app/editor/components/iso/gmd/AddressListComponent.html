@@ -1,21 +1,17 @@
 <div class="card">
     <card-header [title]="Contact" (close)="close()" (reset)="onReset()"></card-header>
-
     <div class="card-block">
         <div class="form-group">
             <label for="name">Name</label>
             <input type="string" class="form-control" [(ngModel)]="model.name">
         </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let item of model.addresses; let i = index">
+                <a (click)="openNewAddressItem(item)">Address {{i}}</a>
+                <a class="btn btn-link" (click)="onRemove(i)"><i class="fa fa-remove"></i>Remove </a>
+            </li>
+        </ul>
     </div>
-
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="#address of model.addresses; #i = index">
-            <iso-address [model]="model.addresses[i]"></iso-address>
-            <button type="button" class="btn btn-link" (click)="onRemove(i)">
-                <i class="fa fa-remove"></i> Remove
-            </button>
-        </li>
-    </ul>
     <div class="card-footer">
         <button type="button" class="btn btn-link" (click)="onAdd()">
             <i class="fa fa-fw fa-plus"></i> Add
