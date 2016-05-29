@@ -1,31 +1,31 @@
-import { EditorComponent } from './EditorComponent';
-import { Input } from '@angular/core';
-import {StackedItemEventService} from "../../services/StackedItemEventService";
+import {EditorComponent} from './EditorComponent';
+import {Input,ViewContainerRef, ComponentResolver } from '@angular/core';
 
 export abstract class AbstractArrayComponent<T> extends EditorComponent {
 
-  @Input()
-  public model: T[];
+    @Input()
+    public model:T[];
 
-  constructor(eventService:StackedItemEventService){
-    super(eventService);
-  }
-  
-  public onReset(): void {
-    this.model.length = 0;
-    this.extendModel();
-  }
+    constructor(componentResolver:ComponentResolver,
+                viewContainerRef:ViewContainerRef) {
+        super(componentResolver, viewContainerRef);
+    }
 
-  public onAdd() {
-    this.model.push(this.createEntry());
-  }
+    public onReset():void {
+        this.model.length = 0;
+        this.extendModel();
+    }
 
-  public onRemove(index: number) {
-    this.model.splice(index, 1);
-  }
+    public onAdd() {
+        this.model.push(this.createEntry());
+    }
 
-  protected abstract createModel(): T[];
+    public onRemove(index:number) {
+        this.model.splice(index, 1);
+    }
 
-  protected abstract createEntry(): T;
+    protected abstract createModel():T[];
+
+    protected abstract createEntry():T;
 
 }

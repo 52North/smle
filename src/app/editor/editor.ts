@@ -7,13 +7,12 @@ import {ResponsiblePartyComponent} from './components/iso/gmd/ResponsiblePartyCo
 import {AddressListComponent} from './components/iso/gmd/AddressListComponent';
 import {ContactsComponent} from './components/sml/ContactsComponent';
 import {SensorMLPipe} from './pipes/SensorMLPipe';
-import {StackedItemComponent} from './components/StackedItemComponent'
 
 @Component({
     selector: 'editor',
     template: require('./editor.html'),
     styles: [require('./editor.scss')],
-    directives: [ResponsiblePartyComponent, ContactsComponent, AddressListComponent, StackedItemComponent],
+    directives: [ResponsiblePartyComponent, ContactsComponent, AddressListComponent],
     pipes: [SensorMLPipe]
 })
 export class Editor implements OnInit {

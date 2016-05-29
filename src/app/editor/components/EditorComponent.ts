@@ -1,11 +1,13 @@
-import {StackedItemEventService} from "../../services/StackedItemEventService";
 import {Type} from '@angular/core/src/facade/lang';
+import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
 
 export abstract class EditorComponent {
     public model;
-    public editing:boolean = true;
+    private previousComponent:EditorComponent;
+    private nextComponentRef:ComponentRef<EditorComponent>;
 
-    constructor(private eventService:StackedItemEventService) {
+    constructor(private componentResolver:ComponentResolver,
+                private viewContainerRef:ViewContainerRef) {
     }
 
     protected extendModel():void {
@@ -15,6 +17,25 @@ export abstract class EditorComponent {
     protected abstract createModel():any;
 
     protected openNewItem(componentType:Type, model:any) {
-        this.eventService.fireOpenEvent(componentType,model);
+        this.componentResolver.resolveComponent(componentType).then((componentFactory)=> {
+            this.nextComponentRef = this.viewContainerRef.createComponent(componentFactory);
+            this.nextComponentRef.instance.model = model;
+            this.nextComponentRef.instance.previousComponent = this;
+        });
+    }
+
+    protected close() {
+        if (this.nextComponentRef) {
+            this.nextComponentRef.instance.close();
+        }
+
+        if (this.previousComponent) {
+            this.previousComponent.closeNext();
+        }
+    }
+
+    private closeNext() {
+        this.nextComponentRef.destroy();
+        this.nextComponentRef = null;
     }
 }

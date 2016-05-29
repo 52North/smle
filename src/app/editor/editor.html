@@ -1,18 +1,13 @@
 <div class="container">
     <div class="row">
-        <!--<pre *ngIf="description" style="max-height: 150px;">{{description | toSensorml}}</pre>-->
-        <!--<div class="col-md-12">-->
-            <!--<form *ngIf="description">-->
-                <!--<sml-contacts [model]="description.contacts"></sml-contacts>-->
-                <!--<button type="button" class="btn btn-block btn-primary" (click)="saveDescription()">-->
-                    <!--Save-->
-                <!--</button>-->
-            <!--</form>-->
-        <!--</div>-->
-        <div class="col-md-12 stacked-editor" *ngIf="description">
-            <stacked-item>
+        <pre *ngIf="description" style="max-height: 150px;">{{description | toSensorml}}</pre>
+        <div class="col-md-12" *ngIf="description">
+            <form>
                 <sml-contacts [model]="description.contacts"></sml-contacts>
-            </stacked-item>
+                <button type="button" class="btn btn-block btn-primary" (click)="saveDescription()">
+                    Save
+                </button>
+            </form>
         </div>
     </div>
 </div>

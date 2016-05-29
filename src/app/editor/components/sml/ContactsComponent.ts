@@ -1,9 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input,ComponentResolver,ViewContainerRef} from '@angular/core';
 import {AbstractArrayComponent} from '../AbstractArrayComponent';
 import {CardHeaderComponent} from '../CardHeaderComponent';
 import {ContactList} from '../../../model/sml';
 import {ContactListComponent} from './ContactListComponent';
-import {StackedItemEventService} from "../../../services/StackedItemEventService";
 
 @Component({
     selector: 'sml-contacts',
@@ -11,8 +10,9 @@ import {StackedItemEventService} from "../../../services/StackedItemEventService
     directives: [CardHeaderComponent, ContactListComponent]
 })
 export class ContactsComponent extends AbstractArrayComponent<ContactList> {
-    constructor(eventService:StackedItemEventService) {
-        super(eventService);
+    constructor(componentResolver:ComponentResolver,
+                viewContainerRef:ViewContainerRef) {
+        super(componentResolver, viewContainerRef);
     }
 
     protected createModel() {

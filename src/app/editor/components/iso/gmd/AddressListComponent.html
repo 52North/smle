@@ -1,35 +1,24 @@
-
 <div class="card">
+    <card-header [title]="Contact" (close)="close()" (reset)="onReset()"></card-header>
 
-  <card-header [title]="Contact" (toggle)="onToggle()" (save)="onSave()"
-    (reset)="onReset()" (edit)="onEdit()"></card-header>
-
-  <div [hidden]="collapsed">
     <div class="card-block">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="string" class="form-control" [(ngModel)]="model.name">
-      </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="string" class="form-control" [(ngModel)]="model.name">
+        </div>
     </div>
 
     <ul class="list-group list-group-flush">
-      <li class="list-group-item" *ngFor="#address of model.addresses; #i = index">
-        <iso-address [model]="model.addresses[i]"></iso-address>
-        <button type="button" class="btn btn-link" (click)="onRemove(i)">
-          <i class="fa fa-remove"></i> Remove
-        </button>
-      </li>
+        <li class="list-group-item" *ngFor="#address of model.addresses; #i = index">
+            <iso-address [model]="model.addresses[i]"></iso-address>
+            <button type="button" class="btn btn-link" (click)="onRemove(i)">
+                <i class="fa fa-remove"></i> Remove
+            </button>
+        </li>
     </ul>
     <div class="card-footer">
-      <button type="button" class="btn btn-link" (click)="onAdd()">
-        <i class="fa fa-fw fa-plus"></i> Add
-      </button>
+        <button type="button" class="btn btn-link" (click)="onAdd()">
+            <i class="fa fa-fw fa-plus"></i> Add
+        </button>
     </div>
-
-    <div class="card-block">
-      <code>
-        {{ model | json }}
-      </code>
-    </div>
-  </div>
 </div>

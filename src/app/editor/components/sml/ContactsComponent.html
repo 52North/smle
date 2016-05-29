@@ -1,8 +1,7 @@
 <div class="card">
-    <card-header title="Contacts" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
+    <card-header title="Contacts" (reset)="onReset()" (close)="close()"></card-header>
 
-    <div [hidden]="collapsed">
-
+    <div>
         <ul class="list-group list-group-flush">
             <li *ngFor="let item of model; let i = index" class="list-group-item">
                 <div>
@@ -19,19 +18,5 @@
                 <i class="fa fa-fw fa-plus"></i> Add Contact
             </button>
         </div>
-
-        <dl class="dl-horizontal" [hidden]="editing">
-            <dt class="col-sm-3 text-truncate">Phone</dt>
-            <dd class="col-sm-9">{{ model.phone }}</dd>
-            <dt class="col-sm-3 text-truncate">Address</dt>
-            <dd class="col-sm-9">{{ model.address }}</dd>
-            <dt class="col-sm-3 text-truncate">Online Resource</dt>
-            <dd class="col-sm-9">{{ model.onlineResource }}</dd>
-            <dt class="col-sm-3 text-truncate">Contact Instructions</dt>
-            <dd class="col-sm-9">{{ model.contactInstructions }}</dd>
-            <dt class="col-sm-3 text-truncate">Hours Of Service</dt>
-            <dd class="col-sm-9">{{ model.hoursOfService }}</dd>
-        </dl>
-
     </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="card">
-  <card-header title="Contact List" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
+  <card-header title="Contact List" (reset)="onReset()" (close)="close()"></card-header>
   <div [hidden]="collapsed">
     <ul class="list-group list-group-flush">
       <li *ngFor="let item of model.contacts; let i = index" class="list-group-item">

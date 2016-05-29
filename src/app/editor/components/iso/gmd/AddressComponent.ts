@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ComponentResolver,ViewContainerRef } from '@angular/core';
 import { Address } from '../../../../model/iso/gmd/Address';
 import { AbstractComponent } from '../../AbstractComponent';
 import { CardHeaderComponent } from '../../CardHeaderComponent';
@@ -10,6 +10,11 @@ import { StringsComponent } from '../../StringsComponent';
   directives: [CardHeaderComponent, StringsComponent]
 })
 export class AddressComponent extends AbstractComponent<Address> {
+  constructor(componentResolver:ComponentResolver,
+              viewContainerRef:ViewContainerRef) {
+    super(componentResolver, viewContainerRef);
+  }
+  
   protected createModel(): Address {
     return new Address();
   }

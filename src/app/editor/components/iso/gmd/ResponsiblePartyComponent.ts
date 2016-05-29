@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component,ComponentResolver,ViewContainerRef } from '@angular/core';
 import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
 import { Contact } from '../../../../model/iso/gmd/Contact';
 import { AbstractComponent } from '../../AbstractComponent';
@@ -13,6 +13,11 @@ import { ContactComponent } from './ContactComponent';
 })
 export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty>{
 
+  constructor(componentResolver:ComponentResolver,
+              viewContainerRef:ViewContainerRef) {
+    super(componentResolver, viewContainerRef);
+  }
+  
   protected createModel(): ResponsibleParty {
     return new ResponsibleParty();
   }

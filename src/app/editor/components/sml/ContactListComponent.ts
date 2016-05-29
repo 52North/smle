@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ComponentResolver,ViewContainerRef } from '@angular/core';
 import { AbstractComponent } from '../AbstractComponent';
 import { CardHeaderComponent } from '../CardHeaderComponent';
 import { ContactList } from '../../../model/sml';
@@ -12,6 +12,11 @@ import { ResponsiblePartyComponent } from '../iso/gmd/ResponsiblePartyComponent'
 })
 export class ContactListComponent extends AbstractComponent<ContactList> {
 
+  constructor(componentResolver:ComponentResolver,
+              viewContainerRef:ViewContainerRef) {
+    super(componentResolver, viewContainerRef);
+  }
+  
   protected createModel() {
     return new ContactList();
   }

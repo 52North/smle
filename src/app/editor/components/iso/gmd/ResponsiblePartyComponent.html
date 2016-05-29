@@ -1,59 +1,41 @@
 <div class="card">
-  <card-header title="Responsible Party" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
+    <card-header title="Responsible Party" (reset)="onReset()" (close)="close()"></card-header>
 
-  <div [hidden]="collapsed">
     <div class="card-block">
-      <div [hidden]="!editing">
         <div class="form-group">
-          <label for="model.individualName">Individual Name</label>
-          <input type="text" class="form-control" [(ngModel)]="model.individualName">
+            <label for="model.individualName">Individual Name</label>
+            <input type="text" class="form-control" [(ngModel)]="model.individualName">
         </div>
         <div class="form-group">
-          <label for="model.organisationName">Organisation Name</label>
-          <input type="text" class="form-control" [(ngModel)]="model.organisationName">
+            <label for="model.organisationName">Organisation Name</label>
+            <input type="text" class="form-control" [(ngModel)]="model.organisationName">
         </div>
         <div class="form-group">
-          <label for="model.positionName">Position Name</label>
-          <input type="text" class="form-control" [(ngModel)]="model.positionName">
+            <label for="model.positionName">Position Name</label>
+            <input type="text" class="form-control" [(ngModel)]="model.positionName">
         </div>
         <div class="form-group">
-          <button *ngIf="!model.contactInfo" type="button" class="btn btn-link" (click)="onAddContact()">
-            <i class="fa fa-fw fa-plus"></i>Add Contact
-          </button>
-          <button *ngIf="model.contactInfo"type="button" class="btn btn-link" (click)="onRemoveContact()">
-            <i class="fa fa-fw fa-minus"></i>Add Contact
-          </button>
-          <iso-contact *ngIf="model.contactInfo" [model]="model.contactInfo"></iso-contact>
+            <button *ngIf="!model.contactInfo" type="button" class="btn btn-link" (click)="onAddContact()">
+                <i class="fa fa-fw fa-plus"></i>Add Contact
+            </button>
+            <button *ngIf="model.contactInfo" type="button" class="btn btn-link" (click)="onRemoveContact()">
+                <i class="fa fa-fw fa-minus"></i>Add Contact
+            </button>
+            <iso-contact *ngIf="model.contactInfo" [model]="model.contactInfo"></iso-contact>
         </div>
         <div class="form-group">
-          <label for="function">Role</label>
-          <select class="form-control" [(ngModel)]="model.role">
-            <option value="resourceProvider">Resource Provider</option>
-            <option value="custodian">Custodian</option>
-            <option value="user">User</option>
-            <option value="originator">Originator</option>
-            <option value="pointOfContact">Point Of Contact</option>
-            <option value="principalInvestigator">Principal Investigator</option>
-            <option value="processor">Processor</option>
-            <option value="publisher">Publisher</option>
-            <option value="author">Author</option>
-          </select>
+            <label for="function">Role</label>
+            <select class="form-control" [(ngModel)]="model.role">
+                <option value="resourceProvider">Resource Provider</option>
+                <option value="custodian">Custodian</option>
+                <option value="user">User</option>
+                <option value="originator">Originator</option>
+                <option value="pointOfContact">Point Of Contact</option>
+                <option value="principalInvestigator">Principal Investigator</option>
+                <option value="processor">Processor</option>
+                <option value="publisher">Publisher</option>
+                <option value="author">Author</option>
+            </select>
         </div>
-      </div>
-
-      <dl class="dl-horizontal" [hidden]="editing">
-        <dt class="col-sm-3 text-truncate">Individual Name</dt>
-        <dd class="col-sm-9">{{ model.individualName }}</dd>
-        <dt class="col-sm-3 text-truncate">Organisation Name</dt>
-        <dd class="col-sm-9">{{ model.organisationName }}</dd>
-        <dt class="col-sm-3 text-truncate">Position Name</dt>
-        <dd class="col-sm-9">{{ model.positionName }}</dd>
-        <dt class="col-sm-3 text-truncate">Contact</dt>
-        <dd class="col-sm-9">{{ model.contact }}</dd>
-        <dt class="col-sm-3 text-truncate">Role</dt>
-        <dd class="col-sm-9">{{ model.role }}</dd>
-      </dl>
-
     </div>
-  </div>
 </div>

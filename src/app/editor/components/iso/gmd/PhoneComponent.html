@@ -1,28 +1,14 @@
 <div class="card">
+    <card-header title="Phone" (reset)="onReset()" (close)="close()"></card-header>
 
-  <card-header title="Phone" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
-
-  <div [hidden]="collapsed">
     <div class="card-block">
-      <div [hidden]="!editing">
         <div class="form-group">
-          <label for="voice">Voice</label>
-          <strings [list]="model.voice"></strings>
+            <label for="voice">Voice</label>
+            <strings [list]="model.voice"></strings>
         </div>
         <div class="form-group">
-          <label for="facsimile">Facsimile</label>
-          <strings [list]="model.facsimile"></strings>
+            <label for="facsimile">Facsimile</label>
+            <strings [list]="model.facsimile"></strings>
         </div>
-
-      </div>
-
-      <dl class="dl-horizontal" [hidden]="editing">
-        <dt class="col-sm-3 text-truncate">Voice</dt>
-        <dd class="col-sm-9">{{ model.voice }}</dd>
-        <dt class="col-sm-3 text-truncate">Facsimile</dt>
-        <dd class="col-sm-9">{{ model.facsimile }}</dd>
-      </dl>
     </div>
-
-  </div>
 </div>
