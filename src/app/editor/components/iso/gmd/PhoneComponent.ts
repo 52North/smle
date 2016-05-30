@@ -7,6 +7,7 @@ import {StringsComponent} from '../../StringsComponent';
 @Component({
     selector: 'iso-phone',
     template: require('./PhoneComponent.html'),
+    styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent, StringsComponent]
 })
 export class PhoneComponent extends AbstractComponent<Phone> {

@@ -43,7 +43,13 @@ export abstract class EditorComponent {
         }
     }
 
-    protected getActiveChildModel():any {
+    protected closeChildWithModel(model:any) {
+        if (model === this.getActiveChildModel() && model) {
+            this.closeChild();
+        }
+    }
+
+    private getActiveChildModel():any {
         return this.childComponentRef ? this.childComponentRef.instance.model : null;
     }
 

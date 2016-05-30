@@ -12,6 +12,7 @@ import {Phone} from "../../../../model/iso/gmd/Phone";
 @Component({
     selector: 'iso-contact',
     template: require('./ContactComponent.html'),
+    styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
 export class ContactComponent extends AbstractComponent<Contact> {

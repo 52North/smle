@@ -21,9 +21,7 @@ export abstract class AbstractArrayComponent<T> extends EditorComponent {
     }
 
     public onRemove(index:number) {
-        if (this.model[index] === this.getActiveChildModel()) {
-            this.closeChild();
-        }
+        this.closeChildWithModel(this.model[index]);
         this.model.splice(index, 1);
     }
 

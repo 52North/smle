@@ -7,6 +7,7 @@ import {StringsComponent} from '../../StringsComponent';
 @Component({
     selector: 'iso-address',
     template: require('./AddressComponent.html'),
+    styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent, StringsComponent]
 })
 export class AddressComponent extends AbstractComponent<Address> {

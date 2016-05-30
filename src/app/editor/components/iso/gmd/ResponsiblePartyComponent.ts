@@ -8,6 +8,7 @@ import {ContactComponent} from './ContactComponent';
 @Component({
     selector: 'iso-responsible-party',
     template: require('./ResponsiblePartyComponent.html'),
+    styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent, ContactComponent]
 })
 export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty> {
@@ -24,6 +25,7 @@ export class ResponsiblePartyComponent extends AbstractComponent<ResponsiblePart
     }
 
     onRemoveContact() {
+        this.closeChildWithModel(this.model.contactInfo);
         this.model.contactInfo = null;
     }
 

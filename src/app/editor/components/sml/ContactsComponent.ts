@@ -7,6 +7,7 @@ import {ContactListComponent} from './ContactListComponent';
 @Component({
     selector: 'sml-contacts',
     template: require('./ContactsComponent.html'),
+    styles: [require('../styles/editor-component.scss')],
     directives: [CardHeaderComponent, ContactListComponent]
 })
 export class ContactsComponent extends AbstractArrayComponent<ContactList> {

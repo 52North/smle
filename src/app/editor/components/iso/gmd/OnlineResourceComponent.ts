@@ -5,6 +5,7 @@ import {CardHeaderComponent} from '../../CardHeaderComponent';
 @Component({
     selector: 'iso-online-resource',
     template: require('./OnlineResourceComponent.html'),
+    styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent]
 })
 export class OnlineResourceComponent extends AbstractComponent<OnlineResource> {

@@ -11,6 +11,7 @@ class AddressList {
 @Component({
     selector: 'iso-address-list',
     template: require('./AddressListComponent.html'),
+    styles: [require('../../styles/editor-component.scss')],
     directives: [AddressComponent]
 })
 export class AddressListComponent extends AbstractComponent<AddressList> {
@@ -23,6 +24,7 @@ export class AddressListComponent extends AbstractComponent<AddressList> {
     }
 
     public onRemove(index:number):void {
+        this.closeChildWithModel(this.model.addresses[index]);
         this.model.addresses.splice(index, 1);
     }
 

@@ -8,6 +8,7 @@ import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
 @Component({
     selector: 'sml-contact-list',
     template: require('./ContactListComponent.html'),
+    styles: [require('../styles/editor-component.scss')],
     directives: [CardHeaderComponent, ResponsiblePartyComponent]
 })
 export class ContactListComponent extends AbstractComponent<ContactList> {
@@ -20,6 +21,7 @@ export class ContactListComponent extends AbstractComponent<ContactList> {
     }
 
     public onRemove(index:number):void {
+        this.closeChildWithModel(this.model.contacts[index]);
         this.model.contacts.splice(index, 1);
     }
 
