@@ -1,11 +1,9 @@
 <div class="row">
     <pre *ngIf="description">{{description | toSensorml}}</pre>
     <div class="col-md-12" *ngIf="description">
-        <form>
-            <sml-contacts [model]="description.contacts"></sml-contacts>
-            <button type="button" class="btn btn-block btn-primary" (click)="saveDescription()">
-                Save
-            </button>
-        </form>
+        <sml-contacts [model]="description.contacts"></sml-contacts>
+        <button type="button" class="btn btn-block btn-primary" (click)="saveDescription()">
+            Save
+        </button>
     </div>
 </div>

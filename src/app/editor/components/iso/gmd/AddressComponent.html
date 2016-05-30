@@ -1,34 +1,36 @@
 <div class="card">
     <card-header title="Address" (reset)="onReset()" (close)="close()"></card-header>
     <div class="card-block">
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" class="form-control" [(ngModel)]="model.city">
-        </div>
+        <form>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" [(ngModel)]="model.city">
+            </div>
 
-        <div class="form-group">
-            <label for="postalCode">Postal Code</label>
-            <input type="text" class="form-control" [(ngModel)]="model.postalCode">
-        </div>
+            <div class="form-group">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" class="form-control" [(ngModel)]="model.postalCode">
+            </div>
 
-        <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" class="form-control" [(ngModel)]="model.country">
-        </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" [(ngModel)]="model.country">
+            </div>
 
-        <div class="form-group">
-            <label for="administrativeArea">Administrative Area</label>
-            <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
-        </div>
+            <div class="form-group">
+                <label for="administrativeArea">Administrative Area</label>
+                <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
+            </div>
 
-        <div class="form-group">
-            <label for="deliveryPoint">Delivery Point</label>
-            <strings [list]="model.deliveryPoint"></strings>
-        </div>
+            <div class="form-group">
+                <label for="deliveryPoint">Delivery Point</label>
+                <strings [list]="model.deliveryPoint"></strings>
+            </div>
 
-        <div class="form-group">
-            <label for="electronicMailAddress">Electronic Mail Address</label>
-            <strings [list]="model.electronicMailAddress"></strings>
-        </div>
+            <div class="form-group">
+                <label for="electronicMailAddress">Electronic Mail Address</label>
+                <strings [list]="model.electronicMailAddress"></strings>
+            </div>
+        </form>
     </div>
 </div>

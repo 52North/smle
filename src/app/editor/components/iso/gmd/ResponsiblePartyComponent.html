@@ -1,40 +1,42 @@
 <div class="card">
     <card-header title="Responsible Party" (reset)="onReset()" (close)="close()"></card-header>
     <div class="card-block">
-        <div class="form-group">
-            <label for="model.individualName">Individual Name</label>
-            <input type="text" class="form-control" [(ngModel)]="model.individualName">
-        </div>
-        <div class="form-group">
-            <label for="model.organisationName">Organisation Name</label>
-            <input type="text" class="form-control" [(ngModel)]="model.organisationName">
-        </div>
-        <div class="form-group">
-            <label for="model.positionName">Position Name</label>
-            <input type="text" class="form-control" [(ngModel)]="model.positionName">
-        </div>
-        <div class="form-group">
-            <a *ngIf="model.contactInfo" (click)="openNewContactInfoItem(model.contactInfo)">Contact Info</a>
-            <a *ngIf="model.contactInfo" class="btn btn-link" (click)="onRemoveContact()">
-                <i class="fa fa-fw fa-minus"></i> Remove
-            </a>
-            <a *ngIf="!model.contactInfo" class="btn btn-link" (click)="onAddContact()">
-                <i class="fa fa-fw fa-plus"></i> Add Contact Info
-            </a>
-        </div>
-        <div class="form-group">
-            <label for="function">Role</label>
-            <select class="form-control" [(ngModel)]="model.role">
-                <option value="resourceProvider">Resource Provider</option>
-                <option value="custodian">Custodian</option>
-                <option value="user">User</option>
-                <option value="originator">Originator</option>
-                <option value="pointOfContact">Point Of Contact</option>
-                <option value="principalInvestigator">Principal Investigator</option>
-                <option value="processor">Processor</option>
-                <option value="publisher">Publisher</option>
-                <option value="author">Author</option>
-            </select>
-        </div>
+        <form>
+            <div class="form-group">
+                <label for="model.individualName">Individual Name</label>
+                <input type="text" class="form-control" [(ngModel)]="model.individualName">
+            </div>
+            <div class="form-group">
+                <label for="model.organisationName">Organisation Name</label>
+                <input type="text" class="form-control" [(ngModel)]="model.organisationName">
+            </div>
+            <div class="form-group">
+                <label for="model.positionName">Position Name</label>
+                <input type="text" class="form-control" [(ngModel)]="model.positionName">
+            </div>
+            <div class="form-group">
+                <a *ngIf="model.contactInfo" (click)="openNewContactInfoItem(model.contactInfo)">Contact Info</a>
+                <a *ngIf="model.contactInfo" class="btn btn-link" (click)="onRemoveContact()">
+                    <i class="fa fa-fw fa-minus"></i> Remove
+                </a>
+                <a *ngIf="!model.contactInfo" class="btn btn-link" (click)="onAddContact()">
+                    <i class="fa fa-fw fa-plus"></i> Add Contact Info
+                </a>
+            </div>
+            <div class="form-group">
+                <label for="function">Role</label>
+                <select class="form-control" [(ngModel)]="model.role">
+                    <option value="resourceProvider">Resource Provider</option>
+                    <option value="custodian">Custodian</option>
+                    <option value="user">User</option>
+                    <option value="originator">Originator</option>
+                    <option value="pointOfContact">Point Of Contact</option>
+                    <option value="principalInvestigator">Principal Investigator</option>
+                    <option value="processor">Processor</option>
+                    <option value="publisher">Publisher</option>
+                    <option value="author">Author</option>
+                </select>
+            </div>
+        </form>
     </div>
 </div>

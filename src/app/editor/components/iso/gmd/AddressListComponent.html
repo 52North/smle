@@ -1,10 +1,12 @@
 <div class="card">
     <card-header [title]="Contact" (close)="close()" (reset)="onReset()"></card-header>
     <div class="card-block">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="string" class="form-control" [(ngModel)]="model.name">
-        </div>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="string" class="form-control" [(ngModel)]="model.name">
+            </div>
+        </form>
         <ul class="list-group list-group-flush">
             <li class="list-group-item" *ngFor="let item of model.addresses; let i = index">
                 <a (click)="openNewAddressItem(item)">Address {{i}}</a>
