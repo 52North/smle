@@ -24,14 +24,14 @@ export class ContactComponent extends AbstractComponent<Contact> {
     }
 
     private openNewPhoneItem(model:Phone) {
-        this.openNewItem(PhoneComponent, model);
+        this.openNewChild(PhoneComponent, model);
     }
 
     private openNewAddressItem(model:Address) {
-        this.openNewItem(AddressComponent, model);
+        this.openNewChild(AddressComponent, model);
     }
 
     private openNewOnlineResourceItem(model:OnlineResource) {
-        this.openNewItem(OnlineResourceComponent, model);
+        this.openNewChild(OnlineResourceComponent, model);
     }
 }

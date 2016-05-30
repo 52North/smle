@@ -28,6 +28,6 @@ export class ContactListComponent extends AbstractComponent<ContactList> {
     }
 
     private openNewResponsiblePartyItem(model:ResponsibleParty) {
-        this.openNewItem(ResponsiblePartyComponent, model);
+        this.openNewChild(ResponsiblePartyComponent, model);
     }
 }

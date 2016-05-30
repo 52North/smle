@@ -1,5 +1,5 @@
 import {EditorComponent} from './EditorComponent';
-import {Input,ViewContainerRef, ComponentResolver } from '@angular/core';
+import {Input, ViewContainerRef, ComponentResolver} from '@angular/core';
 
 export abstract class AbstractArrayComponent<T> extends EditorComponent {
 
@@ -21,6 +21,9 @@ export abstract class AbstractArrayComponent<T> extends EditorComponent {
     }
 
     public onRemove(index:number) {
+        if (this.model[index] === this.getActiveChildModel()) {
+            this.closeChild();
+        }
         this.model.splice(index, 1);
     }
 

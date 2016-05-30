@@ -35,6 +35,6 @@ export class AddressListComponent extends AbstractComponent<AddressList> {
     }
 
     private openNewAddressItem(model:Address) {
-        this.openNewItem(AddressComponent, model);
+        this.openNewChild(AddressComponent, model);
     }
 }

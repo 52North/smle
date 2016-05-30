@@ -3,8 +3,8 @@ import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
 
 export abstract class EditorComponent {
     public model;
-    private previousComponent:EditorComponent;
-    private nextComponentRef:ComponentRef<EditorComponent>;
+    private parentComponent:EditorComponent;
+    private childComponentRef:ComponentRef<EditorComponent>;
 
     constructor(private componentResolver:ComponentResolver,
                 private viewContainerRef:ViewContainerRef) {
@@ -16,26 +16,46 @@ export abstract class EditorComponent {
 
     protected abstract createModel():any;
 
-    protected openNewItem(componentType:Type, model:any) {
+    protected openNewChild(componentType:Type, model:any) {
+        if (this.childComponentRef &&
+            this.childComponentRef.componentType === componentType &&
+            this.childComponentRef.instance.model === model) {
+            return;
+        }
+
+        if (this.childComponentRef) {
+            this.childComponentRef.instance.close();
+        }
+
         this.componentResolver.resolveComponent(componentType).then((componentFactory)=> {
-            this.nextComponentRef = this.viewContainerRef.createComponent(componentFactory);
-            this.nextComponentRef.instance.model = model;
-            this.nextComponentRef.instance.previousComponent = this;
+            this.childComponentRef = this.viewContainerRef.createComponent(componentFactory);
+            this.childComponentRef.instance.model = model;
+            this.childComponentRef.instance.parentComponent = this;
         });
     }
 
     protected close() {
-        if (this.nextComponentRef) {
-            this.nextComponentRef.instance.close();
+        if (this.childComponentRef) {
+            this.childComponentRef.instance.close();
         }
 
-        if (this.previousComponent) {
-            this.previousComponent.closeNext();
+        if (this.parentComponent) {
+            this.parentComponent.destroyChild();
         }
     }
 
-    private closeNext() {
-        this.nextComponentRef.destroy();
-        this.nextComponentRef = null;
+    protected getActiveChildModel():any {
+        return this.childComponentRef ? this.childComponentRef.instance.model : null;
+    }
+
+    protected closeChild() {
+        if (this.childComponentRef) {
+            this.childComponentRef.instance.close();
+        }
+    }
+
+    private destroyChild() {
+        this.childComponentRef.destroy();
+        this.childComponentRef = null;
     }
 }

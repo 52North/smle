@@ -29,6 +29,6 @@ export class ResponsiblePartyComponent extends AbstractComponent<ResponsiblePart
     }
 
     private openNewContactInfoItem(model:Contact) {
-        this.openNewItem(ContactComponent, model);
+        this.openNewChild(ContactComponent, model);
     }
 }

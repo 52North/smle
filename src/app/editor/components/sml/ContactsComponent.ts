@@ -23,6 +23,6 @@ export class ContactsComponent extends AbstractArrayComponent<ContactList> {
     }
 
     private openNewContactListItem(model:ContactList) {
-        this.openNewItem(ContactListComponent, model);
+        this.openNewChild(ContactListComponent, model);
     }
 }
