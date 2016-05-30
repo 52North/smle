@@ -271,7 +271,8 @@ export class SensorMLEncoder {
 
     if (object.keywords) {
       //TODO implement GMD keywords
-      throw new Error('Not yet supported');
+      if (object.keywords.length > 0)
+        console.error('GMD keywords are not yet supported');
     }
 
     if (object.identification) {

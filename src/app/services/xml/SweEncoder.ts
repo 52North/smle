@@ -900,8 +900,8 @@ export class SweEncoder {
 
     if (component.values) {
       let valuesNode = document.createElementNS(Namespaces.SWE, 'swe:values');
-      valuesNode.textContent = component.values.toString();
-      node.appendChild(component.values);
+      valuesNode.textContent = component.values as string;
+      node.appendChild(valuesNode);
     }
   }
 }
