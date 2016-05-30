@@ -10,6 +10,7 @@ export abstract class AbstractComponent<T> extends EditorComponent {
     }
 
     public onReset():void {
+        this.closeChild();
         for (let prop in this.model) {
             delete this.model[prop]
         }

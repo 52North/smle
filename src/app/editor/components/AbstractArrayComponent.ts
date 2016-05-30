@@ -13,6 +13,7 @@ export abstract class AbstractArrayComponent<T> extends EditorComponent {
     public onReset():void {
         this.model.length = 0;
         this.extendModel();
+        this.closeChild();
     }
 
     public onAdd() {
