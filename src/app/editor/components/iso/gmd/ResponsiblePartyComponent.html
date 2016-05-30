@@ -15,7 +15,7 @@
                 <input type="text" class="form-control" [(ngModel)]="model.positionName">
             </div>
             <div class="form-group">
-                <a *ngIf="model.contactInfo" (click)="openNewContactInfoItem(model.contactInfo)">Contact Info</a>
+                <a *ngIf="model.contactInfo" class="btn btn-link" (click)="openNewContactInfoItem(model.contactInfo)">Contact Info</a>
                 <a *ngIf="model.contactInfo" class="btn btn-link" (click)="onRemoveContact()">
                     <i class="fa fa-fw fa-minus"></i> Remove
                 </a>

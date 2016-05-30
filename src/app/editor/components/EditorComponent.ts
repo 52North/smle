@@ -6,8 +6,7 @@ export abstract class EditorComponent {
     private parentComponent:EditorComponent;
     private childComponentRef:ComponentRef<EditorComponent>;
 
-    constructor(private componentResolver:ComponentResolver,
-                private viewContainerRef:ViewContainerRef) {
+    constructor(private componentResolver:ComponentResolver, private viewContainerRef:ViewContainerRef) {
     }
 
     protected extendModel():void {

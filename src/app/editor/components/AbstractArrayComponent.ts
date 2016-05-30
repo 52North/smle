@@ -6,8 +6,7 @@ export abstract class AbstractArrayComponent<T> extends EditorComponent {
     @Input()
     public model:T[];
 
-    constructor(componentResolver:ComponentResolver,
-                viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 

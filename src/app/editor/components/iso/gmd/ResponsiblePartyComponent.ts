@@ -11,8 +11,7 @@ import {ContactComponent} from './ContactComponent';
     directives: [CardHeaderComponent, ContactComponent]
 })
 export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty> {
-    constructor(componentResolver:ComponentResolver,
-                viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 

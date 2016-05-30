@@ -3,7 +3,7 @@
     <div class="card-block">
         <ul class="list-group list-group-flush">
             <li *ngFor="let item of model; let i = index" class="list-group-item">
-                <a (click)="openNewContactListItem(item)">Contact List {{i}}</a>
+                <a class="btn btn-link" (click)="openNewContactListItem(item)">Contact List {{i}}</a>
                 <a class="btn btn-link" (click)="onRemove(i)"> <i class="fa fa-remove"></i> Remove</a>
             </li>
         </ul>
