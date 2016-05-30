@@ -30,14 +30,10 @@ export class Editor implements OnInit {
   ngOnInit(): void {
     if (this.id === 'new') {
       this.description = new SimpleProcess();
+      this.service.saveDescription(this.description);
     } else {
       this.service.getDescription(this.id)
         .then(description => this.description = description);
     }
   }
-
-  saveDescription(): void {
-    this.service.saveDescription(this.description);
-  }
-
 }
