@@ -12,7 +12,7 @@ import { ContactListComponent } from './ContactListComponent';
 export class ContactsComponent extends AbstractArrayComponent<ContactList> {
 
   protected createModel() {
-    return new ContactList()[0];
+    return new Array<ContactList>();
   }
 
   protected createEntry() {

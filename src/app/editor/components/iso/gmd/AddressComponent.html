@@ -37,22 +37,6 @@
           <strings [list]="model.electronicMailAddress"></strings>
         </div>
       </div>
-
-      <dl class="dl-horizontal" [hidden]="editing">
-        <dt class="col-sm-3 text-truncate">City</dt>
-        <dd class="col-sm-9">{{ model.city }}</dd>
-        <dt class="col-sm-3 text-truncate">Postal Code</dt>
-        <dd class="col-sm-9">{{ model.postalCode }}</dd>
-        <dt class="col-sm-3 text-truncate">Country</dt>
-        <dd class="col-sm-9">{{ model.country }}</dd>
-        <dt class="col-sm-3 text-truncate">Administrative Area</dt>
-        <dd class="col-sm-9">{{ model.administrativeArea }}</dd>
-        <dt class="col-sm-3 text-truncate">Delivery Point</dt>
-        <dd class="col-sm-9">{{ model.deliveryPoint.join(', ') }}</dd>
-        <dt class="col-sm-3 text-truncate">Electronic Mail Address</dt>
-        <dd class="col-sm-9">{{ model.electronicMailAddress.join(', ') }}</dd>
-      </dl>
-
     </div>
   </div>
 </div>
