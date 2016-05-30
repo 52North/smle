@@ -2,6 +2,7 @@ import { AbstractProcess } from '../model/sml';
 import { CodeType } from '../model/gml';
 import { Injectable } from '@angular/core';
 import { DescriptionRepository } from './DescriptionRepository';
+import { SampleDataLoader } from '../services/SampleDataLoader';
 
 @Injectable()
 export class InMemoryDescriptionRepository extends DescriptionRepository {
@@ -17,11 +18,31 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
     }
   }
   */
-  getDescriptions() {
-    return Promise.resolve(Object.keys(this._descriptions));
+
+  constructor(
+    private dataloader: SampleDataLoader
+  ) {
+    super();
+  }
+
+  private _samples: string[] = [
+    "/examples/physicalComponentInstance.xml",
+    "/examples/physicalComponentType.xml",
+    "/examples/physicalSystemInstance.xml",
+    "/examples/physicalSystemType.xml",
+    "/examples/lisaInstance.xml"
+  ];
+
+  getDescriptions(): Promise<Array<string>> {
+    let list = this._samples;
+    list = list.concat(Object.keys(this._descriptions));
+    return Promise.resolve(list);
   }
 
   getDescription(id: string): Promise<AbstractProcess> {
+    if (id.indexOf('/examples') > -1) {
+      return this.dataloader.loadSample(id);
+    }
     if (!this._descriptions[id]) {
       return Promise.reject<AbstractProcess>(new Error('does not exist'));
     };
