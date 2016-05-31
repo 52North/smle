@@ -18,8 +18,9 @@ export class DecoderUtils {
     if (root.namespaceURI === elemNamespace && root.tagName.indexOf(elemName) > -1) {
       return root;
     }
-    if (this.getMatchingChildElements(root, elemName, elemNamespace).length === 1) {
-      return root.getElementsByTagNameNS(elemNamespace, elemName)[0];
+    let elem = this.getMatchingChildElements(root, elemName, elemNamespace);
+    if (elem.length === 1) {
+      return elem[0];
     }
     return null;
   }
@@ -32,7 +33,6 @@ export class DecoderUtils {
     let list = new Array<T>();
     let elements = this.getMatchingChildElements(root, elemName, elemNamespace);
     if (elements.length >= 1) {
-      
       for (let i = 0; i < elements.length; i++) {
         let decodedElem = decodeFunc(elements[i]);
         if (decodedElem != null) {

@@ -21,6 +21,7 @@ import { SweCount } from '../../model/swe/SweCount';
 import { SweCountRange } from '../../model/swe/SweCountRange';
 import { SweDataArray } from '../../model/swe/SweDataArray';
 import { SweDataChoice } from '../../model/swe/SweDataChoice';
+import { SweDataChoiceItem } from '../../model/swe/SweDataChoiceItem';
 import { SweDataComponent } from '../../model/swe/SweDataComponent';
 import { SweDataRecord } from '../../model/swe/SweDataRecord';
 import { SweDataStream } from '../../model/swe/SweDataStream';
@@ -58,23 +59,23 @@ export class SweDecoder {
     let dataArray = this.decodeDataArray(elem);
     if (dataArray != null) return dataArray;
 
-    //    let dataChoice = this.decodeDataChoice(elem);
-    //    if (dataChoice != null) return dataChoice;
-    //
-    //    let quantityRange = this.decodeQuantityRange(elem);
-    //    if (quantityRange != null) return quantityRange;
-    //
-    //    let timeRange = this.decodeTimeRange(elem);
-    //    if (timeRange != null) return timeRange;
-    //
+    let dataChoice = this.decodeDataChoice(elem);
+    if (dataChoice != null) return dataChoice;
+
+    let quantityRange = this.decodeQuantityRange(elem);
+    if (quantityRange != null) return quantityRange;
+
+    let timeRange = this.decodeTimeRange(elem);
+    if (timeRange != null) return timeRange;
+
     //    let countRange = this.decodeCountRange(elem);
     //    if (countRange != null) return countRange;
     //
     //    let categoryRange = this.decodeCategoryRange(elem);
     //    if (categoryRange != null) return categoryRange;
-    //
-    //    let sweBoolean = this.decodeBoolean(elem);
-    //    if (sweBoolean != null) return sweBoolean;
+
+    let sweBoolean = this.decodeBoolean(elem);
+    if (sweBoolean != null) return sweBoolean;
 
     let count = this.decodeCount(elem);
     if (count != null) return count;
@@ -85,8 +86,8 @@ export class SweDecoder {
     let time = this.decodeTime(elem);
     if (time != null) return time;
 
-    //    let category = this.decodeCategory(ele    m);
-    //    if (category != null) return category;
+    let category = this.decodeCategory(elem);
+    if (category != null) return category;
 
     let text = this.decodeText(elem);
     if (text != null) return text;
@@ -155,24 +156,24 @@ export class SweDecoder {
       return dataRecord;
     }
   }
-  
+
   public decodeDataStream(elem: Element): SweDataStream {
     let dataStreamElem = this.utils.getElement(elem, 'DataStream', Namespaces.SML);
     if (dataStreamElem != null) {
       let dataStream = new SweDataStream();
-      
+
       this.decodeAbstractSweIdentifiable(dataStreamElem, dataStream);
-      
+
       dataStream.elementCount = this.utils.getDecodedList(dataStreamElem, 'elementCount', Namespaces.SWE, (elemCount) => this.decodeCount(elemCount));
-      
+
       dataStream.elementType = this.decodeElementType(dataStreamElem);
-      
+
       dataStream.encoding = this.decodeAbstractEncoding(dataStreamElem);
-      
+
       return dataStream;
     }
   }
-  
+
   public decodeMatrix(elem: Element): SweMatrix {
     let matrixElem = this.utils.getElement(elem, 'Matrix', Namespaces.SWE);
     if (matrixElem != null) {
@@ -265,7 +266,7 @@ export class SweDecoder {
         binaryEncoding.byteLength = +binaryEncodingElem.getAttribute('byteLength');
       }
 
-      this.utils.getDecodedList(binaryEncodingElem, 'member', Namespaces.SWE, (member) => function(member: Element) {
+      this.utils.getDecodedList(binaryEncodingElem, 'member', Namespaces.SWE, (member) => {
         let component = this.decodeBinaryComponent(member);
         if (component != null) binaryEncoding.members.push(component);
         let block = this.decodeBinaryBlock(member);
@@ -374,115 +375,124 @@ export class SweDecoder {
       return elementType;
     }
   }
-  //
-  //  public decodeDataChoice(component: SweDataChoice, document: Document): Node {
-  //    let node = document.createElementNS(Namespaces.SWE, 'swe:DataChoice');
-  //
-  //    this.encodeAbstractDataComponent(node, component, document);
-  //
-  //    if (component.choiceValue && component.choiceValue.length > 0) {
-  //      let choiceValueNode = document.createElementNS(Namespaces.SWE, 'swe:choiceValue');
-  //      component.choiceValue.forEach(category =>
-  //        choiceValueNode.appendChild(this.encodeCategory(category, document)));
-  //      node.appendChild(choiceValueNode);
-  //    }
-  //
-  //    if (component.items) {
-  //      component.items.forEach(item => {
-  //        let itemNode = document.createElementNS(Namespaces.SWE, 'swe:item');
-  //        if (item.name) {
-  //          itemNode.setAttribute('name', item.name);
-  //        }
-  //        if (item.item) {
-  //          itemNode.appendChild(this.encodeDataComponent(item.item, document));
-  //        }
-  //        node.appendChild(itemNode);
-  //      });
-  //    }
-  //
-  //    throw new Error('not yet supported');
-  //  }
-  //
-  //  public decodeQuantityRange(component: SweQuantityRange, document: Document): Node {
-  //    let node = document.createElementNS(Namespaces.SWE, 'swe:QuantityRange');
-  //
-  //    this.encodeAbstractSimpleComponent(node, component, document);
-  //
-  //    if (component.uom) {
-  //      let uomNode = document.createElementNS(Namespaces.SWE, 'swe:uom');
-  //      if (component.uom.code) {
-  //        uomNode.setAttribute('code', component.uom.code);
-  //      }
-  //      if (component.uom.href) {
-  //        uomNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.uom.href);
-  //      }
-  //      node.appendChild(uomNode);
-  //    }
-  //
-  //    if (component.constraint) {
-  //      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
-  //      constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
-  //      node.appendChild(constraintNode);
-  //    }
-  //
-  //    if (component.value != null) {
-  //      let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-  //      valueNode.textContent = `${component.value[0].toString()} ${component.value[1].toString()}`;
-  //      node.appendChild(valueNode);
-  //    }
-  //
-  //    return node;
-  //  }
-  //
-  //  public decodeTimeRange(component: SweTimeRange, document: Document): Node {
-  //    let node = document.createElementNS(Namespaces.SWE, 'swe:TimeRange');
-  //
-  //    this.encodeAbstractSimpleComponent(node, component, document);
-  //
-  //    if (component.uom) {
-  //      let uomNode = document.createElementNS(Namespaces.SWE, 'swe:uom');
-  //      if (component.uom.code) {
-  //        uomNode.setAttribute('code', component.uom.code);
-  //      }
-  //      if (component.uom.href) {
-  //        uomNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.uom.href);
-  //      }
-  //      node.appendChild(uomNode);
-  //    }
-  //
-  //    if (component.constraint) {
-  //      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
-  //      constraintNode.appendChild(this.encodeAllowedTimes(component.constraint, document));
-  //      node.appendChild(constraintNode);
-  //    }
-  //
-  //    if (component.value != null) {
-  //      let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-  //
-  //      let value = component.value.map(value => {
-  //        if (value instanceof Date) {
-  //          return value.toISOString();
-  //        } else {
-  //          return value;
-  //        }
-  //      });
-  //
-  //      document.textContent = `${value[0]} ${value[1]}`;
-  //
-  //      node.appendChild(valueNode);
-  //    }
-  //
-  //    if (component.referenceTime) {
-  //      node.setAttribute('referenceTime', component.referenceTime.toISOString());
-  //    }
-  //
-  //    if (component.localFrame) {
-  //      node.setAttribute('localFrame', component.localFrame);
-  //    }
-  //
-  //    return node;
-  //  }
-  //
+
+  public decodeDataChoice(elem: Element): SweDataChoice {
+    let dataChoiceElem = this.utils.getElement(elem, 'DataChoice', Namespaces.SWE);
+    if (dataChoiceElem != null) {
+      let dataChoice = new SweDataChoice();
+
+      this.decodeAbstractDataComponent(dataChoiceElem, dataChoice);
+
+      dataChoice.choiceValue = this.utils.getDecodedList(dataChoiceElem, 'choiceValue', Namespaces.SWE, (value) => this.decodeCategory(value));
+
+      dataChoice.items = this.utils.getDecodedList(dataChoiceElem, 'item', Namespaces.SWE, (item) => this.decodeDataChoiceItem(item));
+
+      return dataChoice;
+    }
+  }
+
+  public decodeDataChoiceItem(elem: Element): SweDataChoiceItem {
+    let dataChoiceItem = new SweDataChoiceItem();
+
+    if (elem.hasAttribute('name')) {
+      dataChoiceItem.name = elem.getAttribute('name');
+    }
+
+    if (elem.firstElementChild != null) {
+      dataChoiceItem.item = this.decodeDataComponent(elem.firstElementChild);
+    }
+
+    return dataChoiceItem;
+  }
+
+  public decodeUnitOfMeasure(elem: Element): UnitOfMeasure {
+    let uomElem = this.utils.getElement(elem, 'uom', Namespaces.SWE);
+    if (uomElem != null) {
+      let uom = new UnitOfMeasure();
+      if (uomElem.hasAttribute('code')) {
+        uom.code = uomElem.getAttribute('code');
+      }
+      if (uomElem.hasAttribute('href')) {
+        uom.href = uomElem.getAttribute('href');
+      }
+      return uom;
+    }
+  }
+
+  public decodeQuantityRange(elem: Element): SweQuantityRange {
+    let quantityRangeElem = this.utils.getElement(elem, 'QuantityRange', Namespaces.SWE);
+    if (quantityRangeElem != null) {
+      let quantityRange = new SweQuantityRange();
+
+      this.decodeAbstractSimpleComponent(quantityRangeElem, quantityRange);
+
+      quantityRange.uom = this.decodeUnitOfMeasure(elem);
+
+      let constraint = this.utils.getElement(quantityRangeElem, 'constraint', Namespaces.SWE);
+      if (constraint != null) {
+        quantityRange.constraint = this.decodeAllowedValues(constraint);
+      }
+
+      let valueElem = this.utils.getElement(quantityRangeElem, 'value', Namespaces.SWE);
+      if (valueElem != null) {
+        let values = valueElem.textContent.split(' ');
+        if (values.length == 2 && !isNaN(+values[0]) && !isNaN(+values[1])) {
+          quantityRange.value = [+values[0], +values[1]];
+        }
+      }
+
+      return quantityRange;
+    }
+  }
+
+  public decodeTimeRange(elem: Element): SweTimeRange {
+    let timeRangeElem = this.utils.getElement(elem, 'TimeRange', Namespaces.SWE);
+    if (timeRangeElem != null) {
+      let timeRange = new SweTimeRange();
+
+      this.decodeAbstractSimpleComponent(timeRangeElem, timeRange);
+
+      timeRange.uom = this.decodeUnitOfMeasure(timeRangeElem);
+
+      let valueElem = this.utils.getElement(timeRangeElem, 'value', Namespaces.SWE);
+      if (valueElem != null) {
+        let values = valueElem.textContent.split(' ');
+        if (values.length == 2) {
+          let start, end;
+          if (!isNaN(Date.parse(values[0]))) {
+            start = new Date(Date.parse(values[0]));
+          } else if (values[0] === 'now') {
+            start = 'now';
+          }
+          if (!isNaN(Date.parse(values[1]))) {
+            end = new Date(Date.parse(values[1]));
+          } else if (values[1] === 'now') {
+            end = 'now';
+          }
+          timeRange.value = [start, end];
+        }
+      }
+
+      let constraint = this.utils.getElement(timeRangeElem, 'constraint', Namespaces.SWE);
+      if (constraint != null) {
+        timeRange.constraint = this.decodeAllowedTimes(constraint);
+      }
+
+      if (timeRangeElem.hasAttribute('referenceTime')) {
+        let timeStr = timeRangeElem.getAttribute('referenceTime');
+        if (!isNaN(Date.parse(timeStr))) {
+          timeRange.referenceTime = new Date(Date.parse(timeStr));
+        }
+      }
+
+      if (timeRangeElem.hasAttribute('localFrame')) {
+        timeRange.localFrame = timeRangeElem.getAttribute('localFrame');
+      }
+
+      return timeRange;
+    }
+  }
+
   //  public decodeCountRange(component: SweCountRange, document: Document): Node {
   //    let node = document.createElementNS(Namespaces.SWE, 'swe:CountRange');
   //
@@ -542,19 +552,21 @@ export class SweDecoder {
   //    return node;
   //  }
 
-  //  public decodeBoolean(component: SweBoolean, document: Document): Node {
-  //    let node = document.createElementNS(Namespaces.SWE, 'swe:Boolean');
-  //
-  //    this.encodeAbstractSimpleComponent(node, component, document);
-  //
-  //    if (component.value != null) {
-  //      let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-  //      valueNode.textContent = component.value.toString();
-  //      node.appendChild(valueNode);
-  //    }
-  //
-  //    return node;
-  //  }
+  public decodeBoolean(elem: Element): SweBoolean {
+    let boolElem = this.utils.getElement(elem, 'Boolean', Namespaces.SWE);
+    if (boolElem != null) {
+      let bool = new SweBoolean();
+
+      this.decodeAbstractSimpleComponent(boolElem, bool);
+
+      let value = this.utils.getElement(boolElem, 'value', Namespaces.SWE);
+      if (value != null) {
+        bool.value = value.textContent === 'true';
+      }
+
+      return bool;
+    }
+  }
 
   public decodeCount(elem: Element): SweCount {
     let countElem = this.utils.getElement(elem, 'Count', Namespaces.SWE);
@@ -594,17 +606,7 @@ export class SweDecoder {
         quantity.value = +value.textContent;
       }
 
-      let uomElem = this.utils.getElement(quantityElem, 'uom', Namespaces.SWE);
-      if (uomElem != null) {
-        let uom = new UnitOfMeasure();
-        if (uomElem.hasAttribute('code')) {
-          uom.code = uomElem.getAttribute('code');
-        }
-        if (uomElem.hasAttribute('href')) {
-          uom.href = uomElem.getAttribute('href');
-        }
-        quantity.uom = uom;
-      }
+      quantity.uom = this.decodeUnitOfMeasure(quantityElem);
       return quantity;
     }
   }
@@ -616,24 +618,12 @@ export class SweDecoder {
 
       this.decodeAbstractSimpleComponent(timeElem, time);
 
-      let uomElem = this.utils.getElement(timeElem, 'uom', Namespaces.SWE);
-      if (uomElem != null) {
-        let uom = new UnitOfMeasure();
-        if (uomElem.hasAttribute('code')) {
-          uom.code = uomElem.getAttribute('code');
-        }
-        if (uomElem.hasAttribute('href')) {
-          uom.href = uomElem.getAttribute('href');
-        }
-        time.uom = uom;
-      }
+      time.uom = this.decodeUnitOfMeasure(timeElem);
 
       let constraint = this.utils.getElement(timeElem, 'constraint', Namespaces.SWE);
       if (constraint != null) {
         time.constraint = this.decodeAllowedTimes(constraint);
       }
-
-      // time.value
 
       if (timeElem.hasAttribute('referenceTime')) {
         time.referenceTime = new Date(timeElem.getAttribute('referenceTime'));
@@ -656,31 +646,28 @@ export class SweDecoder {
     }
   }
 
-  //  public decodeCategory(component: SweCategory, document: Document): Node {
-  //    let node = document.createElementNS(Namespaces.SWE, 'swe:Category');
-  //
-  //    this.encodeAbstractSimpleComponent(node, component, document);
-  //
-  //    if (component.codeSpace) {
-  //      let codeSpaceNode = document.createElementNS(Namespaces.SWE, 'swe:codeSpace');
-  //      codeSpaceNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.codeSpace);
-  //      node.appendChild(codeSpaceNode);
-  //    }
-  //
-  //    if (component.constraint) {
-  //      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
-  //      constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
-  //      node.appendChild(constraintNode);
-  //    }
-  //
-  //    if (component.value) {
-  //      let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-  //      valueNode.textContent = component.value;
-  //      node.appendChild(valueNode);
-  //    }
-  //
-  //    return node;
-  //  }
+  public decodeCategory(elem: Element): SweCategory {
+    let catElem = this.utils.getElement(elem, 'Category', Namespaces.SWE);
+    if (catElem != null) {
+      let category = new SweCategory();
+
+      this.decodeAbstractSimpleComponent(catElem, category);
+
+      category.codeSpace = this.utils.getAttributeOfElement(catElem, 'codeSpace', Namespaces.SWE, 'href', Namespaces.XLINK);
+
+      let constraint = this.utils.getElement(catElem, 'constraint', Namespaces.SWE);
+      if (constraint != null) {
+        category.constraint = this.decodeAllowedTokens(constraint);
+      }
+
+      let value = this.utils.getElement(catElem, 'value', Namespaces.SWE);
+      if (value != null) {
+        category.value = value.textContent;
+      }
+
+      return category;
+    }
+  }
 
   public decodeText(elem: Element): SweText {
     let textElem = this.utils.getElement(elem, 'Text', Namespaces.SWE);
@@ -688,7 +675,6 @@ export class SweDecoder {
       let text = new SweText();
       this.decodeAbstractSimpleComponent(textElem, text);
 
-      // TODO find solution with multiple swe:value elements
       let constraint = this.utils.getElement(textElem, 'constraint', Namespaces.SWE);
       if (constraint != null) {
         text.constraint = this.decodeAllowedTokens(constraint);
@@ -742,8 +728,12 @@ export class SweDecoder {
       this.utils.getDecodedList(allowedValuesElem, 'interval', Namespaces.SWE, (v) => function(v: Element) {
         if (v.textContent != null) {
           let interval = v.textContent.split(' ');
-          if (interval.length == 2 && !isNaN(+interval[0]) && !isNaN(+interval[1])) {
-            allowedValues.values.push([+interval[0], +interval[1]]);
+          if (interval.length >= 1) {
+            interval.forEach(entry => {
+              if (!isNaN(+entry)) {
+                allowedValues.values.push(+entry);
+              }
+            })
           }
         }
       });
@@ -762,37 +752,20 @@ export class SweDecoder {
         allowedTimes.significantFigures = +significantFigures.textContent;
       }
 
-      if (allowedTimes.values) {
-        allowedTimes.values.forEach(allowedTime => {
-          var value: string;
-          if (allowedTime instanceof Date) {
-            value = allowedTime.toISOString();
-          } else if (allowedTime instanceof String) {
-            value = allowedTime;
-          }
-          if (value) {
-            // TODO it's wrong!
-            let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-            valueNode.textContent = allowedTime.toString();
-            elem.appendChild(valueNode);
-          }
-        });
-
-        allowedTimes.values.forEach(allowedTime => {
-          if (allowedTime instanceof Array) {
-            var value = allowedTime.map(v => {
-              if (v instanceof Date) {
-                return v.toISOString();
-              } else {
-                return v;
-              }
-            });
-            let intervalNode = document.createElementNS(Namespaces.SWE, 'swe:interval');
-            intervalNode.textContent = `${value[0]} ${value[1]} `;
-            elem.appendChild(intervalNode);
-          }
-        });
-      }
+      allowedTimes.values = this.utils.getDecodedList(allowedTimesElem, 'value', Namespaces.SWE, (elem) => {
+        if (!isNaN(Date.parse(elem.textContent))) {
+          return new Date(Date.parse(elem.textContent));
+        }
+      });
+      
+      this.utils.getDecodedList(allowedTimesElem, 'interval', Namespaces.SWE, (elem) => {
+        let interval = elem.textContent.split(' ');
+        console.log("Interval: " + interval);
+        if (interval.length == 2 && !isNaN(Date.parse(interval[0])) && !isNaN(Date.parse(interval[1]))) {
+          allowedTimes.values.push([new Date(Date.parse(interval[0])), new Date(Date.parse(interval[1]))]);
+        }
+      })
+      
       return allowedTimes;
     }
   }
