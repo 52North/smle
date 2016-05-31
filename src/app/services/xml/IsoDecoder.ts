@@ -48,9 +48,17 @@ export class IsoDecoder {
     if (phoneElem != null) {
       let phone = new Phone();
 
-      phone.voice = this.utils.getDecodedList(phoneElem, 'voice', Namespaces.GMD, (voice) => this.getDecodedCharacterString(voice));
+      phone.voice = this.utils.getDecodedList(
+        phoneElem,
+        'voice',
+        Namespaces.GMD,
+        (voice) => this.getDecodedCharacterString(voice));
 
-      phone.facsimile = this.utils.getDecodedList(phoneElem, 'facsimile', Namespaces.GMD, (facsimile) => this.getDecodedCharacterString(facsimile));
+      phone.facsimile = this.utils.getDecodedList(
+        phoneElem,
+        'facsimile',
+        Namespaces.GMD,
+        (facsimile) => this.getDecodedCharacterString(facsimile));
 
       return phone;
     }
@@ -62,22 +70,28 @@ export class IsoDecoder {
       let onlineResource = new OnlineResource();
 
       let linkageElem = this.utils.getElement(onlineResourceElem, 'linkage', Namespaces.GMD);
-      if (linkageElem != null) onlineResource.linkage = this.getDecodedUrl(linkageElem);
+      if (linkageElem != null)
+        onlineResource.linkage = this.getDecodedUrl(linkageElem);
 
       let protocolElem = this.utils.getElement(onlineResourceElem, 'protocol', Namespaces.GMD);
-      if (protocolElem != null) onlineResource.protocol = this.getDecodedCharacterString(protocolElem);
+      if (protocolElem != null)
+        onlineResource.protocol = this.getDecodedCharacterString(protocolElem);
 
       let applicationProfileElem = this.utils.getElement(onlineResourceElem, 'applicationProfile', Namespaces.GMD);
-      if (applicationProfileElem != null) onlineResource.applicationProfile = this.getDecodedCharacterString(applicationProfileElem);
+      if (applicationProfileElem != null)
+        onlineResource.applicationProfile = this.getDecodedCharacterString(applicationProfileElem);
 
       let nameElem = this.utils.getElement(onlineResourceElem, 'name', Namespaces.GMD);
-      if (nameElem != null) onlineResource.name = this.getDecodedCharacterString(nameElem);
+      if (nameElem != null)
+        onlineResource.name = this.getDecodedCharacterString(nameElem);
 
       let descriptionElem = this.utils.getElement(onlineResourceElem, 'description', Namespaces.GMD);
-      if (descriptionElem != null) onlineResource.description = this.getDecodedCharacterString(descriptionElem);
+      if (descriptionElem != null)
+        onlineResource.description = this.getDecodedCharacterString(descriptionElem);
 
       let functionElem = this.utils.getElement(onlineResourceElem, 'function', Namespaces.GMD);
-      if (functionElem != null) onlineResource.function = this.decodeOnlineFunction(functionElem);
+      if (functionElem != null)
+        onlineResource.function = this.decodeOnlineFunction(functionElem);
 
       return onlineResource;
     }
@@ -89,20 +103,32 @@ export class IsoDecoder {
       let address = new Address();
 
       let cityElem = this.utils.getElement(addressElem, 'city', Namespaces.GMD);
-      if (cityElem != null) address.city = this.getDecodedCharacterString(cityElem);
+      if (cityElem != null)
+        address.city = this.getDecodedCharacterString(cityElem);
 
       let administrativeAreaElem = this.utils.getElement(addressElem, 'administrativeArea', Namespaces.GMD);
-      if (administrativeAreaElem != null) address.administrativeArea = this.getDecodedCharacterString(administrativeAreaElem);
+      if (administrativeAreaElem != null)
+        address.administrativeArea = this.getDecodedCharacterString(administrativeAreaElem);
 
       let postalCodeElem = this.utils.getElement(addressElem, 'postalCode', Namespaces.GMD);
-      if (postalCodeElem != null) address.postalCode = this.getDecodedCharacterString(postalCodeElem);
+      if (postalCodeElem != null)
+        address.postalCode = this.getDecodedCharacterString(postalCodeElem);
 
       let countryElem = this.utils.getElement(addressElem, 'country', Namespaces.GMD);
-      if (countryElem != null) address.country = this.getDecodedCharacterString(countryElem);
+      if (countryElem != null)
+        address.country = this.getDecodedCharacterString(countryElem);
 
-      address.deliveryPoint = this.utils.getDecodedList(addressElem, 'deliveryPoint', Namespaces.GMD, (deliveryPoint) => this.getDecodedCharacterString(deliveryPoint));
+      address.deliveryPoint = this.utils.getDecodedList(
+        addressElem,
+        'deliveryPoint',
+        Namespaces.GMD,
+        (deliveryPoint) => this.getDecodedCharacterString(deliveryPoint));
 
-      address.electronicMailAddress = this.utils.getDecodedList(addressElem, 'electronicMailAddress', Namespaces.GMD, (electronicMailAddress) => this.getDecodedCharacterString(electronicMailAddress));
+      address.electronicMailAddress = this.utils.getDecodedList(
+        addressElem,
+        'electronicMailAddress',
+        Namespaces.GMD,
+        (electronicMailAddress) => this.getDecodedCharacterString(electronicMailAddress));
 
       return address;
     }
@@ -115,19 +141,24 @@ export class IsoDecoder {
       let respParty = new ResponsibleParty();
 
       let individualNameElem = this.utils.getElement(respPartyElem, 'individualName', Namespaces.GMD);
-      if (individualNameElem != null) respParty.individualName = this.getDecodedCharacterString(individualNameElem);
+      if (individualNameElem != null)
+        respParty.individualName = this.getDecodedCharacterString(individualNameElem);
 
       let organisationNameElem = this.utils.getElement(respPartyElem, 'organisationName', Namespaces.GMD);
-      if (organisationNameElem != null) respParty.organisationName = this.getDecodedCharacterString(organisationNameElem);
+      if (organisationNameElem != null)
+        respParty.organisationName = this.getDecodedCharacterString(organisationNameElem);
 
       let positionNameElem = this.utils.getElement(respPartyElem, 'positionName', Namespaces.GMD);
-      if (positionNameElem != null) respParty.positionName = this.getDecodedCharacterString(positionNameElem);
+      if (positionNameElem != null)
+        respParty.positionName = this.getDecodedCharacterString(positionNameElem);
 
       let contactInfoElem = this.utils.getElement(respPartyElem, 'contactInfo', Namespaces.GMD);
-      if (contactInfoElem != null) respParty.contactInfo = this.decodeContact(contactInfoElem);
+      if (contactInfoElem != null)
+        respParty.contactInfo = this.decodeContact(contactInfoElem);
 
       let roleElem = this.utils.getElement(respPartyElem, 'role', Namespaces.GMD);
-      if (roleElem != null) respParty.role = this.decodeRole(roleElem);
+      if (roleElem != null)
+        respParty.role = this.decodeRole(roleElem);
 
       return respParty;
     }
@@ -182,11 +213,23 @@ export class IsoDecoder {
     if (legalConstraintsElem != null) {
       let legalConstraints = new LegalConstraints();
 
-      legalConstraints.accessConstraints = this.utils.getDecodedList(legalConstraintsElem, 'accessConstraints', Namespaces.GMD, (accConst) => this.decodeRestriction(accConst));
+      legalConstraints.accessConstraints = this.utils.getDecodedList(
+        legalConstraintsElem,
+        'accessConstraints',
+        Namespaces.GMD,
+        (accConst) => this.decodeRestriction(accConst));
 
-      legalConstraints.useConstraints = this.utils.getDecodedList(legalConstraintsElem, 'useConstraints', Namespaces.GMD, (useConst) => this.decodeRestriction(useConst));
+      legalConstraints.useConstraints = this.utils.getDecodedList(
+        legalConstraintsElem,
+        'useConstraints',
+        Namespaces.GMD,
+        (useConst) => this.decodeRestriction(useConst));
 
-      legalConstraints.otherConstraints = this.utils.getDecodedList(legalConstraintsElem, 'otherConstraints', Namespaces.GMD, (otherConst) => this.getDecodedCharacterString(otherConst));
+      legalConstraints.otherConstraints = this.utils.getDecodedList(
+        legalConstraintsElem,
+        'otherConstraints',
+        Namespaces.GMD,
+        (otherConst) => this.getDecodedCharacterString(otherConst));
 
       return legalConstraints;
     }

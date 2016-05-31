@@ -717,12 +717,12 @@ export class SensorMLEncoder {
     value: SweDataComponent | DataInterface | ObservableProperty): Node {
     if (value instanceof ObservableProperty) {
       return this.encodeObservableProperty(value, document);
-    } else if (value instanceof DataInterface) {
+    }
+    if (value instanceof DataInterface) {
       return this.encodeDataInterface(value, document);
-    } else if (value instanceof AbstractDataComponent) {
-      // currently i don't understand this error here, but it works...
-      let dataComp: AbstractDataComponent = <AbstractDataComponent> value;
-      return this.sweEncoder.encodeDataComponent(dataComp, document);
+    } 
+    if (value instanceof AbstractDataComponent) {
+      return this.sweEncoder.encodeDataComponent(value, document);
     }
   }
 

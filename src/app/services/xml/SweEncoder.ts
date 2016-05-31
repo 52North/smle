@@ -470,6 +470,8 @@ export class SweEncoder {
 
     let node = document.createElementNS(Namespaces.SWE, 'swe:CategoryRange');
 
+    this.encodeAbstractSimpleComponent(node, component, document);
+
     if (component.codeSpace) {
       let codeSpaceNode = document.createElementNS(Namespaces.SWE, 'swe:codeSpace');
       codeSpaceNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.codeSpace);
@@ -678,13 +680,13 @@ export class SweEncoder {
     this.encodeAbstractSwe(node, allowedValues, document);
 
     if (allowedValues.values) {
-      allowedValues.values.filter(x => x instanceof Number)
+      allowedValues.values.filter(x => !isNaN(+x))
         .forEach(x => {
           let n = document.createElementNS(Namespaces.SWE, 'swe:value');
           n.textContent = x.toString();
           node.appendChild(n);
         });
-      allowedValues.values.filter(x => x instanceof Number)
+      allowedValues.values.filter(x => x instanceof Array)
         .forEach(x => {
           let n = document.createElementNS(Namespaces.SWE, 'swe:interval');
           n.textContent = `${x[0]} ${x[1]}`;
@@ -758,7 +760,7 @@ export class SweEncoder {
   }
 
   public encodeQuality(quality: SweQuality, document: Document): Node {
-    let qualityNode = document.createElementNS(Namespaces.SML, 'swe:quality');
+    let qualityNode = document.createElementNS(Namespaces.SWE, 'swe:quality');
     if (quality instanceof SweQuantity) {
       qualityNode.appendChild(this.encodeQuantity(quality, document));
     } else if (quality instanceof SweQuantityRange) {
@@ -838,6 +840,7 @@ export class SweEncoder {
       let outerNilValuesNode = document.createElementNS(Namespaces.SWE, 'swe:nilValues');
       let innerNilValuesNode = document.createElementNS(Namespaces.SWE, 'swe:NilValues');
       outerNilValuesNode.appendChild(innerNilValuesNode);
+      node.appendChild(outerNilValuesNode);
       component.nilValues.forEach(nilValue => innerNilValuesNode.appendChild(this.encodeNilValue(nilValue, document)));
     }
 

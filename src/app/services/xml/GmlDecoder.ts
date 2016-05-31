@@ -96,7 +96,7 @@ export class GmlDecoder {
   public decodePos(elem: Element, point: Point) {
     let posElem = this.utils.getElement(elem, 'pos', Namespaces.GML);
     if (posElem != null) {
-      let content = posElem.textContent.split(" ");
+      let content = posElem.textContent.split(' ');
       if (content[0]) {
         point.x = +content[0];
       }

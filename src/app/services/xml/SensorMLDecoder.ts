@@ -113,13 +113,25 @@ export class SensorMLDecoder {
 
     object.attachedTo = this.utils.getAttributeOfElement(elem, 'attachedTo', Namespaces.SML, 'href', Namespaces.XLINK);
 
-    object.localReferenceFrame = this.utils.getDecodedList(elem, 'localReferenceFrame', Namespaces.SML, (lrf) => this.decodeSpatialFrame(lrf));
+    object.localReferenceFrame = this.utils.getDecodedList(
+      elem,
+      'localReferenceFrame',
+      Namespaces.SML,
+      (lrf) => this.decodeSpatialFrame(lrf));
 
-    object.localTimeFrame = this.utils.getDecodedList(elem, 'localTimeFrame', Namespaces.SML, (ltf) => this.decodeTemporalFrame(ltf));
+    object.localTimeFrame = this.utils.getDecodedList(
+      elem,
+      'localTimeFrame',
+      Namespaces.SML,
+      (ltf) => this.decodeTemporalFrame(ltf));
 
     object.position = this.utils.getDecodedList(elem, 'position', Namespaces.SML, (pos) => this.decodePosition(pos));
 
-    object.timePosition = this.utils.getDecodedList(elem, 'timePosition', Namespaces.SML, (timePos) => this.sweDecoder.decodeTime(timePos));
+    object.timePosition = this.utils.getDecodedList(
+      elem,
+      'timePosition',
+      Namespaces.SML,
+      (timePos) => this.sweDecoder.decodeTime(timePos));
   }
 
   public decodeSpatialFrame(elem: Element): SpatialFrame {
@@ -134,7 +146,11 @@ export class SensorMLDecoder {
         spatialFrame.origin = originElem.textContent.trim();
       }
 
-      spatialFrame.axis = this.utils.getDecodedList<Axis>(spatialFrameElem, 'axis', Namespaces.SML, (axisNode) => this.decodeAxis(axisNode));
+      spatialFrame.axis = this.utils.getDecodedList<Axis>(
+        spatialFrameElem,
+        'axis',
+        Namespaces.SML,
+        (axisNode) => this.decodeAxis(axisNode));
 
     }
     return spatialFrame;
@@ -227,7 +243,11 @@ export class SensorMLDecoder {
       let featureList = new FeatureList();
       // TODO implement
       //      this.decodeAbstractMetadataList(featureListElem, featureList);
-      //      featureList.features = this.utils.getDecodedList(featureListElem, 'feature', Namespaces.SML, (feature) => this.gmlDecoder.decodeAbstractFeature(feature));
+      //      featureList.features = this.utils.getDecodedList(
+      //      featureListElem, 
+      //      'feature', 
+      //      Namespaces.SML, 
+      //      (feature) => this.gmlDecoder.decodeAbstractFeature(feature));
       return featureList;
     }
   }
@@ -244,7 +264,11 @@ export class SensorMLDecoder {
 
       this.sweDecoder.decodeAbstractSwe(modeChoiceElem, modeChoice);
 
-      modeChoice.modes = this.utils.getDecodedList(modeChoiceElem, 'mode', Namespaces.SML, (mode) => this.decodeMode(mode));
+      modeChoice.modes = this.utils.getDecodedList(
+        modeChoiceElem,
+        'mode',
+        Namespaces.SML,
+        (mode) => this.decodeMode(mode));
       return modeChoice;
     }
   }
@@ -268,30 +292,70 @@ export class SensorMLDecoder {
   public decodeDescribedObject(elem: Element, describedObject: DescribedObject): void {
     this.gmlDecoder.decodeAbstractFeature(elem, describedObject);
 
-    describedObject.keywords = this.utils.getDecodedList(elem, 'keywords', Namespaces.SML, (keywords) => this.decodeKeywordList(keywords));
+    describedObject.keywords = this.utils.getDecodedList(
+      elem,
+      'keywords',
+      Namespaces.SML,
+      (keywords) => this.decodeKeywordList(keywords));
 
-    describedObject.identification = this.utils.getDecodedList(elem, 'identification', Namespaces.SML, (identifications) => this.decodeIdentifierList(identifications));
+    describedObject.identification = this.utils.getDecodedList(
+      elem,
+      'identification',
+      Namespaces.SML,
+      (identifications) => this.decodeIdentifierList(identifications));
 
-    describedObject.classification = this.utils.getDecodedList(elem, 'classification', Namespaces.SML, (classifier) => this.decodeClassifierList(classifier));
+    describedObject.classification = this.utils.getDecodedList(
+      elem,
+      'classification',
+      Namespaces.SML,
+      (classifier) => this.decodeClassifierList(classifier));
 
-    describedObject.validTime = this.utils.getDecodedList(elem, 'validTime', Namespaces.SML, (validTime) => this.gmlDecoder.decodeTime(validTime));
+    describedObject.validTime = this.utils.getDecodedList(
+      elem,
+      'validTime',
+      Namespaces.SML,
+      (validTime) => this.gmlDecoder.decodeTime(validTime));
 
     let secConstElem = this.utils.getElement(elem, 'securityConstraints', Namespaces.SML);
     if (secConstElem != null) {
       throw new Error('Security Constraints currently not supported');
     }
 
-    describedObject.legalConstraints = this.utils.getDecodedList(elem, 'legalConstraints', Namespaces.SML, (legalConst) => this.isoDecoder.decodeLegalConstraints(legalConst));
+    describedObject.legalConstraints = this.utils.getDecodedList(
+      elem,
+      'legalConstraints',
+      Namespaces.SML,
+      (legalConst) => this.isoDecoder.decodeLegalConstraints(legalConst));
 
-    describedObject.characteristics = this.utils.getDecodedList(elem, 'characteristics', Namespaces.SML, (characteristic) => this.decodeCharacteristicList(characteristic));
+    describedObject.characteristics = this.utils.getDecodedList(
+      elem,
+      'characteristics',
+      Namespaces.SML,
+      (characteristic) => this.decodeCharacteristicList(characteristic));
 
-    describedObject.capabilities = this.utils.getDecodedList(elem, 'capabilities', Namespaces.SML, (capa) => this.decodeCapabilitiesList(capa));
+    describedObject.capabilities = this.utils.getDecodedList(
+      elem,
+      'capabilities',
+      Namespaces.SML,
+      (capa) => this.decodeCapabilitiesList(capa));
 
-    describedObject.contacts = this.utils.getDecodedList(elem, 'contacts', Namespaces.SML, (contactList) => this.decodeContactList(contactList));
+    describedObject.contacts = this.utils.getDecodedList(
+      elem,
+      'contacts',
+      Namespaces.SML,
+      (contactList) => this.decodeContactList(contactList));
 
-    describedObject.documentation = this.utils.getDecodedList(elem, 'documentation', Namespaces.SML, (documentation) => this.decodeDocumentList(documentation));
+    describedObject.documentation = this.utils.getDecodedList(
+      elem,
+      'documentation',
+      Namespaces.SML,
+      (documentation) => this.decodeDocumentList(documentation));
 
-    describedObject.history = this.utils.getDecodedList(elem, 'history', Namespaces.SML, (history) => this.decodeEventList(history));
+    describedObject.history = this.utils.getDecodedList(
+      elem,
+      'history',
+      Namespaces.SML,
+      (history) => this.decodeEventList(history));
   }
 
   public decodeComponentList(elem: Element): ComponentList {
@@ -301,7 +365,11 @@ export class SensorMLDecoder {
 
       this.sweDecoder.decodeAbstractSwe(componentListElem, compList);
 
-      compList.components = this.utils.getDecodedList(componentListElem, 'component', Namespaces.SML, (component) => this.decodeComponent(component));
+      compList.components = this.utils.getDecodedList(
+        componentListElem,
+        'component',
+        Namespaces.SML,
+        (component) => this.decodeComponent(component));
 
       return compList;
     }
@@ -327,7 +395,11 @@ export class SensorMLDecoder {
       let connList = new ConnectionList();
       this.sweDecoder.decodeAbstractSwe(connectionListElem, connList);
 
-      connList.connections = this.utils.getDecodedList(connectionListElem, 'connection', Namespaces.SML, (connection) => this.decodeConnection(connection));
+      connList.connections = this.utils.getDecodedList(
+        connectionListElem,
+        'connection',
+        Namespaces.SML,
+        (connection) => this.decodeConnection(connection));
 
       return connList;
     }
@@ -349,7 +421,11 @@ export class SensorMLDecoder {
       let contactList = new ContactList();
       this.decodeAbstractMetadataList(contactListElem, contactList);
 
-      contactList.contacts = this.utils.getDecodedList(contactListElem, 'contact', Namespaces.SML, (contact) => this.isoDecoder.decodeResponsibleParty(contact));
+      contactList.contacts = this.utils.getDecodedList(
+        contactListElem,
+        'contact',
+        Namespaces.SML,
+        (contact) => this.isoDecoder.decodeResponsibleParty(contact));
       return contactList;
     }
   }
@@ -361,7 +437,11 @@ export class SensorMLDecoder {
 
       this.sweDecoder.decodeAbstractSwe(inputListElem, inputList);
 
-      inputList.inputs = this.utils.getDecodedList(inputListElem, 'input', Namespaces.SML, (input) => this.decodeInputOrOutputOrParameter(input));
+      inputList.inputs = this.utils.getDecodedList(
+        inputListElem,
+        'input',
+        Namespaces.SML,
+        (input) => this.decodeInputOrOutputOrParameter(input));
 
       return inputList;
     }
@@ -374,20 +454,28 @@ export class SensorMLDecoder {
 
       this.sweDecoder.decodeAbstractSwe(outputListElem, outputList);
 
-      outputList.outputs = this.utils.getDecodedList(outputListElem, 'output', Namespaces.SML, (output) => this.decodeInputOrOutputOrParameter(output));
+      outputList.outputs = this.utils.getDecodedList(
+        outputListElem,
+        'output',
+        Namespaces.SML,
+        (output) => this.decodeInputOrOutputOrParameter(output));
 
       return outputList;
     }
   }
-  
+
   public decodeParameterList(elem: Element): ParameterList {
     let parameterListElem = this.utils.getElement(elem, 'ParameterList', Namespaces.SML);
     if (parameterListElem != null) {
       let parameterList = new ParameterList();
       this.sweDecoder.decodeAbstractSwe(parameterListElem, parameterList);
-      
-      parameterList.parameters = this.utils.getDecodedList(parameterListElem, 'parameter', Namespaces.SML, (param) => this.decodeInputOrOutputOrParameter(param));
-      
+
+      parameterList.parameters = this.utils.getDecodedList(
+        parameterListElem,
+        'parameter',
+        Namespaces.SML,
+        (param) => this.decodeInputOrOutputOrParameter(param));
+
       return parameterList;
     }
   }
@@ -455,7 +543,11 @@ export class SensorMLDecoder {
 
       this.decodeAbstractNamedMetadataList(elem, characteristicList);
 
-      characteristicList.characteristics = this.utils.getDecodedList(characteristicListElem, 'characteristic', Namespaces.SML, (char) => this.decodeNamedSweDataComponent(char));
+      characteristicList.characteristics = this.utils.getDecodedList(
+        characteristicListElem,
+        'characteristic',
+        Namespaces.SML,
+        (char) => this.decodeNamedSweDataComponent(char));
 
       return characteristicList;
     }
@@ -468,7 +560,11 @@ export class SensorMLDecoder {
 
       this.decodeAbstractNamedMetadataList(elem, capabilitiesList);
 
-      capabilitiesList.capabilities = this.utils.getDecodedList(capabilitiesListElem, 'capability', Namespaces.SML, (char) => this.decodeNamedSweDataComponent(char));
+      capabilitiesList.capabilities = this.utils.getDecodedList(
+        capabilitiesListElem,
+        'capability',
+        Namespaces.SML,
+        (char) => this.decodeNamedSweDataComponent(char));
 
       return capabilitiesList;
     }
@@ -496,9 +592,18 @@ export class SensorMLDecoder {
       let keywordList = new KeywordList();
       this.decodeAbstractMetadataList(keywordListElem, keywordList);
 
-      keywordList.codeSpace = this.utils.getAttributeOfElement(keywordListElem, 'codeSpace', Namespaces.SML, 'href', Namespaces.XLINK);
+      keywordList.codeSpace = this.utils.getAttributeOfElement(
+        keywordListElem,
+        'codeSpace',
+        Namespaces.SML,
+        'href',
+        Namespaces.XLINK);
 
-      this.utils.getDecodedList(keywordListElem, 'keyword', Namespaces.SML, (keywords) => keywordList.keywords.push(keywords.textContent));
+      this.utils.getDecodedList(
+        keywordListElem,
+        'keyword',
+        Namespaces.SML,
+        (keywords) => keywordList.keywords.push(keywords.textContent));
       return keywordList;
     }
   }
@@ -508,7 +613,11 @@ export class SensorMLDecoder {
     if (identifierListElem != null) {
       let identifierList = new IdentifierList();
       this.decodeAbstractMetadataList(identifierListElem, identifierList);
-      identifierList.identifiers = this.utils.getDecodedList(identifierListElem, 'identifier', Namespaces.SML, (identifier) => this.decodeTerm(identifier));
+      identifierList.identifiers = this.utils.getDecodedList(
+        identifierListElem,
+        'identifier',
+        Namespaces.SML,
+        (identifier) => this.decodeTerm(identifier));
       return identifierList;
     }
   }
@@ -518,7 +627,11 @@ export class SensorMLDecoder {
     if (classifierListElem != null) {
       let classifierList = new ClassifierList();
       this.decodeAbstractMetadataList(classifierListElem, classifierList);
-      classifierList.classifiers = this.utils.getDecodedList(classifierListElem, 'classifier', Namespaces.SML, (classifier) => this.decodeTerm(classifier));
+      classifierList.classifiers = this.utils.getDecodedList(
+        classifierListElem,
+        'classifier',
+        Namespaces.SML,
+        (classifier) => this.decodeTerm(classifier));
       return classifierList;
     }
   }
@@ -528,7 +641,11 @@ export class SensorMLDecoder {
     if (eventListElem != null) {
       let eventList = new EventList();
       this.decodeAbstractMetadataList(eventListElem, eventList);
-      eventList.events = this.utils.getDecodedList(eventListElem, 'event', Namespaces.SML, (event) => this.decodeEvent(event));
+      eventList.events = this.utils.getDecodedList(
+        eventListElem,
+        'event',
+        Namespaces.SML,
+        (event) => this.decodeEvent(event));
       return eventList;
     }
   }
@@ -538,7 +655,11 @@ export class SensorMLDecoder {
     if (documentListElem != null) {
       let documentList = new DocumentList();
       this.decodeAbstractMetadataList(documentListElem, documentList);
-      documentList.documents = this.utils.getDecodedList(documentListElem, 'document', Namespaces.SML, (doc) => this.isoDecoder.decodeOnlineResource(doc));
+      documentList.documents = this.utils.getDecodedList(
+        documentListElem,
+        'document',
+        Namespaces.SML,
+        (doc) => this.isoDecoder.decodeOnlineResource(doc));
       return documentList;
     }
   }
@@ -549,17 +670,21 @@ export class SensorMLDecoder {
       object.method = this.decodeProcessMethod(methodElem);
     }
   }
-  
+
   public decodeProcessMethod(elem: Element): ProcessMethod {
     let processMethodElem = this.utils.getElement(elem, 'ProcessMethod', Namespaces.SML);
     if (processMethodElem != null) {
       let processMethod = new ProcessMethod();
       this.sweDecoder.decodeAbstractSweIdentifiable(processMethodElem, processMethod);
-      processMethod.algorithm = this.utils.getDecodedList(processMethodElem, 'algorithm', Namespaces.SML, (algorithm) => this.decodeAlgorithm(algorithm));
+      processMethod.algorithm = this.utils.getDecodedList(
+        processMethodElem,
+        'algorithm',
+        Namespaces.SML,
+        (algorithm) => this.decodeAlgorithm(algorithm));
       return processMethod;
     }
   }
-  
+
   public decodeAlgorithm(elem: Element): AbstractAlgorithm {
     // TODO implement algorithm
     throw new Error('not yet implemented');
@@ -585,15 +710,34 @@ export class SensorMLDecoder {
 
       this.sweDecoder.decodeAbstractSweIdentifiable(eventElem, event);
 
-      event.identification = this.utils.getDecodedList(eventElem, 'identification', Namespaces.SML, (identifier) => this.decodeIdentifierList(identifier));
+      event.identification = this.utils.getDecodedList(
+        eventElem,
+        'identification',
+        Namespaces.SML,
+        (identifier) => this.decodeIdentifierList(identifier));
 
-      event.classification = this.utils.getDecodedList(eventElem, 'classification', Namespaces.SML, (classification) => this.decodeClassifierList(classification));
+      event.classification = this.utils.getDecodedList(eventElem,
+        'classification',
+        Namespaces.SML,
+        (classification) => this.decodeClassifierList(classification));
 
-      event.contacts = this.utils.getDecodedList(eventElem, 'contacts', Namespaces.SML, (contacts) => this.decodeContactList(contacts));
+      event.contacts = this.utils.getDecodedList(
+        eventElem,
+        'contacts',
+        Namespaces.SML,
+        (contacts) => this.decodeContactList(contacts));
 
-      event.documentation = this.utils.getDecodedList(eventElem, 'documentation', Namespaces.SML, (documentation) => this.decodeDocumentList(documentation));
-      
-      event.keywords = this.utils.getDecodedList(eventElem, 'keywords', Namespaces.SML, (keyword) => this.decodeKeywordList(keyword));
+      event.documentation = this.utils.getDecodedList(
+        eventElem,
+        'documentation',
+        Namespaces.SML,
+        (documentation) => this.decodeDocumentList(documentation));
+
+      event.keywords = this.utils.getDecodedList(
+        eventElem,
+        'keywords',
+        Namespaces.SML,
+        (keyword) => this.decodeKeywordList(keyword));
 
       let timeElem = this.utils.getElement(eventElem, 'time', Namespaces.SML);
       if (timeElem != null) {
@@ -622,15 +766,35 @@ export class SensorMLDecoder {
 
       this.sweDecoder.decodeAbstractSwe(settingsElem, settings);
 
-      settings.setValue = this.utils.getDecodedList(settingsElem, 'setValue', Namespaces.SML, (val) => this.decodeSetValue(val));
+      settings.setValue = this.utils.getDecodedList(
+        settingsElem,
+        'setValue',
+        Namespaces.SML,
+        (val) => this.decodeSetValue(val));
 
-      settings.setArrayValue = this.utils.getDecodedList(settingsElem, 'setArrayValue', Namespaces.SML, (arr) => this.decodeSetArrayValue(arr));
+      settings.setArrayValue = this.utils.getDecodedList(
+        settingsElem,
+        'setArrayValue',
+        Namespaces.SML,
+        (arr) => this.decodeSetArrayValue(arr));
 
-      settings.setConstraint = this.utils.getDecodedList(settingsElem, 'setConstraint', Namespaces.SML, (constraint) => this.decodeSetConstraint(constraint));
+      settings.setConstraint = this.utils.getDecodedList(
+        settingsElem,
+        'setConstraint',
+        Namespaces.SML,
+        (constraint) => this.decodeSetConstraint(constraint));
 
-      settings.setMode = this.utils.getDecodedList(settingsElem, 'setMode', Namespaces.SML, (mode) => this.decodeSetMode(mode));
+      settings.setMode = this.utils.getDecodedList(
+        settingsElem,
+        'setMode',
+        Namespaces.SML,
+        (mode) => this.decodeSetMode(mode));
 
-      settings.setStatus = this.utils.getDecodedList(settingsElem, 'setStatus', Namespaces.SML, (status) => this.decodeSetStatus(status));
+      settings.setStatus = this.utils.getDecodedList(
+        settingsElem,
+        'setStatus',
+        Namespaces.SML,
+        (status) => this.decodeSetStatus(status));
 
       return settings;
     }
@@ -737,7 +901,12 @@ export class SensorMLDecoder {
         term.value = value.textContent;
       }
 
-      term.codeSpace = this.utils.getAttributeOfElement(termElem, 'codeSpace', Namespaces.SML, 'href', Namespaces.XLINK);
+      term.codeSpace = this.utils.getAttributeOfElement(
+        termElem,
+        'codeSpace',
+        Namespaces.SML,
+        'href',
+        Namespaces.XLINK);
 
       return term;
     }

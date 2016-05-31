@@ -16,8 +16,8 @@ export abstract class AbstractSimpleComponent extends AbstractDataComponent {
    * URI should also be specified unless it is inherited from parent Vector
    */
   axisId: string;
-  quality: SweQuality[];
+  quality: SweQuality[] = [];
   value: any;
   constraint: AbstractAllowedValues;
-  nilValues: SweNilValue[];
+  nilValues: SweNilValue[] = [];
 }
