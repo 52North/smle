@@ -351,8 +351,7 @@ export class SweEncoder {
         node.appendChild(itemNode);
       });
     }
-
-    throw new Error('not yet supported');
+    return node;
   }
 
   public encodeQuantityRange(component: SweQuantityRange, document: Document): Node {
@@ -419,7 +418,7 @@ export class SweEncoder {
         }
       });
 
-      document.textContent = `${value[0]} ${value[1]}`;
+      valueNode.textContent = `${value[0]} ${value[1]}`;
 
       node.appendChild(valueNode);
     }
@@ -717,7 +716,7 @@ export class SweEncoder {
         }
         if (value) {
           let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-          valueNode.textContent = allowedTime.toString();
+          valueNode.textContent = value;
           node.appendChild(valueNode);
         }
       });
@@ -732,7 +731,7 @@ export class SweEncoder {
             }
           });
           let intervalNode = document.createElementNS(Namespaces.SWE, 'swe:interval');
-          intervalNode.textContent = `${value[0]} ${value[1]} `;
+          intervalNode.textContent = `${value[0]} ${value[1]}`;
           node.appendChild(intervalNode);
         }
       });
