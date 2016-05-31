@@ -68,11 +68,11 @@ export class SweDecoder {
     let timeRange = this.decodeTimeRange(elem);
     if (timeRange != null) return timeRange;
 
-    //    let countRange = this.decodeCountRange(elem);
-    //    if (countRange != null) return countRange;
-    //
-    //    let categoryRange = this.decodeCategoryRange(elem);
-    //    if (categoryRange != null) return categoryRange;
+    let countRange = this.decodeCountRange(elem);
+    if (countRange != null) return countRange;
+
+    let categoryRange = this.decodeCategoryRange(elem);
+    if (categoryRange != null) return categoryRange;
 
     let sweBoolean = this.decodeBoolean(elem);
     if (sweBoolean != null) return sweBoolean;
@@ -117,7 +117,11 @@ export class SweDecoder {
 
       this.decodeAbstractDataComponent(vectorNode, vector);
 
-      vector.coordinates = this.utils.getDecodedList(vectorNode, 'coordinate', Namespaces.SWE, (coord) => this.decodeCoordinate(coord));
+      vector.coordinates = this.utils.getDecodedList(
+        vectorNode,
+        'coordinate',
+        Namespaces.SWE,
+        (coord) => this.decodeCoordinate(coord));
 
       if (vectorNode.hasAttribute('referenceFrame')) {
         vector.referenceFrame = vectorNode.getAttribute('referenceFrame');
@@ -151,7 +155,11 @@ export class SweDecoder {
 
       this.decodeAbstractDataComponent(dataRecordElem, dataRecord);
 
-      dataRecord.fields = this.utils.getDecodedList(dataRecordElem, 'field', Namespaces.SWE, (field) => this.decodeField(field));
+      dataRecord.fields = this.utils.getDecodedList(
+        dataRecordElem,
+        'field',
+        Namespaces.SWE,
+        (field) => this.decodeField(field));
 
       return dataRecord;
     }
@@ -164,7 +172,11 @@ export class SweDecoder {
 
       this.decodeAbstractSweIdentifiable(dataStreamElem, dataStream);
 
-      dataStream.elementCount = this.utils.getDecodedList(dataStreamElem, 'elementCount', Namespaces.SWE, (elemCount) => this.decodeCount(elemCount));
+      dataStream.elementCount = this.utils.getDecodedList(
+        dataStreamElem,
+        'elementCount',
+        Namespaces.SWE,
+        (elemCount) => this.decodeCount(elemCount));
 
       dataStream.elementType = this.decodeElementType(dataStreamElem);
 
@@ -383,9 +395,17 @@ export class SweDecoder {
 
       this.decodeAbstractDataComponent(dataChoiceElem, dataChoice);
 
-      dataChoice.choiceValue = this.utils.getDecodedList(dataChoiceElem, 'choiceValue', Namespaces.SWE, (value) => this.decodeCategory(value));
+      dataChoice.choiceValue = this.utils.getDecodedList(
+        dataChoiceElem,
+        'choiceValue',
+        Namespaces.SWE,
+        (value) => this.decodeCategory(value));
 
-      dataChoice.items = this.utils.getDecodedList(dataChoiceElem, 'item', Namespaces.SWE, (item) => this.decodeDataChoiceItem(item));
+      dataChoice.items = this.utils.getDecodedList(
+        dataChoiceElem,
+        'item',
+        Namespaces.SWE,
+        (item) => this.decodeDataChoiceItem(item));
 
       return dataChoice;
     }
@@ -436,7 +456,7 @@ export class SweDecoder {
       let valueElem = this.utils.getElement(quantityRangeElem, 'value', Namespaces.SWE);
       if (valueElem != null) {
         let values = valueElem.textContent.split(' ');
-        if (values.length == 2 && !isNaN(+values[0]) && !isNaN(+values[1])) {
+        if (values.length === 2 && !isNaN(+values[0]) && !isNaN(+values[1])) {
           quantityRange.value = [+values[0], +values[1]];
         }
       }
@@ -457,7 +477,7 @@ export class SweDecoder {
       let valueElem = this.utils.getElement(timeRangeElem, 'value', Namespaces.SWE);
       if (valueElem != null) {
         let values = valueElem.textContent.split(' ');
-        if (values.length == 2) {
+        if (values.length === 2) {
           let start, end;
           if (!isNaN(Date.parse(values[0]))) {
             start = new Date(Date.parse(values[0]));
@@ -493,26 +513,30 @@ export class SweDecoder {
     }
   }
 
-  //  public decodeCountRange(component: SweCountRange, document: Document): Node {
-  //    let node = document.createElementNS(Namespaces.SWE, 'swe:CountRange');
-  //
-  //    this.encodeAbstractSimpleComponent(node, component, document);
-  //
-  //    if (component.constraint) {
-  //      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
-  //      constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
-  //      node.appendChild(constraintNode);
-  //    }
-  //
-  //    if (component.value != null) {
-  //      let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-  //      valueNode.textContent = `${component.value[0].toString()} ${component.value[1].toString()}`;
-  //      node.appendChild(valueNode);
-  //    }
-  //
-  //    return node;
-  //  }
-  //
+  public decodeCountRange(elem: Element): SweCountRange {
+    let countRangeElem = this.utils.getElement(elem, 'CountRange', Namespaces.SWE);
+    if (countRangeElem != null) {
+      let countRange = new SweCountRange();
+
+      this.decodeAbstractSimpleComponent(countRangeElem, countRange);
+
+      let constraint = this.utils.getElement(countRangeElem, 'constraint', Namespaces.SWE);
+      if (constraint != null) {
+        countRange.constraint = this.decodeAllowedValues(constraint);
+      }
+
+      let valueElem = this.utils.getElement(countRangeElem, 'value', Namespaces.SWE);
+      if (valueElem != null) {
+        let values = valueElem.textContent.split(' ');
+        if (values.length === 2 && !isNaN(+values[0]) && !isNaN(+values[1])) {
+          countRange.value = [+values[0], +values[1]];
+        }
+      }
+
+      return countRange;
+    }
+  }
+
   public decodeConstraint(elem: Element): AllowedTimes | AllowedTokens | AllowedValues {
     let allowedTimes = this.decodeAllowedTimes(elem);
     if (allowedTimes != null) return allowedTimes;
@@ -525,32 +549,37 @@ export class SweDecoder {
 
     throw new Error('Unsupported constraint type');
   }
-  //
-  //  public decodeCategoryRange(component: SweCategoryRange, document: Document): Node {
-  //
-  //    let node = document.createElementNS(Namespaces.SWE, 'swe:CategoryRange');
-  //
-  //    if (component.codeSpace) {
-  //      let codeSpaceNode = document.createElementNS(Namespaces.SWE, 'swe:codeSpace');
-  //      codeSpaceNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.codeSpace);
-  //      node.appendChild(codeSpaceNode);
-  //    }
-  //
-  //    if (component.constraint) {
-  //      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
-  //      constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
-  //      node.appendChild(constraintNode);
-  //    }
-  //
-  //    if (component.value) {
-  //      let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-  //      //let value = component.value.map(x => x.replace(' ', '&#032;'));
-  //      valueNode.textContent = `${component.value[0]} ${component.value[1]}`;
-  //      node.appendChild(valueNode);
-  //    }
-  //
-  //    return node;
-  //  }
+
+  public decodeCategoryRange(elem: Element): SweCategoryRange {
+    let categoryRangeElem = this.utils.getElement(elem, 'CategoryRange', Namespaces.SWE);
+    if (categoryRangeElem != null) {
+      let categoryRange = new SweCategoryRange();
+
+      this.decodeAbstractSimpleComponent(categoryRangeElem, categoryRange);
+
+      categoryRange.codeSpace = this.utils.getAttributeOfElement(
+        categoryRangeElem,
+        'codeSpace',
+        Namespaces.SWE,
+        'href',
+        Namespaces.XLINK);
+
+      let constraintElem = this.utils.getElement(categoryRangeElem, 'constraint', Namespaces.SWE);
+      if (constraintElem != null) {
+        categoryRange.constraint = this.decodeAllowedTokens(constraintElem);
+      }
+
+      let valueElem = this.utils.getElement(categoryRangeElem, 'value', Namespaces.SWE);
+      if (valueElem != null) {
+        let values = valueElem.textContent.split(' ');
+        if (values.length === 2) {
+          categoryRange.value = [values[0], values[1]];
+        }
+      }
+
+      return categoryRange;
+    }
+  }
 
   public decodeBoolean(elem: Element): SweBoolean {
     let boolElem = this.utils.getElement(elem, 'Boolean', Namespaces.SWE);
@@ -653,7 +682,12 @@ export class SweDecoder {
 
       this.decodeAbstractSimpleComponent(catElem, category);
 
-      category.codeSpace = this.utils.getAttributeOfElement(catElem, 'codeSpace', Namespaces.SWE, 'href', Namespaces.XLINK);
+      category.codeSpace = this.utils.getAttributeOfElement(
+        catElem,
+        'codeSpace',
+        Namespaces.SWE,
+        'href',
+        Namespaces.XLINK);
 
       let constraint = this.utils.getElement(catElem, 'constraint', Namespaces.SWE);
       if (constraint != null) {
@@ -696,7 +730,11 @@ export class SweDecoder {
 
       this.decodeAbstractSwe(allowedTokensElem, allowedTokens);
 
-      this.utils.getDecodedList(allowedTokensElem, 'value', Namespaces.SWE, (v) => allowedTokens.values.push(v.textContent));
+      this.utils.getDecodedList(
+        allowedTokensElem,
+        'value',
+        Namespaces.SWE,
+        (v) => allowedTokens.values.push(v.textContent));
 
       let pattern = this.utils.getElement(allowedTokensElem, 'pattern', Namespaces.SWE);
       if (pattern != null) {
@@ -718,22 +756,17 @@ export class SweDecoder {
       if (significantFigures != null && !isNaN(+significantFigures.textContent)) {
         allowedValues.significantFigures = +significantFigures.textContent;
       }
-
-      this.utils.getDecodedList(allowedValuesElem, 'value', Namespaces.SWE, (v) => function(v: Element) {
+      this.utils.getDecodedList(allowedValuesElem, 'value', Namespaces.SWE, (v) => {
         if (v.textContent != null && !isNaN(+v.textContent)) {
           allowedValues.values.push(+v.textContent);
         }
       });
 
-      this.utils.getDecodedList(allowedValuesElem, 'interval', Namespaces.SWE, (v) => function(v: Element) {
+      this.utils.getDecodedList(allowedValuesElem, 'interval', Namespaces.SWE, (v) => {
         if (v.textContent != null) {
           let interval = v.textContent.split(' ');
-          if (interval.length >= 1) {
-            interval.forEach(entry => {
-              if (!isNaN(+entry)) {
-                allowedValues.values.push(+entry);
-              }
-            })
+          if (interval.length === 2 && !isNaN(+interval[0]) && !isNaN(+interval[1])) {
+            allowedValues.values.push([+interval[0], +interval[1]]);
           }
         }
       });
@@ -757,46 +790,43 @@ export class SweDecoder {
           return new Date(Date.parse(elem.textContent));
         }
       });
-      
+
       this.utils.getDecodedList(allowedTimesElem, 'interval', Namespaces.SWE, (elem) => {
         let interval = elem.textContent.split(' ');
-        console.log("Interval: " + interval);
-        if (interval.length == 2 && !isNaN(Date.parse(interval[0])) && !isNaN(Date.parse(interval[1]))) {
+        if (interval.length === 2 && !isNaN(Date.parse(interval[0])) && !isNaN(Date.parse(interval[1]))) {
           allowedTimes.values.push([new Date(Date.parse(interval[0])), new Date(Date.parse(interval[1]))]);
         }
-      })
-      
+      });
+
       return allowedTimes;
     }
   }
-  //
-  //  public decodeNilValue(nilValue: SweNilValue, document: Document): Node {
-  //    let nilValueNode = document.createElementNS(Namespaces.SWE, 'swe:nilValue');
-  //    if (nilValue.value) {
-  //      nilValueNode.textContent = nilValue.value;
-  //    }
-  //    if (nilValue.reason) {
-  //      nilValueNode.setAttribute('reason', nilValue.reason);
-  //    }
-  //    return nilValueNode;
-  //  }
-  //
-  //  public decodeQuality(quality: SweQuality, document: Document): Node {
-  //    let qualityNode = document.createElementNS(Namespaces.SML, 'swe:quality');
-  //    if (quality instanceof SweQuantity) {
-  //      qualityNode.appendChild(this.encodeQuantity(quality, document));
-  //    } else if (quality instanceof SweQuantityRange) {
-  //      qualityNode.appendChild(this.encodeQuantityRange(quality, document));
-  //    } else if (quality instanceof SweCategory) {
-  //      qualityNode.appendChild(this.encodeCategory(quality, document));
-  //    } else if (quality instanceof SweText) {
-  //      qualityNode.appendChild(this.encodeText(quality, document));
-  //    } else {
-  //      throw new Error('Unkown quality type');
-  //    }
-  //    return qualityNode;
-  //  }
 
+  public decodeNilValue(elem: Element): SweNilValue {
+    let nilValue = new SweNilValue();
+
+    if (elem.hasAttribute('reason')) {
+      nilValue.reason = elem.getAttribute('reason');
+    }
+
+    nilValue.value = elem.textContent;
+
+    return nilValue;
+  }
+
+  public decodeQuality(elem: Element): SweQuality {
+    let quantity = this.decodeQuantity(elem);
+    if (quantity != null) return quantity;
+
+    let quantityRange = this.decodeQuantityRange(elem);
+    if (quantityRange != null) return quantityRange;
+
+    let category = this.decodeCategory(elem);
+    if (category != null) return category;
+
+    let text = this.decodeText(elem);
+    if (text != null) return text;
+  }
 
   public decodeAbstractSwe(elem: Element, component: AbstractSWE): void {
     if (elem.hasAttribute('id')) {
@@ -841,16 +871,23 @@ export class SweDecoder {
 
     this.decodeAbstractDataComponent(elem, component);
 
-    //    if (component.quality) {
-    //      component.quality.forEach(quality => node.appendChild(this.encodeQuality(quality, document)));
-    //    }
-    //
-    //    if (component.nilValues && component.nilValues.length > 0) {
-    //      let outerNilValuesNode = document.createElementNS(Namespaces.SWE, 'swe:nilValues');
-    //      let innerNilValuesNode = document.createElementNS(Namespaces.SWE, 'swe:NilValues');
-    //      outerNilValuesNode.appendChild(innerNilValuesNode);
-    //      component.nilValues.forEach(nilValue => innerNilValuesNode.appendChild(this.encodeNilValue(nilValue, document)));
-    //    }
+    component.quality = this.utils.getDecodedList(
+      elem,
+      'quality',
+      Namespaces.SWE,
+      (quality) => this.decodeQuality(quality));
+
+    let outerNilValuesElem = this.utils.getElement(elem, 'nilValues', Namespaces.SWE);
+    if (outerNilValuesElem != null) {
+      let innerNilValuesElem = this.utils.getElement(outerNilValuesElem, 'NilValues', Namespaces.SWE);
+      if (innerNilValuesElem != null) {
+        component.nilValues = this.utils.getDecodedList(
+          innerNilValuesElem,
+          'nilValue',
+          Namespaces.SWE,
+          (nilValue) => this.decodeNilValue(nilValue));
+      }
+    }
 
     if (elem.hasAttribute('referenceFrame')) {
       component.referenceFrame = elem.getAttribute('referenceFrame');
