@@ -1,14 +1,10 @@
-const physicalComponentInstance =
-  require('../../../examples/physicalComponentInstance.xml');
-const physicalComponentType =
-  require('../../../examples/physicalComponentType.xml');
-const physicalSystemInstance =
-  require('../../../examples/physicalSystemInstance.xml');
-const physicalSystemType =
-  require('../../../examples/physicalSystemType.xml');
+const physicalComponentInstance = require('../../examples/physicalComponentInstance.xml');
+const physicalComponentType = require('../../examples/physicalComponentType.xml');
+const physicalSystemInstance = require('../../examples/physicalSystemInstance.xml');
+const physicalSystemType = require('../../examples/physicalSystemType.xml');
+const allinone = require('../../examples/lisaInstance.xml');
 
-import { SensorMLNamespaceResolver } from './xml/SensorMLNamespaceResolver';
-import { PhysicalSystem } from '../model/sml/PhysicalSystem';
+import { PhysicalSystem } from '../model/sml';
 import { SensorMLXmlService } from './SensorMLXmlService';
 import { XPathDocument } from './xml/XPathDocument';
 
@@ -16,27 +12,48 @@ describe('SensorMLXmlService', () => {
 
   let service = new SensorMLXmlService();
 
-  /*
   it('should parse the physicalComponentInstance', () => {
-    expect(physicalComponentInstance).not.toBeNull();
-    expect(service.deserialize(physicalComponentInstance)).not.toBeNull();
+    let xml = physicalComponentInstance;
+    let description = service.deserialize(xml);
+    //    let xmlSerialized = service.serialize(description);
+    //    let descriptionDeserialized = service.deserialize(xmlSerialized);
+    //    expect(description).toEqual(descriptionDeserialized);
   });
 
   it('should parse the physicalComponentType', () => {
-    expect(physicalComponentType).not.toBeNull();
-    expect(service.deserialize(physicalComponentType)).not.toBeNull();
+    let xml = physicalComponentType;
+    let description = service.deserialize(xml);
+    //    let xmlSerialized = service.serialize(description);
+    //    let descriptionDeserialized = service.deserialize(xmlSerialized);
+    //    console.log(JSON.stringify(description.contacts, null, 2));
+    //    console.log(JSON.stringify(descriptionDeserialized.contacts, null, 2));
+    //    expect(description.contacts).toEqual(descriptionDeserialized.contacts);
   });
 
   it('should parse the physicalSystemInstance', () => {
-    expect(physicalSystemInstance).not.toBeNull();
-    expect(service.deserialize(physicalSystemInstance)).not.toBeNull();
+    let xml = physicalSystemInstance;
+    let description = service.deserialize(xml);
+    //    let xmlSerialized = service.serialize(description);
+    //    let descriptionDeserialized = service.deserialize(xmlSerialized);
+    //    expect(description).toEqual(descriptionDeserialized);
   });
 
   it('should parse the physicalSystemType', () => {
-    expect(physicalSystemType).not.toBeNull();
-    expect(service.deserialize(physicalSystemType)).not.toBeNull();
+    let xml = physicalSystemType;
+    let description = service.deserialize(xml);
+    //    let xmlSerialized = service.serialize(description);
+    //    let descriptionDeserialized = service.deserialize(xmlSerialized);
+    //    expect(description).toEqual(descriptionDeserialized);
   });
-  */
+
+  it('should parse the allInOn', () => {
+    let xml = allinone;
+    let description = service.deserialize(xml);
+    console.log(JSON.stringify(description.parameters.parameters[0], null, 2));
+    //    let xmlSerialized = service.serialize(description);
+    //    let descriptionDeserialized = service.deserialize(xmlSerialized);
+    //    expect(description).toEqual(descriptionDeserialized);
+  });
 
   it('should serialize the document', () => {
     let ps = new PhysicalSystem();
@@ -44,4 +61,4 @@ describe('SensorMLXmlService', () => {
     expect(doc.eval('/sml:PhysicalSystem')).not.toBeNull();
   });
 
-});
+})
