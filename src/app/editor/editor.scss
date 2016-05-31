@@ -4,13 +4,32 @@ pre {
   height: auto;
   top: 55px;
   bottom: -15px;
-  left: -400px;
-  transition: left 200ms ease 200ms;
+  right: -435px;
+  transition: right 200ms ease 200ms;
   z-index: 1;
   border: 1px solid black;
   background-color: white;
 
   &:hover {
-    left: 0;
+    right: 0;
   }
+}
+
+.row {
+  height: 100%;
+
+  .components-container {
+    height: 100%;
+    padding-bottom: 15px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: auto;
+    white-space: nowrap;
+  }
+}
+
+:host {
+  height: 100%;
+  width: 100%;
+  display: block;
 }

@@ -1,5 +1,20 @@
 :host {
-  display: block;
-  float: left;
-  width: 500px;
+  display: inline-block;
+  height: 100%;
+  width: 400px;
+  margin: 0 10px;
+  vertical-align: top;
+}
+
+.card {
+  height: 100%;
+
+  .card-block {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 63px;
+    overflow-y: auto;
+  }
 }

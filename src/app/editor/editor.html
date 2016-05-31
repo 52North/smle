@@ -1,9 +1,9 @@
 <pre *ngIf="description">{{description | toSensorml}}</pre>
 <div class="row">
-    <div class="col-md-12" *ngIf="description">
+    <div class="col-md-12 components-container" *ngIf="description">
         <sml-contacts [model]="description.contacts"></sml-contacts>
     </div>
-    <div class="col-md-12" *ngIf="description">
-        <a class="btn btn-primary" (click)="saveDescription()">Save</a>
-    </div>
+    <!--<div class="col-md-12" *ngIf="description">-->
+        <!--<a class="btn btn-primary" (click)="saveDescription()">Save</a>-->
+    <!--</div>-->
 </div>

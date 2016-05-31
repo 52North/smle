@@ -4,13 +4,11 @@
         <ul class="list-group list-group-flush">
             <li *ngFor="let item of model; let i = index" class="list-group-item">
                 <a class="btn btn-link" (click)="openNewContactListItem(item)">Contact List {{i}}</a>
-                <a class="btn btn-link" (click)="onRemove(i)"> <i class="fa fa-remove"></i> Remove</a>
+                <a class="btn btn-link" (click)="onRemove(i)"><i class="fa fa-remove"></i> Remove</a>
+            </li>
+            <li class="list-group-item">
+                <a (click)="onAdd()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
             </li>
         </ul>
-    </div>
-    <div class="card-footer">
-        <button type="button" class="btn btn-link" (click)="onAdd()">
-            <i class="fa fa-fw fa-plus"></i> Add
-        </button>
     </div>
 </div>
