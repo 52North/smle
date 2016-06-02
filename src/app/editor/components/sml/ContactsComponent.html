@@ -1,5 +1,5 @@
 <div class="card">
-    <card-header title="Contacts" (reset)="onReset()" (close)="close()"></card-header>
+    <card-header class="card-header clearfix" [verticalMode]="hasChild()" [title]="'Contacts'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
     <div class="card-block">
         <ul class="list-group list-group-flush">
             <li *ngFor="let item of model; let i = index" class="list-group-item">

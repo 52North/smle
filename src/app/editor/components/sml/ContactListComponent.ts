@@ -8,6 +8,7 @@ import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
 @Component({
     selector: 'sml-contact-list',
     template: require('./ContactListComponent.html'),
+    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
     directives: [CardHeaderComponent, ResponsiblePartyComponent]
 })

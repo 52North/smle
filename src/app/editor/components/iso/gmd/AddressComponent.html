@@ -1,5 +1,5 @@
 <div class="card">
-    <card-header title="Address" (reset)="onReset()" (close)="close()"></card-header>
+    <card-header class="card-header clearfix" [verticalMode]="hasChild()" [title]="'Address'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
     <div class="card-block">
         <form>
             <div class="form-group">

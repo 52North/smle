@@ -1,6 +1,6 @@
 <pre *ngIf="description">{{description | toSensorml}}</pre>
 <div class="row">
-    <div class="col-md-12 components-container" *ngIf="description">
+    <div class="col-sm-12 components-container" *ngIf="description">
         <sml-contacts [model]="description.contacts"></sml-contacts>
     </div>
     <!--<div class="col-md-12" *ngIf="description">-->

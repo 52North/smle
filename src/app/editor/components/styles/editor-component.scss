@@ -1,13 +1,18 @@
 :host {
   display: inline-block;
   height: 100%;
-  width: 400px;
-  margin: 0 10px;
+  width: 500px;
+  margin: 0 10px 0 0;
   vertical-align: top;
+
+  &.has-child {
+    margin-right: -450px;
+  }
 }
 
 .card {
   height: 100%;
+  z-index: 0;
 
   .card-block {
     position: absolute;
@@ -16,5 +21,16 @@
     bottom: 0;
     top: 63px;
     overflow-y: auto;
+  }
+
+  .card-header.vertical {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    box-sizing: border-box;
+    z-index: 10;
+    border-bottom: none;
   }
 }

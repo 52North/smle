@@ -11,6 +11,7 @@ class AddressList {
 @Component({
     selector: 'iso-address-list',
     template: require('./AddressListComponent.html'),
+    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [AddressComponent]
 })
