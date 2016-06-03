@@ -1,36 +1,14 @@
 <div class="card">
-  <card-header title="Contacts" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
-
-  <div [hidden]="collapsed">
-
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let item of model; let i = index" class="list-group-item">
-          <div>
-            <sml-contact-list [model]="item"></sml-contact-list>
-            <button type="button" class="btn btn-link" (click)="onRemove(i)">
-              <i class="fa fa-remove"></i> Remove Contact
-            </button>
-          </div>
-        </li>
-      </ul>
-      <div class="card-footer">
-        <button type="button" class="btn btn-link" (click)="onAdd()">
-          <i class="fa fa-fw fa-plus"></i> Add Contact
-        </button>
-      </div>
-
-      <dl class="dl-horizontal" [hidden]="editing">
-        <dt class="col-sm-3 text-truncate">Phone</dt>
-        <dd class="col-sm-9">{{ model.phone }}</dd>
-        <dt class="col-sm-3 text-truncate">Address</dt>
-        <dd class="col-sm-9">{{ model.address }}</dd>
-        <dt class="col-sm-3 text-truncate">Online Resource</dt>
-        <dd class="col-sm-9">{{ model.onlineResource }}</dd>
-        <dt class="col-sm-3 text-truncate">Contact Instructions</dt>
-        <dd class="col-sm-9">{{ model.contactInstructions }}</dd>
-        <dt class="col-sm-3 text-truncate">Hours Of Service</dt>
-        <dd class="col-sm-9">{{ model.hoursOfService }}</dd>
-      </dl>
-
-  </div>
+    <card-header class="card-header clearfix" [verticalMode]="hasChild()" [title]="'Contacts'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
+    <div class="card-block">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let item of model; let i = index" class="list-group-item">
+                <a class="btn btn-link" (click)="openNewContactListItem(item)">Contact List {{i}}</a>
+                <a class="btn btn-link" (click)="onRemove(i)"><i class="fa fa-remove"></i> Remove</a>
+            </li>
+            <li class="list-group-item">
+                <a (click)="onAdd()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
+            </li>
+        </ul>
+    </div>
 </div>

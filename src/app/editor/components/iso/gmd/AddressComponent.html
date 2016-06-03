@@ -1,58 +1,36 @@
 <div class="card">
-
-  <card-header title="Address" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
-
-  <div [hidden]="collapsed">
-
+    <card-header class="card-header clearfix" [verticalMode]="hasChild()" [title]="'Address'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
     <div class="card-block">
+        <form>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" class="form-control" [(ngModel)]="model.city">
+            </div>
 
-      <div [hidden]="!editing">
-        <div class="form-group">
-          <label for="city">City</label>
-          <input type="text" class="form-control" [(ngModel)]="model.city">
-        </div>
+            <div class="form-group">
+                <label for="postalCode">Postal Code</label>
+                <input type="text" class="form-control" [(ngModel)]="model.postalCode">
+            </div>
 
-        <div class="form-group">
-          <label for="postalCode">Postal Code</label>
-          <input type="text" class="form-control" [(ngModel)]="model.postalCode">
-        </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" class="form-control" [(ngModel)]="model.country">
+            </div>
 
-        <div class="form-group">
-          <label for="country">Country</label>
-          <input type="text" class="form-control" [(ngModel)]="model.country">
-        </div>
+            <div class="form-group">
+                <label for="administrativeArea">Administrative Area</label>
+                <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
+            </div>
 
-        <div class="form-group">
-          <label for="administrativeArea">Administrative Area</label>
-          <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
-        </div>
+            <div class="form-group">
+                <label for="deliveryPoint">Delivery Point</label>
+                <strings [list]="model.deliveryPoint"></strings>
+            </div>
 
-        <div class="form-group">
-          <label for="deliveryPoint">Delivery Point</label>
-          <strings [list]="model.deliveryPoint"></strings>
-        </div>
-
-        <div class="form-group">
-          <label for="electronicMailAddress">Electronic Mail Address</label>
-          <strings [list]="model.electronicMailAddress"></strings>
-        </div>
-      </div>
-
-      <dl class="dl-horizontal" [hidden]="editing">
-        <dt class="col-sm-3 text-truncate">City</dt>
-        <dd class="col-sm-9">{{ model.city }}</dd>
-        <dt class="col-sm-3 text-truncate">Postal Code</dt>
-        <dd class="col-sm-9">{{ model.postalCode }}</dd>
-        <dt class="col-sm-3 text-truncate">Country</dt>
-        <dd class="col-sm-9">{{ model.country }}</dd>
-        <dt class="col-sm-3 text-truncate">Administrative Area</dt>
-        <dd class="col-sm-9">{{ model.administrativeArea }}</dd>
-        <dt class="col-sm-3 text-truncate">Delivery Point</dt>
-        <dd class="col-sm-9">{{ model.deliveryPoint.join(', ') }}</dd>
-        <dt class="col-sm-3 text-truncate">Electronic Mail Address</dt>
-        <dd class="col-sm-9">{{ model.electronicMailAddress.join(', ') }}</dd>
-      </dl>
-
+            <div class="form-group">
+                <label for="electronicMailAddress">Electronic Mail Address</label>
+                <strings [list]="model.electronicMailAddress"></strings>
+            </div>
+        </form>
     </div>
-  </div>
 </div>

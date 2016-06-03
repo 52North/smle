@@ -1,20 +1,14 @@
 <div class="card">
-  <card-header title="Contact List" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
-  <div [hidden]="collapsed">
-    <ul class="list-group list-group-flush">
-      <li *ngFor="let item of model.contacts; let i = index" class="list-group-item">
-        <div>
-          <iso-responsible-party [model]="item"></iso-responsible-party>
-          <button type="button" class="btn btn-link" (click)="onRemove(i)">
-            <i class="fa fa-remove"></i> Remove Contact
-          </button>
-        </div>
-      </li>
-    </ul>
-    <div class="card-footer">
-      <button type="button" class="btn btn-link" (click)="onAdd()">
-        <i class="fa fa-fw fa-plus"></i> Add Contact
-      </button>
+    <card-header class="card-header clearfix" [verticalMode]="hasChild()" [title]="'Contact List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
+    <div class="card-block">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let item of model.contacts; let i = index" class="list-group-item">
+                <a class="btn btn-link" (click)="openNewResponsiblePartyItem(item)">Responsible Party {{i}}</a>
+                <a class="btn btn-link" (click)="onRemove(i)"> <i class="fa fa-remove"></i> Remove</a>
+            </li>
+            <li class="list-group-item">
+                <a (click)="onAdd()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
+            </li>
+        </ul>
     </div>
-  </div>
 </div>

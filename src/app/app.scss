@@ -1,4 +1,11 @@
-editor {
-  padding-top: 10px;
-  width: 100%;
+main {
+  top: 55px;
+  padding: {
+    top: 10px;
+    bottom: 10px;
+  }
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

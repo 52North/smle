@@ -1,13 +1,9 @@
-<div class="container">
-  <div class="row">
-    <pre *ngIf="description" style="max-height: 300px;">{{description | toSensorml}}</pre>
-    <div class="col-md-12">
-      <form *ngIf="description">
+<pre *ngIf="description">{{description | toSensorml}}</pre>
+<div class="row">
+    <div class="col-sm-12 components-container" *ngIf="description">
         <sml-contacts [model]="description.contacts"></sml-contacts>
-        <button type="button" class="btn btn-block btn-primary" (click)="saveDescription()">
-          Save
-        </button>
-      </form>
     </div>
-  </div>
+    <!--<div class="col-md-12" *ngIf="description">-->
+        <!--<a class="btn btn-primary" (click)="saveDescription()">Save</a>-->
+    <!--</div>-->
 </div>

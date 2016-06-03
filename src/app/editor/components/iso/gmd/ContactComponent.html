@@ -1,42 +1,24 @@
 <div class="card">
-  <card-header title="Contact" (reset)="onReset()" [(collapsed)]="collapsed" [(editing)]="editing"></card-header>
-
-  <div [hidden]="collapsed">
+    <card-header class="card-header clearfix" [verticalMode]="hasChild()" [title]="'Contact'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
     <div class="card-block">
-
-      <div [hidden]="!editing">
-        <div class="form-group">
-          <iso-phone [model]="model.phone"></iso-phone>
-        </div>
-        <div class="form-group">
-          <iso-address [model]="model.address"></iso-address>
-        </div>
-        <div class="form-group">
-          <iso-online-resource [model]="model.onlineResource"></iso-online-resource>
-        </div>
-        <div class="form-group">
-          <label for="model.contactInstructions">Contact Instructions</label>
-          <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
-        </div>
-        <div class="form-group">
-          <label for="model.hoursOfService">Hours Of Service</label>
-          <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
-        </div>
-      </div>
-
-      <dl class="dl-horizontal" [hidden]="editing">
-        <dt class="col-sm-3 text-truncate">Phone</dt>
-        <dd class="col-sm-9">{{ model.phone }}</dd>
-        <dt class="col-sm-3 text-truncate">Address</dt>
-        <dd class="col-sm-9">{{ model.address }}</dd>
-        <dt class="col-sm-3 text-truncate">Online Resource</dt>
-        <dd class="col-sm-9">{{ model.onlineResource }}</dd>
-        <dt class="col-sm-3 text-truncate">Contact Instructions</dt>
-        <dd class="col-sm-9">{{ model.contactInstructions }}</dd>
-        <dt class="col-sm-3 text-truncate">Hours Of Service</dt>
-        <dd class="col-sm-9">{{ model.hoursOfService }}</dd>
-      </dl>
-
+        <form>
+            <div class="form-group">
+                <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">Phone</a>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-link" (click)="openNewAddressItem(model.address)">Address</a>
+            </div>
+            <div class="form-group">
+                <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">Online Resource</a>
+            </div>
+            <div class="form-group">
+                <label for="model.contactInstructions">Contact Instructions</label>
+                <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
+            </div>
+            <div class="form-group">
+                <label for="model.hoursOfService">Hours Of Service</label>
+                <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
+            </div>
+        </form>
     </div>
-  </div>
 </div>
