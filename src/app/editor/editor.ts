@@ -18,15 +18,15 @@ import {SensorMLPipe} from './pipes/SensorMLPipe';
 export class Editor implements OnInit {
 
     @Input()
-    public description:AbstractProcess;
-    private id:string;
+    public description: AbstractProcess;
+    private id: string;
 
-    constructor(private service:DescriptionRepository,
-                routeParams:RouteParams) {
+    constructor(private service: DescriptionRepository,
+                routeParams: RouteParams) {
         this.id = routeParams.get('id');
     }
 
-    ngOnInit():void {
+    ngOnInit(): void {
         if (this.id === 'new') {
             this.description = new SimpleProcess();
         } else {
@@ -48,7 +48,7 @@ export class Editor implements OnInit {
         //    this.description.contacts.push(contactList);
     }
 
-    saveDescription():void {
+    saveDescription(): void {
         this.service.saveDescription(this.description);
     }
 

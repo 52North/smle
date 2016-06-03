@@ -10,11 +10,11 @@ import {CardHeaderComponent} from '../../CardHeaderComponent';
     directives: [CardHeaderComponent]
 })
 export class OnlineResourceComponent extends AbstractComponent<OnlineResource> {
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
-    protected createModel():OnlineResource {
+    protected createModel(): OnlineResource {
         return new OnlineResource();
     }
 }

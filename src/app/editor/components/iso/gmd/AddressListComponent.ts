@@ -4,8 +4,8 @@ import {AbstractComponent} from '../../AbstractComponent';
 import {AddressComponent} from './AddressComponent';
 
 class AddressList {
-    addresses:Address[] = [];
-    name:string;
+    addresses: Address[] = [];
+    name: string;
 }
 
 @Component({
@@ -16,7 +16,7 @@ class AddressList {
     directives: [AddressComponent]
 })
 export class AddressListComponent extends AbstractComponent<AddressList> {
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
@@ -24,7 +24,7 @@ export class AddressListComponent extends AbstractComponent<AddressList> {
         this.model.addresses.push(new Address());
     }
 
-    public onRemove(index:number):void {
+    public onRemove(index: number): void {
         this.closeChildWithModel(this.model.addresses[index]);
         this.model.addresses.splice(index, 1);
     }
@@ -33,11 +33,11 @@ export class AddressListComponent extends AbstractComponent<AddressList> {
         return new AddressList();
     }
 
-    protected createModelItem():Address {
+    protected createModelItem(): Address {
         return new Address();
     }
 
-    private openNewAddressItem(model:Address) {
+    private openNewAddressItem(model: Address) {
         this.openNewChild(AddressComponent, model);
     }
 }

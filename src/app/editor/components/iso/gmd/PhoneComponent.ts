@@ -12,11 +12,11 @@ import {StringsComponent} from '../../StringsComponent';
     directives: [CardHeaderComponent, StringsComponent]
 })
 export class PhoneComponent extends AbstractComponent<Phone> {
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
-    protected createModel():Phone {
+    protected createModel(): Phone {
         return new Phone();
     }
 }

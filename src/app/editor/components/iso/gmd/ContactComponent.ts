@@ -5,9 +5,9 @@ import {AddressComponent} from './AddressComponent';
 import {PhoneComponent} from './PhoneComponent';
 import {OnlineResourceComponent} from './OnlineResourceComponent';
 import {CardHeaderComponent} from '../../CardHeaderComponent';
-import {OnlineResource} from "../../../../model/iso/gmd/OnlineResource";
-import {Address} from "../../../../model/iso/gmd/Address";
-import {Phone} from "../../../../model/iso/gmd/Phone";
+import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
+import {Address} from '../../../../model/iso/gmd/Address';
+import {Phone} from '../../../../model/iso/gmd/Phone';
 
 @Component({
     selector: 'iso-contact',
@@ -17,23 +17,23 @@ import {Phone} from "../../../../model/iso/gmd/Phone";
     directives: [CardHeaderComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
 export class ContactComponent extends AbstractComponent<Contact> {
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
-    protected createModel():Contact {
+    protected createModel(): Contact {
         return new Contact();
     }
 
-    private openNewPhoneItem(model:Phone) {
+    private openNewPhoneItem(model: Phone) {
         this.openNewChild(PhoneComponent, model);
     }
 
-    private openNewAddressItem(model:Address) {
+    private openNewAddressItem(model: Address) {
         this.openNewChild(AddressComponent, model);
     }
 
-    private openNewOnlineResourceItem(model:OnlineResource) {
+    private openNewOnlineResourceItem(model: OnlineResource) {
         this.openNewChild(OnlineResourceComponent, model);
     }
 }

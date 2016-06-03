@@ -3,19 +3,19 @@ import {EditorComponent} from './EditorComponent';
 
 export abstract class AbstractComponent<T> extends EditorComponent {
     @Input()
-    public model:T;
+    public model: T;
 
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
-    public onReset():void {
+    public onReset(): void {
         this.closeChild();
         for (let prop in this.model) {
-            delete this.model[prop]
+            delete this.model[prop];
         }
         this.extendModel();
     }
 
-    protected abstract createModel():T;
+    protected abstract createModel(): T;
 }

@@ -4,24 +4,24 @@ import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
 export abstract class EditorComponent {
     public model;
 
-    private _hasChild:boolean = false;
-    private parentComponent:EditorComponent;
-    private childComponentRef:ComponentRef<EditorComponent>;
+    private _hasChild: boolean = false;
+    private parentComponent: EditorComponent;
+    private childComponentRef: ComponentRef<EditorComponent>;
 
-    constructor(private componentResolver:ComponentResolver, private viewContainerRef:ViewContainerRef) {
+    constructor(private componentResolver: ComponentResolver, private viewContainerRef: ViewContainerRef) {
     }
 
-    protected extendModel():void {
+    protected extendModel(): void {
         jQuery.extend(this.model, this.createModel());
     }
 
-    protected abstract createModel():any;
+    protected abstract createModel(): any;
 
-    protected hasChild() {
+    protected hasChild(): boolean {
         return this._hasChild;
     }
 
-    protected openNewChild(componentType:Type, model:any) {
+    protected openNewChild(componentType: Type, model: any) {
         if (this.childComponentRef &&
             this.childComponentRef.componentType === componentType &&
             this.childComponentRef.instance.model === model) {
@@ -32,7 +32,7 @@ export abstract class EditorComponent {
             this.childComponentRef.instance.close();
         }
 
-        this.componentResolver.resolveComponent(componentType).then((componentFactory)=> {
+        this.componentResolver.resolveComponent(componentType).then((componentFactory) => {
             this.childComponentRef = this.viewContainerRef.createComponent(componentFactory);
             this.childComponentRef.instance.model = model;
             this.childComponentRef.instance.parentComponent = this;
@@ -50,13 +50,13 @@ export abstract class EditorComponent {
         }
     }
 
-    protected closeChildWithModel(model:any) {
+    protected closeChildWithModel(model: any) {
         if (model === this.getActiveChildModel() && model) {
             this.closeChild();
         }
     }
 
-    private getActiveChildModel():any {
+    private getActiveChildModel(): any {
         return this.childComponentRef ? this.childComponentRef.instance.model : null;
     }
 

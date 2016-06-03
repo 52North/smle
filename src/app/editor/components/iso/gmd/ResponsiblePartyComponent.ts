@@ -13,11 +13,11 @@ import {ContactComponent} from './ContactComponent';
     directives: [CardHeaderComponent, ContactComponent]
 })
 export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty> {
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
-    protected createModel():ResponsibleParty {
+    protected createModel(): ResponsibleParty {
         return new ResponsibleParty();
     }
 
@@ -30,7 +30,7 @@ export class ResponsiblePartyComponent extends AbstractComponent<ResponsiblePart
         this.model.contactInfo = null;
     }
 
-    private openNewContactInfoItem(model:Contact) {
+    private openNewContactInfoItem(model: Contact) {
         this.openNewChild(ContactComponent, model);
     }
 }

@@ -6,21 +6,21 @@ import {Component, Input} from '@angular/core';
 })
 export class StringsComponent {
     @Input()
-    public list:string[];
-    public item:string;
+    public list: string[];
+    public item: string;
 
-    public remove(i:number):void {
+    public remove(i: number): void {
         this.list.splice(i, 1);
     }
 
-    public add():void {
+    public add(): void {
         if (this.item) {
             this.list.push(this.item);
         }
         this.clear();
     }
 
-    public clear():void {
+    public clear(): void {
         this.item = '';
     }
 }

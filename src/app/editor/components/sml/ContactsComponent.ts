@@ -12,7 +12,7 @@ import {ContactListComponent} from './ContactListComponent';
     directives: [CardHeaderComponent, ContactListComponent]
 })
 export class ContactsComponent extends AbstractArrayComponent<ContactList> {
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
@@ -24,7 +24,7 @@ export class ContactsComponent extends AbstractArrayComponent<ContactList> {
         return new ContactList();
     }
 
-    private openNewContactListItem(model:ContactList) {
+    private openNewContactListItem(model: ContactList) {
         this.openNewChild(ContactListComponent, model);
     }
 }

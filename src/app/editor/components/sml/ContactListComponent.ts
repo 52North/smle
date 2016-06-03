@@ -13,7 +13,7 @@ import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
     directives: [CardHeaderComponent, ResponsiblePartyComponent]
 })
 export class ContactListComponent extends AbstractComponent<ContactList> {
-    constructor(componentResolver:ComponentResolver, viewContainerRef:ViewContainerRef) {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
 
@@ -21,7 +21,7 @@ export class ContactListComponent extends AbstractComponent<ContactList> {
         return new ContactList();
     }
 
-    public onRemove(index:number):void {
+    public onRemove(index: number): void {
         this.closeChildWithModel(this.model.contacts[index]);
         this.model.contacts.splice(index, 1);
     }
@@ -30,7 +30,7 @@ export class ContactListComponent extends AbstractComponent<ContactList> {
         this.model.contacts.push(new ResponsibleParty());
     }
 
-    private openNewResponsiblePartyItem(model:ResponsibleParty) {
+    private openNewResponsiblePartyItem(model: ResponsibleParty) {
         this.openNewChild(ResponsiblePartyComponent, model);
     }
 }
