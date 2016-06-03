@@ -1,6 +1,6 @@
-import { SweDataComponent } from '../swe/SweDataComponent';
+import { AbstractDataComponent } from '../swe';
 
 export class NamedSweDataComponent {
   name: string;
-  component: SweDataComponent;
+  component: AbstractDataComponent;
 }

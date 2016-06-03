@@ -13,7 +13,7 @@ export class SweDataChoice extends AbstractDataComponent {
    * the actual choice made. Possible choices are listed in the Category
    * constraint section as an enumeration and should map to item names.
    */
-  choiceValue: SweCategory[];
+  choiceValue: SweCategory[] = [];
 
-  items: SweDataChoiceItem[];
+  items: SweDataChoiceItem[] = [];
 }

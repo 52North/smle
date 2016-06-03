@@ -106,7 +106,7 @@ export class SweEncoder {
 
   public encodeVector(component: SweVector, document: Document): Node {
 
-    let node = document.createElementNS(Namespaces.SWE, 'swe:DataRecord');
+    let node = document.createElementNS(Namespaces.SWE, 'swe:Vector');
 
     this.encodeAbstractDataComponent(node, component, document);
 
@@ -351,8 +351,7 @@ export class SweEncoder {
         node.appendChild(itemNode);
       });
     }
-
-    throw new Error('not yet supported');
+    return node;
   }
 
   public encodeQuantityRange(component: SweQuantityRange, document: Document): Node {
@@ -372,7 +371,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -403,7 +402,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTimes(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -419,7 +418,7 @@ export class SweEncoder {
         }
       });
 
-      document.textContent = `${value[0]} ${value[1]}`;
+      valueNode.textContent = `${value[0]} ${value[1]}`;
 
       node.appendChild(valueNode);
     }
@@ -441,7 +440,7 @@ export class SweEncoder {
     this.encodeAbstractSimpleComponent(node, component, document);
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -471,6 +470,8 @@ export class SweEncoder {
 
     let node = document.createElementNS(Namespaces.SWE, 'swe:CategoryRange');
 
+    this.encodeAbstractSimpleComponent(node, component, document);
+
     if (component.codeSpace) {
       let codeSpaceNode = document.createElementNS(Namespaces.SWE, 'swe:codeSpace');
       codeSpaceNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.codeSpace);
@@ -478,7 +479,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -513,7 +514,7 @@ export class SweEncoder {
     this.encodeAbstractSimpleComponent(node, component, document);
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -544,7 +545,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedValues(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -575,7 +576,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTimes(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -616,7 +617,7 @@ export class SweEncoder {
     }
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -637,7 +638,7 @@ export class SweEncoder {
     this.encodeAbstractSimpleComponent(node, component, document);
 
     if (component.constraint) {
-      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:contraint');
+      let constraintNode = document.createElementNS(Namespaces.SWE, 'swe:constraint');
       constraintNode.appendChild(this.encodeAllowedTokens(component.constraint, document));
       node.appendChild(constraintNode);
     }
@@ -679,13 +680,13 @@ export class SweEncoder {
     this.encodeAbstractSwe(node, allowedValues, document);
 
     if (allowedValues.values) {
-      allowedValues.values.filter(x => x instanceof Number)
+      allowedValues.values.filter(x => !isNaN(+x))
         .forEach(x => {
           let n = document.createElementNS(Namespaces.SWE, 'swe:value');
           n.textContent = x.toString();
           node.appendChild(n);
         });
-      allowedValues.values.filter(x => x instanceof Number)
+      allowedValues.values.filter(x => x instanceof Array)
         .forEach(x => {
           let n = document.createElementNS(Namespaces.SWE, 'swe:interval');
           n.textContent = `${x[0]} ${x[1]}`;
@@ -717,7 +718,7 @@ export class SweEncoder {
         }
         if (value) {
           let valueNode = document.createElementNS(Namespaces.SWE, 'swe:value');
-          valueNode.textContent = allowedTime.toString();
+          valueNode.textContent = value;
           node.appendChild(valueNode);
         }
       });
@@ -732,7 +733,7 @@ export class SweEncoder {
             }
           });
           let intervalNode = document.createElementNS(Namespaces.SWE, 'swe:interval');
-          intervalNode.textContent = `${value[0]} ${value[1]} `;
+          intervalNode.textContent = `${value[0]} ${value[1]}`;
           node.appendChild(intervalNode);
         }
       });
@@ -759,7 +760,7 @@ export class SweEncoder {
   }
 
   public encodeQuality(quality: SweQuality, document: Document): Node {
-    let qualityNode = document.createElementNS(Namespaces.SML, 'swe:quality');
+    let qualityNode = document.createElementNS(Namespaces.SWE, 'swe:quality');
     if (quality instanceof SweQuantity) {
       qualityNode.appendChild(this.encodeQuantity(quality, document));
     } else if (quality instanceof SweQuantityRange) {
@@ -839,6 +840,7 @@ export class SweEncoder {
       let outerNilValuesNode = document.createElementNS(Namespaces.SWE, 'swe:nilValues');
       let innerNilValuesNode = document.createElementNS(Namespaces.SWE, 'swe:NilValues');
       outerNilValuesNode.appendChild(innerNilValuesNode);
+      node.appendChild(outerNilValuesNode);
       component.nilValues.forEach(nilValue => innerNilValuesNode.appendChild(this.encodeNilValue(nilValue, document)));
     }
 
@@ -900,8 +902,8 @@ export class SweEncoder {
 
     if (component.values) {
       let valuesNode = document.createElementNS(Namespaces.SWE, 'swe:values');
-      valuesNode.textContent = component.values.toString();
-      node.appendChild(component.values);
+      valuesNode.textContent = component.values as string;
+      node.appendChild(valuesNode);
     }
   }
 }

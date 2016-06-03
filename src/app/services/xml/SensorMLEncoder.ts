@@ -3,6 +3,7 @@ import { AbstractMetadataList } from '../../model/sml/AbstractMetadataList';
 import { AbstractModes } from '../../model/sml/AbstractModes';
 import { AbstractNamedMetadataList } from '../../model/sml/AbstractNamedMetadataList';
 import { AbstractPhysicalProcess } from '../../model/sml/AbstractPhysicalProcess';
+import { AbstractDataComponent } from '../../model/swe/AbstractDataComponent';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
 import { AbstractSetting } from '../../model/sml/AbstractSetting';
 import { AggregateProcess } from '../../model/sml/AggregateProcess';
@@ -232,7 +233,7 @@ export class SensorMLEncoder {
   }
 
   public encodeContactList(object: ContactList, document: Document): Node {
-    let node = document.createElementNS(Namespaces.SML, 'sml:ContactsList');
+    let node = document.createElementNS(Namespaces.SML, 'sml:ContactList');
 
     this.encodeAbstractMetadataList(node, object, document);
 
@@ -268,10 +269,10 @@ export class SensorMLEncoder {
 
     this.sweEncoder.encodeAbstractSweIdentifiable(node, object, document);
 
-
     if (object.keywords) {
       //TODO implement GMD keywords
-      throw new Error('Not yet supported');
+      if (object.keywords.length > 0)
+        console.error('GMD keywords are not yet supported');
     }
 
     if (object.identification) {
@@ -707,20 +708,21 @@ export class SensorMLEncoder {
       node.setAttribute('name', object.name);
     }
 
-    function encodeInputOrOutputOrParameterValue(
-      value: SweDataComponent | ObservableProperty | DataInterface): Node {
-
-      if (value instanceof ObservableProperty) {
-        return this.encodeObservableProperty(value, document);
-      } else if (value instanceof DataInterface) {
-        return this.encodeDataInterface(value, document);
-      } else {
-        return this.sweEncoder.encodeDataComponent(value, document);
-      }
-    }
-
     if (object.value) {
-      node.appendChild(encodeInputOrOutputOrParameterValue(object.value));
+      node.appendChild(this.encodeInputOrOutputOrParameterValue(object.value));
+    }
+  }
+
+  private encodeInputOrOutputOrParameterValue(
+    value: SweDataComponent | DataInterface | ObservableProperty): Node {
+    if (value instanceof ObservableProperty) {
+      return this.encodeObservableProperty(value, document);
+    }
+    if (value instanceof DataInterface) {
+      return this.encodeDataInterface(value, document);
+    }
+    if (value instanceof AbstractDataComponent) {
+      return this.sweEncoder.encodeDataComponent(value, document);
     }
   }
 
@@ -784,12 +786,12 @@ export class SensorMLEncoder {
     if (object.source) {
       let sourceNode = document.createElementNS(Namespaces.SML, 'sml:source');
       sourceNode.setAttribute('ref', object.source);
-      node.appendChild(node);
+      node.appendChild(sourceNode);
     }
     if (object.destination) {
       let destinationNode = document.createElementNS(Namespaces.SML, 'sml:destination');
       destinationNode.setAttribute('ref', object.destination);
-      node.appendChild(node);
+      node.appendChild(destinationNode);
     }
     return node;
   }

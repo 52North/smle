@@ -72,7 +72,7 @@ export class IsoEncoder {
   }
 
   public encodeOnlineResource(onlineResource: OnlineResource, document: Document): Node {
-    let node = document.createElementNS(Namespaces.GMD, 'gmd:OnlineResource');
+    let node = document.createElementNS(Namespaces.GMD, 'gmd:CI_OnlineResource');
 
     if (onlineResource.linkage) {
       let linkageNode = document.createElementNS(Namespaces.GMD, 'gmd:linkage');
@@ -170,7 +170,7 @@ export class IsoEncoder {
     }
 
     if (responsibleParty.organisationName) {
-      let organisationNameNode = document.createElementNS(Namespaces.GMD, 'gmd:origanisationName');
+      let organisationNameNode = document.createElementNS(Namespaces.GMD, 'gmd:organisationName');
       organisationNameNode.appendChild(this.encodeCharacterString(responsibleParty.organisationName, document));
       node.appendChild(organisationNameNode);
     }
