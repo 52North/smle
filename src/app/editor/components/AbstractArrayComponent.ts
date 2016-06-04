@@ -1,7 +1,7 @@
-import {EditorComponent} from './EditorComponent';
+import {AbstractEditorComponent} from './AbstractEditorComponent';
 import {Input, ViewContainerRef, ComponentResolver} from '@angular/core';
 
-export abstract class AbstractArrayComponent<T> extends EditorComponent {
+export abstract class AbstractArrayComponent<T> extends AbstractEditorComponent {
     @Input()
     public model: T[];
 

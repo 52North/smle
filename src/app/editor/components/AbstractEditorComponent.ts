@@ -1,11 +1,11 @@
 import {Type} from '@angular/core/src/facade/lang';
 import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
 
-export abstract class EditorComponent {
+export abstract class AbstractEditorComponent {
     public model;
 
-    private parentComponent: EditorComponent;
-    private childComponentRef: ComponentRef<EditorComponent>;
+    private parentComponent: AbstractEditorComponent;
+    private childComponentRef: ComponentRef<AbstractEditorComponent>;
 
     constructor(private componentResolver: ComponentResolver, private viewContainerRef: ViewContainerRef) {
     }
