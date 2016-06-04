@@ -3,7 +3,7 @@ import {AbstractSWEIdentifiable} from '../../../model/swe/AbstractSWEIdentifiabl
 import {AbstractSWEComponent} from './AbstractSWEComponent';
 
 @Component({
-    selector: 'abstract-swe-identifiable',
+    selector: 'swe-abstract-identifiable',
     template: require('./AbstractSWEIdentifiableComponent.html'),
     directives: [AbstractSWEComponent]
 })
