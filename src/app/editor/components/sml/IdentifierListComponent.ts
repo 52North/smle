@@ -1,9 +1,9 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardHeaderComponent} from '../CardHeaderComponent';
+import {CardHeaderComponent} from '../basic/CardHeaderComponent';
 import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
-import {AbstractComponent} from '../AbstractComponent';
+import {AbstractComponent} from '../base/AbstractComponent';
 import {TermComponent} from './TermComponent';
 
 @Component({

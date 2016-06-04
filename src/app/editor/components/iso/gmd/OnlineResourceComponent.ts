@@ -1,7 +1,7 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
-import {AbstractComponent}  from '../../AbstractComponent';
-import {CardHeaderComponent} from '../../CardHeaderComponent';
+import {AbstractComponent}  from '../../base/AbstractComponent';
+import {CardHeaderComponent} from '../../basic/CardHeaderComponent';
 @Component({
     selector: 'iso-online-resource',
     template: require('./OnlineResourceComponent.html'),

@@ -1,8 +1,8 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {ResponsibleParty} from '../../../../model/iso/gmd/ResponsibleParty';
 import {Contact} from '../../../../model/iso/gmd/Contact';
-import {AbstractComponent} from '../../AbstractComponent';
-import {CardHeaderComponent} from '../../CardHeaderComponent';
+import {AbstractComponent} from '../../base/AbstractComponent';
+import {CardHeaderComponent} from '../../basic/CardHeaderComponent';
 import {ContactComponent} from './ContactComponent';
 
 @Component({

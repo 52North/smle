@@ -1,8 +1,8 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Phone} from '../../../../model/iso/gmd/Phone';
-import {AbstractComponent}  from '../../AbstractComponent';
-import {CardHeaderComponent} from '../../CardHeaderComponent';
-import {StringsComponent} from '../../StringsComponent';
+import {AbstractComponent}  from '../../base/AbstractComponent';
+import {CardHeaderComponent} from '../../basic/CardHeaderComponent';
+import {StringsComponent} from '../../basic/StringsComponent';
 
 @Component({
     selector: 'iso-phone',

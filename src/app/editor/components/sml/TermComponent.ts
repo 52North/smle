@@ -1,10 +1,10 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardHeaderComponent} from '../CardHeaderComponent';
+import {CardHeaderComponent} from '../basic/CardHeaderComponent';
 import {ContactList} from '../../../model/sml';
 import {ContactListComponent} from './ContactListComponent';
 import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
 import {Term} from '../../../model/sml/Term';
-import {AbstractComponent} from '../AbstractComponent';
+import {AbstractComponent} from '../base/AbstractComponent';
 
 @Component({
     selector: 'sml-term',
