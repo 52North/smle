@@ -1,6 +1,6 @@
 <ul class="list-group list-group-flush">
     <li *ngFor="let item of list; let i = index" class="list-group-item">
-        <a class="btn btn-link" (click)="onClick(item, i)">{{itemName}} {{i}}</a>
+        <a class="btn btn-link" (click)="onClick(item, i)">{{itemTitle}} {{i}}</a>
         <a class="btn btn-link" (click)="onRemove(item, i)"><i class="fa fa-remove"></i> Remove</a>
     </li>
     <li class="list-group-item">
