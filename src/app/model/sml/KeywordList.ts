@@ -1,7 +1,4 @@
-
 import { AbstractMetadataList } from './AbstractMetadataList';
-
-
 
 export class KeywordList extends AbstractMetadataList {
   /**
