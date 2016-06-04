@@ -1,10 +1,10 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Contact} from '../../../../model/iso/gmd/Contact';
-import {AbstractComponent}  from '../../AbstractComponent';
+import {AbstractComponent}  from '../../base/AbstractComponent';
 import {AddressComponent} from './AddressComponent';
 import {PhoneComponent} from './PhoneComponent';
 import {OnlineResourceComponent} from './OnlineResourceComponent';
-import {CardHeaderComponent} from '../../CardHeaderComponent';
+import {CardHeaderComponent} from '../../basic/CardHeaderComponent';
 import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
 import {Address} from '../../../../model/iso/gmd/Address';
 import {Phone} from '../../../../model/iso/gmd/Phone';

@@ -1,6 +1,6 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {AbstractArrayComponent} from '../AbstractArrayComponent';
-import {CardHeaderComponent} from '../CardHeaderComponent';
+import {AbstractArrayComponent} from '../base/AbstractArrayComponent';
+import {CardHeaderComponent} from '../basic/CardHeaderComponent';
 import {ContactList} from '../../../model/sml';
 import {ContactListComponent} from './ContactListComponent';
 

@@ -1,9 +1,9 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
 import {KeywordList} from '../../../model/sml/KeywordList';
-import {AbstractComponent} from '../AbstractComponent';
-import {CardHeaderComponent} from '../CardHeaderComponent';
-import {StringsComponent} from '../StringsComponent';
+import {AbstractComponent} from '../base/AbstractComponent';
+import {CardHeaderComponent} from '../basic/CardHeaderComponent';
+import {StringsComponent} from '../basic/StringsComponent';
 
 @Component({
     selector: 'swe-keyword-list',

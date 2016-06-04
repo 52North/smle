@@ -3,7 +3,7 @@ import {Component, Input, Output, EventEmitter, HostBinding} from '@angular/core
 @Component({
     selector: 'card-header',
     template: require('./CardHeaderComponent.html'),
-    styles: [require('./styles/card-header-component.scss')]
+    styles: [require('./../styles/card-header-component.scss')]
 })
 export class CardHeaderComponent {
     @Input()

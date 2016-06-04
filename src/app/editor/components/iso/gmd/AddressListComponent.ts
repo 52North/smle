@@ -1,6 +1,6 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Address} from '../../../../model/iso/gmd/Address';
-import {AbstractComponent} from '../../AbstractComponent';
+import {AbstractComponent} from '../../base/AbstractComponent';
 import {AddressComponent} from './AddressComponent';
 
 class AddressList {
