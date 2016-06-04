@@ -62,6 +62,7 @@
     "src/app/editor/components/sml/ContactListComponent.ts",
     "src/app/editor/components/sml/ContactsComponent.ts",
     "src/app/editor/components/sml/IdentifierListComponent.ts",
+    "src/app/editor/components/sml/ClassifierListComponent.ts",
     "src/app/editor/components/sml/TermComponent.ts",
     "src/app/editor/components/swe/AbstractSWEComponent.ts",
     "src/app/editor/components/swe/AbstractSWEIdentifiableComponent.ts",

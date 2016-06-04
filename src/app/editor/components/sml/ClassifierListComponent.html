@@ -1,0 +1,21 @@
+<div class="card">
+    <card-header class="card-header clearfix" [verticalMode]="hasChild" [title]="'Classifier List'" (reset)="onReset()"
+                 (close)="close()" (closeChild)="closeChild()"></card-header>
+    <div class="card-block">
+        <form>
+            <swe-abstract-metadata-list [model]="model"></swe-abstract-metadata-list>
+            <div class="form-group">
+                <label for="classifiers">Classifiers</label>
+                <ul class="list-group list-group-flush">
+                    <li *ngFor="let item of model.classifiers; let i = index" class="list-group-item">
+                        <a class="btn btn-link" (click)="openNewClassifierItem(item)">Classifier {{i}}</a>
+                        <a class="btn btn-link" (click)="onRemoveClassifier(i)"><i class="fa fa-remove"></i> Remove</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a (click)="onAddClassifier()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
