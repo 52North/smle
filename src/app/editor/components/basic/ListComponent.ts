@@ -1,18 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
-export class ListEvent {
-    constructor(private item: any, private index: number) {
-    }
-
-    public getItem(): any {
-        return this.item;
-    }
-
-    public getIndex(): any {
-        return this.index;
-    }
-}
-
 @Component({
     selector: 'list',
     template: require('./ListComponent.html')
@@ -21,20 +8,20 @@ export class ListComponent {
     @Input()
     public list: any[];
     @Input()
-    public itemName: string;
+    public itemTitle: string;
     @Output()
-    public select: EventEmitter<ListEvent> = new EventEmitter<ListEvent>();
+    public select: EventEmitter<any> = new EventEmitter<any>();
     @Output()
     public add: EventEmitter<any> = new EventEmitter<any>();
     @Output()
-    public remove: EventEmitter<ListEvent> = new EventEmitter<ListEvent>();
+    public remove: EventEmitter<number> = new EventEmitter<number>();
 
     private onClick(item: any, index: number) {
-        this.select.emit(new ListEvent(item, index));
+        this.select.emit(item);
     }
 
     private onRemove(item: any, index: number) {
-        this.remove.emit(new ListEvent(item, index));
+        this.remove.emit(index);
     }
 
     private onAdd() {

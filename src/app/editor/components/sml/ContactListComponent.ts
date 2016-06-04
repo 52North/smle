@@ -4,13 +4,14 @@ import {ContactList} from '../../../model/sml';
 import {ResponsibleParty} from '../../../model/iso';
 import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
 import {CardComponent} from '../basic/CardComponent';
+import {ListComponent} from '../basic/ListComponent';
 
 @Component({
     selector: 'sml-contact-list',
     template: require('./ContactListComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
-    directives: [CardComponent, ResponsiblePartyComponent]
+    directives: [CardComponent, ResponsiblePartyComponent, ListComponent]
 })
 export class ContactListComponent extends AbstractComponent<ContactList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

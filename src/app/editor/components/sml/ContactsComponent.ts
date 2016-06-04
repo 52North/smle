@@ -3,13 +3,14 @@ import {AbstractArrayComponent} from '../base/AbstractArrayComponent';
 import {ContactList} from '../../../model/sml';
 import {ContactListComponent} from './ContactListComponent';
 import {CardComponent} from '../basic/CardComponent';
+import {ListComponent} from '../basic/ListComponent';
 
 @Component({
     selector: 'sml-contacts',
     template: require('./ContactsComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
-    directives: [CardComponent, ContactListComponent]
+    directives: [CardComponent, ContactListComponent, ListComponent]
 })
 export class ContactsComponent extends AbstractArrayComponent<ContactList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
@@ -24,7 +25,7 @@ export class ContactsComponent extends AbstractArrayComponent<ContactList> {
         return new ContactList();
     }
 
-    private openNewContactListItem(model: ContactList) {
-        this.openNewChild(ContactListComponent, model);
+    private openNewContactListItem(item: ContactList) {
+        this.openNewChild(ContactListComponent, item);
     }
 }

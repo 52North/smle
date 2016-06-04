@@ -6,13 +6,7 @@
             <input type="string" class="form-control" [(ngModel)]="model.name">
         </div>
     </form>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let item of model.addresses; let i = index">
-            <a class="btn btn-link" (click)="openNewAddressItem(item)">Address {{i}}</a>
-            <a class="btn btn-link" (click)="onRemove(i)"><i class="fa fa-remove"></i>Remove </a>
-        </li>
-        <li class="list-group-item">
-            <a (click)="onAdd()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
-        </li>
-    </ul>
+    <label>Addresses</label>
+    <list [list]="model.addresses" [itemTitle]="'Address'" (select)="openNewAddressItem($event)"
+          (remove)="onRemove($event)" (add)="onAdd()"></list>
 </card>

@@ -3,6 +3,7 @@ import {Address} from '../../../../model/iso/gmd/Address';
 import {AbstractComponent} from '../../base/AbstractComponent';
 import {AddressComponent} from './AddressComponent';
 import {CardComponent} from '../../basic/CardComponent';
+import {ListComponent} from '../../basic/ListComponent';
 
 class AddressList {
     addresses: Address[] = [];
@@ -14,7 +15,7 @@ class AddressList {
     template: require('./AddressListComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
-    directives: [CardComponent, AddressComponent]
+    directives: [CardComponent, AddressComponent, ListComponent]
 })
 export class AddressListComponent extends AbstractComponent<AddressList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
