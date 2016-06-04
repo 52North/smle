@@ -4,7 +4,6 @@ import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
 export abstract class EditorComponent {
     public model;
 
-    private _hasChild: boolean = false;
     private parentComponent: EditorComponent;
     private childComponentRef: ComponentRef<EditorComponent>;
 
@@ -17,8 +16,8 @@ export abstract class EditorComponent {
 
     protected abstract createModel(): any;
 
-    protected hasChild(): boolean {
-        return this._hasChild;
+    protected get hasChild(): boolean {
+        return !!this.childComponentRef;
     }
 
     protected openNewChild(componentType: Type, model: any) {
@@ -36,7 +35,6 @@ export abstract class EditorComponent {
             this.childComponentRef = this.viewContainerRef.createComponent(componentFactory);
             this.childComponentRef.instance.model = model;
             this.childComponentRef.instance.parentComponent = this;
-            this._hasChild = true;
         });
     }
 
@@ -69,6 +67,5 @@ export abstract class EditorComponent {
     private destroyChild() {
         this.childComponentRef.destroy();
         this.childComponentRef = null;
-        this._hasChild = false;
     }
 }
