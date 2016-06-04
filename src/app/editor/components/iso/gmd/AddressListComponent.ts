@@ -2,6 +2,7 @@ import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Address} from '../../../../model/iso/gmd/Address';
 import {AbstractComponent} from '../../base/AbstractComponent';
 import {AddressComponent} from './AddressComponent';
+import {CardComponent} from '../../basic/CardComponent';
 
 class AddressList {
     addresses: Address[] = [];
@@ -13,7 +14,7 @@ class AddressList {
     template: require('./AddressListComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
-    directives: [AddressComponent]
+    directives: [CardComponent, AddressComponent]
 })
 export class AddressListComponent extends AbstractComponent<AddressList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

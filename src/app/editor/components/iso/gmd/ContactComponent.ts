@@ -4,7 +4,7 @@ import {AbstractComponent}  from '../../base/AbstractComponent';
 import {AddressComponent} from './AddressComponent';
 import {PhoneComponent} from './PhoneComponent';
 import {OnlineResourceComponent} from './OnlineResourceComponent';
-import {CardHeaderComponent} from '../../basic/CardHeaderComponent';
+import {CardComponent} from '../../basic/CardComponent';
 import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
 import {Address} from '../../../../model/iso/gmd/Address';
 import {Phone} from '../../../../model/iso/gmd/Phone';
@@ -14,7 +14,7 @@ import {Phone} from '../../../../model/iso/gmd/Phone';
     template: require('./ContactComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
+    directives: [CardComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
 export class ContactComponent extends AbstractComponent<Contact> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

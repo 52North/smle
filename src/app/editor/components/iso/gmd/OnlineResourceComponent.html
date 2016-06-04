@@ -1,37 +1,35 @@
-<div class="card">
-    <card-header class="card-header clearfix" [verticalMode]="hasChild" [title]="'Online Resource'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
-    <div class="card-block">
-        <form>
-            <div class="form-group">
-                <label for="linkage">Linkage</label>
-                <input type="text" class="form-control" [(ngModel)]="model.linkage" required>
-            </div>
-            <div class="form-group">
-                <label for="protocol">Protocol</label>
-                <input type="text" class="form-control" [(ngModel)]="model.protocol">
-            </div>
-            <div class="form-group">
-                <label for="applicationProfile">Application Profile</label>
-                <input type="text" class="form-control" [(ngModel)]="model.applicationProfile">
-            </div>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" [(ngModel)]="model.name">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <input type="text" class="form-control" [(ngModel)]="model.description">
-            </div>
-            <div class="form-group">
-                <label for="function">Function</label>
-                <select class="form-control" [(ngModel)]="model.function">
-                    <option value="download">Download</option>
-                    <option value="information">Information</option>
-                    <option value="offlineAccess">OfflineAccess</option>
-                    <option value="order">Order</option>
-                    <option value="search">Search</option>
-                </select>
-            </div>
-        </form>
-    </div>
-</div>
+<card [verticalMode]="hasChild" [title]="'Online Resource'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()">
+    <form>
+        <div class="form-group">
+            <label for="linkage">Linkage</label>
+            <input type="text" class="form-control" [(ngModel)]="model.linkage" required>
+        </div>
+        <div class="form-group">
+            <label for="protocol">Protocol</label>
+            <input type="text" class="form-control" [(ngModel)]="model.protocol">
+        </div>
+        <div class="form-group">
+            <label for="applicationProfile">Application Profile</label>
+            <input type="text" class="form-control" [(ngModel)]="model.applicationProfile">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="model.name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" [(ngModel)]="model.description">
+        </div>
+        <div class="form-group">
+            <label for="function">Function</label>
+            <select class="form-control" [(ngModel)]="model.function">
+                <option value="download">Download</option>
+                <option value="information">Information</option>
+                <option value="offlineAccess">OfflineAccess</option>
+                <option value="order">Order</option>
+                <option value="search">Search</option>
+            </select>
+        </div>
+    </form>
+</card>

@@ -1,5 +1,5 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardHeaderComponent} from '../basic/CardHeaderComponent';
+import {CardComponent} from '../basic/CardComponent';
 import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
@@ -11,7 +11,7 @@ import {TermComponent} from './TermComponent';
     template: require('./IdentifierListComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, AbstractMetadataListComponent]
+    directives: [CardComponent, AbstractMetadataListComponent]
 })
 export class IdentifierListComponent extends AbstractComponent<IdentifierList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
