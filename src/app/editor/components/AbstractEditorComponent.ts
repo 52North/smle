@@ -20,6 +20,10 @@ export abstract class AbstractEditorComponent {
         return !!this.childComponentRef;
     }
 
+    protected get hasParent(): boolean {
+        return !!this.parentComponent;
+    }
+
     protected openNewChild(componentType: Type, model: any) {
         if (this.childComponentRef &&
             this.childComponentRef.componentType === componentType &&
