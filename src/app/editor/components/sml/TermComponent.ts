@@ -1,7 +1,5 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardHeaderComponent} from '../basic/CardHeaderComponent';
-import {ContactList} from '../../../model/sml';
-import {ContactListComponent} from './ContactListComponent';
+import {CardComponent} from '../basic/CardComponent';
 import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
 import {Term} from '../../../model/sml/Term';
 import {AbstractComponent} from '../base/AbstractComponent';
@@ -11,7 +9,7 @@ import {AbstractComponent} from '../base/AbstractComponent';
     template: require('./TermComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, AbstractSWEComponent]
+    directives: [CardComponent, AbstractSWEComponent]
 })
 export class TermComponent extends AbstractComponent<Term> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

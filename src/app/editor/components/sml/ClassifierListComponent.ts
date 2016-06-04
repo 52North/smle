@@ -1,5 +1,5 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardHeaderComponent} from '../basic/CardHeaderComponent';
+import {CardComponent} from '../basic/CardComponent';
 import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
 import {AbstractComponent} from '../base/AbstractComponent';
@@ -11,7 +11,7 @@ import {ClassifierList} from '../../../model/sml/ClassifierList';
     template: require('./ClassifierListComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, AbstractMetadataListComponent]
+    directives: [CardComponent, AbstractMetadataListComponent]
 })
 export class ClassifierListComponent extends AbstractComponent<ClassifierList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

@@ -1,21 +1,18 @@
-<div class="card">
-    <card-header class="card-header clearfix" [verticalMode]="hasChild" [title]="'Identifier List'" (reset)="onReset()"
-                 (close)="close()" (closeChild)="closeChild()"></card-header>
-    <div class="card-block">
-        <form>
-            <swe-abstract-metadata-list [model]="model"></swe-abstract-metadata-list>
-            <div class="form-group">
-                <label for="identifiers">Identifiers</label>
-                <ul class="list-group list-group-flush">
-                    <li *ngFor="let item of model.identifiers; let i = index" class="list-group-item">
-                        <a class="btn btn-link" (click)="openNewIdentifierItem(item)">Identifier {{i}}</a>
-                        <a class="btn btn-link" (click)="onRemoveIdentifier(i)"><i class="fa fa-remove"></i> Remove</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a (click)="onAddIdentifier()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
-                    </li>
-                </ul>
-            </div>
-        </form>
-    </div>
-</div>
+<card [verticalMode]="hasChild" [title]="'Identifier List'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()">
+    <form>
+        <swe-abstract-metadata-list [model]="model"></swe-abstract-metadata-list>
+        <div class="form-group">
+            <label for="identifiers">Identifiers</label>
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let item of model.identifiers; let i = index" class="list-group-item">
+                    <a class="btn btn-link" (click)="openNewIdentifierItem(item)">Identifier {{i}}</a>
+                    <a class="btn btn-link" (click)="onRemoveIdentifier(i)"><i class="fa fa-remove"></i> Remove</a>
+                </li>
+                <li class="list-group-item">
+                    <a (click)="onAddIdentifier()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+</card>

@@ -1,16 +1,16 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {AbstractComponent} from '../base/AbstractComponent';
-import {CardHeaderComponent} from '../basic/CardHeaderComponent';
 import {ContactList} from '../../../model/sml';
 import {ResponsibleParty} from '../../../model/iso';
 import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
+import {CardComponent} from '../basic/CardComponent';
 
 @Component({
     selector: 'sml-contact-list',
     template: require('./ContactListComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, ResponsiblePartyComponent]
+    directives: [CardComponent, ResponsiblePartyComponent]
 })
 export class ContactListComponent extends AbstractComponent<ContactList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

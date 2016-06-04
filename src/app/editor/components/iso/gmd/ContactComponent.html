@@ -1,24 +1,21 @@
-<div class="card">
-    <card-header class="card-header clearfix" [verticalMode]="hasChild" [title]="'Contact'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
-    <div class="card-block">
-        <form>
-            <div class="form-group">
-                <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">Phone</a>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-link" (click)="openNewAddressItem(model.address)">Address</a>
-            </div>
-            <div class="form-group">
-                <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">Online Resource</a>
-            </div>
-            <div class="form-group">
-                <label for="model.contactInstructions">Contact Instructions</label>
-                <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
-            </div>
-            <div class="form-group">
-                <label for="model.hoursOfService">Hours Of Service</label>
-                <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
-            </div>
-        </form>
-    </div>
-</div>
+<card [verticalMode]="hasChild" [title]="'Contact'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()">
+    <form>
+        <div class="form-group">
+            <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">Phone</a>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-link" (click)="openNewAddressItem(model.address)">Address</a>
+        </div>
+        <div class="form-group">
+            <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">Online Resource</a>
+        </div>
+        <div class="form-group">
+            <label for="model.contactInstructions">Contact Instructions</label>
+            <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
+        </div>
+        <div class="form-group">
+            <label for="model.hoursOfService">Hours Of Service</label>
+            <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
+        </div>
+    </form>
+</card>

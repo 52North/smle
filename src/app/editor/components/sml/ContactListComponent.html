@@ -1,14 +1,12 @@
-<div class="card">
-    <card-header class="card-header clearfix" [verticalMode]="hasChild" [title]="'Contact List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
-    <div class="card-block">
-        <ul class="list-group list-group-flush">
-            <li *ngFor="let item of model.contacts; let i = index" class="list-group-item">
-                <a class="btn btn-link" (click)="openNewResponsiblePartyItem(item)">Responsible Party {{i}}</a>
-                <a class="btn btn-link" (click)="onRemove(i)"> <i class="fa fa-remove"></i> Remove</a>
-            </li>
-            <li class="list-group-item">
-                <a (click)="onAdd()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
-            </li>
-        </ul>
-    </div>
-</div>
+<card [verticalMode]="hasChild" [title]="'Contact List'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()">
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let item of model.contacts; let i = index" class="list-group-item">
+            <a class="btn btn-link" (click)="openNewResponsiblePartyItem(item)">Responsible Party {{i}}</a>
+            <a class="btn btn-link" (click)="onRemove(i)"> <i class="fa fa-remove"></i> Remove</a>
+        </li>
+        <li class="list-group-item">
+            <a (click)="onAdd()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add </a>
+        </li>
+    </ul>
+</card>

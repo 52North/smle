@@ -51,7 +51,6 @@
     "src/app/directives.ts",
     "src/app/editor/components/base/AbstractArrayComponent.ts",
     "src/app/editor/components/base/AbstractComponent.ts",
-    "src/app/editor/components/basic/CardHeaderComponent.ts",
     "src/app/editor/components/basic/CardComponent.ts",
     "src/app/editor/components/base/AbstractEditorComponent.ts",
     "src/app/editor/components/iso/gmd/AddressComponent.ts",
