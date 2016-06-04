@@ -3,7 +3,7 @@ import {AbstractMetadataList} from '../../../model/sml/AbstractMetadataList';
 import {AbstractSWEIdentifiableComponent} from './AbstractSWEIdentifiableComponent';
 
 @Component({
-    selector: 'abstract-metadata-list',
+    selector: 'swe-abstract-metadata-list',
     template: require('./AbstractMetadataListComponent.html'),
     directives: [AbstractSWEIdentifiableComponent]
 })

@@ -6,7 +6,7 @@ import {CardHeaderComponent} from '../CardHeaderComponent';
 import {StringsComponent} from '../StringsComponent';
 
 @Component({
-    selector: 'keyword-list',
+    selector: 'swe-keyword-list',
     template: require('./KeywordListComponent.html'),
     host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
