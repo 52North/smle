@@ -1,0 +1,20 @@
+<div class="form-group">
+    <label for="gmlId">GML Id</label>
+    <input type="text" class="form-control" [(ngModel)]="model.gmlId">
+</div>
+<div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" class="form-control" [(ngModel)]="model.description">
+</div>
+<div class="form-group">
+    <label for="gmlId">Description Reference</label>
+    <input type="text" class="form-control" [(ngModel)]="model.descriptionReference">
+</div>
+<div class="form-group">
+    <label for="identifier">Identifier</label>
+    <gml-code-type [model]="model.identifier"></gml-code-type>
+</div>
+<div class="form-group">
+    <label for="name">TODO: Name</label>
+    <!--<gml-code-type *ngRepeat="let item in model.name" [model]="item"></gml-code-type>-->
+</div>
