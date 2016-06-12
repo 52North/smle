@@ -1,3 +1,4 @@
 export interface Configuration {
-    isFieldMandatory(path: string): boolean;
+    isFieldMandatory(name: string): boolean;
+    getConfigFor(name: string): Configuration;
 }
