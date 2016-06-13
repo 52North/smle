@@ -1,6 +1,6 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Contact} from '../../../../model/iso/gmd/Contact';
-import {AbstractComponent}  from '../../base/AbstractComponent';
+import {TypedModelComponent}  from '../../base/TypedModelComponent';
 import {AddressComponent} from './AddressComponent';
 import {PhoneComponent} from './PhoneComponent';
 import {OnlineResourceComponent} from './OnlineResourceComponent';
@@ -16,7 +16,7 @@ import {Phone} from '../../../../model/iso/gmd/Phone';
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
-export class ContactComponent extends AbstractComponent<Contact> {
+export class ContactComponent extends TypedModelComponent<Contact> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
@@ -26,14 +26,14 @@ export class ContactComponent extends AbstractComponent<Contact> {
     }
 
     private openNewPhoneItem(model: Phone) {
-        this.openNewChild(PhoneComponent, model);
+        this.openNewChild(PhoneComponent, model, this.config.getConfigFor('phone'));
     }
 
     private openNewAddressItem(model: Address) {
-        this.openNewChild(AddressComponent, model);
+        this.openNewChild(AddressComponent, model, this.config.getConfigFor('address'));
     }
 
     private openNewOnlineResourceItem(model: OnlineResource) {
-        this.openNewChild(OnlineResourceComponent, model);
+        this.openNewChild(OnlineResourceComponent, model, this.config.getConfigFor('onlineResource'));
     }
 }

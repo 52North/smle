@@ -1,24 +1,24 @@
 <card [verticalMode]="hasChild" [title]="'Described Object'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()">
-    <div class="form-group">
+    <div class="form-group" *ngIf="!!config && config.isFieldMandatory('language')">
         <label for="language">Language</label>
         <input type="text" class="form-control" [(ngModel)]="model.language">
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!!config && config.isFieldMandatory('keywords')">
         <label for="keywords">Keywords</label>
         <list [list]="model.keywords" [itemTitle]="'Keyword List'" (select)="openNewKeywordListItem($event)"
               (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!!config && config.isFieldMandatory('identification')">
         <label for="identification">Identification</label>
         <list [list]="model.identification" [itemTitle]="'Identifier List'" (select)="openNewIdentifierListItem($event)"
               (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!!config && config.isFieldMandatory('classification')">
         <label for="classification">Classification</label>
         <list [list]="model.classification" [itemTitle]="'Classifier List'" (select)="openNewClassifierListItem($event)"
               (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!!config && config.isFieldMandatory('contacts')">
         <label for="contacts">Contacts</label>
         <list [list]="model.contacts" [itemTitle]="'Contact List'" (select)="openNewContactListItem($event)"
               (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>

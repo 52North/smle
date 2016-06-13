@@ -1,9 +1,12 @@
 import {Input, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {AbstractEditorComponent} from './AbstractEditorComponent';
+import {EditorComponent} from './EditorComponent';
+import {Configuration} from '../../../services/config/Configuration';
 
-export abstract class AbstractComponent<T> extends AbstractEditorComponent {
+export abstract class TypedModelComponent<T> extends EditorComponent {
     @Input()
     public model: T;
+    @Input()
+    public config: Configuration;
 
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);

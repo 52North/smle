@@ -1,19 +1,19 @@
 <card [verticalMode]="hasChild" [title]="'Responsible Party'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()">
     <form>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('individualName')">
             <label for="model.individualName">Individual Name</label>
             <input type="text" class="form-control" [(ngModel)]="model.individualName">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('organisationName')">
             <label for="model.organisationName">Organisation Name</label>
             <input type="text" class="form-control" [(ngModel)]="model.organisationName">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('positionName')">
             <label for="model.positionName">Position Name</label>
             <input type="text" class="form-control" [(ngModel)]="model.positionName">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('contactInfo')">
             <a *ngIf="model.contactInfo" class="btn btn-link" (click)="openNewContactInfoItem(model.contactInfo)">Contact
                 Info</a>
             <a *ngIf="model.contactInfo" class="btn btn-link" (click)="onRemoveContact()">
@@ -23,7 +23,7 @@
                 <i class="fa fa-fw fa-plus"></i> Add Contact Info
             </a>
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('role')">
             <label for="function">Role</label>
             <select class="form-control" [(ngModel)]="model.role">
                 <option value="resourceProvider">Resource Provider</option>

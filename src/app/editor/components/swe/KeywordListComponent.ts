@@ -1,7 +1,7 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
 import {KeywordList} from '../../../model/sml/KeywordList';
-import {AbstractComponent} from '../base/AbstractComponent';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 import {CardComponent} from '../basic/CardComponent';
 import {StringsComponent} from '../basic/StringsComponent';
 
@@ -12,7 +12,7 @@ import {StringsComponent} from '../basic/StringsComponent';
     styles: [require('../styles/editor-component.scss')],
     directives: [AbstractMetadataListComponent, CardComponent, StringsComponent]
 })
-export class KeywordListComponent extends AbstractComponent<KeywordList> {
+export class KeywordListComponent extends TypedModelComponent<KeywordList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

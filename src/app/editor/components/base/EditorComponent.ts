@@ -1,13 +1,16 @@
 import {Type} from '@angular/core/src/facade/lang';
 import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
+import {ConfigurableComponent} from './ConfigurableComponent';
+import {Configuration} from '../../../services/config/Configuration';
 
-export abstract class AbstractEditorComponent {
-    public model;
+export abstract class EditorComponent extends ConfigurableComponent {
+    public model: any;
 
-    private parentComponent: AbstractEditorComponent;
-    private childComponentRef: ComponentRef<AbstractEditorComponent>;
+    private parentComponent: EditorComponent;
+    private childComponentRef: ComponentRef<EditorComponent>;
 
     constructor(private componentResolver: ComponentResolver, private viewContainerRef: ViewContainerRef) {
+        super();
     }
 
     protected extendModel(): void {
@@ -24,7 +27,7 @@ export abstract class AbstractEditorComponent {
         return !!this.parentComponent;
     }
 
-    protected openNewChild(componentType: Type, model: any) {
+    protected openNewChild(componentType: Type, model: any, config: Configuration) {
         if (this.childComponentRef &&
             this.childComponentRef.componentType === componentType &&
             this.childComponentRef.instance.model === model) {
@@ -38,6 +41,7 @@ export abstract class AbstractEditorComponent {
         this.componentResolver.resolveComponent(componentType).then((componentFactory) => {
             this.childComponentRef = this.viewContainerRef.createComponent(componentFactory);
             this.childComponentRef.instance.model = model;
+            this.childComponentRef.instance.config = config;
             this.childComponentRef.instance.parentComponent = this;
         });
     }

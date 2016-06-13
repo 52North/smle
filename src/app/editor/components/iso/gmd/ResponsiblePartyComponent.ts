@@ -1,7 +1,7 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {ResponsibleParty} from '../../../../model/iso/gmd/ResponsibleParty';
 import {Contact} from '../../../../model/iso/gmd/Contact';
-import {AbstractComponent} from '../../base/AbstractComponent';
+import {TypedModelComponent} from '../../base/TypedModelComponent';
 import {CardComponent} from '../../basic/CardComponent';
 import {ContactComponent} from './ContactComponent';
 
@@ -12,7 +12,7 @@ import {ContactComponent} from './ContactComponent';
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent, ContactComponent]
 })
-export class ResponsiblePartyComponent extends AbstractComponent<ResponsibleParty> {
+export class ResponsiblePartyComponent extends TypedModelComponent<ResponsibleParty> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
@@ -31,6 +31,6 @@ export class ResponsiblePartyComponent extends AbstractComponent<ResponsiblePart
     }
 
     private openNewContactInfoItem(model: Contact) {
-        this.openNewChild(ContactComponent, model);
+        this.openNewChild(ContactComponent, model, this.config.getConfigFor('contactInfo'));
     }
 }

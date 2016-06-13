@@ -4,7 +4,7 @@ import {ListComponent} from '../basic/ListComponent';
 import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
-import {AbstractComponent} from '../base/AbstractComponent';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 import {TermComponent} from './TermComponent';
 
 @Component({
@@ -14,7 +14,7 @@ import {TermComponent} from './TermComponent';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
 })
-export class IdentifierListComponent extends AbstractComponent<IdentifierList> {
+export class IdentifierListComponent extends TypedModelComponent<IdentifierList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
@@ -24,7 +24,7 @@ export class IdentifierListComponent extends AbstractComponent<IdentifierList> {
     }
 
     private openNewIdentifierItem(model: Term) {
-        this.openNewChild(TermComponent, model);
+        this.openNewChild(TermComponent, model, this.config.getConfigFor('identifiers'));
     }
 
     private onAddIdentifier(): void {
