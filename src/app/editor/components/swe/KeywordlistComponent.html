@@ -1,12 +1,12 @@
 <card [verticalMode]="hasChild" [title]="'Keyword List'" (reset)="onReset()"
       (close)="close()" (closeChild)="closeChild()">
     <form>
-        <swe-abstract-metadata-list [model]="model"></swe-abstract-metadata-list>
-        <div class="form-group">
+        <swe-abstract-metadata-list [model]="model" [config]="config"></swe-abstract-metadata-list>
+        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('codeSpace')">
             <label for="codeSpace">Code Space</label>
             <input type="text" class="form-control" [(ngModel)]="model.codeSpace">
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('keywords')">
             <label for="keywords">Keywords</label>
             <strings [list]="model.keywords"></strings>
         </div>

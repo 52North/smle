@@ -1,7 +1,7 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {DescribedObject} from '../../../model/sml/DescribedObject';
 import {AbstractFeatureComponent} from './AbstractFeatureComponent';
-import {AbstractComponent} from '../base/AbstractComponent';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 import {SimpleProcess} from '../../../model/sml/SimpleProcess';
 import {KeywordList} from '../../../model/sml/KeywordList';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
@@ -22,7 +22,7 @@ import {ContactList} from '../../../model/sml/ContactList';
     directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent,
         IdentifierListComponent, ClassifierListComponent, ContactListComponent, ListComponent]
 })
-export class DescribedObjectComponent extends AbstractComponent<DescribedObject> {
+export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
@@ -32,19 +32,19 @@ export class DescribedObjectComponent extends AbstractComponent<DescribedObject>
     }
 
     private openNewKeywordListItem(item: KeywordList) {
-        this.openNewChild(KeywordListComponent, item);
+        this.openNewChild(KeywordListComponent, item, this.config.getConfigFor('keywords'));
     }
 
     private openNewIdentifierListItem(item: IdentifierList) {
-        this.openNewChild(IdentifierListComponent, item);
+        this.openNewChild(IdentifierListComponent, item, this.config.getConfigFor('identification'));
     }
 
     private openNewClassifierListItem(item: ClassifierList) {
-        this.openNewChild(ClassifierListComponent, item);
+        this.openNewChild(ClassifierListComponent, item, this.config.getConfigFor('classification'));
     }
 
     private openNewContactListItem(item: ContactList) {
-        this.openNewChild(ContactListComponent, item);
+        this.openNewChild(ContactListComponent, item, this.config.getConfigFor('contacts'));
     }
 
     private onAddKeywordList() {

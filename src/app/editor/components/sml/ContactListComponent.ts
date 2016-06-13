@@ -1,5 +1,5 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {AbstractComponent} from '../base/AbstractComponent';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 import {ContactList} from '../../../model/sml';
 import {ResponsibleParty} from '../../../model/iso';
 import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
@@ -13,7 +13,7 @@ import {ListComponent} from '../basic/ListComponent';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, ResponsiblePartyComponent, ListComponent]
 })
-export class ContactListComponent extends AbstractComponent<ContactList> {
+export class ContactListComponent extends TypedModelComponent<ContactList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
@@ -32,6 +32,6 @@ export class ContactListComponent extends AbstractComponent<ContactList> {
     }
 
     private openNewResponsiblePartyItem(model: ResponsibleParty) {
-        this.openNewChild(ResponsiblePartyComponent, model);
+        this.openNewChild(ResponsiblePartyComponent, model, this.config.getConfigFor('contacts'));
     }
 }

@@ -3,7 +3,7 @@ import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
-import {AbstractComponent} from '../base/AbstractComponent';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 import {TermComponent} from './TermComponent';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
 
@@ -14,7 +14,7 @@ import {ClassifierList} from '../../../model/sml/ClassifierList';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
 })
-export class ClassifierListComponent extends AbstractComponent<ClassifierList> {
+export class ClassifierListComponent extends TypedModelComponent<ClassifierList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
@@ -24,7 +24,7 @@ export class ClassifierListComponent extends AbstractComponent<ClassifierList> {
     }
 
     private openNewClassifierItem(model: Term) {
-        this.openNewChild(TermComponent, model);
+        this.openNewChild(TermComponent, model, this.config.getConfigFor('classifiers'));
     }
 
     private onAddClassifier(): void {

@@ -16,7 +16,7 @@ import {Configuration} from '../services/config/Configuration';
 })
 export class Editor implements OnInit {
     public description: AbstractProcess;
-    public configuration: Configuration;
+    public config: Configuration;
     private id: string;
 
     constructor(private service: DescriptionRepository, private configurationService: ConfigurationService,
@@ -33,6 +33,6 @@ export class Editor implements OnInit {
                 .then(description => this.description = description);
         }
 
-        this.configurationService.getConfiguration().then(configuration => this.configuration = configuration);
+        this.configurationService.getConfiguration().then(configuration => this.config = configuration);
     }
 }

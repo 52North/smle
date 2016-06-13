@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group" *ngIf="!!config && config.isFieldMandatory('id')">
     <label for="id">Id</label>
     <input type="text" class="form-control" [(ngModel)]="model.id">
 </div>

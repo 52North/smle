@@ -1,20 +1,20 @@
 {
   "DescribedObject": {
-    "Keywords": {
-      "Keywords": true
+    "keywords": {
+      "keywords": true
     },
-    "Identification": {
-      "Identifiers": {
-        "Label": true,
-        "Value": true
+    "identification": {
+      "identifiers": {
+        "label": true,
+        "value": true
       }
     },
-    "Classification": {
-      "Classifiers": {
-        "Label": true,
-        "Value": true
+    "classification": {
+      "classifiers": {
+        "label": true,
+        "value": true
       }
     },
-    "Contacts": true
+    "contacts": true
   }
 }

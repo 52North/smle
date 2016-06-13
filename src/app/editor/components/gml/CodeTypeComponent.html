@@ -1,8 +1,8 @@
-<div class="form-group">
+<div class="form-group" *ngIf="!!config && config.isFieldMandatory('value')">
     <label for="value">Value</label>
     <input type="text" class="form-control" [(ngModel)]="model.value">
 </div>
-<div class="form-group">
+<div class="form-group" *ngIf="!!config && config.isFieldMandatory('codeSpace')">
     <label for="codeSpace">Code Space</label>
     <input type="text" class="form-control" [(ngModel)]="model.codeSpace">
 </div>

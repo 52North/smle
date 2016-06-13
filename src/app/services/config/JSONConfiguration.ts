@@ -24,7 +24,7 @@ export class JSONConfiguration implements Configuration {
         if (value === true) {
             return new TrueConfiguration();
         } else if (!value) {
-            return FalseConfiguration();
+            return new FalseConfiguration();
         } else {
             return new JSONConfiguration(value);
         }

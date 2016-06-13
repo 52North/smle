@@ -2,7 +2,7 @@ import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {CardComponent} from '../basic/CardComponent';
 import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
 import {Term} from '../../../model/sml/Term';
-import {AbstractComponent} from '../base/AbstractComponent';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 
 @Component({
     selector: 'sml-term',
@@ -11,7 +11,7 @@ import {AbstractComponent} from '../base/AbstractComponent';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractSWEComponent]
 })
-export class TermComponent extends AbstractComponent<Term> {
+export class TermComponent extends TypedModelComponent<Term> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
