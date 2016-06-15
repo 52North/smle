@@ -445,25 +445,25 @@ export class SensorMLEncoder {
       node.appendChild(configurationNode);
     }
 
-    if (object.featureOfInterest) {
+    if (object.featureOfInterest && object.featureOfInterest.features.length > 0) {
       let featureOfInterestNode = document.createElementNS(Namespaces.SML, 'sml:featuresOfInterest');
       featureOfInterestNode.appendChild(this.encodeFeatureList(object.featureOfInterest, document));
       node.appendChild(featureOfInterestNode);
     }
 
-    if (object.inputs) {
+    if (object.inputs && object.inputs.inputs.length > 0) {
       let inputsNode = document.createElementNS(Namespaces.SML, 'sml:inputs');
       inputsNode.appendChild(this.encodeInputList(object.inputs, document));
       node.appendChild(inputsNode);
     }
 
-    if (object.outputs) {
+    if (object.outputs && object.outputs.outputs.length > 0) {
       let outputsNode = document.createElementNS(Namespaces.SML, 'sml:outputs');
       outputsNode.appendChild(this.encodeOutputList(object.outputs, document));
       node.appendChild(outputsNode);
     }
 
-    if (object.parameters) {
+    if (object.parameters && object.parameters.parameters.length > 0) {
       let parametersNode = document.createElementNS(Namespaces.SML, 'sml:parameters');
       parametersNode.appendChild(this.encodeParameterList(object.parameters, document));
       node.appendChild(parametersNode);
@@ -952,13 +952,13 @@ export class SensorMLEncoder {
   }
 
   public encodeAggregatingProcess(node: Element, object: AggregatingProcess, document: Document): void {
-    if (object.components) {
+    if (object.components && object.components.components.length > 0) {
       let componentsNode = document.createElementNS(Namespaces.SML, 'sml:components');
       componentsNode.appendChild(this.encodeComponentList(object.components, document));
       node.appendChild(componentsNode);
     }
 
-    if (object.connections) {
+    if (object.connections && object.connections.connections.length > 0) {
       let connectionsNode = document.createElementNS(Namespaces.SML, 'sml:connections');
       connectionsNode.appendChild(this.encodeConnectionList(object.connections, document));
       node.appendChild(connectionsNode);
