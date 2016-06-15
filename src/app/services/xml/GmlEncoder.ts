@@ -17,26 +17,34 @@ export class GmlEncoder {
       return this.encodeTimePeriod(object, document);
     }
   }
+  
+  private setTime(elem: Element, time: TimeInstant) {
+    if (!isNaN(time.getTime())) {
+      elem.textContent = time.toISOString();
+    } else {
+      elem.setAttribute("indeterminatePosition", "unknown");
+    }
+  }
 
-  public encodeTimeInstant(object: TimeInstant, document: Document): Node {
+  public encodeTimeInstant(timeInstant: TimeInstant, document: Document): Node {
     let node = document.createElementNS(Namespaces.GML, 'gml:TimeInstant');
 
     let timePostionNode = document.createElementNS(Namespaces.GML, 'gml:timePosition');
-    timePostionNode.textContent = object.toISOString();
+    this.setTime(timePostionNode, timeInstant);
     node.appendChild(timePostionNode);
 
     return node;
   }
 
-  public encodeTimePeriod(object: TimePeriod, document: Document): Node {
+  public encodeTimePeriod(timePeriod: TimePeriod, document: Document): Node {
     let node = document.createElementNS(Namespaces.GML, 'gml:TimePeriod');
 
     let beginNode = document.createElementNS(Namespaces.GML, 'gml:beginPosition');
-    beginNode.textContent = object.begin.toISOString();
+    this.setTime(beginNode, timePeriod.begin);
     node.appendChild(beginNode);
 
     let endNode = document.createElementNS(Namespaces.GML, 'gml:endPosition');
-    endNode.textContent = object.end.toISOString();
+    this.setTime(endNode, timePeriod.end);
     node.appendChild(endNode);
 
     return node;
