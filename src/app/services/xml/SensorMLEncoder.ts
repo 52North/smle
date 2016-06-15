@@ -122,7 +122,7 @@ export class SensorMLEncoder {
       object.identifiers.forEach(term => {
         let identifierNode = document.createElementNS(Namespaces.SML, 'sml:identifier');
         identifierNode.appendChild(this.encodeTerm(term, document));
-        return identifierNode;
+        node.appendChild(identifierNode);
       });
     }
 
@@ -610,6 +610,7 @@ export class SensorMLEncoder {
   }
 
   public encodeFeatureList(object: FeatureList, document: Document) {
+    debugger;
     let node = document.createElementNS(Namespaces.SML, 'sml:FeatureList');
 
     this.encodeAbstractMetadataList(node, object, document);
