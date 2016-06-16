@@ -19,12 +19,16 @@ pre {
   height: 100%;
 
   .components-container {
-    height: 100%;
+    height: 95%;
     padding-bottom: 15px;
     overflow-x: auto;
     overflow-y: hidden;
     width: auto;
     white-space: nowrap;
+  }
+  
+  .publish {
+    height: 5%;
   }
 }
 

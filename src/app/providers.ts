@@ -4,10 +4,13 @@ import { InMemoryDescriptionRepository } from './services/InMemoryDescriptionRep
 import { XmlService } from './services/XmlService';
 import { SensorMLXmlService } from './services/SensorMLXmlService';
 import { SampleDataLoader } from './services/SampleDataLoader';
-
+import { PublishDescriptionService } from './sos/publishDescriptionService';
+import { FetchDescriptionService } from './sos/fetchDescriptionService';
 
 export const APP_PROVIDERS: any[] = [
   provide(DescriptionRepository, { useClass: InMemoryDescriptionRepository }),
   provide(XmlService, { useClass: SensorMLXmlService }),
-  provide(SampleDataLoader, { useClass: SampleDataLoader })
+  provide(SampleDataLoader, { useClass: SampleDataLoader }),
+  provide(PublishDescriptionService, { useClass: PublishDescriptionService }),
+  provide(FetchDescriptionService, { useClass: FetchDescriptionService })
 ];

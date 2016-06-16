@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import { Router } from '@angular/router-deprecated';
 import {RouteParams} from '@angular/router-deprecated';
 import {AbstractProcess, SimpleProcess} from '../model/sml';
 import {DescriptionRepository} from '../services/DescriptionRepository';
@@ -6,6 +7,7 @@ import {ResponsiblePartyComponent} from './components/iso/gmd/ResponsiblePartyCo
 import {AddressListComponent} from './components/iso/gmd/AddressListComponent';
 import {ContactsComponent} from './components/sml/ContactsComponent';
 import {SensorMLPipe} from './pipes/SensorMLPipe';
+import { PublishDescriptionService } from '../sos/publishDescriptionService';
 
 @Component({
   selector: 'editor',
@@ -20,8 +22,11 @@ export class Editor implements OnInit {
   public description: AbstractProcess;
   private id: string;
 
-  constructor(private service: DescriptionRepository,
-    routeParams: RouteParams) {
+  constructor(
+    private service: DescriptionRepository,
+    private publish: PublishDescriptionService,
+    routeParams: RouteParams,
+    private router: Router) {
     this.id = routeParams.get('id');
   }
 
@@ -33,5 +38,10 @@ export class Editor implements OnInit {
       this.service.getDescription(this.id)
         .then(description => this.description = description);
     }
+  }
+
+  publishDescription(): void {
+    this.publish.setDescription(this.description);
+    this.router.navigate(['Publish']);
   }
 }

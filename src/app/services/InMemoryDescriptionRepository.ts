@@ -49,13 +49,13 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
     return Promise.resolve(this._descriptions[id]);
   }
 
-  saveDescription(description: AbstractProcess): Promise<void> {
+  saveDescription(description: AbstractProcess): Promise<string> {
     let id = this._getId(description);
     if (this._descriptions[id]) {
-      return Promise.reject(new Error('already saved'));
+      return Promise.reject<string>(new Error('already saved'));
     }
     this._descriptions[id] = description;
-    return Promise.resolve();
+    return Promise.resolve(id);
   }
 
   updateDescription(description: AbstractProcess): Promise<void> {

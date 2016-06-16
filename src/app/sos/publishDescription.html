@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div *ngIf="description">
+        <h4>Sensor description with ID: <b>{{description.identifier.value}}</b></h4>
+        <div class="highlight">
+          <pre>{{description | toSensorml}}</pre>
+        </div>
+
+        <h4>Where should the decription be published</h4>
+        <div class="input-group">
+          <input type="text" class="form-control" [(ngModel)]="sosUrl" placeholder="SOS-URL to select...">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" (click)="hasSosDescription()">Check</button>
+          </span>
+        </div>
+        
+        <!-- <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit description</button> -->
+      </div>
+
+      <div *ngIf="!description">
+        <h4>Please create a sensor description to publish it to a SOS!</h4>
+      </div>
+    </div>
+  </div>
+</div>

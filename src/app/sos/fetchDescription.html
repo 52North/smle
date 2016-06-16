@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Enter SOS URL</h4>
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="sosUrl" placeholder="SOS-URL to select...">
+        <span class="input-group-btn">
+          <button class="btn btn-secondary" type="button" (click)="setUrl()">Get Descriptions</button>
+        </span>
+      </div>
+      <div [hidden]="!descriptionIds">
+        <h4>Select description ID</h4>
+        <div class="form-group">
+          <select class="form-control" (click)="selectDescriptionID($event.target.value)">
+            <option *ngFor="let item of descriptionIds">{{item}}</option>
+          </select>
+        </div>
+      </div>
+      <div [hidden]="!description">
+        <h4>Sensor description</h4>
+        <div class="highlight">
+          <pre>{{description}}</pre>
+        </div>
+        <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit description</button>
+      </div>
+    </div>
+  </div>
+</div>
