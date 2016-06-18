@@ -1,5 +1,5 @@
 <swe-abstract-identifiable [model]="model" [config]="config"></swe-abstract-identifiable>
-<div class="form-group" *ngIf="!!config && config.isFieldMandatory('definition')">
+<div class="form-group" *ngIf="config.isFieldMandatory('definition')">
     <label for="definition">Definition</label>
     <input type="text" class="form-control" [(ngModel)]="model.definition">
 </div>

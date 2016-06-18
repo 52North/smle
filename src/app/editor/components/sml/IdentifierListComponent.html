@@ -2,7 +2,7 @@
       (closeChild)="closeChild()">
     <form>
         <swe-abstract-metadata-list [model]="model" [config]="config"></swe-abstract-metadata-list>
-        <div class="form-group" *ngIf="!!config && config.isFieldMandatory('identifiers')">
+        <div class="form-group" *ngIf="config.isFieldMandatory('identifiers')">
             <label for="identifiers">Identifiers</label>
             <list [list]="model.identifiers" [itemTitle]="'Identifier'" (select)="openNewIdentifierItem($event)"
                   (remove)="onRemoveIdentifier($event)" (add)="onAddIdentifier()"></list>
