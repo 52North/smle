@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, HostBinding} from '@angular/core';
 
 @Component({
     selector: 'card',
@@ -10,6 +10,7 @@ export class CardComponent {
     public title: string;
 
     @Input()
+    @HostBinding('class.vertical-mode')
     public verticalMode: boolean;
 
     @Output()

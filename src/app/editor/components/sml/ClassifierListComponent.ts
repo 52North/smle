@@ -10,7 +10,6 @@ import {EditorComponent} from '../base/EditorComponent';
 @Component({
     selector: 'sml-classifier-list',
     template: require('./ClassifierListComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
 })

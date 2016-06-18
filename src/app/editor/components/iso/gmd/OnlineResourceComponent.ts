@@ -6,7 +6,6 @@ import {EditorComponent} from '../../base/EditorComponent';
 @Component({
     selector: 'iso-online-resource',
     template: require('./OnlineResourceComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent]
 })

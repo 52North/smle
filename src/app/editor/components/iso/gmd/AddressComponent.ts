@@ -7,7 +7,6 @@ import {EditorComponent} from '../../base/EditorComponent';
 @Component({
     selector: 'iso-address',
     template: require('./AddressComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent, StringsComponent]
 })

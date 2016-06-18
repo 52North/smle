@@ -9,7 +9,6 @@ import {EditorComponent} from '../base/EditorComponent';
 @Component({
     selector: 'sml-contact-list',
     template: require('./ContactListComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, ResponsiblePartyComponent, ListComponent]
 })

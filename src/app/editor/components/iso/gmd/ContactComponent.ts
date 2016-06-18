@@ -12,7 +12,6 @@ import {EditorComponent} from '../../base/EditorComponent';
 @Component({
     selector: 'iso-contact',
     template: require('./ContactComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
