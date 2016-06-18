@@ -8,7 +8,7 @@ export class JSONConfiguration implements Configuration {
 
     public isFieldMandatory(name: string): boolean {
         var value = this.getValue(name);
-        return !!value;
+        return typeof value === 'undefined' || !!value;
     }
 
     private getValue(name: string): any {
@@ -21,7 +21,7 @@ export class JSONConfiguration implements Configuration {
 
     public getConfigFor(name: string): Configuration {
         var value = this.getValue(name);
-        if (value === true) {
+        if (value === true || typeof value === 'undefined') {
             return new TrueConfiguration();
         } else if (!value) {
             return new FalseConfiguration();
