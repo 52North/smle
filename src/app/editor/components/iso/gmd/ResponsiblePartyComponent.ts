@@ -1,9 +1,9 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {ResponsibleParty} from '../../../../model/iso/gmd/ResponsibleParty';
 import {Contact} from '../../../../model/iso/gmd/Contact';
-import {TypedModelComponent} from '../../base/TypedModelComponent';
 import {CardComponent} from '../../basic/CardComponent';
 import {ContactComponent} from './ContactComponent';
+import {EditorComponent} from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-responsible-party',
@@ -12,7 +12,7 @@ import {ContactComponent} from './ContactComponent';
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent, ContactComponent]
 })
-export class ResponsiblePartyComponent extends TypedModelComponent<ResponsibleParty> {
+export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

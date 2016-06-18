@@ -3,9 +3,9 @@ import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
-import {TypedModelComponent} from '../base/TypedModelComponent';
 import {TermComponent} from './TermComponent';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
+import {EditorComponent} from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-classifier-list',
@@ -14,7 +14,7 @@ import {ClassifierList} from '../../../model/sml/ClassifierList';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
 })
-export class ClassifierListComponent extends TypedModelComponent<ClassifierList> {
+export class ClassifierListComponent extends EditorComponent<ClassifierList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

@@ -1,7 +1,7 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
-import {TypedModelComponent}  from '../../base/TypedModelComponent';
 import {CardComponent} from '../../basic/CardComponent';
+import {EditorComponent} from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-online-resource',
@@ -10,7 +10,7 @@ import {CardComponent} from '../../basic/CardComponent';
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent]
 })
-export class OnlineResourceComponent extends TypedModelComponent<OnlineResource> {
+export class OnlineResourceComponent extends EditorComponent<OnlineResource> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

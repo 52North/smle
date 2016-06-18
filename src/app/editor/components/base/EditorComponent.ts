@@ -1,23 +1,23 @@
 import {Type} from '@angular/core/src/facade/lang';
 import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
-import {ConfigurableComponent} from './ConfigurableComponent';
 import {Configuration} from '../../../services/config/Configuration';
+import {TypedModelComponent} from './TypedModelComponent';
 
-export abstract class EditorComponent extends ConfigurableComponent {
-    public model: any;
-
-    private parentComponent: EditorComponent;
-    private childComponentRef: ComponentRef<EditorComponent>;
+export abstract class EditorComponent<T> extends TypedModelComponent<T> {
+    private parentComponent: EditorComponent<any>;
+    private childComponentRef: ComponentRef<EditorComponent<any>>;
 
     constructor(private componentResolver: ComponentResolver, private viewContainerRef: ViewContainerRef) {
         super();
     }
 
-    protected extendModel(): void {
-        jQuery.extend(this.model, this.createModel());
+    public onReset(): void {
+        this.closeChild();
+        for (let prop in this.model) {
+            delete this.model[prop];
+        }
+        this.extendModel();
     }
-
-    protected abstract createModel(): any;
 
     protected get hasChild(): boolean {
         return !!this.childComponentRef;

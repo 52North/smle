@@ -1,6 +1,5 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Contact} from '../../../../model/iso/gmd/Contact';
-import {TypedModelComponent}  from '../../base/TypedModelComponent';
 import {AddressComponent} from './AddressComponent';
 import {PhoneComponent} from './PhoneComponent';
 import {OnlineResourceComponent} from './OnlineResourceComponent';
@@ -8,6 +7,7 @@ import {CardComponent} from '../../basic/CardComponent';
 import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
 import {Address} from '../../../../model/iso/gmd/Address';
 import {Phone} from '../../../../model/iso/gmd/Phone';
+import {EditorComponent} from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-contact',
@@ -16,7 +16,7 @@ import {Phone} from '../../../../model/iso/gmd/Phone';
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
-export class ContactComponent extends TypedModelComponent<Contact> {
+export class ContactComponent extends EditorComponent<Contact> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

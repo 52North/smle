@@ -1,17 +1,15 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {AbstractFeature} from '../../../model/gml/AbstractFeature';
 import {AbstractGMLComponent} from './AbstractGMLComponent';
-import {ConfigurableComponent} from '../base/ConfigurableComponent';
-import {Configuration} from '../../../services/config/Configuration';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 
 @Component({
     selector: 'gml-abstract-feature',
     template: require('./AbstractFeatureComponent.html'),
     directives: [AbstractGMLComponent]
 })
-export class AbstractFeatureComponent extends ConfigurableComponent {
-    @Input()
-    public model: AbstractFeature;
-    @Input()
-    public config: Configuration;
+export class AbstractFeatureComponent extends TypedModelComponent<AbstractFeature> {
+    protected createModel(): AbstractFeature {
+        return undefined;
+    }
 }
