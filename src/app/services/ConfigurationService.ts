@@ -3,6 +3,7 @@ import {Http, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import {Configuration} from './config/Configuration';
 import {JSONConfiguration} from './config/JSONConfiguration';
+import {TrueConfiguration} from './config/TrueConfiguration';
 
 @Injectable()
 export class ConfigurationService {
@@ -13,6 +14,8 @@ export class ConfigurationService {
         return this.http.get('/config.json').toPromise().then((response: Response) => {
             var data = response.json();
             return new JSONConfiguration(data);
+        }).catch(() => {
+            return new TrueConfiguration();
         });
     }
 }
