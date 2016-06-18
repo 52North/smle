@@ -8,7 +8,6 @@ import {EditorComponent} from '../base/EditorComponent';
 @Component({
     selector: 'swe-keyword-list',
     template: require('./KeywordListComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
     directives: [AbstractMetadataListComponent, CardComponent, StringsComponent]
 })

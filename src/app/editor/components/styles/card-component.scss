@@ -1,6 +1,14 @@
 :host {
-  display: block;
+  display: inline-block;
   height: 100%;
+  width: 500px;
+  margin: 0 10px 0 0;
+  margin:0;
+  vertical-align: top;
+
+  &.vertical-mode {
+    margin-right: -450px;
+  }
 
   .card {
     height: 100%;

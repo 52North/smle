@@ -7,7 +7,6 @@ import {EditorComponent} from '../../base/EditorComponent';
 @Component({
     selector: 'iso-phone',
     template: require('./PhoneComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardComponent, StringsComponent]
 })

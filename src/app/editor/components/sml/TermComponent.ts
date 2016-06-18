@@ -7,7 +7,6 @@ import {EditorComponent} from '../base/EditorComponent';
 @Component({
     selector: 'sml-term',
     template: require('./TermComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractSWEComponent]
 })

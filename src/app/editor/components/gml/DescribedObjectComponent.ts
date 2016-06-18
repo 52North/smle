@@ -17,7 +17,6 @@ import {EditorComponent} from '../base/EditorComponent';
 @Component({
     selector: 'gml-described-object',
     template: require('./DescribedObjectComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
     directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent,
         IdentifierListComponent, ClassifierListComponent, ContactListComponent, ListComponent]
