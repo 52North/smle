@@ -4,8 +4,8 @@ import {ListComponent} from '../basic/ListComponent';
 import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
-import {TypedModelComponent} from '../base/TypedModelComponent';
 import {TermComponent} from './TermComponent';
+import {EditorComponent} from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-identifier-list',
@@ -14,7 +14,7 @@ import {TermComponent} from './TermComponent';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
 })
-export class IdentifierListComponent extends TypedModelComponent<IdentifierList> {
+export class IdentifierListComponent extends EditorComponent<IdentifierList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

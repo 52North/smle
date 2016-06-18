@@ -1,7 +1,6 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {DescribedObject} from '../../../model/sml/DescribedObject';
 import {AbstractFeatureComponent} from './AbstractFeatureComponent';
-import {TypedModelComponent} from '../base/TypedModelComponent';
 import {SimpleProcess} from '../../../model/sml/SimpleProcess';
 import {KeywordList} from '../../../model/sml/KeywordList';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
@@ -13,6 +12,7 @@ import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {ContactListComponent} from '../sml/ContactListComponent';
 import {ContactList} from '../../../model/sml/ContactList';
+import {EditorComponent} from '../base/EditorComponent';
 
 @Component({
     selector: 'gml-described-object',
@@ -22,7 +22,7 @@ import {ContactList} from '../../../model/sml/ContactList';
     directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent,
         IdentifierListComponent, ClassifierListComponent, ContactListComponent, ListComponent]
 })
-export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
+export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

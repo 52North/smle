@@ -1,10 +1,10 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {TypedModelComponent} from '../base/TypedModelComponent';
 import {ContactList} from '../../../model/sml';
 import {ResponsibleParty} from '../../../model/iso';
 import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
 import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
+import {EditorComponent} from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-contact-list',
@@ -13,7 +13,7 @@ import {ListComponent} from '../basic/ListComponent';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, ResponsiblePartyComponent, ListComponent]
 })
-export class ContactListComponent extends TypedModelComponent<ContactList> {
+export class ContactListComponent extends EditorComponent<ContactList> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

@@ -1,15 +1,13 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {CodeType} from '../../../model/gml/CodeType';
-import {ConfigurableComponent} from '../base/ConfigurableComponent';
-import {Configuration} from '../../../services/config/Configuration';
+import {TypedModelComponent} from '../base/TypedModelComponent';
 
 @Component({
     selector: 'gml-code-type',
     template: require('./CodeTypeComponent.html')
 })
-export class CodeTypeComponent extends ConfigurableComponent {
-    @Input()
-    public model: CodeType;
-    @Input()
-    public config: Configuration;
+export class CodeTypeComponent extends TypedModelComponent<CodeType> {
+    protected createModel(): CodeType {
+        return undefined;
+    }
 }
