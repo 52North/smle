@@ -1,8 +1,8 @@
 <card [verticalMode]="hasChild" [title]="'Classifier List'" (reset)="onReset()"
-      (close)="close()" (closeChild)="closeChild()">
+      (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
-        <swe-abstract-metadata-list [model]="model" [config]="config"></swe-abstract-metadata-list>
-        <div class="form-group" *ngIf="config.isFieldMandatory('classifiers')">
+        <swe-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-metadata-list>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('classifiers')">
             <label for="classifiers">Classifiers</label>
             <list [list]="model.classifiers" [itemTitle]="'Classifier'" (select)="openNewClassifierItem($event)"
                   (remove)="onRemoveClassifier($event)" (add)="onAddClassifier()"></list>
