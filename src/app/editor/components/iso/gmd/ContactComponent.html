@@ -1,19 +1,20 @@
-<card [verticalMode]="hasChild" [title]="'Contact'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()">
+<card [verticalMode]="hasChild" [title]="'Contact'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+      [(showAll)]="isShowAll">
     <form>
-        <div class="form-group" *ngIf="config.isFieldMandatory('phone')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('phone')">
             <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">Phone</a>
         </div>
-        <div class="form-group" *ngIf="config.isFieldMandatory('address')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('address')">
             <a class="btn btn-link" (click)="openNewAddressItem(model.address)">Address</a>
         </div>
-        <div class="form-group" *ngIf="config.isFieldMandatory('onlineResource')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('onlineResource')">
             <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">Online Resource</a>
         </div>
-        <div class="form-group" *ngIf="config.isFieldMandatory('contactInstructions')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contactInstructions')">
             <label for="model.contactInstructions">Contact Instructions</label>
             <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
         </div>
-        <div class="form-group" *ngIf="config.isFieldMandatory('hoursOfService')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('hoursOfService')">
             <label for="model.hoursOfService">Hours Of Service</label>
             <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
         </div>

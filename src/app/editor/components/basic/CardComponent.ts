@@ -10,6 +10,12 @@ export class CardComponent {
     public title: string;
 
     @Input()
+    public showAll: boolean = false;
+
+    @Output()
+    public showAllChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    @Input()
     @HostBinding('class.vertical-mode')
     public verticalMode: boolean;
 
@@ -32,5 +38,10 @@ export class CardComponent {
 
     public onCloseChild(): void {
         this.closeChild.emit(null);
+    }
+
+    private onShowAllChange(value) {
+        this.showAll = value;
+        this.showAllChange.emit(value);
     }
 }

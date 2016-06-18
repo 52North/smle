@@ -50,7 +50,6 @@
     "src/app/app.ts",
     "src/app/directives.ts",
     "src/app/editor/components/base/TypedModelComponent.ts",
-    "src/app/editor/components/base/ConfigurableComponent.ts",
     "src/app/editor/components/base/EditorComponent.ts",
     "src/app/editor/components/basic/StringsComponent.ts",
     "src/app/editor/components/basic/CardComponent.ts",

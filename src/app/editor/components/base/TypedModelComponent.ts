@@ -1,12 +1,13 @@
 import {Input} from '@angular/core';
 import {Configuration} from '../../../services/config/Configuration';
-import {ConfigurableComponent} from './ConfigurableComponent';
 
-export abstract class TypedModelComponent<T> extends ConfigurableComponent {
+export abstract class TypedModelComponent<T> {
     @Input()
     public model: T;
     @Input()
     public config: Configuration;
+    @Input()
+    public isShowAll: boolean = false;
 
     protected abstract createModel(): T;
 
