@@ -17,12 +17,12 @@ export class GmlEncoder {
       return this.encodeTimePeriod(object, document);
     }
   }
-  
+
   private setTime(elem: Element, time: TimeInstant) {
     if (!isNaN(time.getTime())) {
       elem.textContent = time.toISOString();
     } else {
-      elem.setAttribute("indeterminatePosition", "unknown");
+      elem.setAttribute('indeterminatePosition', 'unknown');
     }
   }
 

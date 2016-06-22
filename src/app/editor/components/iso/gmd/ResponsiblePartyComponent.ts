@@ -8,7 +8,6 @@ import {ContactComponent} from './ContactComponent';
 @Component({
     selector: 'iso-responsible-party',
     template: require('./ResponsiblePartyComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent, ContactComponent]
 })

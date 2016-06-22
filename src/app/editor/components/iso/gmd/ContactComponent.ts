@@ -12,7 +12,6 @@ import {Phone} from '../../../../model/iso/gmd/Phone';
 @Component({
     selector: 'iso-contact',
     template: require('./ContactComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
