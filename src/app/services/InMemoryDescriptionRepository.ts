@@ -9,11 +9,11 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
   private _descriptions: { [key: string]: AbstractProcess } = {};
 
   private _samples: string[] = [
-    '/examples/physicalComponentInstance.xml',
-    '/examples/physicalComponentType.xml',
-    '/examples/physicalSystemInstance.xml',
-    '/examples/physicalSystemType.xml',
-    '/examples/lisaInstance.xml'
+    './examples/physicalComponentInstance.xml',
+    './examples/physicalComponentType.xml',
+    './examples/physicalSystemInstance.xml',
+    './examples/physicalSystemType.xml',
+    './examples/lisaInstance.xml'
   ];
 
   /*
@@ -41,7 +41,7 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
   }
 
   getDescription(id: string): Promise<AbstractProcess> {
-    if (id.indexOf('/examples') > -1) {
+    if (id.indexOf('./examples') > -1) {
       return this.dataloader.loadSample(id);
     }
     if (!this._descriptions[id]) {
