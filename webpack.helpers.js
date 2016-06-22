@@ -10,7 +10,7 @@ function hasProcessFlag(flag) {
   return process.argv.join('').indexOf(flag) > -1;
 }
 
-function gzipMaxLevel(buffer, callback) {
+function gzipMaxLevel(buffer, option, callback) {
   return zlib['gzip'](buffer, {level: 9}, callback);
 }
 
