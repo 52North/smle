@@ -1,5 +1,5 @@
 import {Type} from '@angular/core/src/facade/lang';
-import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
+import {ViewContainerRef, ComponentResolver, ComponentRef, HostBinding} from '@angular/core';
 
 export abstract class EditorComponent {
     public model;
@@ -17,7 +17,8 @@ export abstract class EditorComponent {
 
     protected abstract createModel(): any;
 
-    protected hasChild(): boolean {
+    @HostBinding('class.has-child')
+    protected get hasChild(): boolean {
         return this._hasChild;
     }
 

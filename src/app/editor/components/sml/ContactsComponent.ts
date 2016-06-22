@@ -7,7 +7,6 @@ import {ContactListComponent} from './ContactListComponent';
 @Component({
     selector: 'sml-contacts',
     template: require('./ContactsComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../styles/editor-component.scss')],
     directives: [CardHeaderComponent, ContactListComponent]
 })

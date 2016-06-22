@@ -7,7 +7,6 @@ import {StringsComponent} from '../../StringsComponent';
 @Component({
     selector: 'iso-address',
     template: require('./AddressComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
     directives: [CardHeaderComponent, StringsComponent]
 })
