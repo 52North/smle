@@ -7,6 +7,15 @@ import { SampleDataLoader } from '../services/SampleDataLoader';
 @Injectable()
 export class InMemoryDescriptionRepository extends DescriptionRepository {
   private _descriptions: { [key: string]: AbstractProcess } = {};
+
+  private _samples: string[] = [
+    '/examples/physicalComponentInstance.xml',
+    '/examples/physicalComponentType.xml',
+    '/examples/physicalSystemInstance.xml',
+    '/examples/physicalSystemType.xml',
+    '/examples/lisaInstance.xml'
+  ];
+
   /*
   constructor(processes?: AbstractProcess[]) {
     super();
@@ -24,14 +33,6 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
   ) {
     super();
   }
-
-  private _samples: string[] = [
-    "/examples/physicalComponentInstance.xml",
-    "/examples/physicalComponentType.xml",
-    "/examples/physicalSystemInstance.xml",
-    "/examples/physicalSystemType.xml",
-    "/examples/lisaInstance.xml"
-  ];
 
   getDescriptions(): Promise<Array<string>> {
     let list = this._samples;
