@@ -1,0 +1,17 @@
+<ul class="list-group">
+    <li *ngFor="let item of list; let i = index" class="list-group-item">
+        <gml-time-instant *ngIf="!isPeriod(item)" [model]="item" (modelChange)="onChange($event, i)"></gml-time-instant>
+        <gml-time-period *ngIf="isPeriod(item)" [model]="item"></gml-time-period>
+        <a type="button" class="btn btn-link" (click)="removeItem(i)">
+            <i class="fa fa-minus-circle"></i>
+        </a>
+    </li>
+    <li class="list-group-item">
+        <a type="button" class="btn btn-link" (click)="addTime()">
+            <i class="fa fa-fw fa-plus-circle"></i>Add Time
+        </a>
+        <a type="button" class="btn btn-link" (click)="addPeriod()">
+            <i class="fa fa-fw fa-plus-circle"></i>Add Period
+        </a>
+    </li>
+</ul>

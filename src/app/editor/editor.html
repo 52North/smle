@@ -1,6 +1,6 @@
 <pre *ngIf="!!description">{{description | toSensorml}}</pre>
 <div class="row">
     <div class="col-sm-12 components-container" *ngIf="!!description && !!config">
-        <gml-described-object [model]="description" [config]="config.getConfigFor('DescribedObject')"></gml-described-object>
+        <sml-described-object [model]="description" [config]="config.getConfigFor('DescribedObject')"></sml-described-object>
     </div>
 </div>

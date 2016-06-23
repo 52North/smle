@@ -4,7 +4,7 @@ import {AbstractProcess, SimpleProcess} from '../model/sml';
 import {DescriptionRepository} from '../services/DescriptionRepository';
 import {ConfigurationService} from '../services/ConfigurationService';
 import {SensorMLPipe} from './pipes/SensorMLPipe';
-import {DescribedObjectComponent} from './components/gml/DescribedObjectComponent';
+import {DescribedObjectComponent} from './components/sml/DescribedObjectComponent';
 import {Configuration} from '../services/config/Configuration';
 
 @Component({

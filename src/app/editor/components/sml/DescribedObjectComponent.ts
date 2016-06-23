@@ -1,25 +1,26 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {DescribedObject} from '../../../model/sml/DescribedObject';
-import {AbstractFeatureComponent} from './AbstractFeatureComponent';
+import {AbstractFeatureComponent} from '../gml/AbstractFeatureComponent';
 import {SimpleProcess} from '../../../model/sml/SimpleProcess';
 import {KeywordList} from '../../../model/sml/KeywordList';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
 import {KeywordListComponent} from '../swe/KeywordListComponent';
-import {IdentifierListComponent} from '../sml/IdentifierListComponent';
-import {ClassifierListComponent} from '../sml/ClassifierListComponent';
+import {IdentifierListComponent} from './IdentifierListComponent';
+import {ClassifierListComponent} from './ClassifierListComponent';
 import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
-import {ContactListComponent} from '../sml/ContactListComponent';
+import {ContactListComponent} from './ContactListComponent';
 import {ContactList} from '../../../model/sml/ContactList';
 import {EditorComponent} from '../base/EditorComponent';
+import {TimeListComponent} from '../basic/TimeListComponent';
 
 @Component({
-    selector: 'gml-described-object',
+    selector: 'sml-described-object',
     template: require('./DescribedObjectComponent.html'),
     styles: [require('../styles/editor-component.scss')],
-    directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent,
-        IdentifierListComponent, ClassifierListComponent, ContactListComponent, ListComponent]
+    directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent, IdentifierListComponent,
+        ClassifierListComponent, ContactListComponent, ListComponent, TimeListComponent]
 })
 export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
