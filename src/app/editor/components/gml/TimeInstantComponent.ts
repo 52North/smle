@@ -26,8 +26,8 @@ export class TimeInstantComponent implements OnInit {
             minute: this.model.getMinutes()
         };
 
-        this.dateTimeString = $.datepicker.formatDate(this.dateFormat, this.model)
-            + DATE_TIME_SEPARATOR + $.datepicker.formatTime(this.timeFormat, timeObject);
+        this.dateTimeString = (<any>$).datepicker.formatDate(this.dateFormat, this.model)
+            + DATE_TIME_SEPARATOR + (<any>$).datepicker.formatTime(this.timeFormat, timeObject);
     }
 
     private onStringDateChange(newDateTimeString: string): void {
@@ -35,8 +35,8 @@ export class TimeInstantComponent implements OnInit {
         var newDateString = newDateTimeArray[0];
         var newTimeString = newDateTimeArray[1];
 
-        var newDate = $.datepicker.parseDate(this.dateFormat, newDateString);
-        var newTimeObject = $.datepicker.parseTime(this.timeFormat, newTimeString);
+        var newDate = (<any>$).datepicker.parseDate(this.dateFormat, newDateString);
+        var newTimeObject = (<any>$).datepicker.parseTime(this.timeFormat, newTimeString);
 
         newDate.setHours(newTimeObject.hour, newTimeObject.minute);
 
