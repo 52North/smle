@@ -9,4 +9,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 import 'jquery';
+import 'jquery-ui/datepicker';
+import 'jquery-ui-timepicker-addon';
 import 'bootstrap-loader';

@@ -8,7 +8,10 @@ var ENV = process.env.ENV = process.env.NODE_ENV = 'test';
  */
 module.exports = {
   resolve: {
-    extensions: [ '', '.ts', '.js' ]
+    extensions: [ '', '.ts', '.js' ],
+    alias: {
+      'jquery.ui': 'jquery-ui'
+    }
   },
   devtool: 'inline-source-map',
   debug: true,
@@ -39,6 +42,7 @@ module.exports = {
       { test: /\.json$/, loader: 'json-loader', exclude: [ helpers.root('src/index.html') ] },
       { test: /\.html$/, loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
       { test: /\.css$/, loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
+      { test: /\.(gif|png)$/, loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ]},
       { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], exclude: /node_modules/ },
       { test: /\.xml$/, loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] }
 

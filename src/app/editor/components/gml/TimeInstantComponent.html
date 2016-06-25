@@ -1,3 +1,3 @@
-<!--<p-calendar [ngModel]="stringDate" (ngModelChange)="onStringDateChange($event)" dateFormat="dateFormat"-->
-            <!--timeFormat="timeFormat"></p-calendar>-->
-<input type="text" [ngModel]="stringDate" (ngModelChange)="onStringDateChange($event)">
+<p-calendar [ngModel]="dateTimeString" (ngModelChange)="onStringDateChange($event)" dateFormat="{{dateFormat}}"
+            timeFormat="{{timeFormat}}" styleClass="col-sm-12" inputStyleClass="form-control"
+            class="row"></p-calendar>
