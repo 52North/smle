@@ -123,6 +123,7 @@ module.exports = {
     // static assets
     new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
     new CopyWebpackPlugin([ { from: 'src/examples', to: 'examples' } ]),
+    new CopyWebpackPlugin([ { from: 'src/config.json', to: 'config.json' } ]),
     // generating html
     new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'none' }),
     new webpack.DefinePlugin({
