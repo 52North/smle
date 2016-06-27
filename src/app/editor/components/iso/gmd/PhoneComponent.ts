@@ -1,17 +1,16 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Phone} from '../../../../model/iso/gmd/Phone';
-import {AbstractComponent}  from '../../AbstractComponent';
-import {CardHeaderComponent} from '../../CardHeaderComponent';
-import {StringsComponent} from '../../StringsComponent';
+import {CardComponent} from '../../basic/CardComponent';
+import {StringsComponent} from '../../basic/StringsComponent';
+import {EditorComponent} from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-phone',
     template: require('./PhoneComponent.html'),
-    host: {'[class.has-child]': 'hasChild'},
     styles: [require('../../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, StringsComponent]
+    directives: [CardComponent, StringsComponent]
 })
-export class PhoneComponent extends AbstractComponent<Phone> {
+export class PhoneComponent extends EditorComponent<Phone> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
