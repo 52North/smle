@@ -93,13 +93,16 @@ module.exports = {
         },
         exclude: [ /\.(spec|e2e)\.ts$/ ]
       },
-      { test: /\.json$/,  loader: 'json-loader' },
-      { test: /\.css$/,   loader: 'raw-loader' },
-      { test: /\.(gif|png)$/, loader: 'url-loader'},
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
-      { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
-      { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
-      { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
+      {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.css$/, loader: 'raw-loader'},
+      {test: /\.(gif|png)$/, loader: 'url-loader'},
+      {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
+      {test: /\.scss$/, loaders: ['raw-loader', 'sass-loader']},
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=image/svg+xml'},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?mimetype=application/octet-stream"},
+      {test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=application/font-woff'},
+      {test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery'}
     ],
     noParse: [
       helpers.root('zone.js', 'dist'),
