@@ -20,11 +20,11 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
      */
 
     private _samples: string[] = [
-        '/examples/physicalComponentInstance.xml',
-        '/examples/physicalComponentType.xml',
-        '/examples/physicalSystemInstance.xml',
-        '/examples/physicalSystemType.xml',
-        '/examples/lisaInstance.xml'
+        './examples/physicalComponentInstance.xml',
+        './examples/physicalComponentType.xml',
+        './examples/physicalSystemInstance.xml',
+        './examples/physicalSystemType.xml',
+        './examples/lisaInstance.xml'
     ];
 
     constructor(private dataloader: SampleDataLoader) {
