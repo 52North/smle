@@ -1,0 +1,42 @@
+{
+  "DescribedObject": {
+    "keywords": {
+      "codeSpace": false,
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
+    },
+    "identification": {
+      "identifiers": {
+        "codeSpace": false,
+        "definition": false,
+        "id": false,
+        "extension": false
+      },
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
+    },
+    "classification": {
+      "classifiers": {
+        "codeSpace": false,
+        "definition": false,
+        "id": false,
+        "extension": false
+      },
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
+    },
+    "language": false
+  }
+}
