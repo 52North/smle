@@ -11,7 +11,7 @@ export class ConfigurationService {
     }
 
     public getConfiguration(): Promise<Configuration> {
-        return this.http.get('/config.json').toPromise().then((response: Response) => {
+        return this.http.get('./config.json').toPromise().then((response: Response) => {
             var data = response.json();
             return new JSONConfiguration(data);
         }).catch(() => {
