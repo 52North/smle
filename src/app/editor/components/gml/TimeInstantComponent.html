@@ -1,3 +1,4 @@
-<p-calendar [ngModel]="dateTimeString" (ngModelChange)="onStringDateChange($event)" dateFormat="{{dateFormat}}"
-            timeFormat="{{timeFormat}}" styleClass="col-sm-12" inputStyleClass="form-control"
-            class="row"></p-calendar>
+<p-calendar [ngModel]="dateTimeString" (ngModelChange)="onStringDateChange($event)" [dateFormat]="dateFormat"
+            [timeFormat]="timeFormat" [minDate]="getMinFormattedDate()" [minTime]="getMinFormattedTime()"
+            [maxDate]="getMaxFormattedDate()" [maxTime]="getMaxFormattedTime()" styleClass="col-sm-12"
+            inputStyleClass="form-control" class="row"></p-calendar>
