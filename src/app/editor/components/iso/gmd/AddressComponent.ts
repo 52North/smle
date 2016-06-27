@@ -1,16 +1,16 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Address} from '../../../../model/iso/gmd/Address';
-import {AbstractComponent} from '../../AbstractComponent';
-import {CardHeaderComponent} from '../../CardHeaderComponent';
-import {StringsComponent} from '../../StringsComponent';
+import {CardComponent} from '../../basic/CardComponent';
+import {StringsComponent} from '../../basic/StringsComponent';
+import {EditorComponent} from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-address',
     template: require('./AddressComponent.html'),
     styles: [require('../../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, StringsComponent]
+    directives: [CardComponent, StringsComponent]
 })
-export class AddressComponent extends AbstractComponent<Address> {
+export class AddressComponent extends EditorComponent<Address> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }

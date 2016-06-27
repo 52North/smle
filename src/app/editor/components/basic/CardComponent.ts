@@ -1,16 +1,22 @@
 import {Component, Input, Output, EventEmitter, HostBinding} from '@angular/core';
 
 @Component({
-    selector: 'card-header',
-    template: require('./CardHeaderComponent.html'),
-    styles: [require('./styles/card-header-component.scss')]
+    selector: 'card',
+    template: require('./CardComponent.html'),
+    styles: [require('../styles/card-component.scss')]
 })
-export class CardHeaderComponent {
+export class CardComponent {
     @Input()
     public title: string;
 
-    @HostBinding('class.vertical')
     @Input()
+    public showAll: boolean = false;
+
+    @Output()
+    public showAllChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+    @Input()
+    @HostBinding('class.vertical-mode')
     public verticalMode: boolean;
 
     @Output()
@@ -32,5 +38,10 @@ export class CardHeaderComponent {
 
     public onCloseChild(): void {
         this.closeChild.emit(null);
+    }
+
+    private onShowAllChange(value) {
+        this.showAll = value;
+        this.showAllChange.emit(value);
     }
 }

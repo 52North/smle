@@ -1,0 +1,22 @@
+<card [verticalMode]="hasChild" [title]="'Term'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+      [(showAll)]="isShowAll">
+    <form>
+        <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('label')">
+            <label for="label">Label</label>
+            <input type="text" class="form-control" [(ngModel)]="model.label">
+        </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('codeSpace')">
+            <label for="codeSpace">Code Space</label>
+            <input type="text" class="form-control" [(ngModel)]="model.codeSpace">
+        </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('definition')">
+            <label for="definition">Definition</label>
+            <input type="text" class="form-control" [(ngModel)]="model.definition">
+        </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('value')">
+            <label for="value">Value</label>
+            <input type="text" class="form-control" [(ngModel)]="model.value">
+        </div>
+    </form>
+</card>

@@ -1,36 +1,34 @@
-<div class="card">
-    <card-header class="card-header clearfix" [verticalMode]="hasChild" [title]="'Address'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"></card-header>
-    <div class="card-block">
-        <form>
-            <div class="form-group">
-                <label for="city">City</label>
-                <input type="text" class="form-control" [(ngModel)]="model.city">
-            </div>
+<card [verticalMode]="hasChild" [title]="'Address'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+      [(showAll)]="isShowAll">
+    <form>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('city')">
+            <label for="city">City</label>
+            <input type="text" class="form-control" [(ngModel)]="model.city">
+        </div>
 
-            <div class="form-group">
-                <label for="postalCode">Postal Code</label>
-                <input type="text" class="form-control" [(ngModel)]="model.postalCode">
-            </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('postalCode')">
+            <label for="postalCode">Postal Code</label>
+            <input type="text" class="form-control" [(ngModel)]="model.postalCode">
+        </div>
 
-            <div class="form-group">
-                <label for="country">Country</label>
-                <input type="text" class="form-control" [(ngModel)]="model.country">
-            </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('country')">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" [(ngModel)]="model.country">
+        </div>
 
-            <div class="form-group">
-                <label for="administrativeArea">Administrative Area</label>
-                <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
-            </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('administrativeArea')">
+            <label for="administrativeArea">Administrative Area</label>
+            <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
+        </div>
 
-            <div class="form-group">
-                <label for="deliveryPoint">Delivery Point</label>
-                <strings [list]="model.deliveryPoint"></strings>
-            </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('deliveryPoint')">
+            <label for="deliveryPoint">Delivery Point</label>
+            <strings [list]="model.deliveryPoint"></strings>
+        </div>
 
-            <div class="form-group">
-                <label for="electronicMailAddress">Electronic Mail Address</label>
-                <strings [list]="model.electronicMailAddress"></strings>
-            </div>
-        </form>
-    </div>
-</div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('electronicMailAddress')">
+            <label for="electronicMailAddress">Electronic Mail Address</label>
+            <strings [list]="model.electronicMailAddress"></strings>
+        </div>
+    </form>
+</card>

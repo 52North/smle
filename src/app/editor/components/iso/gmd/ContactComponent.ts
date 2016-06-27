@@ -1,21 +1,21 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {Contact} from '../../../../model/iso/gmd/Contact';
-import {AbstractComponent}  from '../../AbstractComponent';
 import {AddressComponent} from './AddressComponent';
 import {PhoneComponent} from './PhoneComponent';
 import {OnlineResourceComponent} from './OnlineResourceComponent';
-import {CardHeaderComponent} from '../../CardHeaderComponent';
+import {CardComponent} from '../../basic/CardComponent';
 import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
 import {Address} from '../../../../model/iso/gmd/Address';
 import {Phone} from '../../../../model/iso/gmd/Phone';
+import {EditorComponent} from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-contact',
     template: require('./ContactComponent.html'),
     styles: [require('../../styles/editor-component.scss')],
-    directives: [CardHeaderComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
+    directives: [CardComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
 })
-export class ContactComponent extends AbstractComponent<Contact> {
+export class ContactComponent extends EditorComponent<Contact> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
     }
@@ -25,14 +25,14 @@ export class ContactComponent extends AbstractComponent<Contact> {
     }
 
     private openNewPhoneItem(model: Phone) {
-        this.openNewChild(PhoneComponent, model);
+        this.openNewChild(PhoneComponent, model, this.config.getConfigFor('phone'));
     }
 
     private openNewAddressItem(model: Address) {
-        this.openNewChild(AddressComponent, model);
+        this.openNewChild(AddressComponent, model, this.config.getConfigFor('address'));
     }
 
     private openNewOnlineResourceItem(model: OnlineResource) {
-        this.openNewChild(OnlineResourceComponent, model);
+        this.openNewChild(OnlineResourceComponent, model, this.config.getConfigFor('onlineResource'));
     }
 }

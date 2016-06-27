@@ -1,9 +1,6 @@
-<pre *ngIf="description">{{description | toSensorml}}</pre>
+<pre *ngIf="!!description">{{description | toSensorml}}</pre>
 <div class="row">
-    <div class="col-sm-12 components-container" *ngIf="description">
-        <sml-contacts [model]="description.contacts"></sml-contacts>
+    <div class="col-sm-12 components-container" *ngIf="!!description && !!config">
+        <sml-described-object [model]="description" [config]="config.getConfigFor('DescribedObject')"></sml-described-object>
     </div>
-    <!--<div class="col-md-12" *ngIf="description">-->
-        <!--<a class="btn btn-primary" (click)="saveDescription()">Save</a>-->
-    <!--</div>-->
 </div>

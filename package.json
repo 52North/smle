@@ -51,10 +51,10 @@
     "postinstall": "npm run typings-install"
   },
   "dependencies": {
-    "@angular/http": "2.0.0-rc.1",
     "@angular/common": "2.0.0-rc.1",
     "@angular/compiler": "2.0.0-rc.1",
     "@angular/core": "2.0.0-rc.1",
+    "@angular/http": "2.0.0-rc.1",
     "@angular/platform-browser": "2.0.0-rc.1",
     "@angular/platform-browser-dynamic": "2.0.0-rc.1",
     "@angular/platform-server": "2.0.0-rc.1",
@@ -65,6 +65,10 @@
     "core-js": "^2.2.2",
     "font-awesome": "^4.5.0",
     "jquery": "^2.2.0",
+    "jquery-ui": "^1.10.5",
+    "jquery-ui-timepicker-addon": "^1.5.5",
+    "primeng": "1.0.0-beta.8",
+    "primeui": "^4.1.12",
     "rxjs": "5.0.0-beta.6",
     "tether": "^1.2.0",
     "zone.js": "~0.6.12"

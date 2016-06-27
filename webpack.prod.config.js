@@ -50,7 +50,10 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.ts', '.js']
+    extensions: ['', '.ts', '.js'],
+    alias: {
+      'jquery.ui': 'jquery-ui'
+    }
   },
 
   postcss: [autoprefixer],
@@ -92,6 +95,7 @@ module.exports = {
       },
       { test: /\.json$/,  loader: 'json-loader' },
       { test: /\.css$/,   loader: 'raw-loader' },
+      { test: /\.(gif|png)$/, loader: 'url-loader'},
       { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] },
       { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
       { test: /\.(woff2?|ttf|eot|svg)$/, loader: 'url?limit=10000' },
