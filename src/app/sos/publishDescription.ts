@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
 import { PublishDescriptionService } from './publishDescriptionService';
-import { SensorMLXmlService } from '../services/SensorMLXmlService';
 import { AbstractProcess } from '../model/sml';
-import {SensorMLPipe} from '../editor/pipes/SensorMLPipe';
+import { SensorMLPipe } from '../editor/pipes/SensorMLPipe';
 
 @Component({
   selector: 'sos',
@@ -18,18 +16,40 @@ export class PublishDescription implements OnInit {
 
   private description: AbstractProcess;
 
+  private hasDescription: boolean = null;
+
+  private publishDescriptionErrors: Array<string> = [];
+
   constructor(
     private publishServ: PublishDescriptionService) {
   }
-  
+
   ngOnInit() {
     this.description = this.publishServ.getDescription();
   }
-  
+
   hasSosDescription() {
-    debugger;
-    // TODO check if the SOS has a description with the identifier
-    //this.publishServ.hasSosDescription();
+    this.publishServ.hasSosDescription(this.sosUrl, this.description.identifier.value).subscribe(res => {
+      this.hasDescription = res;
+    });
+  }
+
+  addDescription() {
+    this.publishServ.addDescription(this.sosUrl, this.description)
+      .subscribe(res => {
+        debugger;
+      }, (error: Array<string>) => {
+        this.publishDescriptionErrors = error;
+      });
+  }
+
+  updateDescription() {
+    this.publishServ.updateDescription(this.sosUrl, this.description.identifier.value, this.description)
+      .subscribe(res => {
+        debugger;
+      }, (error: Array<string>) => {
+        this.publishDescriptionErrors = error;
+      })
   }
 
 }

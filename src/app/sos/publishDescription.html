@@ -15,8 +15,17 @@
             <button class="btn btn-secondary" type="button" (click)="hasSosDescription()">Check</button>
           </span>
         </div>
-        
-        <!-- <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit description</button> -->
+        <div *ngIf="hasDescription" class="alert alert-warning" role="alert">
+          The SOS contains a description with the identifier '{{description.identifier.value}}'. Do you want to update this description?
+          <button class="btn btn-secondary" type="button" (click)="updateDescription()">Update Description</button>
+        </div>
+        <div *ngIf="hasDescription === false" class="alert alert-success" role="alert">
+          The SOS has no description with the identifier '{{description.identifier.value}}'. Do you want to add the description now?
+          <button class="btn btn-secondary" type="button" (click)="addDescription()">Add Description</button>
+        </div>
+        <div *ngIf="publishDescriptionErrors.length > 0" class="alert alert-danger">
+          <div *ngFor="let error of publishDescriptionErrors">{{error}}</div>
+        </div>
       </div>
 
       <div *ngIf="!description">
