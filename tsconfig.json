@@ -225,6 +225,7 @@
     "src/app/services/SensorMLXmlService.spec.ts",
     "src/app/services/SensorMLXmlService.ts",
     "src/app/services/SampleDataLoader.ts",
+    "src/app/services/EditorService.ts",
     "src/app/services/xml/DecoderUtils.ts",
     "src/app/services/xml/GmlDecoder.ts",
     "src/app/services/xml/GmlEncoder.ts",
