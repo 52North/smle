@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router-deprecated';
-import {AbstractProcess, SimpleProcess} from '../model/sml';
-import {DescriptionRepository} from '../services/DescriptionRepository';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { AbstractProcess, SimpleProcess } from '../model/sml';
+import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Injectable()
 export class EditorService {
@@ -15,7 +15,7 @@ export class EditorService {
 
   openEditorWithDescription(desc: AbstractProcess) {
     this.description = desc;
-    this.router.navigate(['Editor', {id: ''}]);
+    this.router.navigate(['Editor']);
   }
 
   getDescriptionForId(id: string): Promise<AbstractProcess> {

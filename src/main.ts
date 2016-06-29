@@ -4,17 +4,15 @@ import { APP_DIRECTIVES } from './app/directives';
 import * as browser from '@angular/platform-browser';
 import * as browserDynamic from '@angular/platform-browser-dynamic';
 import * as ngCore from '@angular/core';
-import {
-  ROUTER_PROVIDERS,
-  ROUTER_DIRECTIVES
-} from '@angular/router-deprecated';
+import { APP_ROUTER_PROVIDERS } from './app/routes';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import { FORM_PROVIDERS, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HTTP_PROVIDERS } from '@angular/http';
 
 
 const APPLICATION_PROVIDERS = [
   ...HTTP_PROVIDERS,
-  ...ROUTER_PROVIDERS,
+  ...APP_ROUTER_PROVIDERS,
   ...FORM_PROVIDERS,
   ...APP_PROVIDERS,
   ngCore.provide(LocationStrategy, { useClass: HashLocationStrategy })

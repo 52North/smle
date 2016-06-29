@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RouteParams} from '@angular/router-deprecated';
+import {ActivatedRoute} from '@angular/router';
 import {AbstractProcess} from '../model/sml';
 import {ConfigurationService} from '../services/ConfigurationService';
 import {SensorMLPipe} from './pipes/SensorMLPipe';
@@ -17,17 +17,21 @@ import {EditorService} from '../services/EditorService';
 export class Editor implements OnInit {
   public description: AbstractProcess;
   public config: Configuration;
-  private id: string;
 
   constructor(
     private configurationService: ConfigurationService,
     private editorService: EditorService,
-    routeParams: RouteParams) {
-    this.id = routeParams.get('id');
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit(): void {
-    this.editorService.getDescriptionForId(this.id).then(desc => this.description = desc);
+    this.route.params.subscribe(params => {
+      let id = params['id'];
+      this.editorService.getDescriptionForId(id).then(desc => {
+        this.description = desc;
+      });
+    });
     this.configurationService.getConfiguration().then(configuration => this.config = configuration);
   }
 }
