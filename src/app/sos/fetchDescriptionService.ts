@@ -22,14 +22,17 @@ export class FetchDescriptionService {
       ]
     });
     return this.http.post(sosUrl, body, { headers: headers })
-      .map((res) => {
-        return this.extractData(res);
-      });
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 
   private extractData(res: Response): Array<string> {
     let json = res.json();
     return json.operationMetadata.operations.DescribeSensor.parameters.procedure.allowedValues;
+  }
+  
+  private handleError(res: Response) {
+    if (res.status === 0) return Observable.throw('Could not reach the service!');
   }
 
   fetchDescription(sosUrl: string, descId: string): Observable<any> {

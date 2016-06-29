@@ -44,6 +44,9 @@ export class PublishDescriptionService {
         });
         observer.next(false);
         observer.complete();
+      }, (error) => {
+        observer.error(error);
+        observer.complete();
       });
     });
   }

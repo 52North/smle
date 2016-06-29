@@ -3,28 +3,39 @@
     <div class="col-md-12">
 
       <div *ngIf="description">
-        <h4>Sensor description with ID: <b>{{description.identifier.value}}</b></h4>
-        <div class="highlight">
-          <pre>{{description | toSensorml}}</pre>
+        <div *ngIf="description.identifier && description.identifier.value">
+          <h4>Sensor description with ID: <b>{{description.identifier.value}}</b></h4>
+          <button class="btn btn-secondary" type="button" (click)="editDescription()">Edit Description</button>
+
+          <div class="highlight">
+            <pre>{{description | toSensorml}}</pre>
+          </div>
+
+          <h4>Where should the decription be published</h4>
+          <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="sosUrl" placeholder="SOS-URL to select...">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button" (click)="hasSosDescription()">Check</button>
+            </span>
+          </div>
+          <div *ngIf="hasDescription" class="alert alert-warning" role="alert">
+            The SOS contains a description with the identifier '{{description.identifier.value}}'. Do you want to update this description?
+            <button class="btn btn-secondary" type="button" (click)="updateDescription()">Update Description</button>
+          </div>
+          <div *ngIf="hasDescription === false" class="alert alert-success" role="alert">
+            The SOS has no description with the identifier '{{description.identifier.value}}'. Do you want to add the description now?
+            <button class="btn btn-secondary" type="button" (click)="addDescription()">Add Description</button>
+          </div>
+          <div *ngIf="errors.length > 0" class="alert alert-danger">
+            <div *ngFor="let error of errors">{{error}}</div>
+          </div>
+          <div *ngIf="success" class="alert alert-success">
+            <div>{{success}}</div>
+          </div>
         </div>
 
-        <h4>Where should the decription be published</h4>
-        <div class="input-group">
-          <input type="text" class="form-control" [(ngModel)]="sosUrl" placeholder="SOS-URL to select...">
-          <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button" (click)="hasSosDescription()">Check</button>
-          </span>
-        </div>
-        <div *ngIf="hasDescription" class="alert alert-warning" role="alert">
-          The SOS contains a description with the identifier '{{description.identifier.value}}'. Do you want to update this description?
-          <button class="btn btn-secondary" type="button" (click)="updateDescription()">Update Description</button>
-        </div>
-        <div *ngIf="hasDescription === false" class="alert alert-success" role="alert">
-          The SOS has no description with the identifier '{{description.identifier.value}}'. Do you want to add the description now?
-          <button class="btn btn-secondary" type="button" (click)="addDescription()">Add Description</button>
-        </div>
-        <div *ngIf="publishDescriptionErrors.length > 0" class="alert alert-danger">
-          <div *ngFor="let error of publishDescriptionErrors">{{error}}</div>
+        <div *ngIf="!description.identifier || !description.identifier.value">
+          <h4>Sensor description needs an ID to be published</h4>
         </div>
       </div>
 

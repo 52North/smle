@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { FetchDescriptionService } from './fetchDescriptionService';
-import { DescriptionRepository } from '../services/DescriptionRepository';
 import { SensorMLXmlService } from '../services/SensorMLXmlService';
 import { EditorService } from '../services/EditorService';
 
@@ -20,10 +18,9 @@ export class FetchDescription implements OnInit {
   private description: string;
 
   constructor(
-    private descRepo: DescriptionRepository,
     private editorService: EditorService,
-    private sosService: FetchDescriptionService,
-    private router: Router) {
+    private sosService: FetchDescriptionService
+  ) {
   }
 
   setUrl() {
@@ -40,7 +37,7 @@ export class FetchDescription implements OnInit {
   }
 
   ngOnInit() {
-//    this.selectDescriptionID('http://www.52north.org/test/procedure/1');
+    //    this.selectDescriptionID('http://www.52north.org/test/procedure/1');
   }
 
 }
