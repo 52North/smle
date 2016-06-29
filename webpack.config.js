@@ -11,7 +11,7 @@ var HMR = helpers.hasProcessFlag('hot');
 
 var metadata = {
     title: 'smle',
-    baseUrl: '/',
+    baseUrl: '.',
     host: 'localhost',
     port: 3000,
     ENV: ENV,

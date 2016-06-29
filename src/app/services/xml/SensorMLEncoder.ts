@@ -610,7 +610,6 @@ export class SensorMLEncoder {
   }
 
   public encodeFeatureList(object: FeatureList, document: Document) {
-    debugger;
     let node = document.createElementNS(Namespaces.SML, 'sml:FeatureList');
 
     this.encodeAbstractMetadataList(node, object, document);
