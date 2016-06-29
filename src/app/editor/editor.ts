@@ -40,6 +40,6 @@ export class Editor implements OnInit {
 
   publishDescription(): void {
     this.publish.setDescription(this.description);
-    this.router.navigate(['Publish']);
+    this.router.navigate(['/publish']);
   }
 }
