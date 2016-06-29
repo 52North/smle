@@ -15,7 +15,7 @@ export class EditorService {
 
   openEditorWithDescription(desc: AbstractProcess) {
     this.description = desc;
-    this.router.navigate(['Editor']);
+    this.router.navigate(['/editor']);
   }
 
   getDescriptionForId(id: string): Promise<AbstractProcess> {
