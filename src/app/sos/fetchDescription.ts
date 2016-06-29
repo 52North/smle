@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import { FetchDescriptionService } from './fetchDescriptionService';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 import { SensorMLXmlService } from '../services/SensorMLXmlService';
+import { EditorService } from '../services/EditorService';
 
 @Component({
   selector: 'sos',
@@ -20,6 +21,7 @@ export class FetchDescription implements OnInit {
 
   constructor(
     private descRepo: DescriptionRepository,
+    private editorService: EditorService,
     private sosService: FetchDescriptionService,
     private router: Router) {
   }
@@ -34,9 +36,7 @@ export class FetchDescription implements OnInit {
 
   openToEdit() {
     let desc = new SensorMLXmlService().deserialize(this.description);
-    this.descRepo.saveDescription(desc).then((descID => {
-      this.router.navigate(['Editor', { id: descID }]);
-    }));
+    this.editorService.openEditorWithDescription(desc);
   }
 
   ngOnInit() {

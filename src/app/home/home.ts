@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
@@ -13,7 +13,8 @@ export class Home implements OnInit {
 
   constructor(
     private _service: DescriptionRepository,
-    private _router: Router) {
+    private _router: Router
+  ) {
   }
 
   isSelected(id: string): boolean {
@@ -21,11 +22,10 @@ export class Home implements OnInit {
   }
 
   onSelect(id: string): void {
-    this._router.navigate(['Editor', { id: id }]);
+    this._router.navigate(['/editor', id]);
   }
 
   ngOnInit() {
-    console.log('Getting description identifiers');
     this._service.getDescriptions()
       .then(ids => this.descriptions = ids);
   }

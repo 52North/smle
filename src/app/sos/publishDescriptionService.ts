@@ -34,7 +34,7 @@ export class PublishDescriptionService {
   }
 
   hasSosDescription(sosUrl: string, descID: string): Observable<boolean> {
-    return new Observable((observer: Observer<boolean>) => {
+    return new Observable<boolean>((observer: Observer<boolean>) => {
       this.fetch.fetchDescriptionIDs(sosUrl).subscribe((res) => {
         res.forEach((entry) => {
           if (entry === descID) {
