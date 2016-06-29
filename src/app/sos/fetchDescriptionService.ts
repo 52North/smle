@@ -15,16 +15,16 @@ export class FetchDescriptionService {
       'Content-Type': 'application/json'
     });
     let body = JSON.stringify({
-      "request": "GetCapabilities",
-      "service": "SOS",
-      "sections": [
-        "OperationsMetadata"
+      'request': 'GetCapabilities',
+      'service': 'SOS',
+      'sections': [
+        'OperationsMetadata'
       ]
     });
     return this.http.post(sosUrl, body, { headers: headers })
       .map((res) => {
         return this.extractData(res);
-      })
+      });
   }
 
   private extractData(res: Response): Array<string> {
@@ -37,17 +37,17 @@ export class FetchDescriptionService {
       'Content-Type': 'application/json'
     });
     let body = JSON.stringify({
-      "request": "DescribeSensor",
-      "service": "SOS",
-      "version": "2.0.0",
-      "procedure": descId,
-      "procedureDescriptionFormat": "http://www.opengis.net/sensorml/2.0"
+      'request': 'DescribeSensor',
+      'service': 'SOS',
+      'version': '2.0.0',
+      'procedure': descId,
+      'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0'
     });
     return this.http.post(sosUrl, body, { headers: headers })
       .map((res) => {
         let json = res.json();
         return json.procedureDescription.description || json.procedureDescription;
-      })
+      });
   }
 
 }

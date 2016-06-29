@@ -21,10 +21,10 @@ export class PublishDescriptionService {
 
   setDescription(desc: AbstractProcess): void {
     if (!desc.gmlId) {
-      desc.gmlId = "temp_123";
+      desc.gmlId = 'temp_123';
     }
     if (desc.identifier && !desc.identifier.codeSpace) {
-      desc.identifier.codeSpace = "uniqueID";
+      desc.identifier.codeSpace = 'uniqueID';
     }
     this.description = desc;
   }
@@ -41,39 +41,39 @@ export class PublishDescriptionService {
             observer.next(true);
             observer.complete();
           }
-        })
+        });
         observer.next(false);
         observer.complete();
-      })
-    })
+      });
+    });
   }
 
   addDescription(sosUrl: string, description: AbstractProcess): Observable<boolean> {
     let body = JSON.stringify({
-      "request": "InsertSensor",
-      "service": "SOS",
-      "version": "2.0.0",
-      "procedureDescriptionFormat": "http://www.opengis.net/sensorml/2.0",
-      "procedureDescription": new SensorMLXmlService().serialize(description),
+      'request': 'InsertSensor',
+      'service': 'SOS',
+      'version': '2.0.0',
+      'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
+      'procedureDescription': new SensorMLXmlService().serialize(description),
       // featureOfInterest auswählbar machen
-      "featureOfInterestType": "http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint",
+      'featureOfInterestType': 'http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint',
       // observationType auswählbar machen ???
-      "observationType": [
-        "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
-        "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation",
-        "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CountObservation",
-        "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TextObservation",
-        "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TruthObservation",
-        "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_GeometryObservation"
+      'observationType': [
+        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement',
+        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation',
+        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CountObservation',
+        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TextObservation',
+        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TruthObservation',
+        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_GeometryObservation'
       ],
       // observableProperty auswählbar machen ???
-      "observableProperty": [
-        "http://www.52north.org/test/observableProperty/9_1",
-        "http://www.52north.org/test/observableProperty/9_2",
-        "http://www.52north.org/test/observableProperty/9_3",
-        "http://www.52north.org/test/observableProperty/9_4",
-        "http://www.52north.org/test/observableProperty/9_5",
-        "http://www.52north.org/test/observableProperty/9_6"
+      'observableProperty': [
+        'http://www.52north.org/test/observableProperty/9_1',
+        'http://www.52north.org/test/observableProperty/9_2',
+        'http://www.52north.org/test/observableProperty/9_3',
+        'http://www.52north.org/test/observableProperty/9_4',
+        'http://www.52north.org/test/observableProperty/9_5',
+        'http://www.52north.org/test/observableProperty/9_6'
       ]
     });
     return this.http.post(sosUrl, body, { headers: this.createJsonHeader() })
@@ -83,22 +83,22 @@ export class PublishDescriptionService {
 
   updateDescription(sosUrl: string, descID: string, description: AbstractProcess): Observable<boolean> {
     let body = JSON.stringify({
-      "request": "UpdateSensorDescription",
-      "service": "SOS",
-      "version": "2.0.0",
-      "procedure": descID,
-      "procedureDescriptionFormat": "http://www.opengis.net/sensorml/2.0",
-      "procedureDescription": new SensorMLXmlService().serialize(description)
+      'request': 'UpdateSensorDescription',
+      'service': 'SOS',
+      'version': '2.0.0',
+      'procedure': descID,
+      'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
+      'procedureDescription': new SensorMLXmlService().serialize(description)
     });
     return this.http.post(sosUrl, body, { headers: this.createJsonHeader() })
       .map(this.handleAddDescription)
       .catch(this.handleAddDescriptionError);
   }
-  
+
   private createJsonHeader(): Headers {
     return new Headers({
       'Content-Type': 'application/json'
-    })
+    });
   }
 
   handleAddDescription(res: Response): boolean {
@@ -111,7 +111,7 @@ export class PublishDescriptionService {
       let errors: Array<string> = [];
       (json.exceptions as Array<any>).forEach(entry => {
         errors.push(entry.locator);
-      })
+      });
       return Observable.throw(errors);
     }
     return Observable.throw([this.handleError(error)]);

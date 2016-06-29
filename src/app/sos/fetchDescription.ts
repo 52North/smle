@@ -13,7 +13,7 @@ import { EditorService } from '../services/EditorService';
 export class FetchDescription implements OnInit {
 
   @Input()
-  private sosUrl: string = "http://hspeed.trios.de:8888/52n-sos-webapp/service";
+  private sosUrl: string = 'http://hspeed.trios.de:8888/52n-sos-webapp/service';
 
   private descriptionIds: Array<string>;
 
@@ -40,7 +40,7 @@ export class FetchDescription implements OnInit {
   }
 
   ngOnInit() {
-//    this.selectDescriptionID("http://www.52north.org/test/procedure/1");
+//    this.selectDescriptionID('http://www.52north.org/test/procedure/1');
   }
 
 }

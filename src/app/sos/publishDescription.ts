@@ -12,7 +12,7 @@ import { SensorMLPipe } from '../editor/pipes/SensorMLPipe';
 export class PublishDescription implements OnInit {
 
   @Input()
-  private sosUrl: string = "http://localhost:8081/52n-sos-webapp/service";
+  private sosUrl: string = 'http://localhost:8081/52n-sos-webapp/service';
 
   private description: AbstractProcess;
 
@@ -49,7 +49,7 @@ export class PublishDescription implements OnInit {
         debugger;
       }, (error: Array<string>) => {
         this.publishDescriptionErrors = error;
-      })
+      });
   }
 
 }

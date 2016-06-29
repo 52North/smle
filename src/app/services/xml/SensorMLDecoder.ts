@@ -242,18 +242,16 @@ export class SensorMLDecoder {
     if (featureListElem != null) {
       let featureList = new FeatureList();
       this.decodeAbstractMetadataList(featureListElem, featureList);
-      
-//      featureList.features = this.utils.getDecodedList(featureListElem, 'feature', Namespaces.SML, (feature) => {
-//        debugger;
-//        let temp = new AbstractFeature();
-//        this.gmlDecoder.decodeAbstractFeature(feature);
-//        return 
-//      })
-      
+      // featureList.features = this.utils.getDecodedList(featureListElem, 'feature', Namespaces.SML, (feature) => {
+      //   debugger;
+      //   let temp = new AbstractFeature();
+      //   this.gmlDecoder.decodeAbstractFeature(feature);
+      //   return 
+      // })
       return featureList;
     }
   }
-  
+
   public decodeModes(elem: Element): AbstractModes {
     let modeChoice = this.decodeModeChoice(elem);
     if (modeChoice != null) return modeChoice;
