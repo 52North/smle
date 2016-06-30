@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Time} from '../../../model/gml/Time';
+import {AbstractTime} from '../../../model/gml/AbstractTime';
 import {TimePeriod} from '../../../model/gml/TimePeriod';
 import {TimeInstantComponent} from '../gml/TimeInstantComponent';
 import {TimePeriodComponent} from '../gml/TimePeriodComponent';
@@ -12,14 +12,16 @@ import {TimeInstant} from '../../../model/gml/TimeInstant';
 })
 export class TimeListComponent {
     @Input()
-    public list: Time[];
+    public list: AbstractTime[];
 
     public removeItem(i: number): void {
         this.list.splice(i, 1);
     }
 
     public addTime(): void {
-        this.list.push(new Date());
+      let instant = new TimeInstant();
+      instant.time = new Date();
+      this.list.push(instant);
     }
 
     public addPeriod(): void {
@@ -35,7 +37,7 @@ export class TimeListComponent {
         return typeof time.begin !== 'undefined' && typeof time.end !== 'undefined';
     }
 
-    private onChange(time: TimeInstant, index: number) {
+    private onChange(time: AbstractTime, index: number) {
         this.list[index] = time;
     }
 }
