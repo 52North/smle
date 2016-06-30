@@ -1,6 +1,7 @@
 import {Point} from '../../../model/gml/Point';
 import {Component} from '@angular/core';
 import {Modal} from 'angular2-modal/plugins/bootstrap';
+import {MapComponent, MapData} from '../basic/MapComponent';
 
 @Component({
     selector: 'gml-point',
@@ -14,10 +15,6 @@ export class PointComponent {
     }
 
     private openMap() {
-        return this.modal.alert()
-            .size('lg')
-            .showClose(true)
-            .title('A simple Alert style modal window')
-            .open();
+        return this.modal.open(MapComponent, new MapData());
     }
 }
