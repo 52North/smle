@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sml:PhysicalComponent xmlns:sml="http://www.opengis.net/sensorml/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:swe="http://www.opengis.net/swe/2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gco="http://www.isotc211.org/2005/gco" gml:id="pc_8E954F97181B586548B8B14BF31329474C04AEA4" xsi:schemaLocation="http://www.opengis.net/sensorml/2.0 http://schemas.opengis.net/sensorML/2.0/sensorML.xsd http://www.opengis.net/swe/2.0 http://schemas.opengis.net/sweCommon/2.0/swe.xsd">
+  <gml:identifier codeSpace="uniqueID">http://www.nexosproject.eu/resources/procedures/trios/LISA/3075</gml:identifier>
+  <sml:validTime>
+    <gml:TimePeriod gml:id="validityPeriod">
+      <gml:beginPosition>2015-01-01T00:00:00</gml:beginPosition>
+      <gml:endPosition>2039-12-31T00:00:00</gml:endPosition>
+    </gml:TimePeriod>
+  </sml:validTime>
+  <sml:history>
+    <sml:EventList>
+      <sml:event>
+        <sml:Event>
+          <swe:label>Installation</swe:label>
+          <sml:documentation>
+            <sml:DocumentList>
+              <sml:document>
+                <gmd:CI_OnlineResource>
+                  <gmd:linkage>
+                    <gmd:URL>http://trios.de/lisa3075_installation.log</gmd:URL>
+                  </gmd:linkage>
+                </gmd:CI_OnlineResource>
+              </sml:document>
+            </sml:DocumentList>
+          </sml:documentation>
+          <sml:time>
+            <gml:TimeInstant gml:id="installationDate">
+              <gml:timePosition>2015-10-12T11:30:00.000Z</gml:timePosition>
+            </gml:TimeInstant>
+          </sml:time>
+        </sml:Event>
+      </sml:event>
+      <sml:event>
+        <sml:Event>
+          <swe:label>Deployment</swe:label>
+          <sml:documentation>
+            <sml:DocumentList>
+              <sml:document>
+                <gmd:CI_OnlineResource>
+                  <gmd:linkage>
+                    <gmd:URL>http://trios.de/lisa3075_installation.log</gmd:URL>
+                  </gmd:linkage>
+                </gmd:CI_OnlineResource>
+              </sml:document>
+            </sml:DocumentList>
+          </sml:documentation>
+          <sml:time>
+            <gml:TimeInstant gml:id="deploymentDate">
+              <gml:timePosition>2015-10-12T12:02:00.000Z</gml:timePosition>
+            </gml:TimeInstant>
+          </sml:time>
+        </sml:Event>
+      </sml:event>
+    </sml:EventList>
+  </sml:history>
+</sml:PhysicalComponent>
