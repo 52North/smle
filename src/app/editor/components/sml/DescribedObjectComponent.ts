@@ -46,6 +46,10 @@ export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
     private openNewContactListItem(item: ContactList) {
         this.openNewChild(ContactListComponent, item, this.config.getConfigFor('contacts'));
     }
+    
+    private openChild(event: any) {
+      this.openNewChild(event.component, event.model, event.config);
+    }
 
     private onAddKeywordList() {
         this.model.keywords.push(new KeywordList());
@@ -62,7 +66,7 @@ export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
     private onAddContactList() {
         this.model.contacts.push(new ContactList());
     }
-
+    
     private onRemoveKeywordList(index: number) {
         this.closeChildWithModel(this.model.keywords[index]);
         this.model.keywords.splice(index, 1);

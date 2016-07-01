@@ -1,5 +1,6 @@
 <card [verticalMode]="hasChild" [title]="'Described Object'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
+    <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>  
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('language')">
         <label for="language">Language</label>
         <input type="text" class="form-control" [(ngModel)]="model.language">
@@ -21,7 +22,8 @@
     </div>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('validTime')">
         <label for="validTime">Valid Time</label>
-        <time-list [list]="model.validTime"></time-list>
+        <time-list [list]="model.validTime" [config]="config.getConfigFor('validTime')" 
+          (openAsChild)="openChild($event)"></time-list>
     </div>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
         <label for="contacts">Contacts</label>
