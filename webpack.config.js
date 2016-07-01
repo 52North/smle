@@ -81,7 +81,10 @@ module.exports = {
         // static assets
         new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}]),
         // generating html
-        new HtmlWebpackPlugin({template: 'src/index.html', chunksSortMode: 'none'}),
+        new HtmlWebpackPlugin({
+          template: 'src/index.html',
+          chunksSortMode: 'dependency'
+        }),
         // replace
         new webpack.DefinePlugin({
             'ENV': JSON.stringify(metadata.ENV),

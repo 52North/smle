@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnChanges, SimpleChange} from '@angular/core';
 import {Calendar} from 'primeng/components/calendar/calendar';
+import * as moment from 'moment';
 
 const DATE_TIME_SEPARATOR = ' ';
 
@@ -21,8 +22,8 @@ export class DatePickerComponent implements OnChanges {
 
   private dateTimeString: string;
   private dateFormat: string = 'dd.mm.yy';
+  private momentDateFormat: string = 'DD.MM.YYYY';
   private timeFormat: string = 'HH:mm';
-  private datepicker: any = $.datepicker;
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
     var modelChange = changes['model'];
@@ -42,12 +43,12 @@ export class DatePickerComponent implements OnChanges {
   }
 
   private getFormattedDate(dateTime: Date): string {
-    return this.datepicker.formatDate(this.dateFormat, dateTime);
+    return moment(dateTime).format(this.momentDateFormat);
   }
 
   private getFormattedTime(dateTime: Date): string {
     var timeObject = this.getTimeObject(dateTime);
-    return this.datepicker.formatTime(this.timeFormat, timeObject);
+    return moment(timeObject).format(this.timeFormat);
   }
 
   private getMinFormattedDate(): string {
@@ -89,16 +90,8 @@ export class DatePickerComponent implements OnChanges {
   }
 
   private onStringDateChange(newDateTimeString: string): void {
-    var newDateTimeArray = newDateTimeString.split(DATE_TIME_SEPARATOR);
-    var newDateString = newDateTimeArray[0];
-    var newTimeString = newDateTimeArray[1];
-
-    var newDate = this.datepicker.parseDate(this.dateFormat, newDateString);
-    var newTimeObject = this.datepicker.parseTime(this.timeFormat, newTimeString);
-
-    newDate.setHours(newTimeObject.hour, newTimeObject.minute);
-
+    var parsedDate = moment(newDateTimeString, "DD.MM.YYYY HH:mm").toDate();
     this.dateTimeString = newDateTimeString;
-    this.modelChange.emit(newDate);
+    this.modelChange.emit(parsedDate);
   }
 }
