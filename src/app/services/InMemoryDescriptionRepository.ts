@@ -13,8 +13,7 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
     'physicalComponentType',
     'physicalSystemInstance',
     'physicalSystemType',
-    'lisaInstance',
-    'test'
+    'lisaInstance'
   ];
 
   constructor(private dataloader: SampleDataLoader) {
