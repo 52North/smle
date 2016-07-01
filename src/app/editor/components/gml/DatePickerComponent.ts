@@ -90,7 +90,7 @@ export class DatePickerComponent implements OnChanges {
   }
 
   private onStringDateChange(newDateTimeString: string): void {
-    var parsedDate = moment(newDateTimeString, "DD.MM.YYYY HH:mm").toDate();
+    var parsedDate = moment(newDateTimeString, 'DD.MM.YYYY HH:mm').toDate();
     this.dateTimeString = newDateTimeString;
     this.modelChange.emit(parsedDate);
   }

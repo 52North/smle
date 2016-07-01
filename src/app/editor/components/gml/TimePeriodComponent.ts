@@ -21,5 +21,4 @@ export class TimePeriodComponent extends EditorComponent<TimePeriod> {
   protected createModel() {
     return undefined;
   }
-
 }

@@ -12,7 +12,7 @@ import {TimePeriod} from '../../model/gml/TimePeriod';
 export class GmlEncoder {
 
   public encodeTime(object: AbstractTime, document: Document): Element {
-    let node : Element;
+    let node: Element;
     if (object instanceof TimeInstant) {
       node = this.encodeTimeInstant(object, document);
     }
@@ -20,8 +20,8 @@ export class GmlEncoder {
     if (object instanceof TimePeriod) {
       node = this.encodeTimePeriod(object, document);
     }
-    
-    this.encodeAbstractGML(node, object, document)
+
+    this.encodeAbstractGML(node, object, document);
     return node;
   }
 
@@ -57,7 +57,7 @@ export class GmlEncoder {
     return node;
   }
 
-    public encodeAbstractGML(node: Element, object: AbstractGML, document: Document): void {
+  public encodeAbstractGML(node: Element, object: AbstractGML, document: Document): void {
     if (object.gmlId) {
       node.setAttributeNS(Namespaces.GML, 'gml:id', object.gmlId);
     }

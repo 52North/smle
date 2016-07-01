@@ -17,7 +17,7 @@ export class TimeInstantComponent extends EditorComponent<TimeInstant> {
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
     super(componentResolver, viewContainerRef);
   }
-  
+
   protected createModel() {
     return undefined;
   }

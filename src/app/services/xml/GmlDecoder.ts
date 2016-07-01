@@ -26,14 +26,14 @@ export class GmlDecoder {
     let timeElem = this.utils.getElement(elem, 'TimeInstant', Namespaces.GML);
     if (timeElem != null) {
       let instant = new TimeInstant();
-      
+
       this.decodeAbstractGML(timeElem, instant);
-      
+
       let timePositionElem = this.utils.getElement(timeElem, 'timePosition', Namespaces.GML);
       if (timePositionElem != null) {
         instant.time = new Date(Date.parse(timePositionElem.textContent));
       }
-      
+
       return instant;
     }
   }
@@ -42,7 +42,7 @@ export class GmlDecoder {
     let timeElem = this.utils.getElement(elem, 'TimePeriod', Namespaces.GML);
     if (timeElem != null) {
       let period = new TimePeriod();
-      
+
       this.decodeAbstractGML(timeElem, period);
 
       let beginPositionElem = this.utils.getElement(timeElem, 'beginPosition', Namespaces.GML);

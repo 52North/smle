@@ -50,7 +50,7 @@ export class TimeListComponent extends EditorComponent<AbstractTime> {
       component: TimeInstantComponent,
       model: model,
       config: this.config.getConfigFor('timeInstant')
-    })
+    });
   }
 
   public openTimePeriod(model: TimePeriod): void {
