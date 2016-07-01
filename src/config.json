@@ -1,5 +1,11 @@
 {
   "DescribedObject": {
+    "location": false,
+    "boundedBy": false,
+    "description": false,
+    "descriptionReference": false,
+    "identifier": false,
+    "name": false,
     "keywords": {
       "codeSpace": false,
       "definition": false,
@@ -37,6 +43,20 @@
       "id": false,
       "extension": false
     },
-    "language": false
+    "language": false,
+    "validTime": {
+      "timeInstant": {
+        "identifier": false,
+        "name": false,
+        "description": false,
+        "descriptionReference": false
+      },
+      "timePeriod": {
+        "identifier": false,
+        "name": false,
+        "description": false,
+        "descriptionReference": false
+      }
+    }
   }
 }

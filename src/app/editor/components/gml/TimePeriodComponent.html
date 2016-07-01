@@ -1,5 +1,12 @@
-<div class="row">
-    <gml-time-instant class="col-sm-5" [(model)]="model.begin"></gml-time-instant>
+<card [verticalMode]="hasChild" [title]="'Period'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+<gml-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract>
+<div class="form-group">
+  <label for="description">Time period</label>
+  <div class="row">
+    <date-picker class="col-sm-5" [(model)]="model.begin" [maxDateTime]="model.end"></date-picker>
     <span class="col-sm-2 text-xs-center">&mdash;</span>
-    <gml-time-instant class="col-sm-5" [(model)]="model.end"></gml-time-instant>
+    <date-picker class="col-sm-5" [(model)]="model.end" [minDateTime]="model.begin"></date-picker>
+  </div>
 </div>
+</card>

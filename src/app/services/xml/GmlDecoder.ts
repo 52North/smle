@@ -7,13 +7,14 @@ import { Point } from '../../model/gml/Point';
 import { Referenced } from '../../model/gml/Referenced';
 import { TimeInstant } from '../../model/gml/TimeInstant';
 import { TimePeriod } from '../../model/gml/TimePeriod';
+import { AbstractTime } from '../../model/gml/AbstractTime';
 import { DecoderUtils } from './DecoderUtils';
 
 export class GmlDecoder {
 
   private utils = new DecoderUtils();
 
-  public decodeTime(elem: Element): TimeInstant | TimePeriod {
+  public decodeTime(elem: Element): AbstractTime {
     let timeInstant = this.decodeTimeInstant(elem);
     if (timeInstant != null) return timeInstant;
 
@@ -21,21 +22,28 @@ export class GmlDecoder {
     if (timePeriod != null) return timePeriod;
   }
 
-  public decodeTimeInstant(elem: Element): TimeInstant {
+  public decodeTimeInstant(elem: Element): AbstractTime {
     let timeElem = this.utils.getElement(elem, 'TimeInstant', Namespaces.GML);
     if (timeElem != null) {
+      let instant = new TimeInstant();
+
+      this.decodeAbstractGML(timeElem, instant);
 
       let timePositionElem = this.utils.getElement(timeElem, 'timePosition', Namespaces.GML);
       if (timePositionElem != null) {
-        return new Date(Date.parse(timePositionElem.textContent));
+        instant.time = new Date(Date.parse(timePositionElem.textContent));
       }
+
+      return instant;
     }
   }
 
-  public decodeTimePeriod(elem: Element): TimePeriod {
+  public decodeTimePeriod(elem: Element): AbstractTime {
     let timeElem = this.utils.getElement(elem, 'TimePeriod', Namespaces.GML);
     if (timeElem != null) {
       let period = new TimePeriod();
+
+      this.decodeAbstractGML(timeElem, period);
 
       let beginPositionElem = this.utils.getElement(timeElem, 'beginPosition', Namespaces.GML);
       if (beginPositionElem != null) {

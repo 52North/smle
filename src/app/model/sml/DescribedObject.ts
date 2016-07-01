@@ -2,7 +2,7 @@ import { AbstractFeature } from '../gml/AbstractFeature';
 import { KeywordList } from './KeywordList';
 import { IdentifierList } from './IdentifierList';
 import { ClassifierList } from './ClassifierList';
-import { Time } from '../gml/Time';
+import { AbstractTime } from '../gml/AbstractTime';
 import { LegalConstraints } from '../iso/gmd/LegalConstraints';
 import { CharacteristicList } from './CharacteristicList';
 import { CapabilityList } from './CapabilityList';
@@ -42,7 +42,7 @@ export abstract class DescribedObject extends AbstractFeature {
    * The time instance or time range during which this instance description
    * is valid.
    */
-  validTime: Time[] = [];
+  validTime: AbstractTime[] = [];
   /**
    * Overall security tagging of process description; individual tagging of
    * properties can be done using extension element.

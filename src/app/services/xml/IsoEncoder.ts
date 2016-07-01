@@ -268,7 +268,7 @@ export class IsoEncoder {
   }
 
   private encodeUrl(value: string, document: Document): Node {
-    let node = document.createElementNS(Namespaces.GCO, 'gco:URL');
+    let node = document.createElementNS(Namespaces.GMD, 'gmd:URL');
     node.textContent = value;
     return node;
   }
