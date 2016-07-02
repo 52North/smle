@@ -14,13 +14,15 @@ import {ContactListComponent} from './ContactListComponent';
 import {ContactList} from '../../../model/sml/ContactList';
 import {EditorComponent} from '../base/EditorComponent';
 import {TimeListComponent} from '../basic/TimeListComponent';
+// import {PositionComponent} from './PositionComponent';
+import {ChildMetadata} from '../base/TypedModelComponent';
 
 @Component({
   selector: 'sml-described-object',
   template: require('./DescribedObjectComponent.html'),
   styles: [require('../styles/editor-component.scss')],
   directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent, IdentifierListComponent,
-    ClassifierListComponent, ContactListComponent, ListComponent, TimeListComponent]
+    ClassifierListComponent, ContactListComponent, ListComponent, TimeListComponent/*, PositionComponent*/]
 })
 export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
@@ -47,8 +49,8 @@ export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
     this.openNewChild(ContactListComponent, item, this.config.getConfigFor('contacts'));
   }
 
-  private openChild(event: any) {
-    this.openNewChild(event.component, event.model, event.config);
+  private openChild(event: ChildMetadata) {
+    this.openNewChild(event.componentType, event.model, event.config);
   }
 
   private onAddKeywordList() {
