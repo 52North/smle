@@ -25,9 +25,7 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
             center: [58.0297364, 56.2668228],
             zoom: 10,
             layers: [new L.TileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' +
-                ', Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">' +
-                'Humanitarian OpenStreetMap Team</a>'
+                attribution: '&copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors'
             })]
         });
     }

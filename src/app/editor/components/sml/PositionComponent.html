@@ -1,0 +1,22 @@
+<!--<div class="input-group">-->
+<!--<input type="text" class="form-control" placeholder="Type coordinates here">-->
+<!--<div class="input-group-btn">-->
+<!--<button class="btn btn-secondary" type="button" (click)="openMap()"><i class="fa fa-globe"></i></button>-->
+<!--</div>-->
+<!--</div>-->
+<div class="row">
+    <div class="btn-group col-sm-12" *ngIf="!model">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            Add position
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" (click)="addPosition(1)">{{getPositionTypeName(1)}}</a>
+            <a class="dropdown-item" (click)="addPosition(2)">{{getPositionTypeName(2)}}</a>
+        </div>
+    </div>
+    <div *ngIf="model" [ngSwitch]="positionType" class="col-sm-12">
+        <div *ngSwitchCase="1">1</div>
+        <div *ngSwitchCase="2">2</div>
+    </div>
+</div>
