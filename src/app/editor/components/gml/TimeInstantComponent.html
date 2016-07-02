@@ -1,4 +1,10 @@
-<p-calendar [ngModel]="dateTimeString" (ngModelChange)="onStringDateChange($event)" [dateFormat]="dateFormat"
-            [timeFormat]="timeFormat" [minDate]="getMinFormattedDate()" [minTime]="getMinFormattedTime()"
-            [maxDate]="getMaxFormattedDate()" [maxTime]="getMaxFormattedTime()" styleClass="col-sm-12"
-            inputStyleClass="form-control" class="row"></p-calendar>
+<card [verticalMode]="hasChild" [title]="'Instant'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+<gml-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract>
+<div class="form-group">
+  <label for="description">Time instant</label>
+  <div class="row">
+    <date-picker class="col-sm-12" [(model)]="model.time"></date-picker>
+  </div>
+</div>
+</card>

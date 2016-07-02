@@ -88,7 +88,7 @@ module.exports = {
         loader: 'awesome-typescript-loader',
         query: {
           'compilerOptions': {
-            'removeComments': true,
+            'removeComments': true
           }
         },
         exclude: [ /\.(spec|e2e)\.ts$/ ]
@@ -125,7 +125,7 @@ module.exports = {
     new CopyWebpackPlugin([ { from: 'src/examples', to: 'examples' } ]),
     new CopyWebpackPlugin([ { from: 'src/config.json', to: 'config.json' } ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'none' }),
+    new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'dependency' }),
     new webpack.DefinePlugin({
       // Environment helpers
       'ENV': JSON.stringify(metadata.ENV),

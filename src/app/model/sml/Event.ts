@@ -7,7 +7,7 @@ import { ClassifierList } from './ClassifierList';
 import { ContactList } from './ContactList';
 import { DocumentList } from './DocumentList';
 import { Settings } from './Settings';
-import { Time } from '../gml/Time';
+import { AbstractTime } from '../gml/AbstractTime';
 
 /**
  * A time tagged Event with description and relevant property values.
@@ -37,7 +37,7 @@ export class Event extends AbstractSWEIdentifiable {
   /**
    * DateTime of the event
    */
-  time: Time = null;
+  time: AbstractTime = null;
   /**
    * Properties of interest to the event (e.g. calibration values, condition
    * category, error codes, etc)
