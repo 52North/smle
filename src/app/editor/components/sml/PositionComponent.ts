@@ -1,9 +1,12 @@
 import {Position} from '../../../model/sml/Position';
 import {SweVector} from '../../../model/swe/SweVector';
 import {SweDataRecord} from '../../../model/swe/SweDataRecord';
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {Modal} from 'angular2-modal/plugins/bootstrap';
+import {Component, OnChanges, SimpleChange} from '@angular/core';
+// import {Modal} from 'angular2-modal/plugins/bootstrap';
 import {MapComponent, MapData} from '../basic/MapComponent';
+import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
+import {TrueConfiguration} from '../../../services/config/TrueConfiguration';
+import {PositionEditorComponent} from './PositionEditorComponent';
 
 enum PositionType {
     Vector = 1,
@@ -14,28 +17,30 @@ enum PositionType {
     selector: 'sml-position',
     template: require('./PositionComponent.html')
 })
-export class PositionComponent implements OnInit {
-    @Input()
-    model: Position;
-    @Output()
-    modelChange: EventEmitter<Position> = new EventEmitter<Position>();
-
+export class PositionComponent extends TypedModelComponent<Position> implements OnChanges {
     private positionType: PositionType;
 
-    constructor(private modalWindow: Modal) {
-    }
+    // constructor(private modalWindow: Modal) {
+    // }
 
-    ngOnInit(): void {
+    ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
+        var modelChange = changes['model'];
+        if (!modelChange) {
+            return;
+        }
+
         if (this.model instanceof SweVector) {
             this.positionType = PositionType.Vector;
         } else if (this.model instanceof SweDataRecord) {
             this.positionType = PositionType.DataRecord;
+        } else {
+            this.positionType = undefined;
         }
     }
 
-    private openMap() {
-        return this.modalWindow.open(MapComponent, new MapData());
-    }
+    // private openMap() {
+    //     return this.modalWindow.open(MapComponent, new MapData());
+    // }
 
     private getPositionTypeName(positionType: PositionType = this.positionType): string {
         switch (positionType) {
@@ -50,6 +55,7 @@ export class PositionComponent implements OnInit {
 
     private addPosition(positionType: PositionType) {
         this.positionType = positionType;
+
         switch (positionType) {
             case PositionType.Vector:
                 this.model = this.createPositionLocation();
@@ -58,6 +64,8 @@ export class PositionComponent implements OnInit {
                 this.model = this.createPositionDataRecord();
                 break;
         }
+
+        this.modelChange.emit(this.model);
     }
 
     private createPositionLocation(): SweVector {
@@ -83,5 +91,13 @@ export class PositionComponent implements OnInit {
     private createPositionOrientation(): SweVector {
         var orientation = new SweVector();
         return orientation;
+    }
+
+    private openChild() {
+        this.openAsChild.emit(new ChildMetadata(PositionEditorComponent, this.model, new TrueConfiguration()));
+    }
+
+    protected createModel(): Position {
+        return undefined;
     }
 }

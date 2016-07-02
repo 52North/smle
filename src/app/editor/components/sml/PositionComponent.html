@@ -16,7 +16,7 @@
         </div>
     </div>
     <div *ngIf="model" [ngSwitch]="positionType" class="col-sm-12">
-        <div *ngSwitchCase="1">1</div>
-        <div *ngSwitchCase="2">2</div>
+        <a *ngSwitchCase="1" (click)="openChild()" class="btn btn-link">{{getPositionTypeName(1)}}</a>
+        <a *ngSwitchCase="2" (click)="openChild()" class="btn btn-link">{{getPositionTypeName(2)}}</a>
     </div>
 </div>

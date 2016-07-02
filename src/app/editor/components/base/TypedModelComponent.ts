@@ -36,6 +36,8 @@ export abstract class TypedModelComponent<T> {
 
     @Output()
     public openAsChild: EventEmitter<ChildMetadata> = new EventEmitter<ChildMetadata>();
+    @Output()
+    public modelChange: EventEmitter<T> = new EventEmitter<T>();
 
     protected abstract createModel(): T;
 
