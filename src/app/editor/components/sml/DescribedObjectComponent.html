@@ -1,9 +1,12 @@
 <card [verticalMode]="hasChild" [title]="'Described Object'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <!--<div class="form-group">-->
-        <!--<label for="position">Position</label>-->
-        <!--<sml-position></sml-position>-->
-    <!--</div>-->
+    <!--TODO: Begin: Move to another component-->
+    <div class="form-group">
+        <label for="position">Position</label>
+        <sml-position (openAsChild)="openChild($event)" [(model)]="model.position"
+                      [config]="config.getConfigFor('position')"></sml-position>
+    </div>
+    <!--TODO: End: Move to another component-->
     <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('language')">
         <label for="language">Language</label>
