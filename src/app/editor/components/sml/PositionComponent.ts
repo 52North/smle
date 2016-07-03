@@ -2,8 +2,6 @@ import {Position} from '../../../model/sml/Position';
 import {SweVector} from '../../../model/swe/SweVector';
 import {SweDataRecord} from '../../../model/swe/SweDataRecord';
 import {Component, OnChanges, SimpleChange} from '@angular/core';
-// import {Modal} from 'angular2-modal/plugins/bootstrap';
-import {MapComponent, MapData} from '../basic/MapComponent';
 import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
 import {TrueConfiguration} from '../../../services/config/TrueConfiguration';
 import {PositionEditorComponent} from './PositionEditorComponent';
@@ -20,9 +18,6 @@ enum PositionType {
 export class PositionComponent extends TypedModelComponent<Position> implements OnChanges {
     private positionType: PositionType;
 
-    // constructor(private modalWindow: Modal) {
-    // }
-
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
         var modelChange = changes['model'];
         if (!modelChange) {
@@ -37,10 +32,6 @@ export class PositionComponent extends TypedModelComponent<Position> implements 
             this.positionType = undefined;
         }
     }
-
-    // private openMap() {
-    //     return this.modalWindow.open(MapComponent, new MapData());
-    // }
 
     private getPositionTypeName(positionType: PositionType = this.positionType): string {
         switch (positionType) {
