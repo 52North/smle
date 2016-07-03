@@ -116,6 +116,12 @@ export class PositionComponent extends TypedModelComponent<Position> implements 
         return orientation;
     }
 
+    private removePosition() {
+        this.model = null;
+        this.positionType = undefined;
+        this.modelChange.emit(null);
+    }
+
     private openChild() {
         this.openAsChild.emit(new ChildMetadata(PositionEditorComponent, this.model, new TrueConfiguration()));
     }

@@ -12,5 +12,6 @@
     <div *ngIf="model" [ngSwitch]="positionType" class="col-sm-12">
         <a *ngSwitchCase="1" (click)="openChild()" class="btn btn-link">{{getPositionTypeName(1)}}</a>
         <a *ngSwitchCase="2" (click)="openChild()" class="btn btn-link">{{getPositionTypeName(2)}}</a>
+        <a (click)="removePosition()" class="btn btn-link"><i class="fa fa-minus"></i> Remove</a>
     </div>
 </div>

@@ -5,7 +5,7 @@ import {BSModalContext} from 'angular2-modal/plugins/bootstrap/index';
 declare var L: any;
 
 export class MapData extends BSModalContext {
-    constructor() {
+    constructor(public center: {longitude: number, latitude: number}) {
         super();
     }
 }
@@ -21,8 +21,10 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
+        var center = this.dialog.context.center;
+
         this.map = new L.Map('map', {
-            center: [58.0297364, 56.2668228],
+            center: [center.latitude, center.longitude],
             zoom: 10,
             layers: [new L.TileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors'

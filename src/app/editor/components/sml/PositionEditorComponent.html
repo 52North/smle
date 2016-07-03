@@ -1,6 +1,6 @@
 <card [verticalMode]="hasChild" [title]="'Position'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <div *ngIf="latitude !== null && longitude !== null">
+    <div *ngIf="(latitude || latitude === null || latitude === 0) && (longitude || longitude === null || longitude === 0)">
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('latitude')">
             <label for="latitude">Latitude</label>
             <input type="number" class="form-control" [(ngModel)]="latitude">
@@ -14,12 +14,13 @@
                 <i class="fa fa-globe"></i> Open map
             </button>
         </div>
-        <div *ngIf="altitude !== null" class="form-group" *ngIf="isShowAll || config.isFieldMandatory('altitude')">
+        <div *ngIf="altitude || altitude === null || altitude === 0" class="form-group"
+             *ngIf="isShowAll || config.isFieldMandatory('altitude')">
             <label for="altitude">Altitude</label>
             <input type="number" class="form-control" [(ngModel)]="altitude">
         </div>
     </div>
-    <div *ngIf="trueHeading !== null && pitch !== null">
+    <div *ngIf="(trueHeading || trueHeading === null || trueHeading === 0) && (pitch || pitch === null || pitch === 0)">
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('trueHeading')">
             <label for="trueHeading">True Heading</label>
             <input type="number" class="form-control" [(ngModel)]="trueHeading">
