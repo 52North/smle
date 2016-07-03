@@ -5,6 +5,10 @@ import {Component, OnChanges, SimpleChange} from '@angular/core';
 import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
 import {TrueConfiguration} from '../../../services/config/TrueConfiguration';
 import {PositionEditorComponent} from './PositionEditorComponent';
+import {SweCoordinate} from '../../../model/swe/SweCoordinate';
+import {SweQuantity} from '../../../model/swe/SweQuantity';
+import {UnitOfMeasure} from '../../../model/swe/UnitOfMeasure';
+import {SweField} from '../../../model/swe/SweField';
 
 enum PositionType {
     Vector = 1,
@@ -59,28 +63,56 @@ export class PositionComponent extends TypedModelComponent<Position> implements 
         this.modelChange.emit(this.model);
     }
 
-    private createPositionLocation(): SweVector {
+    private createPositionLocation(withAlt: boolean = false): SweVector {
         var location = new SweVector();
+
+        location.coordinates.push(this.createCoordinate('Lat', 0, 'deg'));
+        location.coordinates.push(this.createCoordinate('Lon', 0, 'deg'));
+        if (withAlt) {
+            location.coordinates.push(this.createCoordinate('Alt', 0, 'm'));
+        }
+
         return location;
+    }
+
+    private createCoordinate(name: string, value: number, uom: string): SweCoordinate {
+        var coordinate = new SweCoordinate();
+        var quantity = new SweQuantity();
+        var unitOfMeasure = new UnitOfMeasure();
+
+        unitOfMeasure.code = uom;
+
+        quantity.value = value;
+        quantity.uom = unitOfMeasure;
+
+        coordinate.name = name;
+        coordinate.coordinate = quantity;
+
+        return coordinate;
     }
 
     private createPositionDataRecord(): SweDataRecord {
         var dataRecord = new SweDataRecord();
+        var locationField = new SweField();
+        var orientationField = new SweField();
 
-        dataRecord.fields.push({
-            name: 'location',
-            component: this.createPositionLocation()
-        });
-        dataRecord.fields.push({
-            name: 'orientation',
-            component: this.createPositionOrientation()
-        });
+        locationField.name = 'location';
+        locationField.component = this.createPositionLocation(true);
+        dataRecord.fields.push(locationField);
+
+        orientationField.name = 'orientation';
+        orientationField.component = this.createPositionOrientation();
+        dataRecord.fields.push(orientationField);
 
         return dataRecord;
     }
 
     private createPositionOrientation(): SweVector {
         var orientation = new SweVector();
+
+        orientation.coordinates.push(this.createCoordinate('TrueHeading', 0, 'deg'));
+        orientation.coordinates.push(this.createCoordinate('Pitch', 0, 'deg'));
+
         return orientation;
     }
 
