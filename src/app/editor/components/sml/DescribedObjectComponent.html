@@ -3,7 +3,7 @@
     <!--TODO: Begin: Move to another component-->
     <div class="form-group">
         <label for="position">Position</label>
-        <sml-position (openAsChild)="openChild($event)" [(model)]="model.position[0]"
+        <sml-position (openAsChild)="openChild($event)" [(model)]="(model.position || [])[0]"
                       [config]="config.getConfigFor('position')"></sml-position>
     </div>
     <!--TODO: End: Move to another component-->
