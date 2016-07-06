@@ -14,7 +14,7 @@ import {ContactListComponent} from './ContactListComponent';
 import {ContactList} from '../../../model/sml/ContactList';
 import {EditorComponent} from '../base/EditorComponent';
 import {TimeListComponent} from '../basic/TimeListComponent';
-import {PositionComponent} from './PositionComponent';
+import {PositionListComponent} from '../basic/PositionListComponent';
 import {ChildMetadata} from '../base/TypedModelComponent';
 
 @Component({
@@ -22,7 +22,7 @@ import {ChildMetadata} from '../base/TypedModelComponent';
     template: require('./DescribedObjectComponent.html'),
     styles: [require('../styles/editor-component.scss')],
     directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent, IdentifierListComponent,
-        ClassifierListComponent, ContactListComponent, ListComponent, TimeListComponent, PositionComponent]
+        ClassifierListComponent, ContactListComponent, ListComponent, TimeListComponent, PositionListComponent]
 })
 export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

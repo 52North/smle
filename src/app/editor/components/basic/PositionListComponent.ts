@@ -1,66 +1,49 @@
 import {Position} from '../../../model/sml/Position';
 import {SweVector} from '../../../model/swe/SweVector';
 import {SweDataRecord} from '../../../model/swe/SweDataRecord';
-import {Component, OnChanges, SimpleChange} from '@angular/core';
+import {Component} from '@angular/core';
 import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
 import {TrueConfiguration} from '../../../services/config/TrueConfiguration';
-import {PositionEditorComponent} from './PositionEditorComponent';
+import {PositionEditorComponent} from '../sml/PositionEditorComponent';
 import {SweCoordinate} from '../../../model/swe/SweCoordinate';
 import {SweQuantity} from '../../../model/swe/SweQuantity';
 import {UnitOfMeasure} from '../../../model/swe/UnitOfMeasure';
 import {SweField} from '../../../model/swe/SweField';
 
-enum PositionType {
-    Vector = 1,
-    DataRecord = 2
-}
-
 @Component({
-    selector: 'sml-position',
-    template: require('./PositionComponent.html')
+    selector: 'position-list',
+    template: require('./PositionListComponent.html')
 })
-export class PositionComponent extends TypedModelComponent<Position> implements OnChanges {
-    private positionType: PositionType;
-
-    ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
-        var modelChange = changes['model'];
-        if (!modelChange) {
-            return;
-        }
-
-        if (this.model instanceof SweVector) {
-            this.positionType = PositionType.Vector;
-        } else if (this.model instanceof SweDataRecord) {
-            this.positionType = PositionType.DataRecord;
+export class PositionListComponent extends TypedModelComponent<Array<Position>> {
+    private getPositionTypeName(positionItem: Position): string {
+        if (positionItem instanceof SweVector) {
+            return 'Vector';
+        } else if (positionItem instanceof SweDataRecord) {
+            return 'Data Record';
         } else {
-            this.positionType = undefined;
+            return '';
         }
     }
 
-    private getPositionTypeName(positionType: PositionType = this.positionType): string {
-        switch (positionType) {
-            case PositionType.DataRecord:
-                return 'Data Record';
-            case PositionType.Vector:
-                return 'Vector';
-            default:
-                return '';
+    private addVector() {
+        var newItem = this.createPositionLocation();
+
+        this.addModelIfNotExist();
+        this.model.push(newItem);
+    }
+
+    private addModelIfNotExist() {
+        if (!this.model) {
+            this.model = [];
+            this.modelChange.emit(this.model);
         }
     }
 
-    private addPosition(positionType: PositionType) {
-        this.positionType = positionType;
+    private addDataRecord() {
+        var newItem = this.createPositionDataRecord();
 
-        switch (positionType) {
-            case PositionType.Vector:
-                this.model = this.createPositionLocation();
-                break;
-            case PositionType.DataRecord:
-                this.model = this.createPositionDataRecord();
-                break;
-        }
-
-        this.modelChange.emit(this.model);
+        this.addModelIfNotExist();
+        this.model.push(newItem);
     }
 
     private createPositionLocation(withAlt: boolean = false): SweVector {
@@ -116,17 +99,15 @@ export class PositionComponent extends TypedModelComponent<Position> implements 
         return orientation;
     }
 
-    private removePosition() {
-        this.model = null;
-        this.positionType = undefined;
-        this.modelChange.emit(null);
+    private removeItem(index: number) {
+        this.model.splice(index, 1);
     }
 
-    private openChild() {
-        this.openAsChild.emit(new ChildMetadata(PositionEditorComponent, this.model, new TrueConfiguration()));
+    private openChild(item: Position) {
+        this.openAsChild.emit(new ChildMetadata(PositionEditorComponent, item, new TrueConfiguration()));
     }
 
-    protected createModel(): Position {
-        return undefined;
+    protected createModel(): Position[] {
+        return [];
     }
 }

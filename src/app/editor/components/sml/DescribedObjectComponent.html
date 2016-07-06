@@ -2,9 +2,9 @@
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <!--TODO: Begin: Move to another component-->
     <div class="form-group">
-        <label for="position">Position</label>
-        <sml-position (openAsChild)="openChild($event)" [(model)]="(model.position || [])[0]"
-                      [config]="config.getConfigFor('position')"></sml-position>
+        <label for="position">Positions</label>
+        <position-list (openAsChild)="openChild($event)" [config]="config.getConfigFor('position')"
+                       [(model)]="model.position"></position-list>
     </div>
     <!--TODO: End: Move to another component-->
     <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
