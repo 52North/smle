@@ -1,0 +1,7 @@
+<sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll"
+                      (openAsChild)="openNewChild($event)"></sml-abstract-process>
+<div class="form-group">
+    <label for="position">Positions</label>
+    <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('position')"
+                   [(model)]="model.position"></position-list>
+</div>

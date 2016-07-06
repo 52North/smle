@@ -44,4 +44,8 @@ export abstract class TypedModelComponent<T> {
     protected extendModel(): void {
         jQuery.extend(this.model, this.createModel());
     }
+
+    protected openNewChild(childMetadata: ChildMetadata) {
+        this.openAsChild.emit(childMetadata);
+    }
 }

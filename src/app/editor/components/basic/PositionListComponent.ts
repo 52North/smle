@@ -4,7 +4,7 @@ import {SweDataRecord} from '../../../model/swe/SweDataRecord';
 import {Component} from '@angular/core';
 import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
 import {TrueConfiguration} from '../../../services/config/TrueConfiguration';
-import {PositionEditorComponent} from '../sml/PositionEditorComponent';
+import {PositionEditorComponent} from '../sml/PositionComponent';
 import {SweCoordinate} from '../../../model/swe/SweCoordinate';
 import {SweQuantity} from '../../../model/swe/SweQuantity';
 import {UnitOfMeasure} from '../../../model/swe/UnitOfMeasure';
@@ -104,7 +104,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private openChild(item: Position) {
-        this.openAsChild.emit(new ChildMetadata(PositionEditorComponent, item, new TrueConfiguration()));
+        this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueConfiguration()));
     }
 
     protected createModel(): Position[] {

@@ -8,6 +8,7 @@ import {OnlineResource} from '../../../../model/iso/gmd/OnlineResource';
 import {Address} from '../../../../model/iso/gmd/Address';
 import {Phone} from '../../../../model/iso/gmd/Phone';
 import {EditorComponent} from '../../base/EditorComponent';
+import {ChildMetadata} from '../../base/TypedModelComponent';
 
 @Component({
     selector: 'iso-contact',
@@ -24,15 +25,18 @@ export class ContactComponent extends EditorComponent<Contact> {
         return new Contact();
     }
 
-    private openNewPhoneItem(model: Phone) {
-        this.openNewChild(PhoneComponent, model, this.config.getConfigFor('phone'));
+    private openNewPhoneItem(item: Phone) {
+        var metadata = new ChildMetadata(PhoneComponent, item, this.config.getConfigFor('phone'));
+        this.openNewChild(metadata);
     }
 
-    private openNewAddressItem(model: Address) {
-        this.openNewChild(AddressComponent, model, this.config.getConfigFor('address'));
+    private openNewAddressItem(item: Address) {
+        var metadata = new ChildMetadata(AddressComponent, item, this.config.getConfigFor('address'));
+        this.openNewChild(metadata);
     }
 
-    private openNewOnlineResourceItem(model: OnlineResource) {
-        this.openNewChild(OnlineResourceComponent, model, this.config.getConfigFor('onlineResource'));
+    private openNewOnlineResourceItem(item: OnlineResource) {
+        var metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('onlineResource'));
+        this.openNewChild(metadata);
     }
 }

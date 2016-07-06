@@ -4,6 +4,7 @@ import {Contact} from '../../../../model/iso/gmd/Contact';
 import {CardComponent} from '../../basic/CardComponent';
 import {ContactComponent} from './ContactComponent';
 import {EditorComponent} from '../../base/EditorComponent';
+import {ChildMetadata} from '../../base/TypedModelComponent';
 
 @Component({
     selector: 'iso-responsible-party',
@@ -29,7 +30,8 @@ export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty>
         this.model.contactInfo = null;
     }
 
-    private openNewContactInfoItem(model: Contact) {
-        this.openNewChild(ContactComponent, model, this.config.getConfigFor('contactInfo'));
+    private openNewContactInfoItem(item: Contact) {
+        var metadata = new ChildMetadata(ContactComponent, item, this.config.getConfigFor('contactInfo'));
+        this.openNewChild(metadata);
     }
 }

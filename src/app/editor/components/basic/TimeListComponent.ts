@@ -34,11 +34,13 @@ export class TimeListComponent extends TypedModelComponent<Array<AbstractTime>> 
     }
 
     public openTimeInstant(item: TimeInstant): void {
-        this.openAsChild.emit(new ChildMetadata(TimeInstantComponent, item, this.config.getConfigFor('timeInstant')));
+        var metadata = new ChildMetadata(TimeInstantComponent, item, this.config.getConfigFor('timeInstant'));
+        this.openNewChild(metadata);
     }
 
     public openTimePeriod(item: TimePeriod): void {
-        this.openAsChild.emit(new ChildMetadata(TimePeriodComponent, item, this.config.getConfigFor('timePeriod')));
+        var metadata = new ChildMetadata(TimePeriodComponent, item, this.config.getConfigFor('timePeriod'));
+        this.openNewChild(metadata);
     }
 
     private isPeriod(time: TimePeriod | any): boolean {

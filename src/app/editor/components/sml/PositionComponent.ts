@@ -11,8 +11,8 @@ import {SweQuantity} from '../../../model/swe/SweQuantity';
 import {SweField} from '../../../model/swe/SweField';
 
 @Component({
-    selector: 'position-editor',
-    template: require('./PositionEditorComponent.html'),
+    selector: 'sml-position',
+    template: require('./PositionComponent.html'),
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent]
 })
