@@ -17,7 +17,7 @@ const APPLICATION_PROVIDERS = [
     ...FORM_PROVIDERS,
     ...APP_PROVIDERS,
     ...MODAL_BROWSER_PROVIDERS,
-    ngCore.provide(LocationStrategy, {useClass: HashLocationStrategy})
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
 ];
 
 const APPLICATION_DIRECTIVES = [
@@ -30,8 +30,8 @@ const APPLICATION_PIPES = [];
 export function main() {
     return browserDynamic.bootstrap(Application, [
         ...APPLICATION_PROVIDERS,
-        ngCore.provide(ngCore.PLATFORM_DIRECTIVES, {useValue: APPLICATION_DIRECTIVES, multi: true}),
-        ngCore.provide(ngCore.PLATFORM_PIPES, {useValue: APPLICATION_PIPES, multi: true})
+        {provide: ngCore.PLATFORM_DIRECTIVES, useValue: APPLICATION_DIRECTIVES, multi: true},
+        {provide: ngCore.PLATFORM_PIPES, useValue: APPLICATION_PIPES, multi: true}
     ]).catch((err: any) => console.error(err));
 }
 
