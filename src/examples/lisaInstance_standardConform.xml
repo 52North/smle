@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This document contains an exemplary description of specific component
+(instance of a type): In this case an instance of the LISA device -->
+<sml:PhysicalComponent gml:id="lisa_instance"
+                       xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd"
+                       xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sml="http://www.opengis.net/sensorml/2.0"
+                       xmlns:swe="http://www.opengis.net/swe/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xmlns:xlink="http://www.w3.org/1999/xlink"
+                       xsi:schemaLocation="http://www.opengis.net/sensorml/2.0 http://schemas.opengis.net/sensorML/2.0/sensorML.xsd http://www.opengis.net/swe/2.0 http://schemas.opengis.net/sweCommon/2.0/swe.xsd">
+    <!--Textual description of the sensor -->
+    <gml:description>Metadata of a LISA device</gml:description>
+    <!--Unique identifier -->
+    <gml:identifier codeSpace="uniqueID">http://www.nexosproject.eu/resource/procedure/trios/lisa/1234567890</gml:identifier>
+    <!--Keywords describing the sensor -->
+    <sml:keywords>
+        <sml:KeywordList>
+            <sml:keyword>Earth Science > Oceans > Sensors</sml:keyword>
+            <sml:keyword>Sensors</sml:keyword>
+            <sml:keyword>Projects:ESONET Platforms: Fixed Observation Stations</sml:keyword>
+        </sml:KeywordList>
+    </sml:keywords>
+    <sml:identification>
+        <sml:IdentifierList>
+            <!--The model id of the component -->
+            <sml:identifier>
+                <sml:Term definition="http://www.nexosproject.eu/dictionary/definitions.html#modelID">
+                    <sml:label>Model ID</sml:label>
+                    <sml:value>LISA - SAC 254nm</sml:value>
+                </sml:Term>
+            </sml:identifier>
+            <!--The model number of the component -->
+            <sml:identifier>
+                <sml:Term definition="http://www.nexosproject.eu/dictionary/definitions.html#modelNumber">
+                    <sml:label>Model Number</sml:label>
+                    <sml:value>LISA - SAC 254nm</sml:value>
+                </sml:Term>
+            </sml:identifier>
+            <!--Serial number of the sensor -->
+            <sml:identifier>
+                <sml:Term definition="http://www.nexosproject.eu/dictionary/definitions.html#serialNumber">
+                    <sml:label>Serial number</sml:label>
+                    <sml:value>1234567890</sml:value>
+                </sml:Term>
+            </sml:identifier>
+            <!--Serial number of the lamp -->
+            <sml:identifier>
+                <sml:Term definition="http://www.nexosproject.eu/dictionary/definitions.html#serialNumber">
+                    <sml:label>Lamp serial number</sml:label>
+                    <sml:value>1234567890</sml:value>
+                </sml:Term>
+            </sml:identifier>
+            <!--The name of the component manufacturer -->
+            <sml:identifier>
+                <sml:Term definition="http://www.nexosproject.eu/dictionary/definitions.html#manufacturerName">
+                    <sml:label>Manufacturer Name</sml:label>
+                    <sml:value>TriOS GmbH</sml:value>
+                </sml:Term>
+            </sml:identifier>
+        </sml:IdentifierList>
+    </sml:identification>
+    <!--Time period for which the description of this sensor is valid -->
+    <sml:validTime>
+        <gml:TimePeriod gml:id="validityPeriod">
+            <gml:beginPosition>2015-01-10T13:22:31+00:00</gml:beginPosition>
+            <gml:endPosition>2016-01-17T16:57:56+00:00</gml:endPosition>
+        </gml:TimePeriod>
+    </sml:validTime>
+    <!--Characteristics of the component type -->
+    <sml:characteristics name="LISACaracteristics">
+        <sml:CharacteristicList>
+            <!-- The detector type -->
+            <sml:characteristic name="detectorType">
+                <swe:Text>
+                    <swe:label>Detector Type</swe:label>
+                    <swe:value>silicon photodiode</swe:value>
+                </swe:Text>
+            </sml:characteristic>
+            <!-- The detector type -->
+            <sml:characteristic name="detectorType">
+                <swe:Text definition="http://www.nexosproject.eu/dictionary/definitions.html#detectorType">
+                    <swe:label>Detector Type</swe:label>
+                    <swe:value>silicon photodiode</swe:value>
+                </swe:Text>
+            </sml:characteristic>
+            <!-- The light source -->
+            <sml:characteristic name="lightSource">
+                <swe:Text definition="http://www.nexosproject.eu/dictionary/definitions.html#lightSource">
+                    <swe:label>Light Source</swe:label>
+                    <swe:value>254nm UV-LED and 530nm LED</swe:value>
+                </swe:Text>
+            </sml:characteristic>
+            <!-- The power supply -->
+            <sml:characteristic name="powerSupply">
+                <swe:QuantityRange definition="http://www.nexosproject.eu/dictionary/definitions.html#powerSupply">
+                    <swe:label>Power Supply (VDC)</swe:label>
+                    <swe:uom code="V"/>
+                    <swe:value>9 28</swe:value>
+                </swe:QuantityRange>
+            </sml:characteristic>
+            <!-- The housing material -->
+            <sml:characteristic name="housingMaterial">
+                <swe:Text definition="http://www.nexosproject.eu/dictionary/definitions.html#housingMaterial">
+                    <swe:label>Housing Material</swe:label>
+                    <swe:value>stainless steel (1.4571) or titanium</swe:value>
+                </swe:Text>
+            </sml:characteristic>
+            <!--The length of the sensor -->
+            <sml:characteristic name="length">
+                <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#length">
+                    <swe:label>Length without connector (mm)</swe:label>
+                    <swe:uom code="mm" />
+                    <swe:value>265</swe:value>
+                </swe:Quantity>
+            </sml:characteristic>
+            <!--The diameter of the sensor -->
+            <sml:characteristic name="diameter">
+                <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#diameter">
+                    <swe:label>Diameter (mm)</swe:label>
+                    <swe:uom code="mm" />
+                    <swe:value>48</swe:value>
+                </swe:Quantity>
+            </sml:characteristic>
+        </sml:CharacteristicList>
+    </sml:characteristics>
+    <!--Capabilities of the component type -->
+    <sml:capabilities name="LISACapabilities">
+        <sml:CapabilityList>
+            <!--The depth range -->
+            <sml:capability name="depthRange">
+                <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#depthRange">
+                    <swe:label>Depth Range (m)</swe:label>
+                    <swe:uom code="m" />
+                    <swe:value>300</swe:value>
+                </swe:Quantity>
+            </sml:capability>
+            <!--The operating tempeature -->
+            <sml:capability name="operatingTemperature">
+                <swe:QuantityRange definition="http://www.nexosproject.eu/dictionary/definitions.html#operatingTemperature">
+                    <swe:label>Operating Temperature (°C)</swe:label>
+                    <swe:uom code="degC" />
+                    <swe:value>0 40</swe:value>
+                </swe:QuantityRange>
+            </sml:capability>
+            <!--The wavelength -->
+            <sml:capability name="wavelength">
+                <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#wavelength">
+                    <swe:label>Wavelength (nm)</swe:label>
+                    <swe:uom code="nm" />
+                    <swe:value>254</swe:value>
+                </swe:Quantity>
+            </sml:capability>
+            <!--The optical path lengths -->
+            <sml:capability name="opticalPathLengths">
+                <swe:DataArray definition="http://www.nexosproject.eu/dictionary/definitions.html#opticalPathLengths">
+                    <swe:label>Optical Path Lengths (mm)</swe:label>
+                    <swe:elementCount>
+                        <swe:Count>
+                            <swe:value>5</swe:value>
+                        </swe:Count>
+                    </swe:elementCount>
+                    <swe:elementType name="components">
+                        <swe:DataRecord>
+                            <swe:field name="pathlength">
+                                <swe:Quantity>
+                                    <swe:uom code="mm" />
+                                </swe:Quantity>
+                            </swe:field>
+                        </swe:DataRecord>
+                    </swe:elementType>
+                    <swe:encoding>
+                        <swe:TextEncoding tokenSeparator="," blockSeparator=";" />
+                    </swe:encoding>
+                    <swe:values>1;2;5;10;50</swe:values>
+                </swe:DataArray>
+            </sml:capability>
+        </sml:CapabilityList>
+    </sml:capabilities>
+    <!-- Capabilities which are interpreted by the 52N SOS -->
+    <sml:capabilities name="offerings">
+        <sml:CapabilityList>
+            <!--The sensivitiy of detector -->
+            <sml:capability name="lisa-1234567890-data">
+                <swe:Text definition="urn:ogc:def:identifier:OGC:offeringID">
+                    <swe:label>lisa-1234567890-data</swe:label>
+                    <swe:value>http://www.nexosproject.eu/resources/offerings/trios/lisa/1234567890/data</swe:value>
+                </swe:Text>
+            </sml:capability>
+            <sml:capability name="lisa-1234567890-housekeeping">
+                <swe:Text definition="urn:ogc:def:identifier:OGC:offeringID">
+                    <swe:label>lisa-1234567890-housekeeping</swe:label>
+                    <swe:value>http://www.nexosproject.eu/resources/offerings/trios/lisa/1234567890/housekeeping</swe:value>
+                </swe:Text>
+            </sml:capability>
+        </sml:CapabilityList>
+    </sml:capabilities>
+    <!--Contact details for this component -->
+    <sml:contacts>
+        <sml:ContactList>
+            <!--Point of contact for this sensor -->
+            <sml:contact xlink:title="pointOfContact">
+                <gmd:CI_ResponsibleParty>
+                    <!--Name of the organisation responsible for the sensor -->
+                    <gmd:organisationName>
+                        <gco:CharacterString>TriOS GmbH</gco:CharacterString>
+                    </gmd:organisationName>
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <!--City where the organisation responsible for the sensor is located -->
+                                    <gmd:city>
+                                        <gco:CharacterString>Rastede</gco:CharacterString>
+                                    </gmd:city>
+                                    <!--Country where the organisation responsible for the sensor is
+                                    located -->
+                                    <gmd:country>
+                                        <gco:CharacterString>Germany</gco:CharacterString>
+                                    </gmd:country>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <!--The role of the responsible organisation should be CI_RoleCode_pointOfContact -->
+                    <gmd:role>
+                        <gmd:CI_RoleCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode/"
+                                codeListValue="CI_RoleCode_pointOfContact">Point of Contact</gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </sml:contact>
+            <!--Owner of this sensor -->
+            <sml:contact xlink:title="owner">
+                <gmd:CI_ResponsibleParty>
+                    <!--The name of the organisation which owns the sensor -->
+                    <gmd:organisationName>
+                        <gco:CharacterString>TriOS GmbH</gco:CharacterString>
+                    </gmd:organisationName>
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:phone>
+                                <gmd:CI_Telephone>
+                                    <!--Telephone number of the organisation which owns the sensor -->
+                                    <gmd:voice>
+                                        <gco:CharacterString>+49-(0)-4402-69670-0</gco:CharacterString>
+                                    </gmd:voice>
+                                    <!--Fax number of the organisation which owns the sensor -->
+                                    <gmd:facsimile>
+                                        <gco:CharacterString>+49-(0)-4402-69670-20</gco:CharacterString>
+                                    </gmd:facsimile>
+                                </gmd:CI_Telephone>
+                            </gmd:phone>
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <!--Street and house number where the organisation which owns the
+                                    sensor is located -->
+                                    <gmd:deliveryPoint>
+                                        <gco:CharacterString>Bürgermeister-Brötje-Str. 25</gco:CharacterString>
+                                    </gmd:deliveryPoint>
+                                    <!--City where the organisation which owns the sensor is located -->
+                                    <gmd:city>
+                                        <gco:CharacterString>Rastede</gco:CharacterString>
+                                    </gmd:city>
+                                    <!--Administrative area where the organisation which owns the sensor
+                                    is located (e.g. the federal state within a country) -->
+                                    <gmd:administrativeArea>
+                                        <gco:CharacterString>Lower Saxony</gco:CharacterString>
+                                    </gmd:administrativeArea>
+                                    <!--Postal code of the area where the organisation which owns the
+                                    sensor is located -->
+                                    <gmd:postalCode>
+                                        <gco:CharacterString>26180</gco:CharacterString>
+                                    </gmd:postalCode>
+                                    <!--Country where the organisation which owns the sensor is located -->
+                                    <gmd:country>
+                                        <gco:CharacterString>Germany</gco:CharacterString>
+                                    </gmd:country>
+                                    <!--Email address of organisation which owns the sensor -->
+                                    <gmd:electronicMailAddress>
+                                        <gco:CharacterString>info@trios.de</gco:CharacterString>
+                                    </gmd:electronicMailAddress>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <!--The role for the organisation which owns the sensor should be CI_RoleCode_owner -->
+                    <gmd:role>
+                        <gmd:CI_RoleCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode/"
+                                codeListValue="CI_RoleCode_owner">Owner</gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </sml:contact>
+            <!--Operator of this sensor -->
+            <sml:contact xlink:title="operator">
+                <gmd:CI_ResponsibleParty>
+                    <!-- The name of the organisation which operates the sensor -->
+                    <gmd:organisationName>
+                        <gco:CharacterString>Trios GmbH</gco:CharacterString>
+                    </gmd:organisationName>
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:phone>
+                                <gmd:CI_Telephone>
+                                    <!--Phone number of the organisation which operates the sensor -->
+                                    <gmd:voice>
+                                        <gco:CharacterString>+49-(0)-4402-69670-0</gco:CharacterString>
+                                    </gmd:voice>
+                                    <!--Fax number of the organisation which operates the sensor -->
+                                    <gmd:facsimile>
+                                        <gco:CharacterString>+49-(0)-4402-69670-20</gco:CharacterString>
+                                    </gmd:facsimile>
+                                </gmd:CI_Telephone>
+                            </gmd:phone>
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <!--Street and house number where the organisation which operates
+                                    the sensor is located -->
+                                    <gmd:deliveryPoint>
+                                        <gco:CharacterString>Bürgermeister-Brötje-Str. 25</gco:CharacterString>
+                                    </gmd:deliveryPoint>
+                                    <gmd:city>
+                                        <gco:CharacterString>Rastede</gco:CharacterString>
+                                    </gmd:city>
+                                    <!--Administrative area where the organisation which operates the
+                                    sensor is located (e.g. the federal state within a country) -->
+                                    <gmd:administrativeArea>
+                                        <gco:CharacterString>Lower Saxony</gco:CharacterString>
+                                    </gmd:administrativeArea>
+                                    <!--Postal code of the area where the organisation which operates
+                                    the sensor is located -->
+                                    <gmd:postalCode>
+                                        <gco:CharacterString>26180</gco:CharacterString>
+                                    </gmd:postalCode>
+                                    <!--Country where the organisation which operates the sensor is
+                                    located -->
+                                    <gmd:country>
+                                        <gco:CharacterString>Germany</gco:CharacterString>
+                                    </gmd:country>
+                                    <!--Email address of the organisation which operates the sensor -->
+                                    <gmd:electronicMailAddress>
+                                        <gco:CharacterString>info@trios.de</gco:CharacterString>
+                                    </gmd:electronicMailAddress>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <!--The role for the organisation which operates the sensor should be
+                    CI_RoleCode_custodian -->
+                    <gmd:role>
+                        <gmd:CI_RoleCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode/"
+                                codeListValue="CI_RoleCode_custodian">Operator</gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </sml:contact>
+            <!--Principal investigator responsible for this sensor -->
+            <sml:contact xlink:title="principalInvestigator">
+                <gmd:CI_ResponsibleParty>
+                    <!--Name of the principal investigator responsible for this sensor -->
+                    <gmd:individualName>
+                        <gco:CharacterString>Rüdiger Heuermann</gco:CharacterString>
+                    </gmd:individualName>
+                    <!--Organisation of the principal investigator responsible for this
+                    sensor -->
+                    <gmd:organisationName>
+                        <gco:CharacterString>TriOS GmbH</gco:CharacterString>
+                    </gmd:organisationName>
+                    <!--Position of the principal investigator responsible for this sensor -->
+                    <gmd:positionName>
+                        <gco:CharacterString>CEO</gco:CharacterString>
+                    </gmd:positionName>
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:phone>
+                                <gmd:CI_Telephone>
+                                    <!--Telephone number of the principal investigator responsible for
+                                    this sensor -->
+                                    <gmd:voice>
+                                        <gco:CharacterString>+49-(0)-4402-69670-0</gco:CharacterString>
+                                    </gmd:voice>
+                                </gmd:CI_Telephone>
+                            </gmd:phone>
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <!--City where the principal investigator responsible for this sensor
+                                    is located -->
+                                    <gmd:city>
+                                        <gco:CharacterString>Rastede</gco:CharacterString>
+                                    </gmd:city>
+                                    <!--Country where the principal investigator responsible for this
+                                    sensor is located -->
+                                    <gmd:country>
+                                        <gco:CharacterString>Germany</gco:CharacterString>
+                                    </gmd:country>
+                                    <!--Email address of the principal investigator responsible for
+                                    this sensor -->
+                                    <gmd:electronicMailAddress>
+                                        <gco:CharacterString>info@trios.de</gco:CharacterString>
+                                    </gmd:electronicMailAddress>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                            <!--Web site of the principal investigator responsible for this sensor -->
+                            <gmd:onlineResource>
+                                <gmd:CI_OnlineResource>
+                                    <gmd:linkage>
+                                        <gmd:URL>http://52north.org</gmd:URL>
+                                    </gmd:linkage>
+                                </gmd:CI_OnlineResource>
+                            </gmd:onlineResource>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <!--The role of the principal investigator should be CI_RoleCode_principalInvestigator -->
+                    <gmd:role>
+                        <gmd:CI_RoleCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode/"
+                                codeListValue="CI_RoleCode_principalInvestigator">Principal Investigator</gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </sml:contact>
+            <!--Contact details for the manufacturer -->
+            <sml:contact xlink:title="manufacturer">
+                <gmd:CI_ResponsibleParty>
+                    <!--Name of the company which has manufactured the component -->
+                    <gmd:organisationName>
+                        <gco:CharacterString>Trios GmbH</gco:CharacterString>
+                    </gmd:organisationName>
+                    <!--Contact details of the company which has manufactured the component -->
+                    <gmd:contactInfo>
+                        <gmd:CI_Contact>
+                            <gmd:phone>
+                                <gmd:CI_Telephone>
+                                    <!--Phone number of the company which has manufactured the component -->
+                                    <gmd:voice>
+                                        <gco:CharacterString>+49-(0)-4402-69670-0</gco:CharacterString>
+                                    </gmd:voice>
+                                    <gmd:facsimile>
+                                        <!--Fax number of the company which has manufactured the component -->
+                                        <gco:CharacterString>+49-(0)-4402-69670-20</gco:CharacterString>
+                                    </gmd:facsimile>
+                                </gmd:CI_Telephone>
+                            </gmd:phone>
+                            <!--Address of the company which has manufactured the component -->
+                            <gmd:address>
+                                <gmd:CI_Address>
+                                    <!--Street and house numer where the company which has manufactured
+                                    the component is located -->
+                                    <gmd:deliveryPoint>
+                                        <gco:CharacterString>Bürgermeister-Brötje-Str. 25</gco:CharacterString>
+                                    </gmd:deliveryPoint>
+                                    <!--City where the company which has manufactured the component
+                                    is located -->
+                                    <gmd:city>
+                                        <gco:CharacterString>Rastede</gco:CharacterString>
+                                    </gmd:city>
+                                    <!--Admnistrative area where the company which has manufactured
+                                    the component is located (e.g. the federal state within a country) -->
+                                    <gmd:administrativeArea>
+                                        <gco:CharacterString>Lower Saxony</gco:CharacterString>
+                                    </gmd:administrativeArea>
+                                    <!--Postal code of the area where the company which has manufactured
+                                    the component is located) -->
+                                    <gmd:postalCode>
+                                        <gco:CharacterString>26180</gco:CharacterString>
+                                    </gmd:postalCode>
+                                    <!--Country where the company which has manufactured the component
+                                    is located -->
+                                    <gmd:country>
+                                        <gco:CharacterString>Germany</gco:CharacterString>
+                                    </gmd:country>
+                                    <!--Email contact of the company which has manufactured the component -->
+                                    <gmd:electronicMailAddress>
+                                        <gco:CharacterString>info@trios.de</gco:CharacterString>
+                                    </gmd:electronicMailAddress>
+                                </gmd:CI_Address>
+                            </gmd:address>
+                        </gmd:CI_Contact>
+                    </gmd:contactInfo>
+                    <!--For the manufacturer the role should be originator -->
+                    <gmd:role>
+                        <gmd:CI_RoleCode
+                                codeList="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#CI_RoleCode/"
+                                codeListValue="originator">Manufacturer</gmd:CI_RoleCode>
+                    </gmd:role>
+                </gmd:CI_ResponsibleParty>
+            </sml:contact>
+        </sml:ContactList>
+    </sml:contacts>
+    <!--References to the documentation of the sensor type. -->
+    <sml:documentation>
+        <sml:DocumentList>
+            <sml:document>
+                <gmd:CI_OnlineResource>
+                    <!--Link to the an online resource containing documentation -->
+                    <gmd:linkage>
+                        <gmd:URL>http://www.trios.de/index.php?option=com_jdownloads&amp;Itemid=100&amp;view=finish&amp;cid=127&amp;catid=19&amp;lang=de</gmd:URL>
+                    </gmd:linkage>
+                    <!--Description of the linked resource (in this case a statement that
+                    the link leads to a web site containing the documentation -->
+                    <gmd:description>
+                        <gco:CharacterString>Web site with documentation</gco:CharacterString>
+                    </gmd:description>
+                </gmd:CI_OnlineResource>
+            </sml:document>
+        </sml:DocumentList>
+    </sml:documentation>
+    <!--Collection of events describing the history of the sensor -->
+    <sml:history>
+        <sml:EventList>
+            <!--Event describing the installation -->
+            <sml:event>
+                <sml:Event>
+                    <!--Label describing the type of the event -->
+                    <swe:label>Installation</swe:label>
+                    <!--Documentation of the installation; a link to more detailed information
+                    about this event is provided (e.g. a log file) -->
+                    <sml:documentation>
+                        <sml:DocumentList>
+                            <sml:document>
+                                <gmd:CI_OnlineResource>
+                                    <gmd:linkage>
+                                        <gmd:URL>http://52north.org/lisa9328_installation.log</gmd:URL>
+                                    </gmd:linkage>
+                                </gmd:CI_OnlineResource>
+                            </sml:document>
+                        </sml:DocumentList>
+                    </sml:documentation>
+                    <!--Time stamp when the sensor was installed -->
+                    <sml:time>
+                        <gml:TimeInstant gml:id="installationDate">
+                            <gml:timePosition>2014-11-21T11:30:10.000Z</gml:timePosition>
+                        </gml:TimeInstant>
+                    </sml:time>
+                </sml:Event>
+            </sml:event>
+            <!--Event describing the deployment -->
+            <sml:event>
+                <sml:Event>
+                    <!--Label describing the type of the event -->
+                    <swe:label>Deployment</swe:label>
+                    <!--Documentation of the deployment; a link to more detailed information
+                    about this event is provided (e.g. a log file) -->
+                    <sml:documentation>
+                        <sml:DocumentList>
+                            <sml:document>
+                                <gmd:CI_OnlineResource>
+                                    <gmd:linkage>
+                                        <gmd:URL>http://52north.org/lisa9328__initialization.log</gmd:URL>
+                                    </gmd:linkage>
+                                </gmd:CI_OnlineResource>
+                            </sml:document>
+                        </sml:DocumentList>
+                    </sml:documentation>
+                    <!--Time stamp when the sensor was deployed -->
+                    <sml:time>
+                        <gml:TimeInstant gml:id="deploymentDate">
+                            <gml:timePosition>2014-11-21T12:02:22.000Z</gml:timePosition>
+                        </gml:TimeInstant>
+                    </sml:time>
+                </sml:Event>
+            </sml:event>
+            <!--Event describing when the data collection was started -->
+            <sml:event>
+                <sml:Event>
+                    <!--Label describing the type of the event -->
+                    <swe:label>Start of data collection</swe:label>
+                    <!--Time stamp when the data collection started -->
+                    <sml:time>
+                        <gml:TimeInstant gml:id="dataCollectionStartDate">
+                            <gml:timePosition>2014-11-21T13:12:20.000Z</gml:timePosition>
+                        </gml:TimeInstant>
+                    </sml:time>
+                </sml:Event>
+            </sml:event>
+        </sml:EventList>
+    </sml:history>
+    <!--Inputs which are observed by the sensor -->
+    <sml:inputs>
+        <sml:InputList>
+            <sml:input name="light">
+                <sml:ObservableProperty definition="http://www.nexosproject.eu/dictionary/definitions.html#light" />
+            </sml:input>
+        </sml:InputList>
+    </sml:inputs>
+    <!--Outputs of the sensors -->
+    <sml:outputs>
+        <sml:OutputList>
+            <sml:output name="telemetryInterface">
+                <sml:DataInterface>
+                    <!--The content of the output will be defined below. Thus, an empty
+                    data element is provided. -->
+                    <sml:data />
+                    <!--Description of the interfaces of the sensor type. -->
+                    <sml:interfaceParameters>
+                        <swe:DataRecord>
+                            <!--Textual description of the network interface -->
+                            <swe:field name="interfaceDescription">
+                                <swe:Text
+                                        definition="http://www.nexosproject.eu/dictionary/definitions.html#interfaceDescription">
+                                    <swe:label>Network Interface</swe:label>
+                                    <swe:value>TCP/IP</swe:value>
+                                </swe:Text>
+                            </swe:field>
+                            <!--Textual description of the digital interface -->
+                            <swe:field name="interfaceDescription">
+                                <swe:Text
+                                        definition="http://www.nexosproject.eu/dictionary/definitions.html#interfaceDescription">
+                                    <swe:label>Digital Interface</swe:label>
+                                    <swe:value>RS232/RS485</swe:value>
+                                </swe:Text>
+                            </swe:field>
+                            <!--Textual description of the analog interface -->
+                            <swe:field name="interfaceDescription">
+                                <swe:Text
+                                        definition="http://www.nexosproject.eu/dictionary/definitions.html#interfaceDescription">
+                                    <swe:label>Analog Interface</swe:label>
+                                    <swe:value>4..20mA/0..5VDC/0..10VDC</swe:value>
+                                </swe:Text>
+                            </swe:field>
+                        </swe:DataRecord>
+                    </sml:interfaceParameters>
+                </sml:DataInterface>
+            </sml:output>
+            <!--Outputs describing housekeeping properties -->
+            <!--The shot counter output -->
+            <sml:output name="shotCounter">
+                <swe:Count
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#shotCounter">
+                    <swe:label>Shot Counter</swe:label>
+                    <swe:description>Number of measurements performed with the lamp</swe:description>
+                </swe:Count>
+            </sml:output>
+            <!--The CAL 254nm output -->
+            <sml:output name="CAL_254nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#CAL_254nm">
+                    <swe:label>CAL 254 nm</swe:label>
+                    <swe:description>calibration factor 254 nm</swe:description>
+                    <!-- ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The CAL 530nm output -->
+            <sml:output name="CAL_530nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#CAL_530nm">
+                    <swe:label>CAL 530 nm</swe:label>
+                    <swe:description>calibration factor 530 nm</swe:description>
+                    <!-- ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The ClkIdleTime 254 nm output -->
+            <sml:output name="ClkIdleTime_254nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#ClkIdleTime_254nm">
+                    <swe:label>ClkIdleTime 254 nm</swe:label>
+                    <swe:description>Idle time of the control signal for the 254 nm LED</swe:description>
+                    <swe:uom code="µs" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The ClkDutyTime 254 nm output -->
+            <sml:output name="ClkDutyTime_254nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#ClkDutyTime_254nm">
+                    <swe:label>ClkDutyTime 254 nm</swe:label>
+                    <swe:description>Duty time of the control signal for the 254 nm LED</swe:description>
+                    <swe:uom code="µs" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The ClkIdleTime 530 nm output -->
+            <sml:output name="ClkIdleTime_530nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#ClkIdleTime_530nm">
+                    <swe:label>ClkIdleTime 530 nm</swe:label>
+                    <swe:description>Idle time of the control signal for the 530 nm LED</swe:description>
+                    <swe:uom code="µs" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The ClkDutyTime 530 nm output -->
+            <sml:output name="ClkDutyTime_530nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#ClkDutyTime_530nm">
+                    <swe:label>ClkDutyTime 530 nm</swe:label>
+                    <swe:description>Duty time of the control signal for the 530 nm LED</swe:description>
+                    <swe:uom code="µs" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The Temperature Coefficient 254 nm output -->
+            <sml:output name="TemperatureCoefficient254nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#TemperatureCoefficient254nm">
+                    <swe:label>Temperature Coefficient 254 nm</swe:label>
+                    <swe:description>The temperature coefficient of the 254 nm LED</swe:description>
+                    <swe:uom code="1/K" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The Temperature Coefficient 530 nm output -->
+            <sml:output name="TemperatureCoefficient530nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#TemperatureCoefficient530nm">
+                    <swe:label>Temperature Coefficient 530 nm</swe:label>
+                    <swe:description>The temperature coefficient of the 530 nm LED</swe:description>
+                    <swe:uom code="1/K" />
+                </swe:Quantity>
+            </sml:output>
+            <!--Outputs describing measured properties -->
+            <!--The SAK 254nm output -->
+            <sml:output name="SAK_254nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#SAK_254nm">
+                    <swe:label>SAK 254nm</swe:label>
+                    <swe:description>spectral absorption coefficient at 254nm</swe:description>
+                    <swe:uom code="1/m" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The CODeq output -->
+            <sml:output name="CODeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#CODeq">
+                    <swe:label>CODeq</swe:label>
+                    <!--ToDo: Add description -->
+                    <swe:description>ToDo</swe:description>
+                    <swe:uom code="mg/L" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The BODeq output -->
+            <sml:output name="BODeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#BODeq">
+                    <swe:label>BODeq</swe:label>
+                    <!--ToDo: Add description -->
+                    <swe:description>ToDo</swe:description>
+                    <swe:uom code="mg/L" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The TOCeq output -->
+            <sml:output name="TOCeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#TOCeq">
+                    <swe:label>TOCeq</swe:label>
+                    <!--ToDo: Add description -->
+                    <swe:description>ToDo</swe:description>
+                    <swe:uom code="mg/L" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The Transmission output -->
+            <sml:output name="Transmission">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#transmission">
+                    <swe:label>Transmission</swe:label>
+                    <!--ToDo: Add description -->
+                    <swe:description>ToDo</swe:description>
+                    <swe:uom code="%" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The Transmission254 output -->
+            <sml:output name="Transmission254">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#transmission254">
+                    <swe:label>Transmission 254 nm</swe:label>
+                    <swe:description>transmission at 254 nm</swe:description>
+                    <swe:uom code="%" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The Transmission530 output -->
+            <sml:output name="Transmission530">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#transmission530">
+                    <swe:label>Transmission 530 nm</swe:label>
+                    <swe:description>transmission at 530 nm</swe:description>
+                    <swe:uom code="%" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The CalibratedRaw254 output -->
+            <sml:output name="CalibratedRaw254">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#calibratedRaw254">
+                    <swe:label>Calibrated Raw 254 nm</swe:label>
+                    <swe:description>intensity at 254 nm (calibrated raw value)</swe:description>
+                    <!--ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The CalibratedRaw530 output -->
+            <sml:output name="CalibratedRaw530">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#calibratedRaw530">
+                    <swe:label>Calibrated Raw 530 nm</swe:label>
+                    <swe:description>intensity at 530 nm (calibrated raw value)</swe:description>
+                    <!--ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The detector temperature output -->
+            <sml:output name="DetectorTemperature">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#detectorTemperature">
+                    <swe:label>Detector Temperature (°C)</swe:label>
+                    <swe:uom code="degC" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The led temperature output -->
+            <sml:output name="ledTemperature">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#ledTemperature">
+                    <swe:label>LED Temperature (°C)</swe:label>
+                    <swe:uom code="degC" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The Raw254 output -->
+            <sml:output name="Raw254">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#raw254">
+                    <swe:label>Raw 254 nm</swe:label>
+                    <swe:description>intensity at 254 nm (raw value)</swe:description>
+                    <!--ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The Raw530 output -->
+            <sml:output name="Raw530">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#raw530">
+                    <swe:label>Raw 530 nm</swe:label>
+                    <swe:description>intensity at 530 nm (raw value)</swe:description>
+                    <!--ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The RawDark254 output -->
+            <sml:output name="RawDark254">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#rawDark254">
+                    <swe:label>Raw Dark 254 nm</swe:label>
+                    <swe:description>noise at 254 nm (raw value)</swe:description>
+                    <!--ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The RawDark530 output -->
+            <sml:output name="RawDark530">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#rawDark530">
+                    <swe:label>Raw Dark 530 nm</swe:label>
+                    <swe:description>noise at 530 nm (raw value)</swe:description>
+                    <!--ToDo: Check unit of measurement -->
+                    <swe:uom code="ToDo" />
+                </swe:Quantity>
+            </sml:output>
+            <!--The FlashCount254 output -->
+            <sml:output name="FlashCount254">
+                <swe:Count
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#flashCount254">
+                    <swe:label>Flash Count 254 nm</swe:label>
+                    <swe:description>flash count at 254 nm LED</swe:description>
+                </swe:Count>
+            </sml:output>
+            <!--The FlashCount530 output -->
+            <sml:output name="FlashCount530">
+                <swe:Count
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#flashCount530">
+                    <swe:label>Flash Count 530 nm</swe:label>
+                    <swe:description>flash count at 530 nm LED</swe:description>
+                </swe:Count>
+            </sml:output>
+        </sml:OutputList>
+    </sml:outputs>
+    <!-- Parameters of the sensor -->
+    <sml:parameters>
+        <sml:ParameterList>
+            <!-- Information if the sensor is operating in automatic mode -->
+            <sml:parameter name="automaticMode">
+                <swe:Boolean
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#automaticMode">
+                    <swe:label>Automatic mode on</swe:label>
+                    <swe:description>Indicates if the automatic mode is active.</swe:description>
+                    <swe:value>true</swe:value>
+                </swe:Boolean>
+            </sml:parameter>
+            <!--The measurement interval -->
+            <sml:parameter name="measurementInterval">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#measurementInterval">
+                    <swe:label>Measurement Interval (s)</swe:label>
+                    <swe:description>The length of the measurement interval</swe:description>
+                    <swe:uom code="s" />
+                    <swe:value>10</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--Number of measurements used for averaging -->
+            <sml:parameter name="averaging">
+                <swe:Count
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#averaging">
+                    <swe:label>Number of measurements used for averaging</swe:label>
+                    <swe:description>The number of single measurements for calculating the average of a measurement</swe:description>
+                    <swe:value>10</swe:value>
+                </swe:Count>
+            </sml:parameter>
+            <!--The offset CODeq -->
+            <sml:parameter name="offsetCODeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#offsetCODeq">
+                    <swe:label>Offset CODeq (s)</swe:label>
+                    <swe:description>The offset for calculating the CSB equivalent from the SAK 254 nm (formula: CODeq = Scaling x (SAC - Offset)</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The scaling CODeq -->
+            <sml:parameter name="scalingCODeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#scalingCODeq">
+                    <swe:label>Scaling CODeq (s)</swe:label>
+                    <swe:description>The scale factor for calculating the CSB equivalent from the SAK 254 nm (formula: CODeq = Scaling x (SAC - Offset)</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The offset BODeq -->
+            <sml:parameter name="offsetBODeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#offsetBODeq">
+                    <swe:label>Offset BODeq (s)</swe:label>
+                    <swe:description>The offset for calculating the BSB equivalent from the SAK 254 nm (formula: BODeq = Scaling x (SAC - Offset)</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The scaling BODeq -->
+            <sml:parameter name="scalingBODeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#scalingBODeq">
+                    <swe:label>Scaling CODeq (s)</swe:label>
+                    <swe:description>The scale factor for calculating the BSB equivalent from the SAK 254 nm (formula: CODeq = Scaling x (SAC - Offset)</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The offset CODeq -->
+            <sml:parameter name="offsetTOCeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#offsetTOCeq">
+                    <swe:label>Offset TOCeq (s)</swe:label>
+                    <swe:description>The offset for calculating the TOC equivalent from the SAK 254 nm (formula: Toceq = Scaling x (SAC - Offset)</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The scaling TOCeq -->
+            <sml:parameter name="scalingTOCeq">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#scalingTOCeq">
+                    <swe:label>Scaling TOCeq (s)</swe:label>
+                    <swe:description>The scale factor for calculating the TOC equivalent from the SAK 254 nm (formula: Toceq = Scaling x (SAC - Offset)</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The WB 254 nm parameter -->
+            <sml:parameter name="WB254nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#WB254nm">
+                    <swe:label>WB 254 nm</swe:label>
+                    <swe:description>Reference intensity I0 (water basis) at 254 nm</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The WB 530 nm parameter -->
+            <sml:parameter name="WB530nm">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#WB530nm">
+                    <swe:label>WB 530 nm</swe:label>
+                    <swe:description>Reference intensity I0 (water basis) at 530 nm</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The WB Temperature parameter -->
+            <sml:parameter name="WBTemperature">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#WBTemperature">
+                    <swe:label>WB Temperature (°C)</swe:label>
+                    <swe:description>Temperature at the time of the reference measurement (water basis)</swe:description>
+                    <swe:uom code="degC" />
+                    <swe:value>14</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The CAL Detector parameter -->
+            <sml:parameter name="CALDetector">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#CALDetector">
+                    <swe:label>CAL Detector</swe:label>
+                    <swe:description>Calibration factor of the detector</swe:description>
+                    <!--ToDo: Check correct unit of measurement -->
+                    <swe:uom code="ToDo" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+            <!--The path length -->
+            <sml:parameter name="PathLength">
+                <swe:Quantity
+                        definition="http://www.nexosproject.eu/dictionary/definitions.html#PathLength">
+                    <swe:label>Path Length (mm)</swe:label>
+                    <swe:description>Optical path length through the medium</swe:description>
+                    <swe:uom code="mm" />
+                    <!--ToDo: Replace 999 with plausible value -->
+                    <swe:value>999</swe:value>
+                </swe:Quantity>
+            </sml:parameter>
+        </sml:ParameterList>
+    </sml:parameters>
+    <!--Position of the sensor -->
+    <sml:position>
+        <swe:Vector
+                definition="http://sensorml.com/ont/swe/property/SensorLocation"
+                referenceFrame="urn:ogc:crs:EPSG:4326">
+            <swe:coordinate name="Lat">
+                <swe:Quantity definition="http://sensorml.com/ont/swe/property/Latitude" axisID="Lat">
+                    <swe:uom code="deg"/>
+                    <swe:value>53.243543</swe:value>
+                </swe:Quantity>
+            </swe:coordinate>
+            <swe:coordinate name="Lon">
+                <swe:Quantity definition="http://sensorml.com/ont/swe/property/Longitude" axisID="Long">
+                    <swe:uom code="deg"/>
+                    <swe:value>8.163935</swe:value>
+                </swe:Quantity>
+            </swe:coordinate>
+            <swe:coordinate name="Alt">
+                <swe:Quantity definition="http://sensorml.com/ont/swe/property/Altitude" axisID="Alt">
+                    <swe:uom code="m"/>
+                    <swe:value>5</swe:value>
+                </swe:Quantity>
+            </swe:coordinate>
+        </swe:Vector>
+    </sml:position>
+</sml:PhysicalComponent>

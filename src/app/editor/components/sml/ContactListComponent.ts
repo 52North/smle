@@ -5,6 +5,7 @@ import {ResponsiblePartyComponent} from '../iso/gmd/ResponsiblePartyComponent';
 import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {EditorComponent} from '../base/EditorComponent';
+import {ChildMetadata} from '../base/TypedModelComponent';
 
 @Component({
     selector: 'sml-contact-list',
@@ -30,7 +31,8 @@ export class ContactListComponent extends EditorComponent<ContactList> {
         this.model.contacts.push(new ResponsibleParty());
     }
 
-    private openNewResponsiblePartyItem(model: ResponsibleParty) {
-        this.openNewChild(ResponsiblePartyComponent, model, this.config.getConfigFor('contacts'));
+    private openNewResponsiblePartyItem(item: ResponsibleParty) {
+        var metadata = new ChildMetadata(ResponsiblePartyComponent, item, this.config.getConfigFor('contacts'));
+        this.openNewChild(metadata);
     }
 }

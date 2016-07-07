@@ -1,89 +1,79 @@
-import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {DescribedObject} from '../../../model/sml/DescribedObject';
 import {AbstractFeatureComponent} from '../gml/AbstractFeatureComponent';
-import {SimpleProcess} from '../../../model/sml/SimpleProcess';
 import {KeywordList} from '../../../model/sml/KeywordList';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
 import {KeywordListComponent} from '../swe/KeywordListComponent';
 import {IdentifierListComponent} from './IdentifierListComponent';
 import {ClassifierListComponent} from './ClassifierListComponent';
-import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {ContactListComponent} from './ContactListComponent';
 import {ContactList} from '../../../model/sml/ContactList';
-import {EditorComponent} from '../base/EditorComponent';
 import {TimeListComponent} from '../basic/TimeListComponent';
+import {PositionListComponent} from '../basic/PositionListComponent';
+import {ChildMetadata, TypedModelComponent} from '../base/TypedModelComponent';
 
 @Component({
-  selector: 'sml-described-object',
-  template: require('./DescribedObjectComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [AbstractFeatureComponent, CardComponent, KeywordListComponent, IdentifierListComponent,
-    ClassifierListComponent, ContactListComponent, ListComponent, TimeListComponent]
+    selector: 'sml-described-object',
+    template: require('./DescribedObjectComponent.html'),
+    directives: [AbstractFeatureComponent, KeywordListComponent, IdentifierListComponent,
+        ClassifierListComponent, ContactListComponent, ListComponent, TimeListComponent, PositionListComponent]
 })
-export class DescribedObjectComponent extends EditorComponent<DescribedObject> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
-  }
+export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
+    protected createModel(): DescribedObject {
+        return undefined;
+    }
 
-  protected createModel(): DescribedObject {
-    return new SimpleProcess();
-  }
+    private openNewKeywordListItem(item: KeywordList) {
+        var metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
+        this.openNewChild(metadata);
+    }
 
-  private openNewKeywordListItem(item: KeywordList) {
-    this.openNewChild(KeywordListComponent, item, this.config.getConfigFor('keywords'));
-  }
+    private openNewIdentifierListItem(item: IdentifierList) {
+        var metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('identification'));
+        this.openNewChild(metadata);
+    }
 
-  private openNewIdentifierListItem(item: IdentifierList) {
-    this.openNewChild(IdentifierListComponent, item, this.config.getConfigFor('identification'));
-  }
+    private openNewClassifierListItem(item: ClassifierList) {
+        var metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
+        this.openNewChild(metadata);
+    }
 
-  private openNewClassifierListItem(item: ClassifierList) {
-    this.openNewChild(ClassifierListComponent, item, this.config.getConfigFor('classification'));
-  }
+    private openNewContactListItem(item: ContactList) {
+        var metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('contacts'));
+        this.openNewChild(metadata);
+    }
 
-  private openNewContactListItem(item: ContactList) {
-    this.openNewChild(ContactListComponent, item, this.config.getConfigFor('contacts'));
-  }
+    private onAddKeywordList() {
+        this.model.keywords.push(new KeywordList());
+    }
 
-  private openChild(event: any) {
-    this.openNewChild(event.component, event.model, event.config);
-  }
+    private onAddIdentifierList() {
+        this.model.identification.push(new IdentifierList());
+    }
 
-  private onAddKeywordList() {
-    this.model.keywords.push(new KeywordList());
-  }
+    private onAddClassifierList() {
+        this.model.classification.push(new ClassifierList());
+    }
 
-  private onAddIdentifierList() {
-    this.model.identification.push(new IdentifierList());
-  }
+    private onAddContactList() {
+        this.model.contacts.push(new ContactList());
+    }
 
-  private onAddClassifierList() {
-    this.model.classification.push(new ClassifierList());
-  }
+    private onRemoveKeywordList(index: number) {
+        this.model.keywords.splice(index, 1);
+    }
 
-  private onAddContactList() {
-    this.model.contacts.push(new ContactList());
-  }
+    private onRemoveClassifierList(index: number) {
+        this.model.classification.splice(index, 1);
+    }
 
-  private onRemoveKeywordList(index: number) {
-    this.closeChildWithModel(this.model.keywords[index]);
-    this.model.keywords.splice(index, 1);
-  }
+    private onRemoveIdentifierList(index: number) {
+        this.model.identification.splice(index, 1);
+    }
 
-  private onRemoveClassifierList(index: number) {
-    this.closeChildWithModel(this.model.classification[index]);
-    this.model.classification.splice(index, 1);
-  }
-
-  private onRemoveIdentifierList(index: number) {
-    this.closeChildWithModel(this.model.identification[index]);
-    this.model.identification.splice(index, 1);
-  }
-
-  private onRemoveContactList(index: number) {
-    this.closeChildWithModel(this.model.contacts[index]);
-    this.model.contacts.splice(index, 1);
-  }
+    private onRemoveContactList(index: number) {
+        this.model.contacts.splice(index, 1);
+    }
 }

@@ -1,0 +1,5 @@
+<card [verticalMode]="hasChild" [title]="'Physical System'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()" [(showAll)]="isShowAll">
+    <sml-abstract-physical-process [model]="model" [config]="config" [isShowAll]="isShowAll"
+                                   (openAsChild)="openNewChild($event)"></sml-abstract-physical-process>
+</card>

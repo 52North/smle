@@ -12,3 +12,5 @@ import 'jquery';
 import 'jquery-ui/datepicker';
 import 'jquery-ui-timepicker-addon';
 import 'bootstrap-loader';
+
+import 'leaflet';

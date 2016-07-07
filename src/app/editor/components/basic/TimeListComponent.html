@@ -1,5 +1,5 @@
 <ul class="list-group list-group-flush">
-  <li *ngFor="let item of list; let i = index" class="list-group-item">
+  <li *ngFor="let item of model; let i = index" class="list-group-item">
     <div class="row">
       <a class="btn btn-link" *ngIf="!isPeriod(item)" (click)="openTimeInstant(item)">Time: {{item.time | date}}</a>
       <a class="btn btn-link" *ngIf="isPeriod(item)" (click)="openTimePeriod(item)">Period: {{item.begin | date}} - {{item.end | date}}</a>
