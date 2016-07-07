@@ -6,6 +6,7 @@ import {Term} from '../../../model/sml/Term';
 import {TermComponent} from './TermComponent';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
 import {EditorComponent} from '../base/EditorComponent';
+import {ChildMetadata} from '../base/TypedModelComponent';
 
 @Component({
     selector: 'sml-classifier-list',
@@ -22,8 +23,9 @@ export class ClassifierListComponent extends EditorComponent<ClassifierList> {
         return new ClassifierList();
     }
 
-    private openNewClassifierItem(model: Term) {
-        this.openNewChild(TermComponent, model, this.config.getConfigFor('classifiers'));
+    private openNewClassifierItem(item: Term) {
+        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('classifiers'));
+        this.openNewChild(metadata);
     }
 
     private onAddClassifier(): void {

@@ -6,6 +6,7 @@ import {Term} from '../../../model/sml/Term';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
 import {TermComponent} from './TermComponent';
 import {EditorComponent} from '../base/EditorComponent';
+import {ChildMetadata} from '../base/TypedModelComponent';
 
 @Component({
     selector: 'sml-identifier-list',
@@ -22,8 +23,9 @@ export class IdentifierListComponent extends EditorComponent<IdentifierList> {
         return new IdentifierList();
     }
 
-    private openNewIdentifierItem(model: Term) {
-        this.openNewChild(TermComponent, model, this.config.getConfigFor('identifiers'));
+    private openNewIdentifierItem(item: Term) {
+        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('identifiers'));
+        this.openNewChild(metadata);
     }
 
     private onAddIdentifier(): void {

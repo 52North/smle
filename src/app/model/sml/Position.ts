@@ -1,4 +1,3 @@
-
 import { Point } from '../gml/Point';
 import { SweText } from '../swe/SweText';
 import { SweVector } from '../swe/SweVector';

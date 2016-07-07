@@ -1,7 +1,5 @@
-import {Type} from '@angular/core/src/facade/lang';
 import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
-import {Configuration} from '../../../services/config/Configuration';
-import {TypedModelComponent} from './TypedModelComponent';
+import {TypedModelComponent, ChildMetadata} from './TypedModelComponent';
 
 export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     private parentComponent: EditorComponent<any>;
@@ -27,7 +25,11 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
         return !!this.parentComponent;
     }
 
-    protected openNewChild(componentType: Type, model: any, config: Configuration) {
+    protected openNewChild(childMetadata: ChildMetadata) {
+        var model = childMetadata.model;
+        var componentType = childMetadata.componentType;
+        var config = childMetadata.config;
+
         if (this.childComponentRef &&
             this.childComponentRef.componentType === componentType &&
             this.childComponentRef.instance.model === model) {
