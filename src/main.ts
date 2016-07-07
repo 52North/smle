@@ -27,13 +27,6 @@ const APPLICATION_DIRECTIVES = [
 
 const APPLICATION_PIPES = [];
 
-if ('production' === ENV) {
-    ngCore.enableProdMode();
-//  APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS_PROD_MODE); // TODO check how to fix
-} else {
-    APPLICATION_PROVIDERS.push(browser.ELEMENT_PROBE_PROVIDERS);
-}
-
 export function main() {
     return browserDynamic.bootstrap(Application, [
         ...APPLICATION_PROVIDERS,
