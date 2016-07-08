@@ -49,7 +49,6 @@ describe('SensorMLXmlService', () => {
   it('should parse the allInOn', () => {
     let xml = allinone;
     let description = service.deserialize(xml);
-    console.log(JSON.stringify(description.parameters.parameters[0], null, 2));
     //    let xmlSerialized = service.serialize(description);
     //    let descriptionDeserialized = service.deserialize(xmlSerialized);
     //    expect(description).toEqual(descriptionDeserialized);
