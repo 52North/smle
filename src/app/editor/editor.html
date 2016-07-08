@@ -1,11 +1,11 @@
 <pre *ngIf="!!description">{{description | toSensorml}}</pre>
 <div class="row">
     <div class="col-sm-12 components-container" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
-        <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('PhysicalSystem')">
+        <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')">
         </sml-physical-system>
-        <sml-physical-component *ngSwitchCase="2" [model]="description" [config]="config.getConfigFor('PhysicalComponent')">
+        <sml-physical-component *ngSwitchCase="2" [model]="description" [config]="config.getConfigFor('description')">
         </sml-physical-component>
-        <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('SimpleProcess')">
+        <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')">
         </sml-simple-process>
     </div>
 </div>

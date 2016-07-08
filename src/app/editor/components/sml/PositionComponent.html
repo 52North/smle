@@ -14,8 +14,8 @@
                 <i class="fa fa-globe"></i> Open map
             </button>
         </div>
-        <div *ngIf="altitude || altitude === null || altitude === 0" class="form-group"
-             *ngIf="isShowAll || config.isFieldMandatory('altitude')">
+        <div *ngIf="(altitude || altitude === null || altitude === 0) && (isShowAll || config.isFieldMandatory('altitude'))"
+             class="form-group">
             <label for="altitude">Altitude</label>
             <input type="number" class="form-control" [(ngModel)]="altitude">
         </div>
