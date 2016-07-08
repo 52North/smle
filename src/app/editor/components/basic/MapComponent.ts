@@ -35,18 +35,29 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
         this.marker = L.marker(center, {
             icon: L.icon({
                 iconUrl: require('../../../../../node_modules/leaflet/dist/images/marker-icon.png'),
-                shadowUrl: require('../../../../../node_modules/leaflet/dist/images/marker-shadow.png')
+                shadowUrl: require('../../../../../node_modules/leaflet/dist/images/marker-shadow.png'),
+                iconSize: [25, 41],
+                iconAnchor: [12.5, 41]
             }),
             draggable: true
         }).bindPopup(this.getCoordText(center), {
             offset: L.point(12, 6)
         }).addTo(this.map);
 
+        this.map.on('dblclick', (e) => {
+            this.marker.setLatLng(e.latlng);
+            this.updateMarkerText(e.latlng);
+        });
+
         this.marker.on('drag', (e) => {
             var markerCoords = this.marker.getLatLng();
-            var markerText = this.getCoordText(markerCoords);
-            this.marker.setPopupContent(markerText);
+            this.updateMarkerText(markerCoords);
         });
+    }
+
+    private updateMarkerText(markerCoords) {
+        var markerText = this.getCoordText(markerCoords);
+        this.marker.setPopupContent(markerText);
     }
 
     private getCoordText(coords): string {
