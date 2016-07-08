@@ -37,7 +37,7 @@ export class FetchDescription implements OnInit {
   }
 
   ngOnInit() {
-    //    this.selectDescriptionID('http://www.52north.org/test/procedure/1');
+    this.selectDescriptionID('http://www.nexosproject.eu/resources/procedures/trios/LISA/3075');
   }
 
 }

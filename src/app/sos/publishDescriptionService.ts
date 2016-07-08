@@ -100,7 +100,8 @@ export class PublishDescriptionService {
 
   private createJsonHeader(): Headers {
     return new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
     });
   }
 

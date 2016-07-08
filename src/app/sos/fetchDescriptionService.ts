@@ -11,9 +11,6 @@ export class FetchDescriptionService {
   ) { }
 
   fetchDescriptionIDs(sosUrl: string): Observable<Array<string>> {
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
     let body = JSON.stringify({
       'request': 'GetCapabilities',
       'service': 'SOS',
@@ -21,7 +18,7 @@ export class FetchDescriptionService {
         'OperationsMetadata'
       ]
     });
-    return this.http.post(sosUrl, body, { headers: headers })
+    return this.http.post(sosUrl, body, { headers: this.createHeader() })
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -30,15 +27,12 @@ export class FetchDescriptionService {
     let json = res.json();
     return json.operationMetadata.operations.DescribeSensor.parameters.procedure.allowedValues;
   }
-  
+
   private handleError(res: Response) {
     if (res.status === 0) return Observable.throw('Could not reach the service!');
   }
 
   fetchDescription(sosUrl: string, descId: string): Observable<any> {
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
     let body = JSON.stringify({
       'request': 'DescribeSensor',
       'service': 'SOS',
@@ -46,11 +40,18 @@ export class FetchDescriptionService {
       'procedure': descId,
       'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0'
     });
-    return this.http.post(sosUrl, body, { headers: headers })
+    return this.http.post(sosUrl, body, { headers: this.createHeader() })
       .map((res) => {
         let json = res.json();
         return json.procedureDescription.description || json.procedureDescription;
       });
+  }
+
+  private createHeader(): Headers {
+    return new Headers({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
   }
 
 }
