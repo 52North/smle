@@ -3,12 +3,13 @@
     <div class="col-md-12">
       <h3>Select a template</h3>
       <div class="form-group">
-        <select class="form-control" (click)="selectTemplate($event.target.value)">
-          <option *ngFor="let item of templates">{{item}}</option>
+        <select class="form-control" (click)="onSelectTemplate()" placeholder="wurst" [(ngModel)]="selectedTemplate">
+          <option *ngFor="let item of templates" [ngValue]="item">{{item.name}}</option>
         </select>
       </div>
       <div class="highlight" *ngIf="description">
-        <pre>{{description | toSensorml}}</pre>
+        <!--<pre>{{description | toSensorml}}</pre>-->
+        <pre>{{description.description}}</pre>
         <div class="form-group">
           <label for="gmlId">Define an identifier</label>
           <div class="input-group">

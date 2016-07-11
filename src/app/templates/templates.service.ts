@@ -7,26 +7,25 @@ import {SensorMLXmlService} from '../services/SensorMLXmlService';
 @Injectable()
 export class TemplatesService {
 
-  private templates: string[] = [
-    'physicalComponentInstance',
-    'physicalComponentType',
-    'physicalSystemInstance',
-    'physicalSystemType',
-    'lisaInstance',
-    'lisaInstance_standardConform',
-    'physicalSystemInstance_standardConform'
-  ];
+  private templatesPath = './templates/';
+
+  private templates: Template[];
 
   constructor(
     private http: Http
   ) { }
 
-  getTemplates(): Array<string> {
-    return this.templates;
+  getTemplates(): Observable<Array<Template>> {
+    return this.http.get(this.templatesPath + 'data.json').map(this.extractTemplates);
   }
 
-  getTemplateDescription(id: string): Observable<AbstractProcess> {
-    let url = './examples/' + id + '.xml';
+  private extractTemplates(res: Response): Array<Template> {
+    let json = res.json();
+    return json;
+  }
+
+  getTemplateDescription(template: Template): Observable<AbstractProcess> {
+    let url = this.templatesPath + template.file;
     return this.http.get(url).map(this.extractDescription);
   }
 
@@ -34,4 +33,9 @@ export class TemplatesService {
     let body = res.text();
     return new SensorMLXmlService().deserialize(body);
   }
+}
+
+export class Template {
+  public name: string;
+  public file: string;
 }

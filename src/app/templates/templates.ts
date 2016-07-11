@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {TemplatesService} from './templates.service';
+import {TemplatesService, Template} from './templates.service';
 import {EditorService} from '../services/EditorService';
 import {AbstractProcess} from '../model/sml/AbstractProcess';
 import {SensorMLPipe} from '../editor/pipes/SensorMLPipe';
@@ -16,8 +16,9 @@ import {UUID} from 'angular2-uuid';
 })
 export class Templates implements OnInit {
 
-  templates: string[];
+  templates: Array<Template>;
   description: AbstractProcess;
+  selectedTemplate: Template;
 
   constructor(
     private _router: Router,
@@ -30,8 +31,8 @@ export class Templates implements OnInit {
     this._router.navigate(['/editor', id]);
   }
 
-  selectTemplate(id: string): void {
-    this.templatesServ.getTemplateDescription(id).subscribe(
+  onSelectTemplate(template: Template): void {
+    this.templatesServ.getTemplateDescription(this.selectedTemplate).subscribe(
       res => {
         if (!res.identifier) {
           res.identifier = new CodeType("", "uniqueID");
@@ -46,8 +47,7 @@ export class Templates implements OnInit {
   }
 
   ngOnInit() {
-    this.templates = this.templatesServ.getTemplates();
-    //this.templatesServ.getTemplates().then(res => this.templates = res);
+    this.templatesServ.getTemplates().subscribe(res => this.templates = res);
   }
 
   openToEdit() {
