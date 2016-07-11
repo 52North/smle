@@ -4,7 +4,10 @@
     "boundedBy": false,
     "description": false,
     "descriptionReference": false,
-    "identifier": false,
+    "identifier": {
+      "value": true,
+      "codeSpace": false
+    },
     "name": false,
     "keywords": {
       "codeSpace": false,
