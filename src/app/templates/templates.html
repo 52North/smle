@@ -14,7 +14,7 @@
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="description.identifier.value">
             <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button">Create identifier</button>
+              <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
             </span>
           </div>
         </div>

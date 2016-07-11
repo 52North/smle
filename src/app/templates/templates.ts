@@ -5,6 +5,7 @@ import {EditorService} from '../services/EditorService';
 import {AbstractProcess} from '../model/sml/AbstractProcess';
 import {SensorMLPipe} from '../editor/pipes/SensorMLPipe';
 import {CodeType} from '../model/gml/CodeType';
+import {UUID} from 'angular2-uuid';
 
 @Component({
   selector: 'templates',
@@ -38,6 +39,10 @@ export class Templates implements OnInit {
         this.description = res;
       }
     );
+  }
+
+  createUUID() {
+    this.description.identifier.value = UUID.UUID();
   }
 
   ngOnInit() {
