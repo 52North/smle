@@ -259,6 +259,8 @@
     "src/app/services/xml/SweEncoder.ts",
     "src/app/services/xml/XPathDocument.ts",
     "src/app/services/XmlService.ts",
+    "src/app/templates/templates.service.ts",
+    "src/app/templates/templates.ts",
     "src/custom-typings.d.ts",
     "src/main.ts",
     "src/polyfills.ts",
