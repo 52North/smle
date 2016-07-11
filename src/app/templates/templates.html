@@ -9,7 +9,15 @@
       </div>
       <div class="highlight" *ngIf="description">
         <pre>{{description | toSensorml}}</pre>
-        {{description.identifier | json}}
+        <div class="form-group">
+          <label for="gmlId">Define an identifier</label>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="description.identifier.value">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button">Create identifier</button>
+            </span>
+          </div>
+        </div>
         <button class="btn btn-primary" type="button" (click)="openToEdit()">Open template in editor</button>
       </div>
     </div>

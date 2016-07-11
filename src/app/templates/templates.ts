@@ -4,6 +4,7 @@ import {TemplatesService} from './templates.service';
 import {EditorService} from '../services/EditorService';
 import {AbstractProcess} from '../model/sml/AbstractProcess';
 import {SensorMLPipe} from '../editor/pipes/SensorMLPipe';
+import {CodeType} from '../model/gml/CodeType';
 
 @Component({
   selector: 'templates',
@@ -29,7 +30,14 @@ export class Templates implements OnInit {
   }
 
   selectTemplate(id: string): void {
-    this.templatesServ.getTemplateDescription(id).subscribe(res => this.description = res);
+    this.templatesServ.getTemplateDescription(id).subscribe(
+      res => {
+        if (!res.identifier) {
+          res.identifier = new CodeType("", "uniqueID");
+        }
+        this.description = res;
+      }
+    );
   }
 
   ngOnInit() {
