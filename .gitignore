@@ -6,3 +6,4 @@ coverage/
 doc/
 npm-debug.log
 nbproject/
+src/templates
