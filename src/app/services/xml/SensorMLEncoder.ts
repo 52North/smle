@@ -161,7 +161,7 @@ export class SensorMLEncoder {
       object.classifiers.forEach(term => {
         let classifierNode = document.createElementNS(Namespaces.SML, 'sml:classifier');
         classifierNode.appendChild(this.encodeTerm(term, document));
-        return classifierNode;
+        node.appendChild(classifierNode);
       });
     }
 
