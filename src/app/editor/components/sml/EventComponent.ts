@@ -5,6 +5,7 @@ import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
 import {KeywordListComponent} from '../swe/KeywordListComponent';
 import {IdentifierListComponent} from './IdentifierListComponent';
 import {ClassifierListComponent} from './ClassifierListComponent';
+import {DocumentListComponent} from './DocumentListComponent';
 import {ContactListComponent} from './ContactListComponent';
 import {CodeTypeComponent} from '../gml/CodeTypeComponent';
 import {AbstractSWEIdentifiableComponent} from '../swe/AbstractSWEIdentifiableComponent';
@@ -13,6 +14,7 @@ import {EditorComponent} from '../base/EditorComponent';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
 import {ContactList} from '../../../model/sml/ContactList';
+import {DocumentList} from '../../../model/sml/DocumentList';
 import {ChildMetadata} from '../base/TypedModelComponent';
 import {CodeWithAuthority} from '../../../model/gml/CodeWithAuthority';
 import {TimePeriod} from '../../../model/gml/TimePeriod';
@@ -49,9 +51,25 @@ export class EventComponent extends EditorComponent<Event> {
     this.openNewChild(metadata);
   }
 
+  private onAddIdentifierList() {
+    this.model.identification.push(new IdentifierList());
+  }
+
+  private onRemoveIdentifierList(index: number) {
+    this.model.identification.splice(index, 1);
+  }
+
   private openNewClassifierListItem(item: ClassifierList) {
     var metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
     this.openNewChild(metadata);
+  }
+
+  private onAddClassifierList() {
+    this.model.classification.push(new ClassifierList());
+  }
+
+  private onRemoveClassifierList(index: number) {
+    this.model.classification.splice(index, 1);
   }
 
   private openNewContactListItem(item: ContactList) {
@@ -59,28 +77,25 @@ export class EventComponent extends EditorComponent<Event> {
     this.openNewChild(metadata);
   }
 
-  private onAddIdentifierList() {
-    this.model.identification.push(new IdentifierList());
-  }
-
-  private onAddClassifierList() {
-    this.model.classification.push(new ClassifierList());
-  }
-
   private onAddContactList() {
     this.model.contacts.push(new ContactList());
   }
 
-  private onRemoveIdentifierList(index: number) {
-    this.model.identification.splice(index, 1);
-  }
-
-  private onRemoveClassifierList(index: number) {
-    this.model.classification.splice(index, 1);
-  }
-
   private onRemoveContactList(index: number) {
     this.model.contacts.splice(index, 1);
+  }
+
+  private openNewDocumentListItem(item: DocumentList) {
+    var metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
+    this.openNewChild(metadata);
+  }
+
+  private onAddDocumentList() {
+    this.model.documentation.push(new DocumentList());
+  }
+
+  private onRemoveDocumentList(index: number) {
+    this.model.documentation.splice(index, 1);
   }
 
   private isPeriod(time: TimePeriod | any): boolean {

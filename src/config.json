@@ -114,7 +114,12 @@
             "name": false,
             "description": false,
             "descriptionReference": false
-          }  
+          }
+        },
+        "documentation": {
+          "documents": {
+            "protocol": true
+          }
         }
       }
     }
