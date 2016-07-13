@@ -73,6 +73,8 @@
     "src/app/editor/components/sml/ClassifierListComponent.ts",
     "src/app/editor/components/sml/ContactListComponent.ts",
     "src/app/editor/components/sml/DescribedObjectComponent.ts",
+    "src/app/editor/components/sml/EventComponent.ts",
+    "src/app/editor/components/sml/EventListComponent.ts",
     "src/app/editor/components/sml/IdentifierListComponent.ts",
     "src/app/editor/components/sml/PhysicalComponentComponent.ts",
     "src/app/editor/components/sml/PhysicalSystemComponent.ts",

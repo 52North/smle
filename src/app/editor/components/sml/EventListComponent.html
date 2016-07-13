@@ -1,0 +1,9 @@
+<card [verticalMode]="hasChild" [title]="'Event List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
+  <form>
+    <swe-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-metadata-list>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('events')">
+      <label for="events">Event</label>
+      <list [list]="model.events" [itemTitle]="'Events'" (select)="openNewEventItem($event)" (remove)="onRemoveEvent($event)" (add)="onAddEvent()"></list>
+    </div>
+  </form>
+</card>

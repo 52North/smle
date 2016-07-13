@@ -60,6 +60,49 @@
         "description": false,
         "descriptionReference": false
       }
+    },
+    "history": {
+      "codeSpace": false,
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false,
+      "events":{
+        "id": false,
+        "identifier": false,
+        "name": false,
+        "description": false,
+        "identification": {
+          "identifiers": {
+            "codeSpace": false,
+            "definition": false,
+            "id": false,
+            "extension": false
+          },
+          "definition": false,
+          "identifier": false,
+          "label": false,
+          "description": false,
+          "id": false,
+          "extension": false
+        },
+        "classification": {
+          "classifiers": {
+            "codeSpace": false,
+            "definition": false,
+            "id": false,
+            "extension": false
+          },
+          "definition": false,
+          "identifier": false,
+          "label": false,
+          "description": false,
+          "id": false,
+          "extension": false
+        }
+      }
     }
   }
 }

@@ -28,3 +28,8 @@
     <list [list]="model.contacts" [itemTitle]="'Contact List'" (select)="openNewContactListItem($event)"
           (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
 </div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('history')">
+    <label for="history">History</label>
+    <list [list]="model.history" [itemTitle]="'Event List'" (select)="openNewEventListItem($event)"
+          (remove)="onRemoveEventList($event)" (add)="onAddEventList()"></list>
+</div>
