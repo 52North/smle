@@ -4,9 +4,11 @@ import {AbstractFeatureComponent} from '../gml/AbstractFeatureComponent';
 import {KeywordList} from '../../../model/sml/KeywordList';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
+import {DocumentList} from '../../../model/sml/DocumentList';
 import {KeywordListComponent} from '../swe/KeywordListComponent';
 import {IdentifierListComponent} from './IdentifierListComponent';
 import {ClassifierListComponent} from './ClassifierListComponent';
+import {DocumentListComponent} from './DocumentListComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {ContactListComponent} from './ContactListComponent';
 import {ContactList} from '../../../model/sml/ContactList';
@@ -52,6 +54,11 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     this.openNewChild(metadata);
   }
 
+  private openNewDocumentListItem(item: DocumentList) {
+    var metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
+    this.openNewChild(metadata);
+  }
+
   private onAddKeywordList() {
     this.model.keywords.push(new KeywordList());
   }
@@ -72,6 +79,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     this.model.history.push(new EventList());
   }
 
+  private onAddDocumentList() {
+    this.model.documentation.push(new DocumentList());
+  }
+
   private onRemoveKeywordList(index: number) {
     this.model.keywords.splice(index, 1);
   }
@@ -90,5 +101,9 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
   private onRemoveEventList(index: number) {
     this.model.history.splice(index, 1);
+  }
+
+  private onRemoveDocumentList(index: number) {
+    this.model.documentation.splice(index, 1);
   }
 }
