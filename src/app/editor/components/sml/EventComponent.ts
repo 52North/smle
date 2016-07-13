@@ -15,6 +15,7 @@ import {IdentifierList} from '../../../model/sml/IdentifierList';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
 import {ContactList} from '../../../model/sml/ContactList';
 import {DocumentList} from '../../../model/sml/DocumentList';
+import {KeywordList} from '../../../model/sml/KeywordList';
 import {ChildMetadata} from '../base/TypedModelComponent';
 import {CodeWithAuthority} from '../../../model/gml/CodeWithAuthority';
 import {TimePeriod} from '../../../model/gml/TimePeriod';
@@ -44,6 +45,19 @@ export class EventComponent extends EditorComponent<Event> {
 
   private resetDefinition() {
     this.model.definition = null;
+  }
+
+  private openNewKeywordListItem(item: KeywordList) {
+    var metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
+    this.openNewChild(metadata);
+  }
+
+  private onAddKeywordList() {
+    this.model.keywords.push(new KeywordList());
+  }
+
+  private onRemoveKeywordList(index: number) {
+    this.model.keywords.splice(index, 1);
   }
 
   private openNewIdentifierListItem(item: IdentifierList) {

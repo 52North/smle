@@ -82,6 +82,15 @@
         "identifier": false,
         "name": false,
         "description": false,
+        "keywords": {
+          "definition": false,
+          "identifier": false,
+          "label": true,
+          "codeSpace": false,
+          "description": false,
+          "id": false,
+          "extension": false
+        },
         "identification": {
           "identifiers": {
             "codeSpace": false,
