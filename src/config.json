@@ -61,6 +61,14 @@
         "descriptionReference": false
       }
     },
+    "documentation": {
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
+    },
     "history": {
       "codeSpace": false,
       "definition": false,
@@ -117,6 +125,12 @@
           }
         },
         "documentation": {
+          "definition": false,
+          "identifier": false,
+          "label": true,
+          "description": false,
+          "id": false,
+          "extension": false,
           "documents": {
             "protocol": true
           }

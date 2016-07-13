@@ -3,6 +3,7 @@ import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {EditorComponent} from '../base/EditorComponent';
 import {ChildMetadata} from '../base/TypedModelComponent';
+import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
 import {DocumentList} from '../../../model/sml/DocumentList';
 import {OnlineResource} from '../../../model/iso/gmd/OnlineResource';
 import {OnlineResourceComponent} from '../iso/gmd/OnlineResourceComponent';
@@ -11,7 +12,7 @@ import {OnlineResourceComponent} from '../iso/gmd/OnlineResourceComponent';
   selector: 'sml-document-list',
   template: require('./DocumentListComponent.html'),
   styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, OnlineResourceComponent, ListComponent]
+  directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
 })
 export class DocumentListComponent extends EditorComponent<DocumentList> {
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
