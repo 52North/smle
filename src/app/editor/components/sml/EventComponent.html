@@ -33,5 +33,23 @@
             <label for="contacts">Contacts</label>
             <list [list]="model.contacts" [itemTitle]="'Contact List'" (select)="openNewContactListItem($event)" (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
         </div>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('time')">
+          <label for="time">Time</label>
+          <div class="nested-element">
+            <div *ngIf="model.time">
+                <a class="btn btn-link" *ngIf="!isPeriod(model.time)" (click)="openTimeInstant(model.time)">Time: {{model.time.time | date}}</a>
+                <a class="btn btn-link" *ngIf="isPeriod(model.time)" (click)="openTimePeriod(model.time)">Period: {{model.time.begin | date}} - {{model.time.end | date}}</a>
+                <a class="btn btn-link" (click)="resetTime()"><i class="fa fa-remove"></i> Remove</a>
+            </div>
+            <div *ngIf="!model.time">
+              <a type="button" class="btn btn-link" (click)="createTime()">
+                <i class="fa fa-fw fa-plus"></i>Add instant
+              </a>
+              <a type="button" class="btn btn-link" (click)="createPeriod()">
+                <i class="fa fa-fw fa-plus"></i>Add period
+              </a>
+            </div>
+          </div>
+        </div>
     </form>
 </card>

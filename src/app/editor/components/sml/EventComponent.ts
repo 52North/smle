@@ -15,6 +15,10 @@ import {ClassifierList} from '../../../model/sml/ClassifierList';
 import {ContactList} from '../../../model/sml/ContactList';
 import {ChildMetadata} from '../base/TypedModelComponent';
 import {CodeWithAuthority} from '../../../model/gml/CodeWithAuthority';
+import {TimePeriod} from '../../../model/gml/TimePeriod';
+import {TimeInstant} from '../../../model/gml/TimeInstant';
+import {TimeInstantComponent} from '../gml/TimeInstantComponent';
+import {TimePeriodComponent} from '../gml/TimePeriodComponent';
 
 @Component({
   selector: 'sml-event',
@@ -77,6 +81,37 @@ export class EventComponent extends EditorComponent<Event> {
 
   private onRemoveContactList(index: number) {
     this.model.contacts.splice(index, 1);
+  }
+
+  private isPeriod(time: TimePeriod | any): boolean {
+    return typeof time.begin !== 'undefined' && typeof time.end !== 'undefined';
+  }
+
+  public openTimeInstant(item: TimeInstant): void {
+    var metadata = new ChildMetadata(TimeInstantComponent, item, this.config.getConfigFor('time').getConfigFor('timeInstant'));
+    this.openNewChild(metadata);
+  }
+
+  public openTimePeriod(item: TimePeriod): void {
+    var metadata = new ChildMetadata(TimePeriodComponent, item, this.config.getConfigFor('time').getConfigFor('timePeriod'));
+    this.openNewChild(metadata);
+  }
+
+  public createTime(): void {
+    var time = new TimeInstant();
+    time.time = new Date();
+    this.model.time = time;
+  }
+
+  public createPeriod(): void {
+    var period = new TimePeriod();
+    period.begin = new Date();
+    period.end = new Date();
+    this.model.time = period;
+  }
+
+  public resetTime() {
+    this.model.time = null;
   }
 
 }

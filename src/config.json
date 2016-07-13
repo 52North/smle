@@ -101,6 +101,20 @@
           "description": false,
           "id": false,
           "extension": false
+        },
+        "time": {
+          "timeInstant": {
+            "identifier": false,
+            "name": false,
+            "description": false,
+            "descriptionReference": false
+          },
+          "timePeriod": {
+            "identifier": false,
+            "name": false,
+            "description": false,
+            "descriptionReference": false
+          }  
         }
       }
     }
