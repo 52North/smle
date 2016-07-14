@@ -22,6 +22,8 @@ import {TimePeriod} from '../../../model/gml/TimePeriod';
 import {TimeInstant} from '../../../model/gml/TimeInstant';
 import {TimeInstantComponent} from '../gml/TimeInstantComponent';
 import {TimePeriodComponent} from '../gml/TimePeriodComponent';
+import {SettingsComponent} from './SettingsComponent';
+import {Settings} from '../../../model/sml/Settings';
 
 @Component({
   selector: 'sml-event',
@@ -141,6 +143,19 @@ export class EventComponent extends EditorComponent<Event> {
 
   public resetTime() {
     this.model.time = null;
+  }
+
+  private openSettings() {
+    var metadata = new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
+    this.openNewChild(metadata);
+  }
+
+  private removeSettings() {
+    this.model.configuration = null;
+  }
+
+  private createSettings() {
+    this.model.configuration = new Settings();
   }
 
 }

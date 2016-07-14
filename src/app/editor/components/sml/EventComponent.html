@@ -1,10 +1,6 @@
 <card [verticalMode]="hasChild" [title]="'Event'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
         <swe-abstract-identifiable [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-identifiable>
-        <!--<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('keywords')">
-            <label for="keywords">Keywords</label>
-            <list [list]="model.keywords" [itemTitle]="'Keyword List'" (select)="openNewKeywordListItem($event)" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
-        </div>-->
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('definition')">
           <label for="definition">Definition</label>
           <div class="nested-element">
@@ -57,6 +53,21 @@
                 <i class="fa fa-fw fa-plus"></i>Add period
               </a>
             </div>
+          </div>
+        </div>
+        <sml-configuration [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-configuration>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('configuration')">
+          <label for="configuration">Configuration</label>
+          <div>
+            <a *ngIf="model.configuration" class="btn btn-link" (click)="openSettings()">
+              Settings
+            </a>
+            <a *ngIf="model.configuration" class="btn btn-link" (click)="removeSettings()">
+              <i class="fa fa-fw fa-minus"></i> Remove
+            </a>
+            <a *ngIf="!model.configuration" class="btn btn-link" (click)="createSettings()">
+                <i class="fa fa-fw fa-plus"></i> Create settings
+            </a>
           </div>
         </div>
     </form>

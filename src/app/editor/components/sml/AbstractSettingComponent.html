@@ -1,0 +1,4 @@
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('ref')">
+  <label for="value">Ref</label>
+  <input type="text" class="form-control" [(ngModel)]="model.ref">
+</div>
