@@ -3,10 +3,10 @@ import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
 import {EditorComponent} from '../base/EditorComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {CardComponent} from '../basic/CardComponent';
-import {Settings} from '../../../model/sml/Settings';
-import {ValueSetting} from '../../../model/sml/ValueSetting';
+import {Settings, ValueSetting, ModeSetting} from '../../../model/sml';
 import {ChildMetadata, TypedModelComponent} from '../base/TypedModelComponent';
 import {ValueSettingComponent} from './ValueSettingComponent';
+import {ModeSettingComponent} from './ModeSettingComponent';
 
 @Component({
   selector: 'sml-settings',
@@ -35,6 +35,20 @@ export class SettingsComponent extends EditorComponent<Settings> {
 
   private onAddSetValue(): void {
     this.model.setValue.push(new ValueSetting());
+  }
+
+  private openNewSetModeItem(modeSetting: ModeSetting) {
+    var metadata = new ChildMetadata(ModeSettingComponent, modeSetting, this.config.getConfigFor('setMode'));
+    this.openNewChild(metadata);
+  }
+
+  private onRemoveSetMode(index: number): void {
+    this.closeChildWithModel(this.model.setMode[index]);
+    this.model.setMode.splice(index, 1);
+  }
+
+  private onAddSetMode(): void {
+    this.model.setMode.push(new ModeSetting());
   }
 
 }
