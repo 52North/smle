@@ -84,6 +84,7 @@
     "src/app/editor/components/sml/PositionComponent.ts",
     "src/app/editor/components/sml/SettingsComponent.ts",
     "src/app/editor/components/sml/SimpleProcessComponent.ts",
+    "src/app/editor/components/sml/StatusSettingComponent.ts",
     "src/app/editor/components/sml/TermComponent.ts",
     "src/app/editor/components/sml/ValueSettingComponent.ts",
     "src/app/editor/components/swe/AbstractMetadataListComponent.ts",

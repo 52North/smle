@@ -36,7 +36,7 @@ export class ValueSettingComponent extends EditorComponent<ValueSetting> impleme
     } else if (typeof temp === 'number') {
       return 'number';
     } else if (typeof temp === 'boolean') {
-      return 'boolean'
+      return 'boolean';
     }
   }
 }

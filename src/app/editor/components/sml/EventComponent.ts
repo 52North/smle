@@ -119,12 +119,20 @@ export class EventComponent extends EditorComponent<Event> {
   }
 
   public openTimeInstant(item: TimeInstant): void {
-    var metadata = new ChildMetadata(TimeInstantComponent, item, this.config.getConfigFor('time').getConfigFor('timeInstant'));
+    var metadata = new ChildMetadata(
+      TimeInstantComponent,
+      item,
+      this.config.getConfigFor('time').getConfigFor('timeInstant')
+    );
     this.openNewChild(metadata);
   }
 
   public openTimePeriod(item: TimePeriod): void {
-    var metadata = new ChildMetadata(TimePeriodComponent, item, this.config.getConfigFor('time').getConfigFor('timePeriod'));
+    var metadata = new ChildMetadata(
+      TimePeriodComponent,
+      item,
+      this.config.getConfigFor('time').getConfigFor('timePeriod')
+    );
     this.openNewChild(metadata);
   }
 
