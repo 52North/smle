@@ -21,8 +21,10 @@
       </div>
       <div *ngSwitchWhen="'boolean'">
         <div class="checkbox">
-          <label>
-            <input type="checkbox" class="form-control" [(ngModel)]="model.value">Value as boolean
+          <label class="c-input c-checkbox">
+            <input type="checkbox" class="form-control" [(ngModel)]="model.value">
+            <span class="c-indicator"></span>
+            Value as boolean
           </label>
         </div>
       </div>
