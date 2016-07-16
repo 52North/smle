@@ -1,5 +1,5 @@
-import { AbstractGML } from './AbstractGML';
-import { Envelope } from './Envelope';
+import {AbstractGML} from './AbstractGML';
+import {Envelope} from './Envelope';
 
 /**
  * The basic feature model is given by the gml:AbstractFeatureType.
@@ -8,15 +8,19 @@ import { Envelope } from './Envelope';
  * gml:AbstractGMLType.
  */
 export abstract class AbstractFeature extends AbstractGML {
-  /**
-   * The value of the gml:boundedBy property describes an envelope that encloses
-   * the entire feature instance, and is primarily useful for supporting rapid
-   * searching for features that occur in a particular location.
-   */
-  boundedBy: Envelope;
-  /**
-   * The value of the gml:location property describes the extent, position or
-   * relative location of the feature.
-   */
-  location: any;
+    /**
+     * The value of the gml:boundedBy property describes an envelope that encloses
+     * the entire feature instance, and is primarily useful for supporting rapid
+     * searching for features that occur in a particular location.
+     */
+    boundedBy: Envelope;
+    /**
+     * The value of the gml:location property describes the extent, position or
+     * relative location of the feature.
+     */
+    location: any;
+
+    toString() {
+        return 'Abstract feature';
+    }
 }

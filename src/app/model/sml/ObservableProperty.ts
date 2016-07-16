@@ -7,4 +7,8 @@ import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
  */
 export class ObservableProperty extends AbstractSWEIdentifiable {
   definition: string;
+
+  toString() {
+    return super.toString('Observable property');
+  }
 }

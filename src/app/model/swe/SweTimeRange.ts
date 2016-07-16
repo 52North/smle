@@ -29,4 +29,8 @@ export class SweTimeRange extends AbstractSweRange {
    */
   uom: UnitOfMeasure;
   constraint: AllowedTimes;
+
+  toString() {
+    return super.toString('SWE time range');
+  }
 }

@@ -7,4 +7,8 @@ export class AbstractGeometry extends AbstractGML implements Referenced {
   srsDimension: number;
   axisLabels: string[];
   uomLabels: string[];
+
+  toString() {
+    return 'Abstract geometry';
+  }
 }

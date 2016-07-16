@@ -24,4 +24,8 @@ export class SweTextEncoding extends SweEncoding {
    * the data tree have been encoded once)
    */
   blockSeperator: string = '@@';
+
+  toString() {
+    return 'SWE text encoding';
+  }
 }

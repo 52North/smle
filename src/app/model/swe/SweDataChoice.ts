@@ -16,4 +16,8 @@ export class SweDataChoice extends AbstractDataComponent {
   choiceValue: SweCategory[] = [];
 
   items: SweDataChoiceItem[] = [];
+
+  toString() {
+    return super.toString('SWE data choice');
+  }
 }

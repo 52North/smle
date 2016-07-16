@@ -13,4 +13,8 @@ export class SweDataRecord extends AbstractDataComponent {
    * be scalar or can itself be an aggregate such as a record, choice or array
    */
   fields: SweField[] = [];
+
+  toString() {
+    return super.toString('SWE data record');
+  }
 }

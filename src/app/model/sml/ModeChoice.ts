@@ -3,4 +3,8 @@ import { Mode } from './Mode';
 
 export class ModeChoice extends AbstractModes {
   modes: Mode[];
+
+  toString() {
+    return 'Mode choice';
+  }
 }

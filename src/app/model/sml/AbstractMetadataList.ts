@@ -1,5 +1,9 @@
-import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
+import {AbstractSWEIdentifiable} from '../swe/AbstractSWEIdentifiable';
 
 export abstract class AbstractMetadataList extends AbstractSWEIdentifiable {
-  definition: string;
+    definition: string;
+
+    toString() {
+        return super.toString('Abstract metadata list');
+    }
 }

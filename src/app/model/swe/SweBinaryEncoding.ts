@@ -23,4 +23,8 @@ export class SweBinaryEncoding extends SweEncoding {
    * Total length in bytes of the binary stream (if known in advance)
    */
   byteLength: number;
+
+  toString() {
+    return 'SWE binary encoding';
+  }
 }

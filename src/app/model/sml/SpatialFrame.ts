@@ -19,4 +19,8 @@ export class SpatialFrame extends AbstractSWEIdentifiable {
    * axis 2 = axis 3).
    */
   axis: Axis[];
+
+  toString() {
+    return super.toString('Spatial frame');
+  }
 }

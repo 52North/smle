@@ -12,4 +12,8 @@ export class SweCountRange extends AbstractSweRange {
    */
   value: [number, number];
   constraint: AllowedValues;
+
+  toString() {
+    return super.toString('SWE count range');
+  }
 }

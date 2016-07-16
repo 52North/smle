@@ -5,4 +5,8 @@ import { AllowedValues } from '../swe/AllowedValues';
 
 export class ConstraintSetting extends AbstractSetting {
   value: AllowedTokens | AllowedTimes | AllowedValues;
+
+  toString() {
+    return 'Constraint setting';
+  }
 }

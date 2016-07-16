@@ -17,4 +17,8 @@ export class SweCategory extends AbstractSimpleComponent {
    */
   codeSpace: string;
   constraint: AllowedTokens;
+
+  toString() {
+    return super.toString('SWE category');
+  }
 }

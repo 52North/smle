@@ -18,4 +18,8 @@ export class SweCategoryRange extends AbstractSweRange {
    */
   codeSpace: string;
   constraint: AllowedTokens;
+
+  toString() {
+    return super.toString('SWE category range');
+  }
 }

@@ -23,4 +23,8 @@ export class SweVector extends AbstractDataComponent {
    * vector
    */
   localFrame: string;
+
+  toString() {
+    return super.toString('SWE vector');
+  }
 }

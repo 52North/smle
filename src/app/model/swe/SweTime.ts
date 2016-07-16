@@ -29,4 +29,8 @@ export class SweTime extends AbstractSimpleComponent {
    */
   uom: UnitOfMeasure;
   constraint: AllowedTimes;
+
+  toString() {
+    return super.toString('SWE time');
+  }
 }

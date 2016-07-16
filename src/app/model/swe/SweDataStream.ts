@@ -26,4 +26,8 @@ export class SweDataStream extends AbstractSWEIdentifiable {
    * Encoded values for the stream (can be out of band)
    */
   values: EncodedValues;
+
+  toString() {
+    return super.toString('SWE data stream');
+  }
 }

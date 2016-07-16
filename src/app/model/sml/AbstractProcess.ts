@@ -58,4 +58,8 @@ export abstract class AbstractProcess extends DescribedObject {
    * a particular predefined mode.
    */
   modes: AbstractModes[] = [];
+
+  toString() {
+    return 'Abstract process';
+  }
 }

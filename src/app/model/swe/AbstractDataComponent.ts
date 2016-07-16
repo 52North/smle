@@ -18,4 +18,8 @@ export abstract class AbstractDataComponent extends AbstractSWEIdentifiable {
    * (i.e. is variable)
    */
   updatable: boolean;
+
+  toString(fallbackLabel = 'Abstract data component') {
+    return super.toString(fallbackLabel);
+  }
 }

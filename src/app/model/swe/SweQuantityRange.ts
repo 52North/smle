@@ -17,4 +17,8 @@ export class SweQuantityRange extends AbstractSweRange {
    */
   uom: UnitOfMeasure;
   constraint: AllowedValues;
+
+  toString() {
+    return super.toString('SWE quantity range');
+  }
 }

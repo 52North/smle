@@ -9,4 +9,8 @@ export class TemporalFrame extends AbstractSWEIdentifiable {
    * local timer).
    */
   origin: string;
+
+  toString() {
+    return super.toString('Temporal frame');
+  }
 }

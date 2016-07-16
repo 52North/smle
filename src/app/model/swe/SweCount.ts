@@ -12,4 +12,8 @@ export class SweCount extends AbstractSimpleComponent {
    */
   value: number;
   constraint: AllowedValues;
+
+  toString() {
+    return super.toString('SWE count');
+  }
 }

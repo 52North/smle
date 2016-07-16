@@ -28,4 +28,8 @@ export class SweDataArray extends AbstractDataComponent {
    * for values provided externally
    */
   values: EncodedValues;
+
+  toString(fallbackLabel = 'SWE data array') {
+    return super.toString(fallbackLabel);
+  }
 }

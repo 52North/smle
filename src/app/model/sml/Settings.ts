@@ -11,4 +11,8 @@ export class Settings extends AbstractSWE {
   setConstraint: ConstraintSetting[] = [];
   setMode: ModeSetting[] = [];
   setStatus: StatusSetting[] = [];
+
+  toString() {
+    return 'Settings';
+  }
 }

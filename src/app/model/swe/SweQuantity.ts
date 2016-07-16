@@ -17,4 +17,8 @@ export class SweQuantity extends AbstractSimpleComponent {
    */
   uom: UnitOfMeasure;
   constraint: AllowedValues;
+
+  toString() {
+    return super.toString('SWE quantity');
+  }
 }

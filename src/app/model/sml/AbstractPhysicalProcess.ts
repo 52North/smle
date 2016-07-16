@@ -42,4 +42,8 @@ export abstract class AbstractPhysicalProcess extends AbstractProcess {
    * relative to an "absolute" GPS time.
    */
   timePosition: SweTime[] = [];
+
+  toString() {
+    return 'Abstract physical process';
+  }
 }

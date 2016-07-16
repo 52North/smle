@@ -16,4 +16,8 @@ export class PhysicalComponent extends AbstractPhysicalProcess {
   public static get SCHEMA(): string { return 'http://schemas.opengis.net/sensorML/2.0/physical_component.xsd'; }
 
   public static get NAME(): string { return 'PhysicalComponent'; }
+
+  toString() {
+    return 'Physical component';
+  }
 }

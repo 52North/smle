@@ -1,6 +1,10 @@
-import { Citation } from './Citation';
+import {Citation} from './Citation';
 
 export class Identifier {
-  authority: Citation;
-  code: string;
+    authority: Citation;
+    code: string;
+
+    toString() {
+        return 'Identifier';
+    }
 }

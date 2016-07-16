@@ -12,4 +12,8 @@ export class SweText extends AbstractSimpleComponent {
    */
   value: string;
   constraint: AllowedTokens;
+
+  toString() {
+    return super.toString('SWE text');
+  }
 }

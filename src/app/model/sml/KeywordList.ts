@@ -10,4 +10,8 @@ export class KeywordList extends AbstractMetadataList {
    * a short word or phrase that will aid in discovery of this object
    */
   keywords: string[] = [];
+
+  toString() {
+    return 'Keyword list';
+  }
 }

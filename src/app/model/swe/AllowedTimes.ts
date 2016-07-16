@@ -7,4 +7,8 @@ import { TimePosition } from './TimePosition';
  */
 export class AllowedTimes extends AbstractNumericAllowedValues {
   values: Array<TimePosition | [TimePosition, TimePosition]> = [];
+
+  toString() {
+    return 'Allowed times';
+  }
 }

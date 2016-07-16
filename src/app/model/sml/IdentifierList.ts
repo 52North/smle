@@ -3,4 +3,8 @@ import { Term } from './Term';
 
 export class IdentifierList extends AbstractMetadataList {
   identifiers: Term[] = [];
+
+  toString() {
+    return 'Identifier list';
+  }
 }

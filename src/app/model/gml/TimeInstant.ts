@@ -1,5 +1,13 @@
-import { AbstractTime } from './AbstractTime';
+import {AbstractTime} from './AbstractTime';
 
 export class TimeInstant extends AbstractTime {
-  time: Date;
+    time: Date;
+
+    toString() {
+        if (this.time) {
+            return this.time.toISOString();
+        } else {
+            return 'Time instant';
+        }
+    }
 }

@@ -47,4 +47,8 @@ export class Event extends AbstractSWEIdentifiable {
    * Configuration settings adjusted during event
    */
   configuration: Settings;
+
+  toString() {
+    return super.toString('Event');
+  }
 }

@@ -3,4 +3,8 @@ import { Parameter } from './Parameter';
 
 export class ParameterList extends AbstractSWE {
   parameters: Parameter[] = [];
+
+  toString() {
+    return 'Parameter list';
+  }
 }

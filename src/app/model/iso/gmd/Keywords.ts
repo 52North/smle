@@ -5,4 +5,8 @@ export class Keywords {
   keywords: string[] = [];
   type: KeywordType;
   thesaurusName: Citation;
+
+  toString() {
+    return 'Keywords';
+  }
 }

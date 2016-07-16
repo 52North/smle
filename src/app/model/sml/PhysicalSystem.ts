@@ -11,4 +11,8 @@ export class PhysicalSystem extends AbstractPhysicalProcess implements Aggregati
   public static get SCHEMA(): string { return 'http://schemas.opengis.net/sensorML/2.0/physical_system.xsd'; }
 
   public static get NAME(): string { return 'PhysicalSystem'; }
+
+  toString() {
+    return 'Physical system';
+  }
 }

@@ -11,4 +11,8 @@ export class Connection {
    * The input or parameter into which the data flows.
    */
   destination: string;
+
+  toString() {
+    return 'Connection';
+  }
 }

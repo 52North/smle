@@ -18,4 +18,8 @@ export class DataInterface extends AbstractSWEIdentifiable {
    * interface (e.g. the port settings of an RS232 interface).
    */
   interfaceParameters: SweDataRecord;
+
+  toString() {
+    return super.toString('Data interface');
+  }
 }

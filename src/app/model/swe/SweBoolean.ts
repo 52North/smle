@@ -10,4 +10,8 @@ export class SweBoolean extends AbstractSimpleComponent {
    * provided using other encodings
    */
   value: boolean;
+
+  toString() {
+    return super.toString('SWE boolean');
+  }
 }
