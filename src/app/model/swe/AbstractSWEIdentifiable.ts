@@ -1,4 +1,5 @@
 import {AbstractSWE} from './AbstractSWE';
+import {DisplayName} from '../../decorators/DisplayName';
 
 /**
  * Base substitution groups for all SWE Common objects with
@@ -10,23 +11,22 @@ export abstract class AbstractSWEIdentifiable extends AbstractSWE {
      * identify a particular component of the dataset, a process input/output
      * or a universal constant
      */
+    @DisplayName('Identifier')
     identifier: string;
     /**
      * Textual label for the data component . This is often used for displaying
      * a human readable name for a dataset field or a process input/output
      */
+    @DisplayName('Label')
     label: string;
     /**
      * Textual description (i.e. human readable) of the data component usually
      * used to clarify its nature
      */
+    @DisplayName('Description')
     description: string;
 
     toString(fallbackLabel = 'Abstract SWE identifiable') {
-        if (this.label && this.label.length) {
-            return this.label;
-        } else {
-            return fallbackLabel;
-        }
+        return this.label ? this.label : fallbackLabel;
     }
 }

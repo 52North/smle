@@ -1,6 +1,8 @@
 import {AbstractTime} from './AbstractTime';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class TimeInstant extends AbstractTime {
+    @DisplayName('Time')
     time: Date;
 
     toString() {

@@ -1,10 +1,11 @@
-
-import { AbstractSimpleComponent } from './AbstractSimpleComponent';
+import {AbstractSimpleComponent} from './AbstractSimpleComponent';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class AbstractSweRange extends AbstractSimpleComponent {
-  value: [any, any];
+    @DisplayName('Value')
+    value: [any, any];
 
-  toString(fallbackLabel = 'Abstract SWE range') {
-    return super.toString(fallbackLabel);
-  }
+    toString(fallbackLabel = 'Abstract SWE range') {
+        return super.toString(fallbackLabel);
+    }
 }

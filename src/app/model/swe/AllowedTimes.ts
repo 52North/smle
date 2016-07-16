@@ -1,14 +1,16 @@
-import { AbstractNumericAllowedValues } from './AbstractNumericAllowedValues';
-import { TimePosition } from './TimePosition';
+import {AbstractNumericAllowedValues} from './AbstractNumericAllowedValues';
+import {TimePosition} from './TimePosition';
+import {DisplayName} from '../../decorators/DisplayName';
 
 /**
  * Defines the permitted values for the component, as a time range or an
  * enumerated list of time values
  */
 export class AllowedTimes extends AbstractNumericAllowedValues {
-  values: Array<TimePosition | [TimePosition, TimePosition]> = [];
+    @DisplayName('Values')
+    values: Array<TimePosition | [TimePosition, TimePosition]> = [];
 
-  toString() {
-    return 'Allowed times';
-  }
+    toString() {
+        return 'Allowed times';
+    }
 }

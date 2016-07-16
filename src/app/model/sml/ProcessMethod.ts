@@ -1,11 +1,12 @@
-
-import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
-import { AbstractAlgorithm } from './AbstractAlgorithm';
+import {AbstractSWEIdentifiable} from '../swe/AbstractSWEIdentifiable';
+import {AbstractAlgorithm} from './AbstractAlgorithm';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class ProcessMethod extends AbstractSWEIdentifiable {
-  algorithm: AbstractAlgorithm[] = [];
+    @DisplayName('Algorithm')
+    algorithm: AbstractAlgorithm[] = [];
 
-  toString() {
-    return super.toString('Process method');
-  }
+    toString() {
+        return super.toString('Process method');
+    }
 }

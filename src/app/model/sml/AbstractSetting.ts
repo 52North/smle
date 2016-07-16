@@ -1,8 +1,13 @@
-export abstract class AbstractSetting {
-  value: any;
-  ref: string;
+import {DisplayName} from '../../decorators/DisplayName';
 
-  toString() {
-    return 'Abstract setting';
-  }
+export abstract class AbstractSetting {
+    @DisplayName('Value')
+    value: any;
+
+    @DisplayName('Ref')
+    ref: string;
+
+    toString() {
+        return 'Abstract setting';
+    }
 }

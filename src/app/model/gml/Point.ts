@@ -1,7 +1,11 @@
 import {AbstractGeometricPrimitive} from './AbstractGeometricPrimitive';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class Point extends AbstractGeometricPrimitive {
+    @DisplayName('X')
     x: number;
+
+    @DisplayName('Y')
     y: number;
 
     toString() {

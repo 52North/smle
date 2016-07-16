@@ -1,10 +1,12 @@
-import { AbstractSWE } from '../swe/AbstractSWE';
-import { Parameter } from './Parameter';
+import {AbstractSWE} from '../swe/AbstractSWE';
+import {Parameter} from './Parameter';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class ParameterList extends AbstractSWE {
-  parameters: Parameter[] = [];
+    @DisplayName('Parameters')
+    parameters: Parameter[] = [];
 
-  toString() {
-    return 'Parameter list';
-  }
+    toString() {
+        return 'Parameter list';
+    }
 }

@@ -1,9 +1,11 @@
-import { AbstractAllowedValues } from './AbstractAllowedValues';
+import {AbstractAllowedValues} from './AbstractAllowedValues';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class AbstractNumericAllowedValues extends AbstractAllowedValues {
-  significantFigures: number;
+    @DisplayName('Significant figures')
+    significantFigures: number;
 
-  toString() {
-    return 'Abstract numeric allowed values';
-  }
+    toString() {
+        return 'Abstract numeric allowed values';
+    }
 }

@@ -1,4 +1,5 @@
 import {CodeType} from './CodeType';
+import {DisplayName} from '../../decorators/DisplayName';
 
 /**
  * The abstract element gml:AbstractGML is "any GML object having identity".
@@ -8,6 +9,7 @@ import {CodeType} from './CodeType';
  * is effectively an abstract superclass for all GML objects.
  */
 export abstract class AbstractGML {
+    @DisplayName('GML id')
     gmlId: string;
     /**
      * The value of this property is a text description of the object.
@@ -17,12 +19,14 @@ export abstract class AbstractGML {
      * description has been deprecated and replaced by the
      * gml:descriptionReference property.
      */
+    @DisplayName('Description')
     description: string;
     /**
      * The value of this property is a remote text description of the object.
      * The xlink:href attribute of the gml:descriptionReference property
      * references the external description.
      */
+    @DisplayName('Description reference')
     descriptionReference: string;
     /**
      * The gml:name property provides a label or identifier for the object,
@@ -34,6 +38,7 @@ export abstract class AbstractGML {
      * usage there will be one name per authority, so a processing application
      * may select the name from its preferred codeSpace.
      */
+    @DisplayName('Name')
     name: CodeType[];
     /**
      * Often, a special identifier is assigned to an object by the maintaining
@@ -42,6 +47,7 @@ export abstract class AbstractGML {
      * unique either globally or within an application domain. gml:identifier is a
      * pre-defined property for such identifiers.
      */
+    @DisplayName('Identifier')
     identifier: CodeType;
 
     toString() {

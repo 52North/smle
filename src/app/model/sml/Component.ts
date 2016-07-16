@@ -1,13 +1,18 @@
+import {DisplayName} from '../../decorators/DisplayName';
+
 export class Component {
-  name: string;
-  href: string;
+    @DisplayName('Name')
+    name: string;
 
-  constructor(name?: string, href?: string) {
-    this.name = name;
-    this.href = href;
-  }
+    @DisplayName('Href')
+    href: string;
 
-  toString() {
-    return this.name || 'Component';
-  }
+    constructor(name?: string, href?: string) {
+        this.name = name;
+        this.href = href;
+    }
+
+    toString() {
+        return this.name || 'Component';
+    }
 }

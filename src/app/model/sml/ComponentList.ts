@@ -1,10 +1,12 @@
-import { AbstractSWE } from '../swe/AbstractSWE';
-import { Component } from './Component';
+import {AbstractSWE} from '../swe/AbstractSWE';
+import {Component} from './Component';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class ComponentList extends AbstractSWE {
-  components: Component[] = [];
+    @DisplayName('Components')
+    components: Component[] = [];
 
-  toString() {
-    return 'Component list';
-  }
+    toString() {
+        return 'Component list';
+    }
 }

@@ -1,5 +1,10 @@
+import {DisplayName} from '../../decorators/DisplayName';
+
 export class Axis {
+    @DisplayName('Name')
     name: string;
+
+    @DisplayName('Description')
     description: string;
 
     toString() {

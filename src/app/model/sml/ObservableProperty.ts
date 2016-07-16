@@ -1,4 +1,5 @@
-import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
+import {AbstractSWEIdentifiable} from '../swe/AbstractSWEIdentifiable';
+import {DisplayName} from '../../decorators/DisplayName';
 
 /**
  * A physical property that can be observed and possibly measured (e.g.
@@ -6,9 +7,10 @@ import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
  * definition, but does not have units of measure.
  */
 export class ObservableProperty extends AbstractSWEIdentifiable {
-  definition: string;
+    @DisplayName('Definition')
+    definition: string;
 
-  toString() {
-    return super.toString('Observable property');
-  }
+    toString() {
+        return super.toString('Observable property');
+    }
 }

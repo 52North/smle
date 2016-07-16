@@ -1,6 +1,8 @@
 import {AbstractSetting} from './AbstractSetting';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class ModeSetting extends AbstractSetting {
+    @DisplayName('Value')
     value: string;
 
     toString() {

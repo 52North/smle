@@ -1,10 +1,12 @@
-import { AbstractSWE } from '../swe/AbstractSWE';
-import { Connection } from './Connection';
+import {AbstractSWE} from '../swe/AbstractSWE';
+import {Connection} from './Connection';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class ConnectionList extends AbstractSWE {
-  connections: Connection[] = [];
+    @DisplayName('Connections')
+    connections: Connection[] = [];
 
-  toString() {
-    return 'Connection list';
-  }
+    toString() {
+        return 'Connection list';
+    }
 }

@@ -1,4 +1,5 @@
 import {AbstractReferenced} from './AbstractReferenced';
+import {DisplayName} from '../../decorators/DisplayName';
 
 /**
  * Envelope defines an extent using a pair of positions defining opposite
@@ -11,6 +12,7 @@ import {AbstractReferenced} from './AbstractReferenced';
 export class Envelope extends AbstractReferenced {
     private _coords = new Array<number>(4);
 
+    @DisplayName('Lower corner')
     get lowerCorner() {
         return [this._coords[0], this._coords[2]];
     }
@@ -20,6 +22,7 @@ export class Envelope extends AbstractReferenced {
         this._coords[2] = c[1];
     }
 
+    @DisplayName('Upper corner')
     get upperCorner() {
         return [this._coords[1], this._coords[3]];
     }
@@ -29,6 +32,7 @@ export class Envelope extends AbstractReferenced {
         this._coords[3] = c[1];
     }
 
+    @DisplayName('Coordinates')
     get coordinates(): [number, number, number, number] {
         return [
             this._coords[0],
