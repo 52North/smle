@@ -53,22 +53,14 @@ export class ObjectTreeComponent implements OnChanges {
         return nodes;
     }
 
-    private getNodesForArray(array: Array): Array<INode> {
-        var nodes = <Array>array.map((elem: any) => {
+    private getNodesForArray(array: Array<any>): Array<INode> {
+        var nodes = <Array<any>>array.map((elem: any) => {
             var node: INode = {name: null, children: null};
 
-            if (typeof elem === 'object' && !(elem instanceof Date) || elem instanceof Array) {
-                if (typeof elem.label === 'string' && elem.label.length) {
-                    node.name = elem.label;
-                } else if (typeof elem.name === 'string' && elem.name.length) {
-                    node.name = elem.name;
-                } else {
-                    node.name = elem.constructor.name;
-                }
+            node.name = elem.toString();
 
+            if (typeof elem === 'object' && !(elem instanceof Date) || elem instanceof Array) {
                 node.children = this.getNodes(elem);
-            } else {
-                node.name = elem.toString();
             }
 
             return node;
