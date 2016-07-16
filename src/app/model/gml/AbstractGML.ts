@@ -9,7 +9,7 @@ import {DisplayName} from '../../decorators/DisplayName';
  * is effectively an abstract superclass for all GML objects.
  */
 export abstract class AbstractGML {
-    @DisplayName('GML id')
+    @DisplayName('GML ID')
     gmlId: string;
     /**
      * The value of this property is a text description of the object.

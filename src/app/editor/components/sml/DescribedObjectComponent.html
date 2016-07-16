@@ -1,30 +1,30 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('language')">
-    <label for="language">Language</label>
+    <label for="language">{{getDisplayName('language')}}</label>
     <input type="text" class="form-control" [(ngModel)]="model.language">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('keywords')">
-    <label for="keywords">Keywords</label>
+    <label for="keywords">{{getDisplayName('keywords')}}</label>
     <list [list]="model.keywords" [itemTitle]="'Keyword List'" (select)="openNewKeywordListItem($event)"
           (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identification')">
-    <label for="identification">Identification</label>
+    <label for="identification">{{getDisplayName('identification')}}</label>
     <list [list]="model.identification" [itemTitle]="'Identifier List'" (select)="openNewIdentifierListItem($event)"
           (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('classification')">
-    <label for="classification">Classification</label>
+    <label for="classification">{{getDisplayName('classification')}}</label>
     <list [list]="model.classification" [itemTitle]="'Classifier List'" (select)="openNewClassifierListItem($event)"
           (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('validTime')">
-    <label for="validTime">Valid Time</label>
+    <label for="validTime">{{getDisplayName('validTime')}}</label>
     <time-list [model]="model.validTime" [config]="config.getConfigFor('validTime')"
                (openAsChild)="openNewChild($event)"></time-list>
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
-    <label for="contacts">Contacts</label>
+    <label for="contacts">{{getDisplayName('contacts')}}</label>
     <list [list]="model.contacts" [itemTitle]="'Contact List'" (select)="openNewContactListItem($event)"
           (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
 </div>

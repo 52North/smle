@@ -2,32 +2,32 @@
       [(showAll)]="isShowAll">
     <form>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('city')">
-            <label for="city">City</label>
+            <label for="city">{{getDisplayName('city')}}</label>
             <input type="text" class="form-control" [(ngModel)]="model.city">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('postalCode')">
-            <label for="postalCode">Postal Code</label>
+            <label for="postalCode">{{getDisplayName('postalCode')}}</label>
             <input type="text" class="form-control" [(ngModel)]="model.postalCode">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('country')">
-            <label for="country">Country</label>
+            <label for="country">{{getDisplayName('country')}}</label>
             <input type="text" class="form-control" [(ngModel)]="model.country">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('administrativeArea')">
-            <label for="administrativeArea">Administrative Area</label>
+            <label for="administrativeArea">{{getDisplayName('administrativeArea')}}</label>
             <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('deliveryPoint')">
-            <label for="deliveryPoint">Delivery Point</label>
+            <label for="deliveryPoint">{{getDisplayName('deliveryPoint')}}</label>
             <strings [list]="model.deliveryPoint"></strings>
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('electronicMailAddress')">
-            <label for="electronicMailAddress">Electronic Mail Address</label>
+            <label for="electronicMailAddress">{{getDisplayName('electronicMailAddress')}}</label>
             <strings [list]="model.electronicMailAddress"></strings>
         </div>
     </form>
