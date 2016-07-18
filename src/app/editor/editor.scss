@@ -1,14 +1,16 @@
-pre {
+.description-visualizer {
   position: fixed;
   width: 450px;
   height: auto;
   top: 55px;
-  bottom: -15px;
+  bottom: 15px;
   right: -435px;
   transition: right 200ms ease 200ms;
   z-index: 1;
   border: 1px solid black;
   background-color: white;
+  overflow: auto;
+  padding: 10px;
 
   &:hover {
     right: 0;

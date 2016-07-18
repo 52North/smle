@@ -13,6 +13,7 @@ import {SimpleProcessComponent} from './components/sml/SimpleProcessComponent';
 import {PhysicalSystem} from '../model/sml/PhysicalSystem';
 import {PhysicalComponent} from '../model/sml/PhysicalComponent';
 import {SimpleProcess} from '../model/sml/SimpleProcess';
+import {ObjectTreeComponent} from './components/basic/ObjectTreeComponent';
 
 enum DescriptionType {
   PhysicalSystem = 1,
@@ -24,7 +25,8 @@ enum DescriptionType {
   selector: 'editor',
   template: require('./editor.html'),
   styles: [require('./editor.scss')],
-  directives: [PhysicalSystemComponent, PhysicalComponentComponent, SimpleProcessComponent],
+  directives: [PhysicalSystemComponent, PhysicalComponentComponent, SimpleProcessComponent,
+    ObjectTreeComponent],
   pipes: [SensorMLPipe]
 })
 export class Editor implements OnInit {

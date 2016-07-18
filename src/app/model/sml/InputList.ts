@@ -1,6 +1,12 @@
-import { AbstractSWE } from '../swe/AbstractSWE';
-import { Input } from './Input';
+import {AbstractSWE} from '../swe/AbstractSWE';
+import {Input} from './Input';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class InputList extends AbstractSWE {
-  inputs: Input[] = [];
+    @DisplayName('Inputs')
+    inputs: Input[] = [];
+
+    toString() {
+        return 'Input list';
+    }
 }

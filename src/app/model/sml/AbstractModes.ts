@@ -1,3 +1,7 @@
-import { AbstractSWE } from '../swe/AbstractSWE';
+import {AbstractSWE} from '../swe/AbstractSWE';
 
-export abstract class AbstractModes extends AbstractSWE { }
+export abstract class AbstractModes extends AbstractSWE {
+    toString() {
+        return 'Abstract modes';
+    }
+}

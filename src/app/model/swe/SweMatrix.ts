@@ -1,6 +1,14 @@
-import { SweDataArray } from './SweDataArray';
+import {SweDataArray} from './SweDataArray';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class SweMatrix extends SweDataArray {
-  referenceFrame: string;
-  localFrame: string;
+    @DisplayName('Reference frame')
+    referenceFrame: string;
+
+    @DisplayName('Local frame')
+    localFrame: string;
+
+    toString() {
+        return super.toString('SWE matrix');
+    }
 }

@@ -15,6 +15,6 @@ export class AbstractGMLComponent extends TypedModelComponent<AbstractGML> {
   }
 
   public createIdentifier() {
-    this.model.identifier = new CodeType("", "");
+    this.model.identifier = new CodeType('', '');
   }
 }

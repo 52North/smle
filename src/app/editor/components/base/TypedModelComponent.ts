@@ -1,6 +1,7 @@
 import {Input, Output, EventEmitter} from '@angular/core';
 import {Configuration} from '../../../services/config/Configuration';
 import {Type} from '@angular/core/src/facade/lang';
+import {getDisplayName} from '../../../decorators/DisplayName';
 
 export class ChildMetadata {
     private _componentType: Type;
@@ -47,5 +48,10 @@ export abstract class TypedModelComponent<T> {
 
     protected openNewChild(childMetadata: ChildMetadata) {
         this.openAsChild.emit(childMetadata);
+    }
+
+    protected getDisplayName(propertyName: string, target: any = this.model) {
+        var displayName = getDisplayName(target, propertyName);
+        return displayName || propertyName;
     }
 }

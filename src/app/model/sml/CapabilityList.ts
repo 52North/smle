@@ -1,7 +1,13 @@
-import { AbstractNamedMetadataList } from './AbstractNamedMetadataList';
-import { Capability } from './Capability';
+import {AbstractNamedMetadataList} from './AbstractNamedMetadataList';
+import {Capability} from './Capability';
+import {DisplayName} from '../../decorators/DisplayName';
 
 
 export class CapabilityList extends AbstractNamedMetadataList {
-  capabilities: Capability[] = [];
+    @DisplayName('Capabilities')
+    capabilities: Capability[] = [];
+
+    toString() {
+        return super.toString('Capability list');
+    }
 }
