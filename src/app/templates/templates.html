@@ -3,8 +3,17 @@
     <div class="col-md-12">
       <h3>Select a template</h3>
       <div class="form-group">
-        <select class="form-control" (click)="onSelectTemplate()" placeholder="wurst" [(ngModel)]="selectedTemplate">
-          <option *ngFor="let item of templates" [ngValue]="item">{{item.name}}</option>
+        <form class="input-group" (ngSubmit)="onStartSearch()">
+          <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchTerm">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="submit">Search</button>
+          </span>
+        </form>
+      </div>
+      <div *ngIf="templates">
+        <label for="search">Select one of {{resultCount}} templates</label>
+        <select class="form-control" (click)="onSelectTemplate()" [(ngModel)]="selectedTemplate">
+          <option *ngFor="let item of templates | templateSort" [ngValue]="item">{{item.name}}</option>
         </select>
       </div>
       <div class="highlight" *ngIf="description">

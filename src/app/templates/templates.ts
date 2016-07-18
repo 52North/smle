@@ -6,16 +6,19 @@ import {AbstractProcess} from '../model/sml/AbstractProcess';
 import {SensorMLPipe} from '../editor/pipes/SensorMLPipe';
 import {CodeType} from '../model/gml/CodeType';
 import {UUID} from 'angular2-uuid';
+import {TemplateSortPipe} from './templates.pipe';
 
 @Component({
   selector: 'templates',
   styles: [require('./templates.scss')],
   providers: [TemplatesService],
-  pipes: [SensorMLPipe],
+  pipes: [SensorMLPipe, TemplateSortPipe],
   template: require('./templates.html')
 })
 export class Templates implements OnInit {
 
+  searchTerm: string = "";
+  resultCount: number = 0;
   templates: Array<Template>;
   description: AbstractProcess;
   selectedTemplate: Template;
@@ -27,11 +30,23 @@ export class Templates implements OnInit {
   ) {
   }
 
+  onStartSearch(): void {
+    this.templates = null;
+    this.resultCount = 0;
+    this.templatesServ.search(this.searchTerm).subscribe(
+      res => {
+        this.resultCount = res.count;
+        this.templates = res.templates;
+      }
+    )
+  }
+
   onSelect(id: string): void {
     this._router.navigate(['/editor', id]);
   }
 
   onSelectTemplate(template: Template): void {
+    /*
     this.templatesServ.getTemplateDescription(this.selectedTemplate).subscribe(
       res => {
         if (!res.identifier) {
@@ -40,6 +55,7 @@ export class Templates implements OnInit {
         this.description = res;
       }
     );
+    */
   }
 
   createUUID() {
@@ -47,7 +63,7 @@ export class Templates implements OnInit {
   }
 
   ngOnInit() {
-    this.templatesServ.getTemplates().subscribe(res => this.templates = res);
+    //this.templatesServ.getTemplates().subscribe(res => this.templates = res);
   }
 
   openToEdit() {
