@@ -40,14 +40,15 @@ export class ObjectTreeComponent implements OnChanges {
         var nodes: Array<INode> = [];
 
         for (let propertyName in object) {
-            if (Object.prototype.hasOwnProperty(propertyName)) {
+            let nodeValue: any = object[propertyName];
+
+            if (Object.prototype.hasOwnProperty(propertyName) ||
+                nodeValue === undefined || nodeValue === null || nodeValue.length === 0) {
                 continue;
             }
 
             let displayName = getDisplayName(object, propertyName) || propertyName;
-
             let newNode: INode = {name: displayName, children: null};
-            let nodeValue: any = object[propertyName];
 
             newNode.children = this.getNodes(nodeValue);
             nodes.push(newNode);
