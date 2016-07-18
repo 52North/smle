@@ -2,11 +2,11 @@
       [(showAll)]="isShowAll">
     <form>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('voice')">
-            <label for="voice">Voice</label>
+            <label for="voice">{{getDisplayName('voice')}}</label>
             <strings [list]="model.voice"></strings>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('facsimile')">
-            <label for="facsimile">Facsimile</label>
+            <label for="facsimile">{{getDisplayName('facsimile')}}</label>
             <strings [list]="model.facsimile"></strings>
         </div>
     </form>

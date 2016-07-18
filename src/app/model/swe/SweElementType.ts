@@ -1,7 +1,14 @@
-
-import { AbstractDataComponent } from './AbstractDataComponent';
+import {AbstractDataComponent} from './AbstractDataComponent';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class SweElementType {
-  name: string;
-  type: AbstractDataComponent;
+    @DisplayName('Name')
+    name: string;
+
+    @DisplayName('Type')
+    type: AbstractDataComponent;
+
+    toString() {
+        return this.name || 'SWE element type';
+    }
 }

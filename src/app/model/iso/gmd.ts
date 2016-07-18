@@ -1,4 +1,3 @@
-
 export * from './gmd/Address';
 export * from './gmd/Citation';
 export * from './gmd/Contact';

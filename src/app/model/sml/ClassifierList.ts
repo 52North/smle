@@ -1,7 +1,13 @@
-import { AbstractMetadataList } from './AbstractMetadataList';
-import { Term } from './Term';
+import {AbstractMetadataList} from './AbstractMetadataList';
+import {Term} from './Term';
+import {DisplayName} from '../../decorators/DisplayName';
 
 
 export class ClassifierList extends AbstractMetadataList {
-  classifiers: Term[] = [];
+    @DisplayName('Classifiers')
+    classifiers: Term[] = [];
+
+    toString() {
+        return 'Classifier list';
+    }
 }

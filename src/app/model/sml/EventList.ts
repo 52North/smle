@@ -1,7 +1,12 @@
-
-import { AbstractMetadataList } from './AbstractMetadataList';
-import { Event } from './Event';
+import {AbstractMetadataList} from './AbstractMetadataList';
+import {Event} from './Event';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class EventList extends AbstractMetadataList {
-  events: Event[] = [];
+    @DisplayName('Events')
+    events: Event[] = [];
+
+    toString() {
+        return 'Event list';
+    }
 }

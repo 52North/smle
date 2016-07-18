@@ -1,5 +1,11 @@
-import { AbstractSWE } from './AbstractSWE';
+import {AbstractSWE} from './AbstractSWE';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class AbstractAllowedValues extends AbstractSWE {
-  values: any[];
+    @DisplayName('Values')
+    values: any[];
+
+    toString() {
+        return 'Abstract allowed values';
+    }
 }

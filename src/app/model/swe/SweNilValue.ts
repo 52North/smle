@@ -1,4 +1,13 @@
+import {DisplayName} from '../../decorators/DisplayName';
+
 export class SweNilValue {
-  value: string;
-  reason: string;
+    @DisplayName('Value')
+    value: string;
+
+    @DisplayName('Reason')
+    reason: string;
+
+    toString() {
+        return 'SWE nil value';
+    }
 }
