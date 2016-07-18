@@ -2,7 +2,7 @@
   <form>
     <swe-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-metadata-list>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('documents')">
-      <label for="documents">Documents</label>
+      <label for="documents">{{getDisplayName('documents')}}</label>
       <list [list]="model.documents" [itemTitle]="'OnlineResource'" (select)="openNewOnlineResourceItem($event)" (remove)="onRemove($event)" (add)="onAdd()"></list>
     </div>
   </form>

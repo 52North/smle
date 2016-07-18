@@ -3,13 +3,13 @@
   <label for="configuration">Configuration</label>
   <div>
     <a *ngIf="model.configuration" class="btn btn-link" (click)="openSettings()">
-      Settings
+      {{getDisplayName('settings')}}
     </a>
     <a *ngIf="model.configuration" class="btn btn-link" (click)="removeSettings()">
       <i class="fa fa-fw fa-minus"></i> Remove
     </a>
     <a *ngIf="!model.configuration" class="btn btn-link" (click)="createSettings()">
-        <i class="fa fa-fw fa-plus"></i> Create settings
+        <i class="fa fa-fw fa-plus"></i> Create {{getDisplayName('settings')}}
     </a>
   </div>
 </div>
