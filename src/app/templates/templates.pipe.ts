@@ -1,8 +1,8 @@
-import {Pipe} from "@angular/core";
+import {Pipe} from '@angular/core';
 import {Template} from './templates.service';
 
 @Pipe({
-  name: "templateSort"
+  name: 'templateSort'
 })
 export class TemplateSortPipe {
   transform(array: Array<Template>, args: string): Array<Template> {

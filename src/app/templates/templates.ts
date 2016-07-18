@@ -18,8 +18,8 @@ import {SensorMLXmlService} from '../services/SensorMLXmlService';
 })
 export class Templates {
 
-  searchTerm: string = "";
-  resultCount: number = 0;
+  searchTerm: string;
+  resultCount: number;
   templates: Array<Template>;
   description: AbstractProcess;
   selection: Template;
@@ -35,12 +35,14 @@ export class Templates {
   onStartSearch(): void {
     this.templates = null;
     this.resultCount = 0;
+    this.choosenTemplate = null;
+    this.description = null;
     this.templatesServ.search(this.searchTerm).subscribe(
       res => {
         this.resultCount = res.count;
         this.templates = res.templates;
       }
-    )
+    );
   }
 
   onSelect(id: string): void {
@@ -53,7 +55,7 @@ export class Templates {
         this.choosenTemplate = res;
         this.description = new SensorMLXmlService().deserialize(res.plainText);
         if (!this.description.identifier) {
-          this.description.identifier = new CodeType("", "uniqueID");
+          this.description.identifier = new CodeType('', 'uniqueID');
         }
       }
     );

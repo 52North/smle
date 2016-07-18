@@ -7,7 +7,7 @@ import {SensorMLXmlService} from '../services/SensorMLXmlService';
 @Injectable()
 export class TemplatesService {
 
-  private templatesUrl = 'http://localhost:8983/solr/yellowPages'
+  private templatesUrl = 'http://localhost:8983/solr/yellowPages';
 
   constructor(
     private http: Http,
@@ -15,7 +15,7 @@ export class TemplatesService {
   ) { }
 
   search(searchTerm: string): Observable<Result> {
-    var searchTerm = searchTerm ? searchTerm : '*';
+    searchTerm = searchTerm ? searchTerm : '*';
     let params: URLSearchParams = new URLSearchParams();
     params.set('fl', 'id,name');
     params.set('rows', '500');
