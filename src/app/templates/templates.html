@@ -10,15 +10,14 @@
           </span>
         </form>
       </div>
-      <div *ngIf="templates">
+      <div *ngIf="templates" class="form-group">
         <label for="search">Select one of {{resultCount}} templates</label>
-        <select class="form-control" (click)="onSelectTemplate()" [(ngModel)]="selectedTemplate">
+        <select class="form-control" (click)="onSelectTemplate()" [(ngModel)]="selection">
           <option *ngFor="let item of templates | templateSort" [ngValue]="item">{{item.name}}</option>
         </select>
       </div>
-      <div class="highlight" *ngIf="description">
-        <!--<pre>{{description | toSensorml}}</pre>-->
-        <pre>{{description.description}}</pre>
+      <div class="highlight" *ngIf="choosenTemplate">
+        <pre>{{choosenTemplate.description}}</pre>
         <div class="form-group">
           <label for="gmlId">Define an identifier</label>
           <div class="input-group">
@@ -28,7 +27,7 @@
             </span>
           </div>
         </div>
-        <button class="btn btn-primary" type="button" (click)="openToEdit()">Open template in editor</button>
+        <button class="btn btn-primary" type="button" (click)="openToEdit()">Create sensor description of this template</button>
       </div>
     </div>
   </div>

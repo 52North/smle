@@ -7,9 +7,7 @@ import {SensorMLXmlService} from '../services/SensorMLXmlService';
 @Injectable()
 export class TemplatesService {
 
-  private dictionaryURL = 'http://localhost:8983/solr/yellowPages/select';
-  //private templatesPath = './templates/';
-  //private templates: Template[];
+  private templatesUrl = 'http://localhost:8983/solr/yellowPages'
 
   constructor(
     private http: Http,
@@ -20,11 +18,11 @@ export class TemplatesService {
     var searchTerm = searchTerm ? searchTerm : '*';
     let params: URLSearchParams = new URLSearchParams();
     params.set('fl', 'id,name');
-    params.set('wt', 'json');
     params.set('rows', '500');
+    params.set('wt', 'json');
     params.set('q', searchTerm);
     params.set('json.wrf', 'JSONP_CALLBACK');
-    return this.jsonp.request(this.dictionaryURL, {
+    return this.jsonp.request(this.templatesUrl + '/select', {
       search: params
     }).map(this.extractTemplates);
   }
@@ -41,32 +39,27 @@ export class TemplatesService {
     return result;
   }
 
-  /*
-    getTemplates(): Observable<Array<Template>> {
-      return this.http.get(this.templatesPath + 'data.json').map(this.extractTemplates);
-    }
+  public getTemplate(template: Template): Observable<Template> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('wt', 'json');
+    params.set('id', template.id);
+    params.set('json.wrf', 'JSONP_CALLBACK');
+    return this.jsonp.request(this.templatesUrl + '/get', {
+      search: params
+    }).map(this.extractDescription);
+  }
 
-    private extractTemplates(res: Response): Array<Template> {
-      let json = res.json();
-      return json;
-    }
-
-    getTemplateDescription(template: Template): Observable<AbstractProcess> {
-      let url = this.templatesPath + template.file;
-      return this.http.get(url).map(this.extractDescription);
-    }
-
-    private extractDescription(res: Response): AbstractProcess {
-      let body = res.text();
-      return new SensorMLXmlService().deserialize(body);
-    }
-  */
-
+  private extractDescription(res: Response): Template {
+    return res.json().doc;
+  }
 }
 
 export class Template {
   public id: string;
   public name: string;
+  public keywords: Array<string>;
+  public description: string;
+  public plainText: string;
   constructor(id: string, name: string) {
     this.id = id;
     this.name = name;

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {TemplatesService, Template} from './templates.service';
 import {EditorService} from '../services/EditorService';
@@ -7,6 +7,7 @@ import {SensorMLPipe} from '../editor/pipes/SensorMLPipe';
 import {CodeType} from '../model/gml/CodeType';
 import {UUID} from 'angular2-uuid';
 import {TemplateSortPipe} from './templates.pipe';
+import {SensorMLXmlService} from '../services/SensorMLXmlService';
 
 @Component({
   selector: 'templates',
@@ -15,13 +16,14 @@ import {TemplateSortPipe} from './templates.pipe';
   pipes: [SensorMLPipe, TemplateSortPipe],
   template: require('./templates.html')
 })
-export class Templates implements OnInit {
+export class Templates {
 
   searchTerm: string = "";
   resultCount: number = 0;
   templates: Array<Template>;
   description: AbstractProcess;
-  selectedTemplate: Template;
+  selection: Template;
+  choosenTemplate: Template;
 
   constructor(
     private _router: Router,
@@ -45,25 +47,20 @@ export class Templates implements OnInit {
     this._router.navigate(['/editor', id]);
   }
 
-  onSelectTemplate(template: Template): void {
-    /*
-    this.templatesServ.getTemplateDescription(this.selectedTemplate).subscribe(
+  onSelectTemplate(): void {
+    this.templatesServ.getTemplate(this.selection).subscribe(
       res => {
-        if (!res.identifier) {
-          res.identifier = new CodeType("", "uniqueID");
+        this.choosenTemplate = res;
+        this.description = new SensorMLXmlService().deserialize(res.plainText);
+        if (!this.description.identifier) {
+          this.description.identifier = new CodeType("", "uniqueID");
         }
-        this.description = res;
       }
     );
-    */
   }
 
   createUUID() {
     this.description.identifier.value = UUID.UUID();
-  }
-
-  ngOnInit() {
-    //this.templatesServ.getTemplates().subscribe(res => this.templates = res);
   }
 
   openToEdit() {
