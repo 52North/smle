@@ -1,6 +1,15 @@
-
+import {DisplayName} from '../../../decorators/DisplayName';
 export class Series {
-  name: string;
-  issueIdentification: string;
-  page: string;
+    @DisplayName('Name')
+    name: string;
+
+    @DisplayName('Issue identification')
+    issueIdentification: string;
+
+    @DisplayName('Page')
+    page: string;
+
+    toString() {
+        return this.name || 'Series';
+    }
 }

@@ -1,6 +1,14 @@
-import { AbstractDataComponent } from './AbstractDataComponent';
+import {AbstractDataComponent} from './AbstractDataComponent';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class SweField {
-  name: string;
-  component: AbstractDataComponent;
+    @DisplayName('Name')
+    name: string;
+
+    @DisplayName('Component')
+    component: AbstractDataComponent;
+
+    toString() {
+        return this.name || 'SWE field';
+    }
 }

@@ -1,6 +1,18 @@
-import { AbstractGeometricPrimitive } from './AbstractGeometricPrimitive';
+import {AbstractGeometricPrimitive} from './AbstractGeometricPrimitive';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class Point extends AbstractGeometricPrimitive {
-  x: number;
-  y: number;
+    @DisplayName('X')
+    x: number;
+
+    @DisplayName('Y')
+    y: number;
+
+    toString() {
+        if ((this.x || this.x === 0) && (this.y || this.y === 0)) {
+            return '(' + this.x + ';' + this.y + ')';
+        }
+
+        return 'Point';
+    }
 }
