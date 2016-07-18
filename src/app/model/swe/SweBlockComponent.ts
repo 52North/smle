@@ -1,4 +1,3 @@
-
 import { SweMatrix } from './SweMatrix';
 import { SweDataArray } from './SweDataArray';
 

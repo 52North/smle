@@ -1,7 +1,14 @@
-
-import { SweAnyNumerical } from './SweAnyNumerical';
+import {SweAnyNumerical} from './SweAnyNumerical';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class SweCoordinate {
-  name: string;
-  coordinate: SweAnyNumerical;
+    @DisplayName('Name')
+    name: string;
+
+    @DisplayName('Coordinate')
+    coordinate: SweAnyNumerical;
+
+    toString() {
+        return this.name || 'SWE coordinate';
+    }
 }

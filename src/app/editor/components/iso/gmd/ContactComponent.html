@@ -2,20 +2,20 @@
       [(showAll)]="isShowAll">
     <form>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('phone')">
-            <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">Phone</a>
+            <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">{{getDisplayName('phone')}}</a>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('address')">
-            <a class="btn btn-link" (click)="openNewAddressItem(model.address)">Address</a>
+            <a class="btn btn-link" (click)="openNewAddressItem(model.address)">{{getDisplayName('address')}}</a>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('onlineResource')">
-            <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">Online Resource</a>
+            <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">{{getDisplayName('onlineResource')}}</a>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contactInstructions')">
-            <label for="model.contactInstructions">Contact Instructions</label>
+            <label for="model.contactInstructions">{{getDisplayName('contactInstructions')}}</label>
             <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('hoursOfService')">
-            <label for="model.hoursOfService">Hours Of Service</label>
+            <label for="model.hoursOfService">{{getDisplayName('hoursOfService')}}</label>
             <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
         </div>
     </form>

@@ -1,7 +1,12 @@
-import { AbstractMetadataList } from './AbstractMetadataList';
-import { ResponsibleParty } from '../iso/gmd/ResponsibleParty';
-
+import {AbstractMetadataList} from './AbstractMetadataList';
+import {ResponsibleParty} from '../iso/gmd/ResponsibleParty';
+import {DisplayName} from '../../decorators/DisplayName';
 
 export class ContactList extends AbstractMetadataList {
-  contacts: ResponsibleParty[] = [];
+    @DisplayName('Contacts')
+    contacts: ResponsibleParty[] = [];
+
+    toString() {
+        return 'Contact list';
+    }
 }
