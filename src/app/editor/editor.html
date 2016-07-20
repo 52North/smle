@@ -11,7 +11,7 @@
   </div>
 </div>
 <object-tree class="description-visualizer" *ngIf="!!description" [model]="description"></object-tree>
-<div class="row">
+<div class="row" *ngIf="!!description">
     <div class="col-sm-12 components-container" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
         <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')">
         </sml-physical-system>
@@ -20,10 +20,11 @@
         <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')">
         </sml-simple-process>
     </div>
-    <!--<div class="col-md-12" *ngIf="description">-->
-        <!--<a class="btn btn-primary" (click)="saveDescription()">Save</a>-->
-    <!--</div>-->
-    <div class="publish">
-      <a class="btn btn-primary" (click)="publishDescription()">Publish Description</a>
+    <div class="publish container">
+      <div class="row">
+        <div class="col-md-12">
+          <a class="btn btn-primary center-block" (click)="publishDescription()">Publish Description</a>
+        </div>
+      </div>
     </div>
 </div>
