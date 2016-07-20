@@ -52,7 +52,7 @@ export class Editor implements OnInit {
 
   public onSelectDescriptionType(type: string) {
     if (type === 'PhysicalSystem') {
-      this.setDescription(new PhysicalSystem())
+      this.setDescription(new PhysicalSystem());
     } else if (type === 'PhysicalComponent') {
       this.setDescription(new PhysicalComponent());
     }

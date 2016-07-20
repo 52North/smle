@@ -38,7 +38,7 @@ export class DatePickerComponent implements OnChanges {
   }
 
   public onClearDateEntry() {
-    this.model = null
+    this.model = null;
     this.modelChange.emit(this.model);
   }
 
