@@ -244,9 +244,9 @@ export class SensorMLDecoder {
       // TODO implement
       //      this.decodeAbstractMetadataList(featureListElem, featureList);
       //      featureList.features = this.utils.getDecodedList(
-      //      featureListElem, 
-      //      'feature', 
-      //      Namespaces.SML, 
+      //      featureListElem,
+      //      'feature',
+      //      Namespaces.SML,
       //      (feature) => this.gmlDecoder.decodeAbstractFeature(feature));
       return featureList;
     }
@@ -835,8 +835,8 @@ export class SensorMLDecoder {
       valueSett.ref = elem.getAttribute('ref');
     }
 
-    if (elem.textContent === 'true') {
-      valueSett.value = true;
+    if (elem.textContent === 'true' || elem.textContent === 'false') {
+      valueSett.value = (elem.textContent === 'true');
     } else if (!isNaN(+elem.textContent)) {
       valueSett.value = +elem.textContent;
     } else if (!isNaN(Date.parse(elem.textContent))) {

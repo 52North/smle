@@ -270,9 +270,11 @@ export class SensorMLEncoder {
     this.sweEncoder.encodeAbstractSweIdentifiable(node, object, document);
 
     if (object.keywords) {
-      //TODO implement GMD keywords
-      if (object.keywords.length > 0)
-        console.error('GMD keywords are not yet supported');
+      object.keywords.forEach(list => {
+        let listNode = document.createElementNS(Namespaces.SML, 'sml:keywords');
+        listNode.appendChild(this.encodeKeywordList(list, document));
+        node.appendChild(listNode);
+      });
     }
 
     if (object.identification) {

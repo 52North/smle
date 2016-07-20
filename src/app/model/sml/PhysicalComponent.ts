@@ -1,12 +1,13 @@
 import {AbstractPhysicalProcess} from './AbstractPhysicalProcess';
 import {ProcessMethod} from './ProcessMethod';
+import {ProcessMethodProcess} from './ProcessMethodProcess';
 import {DisplayName} from '../../decorators/DisplayName';
 
 /**
  * A PhysicalComponent is a physical process that will not be further divided
  * into smaller components.
  */
-export class PhysicalComponent extends AbstractPhysicalProcess {
+export class PhysicalComponent extends AbstractPhysicalProcess  implements ProcessMethodProcess {
     /**
      * he method describes (as an algorithm or text) how the process takes the
      * input and, based on the parameter values, generates output values.
