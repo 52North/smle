@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter, OnChanges, SimpleChange} from '@angular/core';
-import {Calendar} from 'primeng/components/calendar/calendar';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
+import { Calendar } from 'primeng/components/calendar/calendar';
 import * as moment from 'moment';
 
 const DATE_TIME_SEPARATOR = ' ';
@@ -32,7 +32,19 @@ export class DatePickerComponent implements OnChanges {
     }
 
     var dateTime = this.model;
-    this.dateTimeString = this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
+    if (dateTime) {
+      this.dateTimeString = this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
+    }
+  }
+
+  public onClearDateEntry() {
+    this.model = null
+    this.modelChange.emit(this.model);
+  }
+
+  public onCreateDateEntry() {
+    this.model = new Date();
+    this.modelChange.emit(this.model);
   }
 
   private getTimeObject(dateTime: Date): any {
