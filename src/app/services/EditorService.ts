@@ -21,13 +21,13 @@ export class EditorService {
   getDescriptionForId(id: string): Promise<AbstractProcess> {
     if (id) {
       if (id === 'new') {
-        this.description = new SimpleProcess();
+        this.description = null;
       } else {
         return this.service.getDescription(id);
       }
     }
     if (!this.description) {
-      this.description = new SimpleProcess();
+      this.description = null;
     }
     return Promise.resolve(this.description);
   }
