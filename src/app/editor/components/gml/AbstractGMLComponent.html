@@ -1,23 +1,23 @@
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('gmlId')">
-  <label for="gmlId">GML Id</label>
+  <label for="gmlId">{{getDisplayName('gmlId')}}</label>
   <input type="text" class="form-control" [(ngModel)]="model.gmlId">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('description')">
-  <label for="description">Description</label>
+  <label for="description">{{getDisplayName('description')}}</label>
   <input type="text" class="form-control" [(ngModel)]="model.description">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('descriptionReference')">
-  <label for="gmlId">Description Reference</label>
+  <label for="gmlId">{{getDisplayName('descriptionReference')}}</label>
   <input type="text" class="form-control" [(ngModel)]="model.descriptionReference">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identifier')">
-  <label for="identifier">Identifier</label>
+  <label for="identifier">{{getDisplayName('identifier')}}</label>
   <div class="nested-element">
     <div *ngIf="model.identifier">
       <gml-code-type [model]="model.identifier" [config]="config.getConfigFor('identifier')" [isShowAll]="isShowAll"></gml-code-type>
     </div>
     <div *ngIf="!model.identifier">
-      <a type="button" class="btn btn-link" (click)="createIdentifier()">create code type</a>
+      <a type="button" class="btn btn-link" (click)="createIdentifier()">Create code type</a>
     </div>
   </div>
 </div>

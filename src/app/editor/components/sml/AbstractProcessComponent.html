@@ -1,2 +1,15 @@
-<sml-described-object [model]="model" [config]="config" [isShowAll]="isShowAll"
-                      (openAsChild)="openNewChild($event)"></sml-described-object>
+<sml-described-object [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-described-object>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('configuration')">
+  <label for="configuration">Configuration</label>
+  <div>
+    <a *ngIf="model.configuration" class="btn btn-link" (click)="openSettings()">
+      {{getDisplayName('settings')}}
+    </a>
+    <a *ngIf="model.configuration" class="btn btn-link" (click)="removeSettings()">
+      <i class="fa fa-fw fa-minus"></i> Remove
+    </a>
+    <a *ngIf="!model.configuration" class="btn btn-link" (click)="createSettings()">
+        <i class="fa fa-fw fa-plus"></i> Create {{getDisplayName('settings')}}
+    </a>
+  </div>
+</div>

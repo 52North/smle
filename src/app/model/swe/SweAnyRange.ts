@@ -1,4 +1,3 @@
-
 import { SweQuantityRange } from './SweQuantityRange';
 import { SweTimeRange } from './SweTimeRange';
 import { SweCountRange } from './SweCountRange';
