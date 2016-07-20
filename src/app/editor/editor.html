@@ -1,4 +1,15 @@
 <!--<pre class="description-visualizer" *ngIf="!!description">{{description | toSensorml}}</pre>-->
+<div *ngIf="!description" class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Select the descriptionType:</h4>
+      <select class="form-control" (click)="onSelectDescriptionType($event.target.value)">
+          <option value="PhysicalSystem">PhysicalSystem</option>
+          <option value="PhysicalComponent">PhysicalComponent</option>
+      </select>
+    </div>
+  </div>
+</div>
 <object-tree class="description-visualizer" *ngIf="!!description" [model]="description"></object-tree>
 <div class="row">
     <div class="col-sm-12 components-container" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
