@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Select a template</h3>
+      <div class="form-group">
+        <form class="input-group" (ngSubmit)="onStartSearch()">
+          <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchTerm">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" type="submit">Search</button>
+          </span>
+        </form>
+      </div>
+      <div *ngIf="templates" class="form-group">
+        <label for="search">Select one of {{resultCount}} templates</label>
+        <select class="form-control" (click)="onSelectTemplate()" [(ngModel)]="selection">
+          <option *ngFor="let item of templates | templateSort" [ngValue]="item">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="highlight" *ngIf="choosenTemplate">
+        <pre>{{choosenTemplate.description}}</pre>
+        <div class="form-group">
+          <label for="gmlId">Define an identifier</label>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="description.identifier.value">
+            <span class="input-group-btn">
+              <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
+            </span>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="button" (click)="openToEdit()">Create sensor description of this template</button>
+      </div>
+    </div>
+  </div>
+</div>
