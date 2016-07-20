@@ -145,14 +145,6 @@ NeXOS has received funding from the European Union’s Seventh Programme (FP7) f
                <swe:value>3000</swe:value>
             </swe:Quantity>
          </sml:capability>
-         <!--The pressure dynamic range of the hydrophone-->
-         <sml:capability name="pressureDynamicRange">
-            <swe:QuantityRange definition="http://www.nexosproject.eu/dictionary/definitions.html#pressureDynamicRange">
-               <swe:label>Pressure Dynamic Range (dB[1.uPa]) [min max])</swe:label>
-               <swe:uom code="dB[1uPa]"/>
-               <swe:value>48.5 179.0</swe:value>
-            </swe:QuantityRange>
-         </sml:capability>
          <!--The quantization resolution of the hydrophone-->
          <sml:capability name="quantizationResolution">
             <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#quantizationResolution">
@@ -253,42 +245,6 @@ NeXOS has received funding from the European Union’s Seventh Programme (FP7) f
       </sml:DocumentList>
    </sml:documentation>
    <!--Description of the inputs of the system-->
-   <sml:inputs>
-      <sml:InputList>
-         <!--The hydrophone has one input: the sound pressure-->
-         <sml:input xlink:href="http://www.nexosproject.eu/dictionary/definitions.html#soundPressure" name="soundPressure"/>
-      </sml:InputList>
-   </sml:inputs>
-   <!--Description of the outputs and interfaces of the hydrophone-->
-   <sml:outputs>
-      <sml:OutputList>
-         <sml:output name="hydrophoneOutput">
-            <sml:DataInterface>
-               <!--The outputs are already defined in the components. Thus, an empty data element is provided.-->
-               <sml:data/>
-               <!--Description of the interfaces of the hydrophone-->
-               <sml:interfaceParameters>
-                  <swe:DataRecord>
-                     <!--Textual description of the interface-->
-                     <swe:field name="interfaceDescription">
-                        <swe:Text definition="http://www.nexosproject.eu/dictionary/definitions.html#interfaceDescription">
-                           <swe:label>Interface Description</swe:label>
-                           <swe:value>serial</swe:value>
-                        </swe:Text>
-                     </swe:field>
-                     <!--Name of the protocol of the interface-->
-                     <swe:field name="protocol">
-                        <swe:Text definition="http://www.nexosproject.eu/dictionary/definitions.html#protocol">
-                           <swe:label>Protocol</swe:label>
-                           <swe:value> SPDIF</swe:value>
-                        </swe:Text>
-                     </swe:field>
-                  </swe:DataRecord>
-               </sml:interfaceParameters>
-            </sml:DataInterface>
-         </sml:output>
-      </sml:OutputList>
-   </sml:outputs>
    <!--Definition of a local spatial reference frame. Based on this frame the location of components within the system/platform can be described.-->
    <sml:localReferenceFrame>
       <sml:SpatialFrame id="hydrophoneFrame">
@@ -310,10 +266,4 @@ NeXOS has received funding from the European Union’s Seventh Programme (FP7) f
         </sml:axis>
       </sml:SpatialFrame>
    </sml:localReferenceFrame>
-   <!--Components that belong to this hydrophone type-->
-   <sml:components>
-      <sml:ComponentList>
-         <sml:component name="pressureDetector_Type_XY123" xlink:href="http://52north.org/pressureDetector_Type_XY123.xml"/>
-      </sml:ComponentList>
-   </sml:components>
 </sml:PhysicalSystem>

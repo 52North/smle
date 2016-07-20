@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { AbstractProcess } from '../model/sml';
-import { FetchDescriptionService } from './fetchDescriptionService';
 import { SensorMLXmlService } from '../services/SensorMLXmlService';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
@@ -10,32 +9,45 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class PublishDescriptionService {
+export class SosService {
 
-  private description: AbstractProcess;
+  private sosUrl: string = 'http://localhost:8081/52n-sos-webapp/service';
 
   constructor(
-    private http: Http,
-    private fetch: FetchDescriptionService
+    private http: Http
   ) { }
 
-  setDescription(desc: AbstractProcess): void {
-    if (!desc.gmlId) {
-      desc.gmlId = 'temp_123';
-    }
-    if (desc.identifier && !desc.identifier.codeSpace) {
-      desc.identifier.codeSpace = 'uniqueID';
-    }
-    this.description = desc;
+  public fetchDescriptionIDs(sosUrl?: string): Observable<Array<string>> {
+    let body = JSON.stringify({
+      'request': 'GetCapabilities',
+      'service': 'SOS',
+      'sections': [
+        'OperationsMetadata'
+      ]
+    });
+    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+      .map(this.extractDescriptionIDs)
+      .catch(this.handleError);
   }
 
-  getDescription(): AbstractProcess {
-    return this.description;
+  public fetchDescription(descId: string, sosUrl?: string): Observable<string> {
+    let body = JSON.stringify({
+      'request': 'DescribeSensor',
+      'service': 'SOS',
+      'version': '2.0.0',
+      'procedure': descId,
+      'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0'
+    });
+    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+      .map((res) => {
+        let json = res.json();
+        return json.procedureDescription.description || json.procedureDescription;
+      });
   }
 
-  hasSosDescription(sosUrl: string, descID: string): Observable<boolean> {
+  public hasSosDescription(descID: string, sosUrl?: string): Observable<boolean> {
     return new Observable<boolean>((observer: Observer<boolean>) => {
-      this.fetch.fetchDescriptionIDs(sosUrl).subscribe((res) => {
+      this.fetchDescriptionIDs(this.useSosUrl(sosUrl)).subscribe((res) => {
         res.forEach((entry) => {
           if (entry === descID) {
             observer.next(true);
@@ -51,7 +63,7 @@ export class PublishDescriptionService {
     });
   }
 
-  addDescription(sosUrl: string, description: AbstractProcess): Observable<boolean> {
+  public addDescription(description: AbstractProcess, sosUrl?: string): Observable<boolean> {
     let body = JSON.stringify({
       'request': 'InsertSensor',
       'service': 'SOS',
@@ -62,29 +74,18 @@ export class PublishDescriptionService {
       'featureOfInterestType': 'http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint',
       // observationType auswählbar machen ???
       'observationType': [
-        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement',
-        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CategoryObservation',
-        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_CountObservation',
-        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TextObservation',
-        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_TruthObservation',
-        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_GeometryObservation'
+        'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement'
       ],
       // observableProperty auswählbar machen ???
       'observableProperty': [
-        'http://www.52north.org/test/observableProperty/9_1',
-        'http://www.52north.org/test/observableProperty/9_2',
-        'http://www.52north.org/test/observableProperty/9_3',
-        'http://www.52north.org/test/observableProperty/9_4',
-        'http://www.52north.org/test/observableProperty/9_5',
-        'http://www.52north.org/test/observableProperty/9_6'
-      ]
+        'http://www.52north.org/test/observableProperty/9_1']
     });
-    return this.http.post(sosUrl, body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
       .map(this.handleAddDescription)
       .catch(this.handleAddDescriptionError);
   }
 
-  updateDescription(sosUrl: string, descID: string, description: AbstractProcess): Observable<boolean> {
+  public updateDescription(descID: string, description: AbstractProcess, sosUrl?: string): Observable<boolean> {
     let body = JSON.stringify({
       'request': 'UpdateSensorDescription',
       'service': 'SOS',
@@ -93,7 +94,7 @@ export class PublishDescriptionService {
       'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
       'procedureDescription': new SensorMLXmlService().serialize(description)
     });
-    return this.http.post(sosUrl, body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
       .map(this.handleAddDescription)
       .catch(this.handleAddDescriptionError);
   }
@@ -105,11 +106,16 @@ export class PublishDescriptionService {
     });
   }
 
-  handleAddDescription(res: Response): boolean {
+  private extractDescriptionIDs(res: Response): Array<string> {
+    let json = res.json();
+    return json.operationMetadata.operations.DescribeSensor.parameters.procedure.allowedValues;
+  }
+
+  private handleAddDescription(res: Response): boolean {
     return true;
   }
 
-  handleAddDescriptionError(error: Response) {
+  private handleAddDescriptionError(error: Response) {
     let json = error.json();
     if (json.exceptions && json.exceptions.length >= -1) {
       let errors: Array<string> = [];
@@ -121,10 +127,12 @@ export class PublishDescriptionService {
     return Observable.throw([this.handleError(error)]);
   }
 
-  private handleError(error: any): string {
-    let errMsg = (error.message) ? error.message :
-      error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg);
-    return errMsg;
+  private handleError(res: Response) {
+    if (res.status === 0) return Observable.throw('Could not reach the service!');
   }
+
+  private useSosUrl(sosUrl: string) {
+    return sosUrl || this.sosUrl;
+  }
+
 }

@@ -1,19 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AbstractProcess} from '../model/sml';
-import {ConfigurationService} from '../services/ConfigurationService';
-import {SensorMLPipe} from './pipes/SensorMLPipe';
-import {PublishDescriptionService} from '../sos/publishDescriptionService';
-import {DescribedObjectComponent} from './components/sml/DescribedObjectComponent';
-import {Configuration} from '../services/config/Configuration';
-import {EditorService} from '../services/EditorService';
-import {PhysicalSystemComponent} from './components/sml/PhysicalSystemComponent';
-import {PhysicalComponentComponent} from './components/sml/PhysicalComponentComponent';
-import {SimpleProcessComponent} from './components/sml/SimpleProcessComponent';
-import {PhysicalSystem} from '../model/sml/PhysicalSystem';
-import {PhysicalComponent} from '../model/sml/PhysicalComponent';
-import {SimpleProcess} from '../model/sml/SimpleProcess';
-import {ObjectTreeComponent} from './components/basic/ObjectTreeComponent';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AbstractProcess } from '../model/sml';
+import { ConfigurationService } from '../services/ConfigurationService';
+import { SensorMLPipe } from './pipes/SensorMLPipe';
+import { PublishDescriptionService } from '../sos/publish/publish.service';
+import { DescribedObjectComponent } from './components/sml/DescribedObjectComponent';
+import { Configuration } from '../services/config/Configuration';
+import { EditorService } from '../services/EditorService';
+import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
+import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
+import { SimpleProcessComponent } from './components/sml/SimpleProcessComponent';
+import { PhysicalSystem } from '../model/sml/PhysicalSystem';
+import { PhysicalComponent } from '../model/sml/PhysicalComponent';
+import { SimpleProcess } from '../model/sml/SimpleProcess';
+import { ObjectTreeComponent } from './components/basic/ObjectTreeComponent';
 
 enum DescriptionType {
   PhysicalSystem = 1,

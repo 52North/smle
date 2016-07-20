@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4>Enter SOS URL</h4>
+      <!--<h4>Enter SOS URL</h4>
       <div class="input-group">
         <input type="text" class="form-control" [(ngModel)]="sosUrl" placeholder="SOS-URL to select...">
         <span class="input-group-btn">
           <button class="btn btn-secondary" type="button" (click)="setUrl()">Get Descriptions</button>
         </span>
-      </div>
+      </div>-->
       <div [hidden]="!descriptionIds">
         <h4>Select description ID</h4>
         <div class="form-group">
@@ -21,7 +21,7 @@
         <div class="highlight">
           <pre>{{description}}</pre>
         </div>
-        <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit description</button>
+        <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit sensor description</button>
       </div>
     </div>
   </div>

@@ -1,36 +1,36 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PublishDescriptionService } from './publishDescriptionService';
-import { AbstractProcess } from '../model/sml';
-import { SensorMLPipe } from '../editor/pipes/SensorMLPipe';
-import { EditorService } from '../services/EditorService';
+import { PublishDescriptionService } from './publish.service';
+import { AbstractProcess } from '../../model/sml';
+import { SensorMLPipe } from '../../editor/pipes/SensorMLPipe';
+import { EditorService } from '../../services/EditorService';
+import { SosService } from '../sos.service';
 
 @Component({
-  selector: 'sos',
-  template: require('./publishDescription.html'),
-  styles: [require('./publishDescription.scss')],
+  selector: 'publish-description',
+  template: require('./publish.template.html'),
+  styles: [require('./publish.style.scss')],
   pipes: [SensorMLPipe]
 })
 export class PublishDescription implements OnInit {
-
-  @Input()
-  private sosUrl: string = 'http://localhost:8081/52n-sos-webapp/service';
 
   private description: AbstractProcess;
 
   private hasDescription: boolean = null;
 
   private errors: Array<string> = [];
-  
+
   private success: string;
 
   constructor(
     private publishServ: PublishDescriptionService,
+    private sosService: SosService,
     private editorServ: EditorService
   ) {
   }
 
   ngOnInit() {
     this.description = this.publishServ.getDescription();
+    this.hasSosDescription();
   }
 
   editDescription() {
@@ -39,15 +39,17 @@ export class PublishDescription implements OnInit {
 
   hasSosDescription() {
     this.resetError();
-    this.publishServ.hasSosDescription(this.sosUrl, this.description.identifier.value)
-      .subscribe(res => {
-        this.hasDescription = res;
-      }, (error) => this.handleError(error));
+    if (this.description && this.description.identifier && this.description.identifier.value) {
+      this.sosService.hasSosDescription(this.description.identifier.value)
+        .subscribe(res => {
+          this.hasDescription = res;
+        }, (error) => this.handleError(error));
+    }
   }
 
   addDescription() {
     this.resetError();
-    this.publishServ.addDescription(this.sosUrl, this.description)
+    this.sosService.addDescription(this.description)
       .subscribe(res => {
         this.success = "Successfully added the description!";
       }, (error) => this.handleError(error));
@@ -55,7 +57,7 @@ export class PublishDescription implements OnInit {
 
   updateDescription() {
     this.resetError();
-    this.publishServ.updateDescription(this.sosUrl, this.description.identifier.value, this.description)
+    this.sosService.updateDescription(this.description.identifier.value, this.description)
       .subscribe(res => {
         this.success = "Successfully updated the description!";
       }, error => this.handleError(error));

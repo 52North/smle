@@ -7,7 +7,7 @@
   <input type="text" class="form-control" [(ngModel)]="model.description">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('descriptionReference')">
-  <label for="gmlId">{{getDisplayName('descriptionReference')}}</label>
+  <label for="descriptionReference">{{getDisplayName('descriptionReference')}}</label>
   <input type="text" class="form-control" [(ngModel)]="model.descriptionReference">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identifier')">
