@@ -4,17 +4,20 @@
             smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺
         </a>
         <ul class="nav navbar-nav">
-            <li router-active="active" class="nav-item">
+            <!--<li router-active="active" class="nav-item">
                 <a class="nav-link" [routerLink]="['/']">Home</a>
+            </li>-->
+            <li router-active="active" class="nav-item">
+                <a class="nav-link" [routerLink]="['/editor', 'new']">New</a>
             </li>
             <li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/editor', 'new']">Editor</a>
+                <a class="nav-link" [routerLink]="['/fetch']">Edit</a>
             </li>
             <li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/fetch']">Edit SOS Description</a>
+                <a class="nav-link" [routerLink]="['/delete']">Delete</a>
             </li>
             <li router-active="active" class="nav-item">
-              <a class="nav-link" [routerLink]="['/templates']">Templates</a>
+              <a class="nav-link" [routerLink]="['/templates']">Create from Template</a>
             </li>
         </ul>
     </nav>

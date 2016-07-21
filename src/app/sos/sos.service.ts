@@ -45,6 +45,20 @@ export class SosService {
       });
   }
 
+  public deleteDescription(descId: string, sosUrl?: string): Observable<boolean> {
+    let body = JSON.stringify({
+      'request': 'DeleteSensor',
+      'service': 'SOS',
+      'version': '2.0.0',
+      'procedure': descId
+    });
+    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+      .map((res) => {
+        let json = res.json();
+        return json.deletedProcedure === descId ? true : false;
+      });
+  }
+
   public hasSosDescription(descID: string, sosUrl?: string): Observable<boolean> {
     return new Observable<boolean>((observer: Observer<boolean>) => {
       this.fetchDescriptionIDs(this.useSosUrl(sosUrl)).subscribe((res) => {

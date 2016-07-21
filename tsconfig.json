@@ -271,6 +271,7 @@
     "src/app/services/XmlService.ts",
     "src/app/sos/connect/connect.component.ts",
     "src/app/sos/connect/connect.service.ts",
+    "src/app/sos/delete/delete.component.ts",
     "src/app/sos/fetch/fetch.component.ts",
     "src/app/sos/publish/publish.component.ts",
     "src/app/sos/publish/publish.service.ts",
