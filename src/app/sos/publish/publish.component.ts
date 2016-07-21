@@ -14,11 +14,8 @@ import { SosService } from '../sos.service';
 export class PublishDescription implements OnInit {
 
   private description: AbstractProcess;
-
   private hasDescription: boolean = null;
-
   private errors: Array<string> = [];
-
   private success: string;
 
   constructor(

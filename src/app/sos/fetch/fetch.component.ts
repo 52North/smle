@@ -1,34 +1,30 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
 import { SosService } from '../sos.service';
+import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
 
 @Component({
   selector: 'fetch-description',
+  directives: [DescriptionSelection],
   template: require('./fetch.template.html'),
   styles: [require('./fetch.style.scss')],
 })
-export class FetchDescription implements OnInit {
+export class FetchDescription {
 
-  private descriptionIds: Array<string>;
-  private description: string;
+  private selectedDesc: SelectedDescription;
 
   constructor(
     private editorService: EditorService,
     private sosService: SosService
   ) { }
 
-  selectDescriptionID(descId: string) {
-    this.sosService.fetchDescription(descId).subscribe(res => this.description = res);
+  onSelectedDescription(description: SelectedDescription) {
+    this.selectedDesc = description;
   }
 
   openToEdit() {
-    let desc = new SensorMLXmlService().deserialize(this.description);
+    let desc = new SensorMLXmlService().deserialize(this.selectedDesc.description);
     this.editorService.openEditorWithDescription(desc);
   }
-
-  ngOnInit() {
-    this.sosService.fetchDescriptionIDs().subscribe(res => this.descriptionIds = res);
-  }
-
 }

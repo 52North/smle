@@ -1,39 +1,37 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
 import { SosService } from '../sos.service';
+import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
 
 @Component({
   selector: 'delete-description',
   template: require('./delete.template.html'),
+  directives: [DescriptionSelection],
   styles: [require('./delete.style.scss')],
 })
-export class DeleteDescription implements OnInit {
+export class DeleteDescription {
 
-  private descriptionIds: Array<string>;
-  private description: string;
-  private selectDescriptionID: string;
+  private selectedDesc: SelectedDescription;
   private successfullDeleted: boolean;
+
+  @ViewChild(DescriptionSelection) descSelection: DescriptionSelection;
 
   constructor(
     private sosService: SosService
   ) { }
 
-  public ngOnInit() {
-    this.loadDescriptions();
-  }
-
-  public onSelectDescriptionID(descId: string) {
-    this.selectDescriptionID = descId;
-    this.sosService.fetchDescription(descId).subscribe(res => this.description = res);
+  public onSelectedDescription(desc: SelectedDescription) {
+    this.successfullDeleted = null;
+    this.selectedDesc = desc;
   }
 
   public onDeleteDescription() {
-    this.sosService.deleteDescription(this.selectDescriptionID).subscribe(res => {
+    this.sosService.deleteDescription(this.selectedDesc.id).subscribe(res => {
       this.successfullDeleted = res;
       if (res) {
         this.loadDescriptions();
-        this.description = null;
+        this.selectedDesc = null;
       }
     }, error => {
       this.successfullDeleted = false;
@@ -41,6 +39,6 @@ export class DeleteDescription implements OnInit {
   }
 
   private loadDescriptions() {
-    this.sosService.fetchDescriptionIDs().subscribe(res => this.descriptionIds = res);
+    this.descSelection.loadDescIds();
   }
 }

@@ -1,18 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div [hidden]="!descriptionIds">
+      <div>
         <h4>Select description ID which should be deleted:</h4>
         <div class="form-group">
-          <select class="form-control" (click)="onSelectDescriptionID($event.target.value)">
-            <option *ngFor="let item of descriptionIds">{{item}}</option>
-          </select>
+          <description-id-selection (onSelectedDescription)="onSelectedDescription($event)"></description-id-selection>
         </div>
       </div>
-      <div [hidden]="!description">
+      <div *ngIf="selectedDesc">
         <h4>Sensor description</h4>
         <div class="highlight">
-          <pre>{{description}}</pre>
+          <pre>{{selectedDesc.description}}</pre>
         </div>
         <button class="btn btn-primary center-block" type="button" (click)="onDeleteDescription()">Delete sensor description</button>
       </div>
