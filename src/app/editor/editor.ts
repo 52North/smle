@@ -11,7 +11,7 @@ import { SimpleProcessComponent } from './components/sml/SimpleProcessComponent'
 import { PhysicalSystem } from '../model/sml/PhysicalSystem';
 import { PhysicalComponent } from '../model/sml/PhysicalComponent';
 import { SimpleProcess } from '../model/sml/SimpleProcess';
-import { ObjectTreeComponent } from './components/basic/ObjectTreeComponent';
+import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
 
 enum DescriptionType {
   PhysicalSystem = 1,

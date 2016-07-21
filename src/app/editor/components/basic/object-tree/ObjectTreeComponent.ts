@@ -1,7 +1,8 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {TreeComponent} from 'angular2-tree-component';
-import {AbstractProcess} from '../../../model/sml/AbstractProcess';
-import {getDisplayName} from '../../../decorators/DisplayName';
+import {AbstractProcess} from '../../../../model/sml/AbstractProcess';
+import {getDisplayName} from '../../../../decorators/DisplayName';
+import {TreeNodeComponent} from 'angular2-tree-component/dist/components/tree-node.component';
 
 @Component({
     selector: 'object-tree',
@@ -11,6 +12,10 @@ import {getDisplayName} from '../../../decorators/DisplayName';
 export class ObjectTreeComponent implements OnChanges {
     @Input()
     model: AbstractProcess;
+
+    private options = {
+        treeNodeTemplate: TreeNodeComponent
+    };
 
     private nodes: Array<INode> = [];
 
@@ -30,7 +35,7 @@ export class ObjectTreeComponent implements OnChanges {
         } else if (typeof object === 'object' && !(object instanceof Date)) {
             nodes = this.getNodesForObject(object);
         } else {
-            nodes = [{name: object.toString(), children: null}];
+            nodes = [{name: object.toString(), type: typeof object, children: null}];
         }
 
         return nodes;
@@ -48,7 +53,7 @@ export class ObjectTreeComponent implements OnChanges {
             }
 
             let displayName = getDisplayName(object, propertyName) || propertyName;
-            let newNode: INode = {name: displayName, children: null};
+            let newNode: INode = {name: displayName, type: typeof nodeValue, children: null};
 
             newNode.children = this.getNodes(nodeValue);
             nodes.push(newNode);
@@ -59,9 +64,10 @@ export class ObjectTreeComponent implements OnChanges {
 
     private getNodesForArray(array: Array<any>): Array<INode> {
         var nodes = <Array<any>>array.map((elem: any) => {
-            var node: INode = {name: null, children: null};
+            var node: INode = {name: null, type: null, children: null};
 
             node.name = elem.toString();
+            node.type = typeof elem;
 
             if (typeof elem === 'object' && !(elem instanceof Date) || elem instanceof Array) {
                 node.children = this.getNodes(elem);
@@ -76,5 +82,6 @@ export class ObjectTreeComponent implements OnChanges {
 
 interface INode {
     name: string;
+    type: string;
     children: Array<INode>;
 }

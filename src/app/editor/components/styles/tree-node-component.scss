@@ -1,0 +1,12 @@
+.string {
+  color: #eb5a46;
+
+  &::before,
+  &::after {
+    content: '"';
+  }
+}
+
+.number {
+  font-family: monospace;
+}
