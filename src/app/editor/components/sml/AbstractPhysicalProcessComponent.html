@@ -6,7 +6,7 @@
 <div class="form-group">
   <label for="attachedTo">{{getDisplayName('attachedTo')}}</label>
   <div *ngIf="model.attachedTo">
-    TODO
+    <span>{{model.attachedTo}}</span>
   </div>
   <div>
     <button type="button" class="btn btn-secondary" (click)="changeAttachedTo()">Select a new attached to connection</button>

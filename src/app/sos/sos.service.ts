@@ -113,6 +113,16 @@ export class SosService {
       .catch(this.handleAddDescriptionError);
   }
 
+  public createDescribeSensorUrl(identifier: string): string {
+    let url = this.sosUrl;
+    url += '?service=SOS';
+    url += '&version=2.0.0';
+    url += '&request=DescribeSensor';
+    url += '&procedureDescriptionFormat=http://www.opengis.net/sensorml/2.0'
+    url += '&procedure=' + identifier;
+    return url;
+  }
+
   private createJsonHeader(): Headers {
     return new Headers({
       'Content-Type': 'application/json',

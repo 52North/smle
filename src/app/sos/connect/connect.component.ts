@@ -3,16 +3,17 @@ import { Router } from '@angular/router';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
 import { ConnectDescriptionService } from './connect.service';
+import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
 import { AbstractPhysicalProcess, AggregatingProcess } from '../../model/sml';
 import { SosService } from '../sos.service';
 
 @Component({
-  selector: 'sos',
+  selector: 'connect-description',
+  directives: [DescriptionSelection],
   template: require('./connect.template.html')
 })
 export class ConnectDescription implements OnInit {
 
-  private descriptionIds: Array<string>;
   private childDescriptions: Array<AbstractPhysicalProcess> = new Array();
   private parentDescription: AggregatingProcess;
   private attachedTo: boolean;
@@ -25,26 +26,29 @@ export class ConnectDescription implements OnInit {
   ) { }
 
   public ngOnInit() {
+
     this.attachedTo = this.connectDescService.attachedTo;
     this.childDescriptions = this.connectDescService.childDescriptions;
-    this.sosService.fetchDescriptionIDs().subscribe(res => {
-      this.descriptionIds = res;
+
+    /*
+    this.attachedTo = true;
+    this.sosService.fetchDescription('80792264-e6d8-0fb5-66c7-0289fc691f7f').subscribe(res => {
+      this.childDescriptions.push(new SensorMLXmlService().deserialize(res) as any as AbstractPhysicalProcess);
     });
+    this.sosService.fetchDescription('a102221d-9bcb-0d3b-870c-6f1a4e5e7dc8').subscribe(res => {
+      this.parentDescription = new SensorMLXmlService().deserialize(res) as any as AggregatingProcess;
+    });
+    */
   }
 
-  public onSelectDescriptionID(descId: string) {
-    // TODO check if both are in sos
-    this.sosService.fetchDescription(descId).subscribe(res => {
-      // TODO parse to attachedToDescription
-      let desc = new SensorMLXmlService().deserialize(res);
+  public onSelectedDescription(selectedDesc: SelectedDescription) {
+    let desc = new SensorMLXmlService().deserialize(selectedDesc.description);
+    if (this.isAggregatingProcess(desc)) {
+      this.parentDescription = (desc as any as AggregatingProcess);
+    } else {
       debugger;
-      if (this.isAggregatingProcess(desc)) {
-        this.parentDescription = (desc as any as AggregatingProcess);
-      } else {
-        debugger;
-        // TODO hint that the selected description is no AggregatingProcess
-      }
-    });
+      // TODO hint that the selected description is no AggregatingProcess
+    }
   }
 
   private isAggregatingProcess(object: any): object is AggregatingProcess {
@@ -52,17 +56,6 @@ export class ConnectDescription implements OnInit {
   }
 
   public publishAttachedTo() {
-    debugger;
     this.connectDescService.connectDescriptions(this.childDescriptions, this.parentDescription);
-
-    // TODO update first
-
-    // TODO update second
   }
-
-  //openToEdit() {
-  //  let desc = new SensorMLXmlService().deserialize(this.description);
-  //  this.editorService.openEditorWithDescription(desc);
-  //}
-
 }

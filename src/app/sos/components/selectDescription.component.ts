@@ -10,6 +10,9 @@ export class DescriptionSelection implements OnInit {
   private descriptionIds: Array<string>;
   private loadingDescriptionIds: boolean;
 
+  @Input()
+  public ignoreId: string;
+
   @Output()
   public onSelectedDescription: EventEmitter<SelectedDescription> = new EventEmitter<SelectedDescription>();
 
@@ -26,6 +29,12 @@ export class DescriptionSelection implements OnInit {
     this.sosService.fetchDescriptionIDs().subscribe(res => {
       this.loadingDescriptionIds = false;
       this.descriptionIds = res;
+      if (this.ignoreId) {
+        var idx = this.descriptionIds.indexOf(this.ignoreId);
+        if (idx >= -1) {
+          this.descriptionIds.splice(idx, 1);
+        }
+      }
     });
   }
 

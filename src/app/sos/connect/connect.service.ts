@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { AbstractProcess, AbstractPhysicalProcess, AggregatingProcess } from '../../model/sml';
-
+import { Component } from '../../model/sml/Component';
+import { SosService } from '../sos.service';
 
 @Injectable()
 export class ConnectDescriptionService {
@@ -15,7 +16,8 @@ export class ConnectDescriptionService {
 
   constructor(
     private http: Http,
-    private router: Router
+    private router: Router,
+    private sosService: SosService
   ) { }
 
   public openAttachedToDescription(desc: AbstractPhysicalProcess) {
@@ -35,54 +37,23 @@ export class ConnectDescriptionService {
   }
 
   public connectDescriptions(childDesc: Array<AbstractPhysicalProcess>, parentDesc: AggregatingProcess) {
-    debugger;
-    //
-  }
+    let parentDescAbsPro = parentDesc as any as AbstractProcess;
 
-  /*
-  fetchDescriptionIDs(sosUrl: string): Observable<Array<string>> {
-    let body = JSON.stringify({
-      'request': 'GetCapabilities',
-      'service': 'SOS',
-      'sections': [
-        'OperationsMetadata'
-      ]
+    childDesc.forEach(entry => {
+      entry.attachedTo = this.sosService.createDescribeSensorUrl(parentDescAbsPro.identifier.value);
+      // TODO remove old components which are obsolet
+      let component = new Component(parentDescAbsPro.gmlId, this.sosService.createDescribeSensorUrl(entry.identifier.value));
+      parentDesc.components.components.push(component);
     });
-    return this.http.post(sosUrl, body, { headers: this.createHeader() })
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
 
-  private extractData(res: Response): Array<string> {
-    let json = res.json();
-    return json.operationMetadata.operations.DescribeSensor.parameters.procedure.allowedValues;
-  }
+    childDesc.forEach(entry => {
+      this.sosService.updateDescription(entry.identifier.value, entry).subscribe(res => {
+        debugger;
+      })
+    })
 
-  private handleError(res: Response) {
-    if (res.status === 0) return Observable.throw('Could not reach the service!');
+    this.sosService.updateDescription(parentDescAbsPro.identifier.value, parentDescAbsPro).subscribe(res => {
+      debugger;
+    })
   }
-
-  fetchDescription(sosUrl: string, descId: string): Observable<any> {
-    let body = JSON.stringify({
-      'request': 'DescribeSensor',
-      'service': 'SOS',
-      'version': '2.0.0',
-      'procedure': descId,
-      'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0'
-    });
-    return this.http.post(sosUrl, body, { headers: this.createHeader() })
-      .map((res) => {
-        let json = res.json();
-        return json.procedureDescription.description || json.procedureDescription;
-      });
-  }
-
-  private createHeader(): Headers {
-    return new Headers({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
-  }
-  */
-
 }
