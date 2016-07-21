@@ -1,0 +1,17 @@
+<div>
+  <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('components')">
+    <label for="components">{{getDisplayName('components')}}</label>
+    <div>
+      <ul class="list-group list-group-flush">
+          <li *ngFor="let component of model.components.components" class="list-group-item">
+            <div>
+              {{component.name}}
+            </div>
+            <div>
+              {{component.href}}
+            </div>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>

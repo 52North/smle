@@ -73,6 +73,7 @@
     "src/app/editor/components/sml/AbstractPhysicalProcessComponent.ts",
     "src/app/editor/components/sml/AbstractProcessComponent.ts",
     "src/app/editor/components/sml/AbstractSettingComponent.ts",
+    "src/app/editor/components/sml/AggregatingProcessComponent.ts",
     "src/app/editor/components/sml/ClassifierListComponent.ts",
     "src/app/editor/components/sml/ContactListComponent.ts",
     "src/app/editor/components/sml/DescribedObjectComponent.ts",
