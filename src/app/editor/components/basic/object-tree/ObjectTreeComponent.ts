@@ -2,7 +2,7 @@ import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {TreeComponent} from 'angular2-tree-component';
 import {AbstractProcess} from '../../../../model/sml/AbstractProcess';
 import {getDisplayName} from '../../../../decorators/DisplayName';
-import {TreeNodeComponent} from 'angular2-tree-component/dist/components/tree-node.component';
+import {TreeNodeComponent} from './TreeNodeComponent';
 
 @Component({
     selector: 'object-tree',
@@ -53,7 +53,7 @@ export class ObjectTreeComponent implements OnChanges {
             }
 
             let displayName = getDisplayName(object, propertyName) || propertyName;
-            let newNode: INode = {name: displayName, type: typeof nodeValue, children: null};
+            let newNode: INode = {name: displayName, type: 'object', children: null};
 
             newNode.children = this.getNodes(nodeValue);
             nodes.push(newNode);

@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-    template: require('./TreeNodeComponent'),
+    template: require('./TreeNodeComponent.html'),
     styles: [require('../../styles/tree-node-component.scss')]
 })
-class TreeNodeComponent {
+export class TreeNodeComponent {
     @Input()
     node: any; // TreeNode
 }
