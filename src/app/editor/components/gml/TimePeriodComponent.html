@@ -1,12 +1,12 @@
 <card [verticalMode]="hasChild" [title]="'Period'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
-  [(showAll)]="isShowAll">
+[(showAll)]="isShowAll">
 <gml-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract>
 <div class="form-group">
-  <label for="description">Time period</label>
-  <div class="row">
-    <date-picker class="col-sm-5" [(model)]="model.begin" [maxDateTime]="model.end"></date-picker>
-    <span class="col-sm-2 text-xs-center">&mdash;</span>
-    <date-picker class="col-sm-5" [(model)]="model.end" [minDateTime]="model.begin"></date-picker>
-  </div>
+  <label for="description">Period begin</label>
+  <date-picker class="col-sm-5" [(model)]="model.begin" [maxDateTime]="model.end" (modelChange)="onChangeBegin($event)"></date-picker>
+</div>
+<div class="form-group">
+  <label for="description">Period end</label>
+  <date-picker class="col-sm-5" [(model)]="model.end" [minDateTime]="model.begin" (modelChange)="onChangeEnd($event)"></date-picker>
 </div>
 </card>

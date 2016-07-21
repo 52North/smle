@@ -31,7 +31,7 @@ export class GmlDecoder {
 
       let timePositionElem = this.utils.getElement(timeElem, 'timePosition', Namespaces.GML);
       if (timePositionElem != null) {
-        instant.time = new Date(Date.parse(timePositionElem.textContent));
+        instant.time = this.getTime(timePositionElem);
       }
 
       return instant;
@@ -47,14 +47,22 @@ export class GmlDecoder {
 
       let beginPositionElem = this.utils.getElement(timeElem, 'beginPosition', Namespaces.GML);
       if (beginPositionElem != null) {
-        period.begin = new Date(Date.parse(beginPositionElem.textContent));
+        period.begin = this.getTime(beginPositionElem);
       }
 
       let endPositionElem = this.utils.getElement(timeElem, 'endPosition', Namespaces.GML);
       if (endPositionElem != null) {
-        period.end = new Date(Date.parse(endPositionElem.textContent));
+        period.end = this.getTime(endPositionElem);
       }
       return period;
+    }
+  }
+
+  private getTime(elem: Element): Date {
+    if (elem.hasAttribute('indeterminatePosition') && elem.getAttribute('indeterminatePosition') === 'unknown') {
+      return null;
+    } else {
+      return new Date(Date.parse(elem.textContent));
     }
   }
 

@@ -1,13 +1,13 @@
-import {AbstractFeature} from '../../model/gml/AbstractFeature';
-import {AbstractGML} from '../../model/gml/AbstractGML';
-import {CodeType} from '../../model/gml/CodeType';
-import {Envelope} from '../../model/gml/Envelope';
-import {Namespaces} from './Namespaces';
-import {Point} from '../../model/gml/Point';
-import {Referenced} from '../../model/gml/Referenced';
-import {AbstractTime} from '../../model/gml/AbstractTime';
-import {TimeInstant} from '../../model/gml/TimeInstant';
-import {TimePeriod} from '../../model/gml/TimePeriod';
+import { AbstractFeature } from '../../model/gml/AbstractFeature';
+import { AbstractGML } from '../../model/gml/AbstractGML';
+import { CodeType } from '../../model/gml/CodeType';
+import { Envelope } from '../../model/gml/Envelope';
+import { Namespaces } from './Namespaces';
+import { Point } from '../../model/gml/Point';
+import { Referenced } from '../../model/gml/Referenced';
+import { AbstractTime } from '../../model/gml/AbstractTime';
+import { TimeInstant } from '../../model/gml/TimeInstant';
+import { TimePeriod } from '../../model/gml/TimePeriod';
 
 export class GmlEncoder {
 
