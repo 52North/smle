@@ -1,0 +1,11 @@
+:host /deep/ {
+  .tree-node-leaf {
+    .toggle-children-placeholder {
+      display: none;
+    }
+
+    .node-content-wrapper {
+      margin-left: 14px;
+    }
+  }
+}

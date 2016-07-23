@@ -7,7 +7,7 @@ export class TimeInstant extends AbstractTime {
 
     toString() {
         if (this.time) {
-            return this.time.toISOString();
+            return this.time.toLocaleString().replace(/ /g, '\xa0');
         } else {
             return 'Time instant';
         }

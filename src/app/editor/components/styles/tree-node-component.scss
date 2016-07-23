@@ -7,6 +7,11 @@
   }
 }
 
-.number {
+.number,
+.boolean {
   font-family: monospace;
+}
+
+.boolean {
+  font-weight: bold;
 }
