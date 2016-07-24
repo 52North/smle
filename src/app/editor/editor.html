@@ -1,5 +1,5 @@
 <!--<pre class="description-visualizer" *ngIf="!!description">{{description | toSensorml}}</pre>-->
-<div *ngIf="!description" class="container">
+<div *ngIf="!description && !descriptionIsLoading" class="container">
     <div class="row">
         <div class="col-sm-12">
             <div class="dropdown">

@@ -16,7 +16,7 @@ import {Modal, BS_MODAL_PROVIDERS} from 'angular2-modal/plugins/bootstrap';
     encapsulation: ViewEncapsulation.None,
     viewProviders: [...BS_MODAL_PROVIDERS],
     styles: [require('./app.scss')],
-    template: require('./app.html'),
+    template: require('./app.html')
 })
 export class Application {
     constructor(public modal: Modal, viewContainer: ViewContainerRef) {
