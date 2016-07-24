@@ -23,8 +23,16 @@ export class ObjectTreeComponent implements OnChanges {
 
     private nodes: Array<INode> = [];
 
-    ngOnChanges(changes: SimpleChanges) {
+    private rebuildTree() {
         this.nodes = this.getNodes(this.model);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        this.rebuildTree();
+    }
+
+    private onToggle(event) {
+        event.node.data.isExpanded = event.isExpanded;
     }
 
     private getNodes(object: any): Array<INode> {
@@ -40,14 +48,26 @@ export class ObjectTreeComponent implements OnChanges {
         } else if (typeof object === 'object' && !(object instanceof Date)) {
             nodes = this.getNodesForObject(object);
         } else if (object instanceof Date) {
-            nodes = [{name: object.toLocaleString().replace(/ /g, '\xa0'), type: type, children: null}];
+            nodes = [{
+                id: '$value',
+                name: object.toLocaleString().replace(/ /g, '\xa0'),
+                type: type,
+                children: null,
+                isExpanded: false
+            }];
         } else {
             if (type === 'string' && ObjectTreeComponent.isEmail(object)) {
                 type = 'email';
             } else if (type === 'string' && ObjectTreeComponent.isUrl(object)) {
                 type = 'url';
             }
-            nodes = [{name: object.toString(), type: type, children: null}];
+            nodes = [{
+                id: '$value',
+                name: object.toString(),
+                type: type,
+                children: null,
+                isExpanded: false
+            }];
         }
 
         return nodes;
@@ -65,7 +85,13 @@ export class ObjectTreeComponent implements OnChanges {
             }
 
             let displayName = getDisplayName(object, propertyName) || propertyName;
-            let newNode: INode = {name: displayName, type: 'object', children: null};
+            let newNode: INode = {
+                id: propertyName,
+                name: displayName,
+                type: 'object',
+                children: null,
+                isExpanded: false
+            };
 
             newNode.children = this.getNodes(nodeValue);
             nodes.push(newNode);
@@ -75,8 +101,14 @@ export class ObjectTreeComponent implements OnChanges {
     }
 
     private getNodesForArray(array: Array<any>): Array<INode> {
-        var nodes = <Array<any>>array.map((elem: any) => {
-            var node: INode = {name: null, type: null, children: null};
+        var nodes = <Array<any>>array.map((elem: any, index: number) => {
+            var node: INode = {
+                id: index.toString(),
+                name: null,
+                type: null,
+                children: null,
+                isExpanded: false
+            };
 
             var name = elem.toString();
             var type = typeof elem;
@@ -110,7 +142,9 @@ export class ObjectTreeComponent implements OnChanges {
 }
 
 interface INode {
+    id: string;
     name: string;
     type: string;
     children: Array<INode>;
+    isExpanded: boolean;
 }

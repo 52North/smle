@@ -1,4 +1,5 @@
 <!--<pre class="description-visualizer" *ngIf="!!description">{{description | toSensorml}}</pre>-->
+<object-tree class="description-visualizer" *ngIf="!!description" [model]="description"></object-tree>
 <div *ngIf="!description && !descriptionIsLoading" class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -16,7 +17,6 @@
         </div>
     </div>
 </div>
-<object-tree class="description-visualizer" *ngIf="!!description" [model]="description"></object-tree>
 <div class="row">
     <div class="col-sm-12 components-container" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
         <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')">
