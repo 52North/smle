@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, HostListener} from '@angular/core';
 import {TreeComponent} from 'angular2-tree-component';
 import {AbstractProcess} from '../../../../model/sml/AbstractProcess';
 import {getDisplayName} from '../../../../decorators/DisplayName';
@@ -23,12 +23,21 @@ export class ObjectTreeComponent implements OnChanges {
 
     private nodes: Array<INode> = [];
 
-    private rebuildTree() {
-        this.nodes = this.getNodes(this.model);
+    @HostListener('mouseenter')
+    private onMouseEnter(event) {
+        this.rebuildTree(this.model, this.model);
+    }
+
+    private rebuildTree(previousModel, currentModel) {
+        this.nodes = this.getNodes(currentModel);
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        this.rebuildTree();
+        var modelChange = changes['model'];
+
+        if (modelChange) {
+            this.rebuildTree(modelChange.previousValue, modelChange.currentValue);
+        }
     }
 
     private onToggle(event) {
