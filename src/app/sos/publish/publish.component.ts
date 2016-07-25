@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PublishDescriptionService } from './publish.service';
 import { AbstractProcess } from '../../model/sml';
+import { CodeType } from '../../model/gml/CodeType';
 import { SensorMLPipe } from '../../editor/pipes/SensorMLPipe';
 import { EditorService } from '../../services/EditorService';
 import { SosService } from '../sos.service';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'publish-description',
@@ -17,6 +19,7 @@ export class PublishDescription implements OnInit {
   private hasDescription: boolean = null;
   private errors: Array<string> = [];
   private success: string;
+  private identifier: string;
 
   constructor(
     private publishServ: PublishDescriptionService,
@@ -27,14 +30,24 @@ export class PublishDescription implements OnInit {
 
   ngOnInit() {
     this.description = this.publishServ.getDescription();
-    this.hasSosDescription();
+    if (!this.description.identifier) {
+      this.description.identifier = new CodeType("");
+    }
   }
 
-  editDescription() {
+  private createUUID() {
+    this.identifier = UUID.UUID();
+  }
+
+  private useIdentifier() {
+    this.description.identifier.value = this.identifier;
+  }
+
+  private editDescription() {
     this.editorServ.openEditorWithDescription(this.description);
   }
 
-  hasSosDescription() {
+  private hasSosDescription() {
     this.resetError();
     if (this.description && this.description.identifier && this.description.identifier.value) {
       this.sosService.hasSosDescription(this.description.identifier.value)
@@ -44,7 +57,7 @@ export class PublishDescription implements OnInit {
     }
   }
 
-  addDescription() {
+  private addDescription() {
     this.resetError();
     this.sosService.addDescription(this.description)
       .subscribe(res => {
@@ -52,7 +65,7 @@ export class PublishDescription implements OnInit {
       }, (error) => this.handleError(error));
   }
 
-  updateDescription() {
+  private updateDescription() {
     this.resetError();
     this.sosService.updateDescription(this.description.identifier.value, this.description)
       .subscribe(res => {

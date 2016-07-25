@@ -6,6 +6,7 @@
     "descriptionReference": false,
     "identifier": {
       "value": true,
+      "valueDisabled": true,
       "codeSpace": false
     },
     "name": false,

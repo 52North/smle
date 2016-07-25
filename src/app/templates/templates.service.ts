@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Http, Response, URLSearchParams, Jsonp} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
-import {AbstractProcess} from '../model/sml/AbstractProcess';
-import {SensorMLXmlService} from '../services/SensorMLXmlService';
+import { Injectable } from '@angular/core';
+import { Http, Response, URLSearchParams, Jsonp } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { AbstractProcess } from '../model/sml/AbstractProcess';
+import { SensorMLXmlService } from '../services/SensorMLXmlService';
 
 @Injectable()
 export class TemplatesService {

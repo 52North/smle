@@ -1,5 +1,5 @@
-import {Pipe} from '@angular/core';
-import {Template} from './templates.service';
+import { Pipe } from '@angular/core';
+import { Template } from './templates.service';
 
 @Pipe({
   name: 'templateSort'

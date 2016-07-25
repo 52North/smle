@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {TemplatesService, Template} from './templates.service';
-import {EditorService} from '../services/EditorService';
-import {AbstractProcess} from '../model/sml/AbstractProcess';
-import {SensorMLPipe} from '../editor/pipes/SensorMLPipe';
-import {CodeType} from '../model/gml/CodeType';
-import {UUID} from 'angular2-uuid';
-import {TemplateSortPipe} from './templates.pipe';
-import {SensorMLXmlService} from '../services/SensorMLXmlService';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { TemplatesService, Template } from './templates.service';
+import { EditorService } from '../services/EditorService';
+import { AbstractProcess } from '../model/sml/AbstractProcess';
+import { SensorMLPipe } from '../editor/pipes/SensorMLPipe';
+import { CodeType } from '../model/gml/CodeType';
+import { UUID } from 'angular2-uuid';
+import { TemplateSortPipe } from './templates.pipe';
+import { SensorMLXmlService } from '../services/SensorMLXmlService';
 
 @Component({
   selector: 'templates',
