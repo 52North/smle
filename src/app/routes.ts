@@ -13,6 +13,7 @@ export const routes: RouterConfig = [
   { path: 'editor', component: Editor },
   { path: 'editor/:id', component: Editor },
   { path: 'fetch', component: FetchDescription },
+  { path: 'fetch/:id', component: FetchDescription },
   { path: 'publish', component: PublishDescription },
   { path: 'connect', component: ConnectDescription },
   { path: 'delete', component: DeleteDescription },

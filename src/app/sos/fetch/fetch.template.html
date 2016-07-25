@@ -1,14 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4>Select description ID</h4>
-      <div class="form-group">
-        <description-id-selection (onSelectedDescription)="onSelectedDescription($event)"></description-id-selection>
+      <div *ngIf="!selectedDesc">
+        <h4>Select description ID</h4>
+        <div class="form-group">
+          <description-id-selection (onSelectedDescription)="onSelectedDescription($event)"></description-id-selection>
+        </div>
       </div>
       <div *ngIf="selectedDesc">
-        <h4>Sensor description</h4>
+        <h4>Sensor description for <b>{{selectedDesc.identifier.value}}</b></h4>
         <div class="highlight">
-          <pre>{{selectedDesc.description}}</pre>
+          <pre>{{selectedDesc|toSensorml}}</pre>
         </div>
         <button class="btn btn-primary center-block" type="button" (click)="openToEdit()">Edit sensor description</button>
       </div>

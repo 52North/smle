@@ -1,30 +1,46 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
+import { AbstractProcess } from '../../model/sml/AbstractProcess';
+import { SensorMLPipe } from '../../editor/pipes/SensorMLPipe';
 import { SosService } from '../sos.service';
 import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
 
 @Component({
   selector: 'fetch-description',
   directives: [DescriptionSelection],
+  pipes: [SensorMLPipe],
   template: require('./fetch.template.html'),
   styles: [require('./fetch.style.scss')],
 })
-export class FetchDescription {
+export class FetchDescription implements OnInit {
 
-  private selectedDesc: SelectedDescription;
+  private selectedDesc: AbstractProcess;
 
   constructor(
     private editorService: EditorService,
-    private sosService: SosService
+    private sosService: SosService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
-  onSelectedDescription(description: SelectedDescription) {
-    this.selectedDesc = description;
+  public ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      let id = params['id'];
+      if (id) {
+        this.sosService.fetchDescription(id).subscribe(res => {
+          this.selectedDesc = new SensorMLXmlService().deserialize(res);
+        });
+      }
+    });
   }
 
-  openToEdit() {
-    let desc = new SensorMLXmlService().deserialize(this.selectedDesc.description);
-    this.editorService.openEditorWithDescription(desc);
+  private onSelectedDescription(description: SelectedDescription) {
+    this.router.navigate(['/fetch', description.id]);
+  }
+
+  private openToEdit() {
+    this.editorService.openEditorWithDescription(this.selectedDesc);
   }
 }
