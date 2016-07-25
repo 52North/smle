@@ -1,4 +1,4 @@
-<div *ngIf="descriptionIds">
+<div *ngIf="descriptionIds && descriptionIds.length !== 0">
   <select class="form-control" (click)="onSelectDescriptionID($event.target.value)">
     <option *ngFor="let item of descriptionIds">{{item}}</option>
   </select>
@@ -8,4 +8,7 @@
 </div>
 <div *ngIf="!loadingDescriptionIds && !descriptionIds">
   There are no descriptions registered.
+</div>
+<div *ngIf="!loadingDescriptionIds && descriptionIds.length === 0">
+  There are no descriptions which can be used.
 </div>

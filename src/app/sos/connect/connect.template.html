@@ -1,17 +1,39 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <div *ngIf="attachedTo && childDescriptions && childDescriptions.length === 1">
+      <div *ngIf="attachedTo && childDescription">
+        <div *ngIf="childDescription.attachedTo">
+          Currently the description with the identifer '{{childDescription.identifier.value}}' is attached to '{{getAttachedToIdentifier()}}'.
+          <button class="btn btn-primary center-block" type="button" (click)="clearAttachedTo()">Reset the attached to connection</button>
+        </div>
         <div class="form-group">
-          <label for="attachedTo">Choose one description which should be attached to the '{{childDescriptions[0].identifier.value}}' description:</label>
-          <description-id-selection [ignoreId]="childDescriptions[0].identifier.value" (onSelectedDescription)="onSelectedDescription($event)"></description-id-selection>
+          <label for="attachedTo">Choose one description which should be attached to the '{{childDescription.identifier.value}}' description:</label>
+          <description-id-selection [ignoreIds]="ignoreIds" (onSelectedDescription)="onSelectParentDescription($event)"></description-id-selection>
         </div>
         <div *ngIf="parentDescription">
           <div class="">
-            Do you want to attach the description '{{childDescriptions[0].identifier.value}}' to '{{parentDescription.identifier.value}}'?
+            Do you want to attach the description '{{childDescription.identifier.value}}' to '{{parentDescription.identifier.value}}'?
           </div>
           <button class="btn btn-primary center-block" type="button" (click)="publishAttachedTo()">Publish connection to SOS</button>
         </div>
+      </div>
+      <div *ngIf="!attachedTo && parentDescription">
+        <div class="form-group">
+          <label for="attachedTo">{{parentDescription.identifier.value}} has the following components:</label>
+          <div>
+            <ul class="list-group">
+              <li *ngFor="let item of parentDescription.components.components; let i = index" class="list-group-item">
+                <a [href]="item.href" target="_blank">{{item.name}}</a>
+                <a class="btn btn-link" (click)="onRemoveComponent(i)"><i class="fa fa-remove"></i> Remove</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="attachedTo">{{parentDescription.identifier.value}} should have the following components:</label>
+          <description-id-selection [ignoreIds]="ignoreIds" (onSelectedDescription)="onSelectChildDescription($event)"></description-id-selection>
+        </div>
+        <!--<button class="btn btn-primary center-block" type="button" (click)="publishAttachedTo()">Publish connections to SOS</button>-->
       </div>
     </div>
   </div>

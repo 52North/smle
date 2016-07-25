@@ -118,9 +118,14 @@ export class SosService {
     url += '?service=SOS';
     url += '&version=2.0.0';
     url += '&request=DescribeSensor';
-    url += '&procedureDescriptionFormat=http://www.opengis.net/sensorml/2.0'
+    url += '&procedureDescriptionFormat=http://www.opengis.net/sensorml/2.0';
     url += '&procedure=' + identifier;
     return url;
+  }
+
+  public getIdentifierOfDescribeSensorUrl(describeSensorUrl: string): string {
+    let index = describeSensorUrl.indexOf('procedure=');
+    return describeSensorUrl.substr(index + 10);
   }
 
   private createJsonHeader(): Headers {

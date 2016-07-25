@@ -3,7 +3,6 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 import { AbstractProcessComponent } from './AbstractProcessComponent';
 import { AbstractPhysicalProcess } from '../../../model/sml/AbstractPhysicalProcess';
 import { PositionListComponent } from '../basic/PositionListComponent';
-import { EditorService } from '../../../services/EditorService';
 import { ConnectDescriptionService } from '../../../sos/connect/connect.service';
 
 @Component({
@@ -14,7 +13,6 @@ import { ConnectDescriptionService } from '../../../sos/connect/connect.service'
 export class AbstractPhysicalProcessComponent extends TypedModelComponent<AbstractPhysicalProcess> {
 
   constructor(
-    private editorService: EditorService,
     private connectDescriptionService: ConnectDescriptionService
   ) {
     super();
@@ -25,7 +23,6 @@ export class AbstractPhysicalProcessComponent extends TypedModelComponent<Abstra
   }
 
   protected changeAttachedTo() {
-    // TODO check if description is registered in SOS (maybe save a SOS connection in editorService)
     this.connectDescriptionService.openAttachedToDescription(this.model);
   }
 

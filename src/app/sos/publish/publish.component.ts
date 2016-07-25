@@ -48,7 +48,7 @@ export class PublishDescription implements OnInit {
     this.resetError();
     this.sosService.addDescription(this.description)
       .subscribe(res => {
-        this.success = "Successfully added the description!";
+        this.success = 'Successfully added the description!';
       }, (error) => this.handleError(error));
   }
 
@@ -56,7 +56,7 @@ export class PublishDescription implements OnInit {
     this.resetError();
     this.sosService.updateDescription(this.description.identifier.value, this.description)
       .subscribe(res => {
-        this.success = "Successfully updated the description!";
+        this.success = 'Successfully updated the description!';
       }, error => this.handleError(error));
   }
 

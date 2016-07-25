@@ -4,7 +4,7 @@ import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
 import { ConnectDescriptionService } from './connect.service';
 import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
-import { AbstractPhysicalProcess, AggregatingProcess } from '../../model/sml';
+import { AbstractPhysicalProcess, AggregatingProcess, AbstractProcess } from '../../model/sml';
 import { SosService } from '../sos.service';
 
 @Component({
@@ -14,9 +14,10 @@ import { SosService } from '../sos.service';
 })
 export class ConnectDescription implements OnInit {
 
-  private childDescriptions: Array<AbstractPhysicalProcess> = new Array();
+  private childDescription: AbstractPhysicalProcess;
   private parentDescription: AggregatingProcess;
   private attachedTo: boolean;
+  private ignoreIds: Array<string> = [];
 
   constructor(
     private router: Router,
@@ -26,36 +27,67 @@ export class ConnectDescription implements OnInit {
   ) { }
 
   public ngOnInit() {
-
     this.attachedTo = this.connectDescService.attachedTo;
-    this.childDescriptions = this.connectDescService.childDescriptions;
-
-    /*
-    this.attachedTo = true;
-    this.sosService.fetchDescription('80792264-e6d8-0fb5-66c7-0289fc691f7f').subscribe(res => {
-      this.childDescriptions.push(new SensorMLXmlService().deserialize(res) as any as AbstractPhysicalProcess);
-    });
-    this.sosService.fetchDescription('a102221d-9bcb-0d3b-870c-6f1a4e5e7dc8').subscribe(res => {
-      this.parentDescription = new SensorMLXmlService().deserialize(res) as any as AggregatingProcess;
-    });
-    */
+    this.childDescription = this.connectDescService.childDescription;
+    this.parentDescription = this.connectDescService.parentDescription;
+    this.updateIgnoreIds();
   }
 
-  public onSelectedDescription(selectedDesc: SelectedDescription) {
+  private onSelectParentDescription(selectedDesc: SelectedDescription) {
     let desc = new SensorMLXmlService().deserialize(selectedDesc.description);
     if (this.isAggregatingProcess(desc)) {
       this.parentDescription = (desc as any as AggregatingProcess);
     } else {
-      debugger;
       // TODO hint that the selected description is no AggregatingProcess
     }
+  }
+
+  private onSelectChildDescription(selectedDesc: SelectedDescription) {
+    // TODO check if description is AbstractPhysicalProcess!
+    let desc = new SensorMLXmlService().deserialize(selectedDesc.description) as any as AbstractPhysicalProcess;
+    this.connectDescService.connectDescriptions(desc, this.parentDescription).subscribe(res => {
+      this.updateIgnoreIds();
+    });
+  }
+
+  private onRemoveComponent(idx: number) {
+    this.connectDescService.removeComponent(this.parentDescription, idx).subscribe(res => {
+      this.updateIgnoreIds();
+    });
+  }
+
+  private clearAttachedTo() {
+    this.connectDescService.clearAttachedTo(this.childDescription, this.getAttachedToIdentifier()).subscribe(res => {
+      this.updateIgnoreIds();
+    });
+  }
+
+  private publishAttachedTo() {
+    this.connectDescService.connectDescriptions(this.childDescription, this.parentDescription).subscribe(res => {
+      this.parentDescription = null;
+      this.updateIgnoreIds();
+    });
+  }
+
+  private getAttachedToIdentifier() {
+    return this.sosService.getIdentifierOfDescribeSensorUrl(this.childDescription.attachedTo);
   }
 
   private isAggregatingProcess(object: any): object is AggregatingProcess {
     return 'components' in object;
   }
 
-  public publishAttachedTo() {
-    this.connectDescService.connectDescriptions(this.childDescriptions, this.parentDescription);
+  private updateIgnoreIds() {
+    this.ignoreIds.length = 0;
+    if (this.childDescription) {
+      this.ignoreIds.push(this.childDescription.identifier.value);
+    }
+
+    if (this.parentDescription && this.parentDescription.components) {
+      this.ignoreIds.push((this.parentDescription as any as AbstractProcess).identifier.value);
+      this.parentDescription.components.components.forEach(entry => {
+        this.ignoreIds.push(entry.name);
+      });
+    }
   }
 }

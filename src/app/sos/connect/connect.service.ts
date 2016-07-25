@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 import { AbstractProcess, AbstractPhysicalProcess, AggregatingProcess } from '../../model/sml';
 import { Component } from '../../model/sml/Component';
 import { SosService } from '../sos.service';
+import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 
 @Injectable()
 export class ConnectDescriptionService {
 
-  description: AbstractProcess;
-  childDescriptions: Array<AbstractPhysicalProcess>;
-  attachedTo: boolean;
+  public parentDescription: AggregatingProcess;
+  public childDescription: AbstractPhysicalProcess;
+  public attachedTo: boolean;
 
   constructor(
     private http: Http,
@@ -22,38 +24,79 @@ export class ConnectDescriptionService {
 
   public openAttachedToDescription(desc: AbstractPhysicalProcess) {
     this.attachedTo = true;
-    this.childDescriptions = [];
-    this.childDescriptions.push(desc);
-    this.openView(desc);
+    this.parentDescription = null;
+    this.childDescription = desc;
+    this.openView();
   }
 
-  public openConnectDescriptions(desc: AbstractProcess) {
+  public openComponentsDescription(desc: AggregatingProcess) {
     this.attachedTo = false;
-    this.openView(desc);
+    this.childDescription = null;
+    this.parentDescription = desc;
+    this.openView();
   }
 
-  private openView(desc: AbstractProcess) {
-    this.router.navigate(['/connect']);
-  }
-
-  public connectDescriptions(childDesc: Array<AbstractPhysicalProcess>, parentDesc: AggregatingProcess) {
-    let parentDescAbsPro = parentDesc as any as AbstractProcess;
-
-    childDesc.forEach(entry => {
-      entry.attachedTo = this.sosService.createDescribeSensorUrl(parentDescAbsPro.identifier.value);
-      // TODO remove old components which are obsolet
-      let component = new Component(parentDescAbsPro.gmlId, this.sosService.createDescribeSensorUrl(entry.identifier.value));
-      parentDesc.components.components.push(component);
+  public clearAttachedTo(childDesc: AbstractPhysicalProcess, parentId: string): Observable<boolean> {
+    return new Observable<boolean>((observer: Observer<boolean>) => {
+      this.sosService.fetchDescription(parentId).subscribe(res => {
+        let parentDesc = new SensorMLXmlService().deserialize(res) as any as AggregatingProcess;
+        let idx = -1;
+        parentDesc.components.components.forEach((entry, i) => {
+          if (entry.name === childDesc.identifier.value) idx = i;
+        });
+        if (idx > -1) parentDesc.components.components.splice(idx, 1);
+        this.updateDescription(parentDesc as any as AbstractProcess).subscribe(res => {
+          childDesc.attachedTo = null;
+          this.updateDescription(childDesc).subscribe(res => {
+            observer.next(true);
+            observer.complete();
+          });
+        });
+      });
     });
+  }
 
-    childDesc.forEach(entry => {
-      this.sosService.updateDescription(entry.identifier.value, entry).subscribe(res => {
-        debugger;
-      })
-    })
+  public removeComponent(parentDesc: AggregatingProcess, idx: number): Observable<boolean> {
+    return new Observable<boolean>((observer: Observer<boolean>) => {
+      // remove in components
+      let removedComponent = parentDesc.components.components.splice(idx, 1);
+      this.updateDescription(parentDesc as any as AbstractProcess).subscribe(res => {
+        // remove attachedTo of description
+        this.sosService.fetchDescription(removedComponent[0].name).subscribe(res => {
+          let desc = new SensorMLXmlService().deserialize(res) as any as AbstractPhysicalProcess;
+          desc.attachedTo = null;
+          this.updateDescription(desc).subscribe(res => {
+            observer.next(true);
+            observer.complete();
+          });
+        });
+      });
+    });
+  }
 
-    this.sosService.updateDescription(parentDescAbsPro.identifier.value, parentDescAbsPro).subscribe(res => {
-      debugger;
-    })
+  public connectDescriptions(childDesc: AbstractPhysicalProcess, parentDesc: AggregatingProcess): Observable<boolean> {
+    return new Observable<boolean>((observer: Observer<boolean>) => {
+      let parentDescAbsPro = parentDesc as any as AbstractProcess;
+      childDesc.attachedTo = this.sosService.createDescribeSensorUrl(parentDescAbsPro.identifier.value);
+      this.updateDescription(childDesc).subscribe(res => {
+        let component = new Component(
+          childDesc.identifier.value,
+          this.sosService.createDescribeSensorUrl(childDesc.identifier.value)
+        );
+        parentDesc.components.components.push(component);
+        this.updateDescription(parentDescAbsPro).subscribe(res => {
+          observer.next(true);
+          observer.complete();
+        });
+      });
+    });
+  }
+
+  private updateDescription(desc: AbstractProcess): Observable<boolean> {
+    return this.sosService.updateDescription(desc.identifier.value, desc);
+  }
+
+  private openView() {
+    this.router.navigate(['/connect']);
   }
 }

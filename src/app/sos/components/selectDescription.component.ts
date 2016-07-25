@@ -1,17 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, DoCheck } from '@angular/core';
 import { SosService } from '../sos.service';
 
 @Component({
   selector: 'description-id-selection',
   template: require('./selectDescription.template.html')
 })
-export class DescriptionSelection implements OnInit {
+export class DescriptionSelection implements OnInit, DoCheck {
 
   private descriptionIds: Array<string>;
   private loadingDescriptionIds: boolean;
+  private oldIgnoreIdsCount: number = 0;
 
   @Input()
-  public ignoreId: string;
+  public ignoreIds: Array<string>;
 
   @Output()
   public onSelectedDescription: EventEmitter<SelectedDescription> = new EventEmitter<SelectedDescription>();
@@ -24,16 +25,25 @@ export class DescriptionSelection implements OnInit {
     this.loadDescIds();
   }
 
+  public ngDoCheck() {
+    if (this.ignoreIds && this.ignoreIds.length !== this.oldIgnoreIdsCount) {
+      this.oldIgnoreIdsCount = this.ignoreIds.length;
+      this.loadDescIds();
+    }
+  }
+
   public loadDescIds() {
     this.loadingDescriptionIds = true;
     this.sosService.fetchDescriptionIDs().subscribe(res => {
       this.loadingDescriptionIds = false;
       this.descriptionIds = res;
-      if (this.ignoreId) {
-        var idx = this.descriptionIds.indexOf(this.ignoreId);
-        if (idx >= -1) {
-          this.descriptionIds.splice(idx, 1);
-        }
+      if (this.ignoreIds && this.ignoreIds.length > 0) {
+        this.ignoreIds.forEach(ignoreId => {
+          var idx = this.descriptionIds.indexOf(ignoreId);
+          if (idx >= -1) {
+            this.descriptionIds.splice(idx, 1);
+          }
+        });
       }
     });
   }

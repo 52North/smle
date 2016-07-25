@@ -35,7 +35,7 @@ export class DeleteDescription {
       }
     }, error => {
       this.successfullDeleted = false;
-    })
+    });
   }
 
   private loadDescriptions() {
