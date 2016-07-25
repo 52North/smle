@@ -18,7 +18,8 @@ export class ObjectTreeComponent implements OnChanges {
     model: AbstractProcess;
 
     private options = {
-        treeNodeTemplate: TreeNodeComponent
+        treeNodeTemplate: TreeNodeComponent,
+        expandedField: 'isExpanded'
     };
 
     private nodes: Array<INode> = [];
