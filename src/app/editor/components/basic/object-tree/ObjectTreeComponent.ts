@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges, HostListener} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, HostListener, DoCheck} from '@angular/core';
 import {TreeComponent} from 'angular2-tree-component';
 import {AbstractProcess} from '../../../../model/sml/AbstractProcess';
 import {getDisplayName} from '../../../../decorators/DisplayName';
@@ -25,26 +25,42 @@ export class ObjectTreeComponent implements OnChanges {
 
     @HostListener('mouseenter')
     private onMouseEnter(event) {
-        this.rebuildTree(this.model, this.model);
+        this.rebuildTree(this.model);
     }
 
-    private rebuildTree(previousModel, currentModel) {
-        this.nodes = this.getNodes(currentModel);
+    private rebuildTree(currentModel) {
+        var nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes);
+        this.nodes = nodes;
     }
 
     ngOnChanges(changes: SimpleChanges) {
         var modelChange = changes['model'];
 
         if (modelChange) {
-            this.rebuildTree(modelChange.previousValue, modelChange.currentValue);
+            this.rebuildTree(modelChange.currentValue);
         }
     }
 
     private onToggle(event) {
+        var path = event.node.path;
+        var nodes = this.nodes;
+
+        var getPredicate = (index: number) => {
+            return (node) => {
+                return node.id === path[index];
+            };
+        };
+
+        for (let i = 0; i < path.length - 1; i++) {
+            nodes = nodes.find(getPredicate(i)).children;
+        }
+        var node = nodes.find(getPredicate(path.length - 1));
+
         event.node.data.isExpanded = event.isExpanded;
+        node.isExpanded = event.isExpanded;
     }
 
-    private getNodes(object: any): Array<INode> {
+    private static getNodes(object: any, oldNodes: Array<INode>): Array<INode> {
         var nodes: Array<INode>;
         var type = typeof object;
 
@@ -53,36 +69,41 @@ export class ObjectTreeComponent implements OnChanges {
         }
 
         if (object instanceof Array) {
-            nodes = this.getNodesForArray(object);
+            nodes = ObjectTreeComponent.getNodesForArray(object, oldNodes);
         } else if (typeof object === 'object' && !(object instanceof Date)) {
-            nodes = this.getNodesForObject(object);
+            nodes = ObjectTreeComponent.getNodesForObject(object, oldNodes);
         } else if (object instanceof Date) {
-            nodes = [{
-                id: '$value',
-                name: object.toLocaleString().replace(/ /g, '\xa0'),
-                type: type,
-                children: null,
-                isExpanded: false
-            }];
+            nodes = ObjectTreeComponent.getValueNodes(object.toLocaleString().replace(/ /g, '\xa0'), type, oldNodes);
         } else {
             if (type === 'string' && ObjectTreeComponent.isEmail(object)) {
                 type = 'email';
             } else if (type === 'string' && ObjectTreeComponent.isUrl(object)) {
                 type = 'url';
             }
-            nodes = [{
-                id: '$value',
-                name: object.toString(),
-                type: type,
-                children: null,
-                isExpanded: false
-            }];
+
+            nodes = ObjectTreeComponent.getValueNodes(object.toString(), type, oldNodes);
         }
 
         return nodes;
     }
 
-    private getNodesForObject(object: Object): Array<INode> {
+    private static getValueNodes(name: string, type: string, oldNodes: Array<INode>): Array<INode> {
+        var node: INode = {
+            id: '$value',
+            name: name,
+            type: type,
+            children: null,
+            isExpanded: false
+        };
+
+        if (oldNodes && oldNodes.length === 1 && oldNodes[0].id === '$value') {
+            node.isExpanded = oldNodes[0].isExpanded;
+        }
+
+        return [node];
+    }
+
+    private static getNodesForObject(object: Object, oldNodes: Array<INode> = []): Array<INode> {
         var nodes: Array<INode> = [];
 
         for (let propertyName in object) {
@@ -93,37 +114,43 @@ export class ObjectTreeComponent implements OnChanges {
                 continue;
             }
 
+            let oldNode = oldNodes.find((oldNode) => {
+                return oldNode.id === propertyName;
+            });
             let displayName = getDisplayName(object, propertyName) || propertyName;
             let newNode: INode = {
                 id: propertyName,
                 name: displayName,
                 type: 'object',
                 children: null,
-                isExpanded: false
+                isExpanded: oldNode && oldNode.isExpanded
             };
 
-            newNode.children = this.getNodes(nodeValue);
+            newNode.children = ObjectTreeComponent.getNodes(nodeValue, oldNode && oldNode.children);
             nodes.push(newNode);
         }
 
         return nodes;
     }
 
-    private getNodesForArray(array: Array<any>): Array<INode> {
+    private static getNodesForArray(array: Array<any>, oldNodes: Array<INode> = []): Array<INode> {
         var nodes = <Array<any>>array.map((elem: any, index: number) => {
+            var oldNode = oldNodes.find((oldNode) => {
+                return oldNode.id === index.toString();
+            });
             var node: INode = {
                 id: index.toString(),
                 name: null,
                 type: null,
                 children: null,
-                isExpanded: false
+                isExpanded: oldNode && oldNode.isExpanded
             };
 
             var name = elem.toString();
             var type = typeof elem;
 
             if (type === 'object' && !(elem instanceof Date) || elem instanceof Array) {
-                node.children = this.getNodes(elem);
+                node.children = ObjectTreeComponent.getNodes(elem, oldNode && oldNode.children);
             } else if (elem instanceof Date) {
                 name = elem.toLocaleString().replace(/ /g, '\xa0');
             } else if (type === 'string' && ObjectTreeComponent.isEmail(name)) {
