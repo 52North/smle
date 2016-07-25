@@ -31,7 +31,7 @@ export class PublishDescription implements OnInit {
   ngOnInit() {
     this.description = this.publishServ.getDescription();
     if (!this.description.identifier) {
-      this.description.identifier = new CodeType("");
+      this.description.identifier = new CodeType('');
     }
   }
 
