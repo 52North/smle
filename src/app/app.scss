@@ -1,13 +1,21 @@
 main {
-  top: 55px;
-  padding: {
-    top: 10px;
-    bottom: 10px;
-  }
+  top: 65px;
+  //padding: {
+  //  top: 10px;
+  //  bottom: 10px;
+  //}
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+
+fetch-description {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
 }
 
 .nested-element {

@@ -5,11 +5,12 @@ import { EditorService } from '../../services/EditorService';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
 import { SensorMLPipe } from '../../editor/pipes/SensorMLPipe';
 import { SosService } from '../sos.service';
+import { ObjectTreeComponent } from '../../editor/components/basic/object-tree/ObjectTreeComponent';
 import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
 
 @Component({
   selector: 'fetch-description',
-  directives: [DescriptionSelection],
+  directives: [DescriptionSelection, ObjectTreeComponent],
   pipes: [SensorMLPipe],
   template: require('./fetch.template.html'),
   styles: [require('./fetch.style.scss')],
