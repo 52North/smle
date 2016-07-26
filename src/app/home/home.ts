@@ -4,7 +4,8 @@ import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
   selector: 'home',
-  template: require('./home.html')
+  template: require('./home.html'),
+  styles: [require('./home.scss')]
 })
 export class Home implements OnInit {
 

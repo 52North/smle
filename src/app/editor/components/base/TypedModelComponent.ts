@@ -3,6 +3,8 @@ import {Configuration} from '../../../services/config/Configuration';
 import {Type} from '@angular/core/src/facade/lang';
 import {getDisplayName} from '../../../decorators/DisplayName';
 
+declare var jQuery: any;
+
 export class ChildMetadata {
     private _componentType: Type;
     private _model: any;
