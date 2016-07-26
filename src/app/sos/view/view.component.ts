@@ -4,7 +4,7 @@ import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
 import { SosService } from '../sos.service';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
-import { ObjectTreeComponent } from '../../editor/components/basic/ObjectTreeComponent';
+import { ObjectTreeComponent } from '../../editor/components/basic/object-tree/ObjectTreeComponent';
 import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
 
 @Component({

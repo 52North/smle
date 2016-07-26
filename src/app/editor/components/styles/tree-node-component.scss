@@ -1,0 +1,17 @@
+.string {
+  color: #eb5a46;
+
+  &::before,
+  &::after {
+    content: '"';
+  }
+}
+
+.number,
+.boolean {
+  font-family: monospace;
+}
+
+.boolean {
+  font-weight: bold;
+}

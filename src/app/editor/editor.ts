@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AbstractProcess, PhysicalComponent, SimpleProcess, PhysicalSystem } from '../model/sml';
+import { AbstractProcess } from '../model/sml';
 import { ConfigurationService } from '../services/ConfigurationService';
 import { SensorMLPipe } from './pipes/SensorMLPipe';
-import { PublishDescriptionService } from '../sos/publish/publish.service';
 import { Configuration } from '../services/config/Configuration';
 import { EditorService } from '../services/EditorService';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
 import { SimpleProcessComponent } from './components/sml/SimpleProcessComponent';
-import { ObjectTreeComponent } from './components/basic/ObjectTreeComponent';
+import { PhysicalSystem } from '../model/sml/PhysicalSystem';
+import { PhysicalComponent } from '../model/sml/PhysicalComponent';
+import { SimpleProcess } from '../model/sml/SimpleProcess';
+import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
+import { PublishDescriptionService } from '../sos/publish/publish.service';
 
 enum DescriptionType {
   PhysicalSystem = 1,
@@ -30,6 +33,7 @@ export class Editor implements OnInit {
   public description: AbstractProcess;
   public config: Configuration;
   private descriptionType: DescriptionType;
+  private descriptionIsLoading: boolean = true;
 
   constructor(
     private publish: PublishDescriptionService,
@@ -49,9 +53,12 @@ export class Editor implements OnInit {
     this.route.params.subscribe(params => {
       let id = params['id'];
       this.editorService.getDescriptionForId(id).then(desc => {
+        this.descriptionIsLoading = false;
         if (desc != null) {
           this.setDescription(desc);
         }
+      }).catch(() => {
+        this.descriptionIsLoading = false;
       });
     });
     this.configurationService.getConfiguration().then(configuration => this.config = configuration);
