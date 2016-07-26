@@ -52,4 +52,20 @@
       flex-shrink: 1;
     }
   }
+
+  @media(max-width: 750px) {
+    width: 495px;
+
+    &.vertical-mode {
+      margin-right: -450px;
+    }
+
+    .card {
+      .card-header {
+        &.vertical {
+          width: 45px;
+        }
+      }
+    }
+  }
 }
