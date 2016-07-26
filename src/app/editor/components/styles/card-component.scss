@@ -1,13 +1,12 @@
 :host {
   display: inline-block;
   height: 100%;
-  width: 500px;
-  margin: 0 10px 0 0;
-  margin:0;
+  width: 66vw;
+  margin: 0;
   vertical-align: top;
 
   &.vertical-mode {
-    margin-right: -450px;
+    margin-right: -60vw;
   }
 
   .card {
@@ -18,31 +17,39 @@
     align-items: stretch;
     box-shadow: -1px 1px 5px 0 #CCCCCC;
 
+    .card-header {
+      &:not(.vertical) {
+        height: 50px;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+
+      &.vertical {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 6vw;
+        box-sizing: border-box;
+        z-index: 10;
+        border-bottom: none;
+
+        .title {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          padding: 0;
+          transform-origin: left center;
+          margin-left: 20%;
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
     .card-block {
       overflow-y: auto;
       flex-grow: 1;
       flex-shrink: 1;
-    }
-
-    .card-header.vertical {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 50px;
-      box-sizing: border-box;
-      z-index: 10;
-      border-bottom: none;
-
-      .title {
-        display: inline-block;
-        position: absolute;
-        top: 50%;
-        padding: 0;
-        transform-origin: left center;
-        margin-left: 20%;
-        transform: rotate(-90deg);
-      }
     }
   }
 }
