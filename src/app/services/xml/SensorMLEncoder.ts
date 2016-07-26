@@ -78,7 +78,7 @@ export class SensorMLEncoder {
       termNode.setAttribute('definition', term.definition);
     }
 
-    if (term.label) {
+    if (typeof term.label != 'undefined') {
       let labelNode = document.createElementNS(Namespaces.SML, 'sml:label');
       labelNode.textContent = term.label;
       termNode.appendChild(labelNode);
@@ -90,7 +90,7 @@ export class SensorMLEncoder {
       termNode.appendChild(codeSpaceNode);
     }
 
-    if (term.value) {
+    if (typeof term.value != 'undefined') {
       let labelNode = document.createElementNS(Namespaces.SML, 'sml:value');
       labelNode.textContent = term.value;
       termNode.appendChild(labelNode);
