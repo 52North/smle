@@ -8,6 +8,7 @@ import { ConnectDescriptionService } from '../../../sos/connect/connect.service'
 @Component({
   selector: 'sml-abstract-physical-process',
   template: require('./AbstractPhysicalProcessComponent.html'),
+  styles: [require('../styles/editor-component.scss')],
   directives: [AbstractProcessComponent, PositionListComponent]
 })
 export class AbstractPhysicalProcessComponent extends TypedModelComponent<AbstractPhysicalProcess> {
