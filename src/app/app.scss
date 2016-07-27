@@ -1,5 +1,5 @@
 main {
-  top: 65px;
+  top: 65+90px;
   //padding: {
   //  top: 10px;
   //  bottom: 10px;
@@ -20,4 +20,35 @@ fetch-description {
 
 .nested-element {
   margin: 0px 20px 0px 20px;
+}
+
+.logos {
+  height: 90px;
+  .n52 {
+    float: left;
+    background-image: url(assets/img/52n-logo-220x80.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 250px;
+    display: block;
+    height: 80px;
+    margin: 5px;
+  }
+  .fixo3 {
+    float: left;
+    background-image: url(assets/img/fixo3-logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 170px;
+    display: block;
+    height: 85px;
+  }
+  .nexos{
+    float: left;
+    width: 430px;
+    background: url(assets/img/set_nexos_new2.svg) 0 0 no-repeat;
+    background-size: 1120px;
+    display: block;
+    height: 85px;
+  }
 }

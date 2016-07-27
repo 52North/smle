@@ -1,28 +1,32 @@
 <header>
-    <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
-        <a class="navbar-brand" [routerLink]="['Home']">
-            smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺
-        </a>
-        <ul class="nav navbar-nav">
-            <!--<li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/']">Home</a>
-            </li>-->
-            <li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/editor', 'new']">New</a>
-            </li>
-            <li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/fetch']">Edit/View</a>
-            </li>
-            <li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/delete']">Delete</a>
-            </li>
-            <li router-active="active" class="nav-item">
-              <a class="nav-link" [routerLink]="['/templates']">Create from Template</a>
-            </li>
-        </ul>
+  <div class="logos">
+    <a class="n52" href="https://52north.org/" target="_blank"></a>
+    <a class="fixo3" href="http://www.fixo3.eu/" target="_blank"></a>
+    <a class="nexos" href="http://www.nexosproject.eu/" target="_blank"></a>
+  </div>
+  <div>
+    <nav class="navbar navbar-dark bg-inverse">
+      <a class="navbar-brand" [routerLink]="['/']">
+        smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺
+      </a>
+      <ul class="nav navbar-nav">
+        <li router-active="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/editor', 'new']">New</a>
+        </li>
+        <li router-active="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/fetch']">Edit/View</a>
+        </li>
+        <li router-active="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/delete']">Delete</a>
+        </li>
+        <li router-active="active" class="nav-item">
+          <a class="nav-link" [routerLink]="['/templates']">Create from Template</a>
+        </li>
+      </ul>
     </nav>
+  </div>
 </header>
 <main class="container-fluid">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </main>
 <footer></footer>
