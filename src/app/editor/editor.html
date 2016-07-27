@@ -1,8 +1,3 @@
-<div class="visualizer-container" *ngIf="!!description">
-    <object-tree class="description-visualizer" [class.expanded]="visualizerExpanded" [model]="description"></object-tree>
-    <a class="link visualizer-button" (click)="visualizerExpanded = !visualizerExpanded">{{visualizerExpanded ? 'Hide tree' : 'Show tree'}}</a>
-</div>
-
 <div class="row">
     <div *ngIf="!description && !descriptionIsLoading" class="col-sm-offset-4 col-sm-4 type-selector-container">
         <div class="dropdown">
@@ -26,4 +21,10 @@
         <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')">
         </sml-simple-process>
     </div>
+
+    <div class="visualizer-container" [class.expanded]="visualizerExpanded" *ngIf="!!description">
+        <object-tree class="description-visualizer" [model]="description"></object-tree>
+        <a class="link visualizer-close-button" (click)="visualizerExpanded = !visualizerExpanded">Hide tree</a>
+    </div>
+    <a class="link visualizer-open-button" *ngIf="!!description" (click)="visualizerExpanded = !visualizerExpanded">Show tree</a>
 </div>
