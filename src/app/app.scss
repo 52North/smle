@@ -1,5 +1,5 @@
 main {
-  top: 65+90px;
+  top: 65+95px;
   //padding: {
   //  top: 10px;
   //  bottom: 10px;
@@ -23,7 +23,7 @@ fetch-description {
 }
 
 .logos {
-  height: 90px;
+  height: 95px;
   .n52 {
     float: left;
     background-image: url(assets/img/52n-logo-220x80.png);
@@ -42,8 +42,11 @@ fetch-description {
     width: 170px;
     display: block;
     height: 85px;
+    margin-top: 5px;
+    margin-right: 20px;
   }
   .nexos{
+    margin-top: 5px;
     float: left;
     width: 430px;
     background: url(assets/img/set_nexos_new2.svg) 0 0 no-repeat;
