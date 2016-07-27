@@ -18,7 +18,7 @@
         </div>
       </div>
       <div *ngIf="!attachedTo && parentDescription">
-        <div class="form-group">
+        <div class="form-group" *ngIf="parentDescription.components.components.length > 0">
           <label for="attachedTo">{{parentDescription.identifier.value}} has the following components:</label>
           <div>
             <ul class="list-group">
@@ -33,7 +33,6 @@
           <label for="attachedTo">{{parentDescription.identifier.value}} should have the following components:</label>
           <description-id-selection [ignoreIds]="ignoreIds" (onSelectedDescription)="onSelectChildDescription($event)"></description-id-selection>
         </div>
-        <!--<button class="btn btn-primary center-block" type="button" (click)="publishAttachedTo()">Publish connections to SOS</button>-->
       </div>
     </div>
   </div>
