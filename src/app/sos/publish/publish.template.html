@@ -29,11 +29,13 @@
         </div>
         <div *ngIf="!description.identifier || !description.identifier.value || description.identifier === ''">
           <h4>The sensor description needs an ID to be published</h4>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="identifier">
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
-            </span>
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="identifier">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
+              </span>
+            </div>
           </div>
           <button class="btn btn-primary center-block" type="button" (click)="useIdentifier()" [disabled]="identifier === '' || identifier == null">Use identifier to publish description</button>
         </div>

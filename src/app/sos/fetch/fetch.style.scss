@@ -42,6 +42,8 @@
 
 .highlight {
   pre, .description-visualizer {
+    background-color: #f7f7f9;
+    padding: 10px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -53,7 +55,7 @@
 .tab-content {
   position: absolute;
   top: 42px;
-  bottom: 0;
+  bottom: 15px;
   right: 0;
   left: 0;
 }
