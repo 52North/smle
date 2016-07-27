@@ -811,6 +811,9 @@ export class SensorMLEncoder {
         if (component.href) {
           componentNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.href);
         }
+        if (component.title) {
+          componentNode.setAttributeNS(Namespaces.XLINK, 'xlink:title', component.title);
+        }
         node.appendChild(componentNode);
       });
     }

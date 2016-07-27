@@ -386,6 +386,10 @@ export class SensorMLDecoder {
       component.href = elem.getAttributeNS(Namespaces.XLINK, 'href');
     }
 
+    if (elem.hasAttributeNS(Namespaces.XLINK, 'title')) {
+      component.title = elem.getAttributeNS(Namespaces.XLINK, 'title');
+    }
+
     return component;
   }
 
