@@ -1,18 +1,22 @@
-import {DisplayName} from '../../decorators/DisplayName';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class Component {
-    @DisplayName('Name')
-    name: string;
+  @DisplayName('Name')
+  name: string;
 
-    @DisplayName('Href')
-    href: string;
+  @DisplayName('Href')
+  href: string;
 
-    constructor(name?: string, href?: string) {
-        this.name = name;
-        this.href = href;
-    }
+  @DisplayName('Title')
+  title: string;
 
-    toString() {
-        return this.name || 'Component';
-    }
+  constructor(name?: string, href?: string, title?: string) {
+    this.name = name;
+    this.href = href;
+    this.title = title;
+  }
+
+  toString() {
+    return this.title || 'Component';
+  }
 }

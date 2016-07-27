@@ -1,7 +1,9 @@
-<sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll"
-                      (openAsChild)="openNewChild($event)"></sml-abstract-process>
+<sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
 <div class="form-group">
-    <label for="position">{{getDisplayName('position')}}</label>
-    <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('position')"
-                   [(model)]="model.position"></position-list>
+  <label for="position">{{getDisplayName('position')}}</label>
+  <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('position')" [(model)]="model.position"></position-list>
+</div>
+<div class="form-group">
+  <label for="attachedTo">{{getDisplayName('attachedTo')}}</label>
+  <div *ngIf="model.attachedTo" class="plain-text">{{model.attachedTo}}</div>
 </div>

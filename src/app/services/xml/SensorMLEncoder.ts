@@ -78,7 +78,7 @@ export class SensorMLEncoder {
       termNode.setAttribute('definition', term.definition);
     }
 
-    if (typeof term.label != 'undefined') {
+    if (typeof term.label !== 'undefined') {
       let labelNode = document.createElementNS(Namespaces.SML, 'sml:label');
       labelNode.textContent = term.label;
       termNode.appendChild(labelNode);
@@ -90,7 +90,7 @@ export class SensorMLEncoder {
       termNode.appendChild(codeSpaceNode);
     }
 
-    if (typeof term.value != 'undefined') {
+    if (typeof term.value !== 'undefined') {
       let labelNode = document.createElementNS(Namespaces.SML, 'sml:value');
       labelNode.textContent = term.value;
       termNode.appendChild(labelNode);
@@ -810,6 +810,9 @@ export class SensorMLEncoder {
         }
         if (component.href) {
           componentNode.setAttributeNS(Namespaces.XLINK, 'xlink:href', component.href);
+        }
+        if (component.title) {
+          componentNode.setAttributeNS(Namespaces.XLINK, 'xlink:title', component.title);
         }
         node.appendChild(componentNode);
       });
