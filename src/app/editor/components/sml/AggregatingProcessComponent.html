@@ -3,14 +3,11 @@
     <label for="components">{{getDisplayName('components')}}</label>
     <div>
       <ul class="list-group list-group-flush">
-          <li *ngFor="let component of model.components.components" class="list-group-item">
-            <div>
-              {{component.name}}
-            </div>
-            <div>
-              {{component.href}}
-            </div>
-          </li>
+        <li *ngFor="let component of model.components.components" class="list-group-item">
+          <div class="plain-text">{{component.name}}</div>
+          <br>
+          <div class="plain-text">{{component.href}}</div>
+        </li>
       </ul>
     </div>
   </div>
