@@ -9,6 +9,6 @@
 <div *ngIf="!loadingDescriptionIds && !descriptionIds">
   There are no descriptions registered.
 </div>
-<div *ngIf="!loadingDescriptionIds && descriptionIds.length === 0">
+<div *ngIf="!loadingDescriptionIds && descriptionIds && descriptionIds.length === 0">
   There are no descriptions which can be used.
 </div>
