@@ -23,7 +23,7 @@
           <div>
             <ul class="list-group">
               <li *ngFor="let item of parentDescription.components.components; let i = index" class="list-group-item">
-                <a [href]="item.href" target="_blank">{{item.name}}</a>
+                <a [href]="item.href" target="_blank">{{item.title}}</a>
                 <a class="btn btn-link" (click)="onRemoveComponent(i)"><i class="fa fa-remove"></i> Remove</a>
               </li>
             </ul>

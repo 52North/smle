@@ -42,7 +42,7 @@ export class ConnectDescriptionService {
         let parentDesc = new SensorMLXmlService().deserialize(res) as any as AggregatingProcess;
         let idx = -1;
         parentDesc.components.components.forEach((entry, i) => {
-          if (entry.name === childDesc.identifier.value) idx = i;
+          if (entry.title === childDesc.identifier.value) idx = i;
         });
         if (idx > -1) parentDesc.components.components.splice(idx, 1);
         this.updateDescription(parentDesc as any as AbstractProcess).subscribe(res => {
@@ -62,7 +62,7 @@ export class ConnectDescriptionService {
       let removedComponent = parentDesc.components.components.splice(idx, 1);
       this.updateDescription(parentDesc as any as AbstractProcess).subscribe(res => {
         // remove attachedTo of description
-        this.sosService.fetchDescription(removedComponent[0].name).subscribe(res => {
+        this.sosService.fetchDescription(removedComponent[0].title).subscribe(res => {
           let desc = new SensorMLXmlService().deserialize(res) as any as AbstractPhysicalProcess;
           desc.attachedTo = null;
           this.updateDescription(desc).subscribe(res => {
@@ -80,8 +80,9 @@ export class ConnectDescriptionService {
       childDesc.attachedTo = this.sosService.createDescribeSensorUrl(parentDescAbsPro.identifier.value);
       this.updateDescription(childDesc).subscribe(res => {
         let component = new Component(
-          childDesc.identifier.value,
-          this.sosService.createDescribeSensorUrl(childDesc.identifier.value)
+          childDesc.gmlId,
+          this.sosService.createDescribeSensorUrl(childDesc.identifier.value),
+          childDesc.identifier.value
         );
         parentDesc.components.components.push(component);
         this.updateDescription(parentDescAbsPro).subscribe(res => {

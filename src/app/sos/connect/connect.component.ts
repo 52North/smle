@@ -81,12 +81,15 @@ export class ConnectDescription implements OnInit {
     this.ignoreIds.length = 0;
     if (this.childDescription) {
       this.ignoreIds.push(this.childDescription.identifier.value);
+      if (this.childDescription.attachedTo) {
+        this.ignoreIds.push(this.sosService.getIdentifierOfDescribeSensorUrl(this.childDescription.attachedTo));
+      }
     }
 
     if (this.parentDescription && this.parentDescription.components) {
       this.ignoreIds.push((this.parentDescription as any as AbstractProcess).identifier.value);
       this.parentDescription.components.components.forEach(entry => {
-        this.ignoreIds.push(entry.name);
+        this.ignoreIds.push(entry.title);
       });
     }
   }
