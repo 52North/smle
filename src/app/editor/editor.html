@@ -1,6 +1,9 @@
-<object-tree class="description-visualizer" *ngIf="!!description" [model]="description"></object-tree>
-<div class="row">
+<div class="visualizer-container" *ngIf="!!description">
+    <object-tree class="description-visualizer" [class.expanded]="visualizerExpanded" [model]="description"></object-tree>
+    <a class="link visualizer-button" (click)="visualizerExpanded = !visualizerExpanded">{{visualizerExpanded ? 'Hide tree' : 'Show tree'}}</a>
+</div>
 
+<div class="row">
     <div *ngIf="!description && !descriptionIsLoading" class="col-sm-offset-4 col-sm-4 type-selector-container">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="descriptionTypeDropdown"

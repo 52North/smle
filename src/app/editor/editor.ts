@@ -33,6 +33,7 @@ export class Editor implements OnInit {
 
     private descriptionType: DescriptionType;
     private descriptionIsLoading: boolean = true;
+    private visualizerExpanded: boolean = false;
 
     constructor(private configurationService: ConfigurationService,
                 private editorService: EditorService,
