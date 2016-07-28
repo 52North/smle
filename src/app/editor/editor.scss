@@ -1,40 +1,33 @@
 .visualizer-open-button, .visualizer-close-button {
   position: absolute;
-  top: 15px;
-  right: 5px;
   cursor: pointer;
 }
 
+.visualizer-open-button {
+  right: 15px;
+  top: 10px;
+}
+
 .visualizer-container {
-  $width: 350px;
-
-  position: fixed;
-  width: $width;
-  right: -$width;
-  height: auto;
-  top: 70px;
-  bottom: 25px;
-  transition: right 200ms ease 200ms;
-  z-index: 1;
-
   .visualizer-close-button {
-    right: 25px;
+    right: 30px;
     top: 0;
   }
 
   .description-visualizer {
-    position: relative;
-    display: block;
-    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 10px;
+    top: 0;
+    bottom: 0;
     border: 1px solid black;
     background-color: white;
     overflow: auto;
     padding: 10px;
-    transition: right 200ms ease 200ms;
   }
 
-  &.expanded {
-    right: 0;
+  &:not(.expanded) {
+    display: none;
   }
 }
 
