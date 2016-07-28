@@ -44,4 +44,12 @@ export class FetchDescription implements OnInit {
   private openToEdit() {
     this.editorService.openEditorWithDescription(this.selectedDesc);
   }
+
+  private openToCopy() {
+    if (this.selectedDesc.identifier && this.selectedDesc.identifier.value) {
+      this.selectedDesc.identifier = null;
+    }
+    this.editorService.openEditorWithDescription(this.selectedDesc);
+  }
+
 }
