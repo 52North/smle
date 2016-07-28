@@ -45,7 +45,7 @@
             <!--Serial number of the lamp -->
             <sml:identifier>
                 <sml:Term definition="http://www.nexosproject.eu/dictionary/definitions.html#serialNumber">
-                    <sml:label>Lamp serial number</sml:label>
+                    <sml:label>Lamp serial number hgasd jfhg askjfdhg khasgdf kjhasg</sml:label>
                     <sml:value>1234567890</sml:value>
                 </sml:Term>
             </sml:identifier>

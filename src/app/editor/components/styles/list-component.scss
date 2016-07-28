@@ -1,0 +1,15 @@
+.list-remove {
+  width: 20%;
+  float:right;
+}
+.list-label {
+  width: 75%;
+  overflow:hidden;
+  display:inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+a {
+  padding: 0px;
+  display: inline;
+}
