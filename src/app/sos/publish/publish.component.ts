@@ -41,6 +41,9 @@ export class PublishDescription implements OnInit {
 
   private useIdentifier() {
     this.description.identifier.value = this.identifier;
+    if (!this.description.identifier.codeSpace) {
+      this.description.identifier.codeSpace = 'uniqueID';
+    }
   }
 
   private editDescription() {
