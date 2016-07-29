@@ -6,15 +6,18 @@ import * as browserDynamic from '@angular/platform-browser-dynamic';
 import * as ngCore from '@angular/core';
 import {APP_ROUTER_PROVIDERS} from './app/routes';
 import {ROUTER_DIRECTIVES} from '@angular/router';
-import {FORM_PROVIDERS, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {MODAL_BROWSER_PROVIDERS} from 'angular2-modal/platform-browser';
+import {disableDeprecatedForms, provideForms, FORM_PROVIDERS} from '@angular/forms';
 
 
 const APPLICATION_PROVIDERS = [
     ...HTTP_PROVIDERS,
     ...APP_ROUTER_PROVIDERS,
     ...FORM_PROVIDERS,
+    disableDeprecatedForms(),
+    provideForms(),
     ...APP_PROVIDERS,
     ...MODAL_BROWSER_PROVIDERS,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
