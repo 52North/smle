@@ -62,7 +62,7 @@
     "@angular/router": "3.0.0-beta.2",
     "angular2-modal": "^1.0.7",
     "angular2-tree-component": "^1.1.10",
-    "bootstrap": "^4.0.0-alpha.2",
+    "bootstrap": "4.0.0-alpha.2",
     "bootstrap-loader": "^1.0.8",
     "core-js": "^2.4.1",
     "font-awesome": "^4.5.0",
