@@ -1,7 +1,7 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('language')">
     <label for="language">{{getDisplayName('language')}}</label>
-    <input type="text" class="form-control" [(ngModel)]="model.language">
+    <input type="text" class="form-control" [(ngModel)]="model.language" name="language">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('keywords')">
     <label for="keywords">{{getDisplayName('keywords')}}</label>
