@@ -17,6 +17,8 @@ import {EventListComponent} from './EventListComponent';
 import {TimeListComponent} from '../basic/TimeListComponent';
 import {PositionListComponent} from '../basic/PositionListComponent';
 import {ChildMetadata, TypedModelComponent} from '../base/TypedModelComponent';
+import {CharacteristicList} from '../../../model/sml/CharacteristicList';
+import {CharacteristicListComponent} from './CharacteristicListComponent';
 
 @Component({
   selector: 'sml-described-object',
@@ -59,6 +61,11 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     this.openNewChild(metadata);
   }
 
+  private openNewCharacteristicListItem(item: CharacteristicList) {
+    var metadata = new ChildMetadata(CharacteristicListComponent, item, this.config.getConfigFor('characteristics'));
+    this.openNewChild(metadata);
+  }
+
   private onAddKeywordList() {
     this.model.keywords.push(new KeywordList());
   }
@@ -83,6 +90,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     this.model.documentation.push(new DocumentList());
   }
 
+  private onAddCharacteristicList() {
+    this.model.characteristics.push(new CharacteristicList());
+  }
+
   private onRemoveKeywordList(index: number) {
     this.model.keywords.splice(index, 1);
   }
@@ -105,5 +116,9 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
   private onRemoveDocumentList(index: number) {
     this.model.documentation.splice(index, 1);
+  }
+
+  private onRemoveCharacteristicList(index: number) {
+    this.model.characteristics.splice(index, 1);
   }
 }

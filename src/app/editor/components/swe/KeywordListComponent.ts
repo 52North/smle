@@ -1,5 +1,5 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
+import {AbstractMetadataListComponent} from '../sml/AbstractMetadataListComponent';
 import {KeywordList} from '../../../model/sml/KeywordList';
 import {CardComponent} from '../basic/CardComponent';
 import {StringsComponent} from '../basic/StringsComponent';

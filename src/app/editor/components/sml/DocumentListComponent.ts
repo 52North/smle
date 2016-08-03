@@ -3,7 +3,7 @@ import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {EditorComponent} from '../base/EditorComponent';
 import {ChildMetadata} from '../base/TypedModelComponent';
-import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
+import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
 import {DocumentList} from '../../../model/sml/DocumentList';
 import {OnlineResource} from '../../../model/iso/gmd/OnlineResource';
 import {OnlineResourceComponent} from '../iso/gmd/OnlineResourceComponent';
