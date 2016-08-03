@@ -3,22 +3,22 @@
     <form>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('city')">
             <label for="city">{{getDisplayName('city')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.city">
+            <input type="text" class="form-control" [(ngModel)]="model.city" name="city">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('postalCode')">
             <label for="postalCode">{{getDisplayName('postalCode')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.postalCode">
+            <input type="text" class="form-control" [(ngModel)]="model.postalCode" name="postalCode">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('country')">
             <label for="country">{{getDisplayName('country')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.country">
+            <input type="text" class="form-control" [(ngModel)]="model.country" name="country">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('administrativeArea')">
             <label for="administrativeArea">{{getDisplayName('administrativeArea')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.administrativeArea">
+            <input type="text" class="form-control" [(ngModel)]="model.administrativeArea" name="administrativeArea">
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('deliveryPoint')">

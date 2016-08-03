@@ -4,7 +4,8 @@
     <div class="form-group">
       <div class="checkbox">
         <label class="c-input c-checkbox">
-          <input type="checkbox" class="form-control" [(ngModel)]="valueSelected" (change)="updateValue($event)">
+          <input type="checkbox" class="form-control" [(ngModel)]="valueSelected" (change)="updateValue($event)"
+                 name="valueSelected">
           <span class="c-indicator"></span>
           Status enabled
         </label>

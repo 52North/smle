@@ -3,27 +3,27 @@
     <form>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('linkage')">
             <label for="linkage">{{getDisplayName('linkage')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.linkage" required>
+            <input type="text" class="form-control" [(ngModel)]="model.linkage" name="linkage" required>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('protocol')">
             <label for="protocol">{{getDisplayName('protocol')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.protocol">
+            <input type="text" class="form-control" [(ngModel)]="model.protocol" name="protocol">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('applicationProfile')">
             <label for="applicationProfile">{{getDisplayName('applicationProfile')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.applicationProfile">
+            <input type="text" class="form-control" [(ngModel)]="model.applicationProfile" name="applicationProfile">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('name')">
             <label for="name">{{getDisplayName('name')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.name">
+            <input type="text" class="form-control" [(ngModel)]="model.name" name="name">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('description')">
             <label for="description">{{getDisplayName('description')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.description">
+            <input type="text" class="form-control" [(ngModel)]="model.description" name="description">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('function')">
             <label for="function">{{getDisplayName('function')}}</label>
-            <select class="form-control" [(ngModel)]="model.function">
+            <select class="form-control" [(ngModel)]="model.function" name="function">
                 <option value="download">Download</option>
                 <option value="information">Information</option>
                 <option value="offlineAccess">OfflineAccess</option>

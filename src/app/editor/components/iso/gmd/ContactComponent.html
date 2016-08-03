@@ -12,11 +12,11 @@
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contactInstructions')">
             <label for="model.contactInstructions">{{getDisplayName('contactInstructions')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.contactInstructions">
+            <input type="text" class="form-control" [(ngModel)]="model.contactInstructions" name="contactInstructions">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('hoursOfService')">
             <label for="model.hoursOfService">{{getDisplayName('hoursOfService')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.hoursOfService">
+            <input type="text" class="form-control" [(ngModel)]="model.hoursOfService" name="hoursOfService">
         </div>
     </form>
 </card>
