@@ -4,7 +4,7 @@
         <div *ngIf="!verticalMode" class="pull-left"><strong class="title">{{title}}</strong></div>
         <div *ngIf="!verticalMode" class="pull-right">
             <label class="c-input c-checkbox">
-              <input type="checkbox" [ngModel]="showAll" (ngModelChange)="onShowAllChange($event)">
+              <input type="checkbox" [ngModel]="showAll" (ngModelChange)="onShowAllChange($event)" name="showAll">
               <span class="c-indicator"></span>
               Show all
             </label>

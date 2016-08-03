@@ -1,14 +1,14 @@
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('gmlId')">
   <label for="gmlId">{{getDisplayName('gmlId')}}</label>
-  <input type="text" class="form-control" [(ngModel)]="model.gmlId">
+  <input type="text" class="form-control" [(ngModel)]="model.gmlId" name="gmlId">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('description')">
   <label for="description">{{getDisplayName('description')}}</label>
-  <input type="text" class="form-control" [(ngModel)]="model.description">
+  <input type="text" class="form-control" [(ngModel)]="model.description" name="description">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('descriptionReference')">
   <label for="descriptionReference">{{getDisplayName('descriptionReference')}}</label>
-  <input type="text" class="form-control" [(ngModel)]="model.descriptionReference">
+  <input type="text" class="form-control" [(ngModel)]="model.descriptionReference" name="descriptionReference">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identifier')">
   <label for="identifier">{{getDisplayName('identifier')}}</label>

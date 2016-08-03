@@ -1,14 +1,15 @@
-import {Application} from './app/app';
-import {APP_PROVIDERS} from './app/providers';
-import {APP_DIRECTIVES} from './app/directives';
+import { Application } from './app/app';
+import { APP_PROVIDERS } from './app/providers';
+import { APP_DIRECTIVES } from './app/directives';
 import * as browser from '@angular/platform-browser';
 import * as browserDynamic from '@angular/platform-browser-dynamic';
 import * as ngCore from '@angular/core';
-import {APP_ROUTER_PROVIDERS} from './app/routes';
-import {ROUTER_DIRECTIVES} from '@angular/router';
-import {FORM_PROVIDERS, LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {HTTP_PROVIDERS, JSONP_PROVIDERS} from '@angular/http';
-import {MODAL_BROWSER_PROVIDERS} from 'angular2-modal/platform-browser';
+import { APP_ROUTER_PROVIDERS } from './app/routes';
+import { ROUTER_DIRECTIVES } from '@angular/router';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HTTP_PROVIDERS, JSONP_PROVIDERS } from '@angular/http';
+import { MODAL_BROWSER_PROVIDERS } from 'angular2-modal/platform-browser';
+import { disableDeprecatedForms, provideForms, FORM_PROVIDERS } from '@angular/forms';
 
 
 const APPLICATION_PROVIDERS = [
@@ -16,6 +17,8 @@ const APPLICATION_PROVIDERS = [
   ...JSONP_PROVIDERS,
   ...APP_ROUTER_PROVIDERS,
   ...FORM_PROVIDERS,
+  disableDeprecatedForms(),
+  provideForms(),
   ...APP_PROVIDERS,
   ...MODAL_BROWSER_PROVIDERS,
   { provide: LocationStrategy, useClass: HashLocationStrategy }

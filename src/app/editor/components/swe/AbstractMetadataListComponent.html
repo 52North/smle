@@ -1,5 +1,5 @@
 <swe-abstract-identifiable [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-identifiable>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('definition')">
     <label for="definition">Definition</label>
-    <input type="text" class="form-control" [(ngModel)]="model.definition">
+    <input type="text" class="form-control" [(ngModel)]="model.definition" name="definition">
 </div>

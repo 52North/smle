@@ -29,11 +29,12 @@ enum DescriptionType {
   pipes: [SensorMLPipe]
 })
 export class Editor implements OnInit {
-
   public description: AbstractProcess;
   public config: Configuration;
+
   private descriptionType: DescriptionType;
   private descriptionIsLoading: boolean = true;
+  private visualizerExpanded: boolean = false;
 
   constructor(
     private publish: PublishDescriptionService,

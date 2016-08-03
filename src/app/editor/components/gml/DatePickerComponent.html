@@ -1,7 +1,7 @@
 <p-calendar *ngIf="model" [ngModel]="dateTimeString" (ngModelChange)="onStringDateChange($event)" [dateFormat]="dateFormat"
             [timeFormat]="timeFormat" [minDate]="getMinFormattedDate()" [minTime]="getMinFormattedTime()"
             [maxDate]="getMaxFormattedDate()" [maxTime]="getMaxFormattedTime()" styleClass="col-sm-12"
-            inputStyleClass="form-control" class="row"></p-calendar>
+            inputStyleClass="form-control" class="row" name="dateTime"></p-calendar>
 <div>
   <a *ngIf="model" class="btn btn-link" (click)="onClearDateEntry()">clear</a>
   <a *ngIf="!model" class="btn btn-link" (click)="onCreateDateEntry()">create</a>

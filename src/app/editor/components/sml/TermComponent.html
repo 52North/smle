@@ -4,19 +4,19 @@
         <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('label')">
             <label for="label">{{getDisplayName('label')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.label">
+            <input type="text" class="form-control" [(ngModel)]="model.label" name="label">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('codeSpace')">
             <label for="codeSpace">{{getDisplayName('codeSpace')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.codeSpace">
+            <input type="text" class="form-control" [(ngModel)]="model.codeSpace" name="codeSpace">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('definition')">
             <label for="definition">{{getDisplayName('definition')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.definition">
+            <input type="text" class="form-control" [(ngModel)]="model.definition" name="definition">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('value')">
             <label for="value">{{getDisplayName('value')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.value">
+            <input type="text" class="form-control" [(ngModel)]="model.value" name="value">
         </div>
     </form>
 </card>

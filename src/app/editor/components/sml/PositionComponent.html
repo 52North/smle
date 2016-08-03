@@ -3,11 +3,11 @@
     <div *ngIf="(latitude || latitude === null || latitude === 0) && (longitude || longitude === null || longitude === 0)">
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('latitude')">
             <label for="latitude">Latitude</label>
-            <input type="number" class="form-control" [(ngModel)]="latitude">
+            <input type="number" class="form-control" [(ngModel)]="latitude" name="latitude">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('longitude')">
             <label for="longitude">Longitude</label>
-            <input type="number" class="form-control" [(ngModel)]="longitude">
+            <input type="number" class="form-control" [(ngModel)]="longitude" name="longitude">
         </div>
         <div class="form-group">
             <button class="btn btn-secondary" type="button" (click)="openMap()">
@@ -17,17 +17,17 @@
         <div *ngIf="(altitude || altitude === null || altitude === 0) && (isShowAll || config.isFieldMandatory('altitude'))"
              class="form-group">
             <label for="altitude">Altitude</label>
-            <input type="number" class="form-control" [(ngModel)]="altitude">
+            <input type="number" class="form-control" [(ngModel)]="altitude" name="altitude">
         </div>
     </div>
     <div *ngIf="(trueHeading || trueHeading === null || trueHeading === 0) && (pitch || pitch === null || pitch === 0)">
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('trueHeading')">
             <label for="trueHeading">True Heading</label>
-            <input type="number" class="form-control" [(ngModel)]="trueHeading">
+            <input type="number" class="form-control" [(ngModel)]="trueHeading" name="trueHeading">
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('pitch')">
             <label for="pitch">Pitch</label>
-            <input type="number" class="form-control" [(ngModel)]="pitch">
+            <input type="number" class="form-control" [(ngModel)]="pitch" name="pitch">
         </div>
     </div>
 </card>

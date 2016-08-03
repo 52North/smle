@@ -17,9 +17,6 @@ export class ObjectTreeComponent implements OnChanges {
   @Input()
   model: AbstractProcess;
 
-  @Input()
-  shouldRebuildOnEnter: boolean = true;
-
   private options = {
     treeNodeTemplate: TreeNodeComponent,
     expandedField: 'isExpanded'
@@ -27,16 +24,21 @@ export class ObjectTreeComponent implements OnChanges {
 
   private nodes: Array<INode> = [];
 
-  @HostListener('mouseenter')
-  private onMouseEnter(event) {
-    if (this.shouldRebuildOnEnter) {
-      this.rebuildTree(this.model);
-    }
+  constructor() {
+    this.periodicalRebuild();
+  }
+
+  private periodicalRebuild() {
+    setTimeout(() => {
+      this.periodicalRebuild();
+    }, 1000);
+
+    this.rebuildTree(this.model);
   }
 
   private rebuildTree(currentModel) {
     var nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes);
-    this.nodes = nodes;
+    this.nodes = nodes || [];
   }
 
   ngOnChanges(changes: SimpleChanges) {
