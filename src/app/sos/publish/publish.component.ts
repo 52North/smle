@@ -33,6 +33,7 @@ export class PublishDescription implements OnInit {
     if (this.description && !this.description.identifier) {
       this.description.identifier = new CodeType('');
     }
+    this.hasSosDescription();
   }
 
   private createUUID() {
@@ -44,6 +45,7 @@ export class PublishDescription implements OnInit {
     if (!this.description.identifier.codeSpace) {
       this.description.identifier.codeSpace = 'uniqueID';
     }
+    this.hasSosDescription();
   }
 
   private editDescription() {
