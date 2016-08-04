@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, HostListener } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, HostListener, DoCheck } from '@angular/core';
 import { TreeComponent } from 'angular2-tree-component';
 import { AbstractProcess } from '../../../../model/sml/AbstractProcess';
 import { getDisplayName } from '../../../../decorators/DisplayName';
@@ -13,9 +13,10 @@ const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \
   styles: [require('../../styles/object-tree-component.scss')],
   directives: [TreeComponent]
 })
-export class ObjectTreeComponent implements OnChanges {
+export class ObjectTreeComponent implements OnChanges, DoCheck {
   @Input()
   model: AbstractProcess;
+  private prevModel: string;
 
   @Input()
   shouldRebuildTree: boolean = true;
@@ -28,7 +29,8 @@ export class ObjectTreeComponent implements OnChanges {
   private nodes: Array<INode> = [];
 
   constructor() {
-    this.periodicalRebuild();
+    //this.periodicalRebuild();
+    this.prevModel = JSON.stringify(this.model);
   }
 
   private periodicalRebuild() {
@@ -37,13 +39,19 @@ export class ObjectTreeComponent implements OnChanges {
         this.periodicalRebuild();
       }, 1000);
     }
-
     this.rebuildTree(this.model);
   }
 
   private rebuildTree(currentModel) {
     var nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes);
     this.nodes = nodes || [];
+  }
+
+  ngDoCheck() {
+    if (this.shouldRebuildTree && JSON.stringify(this.model) !== this.prevModel) {
+      this.prevModel = JSON.stringify(this.model);
+      this.rebuildTree(this.model);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
