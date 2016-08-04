@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, HostListener, DoCheck } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, HostListener } from '@angular/core';
 import { TreeComponent } from 'angular2-tree-component';
 import { AbstractProcess } from '../../../../model/sml/AbstractProcess';
 import { getDisplayName } from '../../../../decorators/DisplayName';
@@ -17,6 +17,9 @@ export class ObjectTreeComponent implements OnChanges {
   @Input()
   model: AbstractProcess;
 
+  @Input()
+  shouldRebuildTree: boolean = true;
+
   private options = {
     treeNodeTemplate: TreeNodeComponent,
     expandedField: 'isExpanded'
@@ -29,9 +32,11 @@ export class ObjectTreeComponent implements OnChanges {
   }
 
   private periodicalRebuild() {
-    setTimeout(() => {
-      this.periodicalRebuild();
-    }, 1000);
+    if (this.shouldRebuildTree) {
+      setTimeout(() => {
+        this.periodicalRebuild();
+      }, 1000);
+    }
 
     this.rebuildTree(this.model);
   }
@@ -43,7 +48,6 @@ export class ObjectTreeComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     var modelChange = changes['model'];
-
     if (modelChange) {
       this.rebuildTree(modelChange.currentValue);
     }
