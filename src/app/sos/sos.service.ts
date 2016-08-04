@@ -11,7 +11,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class SosService {
 
-  private sosUrl: string = 'http://localhost:8081/52n-sos-webapp/service';
+  private sosUrl: string = 'http://192.168.0.11:8081/52n-sos-webapp/service';
+  private proxyUrl: string = 'http://192.168.0.11:8082/api/proxy';
 
   constructor(
     private http: Http
@@ -25,7 +26,7 @@ export class SosService {
         'OperationsMetadata'
       ]
     });
-    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
       .map(this.extractDescriptionIDs)
       .catch(this.handleError);
   }
@@ -52,7 +53,7 @@ export class SosService {
       'version': '2.0.0',
       'procedure': descId
     });
-    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
       .map((res) => {
         let json = res.json();
         return json.deletedProcedure === descId ? true : false;
@@ -82,6 +83,7 @@ export class SosService {
       'request': 'InsertSensor',
       'service': 'SOS',
       'version': '2.0.0',
+      'procedureId': description.identifier.value,
       'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
       'procedureDescription': new SensorMLXmlService().serialize(description),
       // featureOfInterest auswählbar machen
@@ -94,7 +96,7 @@ export class SosService {
       'observableProperty': [
         'http://www.52north.org/test/observableProperty/9_1']
     });
-    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
       .map(this.handleAddDescription)
       .catch(this.handleAddDescriptionError);
   }
@@ -108,7 +110,7 @@ export class SosService {
       'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
       'procedureDescription': new SensorMLXmlService().serialize(description)
     });
-    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
       .map(this.handleAddDescription)
       .catch(this.handleAddDescriptionError);
   }
@@ -149,7 +151,7 @@ export class SosService {
     if (json.exceptions && json.exceptions.length >= -1) {
       let errors: Array<string> = [];
       (json.exceptions as Array<any>).forEach(entry => {
-        errors.push(entry.locator);
+        errors.push(entry.locator || entry.text);
       });
       return Observable.throw(errors);
     }
@@ -162,6 +164,10 @@ export class SosService {
 
   private useSosUrl(sosUrl: string) {
     return sosUrl || this.sosUrl;
+  }
+
+  private useProxyUrl(proxyUrl: string) {
+    return proxyUrl || this.proxyUrl;
   }
 
 }

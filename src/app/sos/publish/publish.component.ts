@@ -85,6 +85,7 @@ export class PublishDescription implements OnInit {
   }
 
   private resetError() {
+    this.success = null;
     this.errors.length = 0;
   }
 
