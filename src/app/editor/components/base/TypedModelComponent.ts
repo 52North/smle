@@ -1,7 +1,7 @@
 import {Input, Output, EventEmitter} from '@angular/core';
 import {Configuration} from '../../../services/config/Configuration';
 import {Type} from '@angular/core/src/facade/lang';
-import {getDisplayName} from '../../../decorators/DisplayName';
+import {BaseComponent} from './BaseComponent';
 
 declare var jQuery: any;
 
@@ -29,7 +29,7 @@ export class ChildMetadata {
     }
 }
 
-export abstract class TypedModelComponent<T> {
+export abstract class TypedModelComponent<T> extends BaseComponent {
     @Input()
     public model: T;
     @Input()
@@ -50,10 +50,5 @@ export abstract class TypedModelComponent<T> {
 
     protected openNewChild(childMetadata: ChildMetadata) {
         this.openAsChild.emit(childMetadata);
-    }
-
-    protected getDisplayName(propertyName: string, target: any = this.model) {
-        var displayName = getDisplayName(target, propertyName);
-        return displayName || propertyName;
     }
 }
