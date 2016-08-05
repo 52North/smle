@@ -1,5 +1,5 @@
-<card [verticalMode]="hasChild" [title]="'Named Swe Data Component'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
-      [(showAll)]="isShowAll">
+<card [verticalMode]="hasChild" [title]="'Named Data Component'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('name')">
             <label for="name">{{getDisplayName('name')}}</label>

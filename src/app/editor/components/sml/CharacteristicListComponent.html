@@ -15,8 +15,8 @@
                             Add characteristic
                         </button>
                         <div class="dropdown-menu" aria-labelledby="characteristicTypeDropdown">
-                            <a class="dropdown-item" (click)="onAddCharacteristic(1)">1</a>
-                            <a class="dropdown-item" (click)="onAddCharacteristic(2)">2</a>
+                            <a class="dropdown-item" *ngFor="let option of options"
+                               (click)="onAddCharacteristic(option.type)">{{option.name}}</a>
                         </div>
                     </div>
                 </list-add-section>
