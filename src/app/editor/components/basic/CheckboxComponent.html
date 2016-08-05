@@ -1,0 +1,9 @@
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory(fieldName)">
+    <div class="checkbox">
+        <label class="c-input c-checkbox">
+            <input type="checkbox" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName">
+            <span class="c-indicator"></span>
+            {{getDisplayName(fieldName)}}
+        </label>
+    </div>
+</div>
