@@ -15,7 +15,7 @@ export class SweText extends AbstractSimpleComponent {
     value: string;
 
     @DisplayName('Constraint')
-    constraint: AllowedTokens;
+    constraint: AllowedTokens = new AllowedTokens();
 
     toString() {
         return super.toString('SWE text');

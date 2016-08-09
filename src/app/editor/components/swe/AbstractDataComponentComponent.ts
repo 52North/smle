@@ -5,7 +5,7 @@ import {TextFieldComponent} from '../basic/TextFieldComponent';
 import {CheckboxComponent} from '../basic/CheckboxComponent';
 
 @Component({
-    selector: 'sml-abstract-data-component',
+    selector: 'swe-abstract-data',
     template: require('./AbstractDataComponentComponent.html'),
     directives: [TextFieldComponent, CheckboxComponent]
 })
