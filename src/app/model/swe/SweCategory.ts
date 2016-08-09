@@ -21,7 +21,7 @@ export class SweCategory extends AbstractSimpleComponent {
     codeSpace: string;
 
     @DisplayName('Constraint')
-    constraint: AllowedTokens;
+    constraint: AllowedTokens = new AllowedTokens();
 
     toString() {
         return super.toString('SWE category');

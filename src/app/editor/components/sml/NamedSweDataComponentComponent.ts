@@ -16,13 +16,14 @@ import {SweDataArray} from '../../../model/swe/SweDataArray';
 import {SweTextComponent} from '../swe/SweTextComponent';
 import {TextFieldComponent} from '../basic/TextFieldComponent';
 import {SweBooleanComponent} from '../swe/SweBooleanComponent';
+import {SweCategoryComponent} from '../swe/SweCategoryComponent';
 
 @Component({
     selector: 'sml-named-swe-data-component',
     template: require('./NamedSweDataComponentComponent.html'),
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
-        SweBooleanComponent]
+        SweBooleanComponent, SweCategoryComponent]
 })
 export class NamedSweDataComponentComponent extends EditorComponent<NamedSweDataComponent> implements AfterContentInit {
     private componentType: ComponentType;
