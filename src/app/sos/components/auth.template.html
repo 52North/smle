@@ -1,0 +1,6 @@
+<div (click)="logIn()" *ngIf="!user">
+  login
+</div>
+<div (click)="logOut()" *ngIf="user">
+  {{user.username}} - logout
+</div>
