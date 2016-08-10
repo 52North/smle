@@ -1,0 +1,17 @@
+<script type="text/javascript">
+
+  document.onreadystatechange = () => {
+    if (document.readyState === 'complete') {
+      (function() {
+        window.opener.postMessage('Hello opener', 'http://127.0.0.1:3000');
+        setTimeout(function() {
+          window.close();
+        }, 1000);
+      })();
+    }
+  };
+
+</script>
+<div class="">
+  Successfully logged in!
+</div>
