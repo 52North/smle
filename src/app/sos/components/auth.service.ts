@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
 
-  private authUrl: string = 'http://127.0.0.1:8082/auth/github';
+  private authUrl: string = 'http://127.0.0.1:8082/auth/wp';
   private logOutUrl: string = 'http://127.0.0.1:8082/auth/logout';
   private userInfoUrl: string = 'http://127.0.0.1:8082/auth/info';
+
+  public logInChangedEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private http: Http
@@ -20,23 +22,23 @@ export class AuthService {
   }
 
   public logIn() {
+    this.logInChangedEmitter.emit(true);
     var popup = window.open(this.authUrl, '_blank', 'width=500, height=500');
-    function receiveMessage(event) {
+    let self = this;
+    window.addEventListener('message', event => {
       if (event.origin !== 'http://127.0.0.1:3000') return;
-      debugger; // TODO fire event to inform about login
-      window.removeEventListener('message', receiveMessage);
-    }
-    window.addEventListener('message', receiveMessage);
+      this.logInChangedEmitter.emit(true);
+      window.removeEventListener('message', null);
+    }, true);
   }
 
   public logOut(): Observable<boolean> {
     return this.http.get(this.logOutUrl, { withCredentials: true })
-      .map(this.handleLogOut)
+      .map(res => {
+        this.logInChangedEmitter.emit(false);
+        return true;
+      })
       .catch(this.handleError);
-  }
-
-  private handleLogOut(res: Response): boolean {
-    return true;
   }
 
   private extractUserInfo(res: Response): UserInfo {

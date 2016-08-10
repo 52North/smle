@@ -17,6 +17,9 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+    this.authService.logInChangedEmitter.subscribe(res => {
+      this.getUser();
+    });
   }
 
   protected logIn() {
