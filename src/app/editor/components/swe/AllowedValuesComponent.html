@@ -1,2 +1,32 @@
+<ul class="list-group list-group-flush">
+    <li *ngFor="let item of model.values; let i = index" class="list-group-item">
+        <span class="list-label">{{item.toString()}}</span>
+        <a class="list-remove btn btn-link" (click)="removeValue(i)"><i class="fa fa-remove"></i> Remove</a>
+    </li>
+    <li class="list-group-item list-add-section">
+        <div class="row">
+            <div class="input-wrapper col-sm-8">
+                <input type="number" class="form-control" [(ngModel)]="singleItem" name="single">
+            </div>
+            <div class="link-wrapper col-sm-4">
+                <a (click)="addSingleItem()" class="btn btn-link list-add-section__single">
+                    <i class="fa fa-fw fa-plus"></i> Add single</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrapper col-sm-4">
+                <input type="number" class="form-control" [(ngModel)]="pairItem[0]" name="pair1">
+            </div>
+            <div class="input-wrapper col-sm-4">
+                <input type="number" class="form-control" [(ngModel)]="pairItem[1]" name="pair2">
+            </div>
+            <div class="input-wrapper col-sm-4">
+                <a (click)="addPairItem()" class="btn btn-link list-add-section__pair">
+                    <i class="fa fa-fw fa-plus"></i> Add pair</a>
+            </div>
+        </div>
+    </li>
+</ul>
+
 <swe-abstract-numeric-allowed-values [model]="model" [config]="config"
                                      [isShowAll]="isShowAll"></swe-abstract-numeric-allowed-values>
