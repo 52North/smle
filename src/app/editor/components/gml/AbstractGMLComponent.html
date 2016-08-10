@@ -7,14 +7,14 @@
   <input type="text" class="form-control" [(ngModel)]="model.description" name="description">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('descriptionReference')">
-  <label for="gmlId">{{getDisplayName('descriptionReference')}}</label>
+  <label for="descriptionReference">{{getDisplayName('descriptionReference')}}</label>
   <input type="text" class="form-control" [(ngModel)]="model.descriptionReference" name="descriptionReference">
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identifier')">
   <label for="identifier">{{getDisplayName('identifier')}}</label>
   <div class="nested-element">
     <div *ngIf="model.identifier">
-      <gml-code-type [model]="model.identifier" [config]="config.getConfigFor('identifier')"></gml-code-type>
+      <gml-code-type [model]="model.identifier" [config]="config.getConfigFor('identifier')" [isShowAll]="isShowAll"></gml-code-type>
     </div>
     <div *ngIf="!model.identifier">
       <a type="button" class="btn btn-link" (click)="createIdentifier()">Create code type</a>
