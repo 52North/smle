@@ -16,7 +16,7 @@
         <li router-active="active" class="nav-item">
           <a class="nav-link" [routerLink]="['/fetch']">Edit/View</a>
         </li>
-        <li router-active="active" class="nav-item">
+        <li router-active="active" class="nav-item" *ngIf="authService.loggedInUser">
           <a class="nav-link" [routerLink]="['/delete']">Delete</a>
         </li>
         <li router-active="active" class="nav-item">
