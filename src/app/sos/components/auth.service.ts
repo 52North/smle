@@ -5,46 +5,53 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
 
-  private authUrl: string = 'http://127.0.0.1:8082/auth/wp';
+  public loggedInUser: UserInfo = null;
+
+  private authUrl: string = 'http://127.0.0.1:8082/auth/github';
   private logOutUrl: string = 'http://127.0.0.1:8082/auth/logout';
   private userInfoUrl: string = 'http://127.0.0.1:8082/auth/info';
 
-  public logInChangedEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   constructor(
     private http: Http
-  ) { }
-
-  public getUserInfo(): Observable<UserInfo> {
-    return this.http.get(this.userInfoUrl, { withCredentials: true })
-      .map(this.extractUserInfo)
-      .catch(this.handleError);
+  ) {
+    this.getUserInfo();
   }
 
   public logIn() {
-    this.logInChangedEmitter.emit(true);
     var popup = window.open(this.authUrl, '_blank', 'width=500, height=500');
     let self = this;
     window.addEventListener('message', event => {
       if (event.origin !== 'http://127.0.0.1:3000') return;
-      this.logInChangedEmitter.emit(true);
+      this.getUserInfo();
       window.removeEventListener('message', null);
     }, true);
   }
 
-  public logOut(): Observable<boolean> {
-    return this.http.get(this.logOutUrl, { withCredentials: true })
+  public logOut() {
+    this.http.get(this.logOutUrl, { withCredentials: true })
       .map(res => {
-        this.logInChangedEmitter.emit(false);
-        return true;
+        this.loggedInUser = null;
       })
-      .catch(this.handleError);
+      .catch(this.handleError)
+      .subscribe();
   }
 
-  private extractUserInfo(res: Response): UserInfo {
-    let json = res.json();
-    if (json.user) return json.user as UserInfo;
-    return null;
+  public isLoggedIn(): boolean {
+    console.log(this.loggedInUser);
+    console.log("isLoggedIn" + this.loggedInUser == null);
+    return this.loggedInUser !== null;
+  }
+
+  private getUserInfo() {
+    this.http.get(this.userInfoUrl, { withCredentials: true })
+      .map(res => {
+        let json = res.json();
+        if (json.user) {
+          this.loggedInUser = json.user as UserInfo;
+        }
+      })
+      .catch(this.handleError)
+      .subscribe();
   }
 
   private handleError(res: Response) {

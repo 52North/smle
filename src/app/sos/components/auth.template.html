@@ -1,6 +1,6 @@
-<div (click)="logIn()" *ngIf="!user">
+<div (click)="logIn()" *ngIf="!authService.loggedInUser">
   login
 </div>
-<div (click)="logOut()" *ngIf="user">
-  {{user.username}} - logout
+<div (click)="logOut()" *ngIf="authService.loggedInUser">
+  {{authService.loggedInUser.username}} - logout
 </div>
