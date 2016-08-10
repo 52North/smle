@@ -11,6 +11,8 @@
                              [isShowAll]="isShowAll"></swe-count>
                 <swe-boolean *ngSwitchCase="4" [model]="model.component" [config]="config.getConfigFor('component')"
                           [isShowAll]="isShowAll"></swe-boolean>
+                <swe-quantity *ngSwitchCase="5" [model]="model.component" [config]="config.getConfigFor('component')"
+                             [isShowAll]="isShowAll"></swe-quantity>
                 <swe-category *ngSwitchCase="6" [model]="model.component" [config]="config.getConfigFor('component')"
                              [isShowAll]="isShowAll"></swe-category>
             </div>
