@@ -3,10 +3,10 @@ import {Configuration} from '../../../services/config/Configuration';
 import {BaseComponent} from '../base/BaseComponent';
 
 @Component({
-    selector: 'smle-checkbox',
-    template: require('./CheckboxComponent.html')
+    selector: 'number-field',
+    template: require('./NumberFieldComponent.html')
 })
-export class CheckboxComponent extends BaseComponent implements OnChanges {
+export class NumberFieldComponent extends BaseComponent implements OnChanges {
     @Input()
     model: Object;
 

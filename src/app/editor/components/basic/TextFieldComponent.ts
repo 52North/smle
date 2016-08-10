@@ -21,7 +21,7 @@ export class TextFieldComponent extends BaseComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): any {
         // if (this.model && this.fieldName && !this.model.hasOwnProperty(this.fieldName)) {
-        //     throw new ReferenceError((<any>this.model.constructor).name + ' has no property "' + this.fieldName + '"');
+        //     throw new ReferenceError(`${(<any>this.model.constructor).name} has no property "${this.fieldName}"`);
         // }
     }
 }
