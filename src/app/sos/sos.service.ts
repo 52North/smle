@@ -11,8 +11,8 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class SosService {
 
-  private sosUrl: string = 'http://192.168.0.11:8081/52n-sos-webapp/service';
-  private proxyUrl: string = 'http://192.168.0.11:8082/api/proxy';
+  private sosUrl: string = 'http://192.168.52.145:8081/52n-sos-webapp/service';
+  private proxyUrl: string = 'http://192.168.52.145:8082/api/proxy';
 
   constructor(
     private http: Http
@@ -26,7 +26,10 @@ export class SosService {
         'OperationsMetadata'
       ]
     });
-    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, {
+      headers: this.createJsonHeader(),
+      withCredentials: true
+    })
       .map(this.extractDescriptionIDs)
       .catch(this.handleError);
   }
@@ -39,7 +42,10 @@ export class SosService {
       'procedure': descId,
       'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0'
     });
-    return this.http.post(this.useSosUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useSosUrl(sosUrl), body, {
+      headers: this.createJsonHeader(),
+      withCredentials: true
+    })
       .map((res) => {
         let json = res.json();
         return json.procedureDescription.description || json.procedureDescription;
@@ -53,7 +59,10 @@ export class SosService {
       'version': '2.0.0',
       'procedure': descId
     });
-    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, {
+      headers: this.createJsonHeader(),
+      withCredentials: true
+    })
       .map((res) => {
         let json = res.json();
         return json.deletedProcedure === descId ? true : false;
@@ -96,7 +105,10 @@ export class SosService {
       'observableProperty': [
         'http://www.52north.org/test/observableProperty/9_1']
     });
-    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, {
+      headers: this.createJsonHeader(),
+      withCredentials: true
+    })
       .map(this.handleAddDescription)
       .catch(this.handleAddDescriptionError);
   }
@@ -110,7 +122,10 @@ export class SosService {
       'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
       'procedureDescription': new SensorMLXmlService().serialize(description)
     });
-    return this.http.post(this.useProxyUrl(sosUrl), body, { headers: this.createJsonHeader() })
+    return this.http.post(this.useProxyUrl(sosUrl), body, {
+      headers: this.createJsonHeader(),
+      withCredentials: true
+    })
       .map(this.handleAddDescription)
       .catch(this.handleAddDescriptionError);
   }
