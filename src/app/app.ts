@@ -5,6 +5,7 @@ import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import { Modal, BS_MODAL_PROVIDERS } from 'angular2-modal/plugins/bootstrap';
 import { AuthComponent } from './sos/components/auth.component';
 import { AuthService } from './sos/components/auth.service';
+import { LoggedInDirective } from './sos/components/loggedIn.directive';
 
 /*
  * App Component
@@ -13,7 +14,7 @@ import { AuthService } from './sos/components/auth.service';
 @Component({
   selector: 'app',
   providers: [],
-  directives: [AuthComponent],
+  directives: [AuthComponent, LoggedInDirective],
   pipes: [],
   encapsulation: ViewEncapsulation.None,
   viewProviders: [...BS_MODAL_PROVIDERS],

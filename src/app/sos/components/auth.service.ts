@@ -11,6 +11,8 @@ export class AuthService {
   private logOutUrl: string = 'http://127.0.0.1:8082/auth/logout';
   private userInfoUrl: string = 'http://127.0.0.1:8082/auth/info';
 
+  public logInChangesEvent: EventEmitter<boolean> = new EventEmitter<boolean>(false);
+
   constructor(
     private http: Http
   ) {
@@ -24,6 +26,7 @@ export class AuthService {
       if (event.origin !== 'http://127.0.0.1:3000') return;
       this.getUserInfo();
       window.removeEventListener('message', null);
+      // TODO fix removeEventListener issue
     }, true);
   }
 
@@ -31,6 +34,7 @@ export class AuthService {
     this.http.get(this.logOutUrl, { withCredentials: true })
       .map(res => {
         this.loggedInUser = null;
+        this.logInChangesEvent.emit(false);
       })
       .catch(this.handleError)
       .subscribe();
@@ -48,6 +52,7 @@ export class AuthService {
         let json = res.json();
         if (json.user) {
           this.loggedInUser = json.user as UserInfo;
+          this.logInChangesEvent.emit(true);
         }
       })
       .catch(this.handleError)

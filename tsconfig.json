@@ -274,6 +274,7 @@
     "src/app/sos/components/auth-guard.service.ts",
     "src/app/sos/components/auth.component.ts",
     "src/app/sos/components/auth.service.ts",
+    "src/app/sos/components/loggedIn.directive.ts",
     "src/app/sos/components/selectDescription.component.ts",
     "src/app/sos/connect/connect.component.ts",
     "src/app/sos/connect/connect.service.ts",

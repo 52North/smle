@@ -30,7 +30,7 @@
     </div>
 
     <div class="publish container" *ngIf="!!description">
-      <div class="row">
+      <div class="row" *loggedIn>
         <div class="col-md-12">
           <a class="btn btn-primary center-block" (click)="publishDescription()">Publish Description</a>
         </div>

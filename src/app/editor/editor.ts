@@ -13,6 +13,7 @@ import { PhysicalComponent } from '../model/sml/PhysicalComponent';
 import { SimpleProcess } from '../model/sml/SimpleProcess';
 import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
 import { PublishDescriptionService } from '../sos/publish/publish.service';
+import { LoggedInDirective } from '../sos/components/loggedIn.directive';
 
 enum DescriptionType {
   PhysicalSystem = 1,
@@ -25,7 +26,7 @@ enum DescriptionType {
   template: require('./editor.html'),
   styles: [require('./editor.scss')],
   directives: [PhysicalSystemComponent, PhysicalComponentComponent, SimpleProcessComponent,
-    ObjectTreeComponent],
+    ObjectTreeComponent, LoggedInDirective],
   pipes: [SensorMLPipe]
 })
 export class Editor implements OnInit {
