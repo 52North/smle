@@ -21,13 +21,12 @@ export class AuthService {
 
   public logIn() {
     var popup = window.open(this.authUrl, '_blank', 'width=500, height=500');
-    let self = this;
-    window.addEventListener('message', event => {
+    var listener = (event) => {
       if (event.origin !== 'http://127.0.0.1:3000') return;
+      window.removeEventListener('message', listener, true);
       this.getUserInfo();
-      window.removeEventListener('message', null);
-      // TODO fix removeEventListener issue
-    }, true);
+    }
+    window.addEventListener('message', listener, true);
   }
 
   public logOut() {
@@ -41,8 +40,6 @@ export class AuthService {
   }
 
   public isLoggedIn(): boolean {
-    console.log(this.loggedInUser);
-    console.log("isLoggedIn" + this.loggedInUser == null);
     return this.loggedInUser !== null;
   }
 
