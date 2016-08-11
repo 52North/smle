@@ -25,7 +25,7 @@ export class AuthService {
       if (event.origin !== 'http://127.0.0.1:3000') return;
       window.removeEventListener('message', listener, true);
       this.getUserInfo();
-    }
+    };
     window.addEventListener('message', listener, true);
   }
 
