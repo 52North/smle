@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {TypedModelComponent} from '../base/TypedModelComponent';
 import {AllowedValues} from '../../../model/swe/AllowedValues';
 import {AbstractNumericAllowedValuesComponent} from './AbstractNumericAllowedValuesComponent';
-import {ListComponent} from "../basic/ListComponent";
+import {ListComponent} from '../basic/ListComponent';
 
 @Component({
     selector: 'swe-allowed-values',
@@ -14,7 +14,7 @@ import {ListComponent} from "../basic/ListComponent";
 })
 export class AllowedValuesComponent extends TypedModelComponent<AllowedValues> {
     private singleItem: number = 0;
-    private pairItem: [number,number] = [0, 0];
+    private pairItem: [number, number] = [0, 0];
 
     protected createModel(): AllowedValues {
         return new AllowedValues();

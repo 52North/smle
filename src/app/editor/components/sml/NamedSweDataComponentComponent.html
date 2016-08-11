@@ -7,6 +7,8 @@
             <div class="nested-element" [ngSwitch]="componentType">
                 <swe-text *ngSwitchCase="1" [model]="model.component" [config]="config.getConfigFor('component')"
                           [isShowAll]="isShowAll"></swe-text>
+                <swe-time *ngSwitchCase="2" [model]="model.component" [config]="config.getConfigFor('component')"
+                           [isShowAll]="isShowAll"></swe-time>
                 <swe-count *ngSwitchCase="3" [model]="model.component" [config]="config.getConfigFor('component')"
                              [isShowAll]="isShowAll"></swe-count>
                 <swe-boolean *ngSwitchCase="4" [model]="model.component" [config]="config.getConfigFor('component')"

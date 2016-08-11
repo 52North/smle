@@ -1,0 +1,13 @@
+<div class="form-group">
+    <label class="c-input c-radio">
+        <input name="type" type="radio" value="now">
+        <span class="c-indicator"></span> Now
+    </label>
+</div>
+<div class="form-group">
+    <label class="c-input c-radio">
+        <input name="type" type="radio" value="time" #check>
+        <span class="c-indicator"></span> Date
+    </label>
+    <date-picker [(model)]="time" *ngIf="check.checked"></date-picker>
+</div>

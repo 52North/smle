@@ -32,10 +32,10 @@ export class SweTime extends AbstractSimpleComponent {
      * Temporal unit of measure used to express the value of this data component
      */
     @DisplayName('Unit of measure')
-    uom: UnitOfMeasure;
+    uom: UnitOfMeasure = new UnitOfMeasure();
 
     @DisplayName('Constraint')
-    constraint: AllowedTimes;
+    constraint: AllowedTimes = new AllowedTimes();
 
     toString() {
         return super.toString('SWE time');
