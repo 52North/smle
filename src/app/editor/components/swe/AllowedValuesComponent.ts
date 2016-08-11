@@ -2,14 +2,15 @@ import {Component} from '@angular/core';
 import {TypedModelComponent} from '../base/TypedModelComponent';
 import {AllowedValues} from '../../../model/swe/AllowedValues';
 import {AbstractNumericAllowedValuesComponent} from './AbstractNumericAllowedValuesComponent';
+import {ListComponent} from "../basic/ListComponent";
 
 @Component({
     selector: 'swe-allowed-values',
-    styles: [`.list-add-section > .row:first-child {
+    styles: [`list-add-section > .row:first-child {
                 margin-bottom: 10px;
     }`],
     template: require('./AllowedValuesComponent.html'),
-    directives: [AbstractNumericAllowedValuesComponent]
+    directives: [AbstractNumericAllowedValuesComponent, ListComponent]
 })
 export class AllowedValuesComponent extends TypedModelComponent<AllowedValues> {
     private singleItem: number = 0;

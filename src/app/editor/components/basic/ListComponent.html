@@ -3,7 +3,7 @@
         <div class="list-label">
             <a class="btn btn-link" *ngIf="item.label" (click)="onClick(item, i)">{{item.label}}<span
                     *ngIf="item.value"> - {{item.value}}</span></a>
-            <a class="btn btn-link" *ngIf="!item.label" (click)="onClick(item, i)">{{itemTitle}}</a>
+            <a class="btn btn-link" *ngIf="!item.label" (click)="onClick(item, i)">{{itemTitle || item.toString()}}</a>
         </div>
         <div class="list-remove">
             <a class="btn btn-link" (click)="onRemove(item, i)"><i class="fa fa-remove"></i> Remove</a>
