@@ -5,7 +5,6 @@ import {AbstractNumericAllowedValuesComponent} from './AbstractNumericAllowedVal
 import {ListComponent} from '../basic/ListComponent';
 import {TimePositionComponent} from './TimePositionComponent';
 import {TimePosition} from '../../../model/swe/TimePosition';
-import {TimeIndeterminateValue} from '../../../model/swe/TimeIndeterminateValue';
 
 @Component({
     selector: 'swe-allowed-times',
@@ -14,8 +13,8 @@ import {TimeIndeterminateValue} from '../../../model/swe/TimeIndeterminateValue'
     directives: [AbstractNumericAllowedValuesComponent, ListComponent, TimePositionComponent]
 })
 export class AllowedTimesComponent extends TypedModelComponent<AllowedTimes> {
-    private singleItem: TimePosition = TimeIndeterminateValue;
-    private pairItem: [TimePosition, TimePosition] = [TimeIndeterminateValue, TimeIndeterminateValue];
+    private singleItem: TimePosition = 'now';
+    private pairItem: [TimePosition, TimePosition] = ['now', 'now'];
 
     protected createModel(): AllowedTimes {
         return new AllowedTimes();
@@ -27,11 +26,11 @@ export class AllowedTimesComponent extends TypedModelComponent<AllowedTimes> {
 
     private addSingleItem() {
         this.model.values.push(this.singleItem);
-        this.singleItem = TimeIndeterminateValue;
+        this.singleItem = 'now';
     }
 
     private addPairItem() {
         this.model.values.push(this.pairItem);
-        this.pairItem = [TimeIndeterminateValue, TimeIndeterminateValue];
+        this.pairItem = ['now', 'now'];
     }
 }
