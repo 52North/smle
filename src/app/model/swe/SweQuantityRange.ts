@@ -13,15 +13,15 @@ export class SweQuantityRange extends AbstractSweRange {
      * encodings
      */
     @DisplayName('Value')
-    value: [number, number];
+    value: [number, number] = [0, 0];
     /**
      * Unit of measure used to express the value of this data component
      */
     @DisplayName('Unit of measure')
-    uom: UnitOfMeasure;
+    uom: UnitOfMeasure = new UnitOfMeasure();
 
     @DisplayName('Constraint')
-    constraint: AllowedValues;
+    constraint: AllowedValues = new AllowedValues();
 
     toString() {
         return super.toString('SWE quantity range');

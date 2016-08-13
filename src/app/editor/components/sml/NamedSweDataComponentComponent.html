@@ -19,6 +19,8 @@
                              [isShowAll]="isShowAll"></swe-category>
                 <swe-time-range *ngSwitchCase="7" [model]="model.component" [config]="config.getConfigFor('component')"
                           [isShowAll]="isShowAll"></swe-time-range>
+                <swe-quantity-range *ngSwitchCase="8" [model]="model.component" [config]="config.getConfigFor('component')"
+                                [isShowAll]="isShowAll"></swe-quantity-range>
             </div>
         </div>
     </form>

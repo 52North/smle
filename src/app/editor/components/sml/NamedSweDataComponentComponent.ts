@@ -21,6 +21,7 @@ import {SweCountComponent} from '../swe/SweCountComponent';
 import {SweQuantityComponent} from '../swe/SweQuantityComponent';
 import {SweTimeComponent} from '../swe/SweTimeComponent';
 import {SweTimeRangeComponent} from '../swe/SweTimeRangeComponent';
+import {SweQuantityRangeComponent} from '../swe/SweQuantityRangeComponent';
 
 @Component({
     selector: 'sml-named-swe-data-component',
@@ -28,7 +29,7 @@ import {SweTimeRangeComponent} from '../swe/SweTimeRangeComponent';
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
         SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
-        SweTimeRangeComponent]
+        SweTimeRangeComponent, SweQuantityRangeComponent]
 })
 export class NamedSweDataComponentComponent extends EditorComponent<NamedSweDataComponent> implements AfterContentInit {
     private componentType: ComponentType;
