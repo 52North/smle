@@ -1,0 +1,31 @@
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('values')">
+    <label for="values">{{getDisplayName('values')}}</label>
+    <list [list]="model.values" (remove)="removeValue($event)">
+        <list-add-section>
+            <div class="row">
+                <div class="input-wrapper input-wrapper__last col-sm-12">
+                    <swe-time-position [(model)]="singleItem"></swe-time-position>
+                </div>
+                <div class="link-wrapper col-sm-4">
+                    <a (click)="addSingleItem()" class="btn btn-link list-add-section__single">
+                        <i class="fa fa-fw fa-plus"></i> Add single</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-wrapper col-sm-12">
+                    <swe-time-position [(model)]="pairItem[0]"></swe-time-position>
+                </div>
+                <div class="input-wrapper input-wrapper__last col-sm-12">
+                    <swe-time-position [(model)]="pairItem[1]"></swe-time-position>
+                </div>
+                <div class="link-wrapper col-sm-4">
+                    <a (click)="addPairItem()" class="btn btn-link list-add-section__pair">
+                        <i class="fa fa-fw fa-plus"></i> Add pair</a>
+                </div>
+            </div>
+        </list-add-section>
+    </list>
+</div>
+
+<swe-abstract-numeric-allowed-values [model]="model" [config]="config"
+                                     [isShowAll]="isShowAll"></swe-abstract-numeric-allowed-values>

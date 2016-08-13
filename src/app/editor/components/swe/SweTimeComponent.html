@@ -19,12 +19,12 @@
                              [model]="model.uom"></swe-unit-of-measure>
     </div>
 </div>
-<!--<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('constraint')">-->
-    <!--<label for="constraint">{{getDisplayName('constraint')}}</label>-->
-    <!--<div class="nested-element">-->
-        <!--<swe-allowed-times [isShowAll]="isShowAll" [config]="config.getConfigFor('constraint')"-->
-                            <!--[model]="model.constraint"></swe-allowed-times>-->
-    <!--</div>-->
-<!--</div>-->
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('constraint')">
+    <label for="constraint">{{getDisplayName('constraint')}}</label>
+    <div class="nested-element">
+        <swe-allowed-times [isShowAll]="isShowAll" [config]="config.getConfigFor('constraint')"
+                            [model]="model.constraint"></swe-allowed-times>
+    </div>
+</div>
 <swe-abstract-simple-component [model]="model" [config]="config"
                                [isShowAll]="isShowAll"></swe-abstract-simple-component>
