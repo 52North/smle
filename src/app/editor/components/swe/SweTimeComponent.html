@@ -2,7 +2,7 @@
     <label for="value">{{getDisplayName('value')}}</label>
     <div class="nested-element">
         <swe-time-position [isShowAll]="isShowAll" [config]="config.getConfigFor('value')"
-                             [model]="model.value"></swe-time-position>
+                             [(model)]="model.value"></swe-time-position>
     </div>
 </div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('referenceTime')">
