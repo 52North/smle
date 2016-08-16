@@ -22,17 +22,26 @@ import {SweQuantityComponent} from '../swe/SweQuantityComponent';
 import {SweTimeComponent} from '../swe/SweTimeComponent';
 import {SweTimeRangeComponent} from '../swe/SweTimeRangeComponent';
 import {SweQuantityRangeComponent} from '../swe/SweQuantityRangeComponent';
+import {SweDataRecordComponent} from '../swe/SweDataRecordComponent';
+import {SweField} from '../../../model/swe/SweField';
 
-@Component({
-    selector: 'sml-named-swe-data-component',
-    template: require('./NamedSweDataComponentComponent.html'),
-    styles: [require('../styles/editor-component.scss')],
-    directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
-        SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
-        SweTimeRangeComponent, SweQuantityRangeComponent]
-})
-export class NamedSweDataComponentComponent extends EditorComponent<NamedSweDataComponent> implements AfterContentInit {
-    private componentType: ComponentType;
+enum ComponentType {
+    Unknown = 0,
+    SweText = 1,
+    SweTime = 2,
+    SweCount = 3,
+    SweBoolean = 4,
+    SweQuantity = 5,
+    SweCategory = 6,
+    SweTimeRange = 7,
+    SweQuantityRange = 8,
+    SweDataRecord = 9,
+    SweDataArray = 10
+}
+
+abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> implements AfterContentInit {
+    protected componentType: ComponentType;
+    protected title: string;
 
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
         super(componentResolver, viewContainerRef);
@@ -47,7 +56,7 @@ export class NamedSweDataComponentComponent extends EditorComponent<NamedSweData
             return ComponentType.Unknown;
         }
 
-        var component = this.model.component;
+        var component = (<any>this.model).component;
 
         if (component instanceof SweText) {
             return ComponentType.SweText;
@@ -74,21 +83,45 @@ export class NamedSweDataComponentComponent extends EditorComponent<NamedSweData
         }
     }
 
+    protected createModel(): T {
+        return undefined;
+    }
+}
+
+@Component({
+    selector: 'sml-named-swe-data-component',
+    template: require('./NamedSweDataComponentComponent.html'),
+    styles: [require('../styles/editor-component.scss')],
+    directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
+        SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
+        SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent]
+})
+export class NamedSweDataComponentComponent extends AbstractNamedComponentComponent<NamedSweDataComponent> {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
+        super(componentResolver, viewContainerRef);
+        this.title = 'Named Data Component';
+    }
+
     protected createModel(): NamedSweDataComponent {
         return new NamedSweDataComponent();
     }
 }
 
-enum ComponentType {
-    Unknown = 0,
-    SweText = 1,
-    SweTime = 2,
-    SweCount = 3,
-    SweBoolean = 4,
-    SweQuantity = 5,
-    SweCategory = 6,
-    SweTimeRange = 7,
-    SweQuantityRange = 8,
-    SweDataRecord = 9,
-    SweDataArray = 10
+@Component({
+    selector: 'swe-field',
+    template: require('./NamedSweDataComponentComponent.html'),
+    styles: [require('../styles/editor-component.scss')],
+    directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
+        SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
+        SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent]
+})
+export class SweFieldComponent extends AbstractNamedComponentComponent<SweField> {
+    constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
+        super(componentResolver, viewContainerRef);
+        this.title = 'Swe Field';
+    }
+
+    protected createModel(): SweField {
+        return new SweField();
+    }
 }

@@ -1,0 +1,19 @@
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('fields')">
+    <label for="fields">{{getDisplayName('fields')}}</label>
+    <list [list]="model.fields" [itemTitle]="'Field'"
+          (select)="openNewFieldItem($event)" (remove)="onRemoveField($event)">
+        <list-add-section>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="fieldTypeDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Add field
+                </button>
+                <div class="dropdown-menu" aria-labelledby="fieldTypeDropdown">
+                    <a class="dropdown-item" *ngFor="let option of options"
+                       (click)="onAddField(option.type)">{{option.name}}</a>
+                </div>
+            </div>
+        </list-add-section>
+    </list>
+</div>
+<swe-abstract-data [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-data>
