@@ -1,4 +1,1 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('id')">
-    <label for="id">Id</label>
-    <input type="text" class="form-control" [(ngModel)]="model.id" name="id">
-</div>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'id'"></text-field>

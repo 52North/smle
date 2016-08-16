@@ -1,9 +1,7 @@
-<card [verticalMode]="hasChild" [title]="'Mode setting'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-  <form>
-    <sml-abstract-setting [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-setting>
-    <div class="form-group">
-      <label for="label">{{getDisplayName('mode')}}</label>
-      <input type="text" class="form-control" [(ngModel)]="model.value" name="value">
-    </div>
-  </form>
+<card [verticalMode]="hasChild" [title]="'Mode setting'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()" [(showAll)]="isShowAll">
+    <form>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'value'"></text-field>
+        <sml-abstract-setting [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-setting>
+    </form>
 </card>
