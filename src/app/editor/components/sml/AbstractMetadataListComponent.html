@@ -1,5 +1,2 @@
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'definition'"></text-field>
 <swe-abstract-identifiable [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-identifiable>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('definition')">
-    <label for="definition">{{getDisplayName('definition')}}</label>
-    <input type="text" class="form-control" [(ngModel)]="model.definition" name="definition">
-</div>

@@ -1,5 +1,2 @@
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'"></text-field>
 <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('name')">
-    <label for="name">{{getDisplayName('name')}}</label>
-    <input type="text" class="form-control" [(ngModel)]="model.name" name="name">
-</div>

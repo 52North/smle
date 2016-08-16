@@ -9,12 +9,13 @@ import {Address} from '../../../../model/iso/gmd/Address';
 import {Phone} from '../../../../model/iso/gmd/Phone';
 import {EditorComponent} from '../../base/EditorComponent';
 import {ChildMetadata} from '../../base/TypedModelComponent';
+import {TextFieldComponent} from '../../basic/TextFieldComponent';
 
 @Component({
     selector: 'iso-contact',
     template: require('./ContactComponent.html'),
     styles: [require('../../styles/editor-component.scss')],
-    directives: [CardComponent, AddressComponent, PhoneComponent, OnlineResourceComponent]
+    directives: [CardComponent, AddressComponent, PhoneComponent, OnlineResourceComponent, TextFieldComponent]
 })
 export class ContactComponent extends EditorComponent<Contact> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

@@ -1,26 +1,11 @@
 <card [verticalMode]="hasChild" [title]="'Online Resource'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('linkage')">
-            <label for="linkage">{{getDisplayName('linkage')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.linkage" name="linkage" required>
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('protocol')">
-            <label for="protocol">{{getDisplayName('protocol')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.protocol" name="protocol">
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('applicationProfile')">
-            <label for="applicationProfile">{{getDisplayName('applicationProfile')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.applicationProfile" name="applicationProfile">
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('name')">
-            <label for="name">{{getDisplayName('name')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.name" name="name">
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('description')">
-            <label for="description">{{getDisplayName('description')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.description" name="description">
-        </div>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'linkage'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'protocol'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'applicationProfile'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'description'"></text-field>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('function')">
             <label for="function">{{getDisplayName('function')}}</label>
             <select class="form-control" [(ngModel)]="model.function" name="function">
