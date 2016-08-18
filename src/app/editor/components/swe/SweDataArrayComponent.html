@@ -20,7 +20,24 @@
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('encoding')">
     <label for="encoding">{{getDisplayName('encoding')}}</label>
     <div class="nested-element">
-
+        <div class="dropdown" *ngIf="!model.encoding">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="encodingDropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add encoding
+            </button>
+            <div class="dropdown-menu" aria-labelledby="encodingDropdown">
+                <a class="dropdown-item" *ngFor="let option of encodingOptions"
+                   (click)="onAddEncoding(option.type)">{{option.name}}</a>
+            </div>
+        </div>
+        <a class="btn btn-link" *ngIf="!!model.encoding" (click)="removeEncoding()">Remove</a>
+        <swe-text-encoding *ngIf="!!model.encoding && encodingType === 'text'" [isShowAll]="isShowAll"
+                          [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-text-encoding>
+        <swe-binary-encoding *ngIf="!!model.encoding && encodingType === 'binary'" [isShowAll]="isShowAll"
+                           [config]="config.getConfigFor('encoding')" [model]="model.encoding"
+                            (openAsChild)="openNewChild($event)"></swe-binary-encoding>
+        <swe-xml-encoding *ngIf="!!model.encoding && encodingType === 'xml'" [isShowAll]="isShowAll"
+                           [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-xml-encoding>
     </div>
 </div>
 <swe-abstract-data [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-data>
