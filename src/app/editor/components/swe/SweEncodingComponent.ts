@@ -5,7 +5,7 @@ import {AbstractSWEComponent} from './AbstractSWEComponent';
 
 @Component({
     selector: 'swe-encoding',
-    template: require('./SweEncodingComponent'),
+    template: require('./SweEncodingComponent.html'),
     directives: [AbstractSWEComponent]
 })
 export class SweEncodingComponent extends TypedModelComponent<SweEncoding> {
