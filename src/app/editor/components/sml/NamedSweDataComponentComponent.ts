@@ -24,8 +24,9 @@ import {SweTimeRangeComponent} from '../swe/SweTimeRangeComponent';
 import {SweQuantityRangeComponent} from '../swe/SweQuantityRangeComponent';
 import {SweDataRecordComponent} from '../swe/SweDataRecordComponent';
 import {SweField} from '../../../model/swe/SweField';
+import {SweDataArrayComponent} from '../swe/SweDataArrayComponent';
 
-enum ComponentType {
+export enum ComponentType {
     Unknown = 0,
     SweText = 1,
     SweTime = 2,
@@ -94,7 +95,7 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
         SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
-        SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent]
+        SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent, SweDataArrayComponent]
 })
 export class NamedSweDataComponentComponent extends AbstractNamedComponentComponent<NamedSweDataComponent> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
@@ -113,7 +114,7 @@ export class NamedSweDataComponentComponent extends AbstractNamedComponentCompon
     styles: [require('../styles/editor-component.scss')],
     directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
         SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
-        SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent]
+        SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent, SweDataArrayComponent]
 })
 export class SweFieldComponent extends AbstractNamedComponentComponent<SweField> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

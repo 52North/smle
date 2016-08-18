@@ -23,8 +23,8 @@
                                 [isShowAll]="isShowAll"></swe-quantity-range>
                 <swe-data-record *ngSwitchCase="9" [model]="model.component" [config]="config.getConfigFor('component')"
                                     [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></swe-data-record>
-                <!--<swe-data-array *ngSwitchCase="10" [model]="model.component" [config]="config.getConfigFor('component')"-->
-                                 <!--[isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></swe-data-array>-->
+                <swe-data-array *ngSwitchCase="10" [model]="model.component" [config]="config.getConfigFor('component')"
+                                 [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></swe-data-array>
             </div>
         </div>
     </form>

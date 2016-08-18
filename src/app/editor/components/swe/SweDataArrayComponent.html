@@ -1,0 +1,26 @@
+<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'elementCount'"></number-field>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('elementType')">
+    <label for="elementType">{{getDisplayName('elementType')}}</label>
+    <div class="nested-element">
+        <div class="dropdown" *ngIf="!model.elementType">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="elementTypeDropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add element type
+            </button>
+            <div class="dropdown-menu" aria-labelledby="elementTypeDropdown">
+                <a class="dropdown-item" *ngFor="let option of options"
+                   (click)="onAddElementType(option.type)">{{option.name}}</a>
+            </div>
+        </div>
+        <a class="btn btn-link" *ngIf="!!model.elementType" (click)="removeElementType()">Remove</a>
+        <swe-element-type *ngIf="!!model.elementType" [isShowAll]="isShowAll"
+                          [config]="config.getConfigFor('elementType')" [model]="model.elementType"></swe-element-type>
+    </div>
+</div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('encoding')">
+    <label for="encoding">{{getDisplayName('encoding')}}</label>
+    <div class="nested-element">
+
+    </div>
+</div>
+<swe-abstract-data [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-data>
