@@ -91,7 +91,7 @@
     "src/app/editor/components/sml/StatusSettingComponent.ts",
     "src/app/editor/components/sml/TermComponent.ts",
     "src/app/editor/components/sml/ValueSettingComponent.ts",
-    "src/app/editor/components/swe/AbstractMetadataListComponent.ts",
+    "src/app/editor/components/sml/AbstractMetadataListComponent.ts",
     "src/app/editor/components/swe/AbstractSWEComponent.ts",
     "src/app/editor/components/swe/AbstractSWEIdentifiableComponent.ts",
     "src/app/editor/components/swe/KeywordListComponent.ts",

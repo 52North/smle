@@ -23,6 +23,16 @@
     <time-list [model]="model.validTime" [config]="config.getConfigFor('validTime')"
                (openAsChild)="openNewChild($event)"></time-list>
 </div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('characteristics')">
+    <label for="characteristics">{{getDisplayName('characteristics')}}</label>
+    <list [list]="model.characteristics" [itemTitle]="'Characteristic List'" (select)="openNewCharacteristicListItem($event)"
+          (remove)="onRemoveCharacteristicList($event)" (add)="onAddCharacteristicList()"></list>
+</div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('capabilities')">
+    <label for="capabilities">{{getDisplayName('capabilities')}}</label>
+    <list [list]="model.capabilities" [itemTitle]="'Capability List'" (select)="openNewCapabilityListItem($event)"
+          (remove)="onRemoveCapabilityList($event)" (add)="onAddCapabilityList()"></list>
+</div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
     <label for="contacts">{{getDisplayName('contacts')}}</label>
     <list [list]="model.contacts" [itemTitle]="'Contact List'" (select)="openNewContactListItem($event)"

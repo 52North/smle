@@ -1,0 +1,12 @@
+<card [verticalMode]="hasChild" [title]="'Swe Binary Block'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()" [(showAll)]="isShowAll">
+    <form>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'compression'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'encryption'"></text-field>
+        <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'paddingBytesAfter'"></number-field>
+        <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'paddingBytesBefore'"></number-field>
+        <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'byteLength'"></number-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'ref'"></text-field>
+        <swe-abstract [isShowAll]="isShowAll" [config]="config" [model]="model"></swe-abstract>
+    </form>
+</card>

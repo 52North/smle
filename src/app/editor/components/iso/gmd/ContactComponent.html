@@ -10,13 +10,7 @@
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('onlineResource')">
             <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">{{getDisplayName('onlineResource')}}</a>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contactInstructions')">
-            <label for="model.contactInstructions">{{getDisplayName('contactInstructions')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.contactInstructions" name="contactInstructions">
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('hoursOfService')">
-            <label for="model.hoursOfService">{{getDisplayName('hoursOfService')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.hoursOfService" name="hoursOfService">
-        </div>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'contactInstructions'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'hoursOfService'"></text-field>
     </form>
 </card>

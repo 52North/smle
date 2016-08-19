@@ -1,9 +1,2 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('value')">
-    <label for="value">{{getDisplayName('value')}}</label>
-    <input type="text" class="form-control" [(ngModel)]="model.value" name="value"
-           [disabled]="config.config && config.config.valueDisabled">
-</div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('codeSpace')">
-    <label for="codeSpace">{{getDisplayName('codeSpace')}}</label>
-    <input type="text" class="form-control" [(ngModel)]="model.codeSpace" name="codeSpace">
-</div>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'value'"></text-field>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'codeSpace'"></text-field>

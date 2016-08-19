@@ -1,15 +1,23 @@
 .list-remove {
   width: 20%;
-  float:right;
+  float: right;
 }
+
 .list-label {
   width: 75%;
-  overflow:hidden;
-  display:inline-block;
+  overflow: hidden;
+  display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 a {
   padding: 0px;
   display: inline;
+}
+
+.list-add-section {
+  .list-add-section__default:not(:only-child) {
+    display: none;
+  }
 }

@@ -1,7 +1,7 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
-import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
+import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
 import {Term} from '../../../model/sml/Term';
 import {TermComponent} from './TermComponent';
 import {ClassifierList} from '../../../model/sml/ClassifierList';

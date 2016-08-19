@@ -1,18 +1,9 @@
 <card [verticalMode]="hasChild" [title]="'Responsible Party'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('individualName')">
-            <label for="model.individualName">{{getDisplayName('individualName')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.individualName" name="individualName">
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('organisationName')">
-            <label for="model.organisationName">{{getDisplayName('organisationName')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.organisationName" name="organisationName">
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('positionName')">
-            <label for="model.positionName">{{getDisplayName('positionName')}}</label>
-            <input type="text" class="form-control" [(ngModel)]="model.positionName" name="positionName">
-        </div>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'individualName'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'organisationName'"></text-field>
+        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'positionName'"></text-field>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contactInfo')">
             <a *ngIf="model.contactInfo" class="btn btn-link" (click)="openNewContactInfoItem(model.contactInfo)">
                 {{getDisplayName('contactInfo')}}

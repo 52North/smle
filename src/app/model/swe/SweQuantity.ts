@@ -18,10 +18,10 @@ export class SweQuantity extends AbstractSimpleComponent {
      * Unit of measure used to express the value of this data component
      */
     @DisplayName('Unit of measure')
-    uom: UnitOfMeasure;
+    uom: UnitOfMeasure = new UnitOfMeasure();
 
     @DisplayName('Constraint')
-    constraint: AllowedValues;
+    constraint: AllowedValues = new AllowedValues();
 
     toString() {
         return super.toString('SWE quantity');

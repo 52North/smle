@@ -1,0 +1,26 @@
+<card [verticalMode]="hasChild" [title]="'Characteristic List'" (reset)="onReset()" (close)="close()"
+      (closeChild)="closeChild()" [(showAll)]="isShowAll">
+    <form>
+        <swe-abstract-named-metadata-list [model]="model" [config]="config"
+                                          [isShowAll]="isShowAll"></swe-abstract-named-metadata-list>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('characteristics')">
+            <label for="characteristics">{{getDisplayName('characteristics')}}</label>
+            <list [list]="model.characteristics" [itemTitle]="'Characteristic'"
+                  (select)="openNewCharacteristicItem($event)"
+                  (remove)="onRemoveCharacteristic($event)" (add)="onAddCharacteristic()">
+                <list-add-section>
+                    <div class="dropup">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="characteristicTypeDropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Add characteristic
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="characteristicTypeDropdown">
+                            <a class="dropdown-item" *ngFor="let option of options"
+                               (click)="onAddCharacteristic(option.type)">{{option.name}}</a>
+                        </div>
+                    </div>
+                </list-add-section>
+            </list>
+        </div>
+    </form>
+</card>

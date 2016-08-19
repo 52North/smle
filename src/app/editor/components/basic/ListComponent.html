@@ -1,14 +1,16 @@
 <ul class="list-group list-group-flush">
-  <li *ngFor="let item of list; let i = index" class="list-group-item">
-    <div class="list-label">
-      <a class="btn btn-link" *ngIf="item.label" (click)="onClick(item, i)">{{item.label}}<span *ngIf="item.value"> - {{item.value}}</span></a>
-      <a class="btn btn-link" *ngIf="!item.label" (click)="onClick(item, i)">{{itemTitle}}</a>
-    </div>
-    <div class="list-remove">
-      <a class="btn btn-link" (click)="onRemove(item, i)"><i class="fa fa-remove"></i> Remove</a>
-    </div>
-  </li>
-  <li class="list-group-item">
-    <a (click)="onAdd()" class="btn btn-link"><i class="fa fa-fw fa-plus"></i> Add</a>
-  </li>
+    <li *ngFor="let item of list; let i = index" class="list-group-item">
+        <div class="list-label">
+            <a class="btn btn-link" *ngIf="item.label" (click)="onClick(item, i)">{{item.label}}<span
+                    *ngIf="item.value"> - {{item.value}}</span></a>
+            <a class="btn btn-link" *ngIf="!item.label" (click)="onClick(item, i)">{{itemTitle || item.toString()}}</a>
+        </div>
+        <div class="list-remove">
+            <a class="btn btn-link" (click)="onRemove(item, i)"><i class="fa fa-remove"></i> Remove</a>
+        </div>
+    </li>
+    <li class="list-group-item list-add-section">
+        <ng-content select="list-add-section"></ng-content>
+        <a (click)="onAdd()" class="btn btn-link list-add-section__default"><i class="fa fa-fw fa-plus"></i> Add</a>
+    </li>
 </ul>

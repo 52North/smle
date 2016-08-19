@@ -10,7 +10,7 @@ import {DisplayName} from '../../decorators/DisplayName';
  */
 export class SweBinaryEncoding extends SweEncoding {
     @DisplayName('Members')
-    members: Array<SweBinaryBlock | SweBinaryComponent>;
+    members: Array<SweBinaryBlock | SweBinaryComponent> = [];
     /**
      * Byte order convention used to encode this binary data (big endian = most
      * significant byte first, MSB or little endian = least significant byte
