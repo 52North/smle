@@ -4,7 +4,7 @@
         <swe-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-metadata-list>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('classifiers')">
             <label for="classifiers">{{getDisplayName('classifiers')}}</label>
-            <list [list]="model.classifiers" [itemTitle]="'Classifier'" (select)="openNewClassifierItem($event)"
+            <list [list]="model.classifiers" (select)="openNewClassifierItem($event)"
                   (remove)="onRemoveClassifier($event)" (add)="onAddClassifier()"></list>
         </div>
     </form>

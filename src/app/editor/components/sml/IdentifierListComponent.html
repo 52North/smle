@@ -4,7 +4,7 @@
         <swe-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-metadata-list>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identifiers')">
             <label for="identifiers">{{getDisplayName('identifiers')}}</label>
-            <list [list]="model.identifiers" [itemTitle]="'Identifier'" (select)="openNewIdentifierItem($event)"
+            <list [list]="model.identifiers" (select)="openNewIdentifierItem($event)"
                   (remove)="onRemoveIdentifier($event)" (add)="onAddIdentifier()"></list>
         </div>
     </form>

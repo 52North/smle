@@ -5,8 +5,7 @@
                                           [isShowAll]="isShowAll"></swe-abstract-named-metadata-list>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('capabilities')">
             <label for="capabilities">{{getDisplayName('capabilities')}}</label>
-            <list [list]="model.capabilities" [itemTitle]="'Capability'"
-                  (select)="openNewCapabilityItem($event)"
+            <list [list]="model.capabilities" (select)="openNewCapabilityItem($event)"
                   (remove)="onRemoveCapability($event)" (add)="onAddCapability()">
                 <list-add-section>
                     <div class="dropup">

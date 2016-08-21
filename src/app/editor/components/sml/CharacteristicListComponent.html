@@ -5,8 +5,7 @@
                                           [isShowAll]="isShowAll"></swe-abstract-named-metadata-list>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('characteristics')">
             <label for="characteristics">{{getDisplayName('characteristics')}}</label>
-            <list [list]="model.characteristics" [itemTitle]="'Characteristic'"
-                  (select)="openNewCharacteristicItem($event)"
+            <list [list]="model.characteristics" (select)="openNewCharacteristicItem($event)"
                   (remove)="onRemoveCharacteristic($event)" (add)="onAddCharacteristic()">
                 <list-add-section>
                     <div class="dropup">

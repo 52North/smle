@@ -19,23 +19,23 @@
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('keywords')">
             <label for="keywords">{{getDisplayName('keywords')}}</label>
-            <list [list]="model.keywords" [itemTitle]="'Keyword List'" (select)="openNewKeywordListItem($event)" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
+            <list [list]="model.keywords" (select)="openNewKeywordListItem($event)" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identification')">
             <label for="identification">{{getDisplayName('identification')}}</label>
-            <list [list]="model.identification" [itemTitle]="'Identifier List'" (select)="openNewIdentifierListItem($event)" (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
+            <list [list]="model.identification" (select)="openNewIdentifierListItem($event)" (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('classification')">
             <label for="classification">{{getDisplayName('classification')}}</label>
-            <list [list]="model.classification" [itemTitle]="'Classifier List'" (select)="openNewClassifierListItem($event)" (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
+            <list [list]="model.classification" (select)="openNewClassifierListItem($event)" (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
             <label for="contacts">{{getDisplayName('contacts')}}</label>
-            <list [list]="model.contacts" [itemTitle]="'Contact List'" (select)="openNewContactListItem($event)" (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
+            <list [list]="model.contacts" (select)="openNewContactListItem($event)" (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('documentation')">
             <label for="documentation">{{getDisplayName('documentation')}}</label>
-            <list [list]="model.documentation" [itemTitle]="'Documentation List'" (select)="openNewDocumentListItem($event)" (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
+            <list [list]="model.documentation" (select)="openNewDocumentListItem($event)" (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('time')">
           <label for="time">{{getDisplayName('time')}}</label>
