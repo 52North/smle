@@ -24,13 +24,14 @@ import {TimeInstantComponent} from '../gml/TimeInstantComponent';
 import {TimePeriodComponent} from '../gml/TimePeriodComponent';
 import {SettingsComponent} from './SettingsComponent';
 import {Settings} from '../../../model/sml/Settings';
+import {ChildItemComponent} from '../basic/ChildItemComponent';
 
 @Component({
   selector: 'sml-event',
   template: require('./EventComponent.html'),
   styles: [require('../styles/editor-component.scss')],
   directives: [CardComponent, AbstractSWEComponent, AbstractSWEIdentifiableComponent,
-    KeywordListComponent, IdentifierListComponent, ListComponent, CodeTypeComponent]
+    KeywordListComponent, IdentifierListComponent, ListComponent, CodeTypeComponent, ChildItemComponent]
 })
 export class EventComponent extends EditorComponent<Event> {
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

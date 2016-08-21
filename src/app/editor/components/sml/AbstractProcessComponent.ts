@@ -4,11 +4,12 @@ import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
 import {AbstractProcess} from '../../../model/sml/AbstractProcess';
 import {SettingsComponent} from './SettingsComponent';
 import {Settings} from '../../../model/sml/Settings';
+import {ChildItemComponent} from '../basic/ChildItemComponent';
 
 @Component({
   selector: 'sml-abstract-process',
   template: require('./AbstractProcessComponent.html'),
-  directives: [DescribedObjectComponent]
+  directives: [DescribedObjectComponent, ChildItemComponent]
 })
 export class AbstractProcessComponent extends TypedModelComponent<AbstractProcess> {
   protected createModel(): AbstractProcess {
