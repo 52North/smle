@@ -6,7 +6,8 @@
         </button>
     </li>
     <li class="list-group-item">
-        <input type="text" class="form-control" [(ngModel)]="item" name="item">
+        <input type="text" class="form-control" [(ngModel)]="item" name="item"
+               (keyup.enter)="add()" (keyup.escape)="clear()">
         <button type="button" class="btn btn-link" (click)="add()">
             <i class="fa fa-fw fa-plus-circle"></i> Add
         </button>
