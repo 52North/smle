@@ -8,6 +8,9 @@ import { PhysicalSystem } from '../model/sml';
 import { SensorMLXmlService } from './SensorMLXmlService';
 import { XPathDocument } from './xml/XPathDocument';
 
+/**
+ * Test for the SensorXMLService
+ */
 describe('SensorMLXmlService', () => {
 
   let service = new SensorMLXmlService();

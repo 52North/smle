@@ -1,6 +1,8 @@
 import { AbstractProcess } from '../model/sml';
 
-
+/**
+ * This class declares methods for loading, updating and saving descriptions like SensorML XML files.
+ */
 export abstract class DescriptionRepository {
   /**
    * Get a list of desciption identifiers.

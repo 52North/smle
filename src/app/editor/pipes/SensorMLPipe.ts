@@ -11,7 +11,7 @@ export class SensorMLPipe implements PipeTransform {
   transform(description: any): string {
     let service = new SensorMLXmlService();
     //    console.log(JSON.stringify(description, null, ' '));
-
+    
     let serialize = service.serialize(description);
     //    console.log(serialize);
 

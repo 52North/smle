@@ -11,8 +11,16 @@ const stylesheet: Document = new DOMParser().parseFromString(
       </xsl:copy>
     </xsl:template>
   </xsl:stylesheet>`, 'application/xml');
-
+/**
+ * This class implements the abstract methods: serialize and deserialize from XMLService&lt;T&gt; <br>
+ * It privides two abstract methods for encoding and decoding.
+ */
 export abstract class AbstractXmlService<T> extends XmlService<T> {
+    
+    /**
+     * The method returns a XML string of the description:T object. 
+     * Therefore it uses the encoding methods.
+     */
   serialize(description: T) {
     let serializer = new XMLSerializer();
     let document = this.encode(description);
@@ -20,6 +28,10 @@ export abstract class AbstractXmlService<T> extends XmlService<T> {
     return serializer.serializeToString(document);
   }
 
+/**
+ * This method returns an object:T which is based on a XML string or a Document object.
+ * Therefore it uses decoding methods.
+ */
   deserialize(xml: string | Document): T {
     var document: Document;
     if (xml instanceof Document) {
