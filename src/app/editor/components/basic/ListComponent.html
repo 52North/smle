@@ -1,9 +1,13 @@
 <ul class="list-group list-group-flush">
     <li *ngFor="let item of list; let i = index" class="list-group-item">
-        <div class="list-label">
+        <div class="list-label" *ngIf="!noSelect">
             <a class="btn btn-link" *ngIf="itemTitleFunc"
                (click)="onClick(item, i)">{{itemTitleFunc.call(item, item, index, list)}}</a>
             <a class="btn btn-link" *ngIf="!itemTitleFunc" (click)="onClick(item, i)">{{item.toString()}}</a>
+        </div>
+        <div class="list-label" *ngIf="noSelect">
+            <span *ngIf="itemTitleFunc">{{itemTitleFunc.call(item, item, index, list)}}</span>
+            <span *ngIf="!itemTitleFunc">{{item.toString()}}</span>
         </div>
         <div class="list-remove">
             <a class="btn btn-link" (click)="onRemove(item, i)"><i class="fa fa-remove"></i> Remove</a>

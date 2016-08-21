@@ -1,11 +1,5 @@
-<ul class="list-group">
-    <li *ngFor="let item of list; let i = index" class="list-group-item">
-        {{item}}
-        <button type="button" class="btn btn-link" (click)="remove(i)">
-            <i class="fa fa-minus-circle"></i>
-        </button>
-    </li>
-    <li class="list-group-item">
+<list [list]="list" (remove)="remove($event)" [noSelect]="true">
+    <list-add-section>
         <input type="text" class="form-control" [(ngModel)]="item" name="item"
                (keyup.enter)="add()" (keyup.escape)="clear()">
         <button type="button" class="btn btn-link" (click)="add()">
@@ -14,5 +8,5 @@
         <button type="button" class="btn btn-link" (click)="clear()">
             <i class="fa fa-fw fa-undo"></i> Clear
         </button>
-    </li>
-</ul>
+    </list-add-section>
+</list>
