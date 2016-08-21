@@ -8,6 +8,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ListComponent {
   @Input()
   public list: any[];
+  @Input()
+  public itemTitleFunc: Function;
   @Output()
   public select: EventEmitter<any> = new EventEmitter<any>();
   @Output()
