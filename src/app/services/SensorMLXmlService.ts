@@ -13,6 +13,15 @@ import { SensorMLNamespaceResolver } from './xml/SensorMLNamespaceResolver';
 import { SensorMLDocumentEncoder } from './xml/SensorMLDocumentEncoder';
 import { SensorMLDocumentDecoder } from './xml/SensorMLDocumentDecoder';
 
+/**
+ * Class for serialization/deserialization of SensorML XML files/AbstractProcess objects.<p>
+ * 
+ * This class implements the protected abstract methods: encode and decode <br>
+ * of the AbstractXmlService class. <p>
+ * 
+ * It inherits the methods for serialization and deserialization. <br>
+ * These serialization methods are the only one that use the encode and decode method.
+ */
 export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {
   private encoder = new SensorMLDocumentEncoder();
   private decoder = new SensorMLDocumentDecoder();

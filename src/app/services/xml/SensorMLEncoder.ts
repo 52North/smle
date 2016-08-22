@@ -887,7 +887,11 @@ export class SensorMLEncoder {
       return this.encodeProcess(object, document);
     }
   }
-
+/**
+ * @document Document which gets the data from "@object:AbstractProcess" -&gt; It is the result document <p>
+ * @object AbstractProcess that will be encoded <p>
+ * @node Node of "@document:Document" for starting the encoding
+ */
   public encodeProcess(object: AbstractProcess, document: Document, node?: Element): Node {
     if (object instanceof SimpleProcess) {
       return this.encodeSimpleProcess(object, document, node);

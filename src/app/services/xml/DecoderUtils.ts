@@ -1,5 +1,8 @@
 export class DecoderUtils {
-
+/**
+ * The method finds attributes of the children of the @root element. <p>
+ *  @root Element for starting the search
+ *  */
   public getAttributeOfElement(
     root: Element,
     elemName: string,
@@ -13,7 +16,13 @@ export class DecoderUtils {
       };
     }
   }
-
+/**
+ * Search for an element with a specific name and namespace. 
+ * First test: root element, then the children of the root element. <p>
+ * 
+ * @root     Element for starting the search <br>
+ * @return   Element or null
+ */
   public getElement(root: Element, elemName: string, elemNamespace: string): Element {
     if (root.namespaceURI === elemNamespace && root.tagName.indexOf(elemName) > -1) {
       return root;
@@ -25,6 +34,11 @@ export class DecoderUtils {
     return null;
   }
 
+/**
+ * Decodation of all children(@elemName, @elemNamespace) of @root element. <p>
+ * 
+ * @return Array&lt;T&gt;
+ */
   public getDecodedList<T>(
     root: Element,
     elemName: string,
@@ -42,7 +56,9 @@ export class DecoderUtils {
     }
     return list;
   }
-
+/**
+ * @return Array &lt;Element&gt;
+ */
   private getMatchingChildElements(root: Element, elemName: string, elemNamespace: string): Array<Element> {
     let childNodes = root.childNodes;
     let matches = new Array<Element>();

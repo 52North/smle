@@ -7,6 +7,9 @@ import { SensorMLEncoder } from './SensorMLEncoder';
 import { SensorMLNamespaceResolver } from './SensorMLNamespaceResolver';
 import { SimpleProcess } from '../../model/sml/SimpleProcess';
 
+/**
+ * Encoding of an AbstracProcess into a Document.
+ */
 export class SensorMLDocumentEncoder {
   private resolver = new SensorMLNamespaceResolver();
   private encoder = new SensorMLEncoder();
