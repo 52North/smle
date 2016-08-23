@@ -69,7 +69,8 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     private openNewCharacteristicListItem(item: CharacteristicList) {
-        var metadata = new ChildMetadata(CharacteristicListComponent, item, this.config.getConfigFor('characteristics'));
+        var metadata = new ChildMetadata(CharacteristicListComponent, item,
+            this.config.getConfigFor('characteristics'));
         this.openNewChild(metadata);
     }
 
