@@ -6,12 +6,13 @@ import {ContactComponent} from './ContactComponent';
 import {EditorComponent} from '../../base/EditorComponent';
 import {ChildMetadata} from '../../base/TypedModelComponent';
 import {TextFieldComponent} from '../../basic/TextFieldComponent';
+import {ChildItemComponent} from '../../basic/ChildItemComponent';
 
 @Component({
     selector: 'iso-responsible-party',
     template: require('./ResponsiblePartyComponent.html'),
     styles: [require('../../styles/editor-component.scss')],
-    directives: [CardComponent, ContactComponent, TextFieldComponent]
+    directives: [CardComponent, ContactComponent, TextFieldComponent, ChildItemComponent]
 })
 export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty> {
     constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

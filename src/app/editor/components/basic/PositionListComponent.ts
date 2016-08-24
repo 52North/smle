@@ -9,10 +9,12 @@ import {SweCoordinate} from '../../../model/swe/SweCoordinate';
 import {SweQuantity} from '../../../model/swe/SweQuantity';
 import {UnitOfMeasure} from '../../../model/swe/UnitOfMeasure';
 import {SweField} from '../../../model/swe/SweField';
+import {ListComponent} from './ListComponent';
 
 @Component({
     selector: 'position-list',
-    template: require('./PositionListComponent.html')
+    template: require('./PositionListComponent.html'),
+    directives: [ListComponent]
 })
 export class PositionListComponent extends TypedModelComponent<Array<Position>> {
     private getPositionTypeName(positionItem: Position): string {

@@ -1,16 +1,11 @@
-<ul class="list-group list-group-flush">
-    <li *ngFor="let item of model; let i = index" class="list-group-item">
-        <div class="row">
-            <a class="btn btn-link" (click)="openChild(item)">{{getPositionTypeName(item)}}</a>
-            <a class="btn btn-link" (click)="removeItem(i)"><i class="fa fa-remove"></i> Remove</a>
-        </div>
-    </li>
-    <li class="list-group-item">
+<list [list]="model" (select)="openChild($event)" (remove)="removeItem($event)"
+      [itemTitleFunc]="getPositionTypeName">
+    <list-add-section>
         <a type="button" class="btn btn-link" (click)="addVector()">
             <i class="fa fa-fw fa-plus"></i>Add Vector
         </a>
         <a type="button" class="btn btn-link" (click)="addDataRecord()">
             <i class="fa fa-fw fa-plus"></i>Add Data Record
         </a>
-    </li>
-</ul>
+    </list-add-section>
+</list>

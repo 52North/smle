@@ -9,7 +9,9 @@ export class ListComponent {
   @Input()
   public list: any[];
   @Input()
-  public itemTitle: string;
+  public itemTitleFunc: Function;
+  @Input()
+  public noSelect: boolean = false;
   @Output()
   public select: EventEmitter<any> = new EventEmitter<any>();
   @Output()

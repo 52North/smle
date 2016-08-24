@@ -59,7 +59,6 @@
     "src/app/editor/components/basic/object-tree/TreeNodeComponent.ts",
     "src/app/editor/components/basic/PositionListComponent.ts",
     "src/app/editor/components/basic/StringsComponent.ts",
-    "src/app/editor/components/basic/TimeListComponent.ts",
     "src/app/editor/components/gml/AbstractFeatureComponent.ts",
     "src/app/editor/components/gml/AbstractGMLComponent.ts",
     "src/app/editor/components/gml/CodeTypeComponent.ts",

@@ -1,7 +1,6 @@
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('fields')">
     <label for="fields">{{getDisplayName('fields')}}</label>
-    <list [list]="model.fields" [itemTitle]="'Field'"
-          (select)="openNewFieldItem($event)" (remove)="onRemoveField($event)">
+    <list [list]="model.fields" (select)="openNewFieldItem($event)" (remove)="onRemoveField($event)">
         <list-add-section>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="fieldTypeDropdown"
