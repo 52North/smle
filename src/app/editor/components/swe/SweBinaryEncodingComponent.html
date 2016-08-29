@@ -1,0 +1,27 @@
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('members')">
+    <label for="members">{{getDisplayName('members')}}</label>
+    <list [list]="model.members" (remove)="removeMember($event)" (select)="openNewItem($event)">
+        <list-add-section>
+            <a (click)="addBinaryBlock()" class="btn btn-link">
+                <i class="fa fa-fw fa-plus"></i> Add block</a>
+            <a (click)="addBinaryComponent()" class="btn btn-link">
+                <i class="fa fa-fw fa-plus"></i> Add component</a>
+        </list-add-section>
+    </list>
+</div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('byteOrder')">
+    <label for="byteOrder">{{getDisplayName('byteOrder')}}</label>
+    <select class="form-control" [(ngModel)]="model.byteOrder" name="byteOrder">
+        <option value="bigEndian">Big Endian</option>
+        <option value="littleEndian">Little Endian</option>
+    </select>
+</div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('byteEncoding')">
+    <label for="byteEncoding">{{getDisplayName('byteEncoding')}}</label>
+    <select class="form-control" [(ngModel)]="model.byteEncoding" name="byteEncoding">
+        <option value="base64">Base64</option>
+        <option value="raw">Raw</option>
+    </select>
+</div>
+<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'byteLength'"></number-field>
+<swe-encoding [isShowAll]="isShowAll" [config]="config" [model]="model"></swe-encoding>

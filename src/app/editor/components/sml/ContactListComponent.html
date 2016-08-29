@@ -2,7 +2,7 @@
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
         <label for="contacts">{{getDisplayName('contacts')}}</label>
-        <list [list]="model.contacts" [itemTitle]="'Responsible Party'" (select)="openNewResponsiblePartyItem($event)"
+        <list [list]="model.contacts" (select)="openNewResponsiblePartyItem($event)"
               (remove)="onRemove($event)" (add)="onAdd()"></list>
     </div>
 </card>

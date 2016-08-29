@@ -10,7 +10,7 @@ export class AllowedTokens extends AbstractAllowedValues {
     values: string[] = [];
 
     @DisplayName('Pattern')
-    pattern: string;
+    pattern: string = '';
 
     toString() {
         return 'Allowed tokens';

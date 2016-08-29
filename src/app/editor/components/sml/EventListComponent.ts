@@ -1,7 +1,7 @@
 import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
-import {AbstractMetadataListComponent} from '../swe/AbstractMetadataListComponent';
+import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
 import {EventList} from '../../../model/sml/EventList';
 import {EventComponent} from './EventComponent';
 import {Event} from '../../../model/sml/Event';

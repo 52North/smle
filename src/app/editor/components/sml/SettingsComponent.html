@@ -2,14 +2,14 @@
   <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
   <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('setValue')">
     <label for="setValue">{{getDisplayName('setValue')}}</label>
-    <list [list]="model.setValue" [itemTitle]="'Set value list'" (select)="openNewSetValueItem($event)" (remove)="onRemoveSetValue($event)" (add)="onAddSetValue()"></list>
+    <list [list]="model.setValue" (select)="openNewSetValueItem($event)" (remove)="onRemoveSetValue($event)" (add)="onAddSetValue()"></list>
   </div>
   <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('setMode')">
     <label for="setMode">{{getDisplayName('setMode')}}</label>
-    <list [list]="model.setMode" [itemTitle]="'Set mode list'" (select)="openNewSetModeItem($event)" (remove)="onRemoveSetMode($event)" (add)="onAddSetMode()"></list>
+    <list [list]="model.setMode" (select)="openNewSetModeItem($event)" (remove)="onRemoveSetMode($event)" (add)="onAddSetMode()"></list>
   </div>
   <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('setStatus')">
     <label for="setStatus">{{getDisplayName('setStatus')}}</label>
-    <list [list]="model.setStatus" [itemTitle]="'Set status list'" (select)="openNewSetStatusItem($event)" (remove)="onRemoveSetStatus($event)" (add)="onAddSetStatus()"></list>
+    <list [list]="model.setStatus" (select)="openNewSetStatusItem($event)" (remove)="onRemoveSetStatus($event)" (add)="onAddSetStatus()"></list>
   </div>
 </card>

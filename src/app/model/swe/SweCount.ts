@@ -15,7 +15,7 @@ export class SweCount extends AbstractSimpleComponent {
     value: number;
 
     @DisplayName('Constraint')
-    constraint: AllowedValues;
+    constraint: AllowedValues = new AllowedValues();
 
     toString() {
         return super.toString('SWE count');
