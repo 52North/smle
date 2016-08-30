@@ -32,6 +32,36 @@
       "id": false,
       "extension": false
     },
+    "characteristics": {
+      "characteristic": {
+        "component": {
+          "constraint": false,
+          "definition": false,
+          "identifier": false,
+          "description": false,
+          "id": false,
+          "referenceFrame": false,
+          "axisId": false,
+          "optional": false,
+          "updatable": false
+        }
+      }
+    },
+    "capabilities": {
+      "capabilities": {
+        "component": {
+          "constraint": false,
+          "definition": false,
+          "identifier": false,
+          "description": false,
+          "id": false,
+          "referenceFrame": false,
+          "axisId": false,
+          "optional": false,
+          "updatable": false
+        }
+      }
+    },
     "classification": {
       "classifiers": {
         "codeSpace": false,
