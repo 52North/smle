@@ -281,6 +281,8 @@
     "src/app/services/config/FalseDescriptionConfig.ts",
     "src/app/services/config/JSONDescriptionConfig.ts",
     "src/app/services/config/TrueDescriptionConfig.ts",
+    "src/app/services/Configuration.ts",
+    "src/app/services/ConfigurationService.ts",
     "src/app/services/DescriptionConfigService.ts",
     "src/app/services/DescriptionRepository.ts",
     "src/app/services/EditorService.ts",
