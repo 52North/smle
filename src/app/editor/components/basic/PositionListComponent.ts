@@ -1,115 +1,115 @@
-import {Position} from '../../../model/sml/Position';
-import {SweVector} from '../../../model/swe/SweVector';
-import {SweDataRecord} from '../../../model/swe/SweDataRecord';
-import {Component} from '@angular/core';
-import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
-import {TrueConfiguration} from '../../../services/config/TrueConfiguration';
-import {PositionEditorComponent} from '../sml/PositionComponent';
-import {SweCoordinate} from '../../../model/swe/SweCoordinate';
-import {SweQuantity} from '../../../model/swe/SweQuantity';
-import {UnitOfMeasure} from '../../../model/swe/UnitOfMeasure';
-import {SweField} from '../../../model/swe/SweField';
-import {ListComponent} from './ListComponent';
+import { Position } from '../../../model/sml/Position';
+import { SweVector } from '../../../model/swe/SweVector';
+import { SweDataRecord } from '../../../model/swe/SweDataRecord';
+import { Component } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
+import { TrueDescriptionConfig } from '../../../services/config/TrueDescriptionConfig';
+import { PositionEditorComponent } from '../sml/PositionComponent';
+import { SweCoordinate } from '../../../model/swe/SweCoordinate';
+import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
+import { SweField } from '../../../model/swe/SweField';
+import { ListComponent } from './ListComponent';
 
 @Component({
-    selector: 'position-list',
-    template: require('./PositionListComponent.html'),
-    directives: [ListComponent]
+  selector: 'position-list',
+  template: require('./PositionListComponent.html'),
+  directives: [ListComponent]
 })
 export class PositionListComponent extends TypedModelComponent<Array<Position>> {
-    private getPositionTypeName(positionItem: Position): string {
-        if (positionItem instanceof SweVector) {
-            return 'Vector';
-        } else if (positionItem instanceof SweDataRecord) {
-            return 'Data Record';
-        } else {
-            return '';
-        }
+  private getPositionTypeName(positionItem: Position): string {
+    if (positionItem instanceof SweVector) {
+      return 'Vector';
+    } else if (positionItem instanceof SweDataRecord) {
+      return 'Data Record';
+    } else {
+      return '';
+    }
+  }
+
+  private addVector() {
+    var newItem = this.createPositionLocation();
+
+    this.addModelIfNotExist();
+    this.model.push(newItem);
+  }
+
+  private addModelIfNotExist() {
+    if (!this.model) {
+      this.model = [];
+      this.modelChange.emit(this.model);
+    }
+  }
+
+  private addDataRecord() {
+    var newItem = this.createPositionDataRecord();
+
+    this.addModelIfNotExist();
+    this.model.push(newItem);
+  }
+
+  private createPositionLocation(withAlt: boolean = false): SweVector {
+    var location = new SweVector();
+
+    location.coordinates.push(this.createCoordinate('Lat', 0, 'deg'));
+    location.coordinates.push(this.createCoordinate('Lon', 0, 'deg'));
+    if (withAlt) {
+      location.coordinates.push(this.createCoordinate('Alt', 0, 'm'));
     }
 
-    private addVector() {
-        var newItem = this.createPositionLocation();
+    return location;
+  }
 
-        this.addModelIfNotExist();
-        this.model.push(newItem);
-    }
+  private createCoordinate(name: string, value: number, uom: string): SweCoordinate {
+    var coordinate = new SweCoordinate();
+    var quantity = new SweQuantity();
+    var unitOfMeasure = new UnitOfMeasure();
 
-    private addModelIfNotExist() {
-        if (!this.model) {
-            this.model = [];
-            this.modelChange.emit(this.model);
-        }
-    }
+    unitOfMeasure.code = uom;
 
-    private addDataRecord() {
-        var newItem = this.createPositionDataRecord();
+    quantity.value = value;
+    quantity.uom = unitOfMeasure;
 
-        this.addModelIfNotExist();
-        this.model.push(newItem);
-    }
+    coordinate.name = name;
+    coordinate.coordinate = quantity;
 
-    private createPositionLocation(withAlt: boolean = false): SweVector {
-        var location = new SweVector();
+    return coordinate;
+  }
 
-        location.coordinates.push(this.createCoordinate('Lat', 0, 'deg'));
-        location.coordinates.push(this.createCoordinate('Lon', 0, 'deg'));
-        if (withAlt) {
-            location.coordinates.push(this.createCoordinate('Alt', 0, 'm'));
-        }
+  private createPositionDataRecord(): SweDataRecord {
+    var dataRecord = new SweDataRecord();
+    var locationField = new SweField();
+    var orientationField = new SweField();
 
-        return location;
-    }
+    locationField.name = 'location';
+    locationField.component = this.createPositionLocation(true);
+    dataRecord.fields.push(locationField);
 
-    private createCoordinate(name: string, value: number, uom: string): SweCoordinate {
-        var coordinate = new SweCoordinate();
-        var quantity = new SweQuantity();
-        var unitOfMeasure = new UnitOfMeasure();
+    orientationField.name = 'orientation';
+    orientationField.component = this.createPositionOrientation();
+    dataRecord.fields.push(orientationField);
 
-        unitOfMeasure.code = uom;
+    return dataRecord;
+  }
 
-        quantity.value = value;
-        quantity.uom = unitOfMeasure;
+  private createPositionOrientation(): SweVector {
+    var orientation = new SweVector();
 
-        coordinate.name = name;
-        coordinate.coordinate = quantity;
+    orientation.coordinates.push(this.createCoordinate('TrueHeading', 0, 'deg'));
+    orientation.coordinates.push(this.createCoordinate('Pitch', 0, 'deg'));
 
-        return coordinate;
-    }
+    return orientation;
+  }
 
-    private createPositionDataRecord(): SweDataRecord {
-        var dataRecord = new SweDataRecord();
-        var locationField = new SweField();
-        var orientationField = new SweField();
+  private removeItem(index: number) {
+    this.model.splice(index, 1);
+  }
 
-        locationField.name = 'location';
-        locationField.component = this.createPositionLocation(true);
-        dataRecord.fields.push(locationField);
+  private openChild(item: Position) {
+    this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueDescriptionConfig()));
+  }
 
-        orientationField.name = 'orientation';
-        orientationField.component = this.createPositionOrientation();
-        dataRecord.fields.push(orientationField);
-
-        return dataRecord;
-    }
-
-    private createPositionOrientation(): SweVector {
-        var orientation = new SweVector();
-
-        orientation.coordinates.push(this.createCoordinate('TrueHeading', 0, 'deg'));
-        orientation.coordinates.push(this.createCoordinate('Pitch', 0, 'deg'));
-
-        return orientation;
-    }
-
-    private removeItem(index: number) {
-        this.model.splice(index, 1);
-    }
-
-    private openChild(item: Position) {
-        this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueConfiguration()));
-    }
-
-    protected createModel(): Position[] {
-        return [];
-    }
+  protected createModel(): Position[] {
+    return [];
+  }
 }

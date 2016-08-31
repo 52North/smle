@@ -12,6 +12,7 @@ export class ConfigurationService {
 
   private fetchConfiguration(): Promise<Configuration> {
     return this.http.get('./config.json').toPromise().then((response: Response) => {
+      debugger;
       var data = response.json();
       this.config = data;
       return this.config;
@@ -22,7 +23,7 @@ export class ConfigurationService {
 
   public getConfiguration(): Promise<Configuration> {
     if (this.config == null) {
-      return this.fetchConfiguration();
+      return this.getConfiguration();
     } else {
       return Promise.resolve(this.config);
     }
@@ -30,6 +31,5 @@ export class ConfigurationService {
 }
 
 export class Configuration {
-  public sosUrl: string;
-  public proxyUrl: string;
+
 }

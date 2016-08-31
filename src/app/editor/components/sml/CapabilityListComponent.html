@@ -1,25 +1,17 @@
-<card [verticalMode]="hasChild" [title]="'Capability List'" (reset)="onReset()" (close)="close()"
-      (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <form>
-        <swe-abstract-named-metadata-list [model]="model" [config]="config"
-                                          [isShowAll]="isShowAll"></swe-abstract-named-metadata-list>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('capabilities')">
-            <label for="capabilities">{{getDisplayName('capabilities')}}</label>
-            <list [list]="model.capabilities" (select)="openNewCapabilityItem($event)"
-                  (remove)="onRemoveCapability($event)" (add)="onAddCapability()">
-                <list-add-section>
-                    <div class="dropup">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="capabilityTypeDropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Add capability
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="capabilityTypeDropdown">
-                            <a class="dropdown-item" *ngFor="let option of options"
-                               (click)="onAddCapability(option.type)">{{option.name}}</a>
-                        </div>
-                    </div>
-                </list-add-section>
-            </list>
+<card [verticalMode]="hasChild" [title]="'Capability List'" (reset)="onReset()" (close)="close()"  (closeChild)="closeChild()" [(showAll)]="isShowAll">
+  <form>
+    <swe-abstract-named-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-named-metadata-list>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('capabilities')">
+      <label for="capabilities">{{getDisplayName('capabilities')}}</label>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="capabilityTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Create new capability component
+        </button>
+        <div class="dropdown-menu" aria-labelledby="capabilityTypeDropdown">
+          <a class="dropdown-item" *ngFor="let option of options" (click)="onAddCapability(option.type)">{{option.name}}</a>
         </div>
-    </form>
+      </div>
+      <list [list]="model.capabilities" (select)="openNewCapabilityItem($event)" (remove)="onRemoveCapability($event)" (add)="onAddCapability()"></list>
+    </div>
+  </form>
 </card>

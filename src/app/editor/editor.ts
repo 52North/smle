@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractProcess } from '../model/sml';
-import { ConfigurationService } from '../services/ConfigurationService';
+import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { SensorMLPipe } from './pipes/SensorMLPipe';
-import { Configuration } from '../services/config/Configuration';
+import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService } from '../services/EditorService';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
@@ -31,7 +31,7 @@ enum DescriptionType {
 })
 export class Editor implements OnInit {
   public description: AbstractProcess;
-  public config: Configuration;
+  public config: DescriptionConfig;
 
   private descriptionType: DescriptionType;
   private descriptionIsLoading: boolean = true;
@@ -39,7 +39,7 @@ export class Editor implements OnInit {
 
   constructor(
     private publish: PublishDescriptionService,
-    private configurationService: ConfigurationService,
+    private descriptionConfigService: DescriptionConfigService,
     private editorService: EditorService,
     private route: ActivatedRoute,
     private router: Router
@@ -63,7 +63,7 @@ export class Editor implements OnInit {
         this.descriptionIsLoading = false;
       });
     });
-    this.configurationService.getConfiguration().then(configuration => this.config = configuration);
+    this.descriptionConfigService.getConfiguration().then(configuration => this.config = configuration);
   }
 
   public onSelectDescriptionType(type: string) {

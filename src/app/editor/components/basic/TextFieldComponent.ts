@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Configuration } from '../../../services/config/Configuration';
+import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 import { BaseComponent } from '../base/BaseComponent';
 
 @Component({
@@ -14,7 +14,7 @@ export class TextFieldComponent extends BaseComponent implements OnChanges {
   fieldName: string;
 
   @Input()
-  config: Configuration;
+  config: DescriptionConfig;
 
   @Input()
   isShowAll: boolean;
