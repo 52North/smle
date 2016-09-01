@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
 
-  public loggedInUser: UserInfo = new UserInfo();
+  public loggedInUser: UserInfo = null;
 
   private authUrl: string = 'http://127.0.0.1:8082/auth/github';
   private logOutUrl: string = 'http://127.0.0.1:8082/auth/logout';
@@ -16,7 +16,7 @@ export class AuthService {
   constructor(
     private http: Http
   ) {
-    //this.getUserInfo();
+    this.getUserInfo();
   }
 
   public logIn() {

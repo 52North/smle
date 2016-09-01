@@ -36,9 +36,9 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
     { name: (new SweQuantity()).toString(), type: SweQuantity },
     { name: (new SweCategory()).toString(), type: SweCategory },
     { name: (new SweTimeRange()).toString(), type: SweTimeRange },
-    { name: (new SweQuantityRange()).toString(), type: SweQuantityRange },
-    { name: (new SweDataRecord()).toString(), type: SweDataRecord },
-    { name: (new SweDataArray()).toString(), type: SweDataArray }
+    { name: (new SweQuantityRange()).toString(), type: SweQuantityRange }
+    //{ name: (new SweDataRecord()).toString(), type: SweDataRecord },
+    //{ name: (new SweDataArray()).toString(), type: SweDataArray }
   ];
 
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
