@@ -1,10 +1,8 @@
-<sml-described-object [model]="model" [config]="config" [isShowAll]="isShowAll"
-                      (openAsChild)="openNewChild($event)"></sml-described-object>
+<sml-described-object [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-described-object>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'typeOf'"></text-field>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('configuration')">
     <label for="configuration">Configuration</label>
     <div>
-        <child-item [model]="model.configuration" [itemTitle]="getDisplayName('configuration')"
-                    (add)="createSettings()" (remove)="removeSettings()"
-                    (select)="openSettings()"></child-item>
+        <child-item [model]="model.configuration" [itemTitle]="getDisplayName('configuration')" (add)="createSettings()" (remove)="removeSettings()" (select)="openSettings()"></child-item>
     </div>
 </div>

@@ -1,15 +1,16 @@
-import {Component} from '@angular/core';
-import {DescribedObjectComponent} from './DescribedObjectComponent';
-import {TypedModelComponent, ChildMetadata} from '../base/TypedModelComponent';
-import {AbstractProcess} from '../../../model/sml/AbstractProcess';
-import {SettingsComponent} from './SettingsComponent';
-import {Settings} from '../../../model/sml/Settings';
-import {ChildItemComponent} from '../basic/ChildItemComponent';
+import { Component } from '@angular/core';
+import { DescribedObjectComponent } from './DescribedObjectComponent';
+import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
+import { AbstractProcess } from '../../../model/sml/AbstractProcess';
+import { SettingsComponent } from './SettingsComponent';
+import { Settings } from '../../../model/sml/Settings';
+import { ChildItemComponent } from '../basic/ChildItemComponent';
+import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
   selector: 'sml-abstract-process',
   template: require('./AbstractProcessComponent.html'),
-  directives: [DescribedObjectComponent, ChildItemComponent]
+  directives: [DescribedObjectComponent, ChildItemComponent, TextFieldComponent]
 })
 export class AbstractProcessComponent extends TypedModelComponent<AbstractProcess> {
   protected createModel(): AbstractProcess {
