@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { AbstractProcess } from '../model/sml';
 import { SensorMLXmlService } from '../services/SensorMLXmlService';
+import { ConfigurationService } from '../services/ConfigurationService';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import 'rxjs/add/observable/throw';
@@ -15,8 +16,12 @@ export class SosService {
   private proxyUrl: string = 'http://192.168.52.145:8082/api/proxy';
 
   constructor(
-    private http: Http
-  ) { }
+    private http: Http,
+    private configurationService: ConfigurationService
+  ) {
+    this.sosUrl = this.configurationService.config.sosUrl;
+    this.proxyUrl = this.configurationService.config.proxyUrl;
+  }
 
   public fetchDescriptionIDs(sosUrl?: string): Observable<Array<string>> {
     let body = JSON.stringify({

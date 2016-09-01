@@ -1,2 +1,4 @@
 {
+  "sosUrl": "http://localhost:8081/52n-sos-webapp/service",
+  "proxyUrl": "http://localhost:8081/52n-sos-webapp/service"
 }
