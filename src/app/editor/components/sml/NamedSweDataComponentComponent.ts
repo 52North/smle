@@ -92,10 +92,7 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
 @Component({
   selector: 'sml-named-swe-data-component',
   template: require('./NamedSweDataComponentComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
-    SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
-    SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent, SweDataArrayComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class NamedSweDataComponentComponent extends AbstractNamedComponentComponent<NamedSweDataComponent>
   implements OnInit {
@@ -120,10 +117,7 @@ export class NamedSweDataComponentComponent extends AbstractNamedComponentCompon
 @Component({
   selector: 'swe-field',
   template: require('./NamedSweDataComponentComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractDataComponentComponent, TextFieldComponent, SweTextComponent,
-    SweBooleanComponent, SweCategoryComponent, SweCountComponent, SweQuantityComponent, SweTimeComponent,
-    SweTimeRangeComponent, SweQuantityRangeComponent, SweDataRecordComponent, SweDataArrayComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class SweFieldComponent extends AbstractNamedComponentComponent<SweField> {
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

@@ -1,14 +1,13 @@
-import {Component} from '@angular/core';
-import {AbstractGML} from '../../../model/gml/AbstractGML';
-import {CodeTypeComponent} from './CodeTypeComponent';
-import {TypedModelComponent} from '../base/TypedModelComponent';
-import {CodeType} from '../../../model/gml/CodeType';
-import {TextFieldComponent} from '../basic/TextFieldComponent';
+import { Component } from '@angular/core';
+import { AbstractGML } from '../../../model/gml/AbstractGML';
+import { CodeTypeComponent } from './CodeTypeComponent';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { CodeType } from '../../../model/gml/CodeType';
+import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
   selector: 'gml-abstract',
-  template: require('./AbstractGMLComponent.html'),
-  directives: [CodeTypeComponent, TextFieldComponent]
+  template: require('./AbstractGMLComponent.html')
 })
 export class AbstractGMLComponent extends TypedModelComponent<AbstractGML> {
   protected createModel(): AbstractGML {

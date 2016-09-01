@@ -10,8 +10,7 @@ const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \
 @Component({
   selector: 'object-tree',
   template: require('./ObjectTreeComponent.html'),
-  styles: [require('../../styles/object-tree-component.scss')],
-  directives: [TreeComponent]
+  styles: [require('../../styles/object-tree-component.scss')]
 })
 export class ObjectTreeComponent implements OnChanges, DoCheck {
   @Input()

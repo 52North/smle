@@ -24,8 +24,7 @@ import { SweDataArray } from '../../../model/swe/SweDataArray';
 @Component({
   selector: 'sml-characteristic-list',
   template: require('./CharacteristicListComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractNamedMetadataListComponent, ListComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class CharacteristicListComponent extends EditorComponent<CharacteristicList> {
   private options = [

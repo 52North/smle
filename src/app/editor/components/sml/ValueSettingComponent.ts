@@ -1,15 +1,14 @@
-import {Component, ComponentResolver, ViewContainerRef, OnInit} from '@angular/core';
-import {CardComponent} from '../basic/CardComponent';
-import {EditorComponent} from '../base/EditorComponent';
-import {AbstractSettingComponent} from './AbstractSettingComponent';
-import {ValueSetting} from '../../../model/sml/ValueSetting';
-import {DatePickerComponent} from '../gml/DatePickerComponent';
+import { Component, ComponentResolver, ViewContainerRef, OnInit } from '@angular/core';
+import { CardComponent } from '../basic/CardComponent';
+import { EditorComponent } from '../base/EditorComponent';
+import { AbstractSettingComponent } from './AbstractSettingComponent';
+import { ValueSetting } from '../../../model/sml/ValueSetting';
+import { DatePickerComponent } from '../gml/DatePickerComponent';
 
 @Component({
   selector: 'sml-value-setting',
   template: require('./ValueSettingComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractSettingComponent, DatePickerComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class ValueSettingComponent extends EditorComponent<ValueSetting> implements OnInit {
 

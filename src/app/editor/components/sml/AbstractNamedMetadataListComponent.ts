@@ -1,16 +1,15 @@
-import {Component} from '@angular/core';
-import {AbstractNamedMetadataList} from '../../../model/sml/AbstractNamedMetadataList';
-import {TypedModelComponent} from '../base/TypedModelComponent';
-import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
-import {TextFieldComponent} from '../basic/TextFieldComponent';
+import { Component } from '@angular/core';
+import { AbstractNamedMetadataList } from '../../../model/sml/AbstractNamedMetadataList';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
+import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
-    selector: 'swe-abstract-named-metadata-list',
-    template: require('./AbstractNamedMetadataListComponent.html'),
-    directives: [AbstractMetadataListComponent, TextFieldComponent]
+  selector: 'sml-abstract-named-metadata-list',
+  template: require('./AbstractNamedMetadataListComponent.html')
 })
 export class AbstractNamedMetadataListComponent extends TypedModelComponent<AbstractNamedMetadataList> {
-    protected createModel(): AbstractNamedMetadataList {
-        return undefined;
-    }
+  protected createModel(): AbstractNamedMetadataList {
+    return undefined;
+  }
 }

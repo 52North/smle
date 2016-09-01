@@ -24,8 +24,7 @@ import { SweDataArray } from '../../../model/swe/SweDataArray';
 @Component({
   selector: 'sml-capability-list',
   template: require('./CapabilityListComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractNamedMetadataListComponent, ListComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class CapabilityListComponent extends EditorComponent<CapabilityList> {
   private options = [

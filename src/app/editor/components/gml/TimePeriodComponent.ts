@@ -7,8 +7,7 @@ import { CardComponent } from '../basic/CardComponent';
 
 @Component({
   selector: 'gml-time-period',
-  template: require('./TimePeriodComponent.html'),
-  directives: [CardComponent, DatePickerComponent, AbstractGMLComponent]
+  template: require('./TimePeriodComponent.html')
 })
 export class TimePeriodComponent extends EditorComponent<TimePeriod> {
   @Input()

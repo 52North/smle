@@ -1,18 +1,17 @@
-import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
-import {EditorComponent} from '../base/EditorComponent';
-import {ListComponent} from '../basic/ListComponent';
-import {CardComponent} from '../basic/CardComponent';
-import {Settings, ValueSetting, ModeSetting, StatusSetting} from '../../../model/sml';
-import {ChildMetadata, TypedModelComponent} from '../base/TypedModelComponent';
-import {ValueSettingComponent} from './ValueSettingComponent';
-import {ModeSettingComponent} from './ModeSettingComponent';
-import {StatusSettingComponent} from './StatusSettingComponent';
+import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { AbstractSWEComponent } from '../swe/AbstractSWEComponent';
+import { EditorComponent } from '../base/EditorComponent';
+import { ListComponent } from '../basic/ListComponent';
+import { CardComponent } from '../basic/CardComponent';
+import { Settings, ValueSetting, ModeSetting, StatusSetting } from '../../../model/sml';
+import { ChildMetadata, TypedModelComponent } from '../base/TypedModelComponent';
+import { ValueSettingComponent } from './ValueSettingComponent';
+import { ModeSettingComponent } from './ModeSettingComponent';
+import { StatusSettingComponent } from './StatusSettingComponent';
 
 @Component({
   selector: 'sml-settings',
-  template: require('./SettingsComponent.html'),
-  directives: [ListComponent, AbstractSWEComponent, CardComponent]
+  template: require('./SettingsComponent.html')
 })
 export class SettingsComponent extends EditorComponent<Settings> {
 

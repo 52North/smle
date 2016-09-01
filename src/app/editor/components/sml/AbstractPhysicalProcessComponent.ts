@@ -8,7 +8,6 @@ import { PositionListComponent } from '../basic/PositionListComponent';
   selector: 'sml-abstract-physical-process',
   template: require('./AbstractPhysicalProcessComponent.html'),
   styles: [require('../styles/editor-component.scss')],
-  directives: [AbstractProcessComponent, PositionListComponent]
 })
 export class AbstractPhysicalProcessComponent extends TypedModelComponent<AbstractPhysicalProcess> {
   protected createModel(): AbstractPhysicalProcess {

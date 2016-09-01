@@ -1,18 +1,17 @@
-import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardComponent} from '../basic/CardComponent';
-import {ListComponent} from '../basic/ListComponent';
-import {EditorComponent} from '../base/EditorComponent';
-import {ChildMetadata} from '../base/TypedModelComponent';
-import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
-import {DocumentList} from '../../../model/sml/DocumentList';
-import {OnlineResource} from '../../../model/iso/gmd/OnlineResource';
-import {OnlineResourceComponent} from '../iso/gmd/OnlineResourceComponent';
+import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { CardComponent } from '../basic/CardComponent';
+import { ListComponent } from '../basic/ListComponent';
+import { EditorComponent } from '../base/EditorComponent';
+import { ChildMetadata } from '../base/TypedModelComponent';
+import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
+import { DocumentList } from '../../../model/sml/DocumentList';
+import { OnlineResource } from '../../../model/iso/gmd/OnlineResource';
+import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';
 
 @Component({
   selector: 'sml-document-list',
   template: require('./DocumentListComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class DocumentListComponent extends EditorComponent<DocumentList> {
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {

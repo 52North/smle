@@ -1,18 +1,17 @@
-import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardComponent} from '../basic/CardComponent';
-import {ListComponent} from '../basic/ListComponent';
-import {AbstractMetadataListComponent} from './AbstractMetadataListComponent';
-import {EventList} from '../../../model/sml/EventList';
-import {EventComponent} from './EventComponent';
-import {Event} from '../../../model/sml/Event';
-import {EditorComponent} from '../base/EditorComponent';
-import {ChildMetadata} from '../base/TypedModelComponent';
+import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { CardComponent } from '../basic/CardComponent';
+import { ListComponent } from '../basic/ListComponent';
+import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
+import { EventList } from '../../../model/sml/EventList';
+import { EventComponent } from './EventComponent';
+import { Event } from '../../../model/sml/Event';
+import { EditorComponent } from '../base/EditorComponent';
+import { ChildMetadata } from '../base/TypedModelComponent';
 
 @Component({
   selector: 'sml-event-list',
   template: require('./EventListComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractMetadataListComponent, ListComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class EventListComponent extends EditorComponent<EventList> {
   constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
