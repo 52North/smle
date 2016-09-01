@@ -124,6 +124,7 @@ module.exports = {
     new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
     new CopyWebpackPlugin([ { from: 'src/examples', to: 'examples' } ]),
     new CopyWebpackPlugin([ { from: 'src/config.json', to: 'config.json' } ]),
+    new CopyWebpackPlugin([ { from: 'src/description-config.json', to: 'config.json' } ]),
     // generating html
     new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'dependency' }),
     new webpack.DefinePlugin({
