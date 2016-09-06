@@ -3,7 +3,7 @@
   document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
       (function() {
-        window.opener.postMessage('Hello opener', 'http://127.0.0.1:3000');
+        window.opener.postMessage('LogInSuccessfull', 'http://127.0.0.1:3000');
         setTimeout(function() {
           window.close();
         }, 1000);
@@ -12,6 +12,6 @@
   };
 
 </script>
-<div class="">
+<div>
   Successfully logged in!
 </div>

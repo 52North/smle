@@ -27,4 +27,7 @@ export class ConfigurationService {
 export class Configuration {
   public sosUrl: string;
   public proxyUrl: string;
+  public authUrl: string;
+  public logOutUrl: string;
+  public userInfoUrl: string;
 }

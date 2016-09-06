@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { ConfigurationService } from '../../services/ConfigurationService';
 
 @Injectable()
 export class AuthService {
@@ -14,9 +15,14 @@ export class AuthService {
   public logInChangesEvent: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
   constructor(
-    private http: Http
+    private http: Http,
+    private configurationService: ConfigurationService
   ) {
     this.getUserInfo();
+    var config = this.configurationService.config;
+    this.authUrl = config.authUrl;
+    this.logOutUrl = config.logOutUrl;
+    this.userInfoUrl = config.userInfoUrl;
   }
 
   public logIn() {
