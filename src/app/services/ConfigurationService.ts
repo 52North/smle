@@ -11,6 +11,10 @@ export class ConfigurationService {
     this.config = new Configuration();
     this.config.sosUrl = 'http://localhost:8081/52n-sos-webapp/service';
     this.config.proxyUrl = 'http://localhost:8081/52n-sos-webapp/service';
+    this.config.authUrl = 'http://127.0.0.1:8082/auth/github';
+    this.config.logOutUrl = 'http://127.0.0.1:8082/auth/logout';
+    this.config.userInfoUrl = 'http://127.0.0.1:8082/auth/info';
+    this.config.templatesUrl = 'http://localhost:8983/solr/yellowPages';
     //this.fetchConfiguration();
   }
 
@@ -30,4 +34,5 @@ export class Configuration {
   public authUrl: string;
   public logOutUrl: string;
   public userInfoUrl: string;
+  public templatesUrl: string;
 }

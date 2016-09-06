@@ -3,5 +3,6 @@
   "proxyUrl": "http://localhost:8081/52n-sos-webapp/service",
   "authUrl": "http://127.0.0.1:8082/auth/github",
   "logOutUrl": "http://127.0.0.1:8082/auth/logout",
-  "userInfoUrl": "http://127.0.0.1:8082/auth/info"
+  "userInfoUrl": "http://127.0.0.1:8082/auth/info",
+  "templatesUrl": "http://localhost:8983/solr/yellowPages"
 }

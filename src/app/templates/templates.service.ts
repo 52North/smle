@@ -3,16 +3,20 @@ import { Http, Response, URLSearchParams, Jsonp } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AbstractProcess } from '../model/sml/AbstractProcess';
 import { SensorMLXmlService } from '../services/SensorMLXmlService';
+import { ConfigurationService } from '../services/ConfigurationService';
 
 @Injectable()
 export class TemplatesService {
 
-  private templatesUrl = 'http://localhost:8983/solr/yellowPages';
+  private templatesUrl = 'http://localhost:8983/solr/horst';
 
   constructor(
     private http: Http,
-    private jsonp: Jsonp
-  ) { }
+    private jsonp: Jsonp,
+    private configurationSrvc: ConfigurationService
+  ) {
+    this.templatesUrl = this.configurationSrvc.config.templatesUrl;
+  }
 
   search(searchTerm: string): Observable<Result> {
     searchTerm = searchTerm ? searchTerm : '*';
