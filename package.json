@@ -30,11 +30,11 @@
     "watch:prod": "webpack --watch --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached",
     "build": "npm run build:dev",
     "prebuild:dev": "npm run clean:dist",
-    "build:dev": "webpack --progress --profile --colors --display-error-details --display-cached",
+    "build:dev": "webpack --progress --profile --bail",
     "prebuild:prod": "npm run clean:dist",
-    "build:prod": "webpack --config webpack.prod.config.js --progress --profile --colors --display-error-details --display-cached --bail",
+    "build:prod": "webpack --config webpack.prod.config.js --progress --profile --bail",
     "server": "npm run server:dev:hmr",
-    "server:dev": "webpack-dev-server --inline --progress --profile --colors --watch --display-error-details --display-cached  --content-base src/",
+    "server:dev": "webpack-dev-server --inline --progress --profile --watch --content-base src/",
     "server:dev:hmr": "npm run server:dev -- --hot",
     "server:prod": "http-server dist --cors",
     "webdriver:update": "webdriver-manager update",
@@ -125,8 +125,10 @@
     "typings": "^0.8.1",
     "url-loader": "^0.5.7",
     "w3c-schemas": "^1.4.0",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "webpack-md5-hash": "^0.0.5"
+    "webpack": "^2.1.0-beta.21",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^2.1.0-beta.0",
+    "webpack-md5-hash": "^0.0.5",
+    "webpack-merge": "^0.14.0"
   }
 }

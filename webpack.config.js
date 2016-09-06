@@ -76,7 +76,7 @@ module.exports = {
 
     plugins: [
         new ForkCheckerPlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(true),
+        //new webpack.optimize.OccurenceOrderPlugin(true),
         new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills'], minChunks: Infinity}),
         // static assets
         new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}]),

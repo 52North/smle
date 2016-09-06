@@ -1,9 +1,7 @@
-import { Application } from './app/app';
 import { browserDynamicPlatform } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 
 export function main(): Promise<any> {
-  console.log('Start main methode');
   return browserDynamicPlatform()
     .bootstrapModule(AppModule)
     .catch((err: any) => console.error(err));
