@@ -5,27 +5,22 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class ConfigurationService {
 
-  private config: Configuration;
+  public config: Configuration;
 
   constructor(private http: Http) {
+    this.config = new Configuration();
+    this.config.sosUrl = 'http://localhost:8081/52n-sos-webapp/service';
+    this.config.proxyUrl = 'http://localhost:8081/52n-sos-webapp/service';
+    //this.fetchConfiguration();
   }
 
-  private fetchConfiguration(): Promise<Configuration> {
+  public fetchConfiguration(): Promise<void> {
     return this.http.get('./config.json').toPromise().then((response: Response) => {
       var data = response.json();
       this.config = data;
-      return this.config;
     }).catch(() => {
       console.error('Configuration for smle wasnt found.');
     });
-  }
-
-  public getConfiguration(): Promise<Configuration> {
-    if (this.config == null) {
-      return this.fetchConfiguration();
-    } else {
-      return Promise.resolve(this.config);
-    }
   }
 }
 
