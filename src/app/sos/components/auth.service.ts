@@ -8,9 +8,9 @@ export class AuthService {
 
   public loggedInUser: UserInfo = null;
 
-  private authUrl: string = 'http://127.0.0.1:8082/auth/github';
-  private logOutUrl: string = 'http://127.0.0.1:8082/auth/logout';
-  private userInfoUrl: string = 'http://127.0.0.1:8082/auth/info';
+  private authUrl: string = 'http://127.0.0.1:3001/auth/github';
+  private logOutUrl: string = 'http://127.0.0.1:3001/auth/logout';
+  private userInfoUrl: string = 'http://127.0.0.1:3001/auth/info';
 
   public logInChangesEvent: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 

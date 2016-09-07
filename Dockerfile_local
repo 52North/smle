@@ -1,0 +1,30 @@
+FROM nginx:1.11
+MAINTAINER Jan Schulte <j.schulte@52north.org>
+
+## Install required dependencies, including late Node.js
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends --fix-missing \
+    #ca-certificates \
+    build-essential \
+	  unzip \
+    bzip2 \
+    git \
+    curl
+
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+	  && apt-get install -y \
+    nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp
+
+COPY . /tmp/
+
+RUN npm install && npm install
+
+RUN npm run typings-install
+
+RUN npm run build:prod \
+    && cp -r dist/* /usr/share/nginx/html/ \
+    && cd .. \
+    && rm -r tmp

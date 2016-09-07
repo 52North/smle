@@ -18,12 +18,12 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
     nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-ENV BRANCH master
+ENV BRANCH sos-connect
 
 # Download sources, build, copy build to install loation, remove temp files
 # Cannot simply run "npm install" because I'm root (need --allow-root for bower, and maybe --unsafe-perm for npm install), so instead run bower install  manually as well; then run grunt to get the distribution package in ./dist
 WORKDIR /tmp
-RUN curl -LO https://github.com/52North/smle/archive/$BRANCH.zip && unzip $BRANCH.zip
+RUN curl -LO https://github.com/janschulte/smle/archive/$BRANCH.zip && unzip $BRANCH.zip
 
 COPY webpack.prod.config.js smle-$BRANCH/
 
