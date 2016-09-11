@@ -80,9 +80,11 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
   private openNewAbstractTimeItem(item: AbstractTime) {
     var metadata: ChildMetadata;
     if (item instanceof TimeInstant) {
-      metadata = new ChildMetadata(TimeInstantComponent, item, this.config.getConfigFor('validTime').getConfigFor('timeInstant'));
+      metadata = new ChildMetadata(TimeInstantComponent, item,
+        this.config.getConfigFor('validTime').getConfigFor('timeInstant'));
     } else if (item instanceof TimePeriod) {
-      metadata = new ChildMetadata(TimePeriodComponent, item, this.config.getConfigFor('validTime').getConfigFor('timePeriod'));
+      metadata = new ChildMetadata(TimePeriodComponent, item,
+        this.config.getConfigFor('validTime').getConfigFor('timePeriod'));
     }
 
     this.openNewChild(metadata);
