@@ -2,7 +2,8 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { EditorComponent } from '../base/EditorComponent';
 import { Position } from '../../../model/sml/Position';
 import { CardComponent } from '../basic/CardComponent';
-import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { Overlay, overlayConfigFactory } from 'angular2-modal';
+import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { MapComponent, MapData } from '../basic/MapComponent';
 import { SweVector } from '../../../model/swe/SweVector';
 import { SweDataRecord } from '../../../model/swe/SweDataRecord';
@@ -13,7 +14,8 @@ import { SweField } from '../../../model/swe/SweField';
 @Component({
   selector: 'sml-position',
   template: require('./PositionComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+  styles: [require('../styles/editor-component.scss')],
+  providers: [Modal]
 })
 export class PositionEditorComponent extends EditorComponent<Position> {
   private get latitude(): number {
@@ -58,23 +60,26 @@ export class PositionEditorComponent extends EditorComponent<Position> {
 
   constructor(
     private modalWindow: Modal,
+    private overlay: Overlay,
     componentFactoryResolver: ComponentFactoryResolver,
     viewContainerRef: ViewContainerRef
   ) {
     super(componentFactoryResolver, viewContainerRef);
+    overlay.defaultViewContainer = viewContainerRef;
   }
 
   private openMap() {
     var mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
 
-    this.modalWindow.open(MapComponent, mapData).then((dialogRef) => {
-      dialogRef.result.then((result) => {
-        if (result) {
-          this.latitude = result.lat;
-          this.longitude = result.lng;
-        }
+    this.modalWindow
+      .open(MapComponent, overlayConfigFactory(mapData, BSModalContext)).then((dialogRef) => {
+        dialogRef.result.then((result) => {
+          if (result) {
+            this.latitude = result.lat;
+            this.longitude = result.lng;
+          }
+        });
       });
-    });
   }
 
   protected createModel(): Position {

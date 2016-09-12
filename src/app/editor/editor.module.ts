@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { CalendarModule } from 'primeng/primeng';
 
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
@@ -176,7 +179,9 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
   imports: [
     CommonModule,
     FormsModule,
-    CalendarModule
+    CalendarModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
   ],
   exports: [
     // basic components
@@ -261,6 +266,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     ModeSettingComponent,
     StatusSettingComponent,
     PositionEditorComponent,
+    MapComponent,
     TimePeriodComponent,
     TimeInstantComponent,
     CharacteristicListComponent,
