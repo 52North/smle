@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { TextFieldComponent } from '../basic/TextFieldComponent';
 import { CardComponent } from '../basic/CardComponent';
 import { SweBinaryBlock } from '../../../model/swe/SweBinaryBlock';
@@ -12,8 +12,11 @@ import { AbstractSWEComponent } from './AbstractSWEComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class SweBinaryBlockComponent extends EditorComponent<SweBinaryBlock> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(
+    componentFactoryResolver: ComponentFactoryResolver,
+    viewContainerRef: ViewContainerRef
+  ) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): SweBinaryBlock {

@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { AbstractSWEComponent } from '../swe/AbstractSWEComponent';
 import { EditorComponent } from '../base/EditorComponent';
 import { ListComponent } from '../basic/ListComponent';
@@ -15,8 +15,8 @@ import { StatusSettingComponent } from './StatusSettingComponent';
 })
 export class SettingsComponent extends EditorComponent<Settings> {
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): Settings {

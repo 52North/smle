@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { AbstractSWEComponent } from '../swe/AbstractSWEComponent';
 import { Term } from '../../../model/sml/Term';
@@ -11,8 +11,8 @@ import { TextFieldComponent } from '../basic/TextFieldComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class TermComponent extends EditorComponent<Term> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): Term {

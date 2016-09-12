@@ -1,11 +1,14 @@
-import { ViewContainerRef, ComponentResolver, ComponentRef } from '@angular/core';
+import { ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { TypedModelComponent, ChildMetadata } from './TypedModelComponent';
 
 export abstract class EditorComponent<T> extends TypedModelComponent<T> {
   private parentComponent: EditorComponent<any>;
   private childComponentRef: ComponentRef<EditorComponent<any>>;
 
-  constructor(private componentResolver: ComponentResolver, private viewContainerRef: ViewContainerRef) {
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private viewContainerRef: ViewContainerRef
+  ) {
     super();
   }
 
@@ -25,7 +28,7 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     return !!this.parentComponent;
   }
 
-  protected openNewChild(childMetadata: ChildMetadata) {
+  protected openNewChild(childMetadata: ChildMetadata<any>) {
     var model = childMetadata.model;
     var componentType = childMetadata.componentType;
     var config = childMetadata.config;
@@ -40,12 +43,11 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
       this.childComponentRef.instance.close();
     }
 
-    this.componentResolver.resolveComponent(componentType).then((componentFactory) => {
-      this.childComponentRef = this.viewContainerRef.createComponent(componentFactory);
-      this.childComponentRef.instance.model = model;
-      this.childComponentRef.instance.config = config;
-      this.childComponentRef.instance.parentComponent = this;
-    });
+    const component = this.componentFactoryResolver.resolveComponentFactory(componentType);
+    this.childComponentRef = this.viewContainerRef.createComponent(component);
+    this.childComponentRef.instance.model = model;
+    this.childComponentRef.instance.config = config;
+    this.childComponentRef.instance.parentComponent = this;
   }
 
   protected close() {

@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { EditorComponent } from '../base/EditorComponent';
 import { AbstractSettingComponent } from './AbstractSettingComponent';
@@ -14,8 +14,8 @@ export class ValueSettingComponent extends EditorComponent<ValueSetting> impleme
 
   private selectedType: string;
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): ValueSetting {

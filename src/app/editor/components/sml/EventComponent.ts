@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { ListComponent } from '../basic/ListComponent';
 import { AbstractSWEComponent } from '../swe/AbstractSWEComponent';
@@ -32,8 +32,8 @@ import { ChildItemComponent } from '../basic/ChildItemComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class EventComponent extends EditorComponent<Event> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): Event {

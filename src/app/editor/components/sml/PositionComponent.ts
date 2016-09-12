@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { Position } from '../../../model/sml/Position';
 import { CardComponent } from '../basic/CardComponent';
@@ -56,8 +56,12 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     this.setFieldValue('orientation', 'Pitch', value);
   }
 
-  constructor(private modalWindow: Modal, componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(
+    private modalWindow: Modal,
+    componentFactoryResolver: ComponentFactoryResolver,
+    viewContainerRef: ViewContainerRef
+  ) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   private openMap() {

@@ -29,7 +29,7 @@ export class SweBinaryEncodingComponent extends TypedModelComponent<SweBinaryEnc
   }
 
   private openNewItem(item: SweBinaryBlock | SweBinaryComponent) {
-    var childMetadata: ChildMetadata;
+    var childMetadata: ChildMetadata<any>;
 
     if (item instanceof SweBinaryBlock) {
       childMetadata = new ChildMetadata(SweBinaryBlockComponent, item, this.config.getConfigFor('members'));

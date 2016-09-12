@@ -23,6 +23,12 @@ import { DatePickerComponent } from './components/gml/DatePickerComponent';
 import { TimeInstantComponent } from './components/gml/TimeInstantComponent';
 import { TimePeriodComponent } from './components/gml/TimePeriodComponent';
 
+import { AddressComponent } from './components/iso/gmd/AddressComponent';
+import { ContactComponent } from './components/iso/gmd/ContactComponent';
+import { OnlineResourceComponent } from './components/iso/gmd/OnlineResourceComponent';
+import { PhoneComponent } from './components/iso/gmd/PhoneComponent';
+import { ResponsiblePartyComponent } from './components/iso/gmd/ResponsiblePartyComponent';
+
 import { AbstractMetadataListComponent } from './components/sml/AbstractMetadataListComponent';
 import { AbstractNamedMetadataListComponent } from './components/sml/AbstractNamedMetadataListComponent';
 import { AbstractPhysicalProcessComponent } from './components/sml/AbstractPhysicalProcessComponent';
@@ -100,8 +106,14 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     AbstractGMLComponent,
     CodeTypeComponent,
     DatePickerComponent,
-    //TimeInstantComponent,
-    //TimePeriodComponent,
+    TimeInstantComponent,
+    TimePeriodComponent,
+    // iso components
+    AddressComponent,
+    ContactComponent,
+    OnlineResourceComponent,
+    PhoneComponent,
+    ResponsiblePartyComponent,
     // sml components
     AbstractMetadataListComponent,
     AbstractNamedMetadataListComponent,
@@ -110,16 +122,16 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     AbstractSettingComponent,
     AggregatingProcessComponent,
     CapabilityListComponent,
-    //CharacteristicListComponent,
-    //ClassifierListComponent,
+    CharacteristicListComponent,
+    ClassifierListComponent,
     ContactListComponent,
     DescribedObjectComponent,
     DocumentListComponent,
     EventComponent,
     EventListComponent,
-    //IdentifierListComponent,
+    IdentifierListComponent,
     ModeSettingComponent,
-    //NamedSweDataComponentComponent,
+    NamedSweDataComponentComponent,
     SweFieldComponent,
     PhysicalComponentComponent,
     PhysicalSystemComponent,
@@ -127,7 +139,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     SettingsComponent,
     SimpleProcessComponent,
     StatusSettingComponent,
-    //TermComponent,
+    TermComponent,
     ValueSettingComponent,
     // swe components
     AbstractAllowedValuesComponent,
@@ -140,7 +152,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     AllowedTimesComponent,
     AllowedTokensComponent,
     AllowedValuesComponent,
-    //KeywordListComponent,
+    KeywordListComponent,
     SweBinaryBlockComponent,
     SweBinaryComponentComponent,
     SweBinaryEncodingComponent,
@@ -183,8 +195,6 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     AbstractGMLComponent,
     CodeTypeComponent,
     DatePickerComponent,
-    //TimeInstantComponent,
-    //TimePeriodComponent,
     // sml components
     AbstractMetadataListComponent,
     AbstractNamedMetadataListComponent,
@@ -193,16 +203,12 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     AbstractSettingComponent,
     AggregatingProcessComponent,
     CapabilityListComponent,
-    //CharacteristicListComponent,
-    //ClassifierListComponent,
     ContactListComponent,
     DescribedObjectComponent,
     DocumentListComponent,
     EventComponent,
     EventListComponent,
-    //IdentifierListComponent,
     ModeSettingComponent,
-    //NamedSweDataComponentComponent,
     SweFieldComponent,
     PhysicalComponentComponent,
     PhysicalSystemComponent,
@@ -210,7 +216,6 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     SettingsComponent,
     SimpleProcessComponent,
     StatusSettingComponent,
-    //TermComponent,
     ValueSettingComponent,
     // swe components
     AbstractAllowedValuesComponent,
@@ -223,7 +228,6 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     AllowedTimesComponent,
     AllowedTokensComponent,
     AllowedValuesComponent,
-    //KeywordListComponent,
     SweBinaryBlockComponent,
     SweBinaryComponentComponent,
     SweBinaryEncodingComponent,
@@ -243,6 +247,31 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     SweXmlEncodingComponent,
     TimePositionComponent,
     UnitOfMeasureComponent
+  ],
+  entryComponents: [
+    KeywordListComponent,
+    IdentifierListComponent,
+    TermComponent,
+    ClassifierListComponent,
+    DocumentListComponent,
+    EventListComponent,
+    EventComponent,
+    SettingsComponent,
+    ValueSettingComponent,
+    ModeSettingComponent,
+    StatusSettingComponent,
+    PositionEditorComponent,
+    TimePeriodComponent,
+    TimeInstantComponent,
+    CharacteristicListComponent,
+    NamedSweDataComponentComponent,
+    CapabilityListComponent,
+    ContactListComponent,
+    ResponsiblePartyComponent,
+    ContactComponent,
+    PhoneComponent,
+    AddressComponent,
+    OnlineResourceComponent
   ]
 })
 export class EditorModule { }

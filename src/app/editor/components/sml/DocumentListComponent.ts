@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { ListComponent } from '../basic/ListComponent';
 import { EditorComponent } from '../base/EditorComponent';
@@ -14,8 +14,8 @@ import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class DocumentListComponent extends EditorComponent<DocumentList> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel() {

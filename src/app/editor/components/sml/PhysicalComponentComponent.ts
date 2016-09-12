@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { AbstractPhysicalProcessComponent } from './AbstractPhysicalProcessComponent';
 import { PhysicalComponent } from '../../../model/sml/PhysicalComponent';
 import { CardComponent } from '../basic/CardComponent';
@@ -10,8 +10,8 @@ import { EditorComponent } from '../base/EditorComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class PhysicalComponentComponent extends EditorComponent<PhysicalComponent> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): PhysicalComponent {

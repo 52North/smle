@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { AbstractMetadataListComponent } from '../sml/AbstractMetadataListComponent';
 import { KeywordList } from '../../../model/sml/KeywordList';
 import { CardComponent } from '../basic/CardComponent';
@@ -12,8 +12,8 @@ import { TextFieldComponent } from '../basic/TextFieldComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class KeywordListComponent extends EditorComponent<KeywordList> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): KeywordList {

@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { ContactList } from '../../../model/sml';
 import { ResponsibleParty } from '../../../model/iso';
 import { ResponsiblePartyComponent } from '../iso/gmd/ResponsiblePartyComponent';
@@ -13,8 +13,11 @@ import { ChildMetadata } from '../base/TypedModelComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class ContactListComponent extends EditorComponent<ContactList> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(
+    componentFactoryResolver: ComponentFactoryResolver,
+    viewContainerRef: ViewContainerRef
+  ) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel() {

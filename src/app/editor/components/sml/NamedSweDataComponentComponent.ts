@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef, AfterContentInit, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef, AfterContentInit, OnInit } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
 import { CardComponent } from '../basic/CardComponent';
@@ -44,8 +44,8 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
   protected componentType: ComponentType;
   protected title: string;
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   ngAfterContentInit(): any {
@@ -96,8 +96,8 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
 })
 export class NamedSweDataComponentComponent extends AbstractNamedComponentComponent<NamedSweDataComponent>
   implements OnInit {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   public ngOnInit() {
@@ -120,8 +120,8 @@ export class NamedSweDataComponentComponent extends AbstractNamedComponentCompon
   styles: [require('../styles/editor-component.scss')]
 })
 export class SweFieldComponent extends AbstractNamedComponentComponent<SweField> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
     this.title = 'Swe Field';
   }
 

@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { EditorComponent } from '../base/EditorComponent';
 import { AbstractSettingComponent } from './AbstractSettingComponent';
@@ -12,8 +12,8 @@ import { TextFieldComponent } from '../basic/TextFieldComponent';
 })
 export class ModeSettingComponent extends EditorComponent<ModeSetting> {
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): ModeSetting {

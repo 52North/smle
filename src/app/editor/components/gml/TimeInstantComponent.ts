@@ -1,4 +1,4 @@
-import { Component, Input, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, Input, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { TimeInstant } from '../../../model/gml/TimeInstant';
 import { CardComponent } from '../basic/CardComponent';
@@ -13,8 +13,8 @@ export class TimeInstantComponent extends EditorComponent<TimeInstant> {
   @Input()
   public model: TimeInstant;
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel() {

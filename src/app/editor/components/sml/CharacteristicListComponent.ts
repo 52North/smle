@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { ListComponent } from '../basic/ListComponent';
 import { AbstractNamedMetadataListComponent } from './AbstractNamedMetadataListComponent';
@@ -40,8 +40,8 @@ export class CharacteristicListComponent extends EditorComponent<CharacteristicL
     { name: (new SweDataArray()).toString(), type: SweDataArray }
   ];
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): CharacteristicList {

@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Address } from '../../../../model/iso/gmd/Address';
 import { CardComponent } from '../../basic/CardComponent';
 import { StringsComponent } from '../../basic/StringsComponent';
@@ -11,8 +11,8 @@ import { TextFieldComponent } from '../../basic/TextFieldComponent';
   styles: [require('../../styles/editor-component.scss')]
 })
 export class AddressComponent extends EditorComponent<Address> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): Address {

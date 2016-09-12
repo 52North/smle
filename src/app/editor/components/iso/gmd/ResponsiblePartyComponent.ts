@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
 import { Contact } from '../../../../model/iso/gmd/Contact';
 import { CardComponent } from '../../basic/CardComponent';
@@ -14,8 +14,8 @@ import { ChildItemComponent } from '../../basic/ChildItemComponent';
   styles: [require('../../styles/editor-component.scss')]
 })
 export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): ResponsibleParty {

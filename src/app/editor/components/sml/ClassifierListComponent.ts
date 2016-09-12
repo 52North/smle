@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { ListComponent } from '../basic/ListComponent';
 import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
@@ -14,8 +14,8 @@ import { ChildMetadata } from '../base/TypedModelComponent';
   styles: [require('../styles/editor-component.scss')]
 })
 export class ClassifierListComponent extends EditorComponent<ClassifierList> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): ClassifierList {

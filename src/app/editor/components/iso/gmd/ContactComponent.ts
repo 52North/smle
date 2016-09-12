@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Contact } from '../../../../model/iso/gmd/Contact';
 import { AddressComponent } from './AddressComponent';
 import { PhoneComponent } from './PhoneComponent';
@@ -17,8 +17,8 @@ import { TextFieldComponent } from '../../basic/TextFieldComponent';
   styles: [require('../../styles/editor-component.scss')]
 })
 export class ContactComponent extends EditorComponent<Contact> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): Contact {

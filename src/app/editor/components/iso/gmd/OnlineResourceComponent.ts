@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
 import { CardComponent } from '../../basic/CardComponent';
 import { EditorComponent } from '../../base/EditorComponent';
@@ -10,8 +10,8 @@ import { TextFieldComponent } from '../../basic/TextFieldComponent';
   styles: [require('../../styles/editor-component.scss')]
 })
 export class OnlineResourceComponent extends EditorComponent<OnlineResource> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): OnlineResource {

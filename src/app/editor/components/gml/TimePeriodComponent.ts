@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef, Input } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef, Input } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { TimePeriod } from '../../../model/gml/TimePeriod';
 import { DatePickerComponent } from './DatePickerComponent';
@@ -13,8 +13,8 @@ export class TimePeriodComponent extends EditorComponent<TimePeriod> {
   @Input()
   public model: TimePeriod;
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel() {
