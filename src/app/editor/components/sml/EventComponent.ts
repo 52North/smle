@@ -1,41 +1,39 @@
-import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
-import {CardComponent} from '../basic/CardComponent';
-import {ListComponent} from '../basic/ListComponent';
-import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
-import {KeywordListComponent} from '../swe/KeywordListComponent';
-import {IdentifierListComponent} from './IdentifierListComponent';
-import {ClassifierListComponent} from './ClassifierListComponent';
-import {DocumentListComponent} from './DocumentListComponent';
-import {ContactListComponent} from './ContactListComponent';
-import {CodeTypeComponent} from '../gml/CodeTypeComponent';
-import {AbstractSWEIdentifiableComponent} from '../swe/AbstractSWEIdentifiableComponent';
-import {Event} from '../../../model/sml/Event';
-import {EditorComponent} from '../base/EditorComponent';
-import {IdentifierList} from '../../../model/sml/IdentifierList';
-import {ClassifierList} from '../../../model/sml/ClassifierList';
-import {ContactList} from '../../../model/sml/ContactList';
-import {DocumentList} from '../../../model/sml/DocumentList';
-import {KeywordList} from '../../../model/sml/KeywordList';
-import {ChildMetadata} from '../base/TypedModelComponent';
-import {CodeWithAuthority} from '../../../model/gml/CodeWithAuthority';
-import {TimePeriod} from '../../../model/gml/TimePeriod';
-import {TimeInstant} from '../../../model/gml/TimeInstant';
-import {TimeInstantComponent} from '../gml/TimeInstantComponent';
-import {TimePeriodComponent} from '../gml/TimePeriodComponent';
-import {SettingsComponent} from './SettingsComponent';
-import {Settings} from '../../../model/sml/Settings';
-import {ChildItemComponent} from '../basic/ChildItemComponent';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { CardComponent } from '../basic/CardComponent';
+import { ListComponent } from '../basic/ListComponent';
+import { AbstractSWEComponent } from '../swe/AbstractSWEComponent';
+import { KeywordListComponent } from '../swe/KeywordListComponent';
+import { IdentifierListComponent } from './IdentifierListComponent';
+import { ClassifierListComponent } from './ClassifierListComponent';
+import { DocumentListComponent } from './DocumentListComponent';
+import { ContactListComponent } from './ContactListComponent';
+import { CodeTypeComponent } from '../gml/CodeTypeComponent';
+import { AbstractSWEIdentifiableComponent } from '../swe/AbstractSWEIdentifiableComponent';
+import { Event } from '../../../model/sml/Event';
+import { EditorComponent } from '../base/EditorComponent';
+import { IdentifierList } from '../../../model/sml/IdentifierList';
+import { ClassifierList } from '../../../model/sml/ClassifierList';
+import { ContactList } from '../../../model/sml/ContactList';
+import { DocumentList } from '../../../model/sml/DocumentList';
+import { KeywordList } from '../../../model/sml/KeywordList';
+import { ChildMetadata } from '../base/TypedModelComponent';
+import { CodeWithAuthority } from '../../../model/gml/CodeWithAuthority';
+import { TimePeriod } from '../../../model/gml/TimePeriod';
+import { TimeInstant } from '../../../model/gml/TimeInstant';
+import { TimeInstantComponent } from '../gml/TimeInstantComponent';
+import { TimePeriodComponent } from '../gml/TimePeriodComponent';
+import { SettingsComponent } from './SettingsComponent';
+import { Settings } from '../../../model/sml/Settings';
+import { ChildItemComponent } from '../basic/ChildItemComponent';
 
 @Component({
   selector: 'sml-event',
   template: require('./EventComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractSWEComponent, AbstractSWEIdentifiableComponent,
-    KeywordListComponent, IdentifierListComponent, ListComponent, CodeTypeComponent, ChildItemComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class EventComponent extends EditorComponent<Event> {
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): Event {

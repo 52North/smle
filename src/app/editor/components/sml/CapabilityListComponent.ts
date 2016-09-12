@@ -1,4 +1,4 @@
-import { Component, ComponentResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { ListComponent } from '../basic/ListComponent';
 import { AbstractNamedMetadataListComponent } from './AbstractNamedMetadataListComponent';
@@ -24,8 +24,7 @@ import { SweDataArray } from '../../../model/swe/SweDataArray';
 @Component({
   selector: 'sml-capability-list',
   template: require('./CapabilityListComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractNamedMetadataListComponent, ListComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class CapabilityListComponent extends EditorComponent<CapabilityList> {
   private options = [
@@ -41,8 +40,8 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
     { name: (new SweDataArray()).toString(), type: SweDataArray }
   ];
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   protected createModel(): CapabilityList {

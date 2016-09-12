@@ -5,7 +5,7 @@ var helpers = require('./webpack.helpers');
 var autoprefixer = require('autoprefixer');
 var webpack = require('webpack');
 var WebpackDedupePlugin = require('webpack/lib/optimize/DedupePlugin');
-var WebpackOccurenceOrderPlugin = require('webpack/lib/optimize/OccurenceOrderPlugin');
+// var WebpackOccurenceOrderPlugin = require('webpack/lib/optimize/OccurenceOrderPlugin');
 var WebpackCommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 var WebpackUglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CompressionPlugin = require('compression-webpack-plugin');
@@ -114,9 +114,9 @@ module.exports = {
     new ForkCheckerPlugin(),
     new WebpackMd5Hash(),
     new WebpackDedupePlugin(),
-    new WebpackOccurenceOrderPlugin(true),
+    //new WebpackOccurenceOrderPlugin(true),
     new WebpackCommonsChunkPlugin({
-      name: ['main', 'vendor', 'polyfills'],
+      name: ['polyfills', 'vendor'].reverse(),
       filename: '[name].[chunkhash].bundle.js',
       minChunks: Infinity
     }),
@@ -153,55 +153,7 @@ module.exports = {
       beautify: false,
       mangle: {
         screw_ie8 : true,
-        except: [
-          'App',
-          'About',
-          'Contact',
-          'Home',
-          'Menu',
-          'Footer',
-          'XLarge',
-          'RouterActive',
-          'RouterLink',
-          'RouterOutlet',
-          'NgFor',
-          'NgIf',
-          'NgClass',
-          'NgSwitch',
-          'NgStyle',
-          'NgSwitchDefault',
-          'NgControl',
-          'NgControlName',
-          'NgControlGroup',
-          'NgFormControl',
-          'NgModel',
-          'NgFormModel',
-          'NgForm',
-          'NgSelectOption',
-          'DefaultValueAccessor',
-          'NumberValueAccessor',
-          'CheckboxControlValueAccessor',
-          'SelectControlValueAccessor',
-          'RadioControlValueAccessor',
-          'NgControlStatus',
-          'RequiredValidator',
-          'MinLengthValidator',
-          'MaxLengthValidator',
-          'PatternValidator',
-          'AsyncPipe',
-          'DatePipe',
-          'JsonPipe',
-          'NumberPipe',
-          'DecimalPipe',
-          'PercentPipe',
-          'CurrencyPipe',
-          'LowerCasePipe',
-          'UpperCasePipe',
-          'SlicePipe',
-          'ReplacePipe',
-          'I18nPluralPipe',
-          'I18nSelectPipe'
-        ]
+        keep_fnames: true
       },
       compress : { screw_ie8 : true },
       comments: false

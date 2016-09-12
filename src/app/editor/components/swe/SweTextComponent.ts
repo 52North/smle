@@ -7,8 +7,7 @@ import { AllowedTokensComponent } from './AllowedTokensComponent';
 
 @Component({
   selector: 'swe-text',
-  template: require('./SweTextComponent.html'),
-  directives: [AbstractSimpleComponentComponent, TextFieldComponent, AllowedTokensComponent]
+  template: require('./SweTextComponent.html')
 })
 export class SweTextComponent extends TypedModelComponent<SweText> {
   protected createModel(): SweText {

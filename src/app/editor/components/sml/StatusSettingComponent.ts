@@ -1,21 +1,20 @@
-import {Component, ComponentResolver, ViewContainerRef, OnInit} from '@angular/core';
-import {CardComponent} from '../basic/CardComponent';
-import {EditorComponent} from '../base/EditorComponent';
-import {AbstractSettingComponent} from './AbstractSettingComponent';
-import {StatusSetting} from '../../../model/sml/StatusSetting';
+import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
+import { CardComponent } from '../basic/CardComponent';
+import { EditorComponent } from '../base/EditorComponent';
+import { AbstractSettingComponent } from './AbstractSettingComponent';
+import { StatusSetting } from '../../../model/sml/StatusSetting';
 
 @Component({
   selector: 'sml-status-setting',
   template: require('./StatusSettingComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [CardComponent, AbstractSettingComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class StatusSettingComponent extends EditorComponent<StatusSetting> implements OnInit {
 
   private valueSelected: boolean;
 
-  constructor(componentResolver: ComponentResolver, viewContainerRef: ViewContainerRef) {
-    super(componentResolver, viewContainerRef);
+  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    super(componentFactoryResolver, viewContainerRef);
   }
 
   public ngOnInit() {

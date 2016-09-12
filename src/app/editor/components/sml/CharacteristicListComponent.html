@@ -1,6 +1,6 @@
 <card [verticalMode]="hasChild" [title]="'Characteristic List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
   <form>
-    <swe-abstract-named-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-named-metadata-list>
+    <sml-abstract-named-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-named-metadata-list>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('characteristics')">
       <label for="characteristics">{{getDisplayName('characteristics')}}</label>
       <div class="dropdown">
