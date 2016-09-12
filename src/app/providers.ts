@@ -6,7 +6,6 @@ import { SensorMLXmlService } from './services/SensorMLXmlService';
 import { SampleDataLoader } from './services/SampleDataLoader';
 import { DescriptionConfigService } from './services/DescriptionConfigService';
 import { EditorService } from './services/EditorService';
-// import { MODAL_BROWSER_PROVIDERS } from 'angular2-modal/platform-browser';
 
 export const APP_PROVIDERS: any[] = [
   { provide: DescriptionRepository, useClass: InMemoryDescriptionRepository },

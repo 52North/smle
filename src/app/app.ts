@@ -1,8 +1,4 @@
-/*
- * Angular 2 decorators and services
- */
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
-//import {Modal, BS_MODAL_PROVIDERS} from 'angular2-modal/plugins/bootstrap';
 
 /*
  * App Component
@@ -20,6 +16,5 @@ import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 })
 export class Application {
   constructor(viewContainer: ViewContainerRef) {
-    //modal.defaultViewContainer = viewContainer;
   }
 }
