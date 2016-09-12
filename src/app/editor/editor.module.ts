@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { CalendarModule } from 'primeng/primeng';
+
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
@@ -20,7 +22,6 @@ import { CodeTypeComponent } from './components/gml/CodeTypeComponent';
 import { DatePickerComponent } from './components/gml/DatePickerComponent';
 import { TimeInstantComponent } from './components/gml/TimeInstantComponent';
 import { TimePeriodComponent } from './components/gml/TimePeriodComponent';
-import { Calendar } from 'primeng/components/calendar/calendar';
 
 import { AbstractMetadataListComponent } from './components/sml/AbstractMetadataListComponent';
 import { AbstractNamedMetadataListComponent } from './components/sml/AbstractNamedMetadataListComponent';
@@ -101,7 +102,6 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     DatePickerComponent,
     //TimeInstantComponent,
     //TimePeriodComponent,
-    Calendar,
     // sml components
     AbstractMetadataListComponent,
     AbstractNamedMetadataListComponent,
@@ -163,7 +163,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    CalendarModule
   ],
   exports: [
     // basic components
@@ -184,7 +185,6 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     DatePickerComponent,
     //TimeInstantComponent,
     //TimePeriodComponent,
-    Calendar,
     // sml components
     AbstractMetadataListComponent,
     AbstractNamedMetadataListComponent,
