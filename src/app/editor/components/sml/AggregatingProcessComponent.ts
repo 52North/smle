@@ -5,8 +5,7 @@ import { ConnectDescriptionService } from '../../../sos/connect/connect.service'
 
 @Component({
   selector: 'sml-aggregating-process',
-  template: require('./AggregatingProcessComponent.html'),
-  directives: []
+  template: require('./AggregatingProcessComponent.html')
 })
 export class AggregatingProcessComponent extends TypedModelComponent<AggregatingProcess> {
 

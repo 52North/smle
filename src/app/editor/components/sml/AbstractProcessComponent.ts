@@ -9,8 +9,7 @@ import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
   selector: 'sml-abstract-process',
-  template: require('./AbstractProcessComponent.html'),
-  directives: [DescribedObjectComponent, ChildItemComponent, TextFieldComponent]
+  template: require('./AbstractProcessComponent.html')
 })
 export class AbstractProcessComponent extends TypedModelComponent<AbstractProcess> {
   protected createModel(): AbstractProcess {

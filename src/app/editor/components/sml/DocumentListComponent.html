@@ -1,6 +1,6 @@
 <card [verticalMode]="hasChild" [title]="'Documentation List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
   <form>
-    <swe-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-metadata-list>
+    <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('documents')">
       <label for="documents">{{getDisplayName('documents')}}</label>
       <list [list]="model.documents" (select)="openNewOnlineResourceItem($event)" (remove)="onRemove($event)" (add)="onAdd()"></list>

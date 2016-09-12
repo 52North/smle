@@ -7,8 +7,7 @@ import { AbstractSWEIdentifiableComponent } from './AbstractSWEIdentifiableCompo
 
 @Component({
   selector: 'swe-abstract-data',
-  template: require('./AbstractDataComponentComponent.html'),
-  directives: [TextFieldComponent, CheckboxComponent, AbstractSWEIdentifiableComponent]
+  template: require('./AbstractDataComponentComponent.html')
 })
 export class AbstractDataComponentComponent extends TypedModelComponent<AbstractDataComponent> {
   protected createModel(): AbstractDataComponent {

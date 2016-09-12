@@ -1,13 +1,12 @@
-import {Component} from '@angular/core';
-import {AbstractSetting} from '../../../model/sml/AbstractSetting';
-import {TypedModelComponent} from '../base/TypedModelComponent';
-import {TextFieldComponent} from '../basic/TextFieldComponent';
+import { Component } from '@angular/core';
+import { AbstractSetting } from '../../../model/sml/AbstractSetting';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
   selector: 'sml-abstract-setting',
   template: require('./AbstractSettingComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  directives: [TextFieldComponent]
+  styles: [require('../styles/editor-component.scss')]
 })
 export class AbstractSettingComponent extends TypedModelComponent<AbstractSetting> {
   protected createModel(): AbstractSetting {

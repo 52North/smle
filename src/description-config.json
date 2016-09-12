@@ -45,7 +45,13 @@
           "optional": false,
           "updatable": false
         }
-      }
+      },
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
     },
     "capabilities": {
       "capabilities": {
@@ -60,7 +66,13 @@
           "optional": false,
           "updatable": false
         }
-      }
+      },
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
     },
     "classification": {
       "classifiers": {

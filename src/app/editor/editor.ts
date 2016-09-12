@@ -24,10 +24,7 @@ enum DescriptionType {
 @Component({
   selector: 'editor',
   template: require('./editor.html'),
-  styles: [require('./editor.scss')],
-  directives: [PhysicalSystemComponent, PhysicalComponentComponent, SimpleProcessComponent,
-    ObjectTreeComponent, LoggedInDirective],
-  pipes: [SensorMLPipe]
+  styles: [require('./editor.scss')]
 })
 export class Editor implements OnInit {
   public description: AbstractProcess;

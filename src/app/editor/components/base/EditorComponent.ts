@@ -1,81 +1,83 @@
-import {ViewContainerRef, ComponentResolver, ComponentRef} from '@angular/core';
-import {TypedModelComponent, ChildMetadata} from './TypedModelComponent';
+import { ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from './TypedModelComponent';
 
 export abstract class EditorComponent<T> extends TypedModelComponent<T> {
-    private parentComponent: EditorComponent<any>;
-    private childComponentRef: ComponentRef<EditorComponent<any>>;
+  private parentComponent: EditorComponent<any>;
+  private childComponentRef: ComponentRef<EditorComponent<any>>;
 
-    constructor(private componentResolver: ComponentResolver, private viewContainerRef: ViewContainerRef) {
-        super();
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private viewContainerRef: ViewContainerRef
+  ) {
+    super();
+  }
+
+  public onReset(): void {
+    this.closeChild();
+    for (let prop in this.model) {
+      delete this.model[prop];
+    }
+    this.extendModel();
+  }
+
+  protected get hasChild(): boolean {
+    return !!this.childComponentRef;
+  }
+
+  protected get hasParent(): boolean {
+    return !!this.parentComponent;
+  }
+
+  protected openNewChild(childMetadata: ChildMetadata<any>) {
+    var model = childMetadata.model;
+    var componentType = childMetadata.componentType;
+    var config = childMetadata.config;
+
+    if (this.childComponentRef &&
+      this.childComponentRef.componentType === componentType &&
+      this.childComponentRef.instance.model === model) {
+      return;
     }
 
-    public onReset(): void {
-        this.closeChild();
-        for (let prop in this.model) {
-            delete this.model[prop];
-        }
-        this.extendModel();
+    if (this.childComponentRef) {
+      this.childComponentRef.instance.close();
     }
 
-    protected get hasChild(): boolean {
-        return !!this.childComponentRef;
+    const component = this.componentFactoryResolver.resolveComponentFactory(componentType);
+    this.childComponentRef = this.viewContainerRef.createComponent(component);
+    this.childComponentRef.instance.model = model;
+    this.childComponentRef.instance.config = config;
+    this.childComponentRef.instance.parentComponent = this;
+  }
+
+  protected close() {
+    if (this.childComponentRef) {
+      this.childComponentRef.instance.close();
     }
 
-    protected get hasParent(): boolean {
-        return !!this.parentComponent;
+    if (this.parentComponent) {
+      this.parentComponent.destroyChild();
     }
+  }
 
-    protected openNewChild(childMetadata: ChildMetadata) {
-        var model = childMetadata.model;
-        var componentType = childMetadata.componentType;
-        var config = childMetadata.config;
-
-        if (this.childComponentRef &&
-            this.childComponentRef.componentType === componentType &&
-            this.childComponentRef.instance.model === model) {
-            return;
-        }
-
-        if (this.childComponentRef) {
-            this.childComponentRef.instance.close();
-        }
-
-        this.componentResolver.resolveComponent(componentType).then((componentFactory) => {
-            this.childComponentRef = this.viewContainerRef.createComponent(componentFactory);
-            this.childComponentRef.instance.model = model;
-            this.childComponentRef.instance.config = config;
-            this.childComponentRef.instance.parentComponent = this;
-        });
+  protected closeChildWithModel(model: any) {
+    if (model === this.getActiveChildModel() && model) {
+      this.closeChild();
     }
+  }
 
-    protected close() {
-        if (this.childComponentRef) {
-            this.childComponentRef.instance.close();
-        }
+  private getActiveChildModel(): any {
+    return this.childComponentRef ? this.childComponentRef.instance.model : null;
+  }
 
-        if (this.parentComponent) {
-            this.parentComponent.destroyChild();
-        }
+  protected closeChild() {
+    if (this.childComponentRef) {
+      this.childComponentRef.instance.close();
     }
+  }
 
-    protected closeChildWithModel(model: any) {
-        if (model === this.getActiveChildModel() && model) {
-            this.closeChild();
-        }
-    }
-
-    private getActiveChildModel(): any {
-        return this.childComponentRef ? this.childComponentRef.instance.model : null;
-    }
-
-    protected closeChild() {
-        if (this.childComponentRef) {
-            this.childComponentRef.instance.close();
-        }
-    }
-
-    private destroyChild() {
-        this.childComponentRef.destroy();
-        this.childComponentRef = null;
-    }
+  private destroyChild() {
+    this.childComponentRef.destroy();
+    this.childComponentRef = null;
+  }
 }

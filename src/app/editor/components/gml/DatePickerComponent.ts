@@ -1,13 +1,11 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
-import { Calendar } from 'primeng/components/calendar/calendar';
 import * as moment from 'moment';
 
 const DATE_TIME_SEPARATOR = ' ';
 
 @Component({
   selector: 'date-picker',
-  template: require('./DatePickerComponent.html'),
-  directives: [Calendar]
+  template: require('./DatePickerComponent.html')
 })
 export class DatePickerComponent implements OnChanges {
   @Input()

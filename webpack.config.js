@@ -49,7 +49,7 @@ module.exports = {
         }
     },
 
-    postcss: function () {
+    postcss: function() {
         return [autoprefixer];
     },
 
@@ -57,33 +57,69 @@ module.exports = {
         preLoaders: [
             // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ root('node_modules') ] },
             // TODO(gdi2290): `exclude: [ root('node_modules/rxjs') ]` fixed with rxjs 5 beta.2 release
-            {test: /\.js$/, loader: "source-map-loader", exclude: [helpers.root('node_modules/rxjs')]}
+            {
+                test: /\.js$/,
+                loader: "source-map-loader",
+                exclude: [
+                    helpers.root('node_modules/primeng'),
+                    helpers.root('node_modules/angular2-uuid')
+                ]
+            }
         ],
-        loaders: [
-            {test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e|async)\.ts$/]},
-            {test: /\.json$/, loader: 'json-loader'},
-            {test: /\.css$/, loader: 'raw-loader'},
-            {test: /\.(gif|png)$/, loader: 'url-loader'},
-            {test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')]},
-            {test: /\.scss$/, loaders: ['raw-loader', 'sass-loader']},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=image/svg+xml'},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?mimetype=application/octet-stream"},
-            {test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=application/font-woff'},
-            {test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery'}
-        ]
+        loaders: [{
+            test: /\.ts$/,
+            loader: 'awesome-typescript-loader',
+            exclude: [/\.(spec|e2e|async)\.ts$/]
+        }, {
+            test: /\.json$/,
+            loader: 'json-loader'
+        }, {
+            test: /\.css$/,
+            loader: 'raw-loader'
+        }, {
+            test: /\.(gif|png)$/,
+            loader: 'url-loader'
+        }, {
+            test: /\.html$/,
+            loader: 'raw-loader',
+            exclude: [helpers.root('src/index.html')]
+        }, {
+            test: /\.scss$/,
+            loaders: ['raw-loader', 'sass-loader']
+        }, {
+            test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+            loader: "file-loader"
+        }, {
+            test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'file-loader?mimetype=image/svg+xml'
+        }, {
+            test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+            loader: "file-loader?mimetype=application/octet-stream"
+        }, {
+            test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
+            loader: 'file-loader?mimetype=application/font-woff'
+        }, {
+            test: /bootstrap\/dist\/js\/umd\//,
+            loader: 'imports?jQuery=jquery'
+        }]
     },
 
     plugins: [
         new ForkCheckerPlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(true),
-        new webpack.optimize.CommonsChunkPlugin({name: ['app', 'vendor', 'polyfills'], minChunks: Infinity}),
+        //new webpack.optimize.OccurenceOrderPlugin(true),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['app', 'vendor', 'polyfills'],
+            minChunks: Infinity
+        }),
         // static assets
-        new CopyWebpackPlugin([{from: 'src/assets', to: 'assets'}]),
+        new CopyWebpackPlugin([{
+            from: 'src/assets',
+            to: 'assets'
+        }]),
         // generating html
         new HtmlWebpackPlugin({
-          template: 'src/index.html',
-          chunksSortMode: 'dependency'
+            template: 'src/index.html',
+            chunksSortMode: 'dependency'
         }),
         // replace
         new webpack.DefinePlugin({

@@ -13,8 +13,7 @@ import { ListComponent } from './ListComponent';
 
 @Component({
   selector: 'position-list',
-  template: require('./PositionListComponent.html'),
-  directives: [ListComponent]
+  template: require('./PositionListComponent.html')
 })
 export class PositionListComponent extends TypedModelComponent<Array<Position>> {
   private getPositionTypeName(positionItem: Position): string {
