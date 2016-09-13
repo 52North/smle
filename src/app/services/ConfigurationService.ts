@@ -19,4 +19,5 @@ export class Configuration {
   public logOutUrl: string;
   public userInfoUrl: string;
   public templatesUrl: string;
+  public oauthCallbackUrl: string;
 }

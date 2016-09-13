@@ -31,7 +31,7 @@ export class SosService {
         'OperationsMetadata'
       ]
     });
-    return this.http.post(this.useProxyUrl(sosUrl), body, {
+    return this.http.post(this.useSosUrl(sosUrl), body, {
       headers: this.createJsonHeader(),
       withCredentials: true
     })

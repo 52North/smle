@@ -8,9 +8,10 @@ export class AuthService {
 
   public loggedInUser: UserInfo = null;
 
-  private authUrl: string = 'http://127.0.0.1:3001/auth/github';
-  private logOutUrl: string = 'http://127.0.0.1:3001/auth/logout';
-  private userInfoUrl: string = 'http://127.0.0.1:3001/auth/info';
+  private authUrl: string;
+  private logOutUrl: string;
+  private userInfoUrl: string;
+  private oauthCallbackUrl: string;
 
   public logInChangesEvent: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
@@ -18,17 +19,18 @@ export class AuthService {
     private http: Http,
     private configurationService: ConfigurationService
   ) {
-    this.getUserInfo();
     var config = this.configurationService.config;
     this.authUrl = config.authUrl;
     this.logOutUrl = config.logOutUrl;
     this.userInfoUrl = config.userInfoUrl;
+    this.oauthCallbackUrl = config.oauthCallbackUrl;
+    this.getUserInfo();
   }
 
   public logIn() {
     var popup = window.open(this.authUrl, '_blank', 'width=500, height=500');
     var listener = (event) => {
-      if (event.origin !== 'http://127.0.0.1:3000') return;
+      if (event.origin !== this.oauthCallbackUrl) return;
       window.removeEventListener('message', listener, true);
       this.getUserInfo();
     };
