@@ -19,30 +19,38 @@ import { ConnectDescription } from './sos/connect/connect.component';
 import { DeleteDescription } from './sos/delete/delete.component';
 import { Templates } from './templates/templates';
 
-@NgModule({
-  bootstrap: [Application],
-  declarations: [
-    Application,
-    Home,
-    Editor,
-    FetchDescription,
-    PublishDescription,
-    ConnectDescription,
-    DeleteDescription,
-    Templates
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    EditorModule,
-    SosModule,
-    TemplatesModule,
-    CommonModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
-  ],
-  providers: [
-    APP_PROVIDERS
-  ]
-})
-export class AppModule { }
+import { ConfigurationService } from './services/ConfigurationService';
+
+export function getAppModule(conf) {
+  @NgModule({
+    bootstrap: [Application],
+    declarations: [
+      Application,
+      Home,
+      Editor,
+      FetchDescription,
+      PublishDescription,
+      ConnectDescription,
+      DeleteDescription,
+      Templates
+    ],
+    imports: [
+      BrowserModule,
+      FormsModule,
+      HttpModule,
+      EditorModule,
+      SosModule,
+      TemplatesModule,
+      CommonModule,
+      RouterModule.forRoot(ROUTES, { useHash: true })
+    ],
+    providers: [
+      APP_PROVIDERS,
+      ConfigurationService,
+      { provide: 'smle.config', useValue: conf }
+    ]
+  })
+  class AppModule { }
+
+  return AppModule;
+}
