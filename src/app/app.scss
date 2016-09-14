@@ -12,46 +12,76 @@ main {
 
 fetch-description {
   position: absolute;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .nested-element {
-  margin: 0px 20px 0px 20px;
+  margin: 0 20px;
 }
 
 .logos {
   height: 95px;
+
   .n52 {
     float: left;
-    background-image: url(assets/img/52n-logo-220x80.png);
+    background-image: url("assets/img/52n-logo-220x80.png");
     background-repeat: no-repeat;
     background-size: contain;
     width: 250px;
-    display: block;
+    display: none;
     height: 80px;
     margin: 5px;
   }
+
+  .plocan {
+    float: left;
+    background-image: url("assets/img/Pastilla-PLOCAN.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 500px;
+    display: none;
+    height: 80px;
+    margin: 5px 20px 5px 5px;
+  }
+
   .fixo3 {
     float: left;
-    background-image: url(assets/img/fixo3-logo.png);
+    background-image: url("assets/img/fixo3-logo.png");
     background-repeat: no-repeat;
     background-size: contain;
     width: 170px;
-    display: block;
+    display: none;
     height: 85px;
     margin-top: 5px;
     margin-right: 20px;
   }
-  .nexos{
+
+  .nexos {
     margin-top: 5px;
     float: left;
     width: 430px;
-    background: url(assets/img/set_nexos_new2.svg) 0 0 no-repeat;
+    background: url("assets/img/set_nexos_new2.svg") 0 0 no-repeat;
     background-size: 1120px;
-    display: block;
+    display: none;
     height: 85px;
+  }
+  @media screen and (min-width: 768px) {
+    .n52,
+    .plocan {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 1000px) {
+    .fixo3 {
+      display: block;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    .nexos {
+      display: block;
+    }
   }
 }
