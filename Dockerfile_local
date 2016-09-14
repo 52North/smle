@@ -1,7 +1,7 @@
 FROM nginx:1.11
 MAINTAINER Jan Schulte <j.schulte@52north.org>
 
-## Install required dependencies, including late Node.js
+# Install required dependencies, including late Node.js
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --fix-missing \
     #ca-certificates \
@@ -28,3 +28,7 @@ RUN npm run build:prod \
     && cp -r dist/* /usr/share/nginx/html/ \
     && cd .. \
     && rm -r tmp
+
+COPY /docker/createConfig.js /config/
+
+CMD node /config/createConfig.js && nginx -g 'daemon off;'

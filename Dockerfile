@@ -25,8 +25,6 @@ ENV BRANCH sos-connect
 WORKDIR /tmp
 RUN curl -LO https://github.com/janschulte/smle/archive/$BRANCH.zip && unzip $BRANCH.zip
 
-COPY webpack.prod.config.js smle-$BRANCH/
-
 WORKDIR /tmp/smle-$BRANCH
 RUN npm install && npm install
 
@@ -41,6 +39,10 @@ RUN npm run build:prod \
 # Configure: https://github.com/52North/sensorweb-client-core#configuration and http://sensorweb.demo.52north.org/jsClient/settings.json
 WORKDIR /usr/share/nginx/html
 #COPY settings.json settings.json
+
+COPY /docker/createConfig.js /config/
+
+CMD node /config/createConfig.js && nginx -g 'daemon off;'
 
 # leave default CMD
 # docker build -t 52n-smle .
