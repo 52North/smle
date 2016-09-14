@@ -14,7 +14,7 @@
             </div>
             <button class="btn btn-primary center-block" type="button" (click)="updateDescription()">Update Description</button>
           </div>
-          <div *ngIf="!hasDescription">
+          <div *ngIf="hasDescription !== null && !hasDescription">
             <div class="alert alert-success text-center" role="alert">
               The SOS has no description with the identifier '{{description.identifier.value}}'. Do you want to add the description now?
             </div>
