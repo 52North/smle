@@ -77,14 +77,15 @@ export class SosService {
   public hasSosDescription(descID: string, sosUrl?: string): Observable<boolean> {
     return new Observable<boolean>((observer: Observer<boolean>) => {
       this.fetchDescriptionIDs(this.useSosUrl(sosUrl)).subscribe((res) => {
-        res.forEach((entry) => {
-          if (entry === descID) {
+        if (res && res.length === 1) {
+          if (res[0] === descID) {
             observer.next(true);
             observer.complete();
           }
-        });
-        observer.next(false);
-        observer.complete();
+        } else {
+          observer.next(false);
+          observer.complete();
+        }
       }, (error) => {
         observer.error(error);
         observer.complete();
