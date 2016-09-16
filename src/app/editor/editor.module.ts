@@ -6,6 +6,7 @@ import { CalendarModule } from 'primeng/primeng';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+import { TreeModule } from 'angular2-tree-component';
 
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
@@ -17,7 +18,7 @@ import { PositionListComponent } from './components/basic/PositionListComponent'
 import { StringsComponent } from './components/basic/StringsComponent';
 import { TextFieldComponent } from './components/basic/TextFieldComponent';
 import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
-import { TreeComponent } from 'angular2-tree-component';
+import { TreeNodeComponent } from './components/basic/object-tree/TreeNodeComponent';
 
 import { AbstractFeatureComponent } from './components/gml/AbstractFeatureComponent';
 import { AbstractGMLComponent } from './components/gml/AbstractGMLComponent';
@@ -103,7 +104,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     StringsComponent,
     TextFieldComponent,
     ObjectTreeComponent,
-    TreeComponent,
+    TreeNodeComponent,
     // gml components
     AbstractFeatureComponent,
     AbstractGMLComponent,
@@ -182,6 +183,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     CalendarModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
+    TreeModule
   ],
   exports: [
     // basic components
@@ -195,6 +197,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
     StringsComponent,
     TextFieldComponent,
     ObjectTreeComponent,
+    TreeNodeComponent,
     // gml components
     AbstractFeatureComponent,
     AbstractGMLComponent,
