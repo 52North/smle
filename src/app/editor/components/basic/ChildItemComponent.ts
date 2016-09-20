@@ -2,6 +2,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'child-item',
+    styles: [require('../styles/basic-component.scss')],
     template: require('./ChildItemComponent.html')
 })
 export class ChildItemComponent {

@@ -9,4 +9,14 @@ export class DocumentList extends AbstractMetadataList {
     toString() {
         return 'Document list';
     }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        if (this.documents.length > 0) {
+            return this.documents.join(', ');
+        }
+    }
 }

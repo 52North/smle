@@ -17,4 +17,12 @@ export class KeywordList extends AbstractMetadataList {
     toString() {
         return 'Keyword list';
     }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        return this.keywords.join(', ');
+    }
 }

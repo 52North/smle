@@ -22,4 +22,8 @@ export class SweDataChoice extends AbstractDataComponent {
     toString() {
         return super.toString('SWE data choice');
     }
+
+    getValue() {
+        return this.toString();
+    }
 }

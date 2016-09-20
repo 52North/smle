@@ -10,4 +10,14 @@ export class CapabilityList extends AbstractNamedMetadataList {
     toString() {
         return super.toString('Capability list');
     }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        if (this.capabilities.length > 0) {
+            return this.capabilities.join(', ');
+        }
+    }
 }

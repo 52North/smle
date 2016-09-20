@@ -11,4 +11,8 @@ export class SweMatrix extends SweDataArray {
     toString() {
         return super.toString('SWE matrix');
     }
+
+    getValue() {
+        return this.toString();
+    }
 }

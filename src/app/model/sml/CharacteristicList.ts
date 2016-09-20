@@ -10,4 +10,14 @@ export class CharacteristicList extends AbstractNamedMetadataList {
     toString() {
         return super.toString('Characteristic list');
     }
+
+    getLabel() {
+        return super.toString('Characteristic list');
+    }
+
+    getValue() {
+        if (this.characteristics.length > 0) {
+            return this.characteristics.join(', ');
+        }
+    }
 }

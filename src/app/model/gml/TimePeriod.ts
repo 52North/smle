@@ -13,11 +13,15 @@ export class TimePeriod extends AbstractTime {
     end: Date;
 
     toString() {
-        if (this.begin && this.end) {
-            return this.begin.toLocaleString().replace(/ /g, '\xa0') + ' - '
-                + this.end.toLocaleString().replace(/ /g, '\xa0');
-        } else {
-            return 'Time period';
-        }
+        return 'Time period';
+    }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        return this.begin.toLocaleString().replace(/ /g, '\xa0') + ' - '
+            + this.end.toLocaleString().replace(/ /g, '\xa0');
     }
 }

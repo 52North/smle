@@ -10,4 +10,14 @@ export class ClassifierList extends AbstractMetadataList {
     toString() {
         return 'Classifier list';
     }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        if (this.classifiers.length > 0) {
+            return this.classifiers.join(', ');
+        }
+    }
 }
