@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { DescribedObject } from '../../../model/sml/DescribedObject';
 import { AbstractFeatureComponent } from '../gml/AbstractFeatureComponent';
@@ -174,14 +174,15 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     private getAbstractTimeTitle(item: AbstractTime) {
-        var datePipe = new DatePipe('short');
+        let datePipe = new DatePipe('en');
+        let format = 'mediumDate';
 
         if (item instanceof TimeInstant) {
-            return `Time: ${datePipe.transform(item.time)}`;
+            return `Time: ${datePipe.transform(item.time, format)}`;
         }
 
         if (item instanceof TimePeriod) {
-            return `Period: ${datePipe.transform(item.begin)} - ${datePipe.transform(item.end)}`;
+            return `Period: ${datePipe.transform(item.begin, format)} - ${datePipe.transform(item.end, format)}`;
         }
 
         return '';
