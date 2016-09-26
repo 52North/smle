@@ -1,32 +1,33 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "sourceMap": true,
-        "noImplicitAny": false
-    },
-    "exclude": [
-        "node_modules",
-        "typings/main.d.ts",
-        "typings/main"
-    ],
-    "filesGlob": [
-        "src/**/*.ts",
-        "test/**/*.ts",
-        "!node_modules/**/*.ts",
-        "typings/browser.d.ts"
-    ],
-    "compileOnSave": false,
-    "buildOnSave": false,
-    "atom": {
-        "rewriteTsconfig": false
-    },
-    "awesomeTypescriptLoaderOptions": {
-        "useCache": true,
-        "resolveGlobs": true,
-        "forkChecker": true,
-        "cacheDirectory": "node_modules/.awesome-typescript-loader-cache"
-    }
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "node_modules",
+    "typings/main.d.ts",
+    "typings/main"
+  ],
+  "filesGlob": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "!node_modules/**/*.ts",
+    "typings/browser.d.ts"
+  ],
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false,
+    "formatOnSave": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true,
+    "resolveGlobs": true,
+    "forkChecker": true,
+    "cacheDirectory": "node_modules/.awesome-typescript-loader-cache"
+  }
 }
