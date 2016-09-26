@@ -174,7 +174,7 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     private getAbstractTimeTitle(item: AbstractTime) {
-        var datePipe = new DatePipe('medium');
+        var datePipe = new DatePipe('short');
 
         if (item instanceof TimeInstant) {
             return `Time: ${datePipe.transform(item.time)}`;

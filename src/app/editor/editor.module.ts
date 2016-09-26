@@ -11,7 +11,7 @@ import { TreeModule } from 'angular2-tree-component';
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
-import { ListComponent } from './components/basic/ListComponent';
+import { ListComponent, ListAddSection } from './components/basic/ListComponent';
 import { MapComponent } from './components/basic/MapComponent';
 import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
@@ -98,6 +98,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         CheckboxComponent,
         ChildItemComponent,
         ListComponent,
+        ListAddSection,
         MapComponent,
         NumberFieldComponent,
         PositionListComponent,

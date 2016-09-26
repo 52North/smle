@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
 
 @Component({
     selector: 'list',
@@ -30,4 +30,8 @@ export class ListComponent {
     private onAdd() {
         this.add.emit(null);
     }
+}
+@Directive({ selector: 'list-add-section' })
+export class ListAddSection {
+    // No behavior - The only purpose is to "declare" the tag in Angular2
 }
