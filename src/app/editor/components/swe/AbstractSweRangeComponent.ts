@@ -4,11 +4,11 @@ import { AbstractSimpleComponentComponent } from './AbstractSimpleComponentCompo
 import { AbstractSweRange } from '../../../model/swe/AbstractSweRange';
 
 @Component({
-  selector: 'swe-abstract-range',
-  template: require('./AbstractSweRangeComponent.html')
+    selector: 'swe-abstract-range',
+    template: require('./AbstractSweRangeComponent.html')
 })
 export class AbstractSweRangeComponent extends TypedModelComponent<AbstractSweRange> {
-  protected createModel(): AbstractSweRange {
-    return undefined;
-  }
+    protected createModel(): AbstractSweRange {
+        return undefined;
+    }
 }

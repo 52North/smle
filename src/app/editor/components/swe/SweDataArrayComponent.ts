@@ -1,4 +1,4 @@
-import { Component, AfterContentInit } from '@angular/core';
+import { Component, AfterContentInit, Type } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { AbstractDataComponentComponent } from './AbstractDataComponentComponent';
 import { NumberFieldComponent } from '../basic/NumberFieldComponent';
@@ -13,7 +13,6 @@ import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 import { SweDataArray } from '../../../model/swe/SweDataArray';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
-import { ConcreteType } from '@angular/core/src/facade/lang';
 import { SweElementType } from '../../../model/swe/SweElementType';
 import { SweElementTypeComponent } from './SweElementTypeComponent';
 import { SweXmlEncoding } from '../../../model/swe/SweXmlEncoding';
@@ -25,72 +24,72 @@ import { SweXmlEncodingComponent } from './SweXmlEncodingComponent';
 import { SweBinaryEncodingComponent } from './SweBinaryEncodingComponent';
 
 @Component({
-  selector: 'swe-data-array',
-  template: require('./SweDataArrayComponent.html')
+    selector: 'swe-data-array',
+    template: require('./SweDataArrayComponent.html')
 })
 export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> implements AfterContentInit {
-  private options = [
-    { name: 'SweText', type: SweText },
-    { name: 'SweTime', type: SweTime },
-    { name: 'SweCount', type: SweCount },
-    { name: 'SweBoolean', type: SweBoolean },
-    { name: 'SweQuantity', type: SweQuantity },
-    { name: 'SweCategory', type: SweCategory },
-    { name: 'SweTimeRange', type: SweTimeRange },
-    { name: 'SweQuantityRange', type: SweQuantityRange },
-    //{ name: 'SweDataRecord', type: SweDataRecord },
-    //{name: 'SweDataArray', type: SweDataArray}
-  ];
+    private options = [
+        { name: 'SweText', type: SweText },
+        { name: 'SweTime', type: SweTime },
+        { name: 'SweCount', type: SweCount },
+        { name: 'SweBoolean', type: SweBoolean },
+        { name: 'SweQuantity', type: SweQuantity },
+        { name: 'SweCategory', type: SweCategory },
+        { name: 'SweTimeRange', type: SweTimeRange },
+        { name: 'SweQuantityRange', type: SweQuantityRange },
+        //{ name: 'SweDataRecord', type: SweDataRecord },
+        //{name: 'SweDataArray', type: SweDataArray}
+    ];
 
-  private encodingOptions = [
-    { name: 'SweXmlEncoding', type: SweXmlEncoding },
-    { name: 'SweTextEncoding', type: SweTextEncoding },
-    { name: 'SweBinaryEncoding', type: SweBinaryEncoding }
-  ];
+    private encodingOptions = [
+        { name: 'SweXmlEncoding', type: SweXmlEncoding },
+        { name: 'SweTextEncoding', type: SweTextEncoding },
+        { name: 'SweBinaryEncoding', type: SweBinaryEncoding }
+    ];
 
-  private encodingType: string;
+    private encodingType: string;
 
-  protected createModel(): SweDataArray {
-    return new SweDataArray();
-  }
-
-  private onAddElementType(typeType: ConcreteType<AbstractDataComponent>) {
-    var newItem = new SweElementType();
-    newItem.type = new typeType();
-
-    this.model.elementType = newItem;
-  }
-
-  private removeElementType() {
-    this.model.elementType = null;
-  }
-
-  private onAddEncoding(encodingType: ConcreteType<SweEncoding>) {
-    var newItem = new encodingType();
-
-    this.model.encoding = newItem;
-    this.encodingType = this.getEncodingType();
-  }
-
-  private removeEncoding() {
-    this.model.encoding = null;
-  }
-
-  ngAfterContentInit(): any {
-    this.encodingType = this.getEncodingType();
-  }
-
-  private getEncodingType(): string {
-    var encoding = this.model.encoding;
-
-    if (encoding instanceof SweTextEncoding) {
-      return 'text';
-    } else if (encoding instanceof SweXmlEncoding) {
-      return 'xml';
-    } else if (encoding instanceof SweBinaryEncoding) {
-      return 'binary';
+    protected createModel(): SweDataArray {
+        return new SweDataArray();
     }
 
-    return null;
-  }
+    private onAddElementType(typeType: Type<AbstractDataComponent>) {
+        var newItem = new SweElementType();
+        newItem.type = new typeType();
+
+        this.model.elementType = newItem;
+    }
+
+    private removeElementType() {
+        this.model.elementType = null;
+    }
+
+    private onAddEncoding(encodingType: Type<SweEncoding>) {
+        var newItem = new encodingType();
+
+        this.model.encoding = newItem;
+        this.encodingType = this.getEncodingType();
+    }
+
+    private removeEncoding() {
+        this.model.encoding = null;
+    }
+
+    ngAfterContentInit(): any {
+        this.encodingType = this.getEncodingType();
+    }
+
+    private getEncodingType(): string {
+        var encoding = this.model.encoding;
+
+        if (encoding instanceof SweTextEncoding) {
+            return 'text';
+        } else if (encoding instanceof SweXmlEncoding) {
+            return 'xml';
+        } else if (encoding instanceof SweBinaryEncoding) {
+            return 'binary';
+        }
+
+        return null;
+    }
 }

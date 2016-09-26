@@ -7,11 +7,11 @@ import { SweQuantity } from '../../../model/swe/SweQuantity';
 import { NumberFieldComponent } from '../basic/NumberFieldComponent';
 
 @Component({
-  selector: 'swe-quantity',
-  template: require('./SweQuantityComponent.html')
+    selector: 'swe-quantity',
+    template: require('./SweQuantityComponent.html')
 })
 export class SweQuantityComponent extends TypedModelComponent<SweQuantity> {
-  protected createModel(): SweQuantity {
-    return new SweQuantity();
-  }
+    protected createModel(): SweQuantity {
+        return new SweQuantity();
+    }
 }

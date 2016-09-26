@@ -6,15 +6,15 @@ import { CodeType } from '../../../model/gml/CodeType';
 import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
-  selector: 'gml-abstract',
-  template: require('./AbstractGMLComponent.html')
+    selector: 'gml-abstract',
+    template: require('./AbstractGMLComponent.html')
 })
 export class AbstractGMLComponent extends TypedModelComponent<AbstractGML> {
-  protected createModel(): AbstractGML {
-    return undefined;
-  }
+    protected createModel(): AbstractGML {
+        return undefined;
+    }
 
-  public createIdentifier() {
-    this.model.identifier = new CodeType('', '');
-  }
+    public createIdentifier() {
+        this.model.identifier = new CodeType('', '');
+    }
 }

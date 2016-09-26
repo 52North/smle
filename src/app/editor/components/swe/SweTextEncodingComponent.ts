@@ -6,11 +6,11 @@ import { TextFieldComponent } from '../basic/TextFieldComponent';
 import { CheckboxComponent } from '../basic/CheckboxComponent';
 
 @Component({
-  selector: 'swe-text-encoding',
-  template: require('./SweTextEncodingComponent.html')
+    selector: 'swe-text-encoding',
+    template: require('./SweTextEncodingComponent.html')
 })
 export class SweTextEncodingComponent extends TypedModelComponent<SweTextEncoding> {
-  protected createModel(): SweTextEncoding {
-    return new SweTextEncoding();
-  }
+    protected createModel(): SweTextEncoding {
+        return new SweTextEncoding();
+    }
 }

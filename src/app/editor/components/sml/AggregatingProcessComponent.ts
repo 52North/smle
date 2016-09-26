@@ -3,11 +3,11 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 import { AggregatingProcess } from '../../../model/sml';
 
 @Component({
-  selector: 'sml-aggregating-process',
-  template: require('./AggregatingProcessComponent.html')
+    selector: 'sml-aggregating-process',
+    template: require('./AggregatingProcessComponent.html')
 })
 export class AggregatingProcessComponent extends TypedModelComponent<AggregatingProcess> {
-  protected createModel(): AggregatingProcess {
-    return undefined;
-  }
+    protected createModel(): AggregatingProcess {
+        return undefined;
+    }
 }

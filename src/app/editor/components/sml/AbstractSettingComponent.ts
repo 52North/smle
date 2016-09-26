@@ -4,12 +4,12 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
-  selector: 'sml-abstract-setting',
-  template: require('./AbstractSettingComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+    selector: 'sml-abstract-setting',
+    template: require('./AbstractSettingComponent.html'),
+    styles: [require('../styles/editor-component.scss')]
 })
 export class AbstractSettingComponent extends TypedModelComponent<AbstractSetting> {
-  protected createModel(): AbstractSetting {
-    return undefined;
-  }
+    protected createModel(): AbstractSetting {
+        return undefined;
+    }
 }

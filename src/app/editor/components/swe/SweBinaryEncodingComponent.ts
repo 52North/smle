@@ -10,39 +10,39 @@ import { SweBinaryBlockComponent } from './SweBinaryBlockComponent';
 import { SweBinaryComponentComponent } from './SweBinaryComponentComponent';
 
 @Component({
-  selector: 'swe-binary-encoding',
-  template: require('./SweBinaryEncodingComponent.html')
+    selector: 'swe-binary-encoding',
+    template: require('./SweBinaryEncodingComponent.html')
 })
 export class SweBinaryEncodingComponent extends TypedModelComponent<SweBinaryEncoding> {
-  protected createModel(): SweBinaryEncoding {
-    return new SweBinaryEncoding();
-  }
-
-  private addBinaryBlock() {
-    var newItem = new SweBinaryBlock();
-    this.model.members.push(newItem);
-  }
-
-  private addBinaryComponent() {
-    var newItem = new SweBinaryComponent();
-    this.model.members.push(newItem);
-  }
-
-  private openNewItem(item: SweBinaryBlock | SweBinaryComponent) {
-    var childMetadata: ChildMetadata<any>;
-
-    if (item instanceof SweBinaryBlock) {
-      childMetadata = new ChildMetadata(SweBinaryBlockComponent, item, this.config.getConfigFor('members'));
+    protected createModel(): SweBinaryEncoding {
+        return new SweBinaryEncoding();
     }
 
-    if (item instanceof SweBinaryComponent) {
-      childMetadata = new ChildMetadata(SweBinaryComponentComponent, item, this.config.getConfigFor('members'));
+    private addBinaryBlock() {
+        var newItem = new SweBinaryBlock();
+        this.model.members.push(newItem);
     }
 
-    this.openAsChild.emit(childMetadata);
-  }
+    private addBinaryComponent() {
+        var newItem = new SweBinaryComponent();
+        this.model.members.push(newItem);
+    }
 
-  removeMember(index: number) {
-    this.model.members.splice(index, 1);
-  }
+    private openNewItem(item: SweBinaryBlock | SweBinaryComponent) {
+        var childMetadata: ChildMetadata<any>;
+
+        if (item instanceof SweBinaryBlock) {
+            childMetadata = new ChildMetadata(SweBinaryBlockComponent, item, this.config.getConfigFor('members'));
+        }
+
+        if (item instanceof SweBinaryComponent) {
+            childMetadata = new ChildMetadata(SweBinaryComponentComponent, item, this.config.getConfigFor('members'));
+        }
+
+        this.openAsChild.emit(childMetadata);
+    }
+
+    removeMember(index: number) {
+        this.model.members.splice(index, 1);
+    }
 }

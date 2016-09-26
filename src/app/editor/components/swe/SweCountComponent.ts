@@ -6,11 +6,11 @@ import { SweCount } from '../../../model/swe/SweCount';
 import { NumberFieldComponent } from '../basic/NumberFieldComponent';
 
 @Component({
-  selector: 'swe-count',
-  template: require('./SweCountComponent.html')
+    selector: 'swe-count',
+    template: require('./SweCountComponent.html')
 })
 export class SweCountComponent extends TypedModelComponent<SweCount> {
-  protected createModel(): SweCount {
-    return new SweCount();
-  }
+    protected createModel(): SweCount {
+        return new SweCount();
+    }
 }

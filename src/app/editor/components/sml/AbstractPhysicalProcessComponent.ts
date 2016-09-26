@@ -5,12 +5,12 @@ import { AbstractPhysicalProcess } from '../../../model/sml/AbstractPhysicalProc
 import { PositionListComponent } from '../basic/PositionListComponent';
 
 @Component({
-  selector: 'sml-abstract-physical-process',
-  template: require('./AbstractPhysicalProcessComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
+    selector: 'sml-abstract-physical-process',
+    template: require('./AbstractPhysicalProcessComponent.html'),
+    styles: [require('../styles/editor-component.scss')],
 })
 export class AbstractPhysicalProcessComponent extends TypedModelComponent<AbstractPhysicalProcess> {
-  protected createModel(): AbstractPhysicalProcess {
-    return undefined;
-  }
+    protected createModel(): AbstractPhysicalProcess {
+        return undefined;
+    }
 }

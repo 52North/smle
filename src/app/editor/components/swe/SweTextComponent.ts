@@ -6,11 +6,11 @@ import { AbstractSimpleComponentComponent } from './AbstractSimpleComponentCompo
 import { AllowedTokensComponent } from './AllowedTokensComponent';
 
 @Component({
-  selector: 'swe-text',
-  template: require('./SweTextComponent.html')
+    selector: 'swe-text',
+    template: require('./SweTextComponent.html')
 })
 export class SweTextComponent extends TypedModelComponent<SweText> {
-  protected createModel(): SweText {
-    return new SweText();
-  }
+    protected createModel(): SweText {
+        return new SweText();
+    }
 }
