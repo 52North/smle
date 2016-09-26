@@ -153,7 +153,8 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     private openSettings() {
-        var metadata = new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
+        var metadata =
+            new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
         this.openNewChild(metadata);
     }
 

@@ -17,7 +17,8 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
     }
 
     private openSettings() {
-        var metadata = new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
+        var metadata =
+            new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
         this.openNewChild(metadata);
     }
 

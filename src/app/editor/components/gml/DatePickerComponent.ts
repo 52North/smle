@@ -31,7 +31,8 @@ export class DatePickerComponent implements OnChanges {
 
         var dateTime = this.model;
         if (dateTime) {
-            this.dateTimeString = this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
+            this.dateTimeString =
+                this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
         }
     }
 
