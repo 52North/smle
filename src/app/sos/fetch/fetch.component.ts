@@ -8,46 +8,45 @@ import { SosService } from '../sos.service';
 import { SelectedDescription } from '../components/selectDescription.component';
 
 @Component({
-  selector: 'fetch-description',
-  pipes: [SensorMLPipe],
-  template: require('./fetch.template.html'),
-  styles: [require('./fetch.style.scss')],
+    selector: 'fetch-description',
+    template: require('./fetch.template.html'),
+    styles: [require('./fetch.style.scss')],
 })
 export class FetchDescription implements OnInit {
 
-  private selectedDesc: AbstractProcess;
+    private selectedDesc: AbstractProcess;
 
-  constructor(
-    private editorService: EditorService,
-    private sosService: SosService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    constructor(
+        private editorService: EditorService,
+        private sosService: SosService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) { }
 
-  public ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      let id = params['id'];
-      if (id) {
-        this.sosService.fetchDescription(id).subscribe(res => {
-          this.selectedDesc = new SensorMLXmlService().deserialize(res);
+    public ngOnInit(): void {
+        this.route.params.subscribe(params => {
+            let id = params['id'];
+            if (id) {
+                this.sosService.fetchDescription(id).subscribe(res => {
+                    this.selectedDesc = new SensorMLXmlService().deserialize(res);
+                });
+            }
         });
-      }
-    });
-  }
-
-  private onSelectedDescription(description: SelectedDescription) {
-    this.router.navigate(['/fetch', description.id]);
-  }
-
-  private openToEdit() {
-    this.editorService.openEditorWithDescription(this.selectedDesc);
-  }
-
-  private openToCopy() {
-    if (this.selectedDesc.identifier && this.selectedDesc.identifier.value) {
-      this.selectedDesc.identifier = null;
     }
-    this.editorService.openEditorWithDescription(this.selectedDesc);
-  }
+
+    private onSelectedDescription(description: SelectedDescription) {
+        this.router.navigate(['/fetch', description.id]);
+    }
+
+    private openToEdit() {
+        this.editorService.openEditorWithDescription(this.selectedDesc);
+    }
+
+    private openToCopy() {
+        if (this.selectedDesc.identifier && this.selectedDesc.identifier.value) {
+            this.selectedDesc.identifier = null;
+        }
+        this.editorService.openEditorWithDescription(this.selectedDesc);
+    }
 
 }

@@ -5,16 +5,16 @@ import { SimpleProcess } from '../../../model/sml/SimpleProcess';
 import { AbstractProcessComponent } from './AbstractProcessComponent';
 
 @Component({
-  selector: 'sml-simple-process',
-  template: require('./SimpleProcessComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+    selector: 'sml-simple-process',
+    template: require('./SimpleProcessComponent.html'),
+    styles: [require('../styles/editor-component.scss')]
 })
 export class SimpleProcessComponent extends EditorComponent<SimpleProcess> {
-  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel(): SimpleProcess {
-    return new SimpleProcess();
-  }
+    protected createModel(): SimpleProcess {
+        return new SimpleProcess();
+    }
 }

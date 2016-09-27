@@ -4,11 +4,11 @@ import { SweXmlEncoding } from '../../../model/swe/SweXmlEncoding';
 import { SweEncodingComponent } from './SweEncodingComponent';
 
 @Component({
-  selector: 'swe-xml-encoding',
-  template: require('./SweXmlEncodingComponent.html')
+    selector: 'swe-xml-encoding',
+    template: require('./SweXmlEncodingComponent.html')
 })
 export class SweXmlEncodingComponent extends TypedModelComponent<SweXmlEncoding> {
-  protected createModel(): SweXmlEncoding {
-    return new SweXmlEncoding();
-  }
+    protected createModel(): SweXmlEncoding {
+        return new SweXmlEncoding();
+    }
 }

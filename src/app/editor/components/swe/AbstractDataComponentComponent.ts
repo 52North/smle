@@ -6,11 +6,11 @@ import { CheckboxComponent } from '../basic/CheckboxComponent';
 import { AbstractSWEIdentifiableComponent } from './AbstractSWEIdentifiableComponent';
 
 @Component({
-  selector: 'swe-abstract-data',
-  template: require('./AbstractDataComponentComponent.html')
+    selector: 'swe-abstract-data',
+    template: require('./AbstractDataComponentComponent.html')
 })
 export class AbstractDataComponentComponent extends TypedModelComponent<AbstractDataComponent> {
-  protected createModel(): AbstractDataComponent {
-    return undefined;
-  }
+    protected createModel(): AbstractDataComponent {
+        return undefined;
+    }
 }

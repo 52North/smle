@@ -13,7 +13,6 @@ import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
   template: require('./app.html')
 })
 export class Application {
-  constructor(
-    viewContainer: ViewContainerRef
-  ) { }
+  constructor(viewContainer: ViewContainerRef) {
+  }
 }

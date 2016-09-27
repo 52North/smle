@@ -6,16 +6,16 @@ import { EditorComponent } from '../../base/EditorComponent';
 import { TextFieldComponent } from '../../basic/TextFieldComponent';
 
 @Component({
-  selector: 'iso-address',
-  template: require('./AddressComponent.html'),
-  styles: [require('../../styles/editor-component.scss')]
+    selector: 'iso-address',
+    template: require('./AddressComponent.html'),
+    styles: [require('../../styles/editor-component.scss')]
 })
 export class AddressComponent extends EditorComponent<Address> {
-  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel(): Address {
-    return new Address();
-  }
+    protected createModel(): Address {
+        return new Address();
+    }
 }

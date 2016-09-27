@@ -22,4 +22,5 @@ export class AggregatingProcessComponent extends TypedModelComponent<Aggregating
   protected changeComponents() {
     this.connectDescriptionService.openComponentsDescription(this.model);
   }
+
 }

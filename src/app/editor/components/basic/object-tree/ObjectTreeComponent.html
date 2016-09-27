@@ -1,1 +1,5 @@
-<Tree [nodes]="nodes" [options]="options" (onToggle)="onToggle($event)"></Tree>
+<Tree [nodes]="nodes" [options]="options" (onToggle)="onToggle($event)">
+    <template #treeNodeTemplate let-node>
+        <tree-node [node]="node"></tree-node>
+    </template>
+</Tree>

@@ -8,33 +8,33 @@ import { EditorComponent } from '../base/EditorComponent';
 import { ChildMetadata } from '../base/TypedModelComponent';
 
 @Component({
-  selector: 'sml-contact-list',
-  template: require('./ContactListComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+    selector: 'sml-contact-list',
+    template: require('./ContactListComponent.html'),
+    styles: [require('../styles/editor-component.scss')]
 })
 export class ContactListComponent extends EditorComponent<ContactList> {
-  constructor(
-    componentFactoryResolver: ComponentFactoryResolver,
-    viewContainerRef: ViewContainerRef
-  ) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(
+        componentFactoryResolver: ComponentFactoryResolver,
+        viewContainerRef: ViewContainerRef
+    ) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel() {
-    return new ContactList();
-  }
+    protected createModel() {
+        return new ContactList();
+    }
 
-  public onRemove(index: number): void {
-    this.closeChildWithModel(this.model.contacts[index]);
-    this.model.contacts.splice(index, 1);
-  }
+    public onRemove(index: number): void {
+        this.closeChildWithModel(this.model.contacts[index]);
+        this.model.contacts.splice(index, 1);
+    }
 
-  public onAdd() {
-    this.model.contacts.push(new ResponsibleParty());
-  }
+    public onAdd() {
+        this.model.contacts.push(new ResponsibleParty());
+    }
 
-  private openNewResponsiblePartyItem(item: ResponsibleParty) {
-    var metadata = new ChildMetadata(ResponsiblePartyComponent, item, this.config.getConfigFor('contacts'));
-    this.openNewChild(metadata);
-  }
+    private openNewResponsiblePartyItem(item: ResponsibleParty) {
+        var metadata = new ChildMetadata(ResponsiblePartyComponent, item, this.config.getConfigFor('contacts'));
+        this.openNewChild(metadata);
+    }
 }

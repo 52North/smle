@@ -9,30 +9,30 @@ import { OnlineResource } from '../../../model/iso/gmd/OnlineResource';
 import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';
 
 @Component({
-  selector: 'sml-document-list',
-  template: require('./DocumentListComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+    selector: 'sml-document-list',
+    template: require('./DocumentListComponent.html'),
+    styles: [require('../styles/editor-component.scss')]
 })
 export class DocumentListComponent extends EditorComponent<DocumentList> {
-  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel() {
-    return new DocumentList();
-  }
+    protected createModel() {
+        return new DocumentList();
+    }
 
-  public onRemove(index: number): void {
-    this.closeChildWithModel(this.model.documents[index]);
-    this.model.documents.splice(index, 1);
-  }
+    public onRemove(index: number): void {
+        this.closeChildWithModel(this.model.documents[index]);
+        this.model.documents.splice(index, 1);
+    }
 
-  public onAdd() {
-    this.model.documents.push(new OnlineResource());
-  }
+    public onAdd() {
+        this.model.documents.push(new OnlineResource());
+    }
 
-  private openNewOnlineResourceItem(item: OnlineResource) {
-    var metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('documents'));
-    this.openNewChild(metadata);
-  }
+    private openNewOnlineResourceItem(item: OnlineResource) {
+        var metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('documents'));
+        this.openNewChild(metadata);
+    }
 }

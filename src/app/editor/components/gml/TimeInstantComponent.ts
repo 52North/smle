@@ -6,18 +6,18 @@ import { DatePickerComponent } from './DatePickerComponent';
 import { AbstractGMLComponent } from './AbstractGMLComponent';
 
 @Component({
-  selector: 'gml-time-instant',
-  template: require('./TimeInstantComponent.html')
+    selector: 'gml-time-instant',
+    template: require('./TimeInstantComponent.html')
 })
 export class TimeInstantComponent extends EditorComponent<TimeInstant> {
-  @Input()
-  public model: TimeInstant;
+    @Input()
+    public model: TimeInstant;
 
-  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel() {
-    return undefined;
-  }
+    protected createModel() {
+        return undefined;
+    }
 }

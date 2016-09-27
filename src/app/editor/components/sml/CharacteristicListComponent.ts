@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
 import { CardComponent } from '../basic/CardComponent';
 import { ListComponent } from '../basic/ListComponent';
 import { AbstractNamedMetadataListComponent } from './AbstractNamedMetadataListComponent';
@@ -8,7 +8,6 @@ import { Characteristic } from '../../../model/sml/Characteristic';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
 import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
-import { ConcreteType } from '@angular/core/src/facade/lang';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
 import { SweText } from '../../../model/swe/SweText';
 import { SweTime } from '../../../model/swe/SweTime';
@@ -54,7 +53,7 @@ export class CharacteristicListComponent extends EditorComponent<CharacteristicL
     this.openNewChild(metadata);
   }
 
-  private onAddCharacteristic(characteristicType: ConcreteType<AbstractDataComponent>): void {
+  private onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {
     var newItem = new NamedSweDataComponent();
     newItem.component = new characteristicType();
     this.model.characteristics.push(newItem);

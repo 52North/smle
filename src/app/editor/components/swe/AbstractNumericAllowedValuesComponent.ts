@@ -4,11 +4,11 @@ import { AbstractNumericAllowedValues } from '../../../model/swe/AbstractNumeric
 import { AbstractAllowedValuesComponent } from './AbstractAllowedValuesComponent';
 
 @Component({
-  selector: 'swe-abstract-numeric-allowed-values',
-  template: require('./AbstractNumericAllowedValuesComponent.html')
+    selector: 'swe-abstract-numeric-allowed-values',
+    template: require('./AbstractNumericAllowedValuesComponent.html')
 })
 export class AbstractNumericAllowedValuesComponent extends TypedModelComponent<AbstractNumericAllowedValues> {
-  protected createModel(): AbstractNumericAllowedValues {
-    return undefined;
-  }
+    protected createModel(): AbstractNumericAllowedValues {
+        return undefined;
+    }
 }

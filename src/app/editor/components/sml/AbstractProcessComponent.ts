@@ -8,25 +8,26 @@ import { ChildItemComponent } from '../basic/ChildItemComponent';
 import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
-  selector: 'sml-abstract-process',
-  template: require('./AbstractProcessComponent.html')
+    selector: 'sml-abstract-process',
+    template: require('./AbstractProcessComponent.html')
 })
 export class AbstractProcessComponent extends TypedModelComponent<AbstractProcess> {
-  protected createModel(): AbstractProcess {
-    return undefined;
-  }
+    protected createModel(): AbstractProcess {
+        return undefined;
+    }
 
-  private openSettings() {
-    var metadata = new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
-    this.openNewChild(metadata);
-  }
+    private openSettings() {
+        var metadata =
+            new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
+        this.openNewChild(metadata);
+    }
 
-  private removeSettings() {
-    this.model.configuration = null;
-  }
+    private removeSettings() {
+        this.model.configuration = null;
+    }
 
-  private createSettings() {
-    this.model.configuration = new Settings();
-  }
+    private createSettings() {
+        this.model.configuration = new Settings();
+    }
 
 }

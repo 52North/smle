@@ -9,30 +9,30 @@ import { EditorComponent } from '../base/EditorComponent';
 import { ChildMetadata } from '../base/TypedModelComponent';
 
 @Component({
-  selector: 'sml-classifier-list',
-  template: require('./ClassifierListComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+    selector: 'sml-classifier-list',
+    template: require('./ClassifierListComponent.html'),
+    styles: [require('../styles/editor-component.scss')]
 })
 export class ClassifierListComponent extends EditorComponent<ClassifierList> {
-  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel(): ClassifierList {
-    return new ClassifierList();
-  }
+    protected createModel(): ClassifierList {
+        return new ClassifierList();
+    }
 
-  private openNewClassifierItem(item: Term) {
-    var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('classifiers'));
-    this.openNewChild(metadata);
-  }
+    private openNewClassifierItem(item: Term) {
+        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('classifiers'));
+        this.openNewChild(metadata);
+    }
 
-  private onAddClassifier(): void {
-    this.model.classifiers.push(new Term());
-  }
+    private onAddClassifier(): void {
+        this.model.classifiers.push(new Term());
+    }
 
-  private onRemoveClassifier(index: number): void {
-    this.closeChildWithModel(this.model.classifiers[index]);
-    this.model.classifiers.splice(index, 1);
-  }
+    private onRemoveClassifier(index: number): void {
+        this.closeChildWithModel(this.model.classifiers[index]);
+        this.model.classifiers.splice(index, 1);
+    }
 }

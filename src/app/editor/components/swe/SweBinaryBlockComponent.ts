@@ -7,19 +7,19 @@ import { NumberFieldComponent } from '../basic/NumberFieldComponent';
 import { AbstractSWEComponent } from './AbstractSWEComponent';
 
 @Component({
-  selector: 'swe-binary-block',
-  template: require('./SweBinaryBlockComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+    selector: 'swe-binary-block',
+    template: require('./SweBinaryBlockComponent.html'),
+    styles: [require('../styles/editor-component.scss')]
 })
 export class SweBinaryBlockComponent extends EditorComponent<SweBinaryBlock> {
-  constructor(
-    componentFactoryResolver: ComponentFactoryResolver,
-    viewContainerRef: ViewContainerRef
-  ) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(
+        componentFactoryResolver: ComponentFactoryResolver,
+        viewContainerRef: ViewContainerRef
+    ) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel(): SweBinaryBlock {
-    return new SweBinaryBlock();
-  }
+    protected createModel(): SweBinaryBlock {
+        return new SweBinaryBlock();
+    }
 }

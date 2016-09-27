@@ -12,120 +12,120 @@ import { SweQuantity } from '../../../model/swe/SweQuantity';
 import { SweField } from '../../../model/swe/SweField';
 
 @Component({
-  selector: 'sml-position',
-  template: require('./PositionComponent.html'),
-  styles: [require('../styles/editor-component.scss')],
-  providers: [Modal]
+    selector: 'sml-position',
+    template: require('./PositionComponent.html'),
+    styles: [require('../styles/editor-component.scss')],
+    providers: [Modal]
 })
 export class PositionEditorComponent extends EditorComponent<Position> {
-  private get latitude(): number {
-    return this.getFieldValue('location', 'Lat');
-  }
+    private get latitude(): number {
+        return this.getFieldValue('location', 'Lat');
+    }
 
-  private set latitude(value: number) {
-    this.setFieldValue('location', 'Lat', value);
-  }
+    private set latitude(value: number) {
+        this.setFieldValue('location', 'Lat', value);
+    }
 
-  private get longitude(): number {
-    return this.getFieldValue('location', 'Lon');
-  }
+    private get longitude(): number {
+        return this.getFieldValue('location', 'Lon');
+    }
 
-  private set longitude(value: number) {
-    this.setFieldValue('location', 'Lon', value);
-  }
+    private set longitude(value: number) {
+        this.setFieldValue('location', 'Lon', value);
+    }
 
-  private get altitude(): number {
-    return this.getFieldValue('location', 'Alt');
-  }
+    private get altitude(): number {
+        return this.getFieldValue('location', 'Alt');
+    }
 
-  private set altitude(value: number) {
-    this.setFieldValue('location', 'Alt', value);
-  }
+    private set altitude(value: number) {
+        this.setFieldValue('location', 'Alt', value);
+    }
 
-  private get trueHeading(): number {
-    return this.getFieldValue('orientation', 'TrueHeading');
-  }
+    private get trueHeading(): number {
+        return this.getFieldValue('orientation', 'TrueHeading');
+    }
 
-  private set trueHeading(value: number) {
-    this.setFieldValue('orientation', 'TrueHeading', value);
-  }
+    private set trueHeading(value: number) {
+        this.setFieldValue('orientation', 'TrueHeading', value);
+    }
 
-  private get pitch(): number {
-    return this.getFieldValue('orientation', 'Pitch');
-  }
+    private get pitch(): number {
+        return this.getFieldValue('orientation', 'Pitch');
+    }
 
-  private set pitch(value: number) {
-    this.setFieldValue('orientation', 'Pitch', value);
-  }
+    private set pitch(value: number) {
+        this.setFieldValue('orientation', 'Pitch', value);
+    }
 
-  constructor(
-    private modalWindow: Modal,
-    private overlay: Overlay,
-    componentFactoryResolver: ComponentFactoryResolver,
-    viewContainerRef: ViewContainerRef
-  ) {
-    super(componentFactoryResolver, viewContainerRef);
-    overlay.defaultViewContainer = viewContainerRef;
-  }
+    constructor(
+        private modalWindow: Modal,
+        private overlay: Overlay,
+        componentFactoryResolver: ComponentFactoryResolver,
+        viewContainerRef: ViewContainerRef
+    ) {
+        super(componentFactoryResolver, viewContainerRef);
+        overlay.defaultViewContainer = viewContainerRef;
+    }
 
-  private openMap() {
-    var mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
+    private openMap() {
+        var mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
 
-    this.modalWindow
-      .open(MapComponent, overlayConfigFactory(mapData, BSModalContext)).then((dialogRef) => {
-        dialogRef.result.then((result) => {
-          if (result) {
-            this.latitude = result.lat;
-            this.longitude = result.lng;
-          }
+        this.modalWindow
+            .open(MapComponent, overlayConfigFactory(mapData, BSModalContext)).then((dialogRef) => {
+                dialogRef.result.then((result) => {
+                    if (result) {
+                        this.latitude = result.lat;
+                        this.longitude = result.lng;
+                    }
+                });
+            });
+    }
+
+    protected createModel(): Position {
+        return undefined;
+    }
+
+    private setFieldValue(vectorName: string, fieldName: string, value: number) {
+        var quantity = this.getQuantity(vectorName, fieldName);
+        if (quantity) {
+            quantity.value = value;
+        }
+    }
+
+    private getQuantity(vectorName: string, fieldName: string): SweQuantity {
+        var vector: SweVector;
+        var coordinate: SweCoordinate;
+
+        if (!this.model) {
+            return undefined;
+        }
+
+        if (vectorName === 'location' && this.model instanceof SweVector) {
+            vector = <SweVector>this.model;
+        } else if (this.model instanceof SweDataRecord) {
+            vector = <SweVector>((<SweDataRecord>this.model).fields.find((field) => {
+                return field.name === vectorName;
+            }) || <SweField>{}).component;
+        }
+
+        if (!vector) {
+            return undefined;
+        }
+
+        coordinate = vector.coordinates.find((coord) => {
+            return coord.name === fieldName;
         });
-      });
-  }
 
-  protected createModel(): Position {
-    return undefined;
-  }
+        if (!coordinate) {
+            return undefined;
+        }
 
-  private setFieldValue(vectorName: string, fieldName: string, value: number) {
-    var quantity = this.getQuantity(vectorName, fieldName);
-    if (quantity) {
-      quantity.value = value;
-    }
-  }
-
-  private getQuantity(vectorName: string, fieldName: string): SweQuantity {
-    var vector: SweVector;
-    var coordinate: SweCoordinate;
-
-    if (!this.model) {
-      return undefined;
+        return <SweQuantity>coordinate.coordinate;
     }
 
-    if (vectorName === 'location' && this.model instanceof SweVector) {
-      vector = <SweVector>this.model;
-    } else if (this.model instanceof SweDataRecord) {
-      vector = <SweVector>((<SweDataRecord>this.model).fields.find((field) => {
-        return field.name === vectorName;
-      }) || <SweField>{}).component;
+    private getFieldValue(vectorName: string, fieldName: string): number {
+        var quantity = this.getQuantity(vectorName, fieldName);
+        return quantity ? quantity.value : undefined;
     }
-
-    if (!vector) {
-      return undefined;
-    }
-
-    coordinate = vector.coordinates.find((coord) => {
-      return coord.name === fieldName;
-    });
-
-    if (!coordinate) {
-      return undefined;
-    }
-
-    return <SweQuantity>coordinate.coordinate;
-  }
-
-  private getFieldValue(vectorName: string, fieldName: string): number {
-    var quantity = this.getQuantity(vectorName, fieldName);
-    return quantity ? quantity.value : undefined;
-  }
 }

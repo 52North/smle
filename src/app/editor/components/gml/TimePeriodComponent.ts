@@ -6,28 +6,28 @@ import { AbstractGMLComponent } from './AbstractGMLComponent';
 import { CardComponent } from '../basic/CardComponent';
 
 @Component({
-  selector: 'gml-time-period',
-  template: require('./TimePeriodComponent.html')
+    selector: 'gml-time-period',
+    template: require('./TimePeriodComponent.html')
 })
 export class TimePeriodComponent extends EditorComponent<TimePeriod> {
-  @Input()
-  public model: TimePeriod;
+    @Input()
+    public model: TimePeriod;
 
-  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel() {
-    return undefined;
-  }
+    protected createModel() {
+        return undefined;
+    }
 
 
-  private onChangeBegin(date: Date) {
-    this.model.begin = date;
-  }
+    private onChangeBegin(date: Date) {
+        this.model.begin = date;
+    }
 
-  private onChangeEnd(date: Date) {
-    this.model.end = date;
-  }
+    private onChangeEnd(date: Date) {
+        this.model.end = date;
+    }
 
 }

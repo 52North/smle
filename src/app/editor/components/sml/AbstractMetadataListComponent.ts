@@ -5,11 +5,11 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
-  selector: 'sml-abstract-metadata-list',
-  template: require('./AbstractMetadataListComponent.html')
+    selector: 'sml-abstract-metadata-list',
+    template: require('./AbstractMetadataListComponent.html')
 })
 export class AbstractMetadataListComponent extends TypedModelComponent<AbstractMetadataList> {
-  protected createModel(): AbstractMetadataList {
-    return undefined;
-  }
+    protected createModel(): AbstractMetadataList {
+        return undefined;
+    }
 }

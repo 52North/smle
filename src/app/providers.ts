@@ -1,4 +1,3 @@
-import { provide } from '@angular/core';
 import { DescriptionRepository } from './services/DescriptionRepository';
 import { InMemoryDescriptionRepository } from './services/InMemoryDescriptionRepository';
 import { XmlService } from './services/XmlService';

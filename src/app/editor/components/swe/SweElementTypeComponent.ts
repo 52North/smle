@@ -23,49 +23,49 @@ import { ComponentType } from '../sml/NamedSweDataComponentComponent';
 import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
-  selector: 'swe-element-type',
-  template: require('./SweElementTypeComponent.html')
+    selector: 'swe-element-type',
+    template: require('./SweElementTypeComponent.html')
 })
 export class SweElementTypeComponent extends TypedModelComponent<SweElementType> implements AfterContentInit {
-  private typeType: ComponentType;
+    private typeType: ComponentType;
 
-  ngAfterContentInit(): any {
-    this.typeType = this.getTypeType();
-  }
-
-  private getTypeType(): ComponentType {
-    if (!this.model) {
-      return ComponentType.Unknown;
+    ngAfterContentInit(): any {
+        this.typeType = this.getTypeType();
     }
 
-    var type = this.model.type;
+    private getTypeType(): ComponentType {
+        if (!this.model) {
+            return ComponentType.Unknown;
+        }
 
-    if (type instanceof SweText) {
-      return ComponentType.SweText;
-    } else if (type instanceof SweTime) {
-      return ComponentType.SweTime;
-    } else if (type instanceof SweCount) {
-      return ComponentType.SweCount;
-    } else if (type instanceof SweBoolean) {
-      return ComponentType.SweBoolean;
-    } else if (type instanceof SweQuantity) {
-      return ComponentType.SweQuantity;
-    } else if (type instanceof SweCategory) {
-      return ComponentType.SweCategory;
-    } else if (type instanceof SweTimeRange) {
-      return ComponentType.SweTimeRange;
-    } else if (type instanceof SweQuantityRange) {
-      return ComponentType.SweQuantityRange;
-    } else if (type instanceof SweDataRecord) {
-      return ComponentType.SweDataRecord;
-      // } else if (type instanceof SweDataArray) {
-      //     return ComponentType.SweDataArray;
-    } else {
-      return ComponentType.Unknown;
+        var type = this.model.type;
+
+        if (type instanceof SweText) {
+            return ComponentType.SweText;
+        } else if (type instanceof SweTime) {
+            return ComponentType.SweTime;
+        } else if (type instanceof SweCount) {
+            return ComponentType.SweCount;
+        } else if (type instanceof SweBoolean) {
+            return ComponentType.SweBoolean;
+        } else if (type instanceof SweQuantity) {
+            return ComponentType.SweQuantity;
+        } else if (type instanceof SweCategory) {
+            return ComponentType.SweCategory;
+        } else if (type instanceof SweTimeRange) {
+            return ComponentType.SweTimeRange;
+        } else if (type instanceof SweQuantityRange) {
+            return ComponentType.SweQuantityRange;
+        } else if (type instanceof SweDataRecord) {
+            return ComponentType.SweDataRecord;
+            // } else if (type instanceof SweDataArray) {
+            //     return ComponentType.SweDataArray;
+        } else {
+            return ComponentType.Unknown;
+        }
     }
-  }
 
-  protected createModel(): SweElementType {
-    return new SweElementType();
-  }
+    protected createModel(): SweElementType {
+        return new SweElementType();
+    }
 }
