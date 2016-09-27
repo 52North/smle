@@ -13,7 +13,7 @@ export abstract class DescriptionRepository {
     /**
      * Save the description, fail if it was saved before.
      */
-    abstract saveDescription(description: AbstractProcess): Promise<string>;
+    abstract saveDescription(description: AbstractProcess): Promise<void>;
     /**
      * Update the description, fail if it wasn't saved before.
      */
