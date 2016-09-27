@@ -1,7 +1,4 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
-import { ListComponent } from '../basic/ListComponent';
-import { AbstractNamedMetadataListComponent } from './AbstractNamedMetadataListComponent';
 import { EditorComponent } from '../base/EditorComponent';
 import { ChildMetadata } from '../base/TypedModelComponent';
 import { Capability } from '../../../model/sml/Capability';
@@ -26,7 +23,7 @@ import { SweDataArray } from '../../../model/swe/SweDataArray';
     styles: [require('../styles/editor-component.scss')]
 })
 export class CapabilityListComponent extends EditorComponent<CapabilityList> {
-    private options = [
+    protected options = [
         { name: (new SweText()).toString(), type: SweText },
         { name: (new SweTime()).toString(), type: SweTime },
         { name: (new SweCount()).toString(), type: SweCount },
@@ -47,20 +44,20 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
         return new CapabilityList();
     }
 
-    private openNewCapabilityItem(item: Capability) {
-        var metadata = new ChildMetadata(NamedSweDataComponentComponent,
+    protected openNewCapabilityItem(item: Capability) {
+        let metadata = new ChildMetadata(NamedSweDataComponentComponent,
             item, this.config.getConfigFor('capabilities'));
         this.openNewChild(metadata);
     }
 
-    private onAddCapability(characteristicType: Type<AbstractDataComponent>): void {
-        var newItem = new NamedSweDataComponent();
+    protected onAddCapability(characteristicType: Type<AbstractDataComponent>): void {
+        let newItem = new NamedSweDataComponent();
         newItem.component = new characteristicType();
 
         this.model.capabilities.push(newItem);
     }
 
-    private onRemoveCapability(index: number): void {
+    protected onRemoveCapability(index: number): void {
         this.closeChildWithModel(this.model.capabilities[index]);
         this.model.capabilities.splice(index, 1);
     }

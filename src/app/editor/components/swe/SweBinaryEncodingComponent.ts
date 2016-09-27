@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
 import { SweBinaryEncoding } from '../../../model/swe/SweBinaryEncoding';
-import { SweEncodingComponent } from './SweEncodingComponent';
-import { NumberFieldComponent } from '../basic/NumberFieldComponent';
-import { ListComponent } from '../basic/ListComponent';
 import { SweBinaryBlock } from '../../../model/swe/SweBinaryBlock';
 import { SweBinaryComponent } from '../../../model/swe/SweBinaryComponent';
 import { SweBinaryBlockComponent } from './SweBinaryBlockComponent';
@@ -18,18 +15,18 @@ export class SweBinaryEncodingComponent extends TypedModelComponent<SweBinaryEnc
         return new SweBinaryEncoding();
     }
 
-    private addBinaryBlock() {
-        var newItem = new SweBinaryBlock();
+    protected addBinaryBlock() {
+        let newItem = new SweBinaryBlock();
         this.model.members.push(newItem);
     }
 
-    private addBinaryComponent() {
-        var newItem = new SweBinaryComponent();
+    protected addBinaryComponent() {
+        let newItem = new SweBinaryComponent();
         this.model.members.push(newItem);
     }
 
-    private openNewItem(item: SweBinaryBlock | SweBinaryComponent) {
-        var childMetadata: ChildMetadata<any>;
+    protected openNewItem(item: SweBinaryBlock | SweBinaryComponent) {
+        let childMetadata: ChildMetadata<any>;
 
         if (item instanceof SweBinaryBlock) {
             childMetadata = new ChildMetadata(SweBinaryBlockComponent, item, this.config.getConfigFor('members'));

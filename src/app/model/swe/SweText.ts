@@ -7,17 +7,17 @@ import { DisplayName } from '../../decorators/DisplayName';
  * statement
  */
 export class SweText extends AbstractSimpleComponent {
-  /**
-   * Value is optional, to enable structure to act as a schema for values
-   * provided using other encodings
-   */
-  @DisplayName('Value')
-  value: string;
+    /**
+     * Value is optional, to enable structure to act as a schema for values
+     * provided using other encodings
+     */
+    @DisplayName('Value')
+    value: string;
 
-  @DisplayName('Constraint')
-  constraint: AllowedTokens = new AllowedTokens();
+    @DisplayName('Constraint')
+    constraint: AllowedTokens = new AllowedTokens();
 
-  toString() {
-    return 'Text Component';
-  }
+    toString() {
+        return 'Text Component';
+    }
 }

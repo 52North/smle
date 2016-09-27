@@ -1,9 +1,9 @@
-import {SweBinaryComponent} from './SweBinaryComponent';
-import {SweBinaryBlock} from './SweBinaryBlock';
-import {SweByteOrder} from './SweByteOrder';
-import {SweByteEncoding} from './SweByteEncoding';
-import {SweEncoding} from './SweEncoding';
-import {DisplayName} from '../../decorators/DisplayName';
+import { SweBinaryComponent } from './SweBinaryComponent';
+import { SweBinaryBlock } from './SweBinaryBlock';
+import { SweByteOrder } from './SweByteOrder';
+import { SweByteEncoding } from './SweByteEncoding';
+import { SweEncoding } from './SweEncoding';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * Parameters of the binary encoding method

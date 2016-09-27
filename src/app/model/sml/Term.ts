@@ -1,5 +1,5 @@
-import {AbstractSWE} from '../swe/AbstractSWE';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractSWE } from '../swe/AbstractSWE';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class Term extends AbstractSWE {
     @DisplayName('Label')

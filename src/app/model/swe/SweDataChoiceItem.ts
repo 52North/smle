@@ -1,5 +1,5 @@
-import {AbstractDataComponent} from './AbstractDataComponent';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractDataComponent } from './AbstractDataComponent';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class SweDataChoiceItem {
     @DisplayName('Name')

@@ -1,14 +1,9 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
-import { ListComponent } from '../basic/ListComponent';
-import { AbstractSWEComponent } from '../swe/AbstractSWEComponent';
 import { KeywordListComponent } from '../swe/KeywordListComponent';
 import { IdentifierListComponent } from './IdentifierListComponent';
 import { ClassifierListComponent } from './ClassifierListComponent';
 import { DocumentListComponent } from './DocumentListComponent';
 import { ContactListComponent } from './ContactListComponent';
-import { CodeTypeComponent } from '../gml/CodeTypeComponent';
-import { AbstractSWEIdentifiableComponent } from '../swe/AbstractSWEIdentifiableComponent';
 import { Event } from '../../../model/sml/Event';
 import { EditorComponent } from '../base/EditorComponent';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
@@ -24,7 +19,6 @@ import { TimeInstantComponent } from '../gml/TimeInstantComponent';
 import { TimePeriodComponent } from '../gml/TimePeriodComponent';
 import { SettingsComponent } from './SettingsComponent';
 import { Settings } from '../../../model/sml/Settings';
-import { ChildItemComponent } from '../basic/ChildItemComponent';
 
 @Component({
     selector: 'sml-event',
@@ -40,85 +34,85 @@ export class EventComponent extends EditorComponent<Event> {
         return new Event();
     }
 
-    private createDefinition() {
+    protected createDefinition() {
         this.model.definition = new CodeWithAuthority('', '');
     }
 
-    private resetDefinition() {
+    protected resetDefinition() {
         this.model.definition = null;
     }
 
-    private openNewKeywordListItem(item: KeywordList) {
-        var metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
+    protected openNewKeywordListItem(item: KeywordList) {
+        let metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
         this.openNewChild(metadata);
     }
 
-    private onAddKeywordList() {
+    protected onAddKeywordList() {
         this.model.keywords.push(new KeywordList());
     }
 
-    private onRemoveKeywordList(index: number) {
+    protected onRemoveKeywordList(index: number) {
         this.model.keywords.splice(index, 1);
     }
 
-    private openNewIdentifierListItem(item: IdentifierList) {
-        var metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('identification'));
+    protected openNewIdentifierListItem(item: IdentifierList) {
+        let metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('identification'));
         this.openNewChild(metadata);
     }
 
-    private onAddIdentifierList() {
+    protected onAddIdentifierList() {
         this.model.identification.push(new IdentifierList());
     }
 
-    private onRemoveIdentifierList(index: number) {
+    protected onRemoveIdentifierList(index: number) {
         this.model.identification.splice(index, 1);
     }
 
-    private openNewClassifierListItem(item: ClassifierList) {
-        var metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
+    protected openNewClassifierListItem(item: ClassifierList) {
+        let metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
         this.openNewChild(metadata);
     }
 
-    private onAddClassifierList() {
+    protected onAddClassifierList() {
         this.model.classification.push(new ClassifierList());
     }
 
-    private onRemoveClassifierList(index: number) {
+    protected onRemoveClassifierList(index: number) {
         this.model.classification.splice(index, 1);
     }
 
-    private openNewContactListItem(item: ContactList) {
-        var metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('contacts'));
+    protected openNewContactListItem(item: ContactList) {
+        let metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('contacts'));
         this.openNewChild(metadata);
     }
 
-    private onAddContactList() {
+    protected onAddContactList() {
         this.model.contacts.push(new ContactList());
     }
 
-    private onRemoveContactList(index: number) {
+    protected onRemoveContactList(index: number) {
         this.model.contacts.splice(index, 1);
     }
 
-    private openNewDocumentListItem(item: DocumentList) {
-        var metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
+    protected openNewDocumentListItem(item: DocumentList) {
+        let metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
         this.openNewChild(metadata);
     }
 
-    private onAddDocumentList() {
+    protected onAddDocumentList() {
         this.model.documentation.push(new DocumentList());
     }
 
-    private onRemoveDocumentList(index: number) {
+    protected onRemoveDocumentList(index: number) {
         this.model.documentation.splice(index, 1);
     }
 
-    private isPeriod(time: TimePeriod | any): boolean {
+    protected isPeriod(time: TimePeriod | any): boolean {
         return typeof time.begin !== 'undefined' && typeof time.end !== 'undefined';
     }
 
     public openTimeInstant(item: TimeInstant): void {
-        var metadata = new ChildMetadata(
+        let metadata = new ChildMetadata(
             TimeInstantComponent,
             item,
             this.config.getConfigFor('time').getConfigFor('timeInstant')
@@ -127,7 +121,7 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     public openTimePeriod(item: TimePeriod): void {
-        var metadata = new ChildMetadata(
+        let metadata = new ChildMetadata(
             TimePeriodComponent,
             item,
             this.config.getConfigFor('time').getConfigFor('timePeriod')
@@ -136,13 +130,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     public createTime(): void {
-        var time = new TimeInstant();
+        let time = new TimeInstant();
         time.time = new Date();
         this.model.time = time;
     }
 
     public createPeriod(): void {
-        var period = new TimePeriod();
+        let period = new TimePeriod();
         period.begin = new Date();
         period.end = new Date();
         this.model.time = period;
@@ -152,17 +146,17 @@ export class EventComponent extends EditorComponent<Event> {
         this.model.time = null;
     }
 
-    private openSettings() {
-        var metadata =
+    protected openSettings() {
+        let metadata =
             new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
         this.openNewChild(metadata);
     }
 
-    private removeSettings() {
+    protected removeSettings() {
         this.model.configuration = null;
     }
 
-    private createSettings() {
+    protected createSettings() {
         this.model.configuration = new Settings();
     }
 

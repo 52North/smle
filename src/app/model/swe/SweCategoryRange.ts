@@ -1,6 +1,6 @@
-import {AbstractSweRange} from './AbstractSweRange';
-import {AllowedTokens} from './AllowedTokens';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractSweRange } from './AbstractSweRange';
+import { AllowedTokens } from './AllowedTokens';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * Pair of categorical values used to specify a range in an ordinal

@@ -1,4 +1,4 @@
 export interface DescriptionConfig {
-  isFieldMandatory(name: string): boolean;
-  getConfigFor(name: string): DescriptionConfig;
+    isFieldMandatory(name: string): boolean;
+    getConfigFor(name: string): DescriptionConfig;
 }

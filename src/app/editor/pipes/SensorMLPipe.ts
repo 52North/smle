@@ -19,12 +19,12 @@ export class SensorMLPipe implements PipeTransform {
     }
 
     formatXml(xml) {
-        var formatted = '';
-        var reg = /(>)(<)(\/*)/g;
+        let formatted = '';
+        let reg = /(>)(<)(\/*)/g;
         xml = xml.replace(reg, '$1\r\n$2$3');
-        var pad = 0;
+        let pad = 0;
         jQuery.each(xml.split('\r\n'), function(index, node) {
-            var indent = 0;
+            let indent = 0;
             if (node.match(/.+<\/\w[^>]*>$/)) {
                 indent = 0;
             } else if (node.match(/^<\/\w/)) {
@@ -37,8 +37,8 @@ export class SensorMLPipe implements PipeTransform {
                 indent = 0;
             }
 
-            var padding = '';
-            for (var i = 0; i < pad; i++) {
+            let padding = '';
+            for (let i = 0; i < pad; i++) {
                 padding += '  ';
             }
 

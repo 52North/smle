@@ -7,15 +7,15 @@ import { TrueDescriptionConfig } from './config/TrueDescriptionConfig';
 
 @Injectable()
 export class DescriptionConfigService {
-  constructor(private http: Http) {
-  }
+    constructor(private http: Http) {
+    }
 
-  public getConfiguration(): Promise<DescriptionConfig> {
-    return this.http.get('./description-config.json').toPromise().then((response: Response) => {
-      var data = response.json();
-      return new JSONDescriptionConfig(data);
-    }).catch(() => {
-      return new TrueDescriptionConfig();
-    });
-  }
+    public getConfiguration(): Promise<DescriptionConfig> {
+        return this.http.get('./description-config.json').toPromise().then((response: Response) => {
+            let data = response.json();
+            return new JSONDescriptionConfig(data);
+        }).catch(() => {
+            return new TrueDescriptionConfig();
+        });
+    }
 }

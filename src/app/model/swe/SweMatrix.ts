@@ -1,5 +1,5 @@
-import {SweDataArray} from './SweDataArray';
-import {DisplayName} from '../../decorators/DisplayName';
+import { SweDataArray } from './SweDataArray';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class SweMatrix extends SweDataArray {
     @DisplayName('Reference frame')

@@ -1,5 +1,5 @@
 
-export const Namespaces = {
+export const NAMESPACES = {
     GCO: 'http://www.isotc211.org/2005/gco',
     GMD: 'http://www.isotc211.org/2005/gmd',
     GML: 'http://www.opengis.net/gml/3.2',

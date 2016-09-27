@@ -1,8 +1,8 @@
-import {AbstractProcess} from './AbstractProcess';
-import {AggregatingProcess} from './AggregatingProcess';
-import {ComponentList} from './ComponentList';
-import {ConnectionList} from './ConnectionList';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractProcess } from './AbstractProcess';
+import { AggregatingProcess } from './AggregatingProcess';
+import { ComponentList } from './ComponentList';
+import { ConnectionList } from './ConnectionList';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * A process that consist of a collection of linked component processes

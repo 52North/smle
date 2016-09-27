@@ -1,14 +1,14 @@
-import {CodeWithAuthority} from '../gml/CodeWithAuthority';
-import {AbstractSWEIdentifiable} from '../swe/AbstractSWEIdentifiable';
-import {SweDataComponent} from '../swe/SweDataComponent';
-import {KeywordList} from './KeywordList';
-import {IdentifierList} from './IdentifierList';
-import {ClassifierList} from './ClassifierList';
-import {ContactList} from './ContactList';
-import {DocumentList} from './DocumentList';
-import {Settings} from './Settings';
-import {AbstractTime} from '../gml/AbstractTime';
-import {DisplayName} from '../../decorators/DisplayName';
+import { CodeWithAuthority } from '../gml/CodeWithAuthority';
+import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
+import { SweDataComponent } from '../swe/SweDataComponent';
+import { KeywordList } from './KeywordList';
+import { IdentifierList } from './IdentifierList';
+import { ClassifierList } from './ClassifierList';
+import { ContactList } from './ContactList';
+import { DocumentList } from './DocumentList';
+import { Settings } from './Settings';
+import { AbstractTime } from '../gml/AbstractTime';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * A time tagged Event with description and relevant property values.

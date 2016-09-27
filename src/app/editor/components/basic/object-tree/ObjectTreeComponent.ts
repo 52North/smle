@@ -1,8 +1,6 @@
-import { Component, Input, OnChanges, SimpleChanges, HostListener, DoCheck } from '@angular/core';
-import { TreeComponent } from 'angular2-tree-component';
+import { Component, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 import { AbstractProcess } from '../../../../model/sml/AbstractProcess';
 import { getDisplayName } from '../../../../decorators/DisplayName';
-import { TreeNodeComponent } from './TreeNodeComponent';
 
 const emailRegex = new RegExp('^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$');
 const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?');
@@ -14,73 +12,21 @@ const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \
 })
 export class ObjectTreeComponent implements OnChanges, DoCheck {
     @Input()
-    model: AbstractProcess;
-    private prevModel: string;
-
-    @Input()
     shouldRebuildTree: boolean = true;
 
-    private options = {
+    @Input()
+    model: AbstractProcess;
+
+    protected options = {
         expandedField: 'isExpanded'
     };
 
+    private prevModel: string;
     private nodes: Array<INode> = [];
 
-    constructor() {
-        //this.periodicalRebuild();
-        this.prevModel = JSON.stringify(this.model);
-    }
-
-    private periodicalRebuild() {
-        if (this.shouldRebuildTree) {
-            setTimeout(() => {
-                this.periodicalRebuild();
-            }, 1000);
-        }
-        this.rebuildTree(this.model);
-    }
-
-    private rebuildTree(currentModel) {
-        var nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes);
-        this.nodes = nodes || [];
-    }
-
-    ngDoCheck() {
-        if (this.shouldRebuildTree && JSON.stringify(this.model) !== this.prevModel) {
-            this.prevModel = JSON.stringify(this.model);
-            this.rebuildTree(this.model);
-        }
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-        var modelChange = changes['model'];
-        if (modelChange) {
-            this.rebuildTree(modelChange.currentValue);
-        }
-    }
-
-    private onToggle(event) {
-        var path = event.node.path;
-        var nodes = this.nodes;
-
-        var getPredicate = (index: number) => {
-            return (node) => {
-                return node.id === path[index];
-            };
-        };
-
-        for (let i = 0; i < path.length - 1; i++) {
-            nodes = nodes.find(getPredicate(i)).children;
-        }
-        var node = nodes.find(getPredicate(path.length - 1));
-
-        event.node.data.isExpanded = event.isExpanded;
-        node.isExpanded = event.isExpanded;
-    }
-
     private static getNodes(object: any, oldNodes: Array<INode>): Array<INode> {
-        var nodes: Array<INode>;
-        var type = typeof object;
+        let nodes: Array<INode>;
+        let type = typeof object;
 
         if (object === null || type === 'undefined' || type === 'function') {
             return null;
@@ -105,8 +51,40 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         return nodes;
     }
 
+    private static getNodesForObject(object: Object, oldNodes: Array<INode> = []): Array<INode> {
+        let nodes: Array<INode> = [];
+
+        for (let propertyName in object) {
+            if (object[propertyName]) {
+                let nodeValue: any = object[propertyName];
+
+                if (Object.prototype.hasOwnProperty(propertyName) ||
+                    nodeValue === undefined || nodeValue === null || nodeValue.length === 0) {
+                    continue;
+                }
+
+                let oldNode = oldNodes.find((oldNode) => {
+                    return oldNode.id === propertyName;
+                });
+                let displayName = getDisplayName(object, propertyName) || propertyName;
+                let newNode: INode = {
+                    id: propertyName,
+                    name: displayName,
+                    type: 'object',
+                    children: null,
+                    isExpanded: oldNode && oldNode.isExpanded
+                };
+
+                newNode.children = ObjectTreeComponent.getNodes(nodeValue, oldNode && oldNode.children);
+                nodes.push(newNode);
+            }
+        }
+
+        return nodes;
+    }
+
     private static getValueNodes(name: string, type: string, oldNodes: Array<INode>): Array<INode> {
-        var node: INode = {
+        let node: INode = {
             id: '$value',
             name: name,
             type: type,
@@ -121,42 +99,12 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         return [node];
     }
 
-    private static getNodesForObject(object: Object, oldNodes: Array<INode> = []): Array<INode> {
-        var nodes: Array<INode> = [];
-
-        for (let propertyName in object) {
-            let nodeValue: any = object[propertyName];
-
-            if (Object.prototype.hasOwnProperty(propertyName) ||
-                nodeValue === undefined || nodeValue === null || nodeValue.length === 0) {
-                continue;
-            }
-
-            let oldNode = oldNodes.find((oldNode) => {
-                return oldNode.id === propertyName;
-            });
-            let displayName = getDisplayName(object, propertyName) || propertyName;
-            let newNode: INode = {
-                id: propertyName,
-                name: displayName,
-                type: 'object',
-                children: null,
-                isExpanded: oldNode && oldNode.isExpanded
-            };
-
-            newNode.children = ObjectTreeComponent.getNodes(nodeValue, oldNode && oldNode.children);
-            nodes.push(newNode);
-        }
-
-        return nodes;
-    }
-
     private static getNodesForArray(array: Array<any>, oldNodes: Array<INode> = []): Array<INode> {
-        var nodes = <Array<any>>array.map((elem: any, index: number) => {
-            var oldNode = oldNodes.find((oldNode) => {
-                return oldNode.id === index.toString();
+        let nodes = <Array<any>>array.map((elem: any, index: number) => {
+            let oldNode = oldNodes.find((node) => {
+                return node.id === index.toString();
             });
-            var node: INode = {
+            let node: INode = {
                 id: index.toString(),
                 name: null,
                 type: null,
@@ -164,8 +112,8 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
                 isExpanded: oldNode && oldNode.isExpanded
             };
 
-            var name = elem.toString();
-            var type = typeof elem;
+            let name = elem.toString();
+            let type = typeof elem;
 
             if (type === 'object' && !(elem instanceof Date) || elem instanceof Array) {
                 node.children = ObjectTreeComponent.getNodes(elem, oldNode && oldNode.children);
@@ -186,13 +134,66 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         return nodes;
     }
 
-    private static isEmail(string) {
-        return emailRegex.test(string);
+    private static isEmail(email: string) {
+        return emailRegex.test(email);
     }
 
-    private static isUrl(string) {
-        return urlRegex.test(string);
+    private static isUrl(url: string) {
+        return urlRegex.test(url);
     }
+
+    constructor() {
+        // this.periodicalRebuild();
+        this.prevModel = JSON.stringify(this.model);
+    }
+
+    ngDoCheck() {
+        if (this.shouldRebuildTree && JSON.stringify(this.model) !== this.prevModel) {
+            this.prevModel = JSON.stringify(this.model);
+            this.rebuildTree(this.model);
+        }
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        let modelChange = changes['model'];
+        if (modelChange) {
+            this.rebuildTree(modelChange.currentValue);
+        }
+    }
+
+    protected onToggle(event) {
+        let path = event.node.path;
+        let nodes = this.nodes;
+
+        let getPredicate = (index: number) => {
+            return (node) => {
+                return node.id === path[index];
+            };
+        };
+
+        for (let i = 0; i < path.length - 1; i++) {
+            nodes = nodes.find(getPredicate(i)).children;
+        }
+        let node = nodes.find(getPredicate(path.length - 1));
+
+        event.node.data.isExpanded = event.isExpanded;
+        node.isExpanded = event.isExpanded;
+    }
+
+    private periodicalRebuild() {
+        if (this.shouldRebuildTree) {
+            setTimeout(() => {
+                this.periodicalRebuild();
+            }, 1000);
+        }
+        this.rebuildTree(this.model);
+    }
+
+    private rebuildTree(currentModel) {
+        let nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes);
+        this.nodes = nodes || [];
+    }
+
 }
 
 interface INode {

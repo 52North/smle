@@ -1,5 +1,5 @@
-import {Citation} from './Citation';
-import {DisplayName} from '../../../decorators/DisplayName';
+import { Citation } from './Citation';
+import { DisplayName } from '../../../decorators/DisplayName';
 
 export class Identifier {
     @DisplayName('Authority')

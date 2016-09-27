@@ -15,28 +15,28 @@ import { Editor } from './editor/editor';
 import { ConfigurationService } from './services/ConfigurationService';
 
 export function getAppModule(conf) {
-  @NgModule({
-    bootstrap: [Application],
-    declarations: [
-      Application,
-      Home,
-      Editor
-    ],
-    imports: [
-      BrowserModule,
-      FormsModule,
-      HttpModule,
-      EditorModule,
-      CommonModule,
-      RouterModule.forRoot(ROUTES, { useHash: true })
-    ],
-    providers: [
-      APP_PROVIDERS,
-      ConfigurationService,
-      { provide: 'smle.config', useValue: conf }
-    ]
-  })
-  class AppModule { }
+    @NgModule({
+        bootstrap: [Application],
+        declarations: [
+            Application,
+            Home,
+            Editor
+        ],
+        imports: [
+            BrowserModule,
+            FormsModule,
+            HttpModule,
+            EditorModule,
+            CommonModule,
+            RouterModule.forRoot(ROUTES, { useHash: true })
+        ],
+        providers: [
+            APP_PROVIDERS,
+            ConfigurationService,
+            { provide: 'smle.config', useValue: conf }
+        ]
+    })
+    class AppModule { }
 
-  return AppModule;
+    return AppModule;
 }

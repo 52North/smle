@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractSimpleComponentComponent } from './AbstractSimpleComponentComponent';
-import { AllowedValuesComponent } from './AllowedValuesComponent';
-import { UnitOfMeasureComponent } from './UnitOfMeasureComponent';
 import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { NumberFieldComponent } from '../basic/NumberFieldComponent';
 
 @Component({
     selector: 'swe-quantity',

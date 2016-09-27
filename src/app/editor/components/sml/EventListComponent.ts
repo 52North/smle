@@ -1,7 +1,4 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
-import { ListComponent } from '../basic/ListComponent';
-import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
 import { EventList } from '../../../model/sml/EventList';
 import { EventComponent } from './EventComponent';
 import { Event } from '../../../model/sml/Event';
@@ -22,16 +19,16 @@ export class EventListComponent extends EditorComponent<EventList> {
         return new EventList();
     }
 
-    private openNewEventItem(item: Event) {
-        var metadata = new ChildMetadata(EventComponent, item, this.config.getConfigFor('events'));
+    protected openNewEventItem(item: Event) {
+        let metadata = new ChildMetadata(EventComponent, item, this.config.getConfigFor('events'));
         this.openNewChild(metadata);
     }
 
-    private onAddEvent(): void {
+    protected onAddEvent(): void {
         this.model.events.push(new Event());
     }
 
-    private onRemoveEvent(index: number): void {
+    protected onRemoveEvent(index: number): void {
         this.closeChildWithModel(this.model.events[index]);
         this.model.events.splice(index, 1);
     }

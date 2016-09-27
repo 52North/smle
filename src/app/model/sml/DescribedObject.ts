@@ -1,15 +1,15 @@
-import {AbstractFeature} from '../gml/AbstractFeature';
-import {KeywordList} from './KeywordList';
-import {IdentifierList} from './IdentifierList';
-import {ClassifierList} from './ClassifierList';
-import {AbstractTime} from '../gml/AbstractTime';
-import {LegalConstraints} from '../iso/gmd/LegalConstraints';
-import {CharacteristicList} from './CharacteristicList';
-import {CapabilityList} from './CapabilityList';
-import {ContactList} from './ContactList';
-import {EventList} from './EventList';
-import {DocumentList} from './DocumentList';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractFeature } from '../gml/AbstractFeature';
+import { KeywordList } from './KeywordList';
+import { IdentifierList } from './IdentifierList';
+import { ClassifierList } from './ClassifierList';
+import { AbstractTime } from '../gml/AbstractTime';
+import { LegalConstraints } from '../iso/gmd/LegalConstraints';
+import { CharacteristicList } from './CharacteristicList';
+import { CapabilityList } from './CapabilityList';
+import { ContactList } from './ContactList';
+import { EventList } from './EventList';
+import { DocumentList } from './DocumentList';
+import { DisplayName } from '../../decorators/DisplayName';
 /**
  * A feature with generic metadata which further clarifies the object and
  * supports object discovery.

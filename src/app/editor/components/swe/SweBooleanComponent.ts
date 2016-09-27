@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractSimpleComponentComponent } from './AbstractSimpleComponentComponent';
-import { CheckboxComponent } from '../basic/CheckboxComponent';
 import { SweBoolean } from '../../../model/swe/SweBoolean';
 
 @Component({

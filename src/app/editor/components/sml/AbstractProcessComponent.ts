@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-import { DescribedObjectComponent } from './DescribedObjectComponent';
 import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { SettingsComponent } from './SettingsComponent';
 import { Settings } from '../../../model/sml/Settings';
-import { ChildItemComponent } from '../basic/ChildItemComponent';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'sml-abstract-process',
@@ -16,17 +13,17 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
         return undefined;
     }
 
-    private openSettings() {
-        var metadata =
+    protected openSettings() {
+        let metadata =
             new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
         this.openNewChild(metadata);
     }
 
-    private removeSettings() {
+    protected removeSettings() {
         this.model.configuration = null;
     }
 
-    private createSettings() {
+    protected createSettings() {
         this.model.configuration = new Settings();
     }
 

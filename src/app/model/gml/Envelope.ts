@@ -1,5 +1,5 @@
-import {AbstractReferenced} from './AbstractReferenced';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractReferenced } from './AbstractReferenced';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * Envelope defines an extent using a pair of positions defining opposite
@@ -43,7 +43,7 @@ export class Envelope extends AbstractReferenced {
     }
 
     set coordinates(c: [number, number, number, number]) {
-        for (var i = 0; i < 4; ++i) {
+        for (let i = 0; i < 4; ++i) {
             this._coords[i] = c[i];
         }
     }

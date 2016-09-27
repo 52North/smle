@@ -19,15 +19,15 @@ export class ListComponent {
     @Output()
     public remove: EventEmitter<number> = new EventEmitter<number>();
 
-    private onClick(item: any, index: number) {
+    protected onClick(item: any, index: number) {
         this.select.emit(item);
     }
 
-    private onRemove(item: any, index: number) {
+    protected onRemove(item: any, index: number) {
         this.remove.emit(index);
     }
 
-    private onAdd() {
+    protected onAdd() {
         this.add.emit(null);
     }
 }
