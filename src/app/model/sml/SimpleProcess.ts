@@ -1,7 +1,7 @@
-import {ProcessMethodProcess} from './ProcessMethodProcess';
-import {ProcessMethod} from './ProcessMethod';
-import {AbstractProcess} from './AbstractProcess';
-import {DisplayName} from '../../decorators/DisplayName';
+import { ProcessMethodProcess } from './ProcessMethodProcess';
+import { ProcessMethod } from './ProcessMethod';
+import { AbstractProcess } from './AbstractProcess';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class SimpleProcess extends AbstractProcess implements ProcessMethodProcess {
     @DisplayName('Method')

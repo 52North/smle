@@ -7,17 +7,17 @@ import { DisplayName } from '../../decorators/DisplayName';
  * value
  */
 export class SweCount extends AbstractSimpleComponent {
-  /**
-   * Value is optional, to enable structure to act as a schema for values
-   * provided using other encodings
-   */
-  @DisplayName('Value')
-  value: number;
+    /**
+     * Value is optional, to enable structure to act as a schema for values
+     * provided using other encodings
+     */
+    @DisplayName('Value')
+    value: number;
 
-  @DisplayName('Constraint')
-  constraint: AllowedValues = new AllowedValues();
+    @DisplayName('Constraint')
+    constraint: AllowedValues = new AllowedValues();
 
-  toString() {
-    return 'Count Component';
-  }
+    toString() {
+        return 'Count Component';
+    }
 }

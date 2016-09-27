@@ -1,5 +1,5 @@
-import {AbstractSWE} from './AbstractSWE';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractSWE } from './AbstractSWE';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * Binary encoding parameters used for encoding a single data component.

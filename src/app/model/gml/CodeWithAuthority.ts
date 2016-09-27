@@ -1,4 +1,4 @@
-import {CodeType} from './CodeType';
+import { CodeType } from './CodeType';
 
 /**
  * gml:CodeWithAuthorityType requires that the codeSpace attribute is provided

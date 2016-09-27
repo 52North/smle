@@ -8,22 +8,22 @@ import { DisplayName } from '../../decorators/DisplayName';
  * store value of a continuous quantity
  */
 export class SweQuantity extends AbstractSimpleComponent {
-  /**
-   * Value is optional, to enable structure to act as a schema for values
-   * provided using other encodings
-   */
-  @DisplayName('Value')
-  value: number;
-  /**
-   * Unit of measure used to express the value of this data component
-   */
-  @DisplayName('Unit of measure')
-  uom: UnitOfMeasure = new UnitOfMeasure();
+    /**
+     * Value is optional, to enable structure to act as a schema for values
+     * provided using other encodings
+     */
+    @DisplayName('Value')
+    value: number;
+    /**
+     * Unit of measure used to express the value of this data component
+     */
+    @DisplayName('Unit of measure')
+    uom: UnitOfMeasure = new UnitOfMeasure();
 
-  @DisplayName('Constraint')
-  constraint: AllowedValues = new AllowedValues();
+    @DisplayName('Constraint')
+    constraint: AllowedValues = new AllowedValues();
 
-  toString() {
-    return 'Quantity Component';
-  }
+    toString() {
+        return 'Quantity Component';
+    }
 }

@@ -1,9 +1,6 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
-import { AbstractSettingComponent } from './AbstractSettingComponent';
 import { ModeSetting } from '../../../model/sml/ModeSetting';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'sml-mode-setting',

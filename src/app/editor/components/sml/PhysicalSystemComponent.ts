@@ -1,8 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { PhysicalSystem } from '../../../model/sml/PhysicalSystem';
-import { AbstractPhysicalProcessComponent } from './AbstractPhysicalProcessComponent';
-import { AggregatingProcessComponent } from './AggregatingProcessComponent';
-import { CardComponent } from '../basic/CardComponent';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

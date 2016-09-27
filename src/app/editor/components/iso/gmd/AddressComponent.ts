@@ -1,9 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Address } from '../../../../model/iso/gmd/Address';
-import { CardComponent } from '../../basic/CardComponent';
-import { StringsComponent } from '../../basic/StringsComponent';
 import { EditorComponent } from '../../base/EditorComponent';
-import { TextFieldComponent } from '../../basic/TextFieldComponent';
 
 @Component({
     selector: 'iso-address',

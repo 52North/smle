@@ -1,3 +1,3 @@
 export interface AbstractAlgorithm {
-  id: string;
+    id: string;
 }

@@ -1,8 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
-import { CardComponent } from '../../basic/CardComponent';
 import { EditorComponent } from '../../base/EditorComponent';
-import { TextFieldComponent } from '../../basic/TextFieldComponent';
 
 @Component({
     selector: 'iso-online-resource',

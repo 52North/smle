@@ -1,8 +1,5 @@
 import { Component, AfterContentInit, Type } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractDataComponentComponent } from './AbstractDataComponentComponent';
-import { NumberFieldComponent } from '../basic/NumberFieldComponent';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweText } from '../../../model/swe/SweText';
 import { SweTime } from '../../../model/swe/SweTime';
 import { SweCount } from '../../../model/swe/SweCount';
@@ -14,21 +11,17 @@ import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 import { SweDataArray } from '../../../model/swe/SweDataArray';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
 import { SweElementType } from '../../../model/swe/SweElementType';
-import { SweElementTypeComponent } from './SweElementTypeComponent';
 import { SweXmlEncoding } from '../../../model/swe/SweXmlEncoding';
 import { SweTextEncoding } from '../../../model/swe/SweTextEncoding';
 import { SweBinaryEncoding } from '../../../model/swe/SweBinaryEncoding';
 import { SweEncoding } from '../../../model/swe/SweEncoding';
-import { SweTextEncodingComponent } from './SweTextEncodingComponent';
-import { SweXmlEncodingComponent } from './SweXmlEncodingComponent';
-import { SweBinaryEncodingComponent } from './SweBinaryEncodingComponent';
 
 @Component({
     selector: 'swe-data-array',
     template: require('./SweDataArrayComponent.html')
 })
 export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> implements AfterContentInit {
-    private options = [
+    protected options = [
         { name: 'SweText', type: SweText },
         { name: 'SweTime', type: SweTime },
         { name: 'SweCount', type: SweCount },
@@ -37,11 +30,11 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
         { name: 'SweCategory', type: SweCategory },
         { name: 'SweTimeRange', type: SweTimeRange },
         { name: 'SweQuantityRange', type: SweQuantityRange },
-        //{ name: 'SweDataRecord', type: SweDataRecord },
-        //{name: 'SweDataArray', type: SweDataArray}
+        // { name: 'SweDataRecord', type: SweDataRecord },
+        // {name: 'SweDataArray', type: SweDataArray}
     ];
 
-    private encodingOptions = [
+    protected encodingOptions = [
         { name: 'SweXmlEncoding', type: SweXmlEncoding },
         { name: 'SweTextEncoding', type: SweTextEncoding },
         { name: 'SweBinaryEncoding', type: SweBinaryEncoding }
@@ -53,25 +46,25 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
         return new SweDataArray();
     }
 
-    private onAddElementType(typeType: Type<AbstractDataComponent>) {
-        var newItem = new SweElementType();
+    protected onAddElementType(typeType: Type<AbstractDataComponent>) {
+        let newItem = new SweElementType();
         newItem.type = new typeType();
 
         this.model.elementType = newItem;
     }
 
-    private removeElementType() {
+    protected removeElementType() {
         this.model.elementType = null;
     }
 
-    private onAddEncoding(encodingType: Type<SweEncoding>) {
-        var newItem = new encodingType();
+    protected onAddEncoding(encodingType: Type<SweEncoding>) {
+        let newItem = new encodingType();
 
         this.model.encoding = newItem;
         this.encodingType = this.getEncodingType();
     }
 
-    private removeEncoding() {
+    protected removeEncoding() {
         this.model.encoding = null;
     }
 
@@ -80,7 +73,7 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
     }
 
     private getEncodingType(): string {
-        var encoding = this.model.encoding;
+        let encoding = this.model.encoding;
 
         if (encoding instanceof SweTextEncoding) {
             return 'text';

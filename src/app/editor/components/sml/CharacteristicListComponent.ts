@@ -1,7 +1,4 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
-import { ListComponent } from '../basic/ListComponent';
-import { AbstractNamedMetadataListComponent } from './AbstractNamedMetadataListComponent';
 import { EditorComponent } from '../base/EditorComponent';
 import { ChildMetadata } from '../base/TypedModelComponent';
 import { Characteristic } from '../../../model/sml/Characteristic';
@@ -26,7 +23,7 @@ import { SweDataArray } from '../../../model/swe/SweDataArray';
     styles: [require('../styles/editor-component.scss')]
 })
 export class CharacteristicListComponent extends EditorComponent<CharacteristicList> {
-    private options = [
+    protected options = [
         { name: (new SweText()).toString(), type: SweText },
         { name: (new SweTime()).toString(), type: SweTime },
         { name: (new SweCount()).toString(), type: SweCount },
@@ -47,19 +44,19 @@ export class CharacteristicListComponent extends EditorComponent<CharacteristicL
         return new CharacteristicList();
     }
 
-    private openNewCharacteristicItem(item: Characteristic) {
-        var metadata = new ChildMetadata(NamedSweDataComponentComponent,
+    protected openNewCharacteristicItem(item: Characteristic) {
+        let metadata = new ChildMetadata(NamedSweDataComponentComponent,
             item, this.config.getConfigFor('characteristic'));
         this.openNewChild(metadata);
     }
 
-    private onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {
-        var newItem = new NamedSweDataComponent();
+    protected onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {
+        let newItem = new NamedSweDataComponent();
         newItem.component = new characteristicType();
         this.model.characteristics.push(newItem);
     }
 
-    private onRemoveCharacteristic(index: number): void {
+    protected onRemoveCharacteristic(index: number): void {
         this.closeChildWithModel(this.model.characteristics[index]);
         this.model.characteristics.splice(index, 1);
     }

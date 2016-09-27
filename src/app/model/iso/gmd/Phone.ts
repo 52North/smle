@@ -1,4 +1,4 @@
-import {DisplayName} from '../../../decorators/DisplayName';
+import { DisplayName } from '../../../decorators/DisplayName';
 /**
  * Telephone numbers for contacting the responsible individual or organisation
  */

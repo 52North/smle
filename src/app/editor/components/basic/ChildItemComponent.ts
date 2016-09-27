@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'child-item',
@@ -20,15 +20,15 @@ export class ChildItemComponent {
     @Output()
     public select: EventEmitter<any> = new EventEmitter<any>();
 
-    private onAdd() {
+    protected onAdd() {
         this.add.emit(null);
     }
 
-    private onRemove() {
+    protected onRemove() {
         this.remove.emit(null);
     }
 
-    private onSelect() {
+    protected onSelect() {
         this.select.emit(null);
     }
 }

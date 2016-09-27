@@ -1,4 +1,4 @@
-import {DisplayName} from '../../decorators/DisplayName';
+import { DisplayName } from '../../decorators/DisplayName';
 /**
  * Base substitution groups for all SWE Common objects other than value objects
  */

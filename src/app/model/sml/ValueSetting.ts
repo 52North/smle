@@ -1,5 +1,5 @@
-import {AbstractSetting} from './AbstractSetting';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractSetting } from './AbstractSetting';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class ValueSetting extends AbstractSetting {
     @DisplayName('Value')

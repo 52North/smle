@@ -1,8 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
 import { EditorComponent } from '../base/EditorComponent';
 import { SimpleProcess } from '../../../model/sml/SimpleProcess';
-import { AbstractProcessComponent } from './AbstractProcessComponent';
 
 @Component({
     selector: 'sml-simple-process',

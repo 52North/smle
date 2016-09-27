@@ -1,6 +1,6 @@
-import {AbstractGML} from './AbstractGML';
-import {Envelope} from './Envelope';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractGML } from './AbstractGML';
+import { Envelope } from './Envelope';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * The basic feature model is given by the gml:AbstractFeatureType.

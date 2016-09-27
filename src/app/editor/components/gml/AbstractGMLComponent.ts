@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractGML } from '../../../model/gml/AbstractGML';
-import { CodeTypeComponent } from './CodeTypeComponent';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { CodeType } from '../../../model/gml/CodeType';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'gml-abstract',

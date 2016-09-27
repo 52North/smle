@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, HostBinding} from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
 
 @Component({
     selector: 'card',
@@ -40,7 +40,7 @@ export class CardComponent {
         this.closeChild.emit(null);
     }
 
-    private onShowAllChange(value) {
+    protected onShowAllChange(value) {
         this.showAll = value;
         this.showAllChange.emit(value);
     }

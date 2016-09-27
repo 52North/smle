@@ -1,4 +1,4 @@
-import {DisplayName} from '../../../decorators/DisplayName';
+import { DisplayName } from '../../../decorators/DisplayName';
 /**
  * Location of the responsible individual or organisation
  */

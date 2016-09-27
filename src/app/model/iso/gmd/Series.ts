@@ -1,4 +1,4 @@
-import {DisplayName} from '../../../decorators/DisplayName';
+import { DisplayName } from '../../../decorators/DisplayName';
 export class Series {
     @DisplayName('Name')
     name: string;

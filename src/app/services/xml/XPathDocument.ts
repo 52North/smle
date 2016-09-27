@@ -4,6 +4,12 @@ export class XPathDocument {
 
     private static MEDIA_TYPE = 'application/xml';
 
+    public static parse(xml: string): XPathDocument {
+        let parser = new DOMParser();
+        let document = parser.parseFromString(xml, XPathDocument.MEDIA_TYPE);
+        return new XPathDocument(document);
+    }
+
     constructor(public document: Document) { }
 
     public eval(expr: string, context?: Node): boolean | string | number | Node | Node[] {
@@ -62,9 +68,4 @@ export class XPathDocument {
             expression, context, resolver, XPathResult.ANY_TYPE, null);
     }
 
-    public static parse(xml: string): XPathDocument {
-        let parser = new DOMParser();
-        let document = parser.parseFromString(xml, XPathDocument.MEDIA_TYPE);
-        return new XPathDocument(document);
-    }
 }

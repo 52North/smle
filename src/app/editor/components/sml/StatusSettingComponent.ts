@@ -1,7 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
 import { EditorComponent } from '../base/EditorComponent';
-import { AbstractSettingComponent } from './AbstractSettingComponent';
 import { StatusSetting } from '../../../model/sml/StatusSetting';
 
 @Component({
@@ -25,7 +23,7 @@ export class StatusSettingComponent extends EditorComponent<StatusSetting> imple
         return new StatusSetting();
     }
 
-    private updateValue(temp: any) {
+    protected updateValue(temp: any) {
         this.model.value = !this.valueSelected ? 'enabled' : 'disabled';
     }
 }

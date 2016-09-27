@@ -1,10 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { AbstractMetadataListComponent } from '../sml/AbstractMetadataListComponent';
 import { KeywordList } from '../../../model/sml/KeywordList';
-import { CardComponent } from '../basic/CardComponent';
-import { StringsComponent } from '../basic/StringsComponent';
 import { EditorComponent } from '../base/EditorComponent';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'swe-keyword-list',

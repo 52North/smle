@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractSimpleComponentComponent } from './AbstractSimpleComponentComponent';
-import { AllowedValuesComponent } from './AllowedValuesComponent';
 import { SweCount } from '../../../model/swe/SweCount';
-import { NumberFieldComponent } from '../basic/NumberFieldComponent';
 
 @Component({
     selector: 'swe-count',

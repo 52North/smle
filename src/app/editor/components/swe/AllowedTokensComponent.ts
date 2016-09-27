@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 import { AllowedTokens } from '../../../model/swe/AllowedTokens';
-import { StringsComponent } from '../basic/StringsComponent';
-import { AbstractAllowedValuesComponent } from './AbstractAllowedValuesComponent';
 
 @Component({
     selector: 'swe-allowed-tokens',

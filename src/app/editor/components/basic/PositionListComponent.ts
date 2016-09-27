@@ -9,14 +9,22 @@ import { SweCoordinate } from '../../../model/swe/SweCoordinate';
 import { SweQuantity } from '../../../model/swe/SweQuantity';
 import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
 import { SweField } from '../../../model/swe/SweField';
-import { ListComponent } from './ListComponent';
 
 @Component({
     selector: 'position-list',
     template: require('./PositionListComponent.html')
 })
 export class PositionListComponent extends TypedModelComponent<Array<Position>> {
-    private getPositionTypeName(positionItem: Position): string {
+
+    protected createModel(): Position[] {
+        return [];
+    }
+
+    protected openChild(item: Position) {
+        this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueDescriptionConfig()));
+    }
+
+    protected getPositionTypeName(positionItem: Position): string {
         if (positionItem instanceof SweVector) {
             return 'Vector';
         } else if (positionItem instanceof SweDataRecord) {
@@ -26,8 +34,19 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         }
     }
 
-    private addVector() {
-        var newItem = this.createPositionLocation();
+    protected removeItem(index: number) {
+        this.model.splice(index, 1);
+    }
+
+    protected addVector() {
+        let newItem = this.createPositionLocation();
+
+        this.addModelIfNotExist();
+        this.model.push(newItem);
+    }
+
+    protected addDataRecord() {
+        let newItem = this.createPositionDataRecord();
 
         this.addModelIfNotExist();
         this.model.push(newItem);
@@ -40,15 +59,8 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         }
     }
 
-    private addDataRecord() {
-        var newItem = this.createPositionDataRecord();
-
-        this.addModelIfNotExist();
-        this.model.push(newItem);
-    }
-
     private createPositionLocation(withAlt: boolean = false): SweVector {
-        var location = new SweVector();
+        let location = new SweVector();
 
         location.coordinates.push(this.createCoordinate('Lat', 0, 'deg'));
         location.coordinates.push(this.createCoordinate('Lon', 0, 'deg'));
@@ -60,9 +72,9 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private createCoordinate(name: string, value: number, uom: string): SweCoordinate {
-        var coordinate = new SweCoordinate();
-        var quantity = new SweQuantity();
-        var unitOfMeasure = new UnitOfMeasure();
+        let coordinate = new SweCoordinate();
+        let quantity = new SweQuantity();
+        let unitOfMeasure = new UnitOfMeasure();
 
         unitOfMeasure.code = uom;
 
@@ -76,9 +88,9 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private createPositionDataRecord(): SweDataRecord {
-        var dataRecord = new SweDataRecord();
-        var locationField = new SweField();
-        var orientationField = new SweField();
+        let dataRecord = new SweDataRecord();
+        let locationField = new SweField();
+        let orientationField = new SweField();
 
         locationField.name = 'location';
         locationField.component = this.createPositionLocation(true);
@@ -92,7 +104,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private createPositionOrientation(): SweVector {
-        var orientation = new SweVector();
+        let orientation = new SweVector();
 
         orientation.coordinates.push(this.createCoordinate('TrueHeading', 0, 'deg'));
         orientation.coordinates.push(this.createCoordinate('Pitch', 0, 'deg'));
@@ -100,15 +112,4 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         return orientation;
     }
 
-    private removeItem(index: number) {
-        this.model.splice(index, 1);
-    }
-
-    private openChild(item: Position) {
-        this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueDescriptionConfig()));
-    }
-
-    protected createModel(): Position[] {
-        return [];
-    }
 }

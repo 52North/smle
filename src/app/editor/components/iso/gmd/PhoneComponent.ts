@@ -1,7 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Phone } from '../../../../model/iso/gmd/Phone';
-import { CardComponent } from '../../basic/CardComponent';
-import { StringsComponent } from '../../basic/StringsComponent';
 import { EditorComponent } from '../../base/EditorComponent';
 
 @Component({

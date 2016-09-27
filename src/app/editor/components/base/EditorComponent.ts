@@ -15,7 +15,7 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     public onReset(): void {
         this.closeChild();
         for (let prop in this.model) {
-            delete this.model[prop];
+            if (this.model[prop]) delete this.model[prop];
         }
         this.extendModel();
     }
@@ -29,9 +29,9 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     }
 
     protected openNewChild(childMetadata: ChildMetadata<any>) {
-        var model = childMetadata.model;
-        var componentType = childMetadata.componentType;
-        var config = childMetadata.config;
+        let model = childMetadata.model;
+        let componentType = childMetadata.componentType;
+        let config = childMetadata.config;
 
         if (this.childComponentRef &&
             this.childComponentRef.componentType === componentType &&
@@ -66,14 +66,14 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
         }
     }
 
-    private getActiveChildModel(): any {
-        return this.childComponentRef ? this.childComponentRef.instance.model : null;
-    }
-
     protected closeChild() {
         if (this.childComponentRef) {
             this.childComponentRef.instance.close();
         }
+    }
+
+    private getActiveChildModel(): any {
+        return this.childComponentRef ? this.childComponentRef.instance.model : null;
     }
 
     private destroyChild() {

@@ -1,10 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
-import { CardComponent } from '../basic/CardComponent';
 import { SweBinaryBlock } from '../../../model/swe/SweBinaryBlock';
 import { EditorComponent } from '../base/EditorComponent';
-import { NumberFieldComponent } from '../basic/NumberFieldComponent';
-import { AbstractSWEComponent } from './AbstractSWEComponent';
 
 @Component({
     selector: 'swe-binary-block',

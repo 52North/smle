@@ -2,16 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AbstractProcess } from '../model/sml';
 import { DescriptionConfigService } from '../services/DescriptionConfigService';
-import { SensorMLPipe } from './pipes/SensorMLPipe';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService } from '../services/EditorService';
-import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
-import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
-import { SimpleProcessComponent } from './components/sml/SimpleProcessComponent';
 import { PhysicalSystem } from '../model/sml/PhysicalSystem';
 import { PhysicalComponent } from '../model/sml/PhysicalComponent';
 import { SimpleProcess } from '../model/sml/SimpleProcess';
-import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
 
 enum DescriptionType {
     PhysicalSystem = 1,
@@ -30,7 +25,6 @@ export class Editor implements OnInit {
 
     private descriptionType: DescriptionType;
     private descriptionIsLoading: boolean = true;
-    private visualizerExpanded: boolean = false;
 
     constructor(private configurationService: DescriptionConfigService,
         private editorService: EditorService,

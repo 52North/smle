@@ -1,11 +1,11 @@
-import {DescribedObject} from './DescribedObject';
-import {Settings} from './Settings';
-import {FeatureList} from './FeatureList';
-import {InputList} from './InputList';
-import {OutputList} from './OutputList';
-import {ParameterList} from './ParameterList';
-import {AbstractModes} from './AbstractModes';
-import {DisplayName} from '../../decorators/DisplayName';
+import { DescribedObject } from './DescribedObject';
+import { Settings } from './Settings';
+import { FeatureList } from './FeatureList';
+import { InputList } from './InputList';
+import { OutputList } from './OutputList';
+import { ParameterList } from './ParameterList';
+import { AbstractModes } from './AbstractModes';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * The general base model for any process.
