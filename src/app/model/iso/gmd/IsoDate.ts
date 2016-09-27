@@ -1,5 +1,5 @@
-import {DateType} from './DateType';
-import {DisplayName} from '../../../decorators/DisplayName';
+import { DateType } from './DateType';
+import { DisplayName } from '../../../decorators/DisplayName';
 
 export class IsoDate {
     @DisplayName('Type')

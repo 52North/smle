@@ -1,9 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
-import { ListComponent } from '../basic/ListComponent';
 import { EditorComponent } from '../base/EditorComponent';
 import { ChildMetadata } from '../base/TypedModelComponent';
-import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
 import { DocumentList } from '../../../model/sml/DocumentList';
 import { OnlineResource } from '../../../model/iso/gmd/OnlineResource';
 import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';
@@ -31,8 +28,8 @@ export class DocumentListComponent extends EditorComponent<DocumentList> {
         this.model.documents.push(new OnlineResource());
     }
 
-    private openNewOnlineResourceItem(item: OnlineResource) {
-        var metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('documents'));
+    protected openNewOnlineResourceItem(item: OnlineResource) {
+        let metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('documents'));
         this.openNewChild(metadata);
     }
 }

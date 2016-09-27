@@ -1,7 +1,4 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
-import { ListComponent } from '../basic/ListComponent';
-import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
 import { Term } from '../../../model/sml/Term';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { TermComponent } from './TermComponent';
@@ -22,16 +19,16 @@ export class IdentifierListComponent extends EditorComponent<IdentifierList> {
         return new IdentifierList();
     }
 
-    private openNewIdentifierItem(item: Term) {
-        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('identifiers'));
+    protected openNewIdentifierItem(item: Term) {
+        let metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('identifiers'));
         this.openNewChild(metadata);
     }
 
-    private onAddIdentifier(): void {
+    protected onAddIdentifier(): void {
         this.model.identifiers.push(new Term());
     }
 
-    private onRemoveIdentifier(index: number): void {
+    protected onRemoveIdentifier(index: number): void {
         this.closeChildWithModel(this.model.identifiers[index]);
         this.model.identifiers.splice(index, 1);
     }

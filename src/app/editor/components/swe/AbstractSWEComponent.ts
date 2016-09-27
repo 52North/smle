@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractSWE } from '../../../model/swe/AbstractSWE';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'swe-abstract',

@@ -1,7 +1,7 @@
-import {AbstractSWEIdentifiable} from '../swe/AbstractSWEIdentifiable';
-import {SweDataStream} from '../swe/SweDataStream';
-import {SweDataRecord} from '../swe/SweDataRecord';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
+import { SweDataStream } from '../swe/SweDataStream';
+import { SweDataRecord } from '../swe/SweDataRecord';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * The DataInterface description provides information sufficient for

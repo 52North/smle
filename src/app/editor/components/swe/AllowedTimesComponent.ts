@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { AllowedTimes } from '../../../model/swe/AllowedTimes';
-import { AbstractNumericAllowedValuesComponent } from './AbstractNumericAllowedValuesComponent';
-import { ListComponent } from '../basic/ListComponent';
-import { TimePositionComponent } from './TimePositionComponent';
 import { TimePosition } from '../../../model/swe/TimePosition';
 
 @Component({
@@ -19,16 +16,16 @@ export class AllowedTimesComponent extends TypedModelComponent<AllowedTimes> {
         return new AllowedTimes();
     }
 
-    private removeValue(index: number) {
+    protected removeValue(index: number) {
         this.model.values.splice(index, 1);
     }
 
-    private addSingleItem() {
+    protected addSingleItem() {
         this.model.values.push(this.singleItem);
         this.singleItem = 'now';
     }
 
-    private addPairItem() {
+    protected addPairItem() {
         this.model.values.push(this.pairItem);
         this.pairItem = ['now', 'now'];
     }

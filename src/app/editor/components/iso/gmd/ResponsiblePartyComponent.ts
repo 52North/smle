@@ -1,12 +1,9 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
 import { Contact } from '../../../../model/iso/gmd/Contact';
-import { CardComponent } from '../../basic/CardComponent';
 import { ContactComponent } from './ContactComponent';
 import { EditorComponent } from '../../base/EditorComponent';
 import { ChildMetadata } from '../../base/TypedModelComponent';
-import { TextFieldComponent } from '../../basic/TextFieldComponent';
-import { ChildItemComponent } from '../../basic/ChildItemComponent';
 
 @Component({
     selector: 'iso-responsible-party',
@@ -31,8 +28,8 @@ export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty>
         this.model.contactInfo = null;
     }
 
-    private openNewContactInfoItem(item: Contact) {
-        var metadata = new ChildMetadata(ContactComponent, item, this.config.getConfigFor('contactInfo'));
+    protected openNewContactInfoItem(item: Contact) {
+        let metadata = new ChildMetadata(ContactComponent, item, this.config.getConfigFor('contactInfo'));
         this.openNewChild(metadata);
     }
 }

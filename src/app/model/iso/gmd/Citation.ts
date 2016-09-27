@@ -1,9 +1,9 @@
-import {IsoDate} from './IsoDate';
-import {Identifier} from './Identifier';
-import {ResponsibleParty} from './ResponsibleParty';
-import {PresentationForm} from './PresentationForm';
-import {Series} from './Series';
-import {DisplayName} from '../../../decorators/DisplayName';
+import { IsoDate } from './IsoDate';
+import { Identifier } from './Identifier';
+import { ResponsibleParty } from './ResponsibleParty';
+import { PresentationForm } from './PresentationForm';
+import { Series } from './Series';
+import { DisplayName } from '../../../decorators/DisplayName';
 
 export class Citation {
     @DisplayName('Title')

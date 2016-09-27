@@ -1,5 +1,5 @@
-import {AbstractMetadataList} from './AbstractMetadataList';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractMetadataList } from './AbstractMetadataList';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export abstract class AbstractNamedMetadataList extends AbstractMetadataList {
     @DisplayName('Name')

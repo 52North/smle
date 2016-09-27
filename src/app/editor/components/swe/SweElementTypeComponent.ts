@@ -10,17 +10,7 @@ import { SweCategory } from '../../../model/swe/SweCategory';
 import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 import { SweElementType } from '../../../model/swe/SweElementType';
-import { SweTextComponent } from './SweTextComponent';
-import { SweBooleanComponent } from './SweBooleanComponent';
-import { SweCategoryComponent } from './SweCategoryComponent';
-import { SweCountComponent } from './SweCountComponent';
-import { SweQuantityComponent } from './SweQuantityComponent';
-import { SweTimeComponent } from './SweTimeComponent';
-import { SweTimeRangeComponent } from './SweTimeRangeComponent';
-import { SweQuantityRangeComponent } from './SweQuantityRangeComponent';
-import { SweDataRecordComponent } from './SweDataRecordComponent';
 import { ComponentType } from '../sml/NamedSweDataComponentComponent';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'swe-element-type',
@@ -33,12 +23,16 @@ export class SweElementTypeComponent extends TypedModelComponent<SweElementType>
         this.typeType = this.getTypeType();
     }
 
+    protected createModel(): SweElementType {
+        return new SweElementType();
+    }
+
     private getTypeType(): ComponentType {
         if (!this.model) {
             return ComponentType.Unknown;
         }
 
-        var type = this.model.type;
+        let type = this.model.type;
 
         if (type instanceof SweText) {
             return ComponentType.SweText;
@@ -65,7 +59,4 @@ export class SweElementTypeComponent extends TypedModelComponent<SweElementType>
         }
     }
 
-    protected createModel(): SweElementType {
-        return new SweElementType();
-    }
 }

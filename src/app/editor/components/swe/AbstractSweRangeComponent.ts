@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractSimpleComponentComponent } from './AbstractSimpleComponentComponent';
 import { AbstractSweRange } from '../../../model/swe/AbstractSweRange';
 
 @Component({

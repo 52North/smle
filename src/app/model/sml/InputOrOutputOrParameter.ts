@@ -1,7 +1,7 @@
-import {SweDataComponent} from '../swe/SweDataComponent';
-import {ObservableProperty} from './ObservableProperty';
-import {DataInterface} from './DataInterface';
-import {DisplayName} from '../../decorators/DisplayName';
+import { SweDataComponent } from '../swe/SweDataComponent';
+import { ObservableProperty } from './ObservableProperty';
+import { DataInterface } from './DataInterface';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class InputOrOutputOrParameter {
     @DisplayName('Name')

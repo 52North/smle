@@ -6,8 +6,8 @@ import { SweDataArray } from '../swe/SweDataArray';
 import { AbstractProcess } from './AbstractProcess';
 
 export type Position = Point
-  | SweText
-  | SweVector
-  | SweDataRecord
-  | SweDataArray
-  | AbstractProcess;
+    | SweText
+    | SweVector
+    | SweDataRecord
+    | SweDataArray
+    | AbstractProcess;

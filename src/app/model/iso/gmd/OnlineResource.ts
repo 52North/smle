@@ -1,5 +1,5 @@
-import {OnlineFunction} from './OnlineFunction';
-import {DisplayName} from '../../../decorators/DisplayName';
+import { OnlineFunction } from './OnlineFunction';
+import { DisplayName } from '../../../decorators/DisplayName';
 
 /**
  * Information about online sources from which the dataset, specification, or

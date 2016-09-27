@@ -1,6 +1,6 @@
-import {AbstractSweRange} from './AbstractSweRange';
-import {AllowedValues} from './AllowedValues';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractSweRange } from './AbstractSweRange';
+import { AllowedValues } from './AllowedValues';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * Integer pair used for specifying a count range

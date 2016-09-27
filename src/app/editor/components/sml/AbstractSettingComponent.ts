@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractSetting } from '../../../model/sml/AbstractSetting';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'sml-abstract-setting',

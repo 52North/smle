@@ -1,7 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { Position } from '../../../model/sml/Position';
-import { CardComponent } from '../basic/CardComponent';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { MapComponent, MapData } from '../basic/MapComponent';
@@ -68,8 +67,8 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         overlay.defaultViewContainer = viewContainerRef;
     }
 
-    private openMap() {
-        var mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
+    protected openMap() {
+        let mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
 
         this.modalWindow
             .open(MapComponent, overlayConfigFactory(mapData, BSModalContext)).then((dialogRef) => {
@@ -87,15 +86,15 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     }
 
     private setFieldValue(vectorName: string, fieldName: string, value: number) {
-        var quantity = this.getQuantity(vectorName, fieldName);
+        let quantity = this.getQuantity(vectorName, fieldName);
         if (quantity) {
             quantity.value = value;
         }
     }
 
     private getQuantity(vectorName: string, fieldName: string): SweQuantity {
-        var vector: SweVector;
-        var coordinate: SweCoordinate;
+        let vector: SweVector;
+        let coordinate: SweCoordinate;
 
         if (!this.model) {
             return undefined;
@@ -125,7 +124,7 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     }
 
     private getFieldValue(vectorName: string, fieldName: string): number {
-        var quantity = this.getQuantity(vectorName, fieldName);
+        let quantity = this.getQuantity(vectorName, fieldName);
         return quantity ? quantity.value : undefined;
     }
 }

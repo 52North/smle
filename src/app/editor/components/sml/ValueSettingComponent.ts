@@ -1,9 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
 import { EditorComponent } from '../base/EditorComponent';
-import { AbstractSettingComponent } from './AbstractSettingComponent';
 import { ValueSetting } from '../../../model/sml/ValueSetting';
-import { DatePickerComponent } from '../gml/DatePickerComponent';
 
 @Component({
     selector: 'sml-value-setting',

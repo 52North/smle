@@ -1,6 +1,6 @@
-import {AbstractMetadataList} from './AbstractMetadataList';
-import {ResponsibleParty} from '../iso/gmd/ResponsibleParty';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractMetadataList } from './AbstractMetadataList';
+import { ResponsibleParty } from '../iso/gmd/ResponsibleParty';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class ContactList extends AbstractMetadataList {
     @DisplayName('Contacts')

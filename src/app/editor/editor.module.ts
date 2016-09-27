@@ -49,7 +49,7 @@ import { EventComponent } from './components/sml/EventComponent';
 import { EventListComponent } from './components/sml/EventListComponent';
 import { IdentifierListComponent } from './components/sml/IdentifierListComponent';
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
-import { ComponentType, NamedSweDataComponentComponent, SweFieldComponent }
+import { NamedSweDataComponentComponent, SweFieldComponent }
     from './components/sml/NamedSweDataComponentComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';

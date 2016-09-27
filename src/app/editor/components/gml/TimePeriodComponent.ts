@@ -1,9 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Input } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { TimePeriod } from '../../../model/gml/TimePeriod';
-import { DatePickerComponent } from './DatePickerComponent';
-import { AbstractGMLComponent } from './AbstractGMLComponent';
-import { CardComponent } from '../basic/CardComponent';
 
 @Component({
     selector: 'gml-time-period',
@@ -22,11 +19,11 @@ export class TimePeriodComponent extends EditorComponent<TimePeriod> {
     }
 
 
-    private onChangeBegin(date: Date) {
+    protected onChangeBegin(date: Date) {
         this.model.begin = date;
     }
 
-    private onChangeEnd(date: Date) {
+    protected onChangeEnd(date: Date) {
         this.model.end = date;
     }
 

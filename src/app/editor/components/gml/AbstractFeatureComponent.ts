@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AbstractFeature } from '../../../model/gml/AbstractFeature';
-import { AbstractGMLComponent } from './AbstractGMLComponent';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

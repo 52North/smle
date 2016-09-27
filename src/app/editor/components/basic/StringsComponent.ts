@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ListComponent } from './ListComponent';
 
 @Component({
     selector: 'strings',

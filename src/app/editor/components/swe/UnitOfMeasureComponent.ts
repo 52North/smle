@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
     selector: 'swe-unit-of-measure',

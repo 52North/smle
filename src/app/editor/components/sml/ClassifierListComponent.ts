@@ -1,7 +1,4 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { CardComponent } from '../basic/CardComponent';
-import { ListComponent } from '../basic/ListComponent';
-import { AbstractMetadataListComponent } from './AbstractMetadataListComponent';
 import { Term } from '../../../model/sml/Term';
 import { TermComponent } from './TermComponent';
 import { ClassifierList } from '../../../model/sml/ClassifierList';
@@ -22,16 +19,16 @@ export class ClassifierListComponent extends EditorComponent<ClassifierList> {
         return new ClassifierList();
     }
 
-    private openNewClassifierItem(item: Term) {
-        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('classifiers'));
+    protected openNewClassifierItem(item: Term) {
+        let metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('classifiers'));
         this.openNewChild(metadata);
     }
 
-    private onAddClassifier(): void {
+    protected onAddClassifier(): void {
         this.model.classifiers.push(new Term());
     }
 
-    private onRemoveClassifier(index: number): void {
+    protected onRemoveClassifier(index: number): void {
         this.closeChildWithModel(this.model.classifiers[index]);
         this.model.classifiers.splice(index, 1);
     }

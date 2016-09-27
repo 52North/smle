@@ -9,13 +9,13 @@ import { Templates } from './templates/templates';
 import { AuthGuard } from './sos/components/auth-guard.service';
 
 export const ROUTES: Routes = [
-  { path: '', component: Home },
-  { path: 'editor', component: Editor },
-  { path: 'editor/:id', component: Editor },
-  { path: 'fetch', component: FetchDescription },
-  { path: 'fetch/:id', component: FetchDescription },
-  { path: 'publish', component: PublishDescription },
-  { path: 'connect', component: ConnectDescription },
-  { path: 'delete', component: DeleteDescription, canActivate: [AuthGuard] },
-  { path: 'templates', component: Templates }
+    { path: '', component: Home },
+    { path: 'editor', component: Editor },
+    { path: 'editor/:id', component: Editor },
+    { path: 'fetch', component: FetchDescription },
+    { path: 'fetch/:id', component: FetchDescription },
+    { path: 'publish', component: PublishDescription },
+    { path: 'connect', component: ConnectDescription },
+    { path: 'delete', component: DeleteDescription, canActivate: [AuthGuard] },
+    { path: 'templates', component: Templates }
 ];

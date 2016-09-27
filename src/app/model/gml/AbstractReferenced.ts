@@ -1,5 +1,5 @@
-import {Referenced} from './Referenced';
-import {DisplayName} from '../../decorators/DisplayName';
+import { Referenced } from './Referenced';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export abstract class AbstractReferenced implements Referenced {
     @DisplayName('SRS name')

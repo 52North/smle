@@ -19,17 +19,17 @@ export class DatePickerComponent implements OnChanges {
     public modelChange: EventEmitter<Date> = new EventEmitter<Date>();
 
     private dateTimeString: string;
-    private dateFormat: string = 'dd.mm.yy';
+    // private dateFormat: string = 'dd.mm.yy';
     private momentDateFormat: string = 'DD.MM.YYYY';
     private timeFormat: string = 'HH:mm';
 
     ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
-        var modelChange = changes['model'];
+        let modelChange = changes['model'];
         if (!modelChange) {
             return;
         }
 
-        var dateTime = this.model;
+        let dateTime = this.model;
         if (dateTime) {
             this.dateTimeString =
                 this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
@@ -46,29 +46,13 @@ export class DatePickerComponent implements OnChanges {
         this.modelChange.emit(this.model);
     }
 
-    private getTimeObject(dateTime: Date): any {
-        return {
-            hour: dateTime.getHours(),
-            minute: dateTime.getMinutes()
-        };
-    }
-
-    private getFormattedDate(dateTime: Date): string {
-        return moment(dateTime).format(this.momentDateFormat);
-    }
-
-    private getFormattedTime(dateTime: Date): string {
-        var timeObject = this.getTimeObject(dateTime);
-        return moment(timeObject).format(this.timeFormat);
-    }
-
-    private getMinFormattedDate(): string {
+    protected getMinFormattedDate(): string {
         return this.minDateTime ? this.getFormattedDate(this.minDateTime) : null;
     }
 
-    private getMinFormattedTime(): string {
-        var minDate = this.minDateTime;
-        var currentDate = this.model;
+    protected getMinFormattedTime(): string {
+        let minDate = this.minDateTime;
+        let currentDate = this.model;
 
         if (!minDate) {
             return null;
@@ -81,13 +65,13 @@ export class DatePickerComponent implements OnChanges {
             : this.getFormattedTime(new Date(0));
     }
 
-    private getMaxFormattedDate(): string {
+    protected getMaxFormattedDate(): string {
         return this.maxDateTime ? this.getFormattedDate(this.maxDateTime) : null;
     }
 
-    private getMaxFormattedTime(): string {
-        var maxDate = this.maxDateTime;
-        var currentDate = this.model;
+    protected getMaxFormattedTime(): string {
+        let maxDate = this.maxDateTime;
+        let currentDate = this.model;
 
         if (!maxDate) {
             return null;
@@ -100,9 +84,26 @@ export class DatePickerComponent implements OnChanges {
             : this.getFormattedTime(maxDate);
     }
 
-    private onStringDateChange(newDateTimeString: string): void {
-        var parsedDate = moment(newDateTimeString, 'DD.MM.YYYY HH:mm').toDate();
+    protected onStringDateChange(newDateTimeString: string): void {
+        let parsedDate = moment(newDateTimeString, 'DD.MM.YYYY HH:mm').toDate();
         this.dateTimeString = newDateTimeString;
         this.modelChange.emit(parsedDate);
     }
+
+    private getTimeObject(dateTime: Date): any {
+        return {
+            hour: dateTime.getHours(),
+            minute: dateTime.getMinutes()
+        };
+    }
+
+    private getFormattedDate(dateTime: Date): string {
+        return moment(dateTime).format(this.momentDateFormat);
+    }
+
+    private getFormattedTime(dateTime: Date): string {
+        let timeObject = this.getTimeObject(dateTime);
+        return moment(timeObject).format(this.timeFormat);
+    }
+
 }

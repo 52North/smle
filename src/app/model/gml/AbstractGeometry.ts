@@ -1,6 +1,6 @@
-import {AbstractGML} from './AbstractGML';
-import {Referenced} from './Referenced';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractGML } from './AbstractGML';
+import { Referenced } from './Referenced';
+import { DisplayName } from '../../decorators/DisplayName';
 
 export class AbstractGeometry extends AbstractGML implements Referenced {
     @DisplayName('SRS name')

@@ -1,6 +1,6 @@
-import {AbstractNamedMetadataList} from './AbstractNamedMetadataList';
-import {Characteristic} from './Characteristic';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractNamedMetadataList } from './AbstractNamedMetadataList';
+import { Characteristic } from './Characteristic';
+import { DisplayName } from '../../decorators/DisplayName';
 
 
 export class CharacteristicList extends AbstractNamedMetadataList {

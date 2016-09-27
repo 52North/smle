@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { SweXmlEncoding } from '../../../model/swe/SweXmlEncoding';
-import { SweEncodingComponent } from './SweEncodingComponent';
 
 @Component({
     selector: 'swe-xml-encoding',

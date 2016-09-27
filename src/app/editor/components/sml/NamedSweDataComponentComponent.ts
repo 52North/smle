@@ -1,8 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, AfterContentInit, OnInit } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
-import { CardComponent } from '../basic/CardComponent';
-import { AbstractDataComponentComponent } from '../swe/AbstractDataComponentComponent';
 import { SweText } from '../../../model/swe/SweText';
 import { SweTime } from '../../../model/swe/SweTime';
 import { SweCount } from '../../../model/swe/SweCount';
@@ -13,18 +11,7 @@ import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweDataArray } from '../../../model/swe/SweDataArray';
-import { SweTextComponent } from '../swe/SweTextComponent';
-import { TextFieldComponent } from '../basic/TextFieldComponent';
-import { SweBooleanComponent } from '../swe/SweBooleanComponent';
-import { SweCategoryComponent } from '../swe/SweCategoryComponent';
-import { SweCountComponent } from '../swe/SweCountComponent';
-import { SweQuantityComponent } from '../swe/SweQuantityComponent';
-import { SweTimeComponent } from '../swe/SweTimeComponent';
-import { SweTimeRangeComponent } from '../swe/SweTimeRangeComponent';
-import { SweQuantityRangeComponent } from '../swe/SweQuantityRangeComponent';
-import { SweDataRecordComponent } from '../swe/SweDataRecordComponent';
 import { SweField } from '../../../model/swe/SweField';
-import { SweDataArrayComponent } from '../swe/SweDataArrayComponent';
 
 export enum ComponentType {
     Unknown = 0,
@@ -52,12 +39,16 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
         this.componentType = this.getComponentType();
     }
 
+    protected createModel(): T {
+        return undefined;
+    }
+
     private getComponentType(): ComponentType {
         if (!this.model) {
             return ComponentType.Unknown;
         }
 
-        var component = (<any>this.model).component;
+        let component = (<any>this.model).component;
 
         if (component instanceof SweText) {
             return ComponentType.SweText;
@@ -84,9 +75,6 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
         }
     }
 
-    protected createModel(): T {
-        return undefined;
-    }
 }
 
 @Component({

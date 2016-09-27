@@ -1,5 +1,5 @@
-import {AbstractSWEIdentifiable} from './AbstractSWEIdentifiable';
-import {DisplayName} from '../../decorators/DisplayName';
+import { AbstractSWEIdentifiable } from './AbstractSWEIdentifiable';
+import { DisplayName } from '../../decorators/DisplayName';
 
 /**
  * Abstract base class for all data components
