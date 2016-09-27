@@ -26,4 +26,10 @@ export abstract class AbstractDataComponent extends AbstractSWEIdentifiable {
     toString(fallbackLabel = 'Abstract data component') {
         return super.toString(fallbackLabel);
     }
+
+    public getLabel() {
+        return this.label;
+    };
+
+    abstract getValue();
 }

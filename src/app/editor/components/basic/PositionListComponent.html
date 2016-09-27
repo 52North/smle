@@ -1,10 +1,12 @@
-<list [list]="model" (select)="openChild($event)" (remove)="removeItem($event)" [itemTitleFunc]="getPositionTypeName">
+<list [list]="model" (select)="openChild($event)" (remove)="removeItem($event)" [itemLabelFunc]="getPositionLabel" [itemValueFunc]="getPositionValue">
     <list-add-section>
         <a type="button" class="btn btn-link" (click)="addVector()">
-            <i class="fa fa-fw fa-plus"></i>Add Vector
+            <i class="fa fa-fw fa-plus"></i>
+            <span>Add Vector</span>
         </a>
         <a type="button" class="btn btn-link" (click)="addDataRecord()">
-            <i class="fa fa-fw fa-plus"></i>Add Data Record
+            <i class="fa fa-fw fa-plus"></i>
+            <span>Add Data Record</span>
         </a>
     </list-add-section>
 </list>

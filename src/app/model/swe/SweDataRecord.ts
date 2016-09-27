@@ -18,4 +18,8 @@ export class SweDataRecord extends AbstractDataComponent {
     toString() {
         return 'Data Record Component';
     }
+
+    getValue() {
+        this.toString();
+    }
 }

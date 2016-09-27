@@ -6,10 +6,14 @@ export class TimeInstant extends AbstractTime {
     time: Date;
 
     toString() {
-        if (this.time) {
-            return this.time.toLocaleString().replace(/ /g, '\xa0');
-        } else {
-            return 'Time instant';
-        }
+        return 'Time instant';
+    }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        return this.time.toLocaleString().replace(/ /g, '\xa0');
     }
 }

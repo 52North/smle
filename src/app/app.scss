@@ -10,6 +10,14 @@ main {
   right: 0;
 }
 
+fetch-description {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
 .nested-element {
-  margin: 0px 20px 0px 20px;
+  margin: 0 20px;
 }

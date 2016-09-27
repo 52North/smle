@@ -2,14 +2,16 @@ import { Component, Input, Output, EventEmitter, Directive } from '@angular/core
 
 @Component({
     selector: 'list',
-    styles: [require('../styles/list-component.scss')],
+    styles: [require('../styles/basic-component.scss')],
     template: require('./ListComponent.html')
 })
 export class ListComponent {
     @Input()
     public list: any[];
     @Input()
-    public itemTitleFunc: Function;
+    public itemLabelFunc: Function;
+    @Input()
+    public itemValueFunc: Function;
     @Input()
     public noSelect: boolean = false;
     @Output()

@@ -15,6 +15,12 @@ export class Term extends AbstractSWE {
     value: string;
 
     toString() {
-        return this.label && this.label.length ? this.label : 'Term';
+        if (this.label && this.value) {
+            return this.label + ': ' + this.value;
+        } else if (this.label) {
+            return this.label;
+        } else {
+            return 'Term';
+        }
     }
 }

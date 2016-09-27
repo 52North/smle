@@ -8,4 +8,8 @@ export class AbstractSweRange extends AbstractSimpleComponent {
     toString(fallbackLabel = 'Abstract SWE range') {
         return super.toString(fallbackLabel);
     }
+
+    getValue() {
+        return this.value[0].toString() + ' - ' + this.value[1].toString();
+    }
 }

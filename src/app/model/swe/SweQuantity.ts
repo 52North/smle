@@ -26,4 +26,8 @@ export class SweQuantity extends AbstractSimpleComponent {
     toString() {
         return 'Quantity Component';
     }
+
+    getValue() {
+        return this.value;
+    }
 }

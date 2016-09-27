@@ -37,4 +37,8 @@ export class SweDataArray extends AbstractDataComponent {
     toString(fallbackLabel = 'Data Array Component') {
         return fallbackLabel;
     }
+
+    getValue() {
+        return this.toString();
+    }
 }

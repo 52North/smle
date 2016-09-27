@@ -13,5 +13,4 @@ export class ConfigurationService {
 }
 
 export class Configuration {
-    public test: string;
 }
