@@ -9,30 +9,30 @@ import { EditorComponent } from '../base/EditorComponent';
 import { ChildMetadata } from '../base/TypedModelComponent';
 
 @Component({
-  selector: 'sml-identifier-list',
-  template: require('./IdentifierListComponent.html'),
-  styles: [require('../styles/editor-component.scss')]
+    selector: 'sml-identifier-list',
+    template: require('./IdentifierListComponent.html'),
+    styles: [require('../styles/editor-component.scss')]
 })
 export class IdentifierListComponent extends EditorComponent<IdentifierList> {
-  constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-    super(componentFactoryResolver, viewContainerRef);
-  }
+    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+        super(componentFactoryResolver, viewContainerRef);
+    }
 
-  protected createModel(): IdentifierList {
-    return new IdentifierList();
-  }
+    protected createModel(): IdentifierList {
+        return new IdentifierList();
+    }
 
-  private openNewIdentifierItem(item: Term) {
-    var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('identifiers'));
-    this.openNewChild(metadata);
-  }
+    private openNewIdentifierItem(item: Term) {
+        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('identifiers'));
+        this.openNewChild(metadata);
+    }
 
-  private onAddIdentifier(): void {
-    this.model.identifiers.push(new Term());
-  }
+    private onAddIdentifier(): void {
+        this.model.identifiers.push(new Term());
+    }
 
-  private onRemoveIdentifier(index: number): void {
-    this.closeChildWithModel(this.model.identifiers[index]);
-    this.model.identifiers.splice(index, 1);
-  }
+    private onRemoveIdentifier(index: number): void {
+        this.closeChildWithModel(this.model.identifiers[index]);
+        this.model.identifiers.splice(index, 1);
+    }
 }

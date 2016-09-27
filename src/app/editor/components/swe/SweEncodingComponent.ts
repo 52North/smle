@@ -4,11 +4,11 @@ import { SweEncoding } from '../../../model/swe/SweEncoding';
 import { AbstractSWEComponent } from './AbstractSWEComponent';
 
 @Component({
-  selector: 'swe-encoding',
-  template: require('./SweEncodingComponent.html')
+    selector: 'swe-encoding',
+    template: require('./SweEncodingComponent.html')
 })
 export class SweEncodingComponent extends TypedModelComponent<SweEncoding> {
-  protected createModel(): SweEncoding {
-    return undefined;
-  }
+    protected createModel(): SweEncoding {
+        return undefined;
+    }
 }

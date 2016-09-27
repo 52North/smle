@@ -8,11 +8,11 @@ import { DatePickerComponent } from '../gml/DatePickerComponent';
 import { AbstractSweRangeComponent } from './AbstractSweRangeComponent';
 
 @Component({
-  selector: 'swe-time-range',
-  template: require('./SweTimeRangeComponent.html')
+    selector: 'swe-time-range',
+    template: require('./SweTimeRangeComponent.html')
 })
 export class SweTimeRangeComponent extends TypedModelComponent<SweTimeRange> {
-  protected createModel(): SweTimeRange {
-    return new SweTimeRange();
-  }
+    protected createModel(): SweTimeRange {
+        return new SweTimeRange();
+    }
 }

@@ -5,11 +5,11 @@ import { AbstractDataComponentComponent } from './AbstractDataComponentComponent
 import { TextFieldComponent } from '../basic/TextFieldComponent';
 
 @Component({
-  selector: 'swe-abstract-simple-component',
-  template: require('./AbstractSimpleComponentComponent.html')
+    selector: 'swe-abstract-simple-component',
+    template: require('./AbstractSimpleComponentComponent.html')
 })
 export class AbstractSimpleComponentComponent extends TypedModelComponent<AbstractSimpleComponent> {
-  protected createModel(): AbstractSimpleComponent {
-    return undefined;
-  }
+    protected createModel(): AbstractSimpleComponent {
+        return undefined;
+    }
 }

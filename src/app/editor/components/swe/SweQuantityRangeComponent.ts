@@ -6,11 +6,11 @@ import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 import { AbstractSweRangeComponent } from './AbstractSweRangeComponent';
 
 @Component({
-  selector: 'swe-quantity-range',
-  template: require('./SweQuantityRangeComponent.html')
+    selector: 'swe-quantity-range',
+    template: require('./SweQuantityRangeComponent.html')
 })
 export class SweQuantityRangeComponent extends TypedModelComponent<SweQuantityRange> {
-  protected createModel(): SweQuantityRange {
-    return new SweQuantityRange();
-  }
+    protected createModel(): SweQuantityRange {
+        return new SweQuantityRange();
+    }
 }

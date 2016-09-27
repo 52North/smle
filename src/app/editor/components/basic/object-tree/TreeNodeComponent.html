@@ -1,6 +1,2 @@
-<a [attr.href]="(node.data.type === 'email' ? 'mailto:' : '') + node.data.name" target="_blank"
-   *ngIf="node.data.type === 'email' || node.data.type === 'url'" [attr.title]="node.data.name"
-   class="link">{{node.data.name}}</a>
-<span [class.string]="node.data.type === 'string'" [class.number]="node.data.type === 'number'"
-      *ngIf="node.data.type !== 'email' && node.data.type !== 'url'" [attr.title]="node.data.name"
-      [class.boolean]="node.data.type === 'boolean'">{{node.data.name}}</span>
+<a [attr.href]="(node.data.type === 'email' ? 'mailto:' : '') + node.data.name" target="_blank" *ngIf="node.data.type === 'email' || node.data.type === 'url'" [attr.title]="node.data.name" class="link">{{node.data.name}}</a>
+<span [class.string]="node.data.type === 'string'" [class.number]="node.data.type === 'number'" *ngIf="node.data.type !== 'email' && node.data.type !== 'url'" [attr.title]="node.data.name" [class.boolean]="node.data.type === 'boolean'">{{node.data.name}}</span>
