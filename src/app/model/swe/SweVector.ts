@@ -30,4 +30,8 @@ export class SweVector extends AbstractDataComponent {
     toString() {
         return super.toString('SWE vector');
     }
+
+    getValue() {
+        return toString();
+    }
 }

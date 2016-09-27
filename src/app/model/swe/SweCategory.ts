@@ -26,4 +26,8 @@ export class SweCategory extends AbstractSimpleComponent {
     toString() {
         return 'Category Component';
     }
+
+    getValue() {
+        return this.value;
+    }
 }

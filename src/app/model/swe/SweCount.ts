@@ -20,4 +20,8 @@ export class SweCount extends AbstractSimpleComponent {
     toString() {
         return 'Count Component';
     }
+
+    getValue() {
+        return this.value;
+    }
 }

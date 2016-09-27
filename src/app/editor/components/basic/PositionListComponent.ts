@@ -20,11 +20,15 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         return [];
     }
 
+    protected removeItem(index: number) {
+        this.model.splice(index, 1);
+    }
+
     protected openChild(item: Position) {
         this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueDescriptionConfig()));
     }
 
-    protected getPositionTypeName(positionItem: Position): string {
+    protected getPositionLabel(positionItem: Position): string {
         if (positionItem instanceof SweVector) {
             return 'Vector';
         } else if (positionItem instanceof SweDataRecord) {
@@ -34,8 +38,18 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         }
     }
 
-    protected removeItem(index: number) {
-        this.model.splice(index, 1);
+    protected getPositionValue(positionItem: Position): string {
+        if (positionItem instanceof SweVector) {
+            let value = [];
+            positionItem.coordinates.forEach(entry => {
+                value.push(entry.name + ': ' + entry.coordinate.value);
+            });
+            return value.join(', ');
+        } else if (positionItem instanceof SweDataRecord) {
+            return '';
+        } else {
+            return '';
+        }
     }
 
     protected addVector() {

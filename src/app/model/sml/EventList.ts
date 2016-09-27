@@ -9,4 +9,14 @@ export class EventList extends AbstractMetadataList {
     toString() {
         return 'Event list';
     }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        if (this.events.length > 0) {
+            return this.events.join(', ');
+        }
+    }
 }

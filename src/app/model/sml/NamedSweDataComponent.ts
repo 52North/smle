@@ -9,6 +9,12 @@ export class NamedSweDataComponent {
     component: AbstractDataComponent;
 
     toString() {
-        return this.name || this.component.toString();
+        if (this.component.getLabel() && this.component.getValue()) {
+            return this.component.getLabel() + ': ' + this.component.getValue();
+        } else if (this.component.getLabel()) {
+            return this.component.getValue();
+        } else {
+            return this.component.toString();
+        }
     }
 }

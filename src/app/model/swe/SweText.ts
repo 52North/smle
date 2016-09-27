@@ -20,4 +20,11 @@ export class SweText extends AbstractSimpleComponent {
     toString() {
         return 'Text Component';
     }
+
+    getValue() {
+        if (this.value) {
+            return this.value;
+        }
+    }
+
 }

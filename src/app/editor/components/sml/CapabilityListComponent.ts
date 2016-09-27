@@ -14,8 +14,6 @@ import { SweQuantity } from '../../../model/swe/SweQuantity';
 import { SweCategory } from '../../../model/swe/SweCategory';
 import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
-import { SweDataArray } from '../../../model/swe/SweDataArray';
 
 @Component({
     selector: 'sml-capability-list',
@@ -31,9 +29,9 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
         { name: (new SweQuantity()).toString(), type: SweQuantity },
         { name: (new SweCategory()).toString(), type: SweCategory },
         { name: (new SweTimeRange()).toString(), type: SweTimeRange },
-        { name: (new SweQuantityRange()).toString(), type: SweQuantityRange },
-        { name: (new SweDataRecord()).toString(), type: SweDataRecord },
-        { name: (new SweDataArray()).toString(), type: SweDataArray }
+        { name: (new SweQuantityRange()).toString(), type: SweQuantityRange }
+        // { name: (new SweDataRecord()).toString(), type: SweDataRecord },
+        // { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

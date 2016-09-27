@@ -25,4 +25,18 @@ export class ResponsibleParty {
     toString() {
         return 'Responsible party';
     }
+
+    getLabel() {
+        if (this.individualName) {
+            return this.individualName;
+        } else {
+            return this.toString();
+        }
+    }
+
+    getValue() {
+        if (this.organisationName) {
+            return this.organisationName;
+        }
+    }
 }

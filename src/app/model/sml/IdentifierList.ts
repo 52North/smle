@@ -9,4 +9,14 @@ export class IdentifierList extends AbstractMetadataList {
     toString() {
         return 'Identifier list';
     }
+
+    getLabel() {
+        return this.toString();
+    }
+
+    getValue() {
+        if (this.identifiers.length > 0) {
+            return this.identifiers.join(', ');
+        }
+    }
 }

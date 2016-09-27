@@ -40,4 +40,8 @@ export class SweTime extends AbstractSimpleComponent {
     toString() {
         return 'Time Component';
     }
+
+    getValue() {
+        return this.toString();
+    }
 }

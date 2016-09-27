@@ -15,4 +15,8 @@ export class SweBoolean extends AbstractSimpleComponent {
     toString() {
         return 'Boolean Component';
     }
+
+    getValue() {
+        return this.value;
+    }
 }
