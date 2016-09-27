@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
 import { ConnectDescriptionService } from './connect.service';
-import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
+import { SelectedDescription } from '../components/selectDescription.component';
 import { AbstractPhysicalProcess, AggregatingProcess, AbstractProcess } from '../../model/sml';
 import { SosService } from '../sos.service';
 
@@ -32,7 +32,7 @@ export class ConnectDescription implements OnInit {
         this.updateIgnoreIds();
     }
 
-    private onSelectParentDescription(selectedDesc: SelectedDescription) {
+    protected onSelectParentDescription(selectedDesc: SelectedDescription) {
         let desc = new SensorMLXmlService().deserialize(selectedDesc.description);
         if (this.isAggregatingProcess(desc)) {
             this.parentDescription = (desc as any as AggregatingProcess);
@@ -41,7 +41,7 @@ export class ConnectDescription implements OnInit {
         }
     }
 
-    private onSelectChildDescription(selectedDesc: SelectedDescription) {
+    protected onSelectChildDescription(selectedDesc: SelectedDescription) {
         // TODO check if description is AbstractPhysicalProcess!
         let desc = new SensorMLXmlService().deserialize(selectedDesc.description) as any as AbstractPhysicalProcess;
         this.connectDescService.connectDescriptions(desc, this.parentDescription).subscribe(res => {
@@ -49,19 +49,20 @@ export class ConnectDescription implements OnInit {
         });
     }
 
-    private onRemoveComponent(idx: number) {
+    protected onRemoveComponent(idx: number) {
         this.connectDescService.removeComponent(this.parentDescription, idx).subscribe(res => {
             this.updateIgnoreIds();
         });
     }
 
-    private clearAttachedTo() {
-        this.connectDescService.clearAttachedTo(this.childDescription, this.getAttachedToIdentifier()).subscribe(res => {
-            this.updateIgnoreIds();
-        });
+    protected clearAttachedTo() {
+        this.connectDescService.clearAttachedTo(this.childDescription, this.getAttachedToIdentifier())
+            .subscribe(res => {
+                this.updateIgnoreIds();
+            });
     }
 
-    private publishAttachedTo() {
+    protected publishAttachedTo() {
         this.connectDescService.connectDescriptions(this.childDescription, this.parentDescription).subscribe(res => {
             this.parentDescription = null;
             this.updateIgnoreIds();

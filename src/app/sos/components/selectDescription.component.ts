@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange, DoCheck } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { SosService } from '../sos.service';
 
 @Component({
@@ -6,10 +6,6 @@ import { SosService } from '../sos.service';
     template: require('./selectDescription.template.html')
 })
 export class DescriptionSelection implements OnInit, DoCheck {
-
-    private descriptionIds: Array<string>;
-    private loadingDescriptionIds: boolean;
-    private oldIgnoreIdsCount: number = 0;
 
     @Input()
     public ignoreIds: Array<string>;
@@ -19,6 +15,10 @@ export class DescriptionSelection implements OnInit, DoCheck {
 
     @Output()
     public onSelectedDescription: EventEmitter<SelectedDescription> = new EventEmitter<SelectedDescription>();
+
+    private descriptionIds: Array<string>;
+    private loadingDescriptionIds: boolean;
+    private oldIgnoreIdsCount: number = 0;
 
     constructor(
         private sosService: SosService
@@ -42,7 +42,7 @@ export class DescriptionSelection implements OnInit, DoCheck {
             this.descriptionIds = res;
             if (this.ignoreIds && this.ignoreIds.length > 0) {
                 this.ignoreIds.forEach(ignoreId => {
-                    var idx = this.descriptionIds.indexOf(ignoreId);
+                    let idx = this.descriptionIds.indexOf(ignoreId);
                     if (idx >= -1) {
                         this.descriptionIds.splice(idx, 1);
                     }

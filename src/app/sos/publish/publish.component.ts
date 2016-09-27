@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PublishDescriptionService } from './publish.service';
 import { AbstractProcess } from '../../model/sml';
 import { CodeType } from '../../model/gml/CodeType';
-import { SensorMLPipe } from '../../editor/pipes/SensorMLPipe';
 import { EditorService } from '../../services/EditorService';
 import { SosService } from '../sos.service';
 import { UUID } from 'angular2-uuid';
@@ -35,11 +34,11 @@ export class PublishDescription implements OnInit {
         this.hasSosDescription();
     }
 
-    private createUUID() {
+    protected createUUID() {
         this.identifier = UUID.UUID();
     }
 
-    private useIdentifier() {
+    protected useIdentifier() {
         this.description.identifier.value = this.identifier;
         if (!this.description.identifier.codeSpace) {
             this.description.identifier.codeSpace = 'uniqueID';
@@ -47,8 +46,24 @@ export class PublishDescription implements OnInit {
         this.hasSosDescription();
     }
 
-    private editDescription() {
+    protected editDescription() {
         this.editorServ.openEditorWithDescription(this.description);
+    }
+
+    protected addDescription() {
+        this.resetError();
+        this.sosService.addDescription(this.description)
+            .subscribe(res => {
+                this.success = 'Successfully added the description!';
+            }, (error) => this.handleError(error));
+    }
+
+    protected updateDescription() {
+        this.resetError();
+        this.sosService.updateDescription(this.description.identifier.value, this.description)
+            .subscribe(res => {
+                this.success = 'Successfully updated the description!';
+            }, error => this.handleError(error));
     }
 
     private hasSosDescription() {
@@ -59,22 +74,6 @@ export class PublishDescription implements OnInit {
                     this.hasDescription = res;
                 }, (error) => this.handleError(error));
         }
-    }
-
-    private addDescription() {
-        this.resetError();
-        this.sosService.addDescription(this.description)
-            .subscribe(res => {
-                this.success = 'Successfully added the description!';
-            }, (error) => this.handleError(error));
-    }
-
-    private updateDescription() {
-        this.resetError();
-        this.sosService.updateDescription(this.description.identifier.value, this.description)
-            .subscribe(res => {
-                this.success = 'Successfully updated the description!';
-            }, error => this.handleError(error));
     }
 
     private handleError(error) {

@@ -1,6 +1,7 @@
 <div (click)="logIn()" *ngIf="!authService.loggedInUser">
-  login
+    <span>login</span>
 </div>
 <div (click)="logOut()" *ngIf="authService.loggedInUser">
-  {{authService.loggedInUser.username}} - logout
+    <span>{{authService.loggedInUser.username}}</span>
+    <span>- logout</span>
 </div>

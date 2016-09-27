@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 import { EditorService } from '../../services/EditorService';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
-import { SensorMLPipe } from '../../editor/pipes/SensorMLPipe';
 import { SosService } from '../sos.service';
 import { SelectedDescription } from '../components/selectDescription.component';
 
@@ -34,15 +33,15 @@ export class FetchDescription implements OnInit {
         });
     }
 
-    private onSelectedDescription(description: SelectedDescription) {
+    protected onSelectedDescription(description: SelectedDescription) {
         this.router.navigate(['/fetch', description.id]);
     }
 
-    private openToEdit() {
+    protected openToEdit() {
         this.editorService.openEditorWithDescription(this.selectedDesc);
     }
 
-    private openToCopy() {
+    protected openToCopy() {
         if (this.selectedDesc.identifier && this.selectedDesc.identifier.value) {
             this.selectedDesc.identifier = null;
         }

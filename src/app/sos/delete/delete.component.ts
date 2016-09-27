@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { SensorMLXmlService } from '../../services/SensorMLXmlService';
-import { EditorService } from '../../services/EditorService';
+import { Component, ViewChild } from '@angular/core';
 import { SosService } from '../sos.service';
 import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
 
@@ -11,10 +9,10 @@ import { DescriptionSelection, SelectedDescription } from '../components/selectD
 })
 export class DeleteDescription {
 
+    @ViewChild(DescriptionSelection) descSelection: DescriptionSelection;
+
     private selectedDesc: SelectedDescription;
     private successfullDeleted: boolean;
-
-    @ViewChild(DescriptionSelection) descSelection: DescriptionSelection;
 
     constructor(
         private sosService: SosService

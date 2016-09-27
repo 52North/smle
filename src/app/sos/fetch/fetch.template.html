@@ -1,48 +1,50 @@
 <div class="container">
-  <div *ngIf="!selectedDesc" class="row">
-    <div class="col-md-12">
-      <h4>Select description ID</h4>
-      <div class="form-group">
-        <description-id-selection (onSelectedDescription)="onSelectedDescription($event)"></description-id-selection>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="selectedDesc" class="row content">
-
-    <div class="header">
-      <h4 class="center-block">Sensor description for <b>{{selectedDesc.identifier.value}}</b></h4>
-    </div>
-
-    <div class="center">
-      <div class="highlight">
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#tree" role="tab">as Tree</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#xml" role="tab">as XML</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="tree" role="tabpanel">
-            <object-tree class="description-visualizer" [model]="selectedDesc" [shouldRebuildTree]=false></object-tree>
-          </div>
-          <div class="tab-pane" id="xml" role="tabpanel">
-            <pre>{{selectedDesc | toSensorml}}</pre>
-          </div>
+    <div *ngIf="!selectedDesc" class="row">
+        <div class="col-md-12">
+            <h4>Select description ID</h4>
+            <div class="form-group">
+                <description-id-selection (onSelectedDescription)="onSelectedDescription($event)"></description-id-selection>
+            </div>
         </div>
-      </div>
     </div>
 
-    <div class="footer">
-      <div class="text-xs-center">
-        <div class="btn-group">
-          <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit sensor description</button>
-          <button class="btn btn-primary" type="button" (click)="openToCopy()">Copy sensor description</button>
+    <div *ngIf="selectedDesc" class="row content">
+
+        <div class="header">
+            <h4 class="center-block">Sensor description for
+                <b>{{selectedDesc.identifier.value}}</b>
+            </h4>
         </div>
-      </div>
-    </div>
 
-  </div>
+        <div class="center">
+            <div class="highlight">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tree" role="tab">as Tree</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#xml" role="tab">as XML</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tree" role="tabpanel">
+                        <object-tree class="description-visualizer" [model]="selectedDesc" [shouldRebuildTree]=false></object-tree>
+                    </div>
+                    <div class="tab-pane" id="xml" role="tabpanel">
+                        <pre>{{selectedDesc | toSensorml}}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="text-xs-center">
+                <div class="btn-group">
+                    <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit sensor description</button>
+                    <button class="btn btn-primary" type="button" (click)="openToCopy()">Copy sensor description</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

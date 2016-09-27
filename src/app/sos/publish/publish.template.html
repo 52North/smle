@@ -1,48 +1,50 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div *ngIf="description">
-        <div *ngIf="description.identifier && description.identifier.value">
-          <h4>Sensor description with ID: <b>{{description.identifier.value}}</b></h4>
-          <button class="btn btn-secondary center-block" type="button" (click)="editDescription()">Edit Description</button>
-          <div class="highlight">
-            <pre>{{description | toSensorml}}</pre>
-          </div>
-          <div *ngIf="hasDescription">
-            <div class="alert alert-warning text-center" role="alert">
-              The SOS contains a description with the identifier '{{description.identifier.value}}'. Do you want to update this description?
+    <div class="row">
+        <div class="col-md-12">
+            <div *ngIf="description">
+                <div *ngIf="description.identifier && description.identifier.value">
+                    <h4>Sensor description with ID:
+                        <b>{{description.identifier.value}}</b>
+                    </h4>
+                    <button class="btn btn-secondary center-block" type="button" (click)="editDescription()">Edit Description</button>
+                    <div class="highlight">
+                        <pre>{{description | toSensorml}}</pre>
+                    </div>
+                    <div *ngIf="hasDescription">
+                        <div class="alert alert-warning text-center" role="alert">
+                            <span>The SOS contains a description with the identifier '{{description.identifier.value}}'. Do you want to update this description?</span>
+                        </div>
+                        <button class="btn btn-primary center-block" type="button" (click)="updateDescription()">Update Description</button>
+                    </div>
+                    <div *ngIf="hasDescription !== null && !hasDescription">
+                        <div class="alert alert-success text-center" role="alert">
+                            <span>The SOS has no description with the identifier '{{description.identifier.value}}'. Do you want to add the description now?</span>
+                        </div>
+                        <button class="btn btn-primary center-block" type="button" (click)="addDescription()">Add Description</button>
+                    </div>
+                    <div *ngIf="errors.length > 0" class="alert alert-danger">
+                        <div *ngFor="let error of errors">{{error}}</div>
+                    </div>
+                    <div *ngIf="success" class="alert alert-success">
+                        <div>{{success}}</div>
+                    </div>
+                </div>
+                <div *ngIf="!description.identifier || !description.identifier.value || description.identifier === ''">
+                    <h4>The sensor description needs an ID to be published</h4>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="identifier">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
+                            </span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary center-block" type="button" (click)="useIdentifier()" [disabled]="identifier === '' || identifier == null">Use identifier to publish description</button>
+                </div>
             </div>
-            <button class="btn btn-primary center-block" type="button" (click)="updateDescription()">Update Description</button>
-          </div>
-          <div *ngIf="hasDescription !== null && !hasDescription">
-            <div class="alert alert-success text-center" role="alert">
-              The SOS has no description with the identifier '{{description.identifier.value}}'. Do you want to add the description now?
+            <div *ngIf="!description">
+                <h4>Please create a sensor description to publish it to a SOS!</h4>
             </div>
-            <button class="btn btn-primary center-block" type="button" (click)="addDescription()">Add Description</button>
-          </div>
-          <div *ngIf="errors.length > 0" class="alert alert-danger">
-            <div *ngFor="let error of errors">{{error}}</div>
-          </div>
-          <div *ngIf="success" class="alert alert-success">
-            <div>{{success}}</div>
-          </div>
         </div>
-        <div *ngIf="!description.identifier || !description.identifier.value || description.identifier === ''">
-          <h4>The sensor description needs an ID to be published</h4>
-          <div class="form-group">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="identifier">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
-              </span>
-            </div>
-          </div>
-          <button class="btn btn-primary center-block" type="button" (click)="useIdentifier()" [disabled]="identifier === '' || identifier == null">Use identifier to publish description</button>
-        </div>
-      </div>
-      <div *ngIf="!description">
-        <h4>Please create a sensor description to publish it to a SOS!</h4>
-      </div>
     </div>
-  </div>
 </div>

@@ -1,39 +1,44 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div>
-        <h4>Select a template</h4>
-        <div class="">
-          The used templates are provided by the <a href="http://www.esonetyellowpages.com/" target="_blank">ESONET YELLOW PAGES</a>.
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <h4>Select a template</h4>
+                <div class="">
+                    <span>The SOS has no description with the identifier '{{description.identifier.value}}'. Do you want to add the description now?</span>
+                    <a href="http://www.esonetyellowpages.com/" target="_blank">ESONET YELLOW PAGES</a>.
+                </div>
+                <form class="input-group" (ngSubmit)="onStartSearch()">
+                    <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchTerm" name="searchTerm">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="submit">Search</button>
+                    </span>
+                </form>
+            </div>
+            <div *ngIf="templates" class="form-group">
+                <label for="search">
+                    <span>Select one of</span>
+                    <span>{{resultCount}}</span>
+                    <span>templates</span>
+                </label>
+                <select class="form-control" (click)="onSelectTemplate()" [(ngModel)]="selection">
+                    <option *ngFor="let item of templates | templateSort" [ngValue]="item">{{item.name}}</option>
+                </select>
+            </div>
+            <div class="highlight" *ngIf="choosenTemplate">
+                <pre>{{choosenTemplate.description}}</pre>
+                <div class="form-group">
+                    <label for="gmlId">Define an identifier</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="description.identifier.value">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary center-block" type="button" (click)="openToEdit()">Create sensor description of this template</button>
+                </div>
+            </div>
         </div>
-        <form class="input-group" (ngSubmit)="onStartSearch()">
-          <input type="text" class="form-control" placeholder="Search for..." [(ngModel)]="searchTerm" name="searchTerm">
-          <span class="input-group-btn">
-            <button class="btn btn-secondary" type="submit">Search</button>
-          </span>
-        </form>
-      </div>
-      <div *ngIf="templates" class="form-group">
-        <label for="search">Select one of {{resultCount}} templates</label>
-        <select class="form-control" (click)="onSelectTemplate()" [(ngModel)]="selection">
-          <option *ngFor="let item of templates | templateSort" [ngValue]="item">{{item.name}}</option>
-        </select>
-      </div>
-      <div class="highlight" *ngIf="choosenTemplate">
-        <pre>{{choosenTemplate.description}}</pre>
-        <div class="form-group">
-          <label for="gmlId">Define an identifier</label>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Identifier" [(ngModel)]="description.identifier.value">
-            <span class="input-group-btn">
-              <button class="btn btn-secondary" type="button" (click)="createUUID()">Create identifier</button>
-            </span>
-          </div>
-        </div>
-        <div>
-          <button class="btn btn-primary center-block" type="button" (click)="openToEdit()">Create sensor description of this template</button>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
