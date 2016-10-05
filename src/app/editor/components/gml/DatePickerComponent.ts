@@ -18,12 +18,12 @@ export class DatePickerComponent implements OnChanges {
     @Output()
     public modelChange: EventEmitter<Date> = new EventEmitter<Date>();
 
-    private dateTimeString: string;
-    // private dateFormat: string = 'dd.mm.yy';
+    protected dateTimeString: string;
+    protected dateFormat: string = 'dd.mm.yy';
+    protected timeFormat: string = 'HH:mm';
     private momentDateFormat: string = 'DD.MM.YYYY';
-    private timeFormat: string = 'HH:mm';
 
-    ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
+    public ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
         let modelChange = changes['model'];
         if (!modelChange) {
             return;
@@ -85,7 +85,7 @@ export class DatePickerComponent implements OnChanges {
     }
 
     protected onStringDateChange(newDateTimeString: string): void {
-        let parsedDate = moment(newDateTimeString, 'DD.MM.YYYY HH:mm').toDate();
+        let parsedDate = moment(newDateTimeString, this.momentDateFormat + ' ' + this.timeFormat).toDate();
         this.dateTimeString = newDateTimeString;
         this.modelChange.emit(parsedDate);
     }

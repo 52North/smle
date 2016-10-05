@@ -14,6 +14,9 @@ export class TimeInstant extends AbstractTime {
     }
 
     getValue() {
-        return this.time.toLocaleString().replace(/ /g, '\xa0');
+        if (this.time) {
+            return this.time.toLocaleString().replace(/ /g, '\xa0');
+        }
+        return this.toString();
     }
 }
