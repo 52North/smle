@@ -21,7 +21,10 @@ export class TimePeriod extends AbstractTime {
     }
 
     getValue() {
-        return this.begin.toLocaleString().replace(/ /g, '\xa0') + ' - '
-            + this.end.toLocaleString().replace(/ /g, '\xa0');
+        if (this.begin && this.end) {
+            return this.begin.toLocaleString().replace(/ /g, '\xa0') + ' - '
+                + this.end.toLocaleString().replace(/ /g, '\xa0');
+        }
+        return this.toString();
     }
 }
