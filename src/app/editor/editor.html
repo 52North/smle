@@ -1,26 +1,21 @@
 <div class="row">
     <div *ngIf="!description && !descriptionIsLoading" class="col-sm-offset-4 col-sm-4 type-selector-container">
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="descriptionTypeDropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="descriptionTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Select the descriptionType
             </button>
             <div class="dropdown-menu" aria-labelledby="descriptionTypeDropdown">
                 <a class="dropdown-item" (click)="onSelectDescriptionType('PhysicalSystem')">PhysicalSystem</a>
-                <a class="dropdown-item"
-                   (click)="onSelectDescriptionType('PhysicalComponent')">PhysicalComponent</a>
+                <a class="dropdown-item" (click)="onSelectDescriptionType('PhysicalComponent')">PhysicalComponent</a>
+                <!-- <a class="dropdown-item" (click)="onSelectDescriptionType('SimpleProcess')">SimpleProcess</a> -->
             </div>
         </div>
     </div>
 
-    <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}"
-         *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
-        <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')">
-        </sml-physical-system>
-        <sml-physical-component *ngSwitchCase="2" [model]="description" [config]="config.getConfigFor('description')">
-        </sml-physical-component>
-        <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')">
-        </sml-simple-process>
+    <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
+        <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
+        <sml-physical-component *ngSwitchCase="2" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-component>
+        <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')"></sml-simple-process>
     </div>
 
     <a class="btn-link visualizer-open-button" *ngIf="!!description" (click)="visualizerExpanded = true">Show tree</a>

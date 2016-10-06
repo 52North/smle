@@ -61,6 +61,8 @@ export class Editor implements OnInit {
             this.setDescription(new PhysicalSystem());
         } else if (type === 'PhysicalComponent') {
             this.setDescription(new PhysicalComponent());
+        } else if (type === 'SimpleProcess') {
+            this.setDescription(new SimpleProcess());
         }
     }
 
