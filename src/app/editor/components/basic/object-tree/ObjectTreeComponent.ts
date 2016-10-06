@@ -24,7 +24,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     private prevModel: string;
     private nodes: Array<INode> = [];
 
-    private static getNodes(object: any, oldNodes: Array<INode>): Array<INode> {
+    private static getNodes(object: any, oldNodes: Array<INode>, parentId: string): Array<INode> {
         let nodes: Array<INode>;
         let type = typeof object;
 
@@ -33,11 +33,16 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         }
 
         if (object instanceof Array) {
-            nodes = ObjectTreeComponent.getNodesForArray(object, oldNodes);
+            nodes = ObjectTreeComponent.getNodesForArray(object, oldNodes, parentId);
         } else if (typeof object === 'object' && !(object instanceof Date)) {
-            nodes = ObjectTreeComponent.getNodesForObject(object, oldNodes);
+            nodes = ObjectTreeComponent.getNodesForObject(object, oldNodes, parentId);
         } else if (object instanceof Date) {
-            nodes = ObjectTreeComponent.getValueNodes(object.toLocaleString().replace(/ /g, '\xa0'), type, oldNodes);
+            nodes = ObjectTreeComponent.getValueNodes(
+                object.toLocaleString().replace(/ /g, '\xa0'),
+                type,
+                oldNodes,
+                parentId
+            );
         } else {
             if (type === 'string' && ObjectTreeComponent.isEmail(object)) {
                 type = 'email';
@@ -45,13 +50,13 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
                 type = 'url';
             }
 
-            nodes = ObjectTreeComponent.getValueNodes(object.toString(), type, oldNodes);
+            nodes = ObjectTreeComponent.getValueNodes(object.toString(), type, oldNodes, parentId);
         }
 
         return nodes;
     }
 
-    private static getNodesForObject(object: Object, oldNodes: Array<INode> = []): Array<INode> {
+    private static getNodesForObject(object: Object, oldNodes: Array<INode> = [], parentId: string): Array<INode> {
         let nodes: Array<INode> = [];
 
         for (let propertyName in object) {
@@ -68,14 +73,14 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
                 });
                 let displayName = getDisplayName(object, propertyName) || propertyName;
                 let newNode: INode = {
-                    id: propertyName,
+                    id: parentId + propertyName,
                     name: displayName,
                     type: 'object',
                     children: null,
                     isExpanded: oldNode && oldNode.isExpanded
                 };
 
-                newNode.children = ObjectTreeComponent.getNodes(nodeValue, oldNode && oldNode.children);
+                newNode.children = ObjectTreeComponent.getNodes(nodeValue, oldNode && oldNode.children, newNode.id);
                 nodes.push(newNode);
             }
         }
@@ -83,9 +88,9 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         return nodes;
     }
 
-    private static getValueNodes(name: string, type: string, oldNodes: Array<INode>): Array<INode> {
+    private static getValueNodes(name: string, type: string, oldNodes: Array<INode>, parentId: string): Array<INode> {
         let node: INode = {
-            id: '$value',
+            id: parentId + '$value',
             name: name,
             type: type,
             children: null,
@@ -99,13 +104,13 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         return [node];
     }
 
-    private static getNodesForArray(array: Array<any>, oldNodes: Array<INode> = []): Array<INode> {
+    private static getNodesForArray(array: Array<any>, oldNodes: Array<INode> = [], parentId: string): Array<INode> {
         let nodes = <Array<any>>array.map((elem: any, index: number) => {
             let oldNode = oldNodes.find((node) => {
                 return node.id === index.toString();
             });
             let node: INode = {
-                id: index.toString(),
+                id: parentId + index.toString(),
                 name: null,
                 type: null,
                 children: null,
@@ -116,7 +121,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
             let type = typeof elem;
 
             if (type === 'object' && !(elem instanceof Date) || elem instanceof Array) {
-                node.children = ObjectTreeComponent.getNodes(elem, oldNode && oldNode.children);
+                node.children = ObjectTreeComponent.getNodes(elem, oldNode && oldNode.children, node.id);
             } else if (elem instanceof Date) {
                 name = elem.toLocaleString().replace(/ /g, '\xa0');
             } else if (type === 'string' && ObjectTreeComponent.isEmail(name)) {
@@ -190,7 +195,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     }
 
     private rebuildTree(currentModel) {
-        let nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes);
+        let nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes, '');
         this.nodes = nodes || [];
     }
 
