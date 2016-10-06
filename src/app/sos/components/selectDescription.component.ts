@@ -16,6 +16,7 @@ export class DescriptionSelection implements OnInit, DoCheck {
     @Output()
     public onSelectedDescription: EventEmitter<SelectedDescription> = new EventEmitter<SelectedDescription>();
 
+    private selectedDescriptionId: string;
     private descriptionIds: Array<string>;
     private loadingDescriptionIds: boolean;
     private oldIgnoreIdsCount: number = 0;
@@ -52,10 +53,11 @@ export class DescriptionSelection implements OnInit, DoCheck {
     }
 
     public onSelectDescriptionID(descId: string) {
-        this.sosService.fetchDescription(descId)
-            .subscribe(res => {
-                this.onSelectedDescription.emit(new SelectedDescription(descId, res));
-            });
+        if (this.selectedDescriptionId !== undefined)
+            this.sosService.fetchDescription(this.selectedDescriptionId)
+                .subscribe(res => {
+                    this.onSelectedDescription.emit(new SelectedDescription(this.selectedDescriptionId, res));
+                });
     }
 }
 

@@ -1,6 +1,6 @@
 <div *ngIf="descriptionIds && descriptionIds.length !== 0">
-    <select class="form-control" (click)="onSelectDescriptionID($event.target.value)">
-        <option *ngFor="let item of descriptionIds">{{item}}</option>
+    <select class="form-control" (click)="onSelectDescriptionID()" [(ngModel)]="selectedDescriptionId">
+        <option *ngFor="let item of descriptionIds" [ngValue]="item">{{item}}</option>
     </select>
 </div>
 <div *ngIf="loadingDescriptionIds">

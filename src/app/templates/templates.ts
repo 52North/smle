@@ -30,10 +30,11 @@ export class Templates {
     }
 
     onStartSearch(): void {
-        this.templates = null;
+        this.templates = undefined;
         this.resultCount = 0;
-        this.choosenTemplate = null;
-        this.description = null;
+        this.choosenTemplate = undefined;
+        this.description = undefined;
+        this.selection = undefined;
         this.templatesServ.search(this.searchTerm).subscribe(
             res => {
                 this.resultCount = res.count;
@@ -47,15 +48,16 @@ export class Templates {
     }
 
     onSelectTemplate(): void {
-        this.templatesServ.getTemplate(this.selection).subscribe(
-            res => {
-                this.choosenTemplate = res;
-                this.description = new SensorMLXmlService().deserialize(res.plainText);
-                if (!this.description.identifier) {
-                    this.description.identifier = new CodeType('', 'uniqueID');
+        if (this.selection !== undefined)
+            this.templatesServ.getTemplate(this.selection).subscribe(
+                res => {
+                    this.choosenTemplate = res;
+                    this.description = new SensorMLXmlService().deserialize(res.plainText);
+                    if (!this.description.identifier) {
+                        this.description.identifier = new CodeType('', 'uniqueID');
+                    }
                 }
-            }
-        );
+            );
     }
 
     createUUID() {
