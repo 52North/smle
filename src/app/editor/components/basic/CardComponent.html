@@ -11,7 +11,7 @@
             <a class="btn btn-link" (click)="onReset()">
                 <i class="fa fa-fw fa-undo"></i> Reset
             </a>
-            <a class="btn btn-link" (click)="onClose()">
+            <a *ngIf="closable" class="btn btn-link" (click)="onClose()">
                 <i class="fa fa-fw fa-close"></i> Close
             </a>
         </div>

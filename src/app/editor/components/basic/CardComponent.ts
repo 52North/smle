@@ -12,6 +12,9 @@ export class CardComponent {
     @Input()
     public showAll: boolean = false;
 
+    @Input()
+    public closable: boolean = true;
+
     @Output()
     public showAllChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
