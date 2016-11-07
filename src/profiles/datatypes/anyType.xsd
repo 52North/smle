@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+	<include schemaLocation="Datatypes.xsd" />
+	<include schemaLocation="FormFieldTypes.xsd" />
+	<!-- Datatypes: any Definition (Default) -->
+
+
+	<element name="elementAnyType" substitutionGroup="profile:element"><!-- name -->
+		<complexType>
+			<complexContent>
+				<extension base="profile:elementType">
+					<sequence>
+						<element name="restrictions" minOccurs="0">
+							<complexType>
+								<group ref="profile:anyTypeGroup" /><!-- !!!ref -->
+							</complexType>
+						</element>
+						<element name="input" minOccurs="0">
+							<complexType>
+								<choice><!-- change -->
+									<element ref="profile:textField" />
+									<element ref="profile:selectionBox" />
+								</choice>
+							</complexType>
+						</element>
+					</sequence>
+					<attribute name="XSDList" type="boolean" default="false" />
+					<assert
+						test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<complexType name="elementAnyTypeRefType"><!-- !!!name -->
+		<complexContent>
+			<extension base="profile:elementRefType">
+				<group ref="profile:anyTypeGroup" /><!-- !!!ref -->
+				<assert
+					test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="union_anyType">
+		<group ref="profile:anyTypeRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
+	</complexType>
+	<complexType name="anyType_fix-contentType">
+		<group ref="profile:anyType_fix-contentGroup" />
+	</complexType>
+	<group name="anyTypeGroup"><!-- !!!name -->
+		<sequence>
+			<element ref="profile:use" minOccurs="0" />
+			<element ref="profile:occurrence" minOccurs="0" />
+			<group ref="profile:anyTypeRestrictionGroup" minOccurs="0" />
+			<element name="default-content" type="profile:anyType_fix-content_currentDateType"
+				minOccurs="0" /><!-- !!!type -->
+		</sequence>
+	</group>
+	<group name="anyTypeRestrictionGroup">
+		<choice>
+			<element name="fix-content" type="profile:anyType_fix-content_currentDateType" /><!-- !!!type -->
+			<element name="content-selection_enumeration">
+				<complexType>
+					<sequence>
+						<group ref="profile:anyType_fix-content_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
+					</sequence>
+					<attribute name="base" type="string" fixed="-" />
+				</complexType>
+			</element>
+			<element name="content-format">
+				<complexType>
+					<sequence>
+						<element name="pattern" minOccurs="0">
+							<complexType>
+								<sequence>
+									<element name="regular-expression" type="profile:regular_expression" maxOccurs="unbounded" />
+								</sequence>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="length" minOccurs="0">
+							<complexType>
+								<sequence>
+									<element name="minLength" minOccurs="0">
+										<complexType>
+											<simpleContent>
+												<extension base="positiveInteger">
+													<attribute name="base" type="string" fixed="-" />
+												</extension>
+											</simpleContent>
+										</complexType>
+									</element>
+									<element name="maxLength" minOccurs="0">
+										<complexType>
+											<simpleContent>
+												<extension base="positiveInteger">
+													<attribute name="base" type="string" fixed="-" />
+												</extension>
+											</simpleContent>
+										</complexType>
+									</element>
+									<element name="valueExistence" minOccurs="0">
+										<complexType>
+											<simpleContent>
+												<extension base="boolean">
+													<attribute name="base" type="string" fixed="-" />
+												</extension>
+											</simpleContent>
+										</complexType>
+									</element>
+									<element name="length" minOccurs="0">
+										<complexType>
+											<simpleContent>
+												<extension base="positiveInteger">
+													<attribute name="base" type="string" fixed="-" />
+												</extension>
+											</simpleContent>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+						<element name="total-digits" minOccurs="0">
+							<complexType>
+								<simpleContent>
+									<extension base="integer">
+										<attribute name="base" type="string" fixed="-" />
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="fraction-digits" minOccurs="0">
+							<complexType>
+								<simpleContent>
+									<extension base="integer">
+										<attribute name="base" type="string" fixed="-" />
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+						<element name="dateTime" minOccurs="0">
+							<complexType>
+								<attribute name="type" use="required">
+									<simpleType>
+										<restriction base="string">
+											<enumeration value="required" />
+											<enumeration value="prohibited" />
+											<enumeration value="optional" />
+										</restriction>
+									</simpleType>
+								</attribute>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="whitespace" minOccurs="0">
+							<complexType>
+								<attribute name="method" use="required">
+									<simpleType>
+										<restriction base="string">
+											<enumeration value="preserve" />
+											<enumeration value="replace" />
+											<enumeration value="collapse" />
+										</restriction>
+									</simpleType>
+								</attribute>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="number-boundary" minOccurs="0">
+							<complexType>
+								<sequence>
+									<choice minOccurs="0">
+										<element name="minInclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+										<element name="minExclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+									</choice>
+									<choice minOccurs="0">
+										<element name="maxInclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+										<element name="maxExclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+									</choice>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+	</group>
+	<complexType name="anyType_fix-content_currentDateType"><!-- !!!name -->
+		<group ref="profile:anyType_fix-content_currentDateGroup" /><!-- !!!ref -->
+	</complexType>
+	<group name="anyType_fix-contentGroup"><!-- !!!name -->
+		<choice>
+			<element name="value">
+				<complexType>
+					<simpleContent>
+						<extension base="token"><!-- !!!base -->
+							<attribute name="URL" type="anyURI" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="ref">
+				<complexType>
+					<complexContent>
+						<extension base="profile:elementRefType">
+							<attribute name="refValueNotExist" use="required">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="fail" />
+										<enumeration value="succeed" />
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="function">
+				<complexType>
+					<sequence>
+						<element name="concat" type="profile:anyType_concatType" minOccurs="0" />
+						<element name="replace" type="profile:anyType_replaceType" minOccurs="0" />
+						<element name="substring-after" type="profile:anyType_substring-afterType" minOccurs="0" />
+						<element name="rounding" type="profile:anyType_roundingType" minOccurs="0" />
+						<element name="arithmetic-operators" type="profile:anyType_arithmetic_operatorsType"
+							minOccurs="0" />
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+	</group>
+	<group name="anyType_fix-content_currentDateGroup"><!-- !!!name -->
+		<choice>
+			<group ref="profile:anyType_fix-contentGroup" minOccurs="0" /><!-- !!!ref -->
+			<element name="current-date" type="token" minOccurs="0" />
+		</choice>
+	</group>
+
+	<!-- transformation of content -->
+	<complexType name="anyType_concatType">
+		<sequence maxOccurs="unbounded">
+			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+			<element name="connector" type="string" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="anyType_replaceType">
+		<sequence>
+			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+		</sequence>
+		<attribute name="pattern" type="profile:regular_expression" use="required" />
+		<attribute name="replaceString" type="string" use="required" />
+	</complexType>
+
+	<complexType name="anyType_substring-afterType">
+		<sequence>
+			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+		</sequence>
+		<attribute name="substring" type="string" />
+	</complexType>
+
+	<complexType name="anyType_roundingType">
+		<sequence>
+			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+		</sequence>
+		<attribute name="method">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="ceiling" />
+					<enumeration value="floor" />
+					<enumeration value="round" />
+					<enumeration value="round-half-to-even" />
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="precision" type="integer" />
+		<assert
+			test="((@method='ceiling' or @method='floor') and not(@precision)) or ((@method='round' or @method='round-half-to-even') and @precision)" />
+	</complexType>
+
+
+
+	<group name="anyType_arithmetic_operatorGroup">
+		<choice>
+			<element name="ADD" type="profile:anyType_arithmetic_operatorsType" />
+			<element name="Substract" type="profile:anyType_arithmetic_operatorsType" />
+			<element name="MULTIPLY" type="profile:anyType_arithmetic_operatorsType" />
+			<element name="DIVIDE" type="profile:anyType_arithmetic_operatorsType" />
+		</choice>
+	</group>
+
+	<complexType name="anyType_arithmetic_operatorsType">
+		<choice maxOccurs="unbounded">
+			<element name="item" type="profile:anyType_fix-contentType" />
+			<element name="bracket">
+				<complexType>
+					<sequence>
+						<group ref="profile:anyType_arithmetic_operatorGroup" />
+					</sequence>
+				</complexType>
+			</element>
+			<group ref="profile:anyType_arithmetic_operatorGroup" />
+		</choice>
+	</complexType>
+
+</schema>

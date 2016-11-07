@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:profile xmlns:p="http://xmlProfile.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlProfile.de Profile2.xsd">
+
+
+	<p:elementString XPath="gml:description" ID="description">
+		<p:label>Description</p:label>
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:elementString>
+
+	<p:elementGroup groupID="shortName" XPath="/sml:Identification/sml:IdentifierList/sml:Identifier">
+		<p:elements>
+			<p:elementString XPath="sml:Term/sml:label" ID="name_shortLabel">
+				<p:label>short name</p:label>
+				<p:restrictions>
+					<p:fix-content>
+						<p:value>shortName</p:value>
+					</p:fix-content>
+				</p:restrictions>
+			</p:elementString>
+			<p:elementString XPath="sml:Term/@definition" ID="definition_shortName">
+				<p:label>Definition</p:label>
+				<p:restrictions>
+					<p:fix-content>
+						<p:value>urn:ogc:def:IDentifier:OGC:1.0:shortName</p:value>
+					</p:fix-content>
+				</p:restrictions>
+			</p:elementString>
+			<p:elementString XPath="sml:Term/swe:value" ID="value_shortName">
+				<p:label>short name</p:label>
+				<p:restrictions>
+					<p:use>required</p:use>
+				</p:restrictions>
+				<p:input>
+					<p:textField />
+				</p:input>
+			</p:elementString>
+		</p:elements>
+	</p:elementGroup>
+
+	<p:formConfiguration>
+		<p:formComponent label="Form">
+			<p:element ref="description" />
+			<p:formComponent label="IDentification">
+				<p:elementGroup groupRef="shortName" />
+			</p:formComponent>
+		</p:formComponent>
+	</p:formConfiguration>
+</p:profile>

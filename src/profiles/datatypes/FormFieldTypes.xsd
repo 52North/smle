@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+
+	<!-- The following XSD 1.1 datatypes are not implemented: -->
+	<!-- hexBinary, base64Binary,NOTATION,IDREF,IDREFS,ENTITY,ENTITIES -->
+
+	<!-- float, gYearMonth -->
+	<!-- gYear, gMonthDay, gDay, gMonth, normalizedString, token, language, -->
+	<!-- NMTOKEN, NMTOKENS, negativeInteger, -->
+	<!-- long, int, short, byte, nonNegativeInteger, unsignedLong, unsignedInt, unsignedShort -->
+	<!-- unsignedByte, yearMonthDuration, dayTimeDuration, dateTimeStamp -->
+
+	<!-- The following XSD 1.1 datatypes are implemented: -->
+	<!-- string, boolean, double, NCName, anyURI, integer, dateTime, ID, Name, QName, positiveInteger -->
+	<!-- nonPositiveInteger, decimal, date, duration, time, anyType, union -->
+
+
+
+	<!-- Form field types -->
+
+	<element name="calendar" />
+	<element name="textField" />
+	<element name="map" type="profile:form-field_mapType" />
+	<element name="checkbox" />
+	<element name="selectionBox" />
+	<element name="numberField" />
+
+	<complexType name="form-fieldType">
+		<sequence>
+			<element name="hide" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="form-field_calendarType">
+		<complexContent>
+			<extension base="profile:form-fieldType" />
+		</complexContent>
+	</complexType>
+
+	<complexType name="form-field_textType">
+		<complexContent>
+			<extension base="profile:form-fieldType" />
+		</complexContent>
+	</complexType>
+
+	<complexType name="form-field_checkboxType">
+		<complexContent>
+			<extension base="profile:form-fieldType" />
+		</complexContent>
+	</complexType>
+
+	<complexType name="form-field_selectionBoxType">
+		<complexContent>
+			<extension base="profile:form-fieldType" />
+		</complexContent>
+	</complexType>
+
+	<complexType name="form-field_numberFieldType">
+		<complexContent>
+			<extension base="profile:form-fieldType" />
+		</complexContent>
+	</complexType>
+
+	<complexType name="form-field_mapType">
+		<complexContent>
+			<extension base="profile:form-fieldType">
+				<attribute name="coordinate" use="required">
+					<simpleType>
+						<restriction base="string">
+							<enumeration value="longitude" />
+							<enumeration value="latitude" />
+						</restriction>
+					</simpleType>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+
+</schema>

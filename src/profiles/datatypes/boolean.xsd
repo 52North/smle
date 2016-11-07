@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+	<include schemaLocation="Datatypes.xsd" />
+	<include schemaLocation="FormFieldTypes.xsd" />
+	<!-- Datatypes: any Definition (Default) -->
+
+
+	<element name="elementBoolean" substitutionGroup="profile:element"><!-- name -->
+		<complexType>
+			<complexContent>
+				<extension base="profile:elementType">
+					<sequence>
+						<element name="restrictions" minOccurs="0">
+							<complexType>
+								<group ref="profile:booleanGroup" /><!-- !!!ref -->
+							</complexType>
+						</element>
+						<element name="input" minOccurs="0">
+							<complexType>
+								<choice><!-- change -->
+									<element ref="profile:textField" />
+									<element ref="profile:selectionBox" />
+									<element ref="profile:checkbox" />
+
+								</choice>
+							</complexType>
+						</element>
+					</sequence>
+					<attribute name="XSDList" type="boolean" default="false" />
+					<assert
+						test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<complexType name="elementBooleanRefType"><!-- !!!name -->
+		<complexContent>
+			<extension base="profile:elementRefType">
+				<group ref="profile:booleanGroup" /><!-- !!!ref -->
+				<assert
+					test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="union_boolean">
+		<group ref="profile:booleanRestrictionGroup" minOccurs="0"/><!-- !!!ref -->
+	</complexType>
+
+	<group name="booleanGroup"><!-- !!!name -->
+		<sequence>
+			<element ref="profile:use" minOccurs="0" />
+			<element ref="profile:occurrence" minOccurs="0" />
+			<group ref="profile:booleanRestrictionGroup" minOccurs="0" />
+			<element name="default-content" type="profile:boolean_fix-content_currentDateType"
+				minOccurs="0" /><!-- !!!type -->
+		</sequence>
+
+	</group>
+	<group name="booleanRestrictionGroup">
+		<choice>
+			<element name="fix-content" type="profile:boolean_fix-content_currentDateType" /><!-- !!!type -->
+			<element name="content-format">
+				<complexType>
+					<sequence>
+						<element name="pattern" minOccurs="0">
+							<complexType>
+								<sequence>
+									<element name="regular-expression" type="profile:regular_expression" maxOccurs="unbounded" />
+								</sequence>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="whitespace" minOccurs="0">
+							<complexType>
+								<attribute name="method" fixed="collapse" use="required">
+									<simpleType>
+										<restriction base="string">
+											<enumeration value="preserve" />
+											<enumeration value="replace" />
+											<enumeration value="collapse" />
+										</restriction>
+									</simpleType>
+								</attribute>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+
+	</group>
+	<complexType name="boolean_fix-content_currentDateType"><!-- !!!name -->
+		<group ref="profile:boolean_fix-content_currentDateGroup" /><!-- !!!ref -->
+	</complexType>
+	<group name="boolean_fix-contentGroup"><!-- !!!name -->
+		<choice>
+			<element name="value">
+				<complexType>
+					<simpleContent>
+						<extension base="boolean"><!-- !!!base -->
+							<attribute name="URL" type="anyURI" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="ref">
+				<complexType>
+					<complexContent>
+						<extension base="profile:elementRefType">
+							<attribute name="refValueNotExist" use="required">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="fail" />
+										<enumeration value="succeed" />
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</choice>
+	</group>
+	<group name="boolean_fix-content_currentDateGroup"><!-- !!!name -->
+		<choice>
+			<group ref="profile:boolean_fix-contentGroup" minOccurs="0" /><!-- !!!ref -->
+			<element name="current-date" type="token" minOccurs="0" />
+		</choice>
+	</group>
+</schema>

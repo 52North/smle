@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+	<!-- Defaullt Type -->
+	<complexType name="elementRefType">
+		<attribute name="ref" type="NMTOKEN" use="required" />
+	</complexType>
+
+	<complexType name="elementType">
+		<sequence>
+			<element name="label" type="string" />
+			<element name="description" type="string" minOccurs="0"/>
+		</sequence>
+		<attribute name="XPath" type="profile:XPath" use="required" />
+		<attribute name="ID" type="NMTOKEN" use="required" />
+	</complexType>
+
+	<element name="element" type="profile:elementType" abstract="true" />
+	<element name="elementRef" type="profile:elementRefType" abstract="true" />
+
+	<!-- ////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- Default Type:element rules -->
+	<element name="element_rule" abstract="true" />
+
+	<element name="occurrence" type="profile:occurrenceType" substitutionGroup="profile:element_rule" />
+
+	<element name="use" type="profile:useType" default="required" />
+
+
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- Types -->
+
+	<simpleType name="XPath">
+		<restriction base="token">
+			<pattern value="(((([A-Za-z]+[:])|@)[A-Za-z]+)*/?)+" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="useType">
+		<restriction base="string">
+			<enumeration value="optional" />
+			<enumeration value="required" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="regular_expression">
+		<restriction base="string">
+			<pattern value="[\S]+" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="occurrenceType">
+		<sequence>
+			<element name="minOccurs" type="positiveInteger" minOccurs="0" />
+			<element name="maxOccurs" type="positiveInteger" minOccurs="0" />
+			<element name="valueExistence" type="boolean" minOccurs="0" />
+			<element name="occur" type="positiveInteger" minOccurs="0" />
+		</sequence>
+		<assert
+			test="(profile:occur and not(profile:minOccurs) and not(profile:maxOccurs)) or (not(profile:occur) and(profile:minOccurs or profile:maxOccurs))" />
+		<assert
+			test="not(profile:minOccurs) or not(profile:maxOccurs) or (profile:minOccurs &lt; profile:maxOccurs)" />
+	</complexType>
+</schema>
