@@ -29,7 +29,7 @@
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
 					<assert
-						test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -40,7 +40,7 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:booleanGroup" /><!-- !!!ref -->
 				<assert
-					test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+					test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
@@ -54,14 +54,14 @@
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:booleanRestrictionGroup" minOccurs="0" />
-			<element name="default-content" type="profile:boolean_fix-content_currentDateType"
+			<element name="defaultContent" type="profile:boolean_fixContent_currentDateType"
 				minOccurs="0" /><!-- !!!type -->
 		</sequence>
 
 	</group>
 	<group name="booleanRestrictionGroup">
 		<choice>
-			<element name="fix-content" type="profile:boolean_fix-content_currentDateType" /><!-- !!!type -->
+			<element name="fixContent" type="profile:boolean_fixContent_currentDateType" /><!-- !!!type -->
 			<element name="content-format">
 				<complexType>
 					<sequence>
@@ -93,10 +93,10 @@
 		</choice>
 
 	</group>
-	<complexType name="boolean_fix-content_currentDateType"><!-- !!!name -->
-		<group ref="profile:boolean_fix-content_currentDateGroup" /><!-- !!!ref -->
+	<complexType name="boolean_fixContent_currentDateType"><!-- !!!name -->
+		<group ref="profile:boolean_fixContent_currentDateGroup" /><!-- !!!ref -->
 	</complexType>
-	<group name="boolean_fix-contentGroup"><!-- !!!name -->
+	<group name="boolean_fixContentGroup"><!-- !!!name -->
 		<choice>
 			<element name="value">
 				<complexType>
@@ -125,9 +125,9 @@
 			</element>
 		</choice>
 	</group>
-	<group name="boolean_fix-content_currentDateGroup"><!-- !!!name -->
+	<group name="boolean_fixContent_currentDateGroup"><!-- !!!name -->
 		<choice>
-			<group ref="profile:boolean_fix-contentGroup" minOccurs="0" /><!-- !!!ref -->
+			<group ref="profile:boolean_fixContentGroup" minOccurs="0" /><!-- !!!ref -->
 			<element name="current-date" type="token" minOccurs="0" />
 		</choice>
 	</group>

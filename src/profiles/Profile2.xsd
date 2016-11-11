@@ -48,46 +48,47 @@
 					</annotation>
 				</element>
 			</sequence>
+                        <attribute name="class" type="string"/>
 			<assert
 				test="count(.//profile:arithmetic-operators/profile:item/profile:ref/@ref)=count(.//profile:arithmetic-operators/profile:item/profile:ref[(@ref=preceding::profile:element_double/@ID) or (@ref=following::profile:element_double/@ID)or (@ref=preceding::profile:element_integer/@ID) or (@ref=following::profile:element_integer/@ID)or(@ref=preceding::profile:element_decimal/@ID) or (@ref=following::profile:element_decimal/@ID)or (@ref=preceding::profile:element_nonPositiveInteger/@ID) or (@ref=following::profile:element_nonPositiveInteger/@ID)or (@ref=preceding::profile:element_positiveInteger/@ID) or (@ref=following::profile:element_positiveInteger/@ID)])" />
 			<assert
 				test="count(.//profile:rounding/profile:item/profile:ref/@ref)=count(.//profile:rounding/profile:item/profile:ref[(@ref=preceding::profile:element_double/@ID) or (@ref=following::profile:element_double/@ID)or (@ref=preceding::profile:element_integer/@ID) or (@ref=following::profile:element_integer/@ID)or(@ref=preceding::profile:element_decimal/@ID) or (@ref=following::profile:element_decimal/@ID)or (@ref=preceding::profile:element_nonPositiveInteger/@ID) or (@ref=following::profile:element_nonPositiveInteger/@ID)or (@ref=preceding::profile:element_positiveInteger/@ID) or (@ref=following::profile:element_positiveInteger/@ID)])" />
 			<assert
-				test="count(.//profile:element_anyType/profile:fix-content/profile:ref/@ref)=count(.//profile:element_anyType/profile:fix-content/profile:ref[(@ref=preceding::profile:element_anyType/@ID) or (@ref=following::profile:element_anyType/@ID)])" />
+				test="count(.//profile:element_anyType/profile:fixContent/profile:ref/@ref)=count(.//profile:element_anyType/profile:fixContent/profile:ref[(@ref=preceding::profile:element_anyType/@ID) or (@ref=following::profile:element_anyType/@ID)])" />
 			<assert
-				test="count(.//profile:element_anyURI/profile:fix-content/profile:ref/@ref)=count(.//profile:element_anyURI/profile:fix-content/profile:ref[(@ref=preceding::profile:element_anyURI/@ID) or (@ref=following::profile:element_anyURI/@ID)])" />
+				test="count(.//profile:element_anyURI/profile:fixContent/profile:ref/@ref)=count(.//profile:element_anyURI/profile:fixContent/profile:ref[(@ref=preceding::profile:element_anyURI/@ID) or (@ref=following::profile:element_anyURI/@ID)])" />
 			<assert
-				test="count(.//profile:element_boolean/profile:fix-content/profile:ref/@ref)=count(.//profile:element_boolean/profile:fix-content/profile:ref[(@ref=preceding::profile:element_boolean/@ID) or (@ref=following::profile:element_boolean/@ID)])" />
+				test="count(.//profile:element_boolean/profile:fixContent/profile:ref/@ref)=count(.//profile:element_boolean/profile:fixContent/profile:ref[(@ref=preceding::profile:element_boolean/@ID) or (@ref=following::profile:element_boolean/@ID)])" />
 			<assert
-				test="count(.//profile:element_date/profile:fix-content/profile:ref/@ref)=count(.//profile:element_date/profile:fix-content/profile:ref[(@ref=preceding::profile:element_date/@ID) or (@ref=following::profile:element_date/@ID)])" />
+				test="count(.//profile:element_date/profile:fixContent/profile:ref/@ref)=count(.//profile:element_date/profile:fixContent/profile:ref[(@ref=preceding::profile:element_date/@ID) or (@ref=following::profile:element_date/@ID)])" />
 			<assert
-				test="count(.//profile:element_dateTime/profile:fix-content/profile:ref/@ref)=count(.//profile:element_dateTime/profile:fix-content/profile:ref[(@ref=preceding::profile:element_dateTime/@ID) or (@ref=following::profile:element_dateTime/@ID)])" />
+				test="count(.//profile:element_dateTime/profile:fixContent/profile:ref/@ref)=count(.//profile:element_dateTime/profile:fixContent/profile:ref[(@ref=preceding::profile:element_dateTime/@ID) or (@ref=following::profile:element_dateTime/@ID)])" />
 			<assert
-				test="count(.//profile:element_decimal/profile:fix-content/profile:ref/@ref)=count(.//profile:element_decimal/profile:fix-content/profile:ref[(@ref=preceding::profile:element_decimal/@ID) or (@ref=following::profile:element_decimal/@ID)])" />
+				test="count(.//profile:element_decimal/profile:fixContent/profile:ref/@ref)=count(.//profile:element_decimal/profile:fixContent/profile:ref[(@ref=preceding::profile:element_decimal/@ID) or (@ref=following::profile:element_decimal/@ID)])" />
 			<assert
-				test="count(.//profile:element_double/profile:fix-content/profile:ref/@ref)=count(.//profile:element_double/profile:fix-content/profile:ref[(@ref=preceding::profile:element_double/@ID) or (@ref=following::profile:element_double/@ID)])" />
+				test="count(.//profile:element_double/profile:fixContent/profile:ref/@ref)=count(.//profile:element_double/profile:fixContent/profile:ref[(@ref=preceding::profile:element_double/@ID) or (@ref=following::profile:element_double/@ID)])" />
 			<assert
-				test="count(.//profile:element_duration/profile:fix-content/profile:ref/@ref)=count(.//profile:element_duration/profile:fix-content/profile:ref[(@ref=preceding::profile:element_duration/@ID) or (@ref=following::profile:element_duration/@ID)])" />
+				test="count(.//profile:element_duration/profile:fixContent/profile:ref/@ref)=count(.//profile:element_duration/profile:fixContent/profile:ref[(@ref=preceding::profile:element_duration/@ID) or (@ref=following::profile:element_duration/@ID)])" />
 			<assert
-				test="count(.//profile:element_ID/profile:fix-content/profile:ref/@ref)=count(.//profile:element_ID/profile:fix-content/profile:ref[(@ref=preceding::profile:element_ID/@ID) or (@ref=following::profile:element_ID/@ID)])" />
+				test="count(.//profile:element_ID/profile:fixContent/profile:ref/@ref)=count(.//profile:element_ID/profile:fixContent/profile:ref[(@ref=preceding::profile:element_ID/@ID) or (@ref=following::profile:element_ID/@ID)])" />
 			<assert
-				test="count(.//profile:element_integer/profile:fix-content/profile:ref/@ref)=count(.//profile:element_integer/profile:fix-content/profile:ref[(@ref=preceding::profile:element_integer/@ID) or (@ref=following::profile:element_integer/@ID)])" />
+				test="count(.//profile:element_integer/profile:fixContent/profile:ref/@ref)=count(.//profile:element_integer/profile:fixContent/profile:ref[(@ref=preceding::profile:element_integer/@ID) or (@ref=following::profile:element_integer/@ID)])" />
 			<assert
-				test="count(.//profile:element_Name/profile:fix-content/profile:ref/@ref)=count(.//profile:element_Name/profile:fix-content/profile:ref[(@ref=preceding::profile:element_Name/@ID) or (@ref=following::profile:element_Name/@ID)])" />
+				test="count(.//profile:element_Name/profile:fixContent/profile:ref/@ref)=count(.//profile:element_Name/profile:fixContent/profile:ref[(@ref=preceding::profile:element_Name/@ID) or (@ref=following::profile:element_Name/@ID)])" />
 			<assert
-				test="count(.//profile:element_NCName/profile:fix-content/profile:ref/@ref)=count(.//profile:element_NCName/profile:fix-content/profile:ref[(@ref=preceding::profile:element_NCName/@ID) or (@ref=following::profile:element_NCName/@ID)])" />
+				test="count(.//profile:element_NCName/profile:fixContent/profile:ref/@ref)=count(.//profile:element_NCName/profile:fixContent/profile:ref[(@ref=preceding::profile:element_NCName/@ID) or (@ref=following::profile:element_NCName/@ID)])" />
 			<assert
-				test="count(.//profile:element_nonPositiveInteger/profile:fix-content/profile:ref/@ref)=count(.//profile:element_nonPositiveInteger/profile:fix-content/profile:ref[(@ref=preceding::profile:element_nonPositiveInteger/@ID) or (@ref=following::profile:element_nonPositiveInteger/@ID)])" />
+				test="count(.//profile:element_nonPositiveInteger/profile:fixContent/profile:ref/@ref)=count(.//profile:element_nonPositiveInteger/profile:fixContent/profile:ref[(@ref=preceding::profile:element_nonPositiveInteger/@ID) or (@ref=following::profile:element_nonPositiveInteger/@ID)])" />
 			<assert
-				test="count(.//profile:element_positiveInteger/profile:fix-content/profile:ref/@ref)=count(.//profile:element_positiveInteger/profile:fix-content/profile:ref[(@ref=preceding::profile:element_positiveInteger/@ID) or (@ref=following::profile:element_positiveInteger/@ID)])" />
+				test="count(.//profile:element_positiveInteger/profile:fixContent/profile:ref/@ref)=count(.//profile:element_positiveInteger/profile:fixContent/profile:ref[(@ref=preceding::profile:element_positiveInteger/@ID) or (@ref=following::profile:element_positiveInteger/@ID)])" />
 			<assert
-				test="count(.//profile:element_QName/profile:fix-content/profile:ref/@ref)=count(.//profile:element_QName/profile:fix-content/profile:ref[(@ref=preceding::profile:element_QName/@ID) or (@ref=following::profile:element_QName/@ID)])" />
+				test="count(.//profile:element_QName/profile:fixContent/profile:ref/@ref)=count(.//profile:element_QName/profile:fixContent/profile:ref[(@ref=preceding::profile:element_QName/@ID) or (@ref=following::profile:element_QName/@ID)])" />
 			<assert
-				test="count(.//profile:element_string/profile:fix-content/profile:ref/@ref)=count(.//profile:element_string/profile:fix-content/profile:ref[(@ref=preceding::profile:element_string/@ID) or (@ref=following::profile:element_string/@ID)])" />
+				test="count(.//profile:element_string/profile:fixContent/profile:ref/@ref)=count(.//profile:element_string/profile:fixContent/profile:ref[(@ref=preceding::profile:element_string/@ID) or (@ref=following::profile:element_string/@ID)])" />
 			<assert
-				test="count(.//profile:element_time/profile:fix-content/profile:ref/@ref)=count(.//profile:element_time/profile:fix-content/profile:ref[(@ref=preceding::profile:element_time/@ID) or (@ref=following::profile:element_time/@ID)])" />
+				test="count(.//profile:element_time/profile:fixContent/profile:ref/@ref)=count(.//profile:element_time/profile:fixContent/profile:ref[(@ref=preceding::profile:element_time/@ID) or (@ref=following::profile:element_time/@ID)])" />
 			<assert
-				test="count(.//profile:element_union/profile:fix-content/profile:ref/@ref)=count(.//profile:element_union/profile:fix-content/profile:ref[(@ref=preceding::profile:element_union/@ID) or (@ref=following::profile:element_union/@ID)])" />
+				test="count(.//profile:element_union/profile:fixContent/profile:ref/@ref)=count(.//profile:element_union/profile:fixContent/profile:ref[(@ref=preceding::profile:element_union/@ID) or (@ref=following::profile:element_union/@ID)])" />
 			<!-- <assert -->
 			<assert
 				test="if(.//profile:element_anyType/@ref) then(count(.//profile:element_anyType/@ref)=count(.//profile:element_anyType[@ref=preceding::profile:element_anyType/@ID])) else(true())" />
@@ -127,14 +128,12 @@
 				test="if(.//profile:element_union/@ref) then(count(.//profile:element_union/@ref)=count(.//profile:element_union[@ref=preceding::profile:element_union/@ID])) else(true())" />
 			<assert
 				test="if(.//profile:map) then (count(.//profile:map/@coordinate='longitude')=1 and count(.//profile:map/@coordinate='latitude')=1) else(true())" />
-			<assert
-				test="if(profile:elements/profile:elementGroup) then (starts-with(profile:elements/profile:elementGroup/@XPath,@XPath)) else(true())" />
 			<!-- test="not(profile:elementGroup_choice[profile:elementGroup/@group-name != profile:elementGroup/@group-name])" 
 				/> -->
 			<!-- test="count(profile:elementGroup_choice)=count(profile:elementGroup_choice[not(profile:elementGroup/@group-name 
 				= ./following-sibling::profile:elementGroup_choice/profile:elementGroup/@group-name)])" /> -->
 			<assert
-				test="not(.//profile:element[./../../profile:occurrence/profile:occur!=1 or ./../../profile:occurrence/profile:maxOccurs&gt;1 or ./../../profile:occurrence/profile:minOccurs&gt;1]/@ID = .//*[not(profile:content-selection)]/profile:fix-content/profile:ref)" />
+				test="not(.//profile:element[./../../profile:occurrence/profile:occur!=1 or ./../../profile:occurrence/profile:maxOccurs&gt;1 or ./../../profile:occurrence/profile:minOccurs&gt;1]/@ID = .//*[not(profile:content-selection)]/profile:fixContent/profile:ref)" />
 		</complexType>
 		<unique name="elementID">
 			<annotation>
@@ -160,7 +159,16 @@
 			<selector xpath="profile:elementGroup" />
 			<field xpath="@groupID" />
 		</key>
-		<keyref name="elementGroup_name_XPath_ref" refer="profile:elementGroup_ID">
+		<key name="elementGroup_ID_XPath">
+			<annotation>
+				<documentation>Every elementGroup name has to be unique
+				</documentation>
+			</annotation>
+			<selector xpath="profile:elementGroup" />
+			<field xpath="@groupID" />
+			<field xpath="@XPath" />
+		</key>
+		<keyref name="elementGroup_name_ref" refer="profile:elementGroup_ID">
 			<annotation>
 				<documentation>Every elementGroup reference has to refer to a
 					elementGroup name.
@@ -168,6 +176,16 @@
 			</annotation>
 			<selector xpath=".//*" />
 			<field xpath="@groupRef" />
+		</keyref>
+		<keyref name="elementGroup_name_XPath_ref" refer="profile:elementGroup_ID_XPath">
+			<annotation>
+				<documentation>Every elementGroup reference has to refer to a
+					elementGroup name.
+				</documentation>
+			</annotation>
+			<selector xpath=".//*" />
+			<field xpath="@groupRef" />
+			<field xpath="@XPath" />
 		</keyref>
 		<key name="editor-formComponent-names">
 			<annotation>
@@ -317,7 +335,9 @@
 		<attribute name="groupID" type="string" use="required" />
 		<attribute name="XPath" type="string" use="required" />
 		<assert
-			test="count(profile:elements/*)=count(profile:elements/*[ends-with(@ID,concat('_',./../../@groupID))])" />
+			test="count(profile:elements/*[not(local-name(.)='elementGroup')])=count(profile:elements/*[not(local-name(.)='elementGroup') and ends-with(@ID,concat('_',./../../@groupID))])" />
+		<assert
+			test="count(profile:elements/profile:elementGroup) = count (profile:elements/profile:elementGroup[starts-with(@XPath,./../../@XPath)])" />
 	</complexType>
 
 	<complexType name="dependenceRulesType">

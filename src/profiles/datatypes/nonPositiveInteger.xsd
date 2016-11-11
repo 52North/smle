@@ -28,7 +28,7 @@
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
 					<assert
-						test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -39,7 +39,7 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:nonPositiveIntegerGroup" /><!-- !!!ref -->
 				<assert
-					test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+					test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
@@ -54,19 +54,19 @@
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:nonPositiveIntegerRestrictionGroup" minOccurs="0" />
-			<element name="default-content" type="profile:nonPositiveInteger_fix-content_currentDateType"
+			<element name="defaultContent" type="profile:nonPositiveInteger_fixContent_currentDateType"
 				minOccurs="0" /><!-- !!!type -->
 		</sequence>
 
 	</group>
 	<group name="nonPositiveIntegerRestrictionGroup">
 		<choice>
-			<element name="fix-content" type="profile:nonPositiveInteger_fix-content_currentDateType" /><!-- 
+			<element name="fixContent" type="profile:nonPositiveInteger_fixContent_currentDateType" /><!-- 
 				!!!type -->
 			<element name="content-selection_enumeration">
 				<complexType>
 					<sequence>
-						<group ref="profile:nonPositiveInteger_fix-content_currentDateGroup" maxOccurs="unbounded" /><!-- 
+						<group ref="profile:nonPositiveInteger_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- 
 							!!!ref -->
 					</sequence>
 					<attribute name="base" type="string" fixed="-" />
@@ -122,7 +122,7 @@
 										<element name="minInclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:nonPositiveInteger_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:nonPositiveInteger_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -131,7 +131,7 @@
 										<element name="minExclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:nonPositiveInteger_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:nonPositiveInteger_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -142,7 +142,7 @@
 										<element name="maxInclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:nonPositiveInteger_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:nonPositiveInteger_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="0" />
 													</extension>
 												</complexContent>
@@ -151,7 +151,7 @@
 										<element name="maxExclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:nonPositiveInteger_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:nonPositiveInteger_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -166,10 +166,10 @@
 			</element>
 		</choice>
 	</group>
-	<complexType name="nonPositiveInteger_fix-content_currentDateType"><!-- !!!name -->
-		<group ref="profile:nonPositiveInteger_fix-content_currentDateGroup" /><!-- !!!ref -->
+	<complexType name="nonPositiveInteger_fixContent_currentDateType"><!-- !!!name -->
+		<group ref="profile:nonPositiveInteger_fixContent_currentDateGroup" /><!-- !!!ref -->
 	</complexType>
-	<group name="nonPositiveInteger_fix-contentGroup"><!-- !!!name -->
+	<group name="nonPositiveInteger_fixContentGroup"><!-- !!!name -->
 		<choice>
 			<element name="value">
 				<complexType>
@@ -207,16 +207,16 @@
 			</element>
 		</choice>
 	</group>
-	<group name="nonPositiveInteger_fix-content_currentDateGroup"><!-- !!!name -->
+	<group name="nonPositiveInteger_fixContent_currentDateGroup"><!-- !!!name -->
 		<choice>
-			<group ref="profile:nonPositiveInteger_fix-contentGroup" minOccurs="0" /><!-- !!!ref -->
+			<group ref="profile:nonPositiveInteger_fixContentGroup" minOccurs="0" /><!-- !!!ref -->
 			<element name="current-date" type="token" minOccurs="0" />
 		</choice>
 	</group>
 	
 	<complexType name="nonPositiveInteger_roundingType">
 		<sequence>
-			<element name="item" type="profile:nonPositiveInteger_fix-contentType" />
+			<element name="item" type="profile:nonPositiveInteger_fixContentType" />
 		</sequence>
 		<attribute name="method">
 			<simpleType>
@@ -246,7 +246,7 @@
 
 	<complexType name="nonPositiveInteger_arithmetic_operatorsType">
 		<choice maxOccurs="unbounded">
-			<element name="item" type="profile:nonPositiveInteger_fix-contentType" />
+			<element name="item" type="profile:nonPositiveInteger_fixContentType" />
 			<element name="bracket">
 				<complexType>
 					<sequence>
@@ -257,7 +257,7 @@
 			<group ref="profile:nonPositiveInteger_arithmetic_operatorGroup" />
 		</choice>
 	</complexType>
-		<complexType name="nonPositiveInteger_fix-contentType">
-		<group ref="profile:nonPositiveInteger_fix-contentGroup" />
+		<complexType name="nonPositiveInteger_fixContentType">
+		<group ref="profile:nonPositiveInteger_fixContentGroup" />
 	</complexType>
 </schema>

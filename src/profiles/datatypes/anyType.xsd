@@ -27,7 +27,7 @@
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
 					<assert
-						test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -38,7 +38,7 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:anyTypeGroup" /><!-- !!!ref -->
 				<assert
-					test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+					test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
@@ -46,25 +46,25 @@
 	<complexType name="union_anyType">
 		<group ref="profile:anyTypeRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
-	<complexType name="anyType_fix-contentType">
-		<group ref="profile:anyType_fix-contentGroup" />
+	<complexType name="anyType_fixContentType">
+		<group ref="profile:anyType_fixContentGroup" />
 	</complexType>
 	<group name="anyTypeGroup"><!-- !!!name -->
 		<sequence>
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:anyTypeRestrictionGroup" minOccurs="0" />
-			<element name="default-content" type="profile:anyType_fix-content_currentDateType"
+			<element name="defaultContent" type="profile:anyType_fixContent_currentDateType"
 				minOccurs="0" /><!-- !!!type -->
 		</sequence>
 	</group>
 	<group name="anyTypeRestrictionGroup">
 		<choice>
-			<element name="fix-content" type="profile:anyType_fix-content_currentDateType" /><!-- !!!type -->
+			<element name="fixContent" type="profile:anyType_fixContent_currentDateType" /><!-- !!!type -->
 			<element name="content-selection_enumeration">
 				<complexType>
 					<sequence>
-						<group ref="profile:anyType_fix-content_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
+						<group ref="profile:anyType_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
 					</sequence>
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
@@ -175,7 +175,7 @@
 										<element name="minInclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:anyType_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -184,7 +184,7 @@
 										<element name="minExclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:anyType_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -195,7 +195,7 @@
 										<element name="maxInclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:anyType_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -204,7 +204,7 @@
 										<element name="maxExclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:anyType_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:anyType_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -219,10 +219,10 @@
 			</element>
 		</choice>
 	</group>
-	<complexType name="anyType_fix-content_currentDateType"><!-- !!!name -->
-		<group ref="profile:anyType_fix-content_currentDateGroup" /><!-- !!!ref -->
+	<complexType name="anyType_fixContent_currentDateType"><!-- !!!name -->
+		<group ref="profile:anyType_fixContent_currentDateGroup" /><!-- !!!ref -->
 	</complexType>
-	<group name="anyType_fix-contentGroup"><!-- !!!name -->
+	<group name="anyType_fixContentGroup"><!-- !!!name -->
 		<choice>
 			<element name="value">
 				<complexType>
@@ -263,9 +263,9 @@
 			</element>
 		</choice>
 	</group>
-	<group name="anyType_fix-content_currentDateGroup"><!-- !!!name -->
+	<group name="anyType_fixContent_currentDateGroup"><!-- !!!name -->
 		<choice>
-			<group ref="profile:anyType_fix-contentGroup" minOccurs="0" /><!-- !!!ref -->
+			<group ref="profile:anyType_fixContentGroup" minOccurs="0" /><!-- !!!ref -->
 			<element name="current-date" type="token" minOccurs="0" />
 		</choice>
 	</group>
@@ -273,13 +273,13 @@
 	<!-- transformation of content -->
 	<complexType name="anyType_concatType">
 		<sequence maxOccurs="unbounded">
-			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+			<element name="item" type="profile:anyType_fixContent_currentDateType" />
 			<element name="connector" type="string" minOccurs="0" />
 		</sequence>
 	</complexType>
 	<complexType name="anyType_replaceType">
 		<sequence>
-			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+			<element name="item" type="profile:anyType_fixContent_currentDateType" />
 		</sequence>
 		<attribute name="pattern" type="profile:regular_expression" use="required" />
 		<attribute name="replaceString" type="string" use="required" />
@@ -287,14 +287,14 @@
 
 	<complexType name="anyType_substring-afterType">
 		<sequence>
-			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+			<element name="item" type="profile:anyType_fixContent_currentDateType" />
 		</sequence>
 		<attribute name="substring" type="string" />
 	</complexType>
 
 	<complexType name="anyType_roundingType">
 		<sequence>
-			<element name="item" type="profile:anyType_fix-content_currentDateType" />
+			<element name="item" type="profile:anyType_fixContent_currentDateType" />
 		</sequence>
 		<attribute name="method">
 			<simpleType>
@@ -324,7 +324,7 @@
 
 	<complexType name="anyType_arithmetic_operatorsType">
 		<choice maxOccurs="unbounded">
-			<element name="item" type="profile:anyType_fix-contentType" />
+			<element name="item" type="profile:anyType_fixContentType" />
 			<element name="bracket">
 				<complexType>
 					<sequence>

@@ -96,6 +96,9 @@ module.exports = {
             jquery: 'jquery',
             'Tether': 'tether',
             'window.Tether': "tether"
+        }),
+         new webpack.ProvidePlugin({
+            X2JS: 'x2js'
         })
     ],
 

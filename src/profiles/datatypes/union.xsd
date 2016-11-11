@@ -29,10 +29,10 @@
 				<extension base="profile:elementType">
 					<group ref="profile:unionGroup" /><!-- !!!ref -->
 					<assert
-					test="if(.//profile:default-content) then(.//profile:default-content/*/name()=.//profile:union_Types/*/name())else(true())" />
-					<assert test="count(.//profile:fix-content)&lt;2" />
+					test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
+					<assert test="count(.//profile:fixContent)&lt;2" />
 					<assert
-						test="if(.//profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(.//profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -42,11 +42,11 @@
 		<complexContent>
 			<extension base="profile:elementRefType">
 				<group ref="profile:unionGroup" minOccurs="0"/><!-- !!!ref -->
-				<assert test="count(.//profile:fix-content)&lt;2" />
+				<assert test="count(.//profile:fixContent)&lt;2" />
 				<assert
-					test="if(.//profile:default-content) then(.//profile:default-content/*/name()=.//profile:union_Types/*/name())else(true())" />
+					test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
 				<assert
-					test="if(.//profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+					test="if(.//profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
@@ -78,26 +78,26 @@
 					</choice>
 				</complexType>
 			</element>
-			<element name="default-content" minOccurs="0">
+			<element name="defaultContent" minOccurs="0">
 				<complexType>
 					<choice>
-						<element name="anyType" type="profile:anyType_fix-content_currentDateType" />
-						<element name="anyURI" type="profile:anyURI_fix-content_currentDateType" />
-						<element name="boolean" type="profile:boolean_fix-content_currentDateType" />
-						<element name="date" type="profile:date_fix-content_currentDateType" />
-						<element name="dateTime" type="profile:dateTime_fix-content_currentDateType" />
-						<element name="decimal" type="profile:decimal_fix-content_currentDateType" />
-						<element name="double" type="profile:double_fix-content_currentDateType" />
-						<element name="duration" type="profile:duration_fix-content_currentDateType" />
-						<element name="ID" type="profile:ID_fix-content_currentDateType" />
-						<element name="integer" type="profile:integer_fix-content_currentDateType" />
-						<element name="Name" type="profile:Name_fix-content_currentDateType" />
-						<element name="NCName" type="profile:NCName_fix-content_currentDateType" />
-						<element name="nonPositiveInteger" type="profile:nonPositiveInteger_fix-content_currentDateType" />
-						<element name="positiveInteger" type="profile:positiveInteger_fix-content_currentDateType" />
-						<element name="QName" type="profile:QName_fix-content_currentDateType" />
-						<element name="string" type="profile:string_fix-content_currentDateType" />
-						<element name="time" type="profile:time_fix-content_currentDateType" />
+						<element name="anyType" type="profile:anyType_fixContent_currentDateType" />
+						<element name="anyURI" type="profile:anyURI_fixContent_currentDateType" />
+						<element name="boolean" type="profile:boolean_fixContent_currentDateType" />
+						<element name="date" type="profile:date_fixContent_currentDateType" />
+						<element name="dateTime" type="profile:dateTime_fixContent_currentDateType" />
+						<element name="decimal" type="profile:decimal_fixContent_currentDateType" />
+						<element name="double" type="profile:double_fixContent_currentDateType" />
+						<element name="duration" type="profile:duration_fixContent_currentDateType" />
+						<element name="ID" type="profile:ID_fixContent_currentDateType" />
+						<element name="integer" type="profile:integer_fixContent_currentDateType" />
+						<element name="Name" type="profile:Name_fixContent_currentDateType" />
+						<element name="NCName" type="profile:NCName_fixContent_currentDateType" />
+						<element name="nonPositiveInteger" type="profile:nonPositiveInteger_fixContent_currentDateType" />
+						<element name="positiveInteger" type="profile:positiveInteger_fixContent_currentDateType" />
+						<element name="QName" type="profile:QName_fixContent_currentDateType" />
+						<element name="string" type="profile:string_fixContent_currentDateType" />
+						<element name="time" type="profile:time_fixContent_currentDateType" />
 					</choice>
 				</complexType>
 			</element><!-- !!!type -->

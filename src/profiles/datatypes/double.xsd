@@ -28,7 +28,7 @@
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
 					<assert
-						test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -39,7 +39,7 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:doubleGroup" /><!-- !!!ref -->
 				<assert
-					test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+					test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
@@ -54,18 +54,18 @@
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:doubleRestrictionGroup" minOccurs="0" />
-			<element name="default-content" type="profile:double_fix-content_currentDateType"
+			<element name="defaultContent" type="profile:double_fixContent_currentDateType"
 				minOccurs="0" /><!-- !!!type -->
 		</sequence>
 
 	</group>
 	<group name="doubleRestrictionGroup">
 		<choice>
-			<element name="fix-content" type="profile:double_fix-content_currentDateType" /><!-- !!!type -->
+			<element name="fixContent" type="profile:double_fixContent_currentDateType" /><!-- !!!type -->
 			<element name="content-selection_enumeration">
 				<complexType>
 					<sequence>
-						<group ref="profile:double_fix-content_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
+						<group ref="profile:double_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
 					</sequence>
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
@@ -102,7 +102,7 @@
 										<element name="minInclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:double_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -111,7 +111,7 @@
 										<element name="minExclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:double_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -122,7 +122,7 @@
 										<element name="maxInclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:double_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -131,7 +131,7 @@
 										<element name="maxExclusive">
 											<complexType>
 												<complexContent>
-													<extension base="profile:double_fix-content_currentDateType"><!-- !!!type -->
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
 														<attribute name="base" type="string" fixed="-" />
 													</extension>
 												</complexContent>
@@ -147,10 +147,10 @@
 		</choice>
 
 	</group>
-	<complexType name="double_fix-content_currentDateType"><!-- !!!name -->
-		<group ref="profile:double_fix-content_currentDateGroup" /><!-- !!!ref -->
+	<complexType name="double_fixContent_currentDateType"><!-- !!!name -->
+		<group ref="profile:double_fixContent_currentDateGroup" /><!-- !!!ref -->
 	</complexType>
-	<group name="double_fix-contentGroup"><!-- !!!name -->
+	<group name="double_fixContentGroup"><!-- !!!name -->
 		<choice>
 			<element name="value">
 				<complexType>
@@ -188,15 +188,15 @@
 			</element>
 		</choice>
 	</group>
-	<group name="double_fix-content_currentDateGroup"><!-- !!!name -->
+	<group name="double_fixContent_currentDateGroup"><!-- !!!name -->
 		<choice>
-			<group ref="profile:double_fix-contentGroup" minOccurs="0" /><!-- !!!ref -->
+			<group ref="profile:double_fixContentGroup" minOccurs="0" /><!-- !!!ref -->
 			<element name="current-date" type="token" minOccurs="0" />
 		</choice>
 	</group>
 	<complexType name="double_roundingType">
 		<sequence>
-			<element name="item" type="profile:double_fix-contentType" />
+			<element name="item" type="profile:double_fixContentType" />
 		</sequence>
 		<attribute name="method">
 			<simpleType>
@@ -212,8 +212,8 @@
 		<assert
 			test="((@method='ceiling' or @method='floor') and not(@precision)) or ((@method='round' or @method='round-half-to-even') and @precision)" />
 	</complexType>
-	<complexType name="double_fix-contentType">
-		<group ref="profile:double_fix-contentGroup" />
+	<complexType name="double_fixContentType">
+		<group ref="profile:double_fixContentGroup" />
 	</complexType>
 
 
@@ -228,7 +228,7 @@
 
 	<complexType name="double_arithmetic_operatorsType">
 		<choice maxOccurs="unbounded">
-			<element name="item" type="profile:double_fix-contentType" />
+			<element name="item" type="profile:double_fixContentType" />
 			<element name="bracket">
 				<complexType>
 					<sequence>

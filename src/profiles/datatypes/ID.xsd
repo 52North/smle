@@ -26,7 +26,7 @@
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
 					<assert
-						test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -37,7 +37,7 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:IDGroup" /><!-- !!!ref -->
 				<assert
-					test="if(profile:fix-content) then (not(profile:default-content) and not(profile:use) and not(profile:occurrence)) else(true())" />
+					test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
@@ -52,18 +52,18 @@
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:IDRestrictionGroup" minOccurs="0" />
-			<element name="default-content" type="profile:ID_fix-content_currentDateType" minOccurs="0" /><!-- 
+			<element name="defaultContent" type="profile:ID_fixContent_currentDateType" minOccurs="0" /><!-- 
 				!!!type -->
 		</sequence>
 
 	</group>
 	<group name="IDRestrictionGroup">
 		<choice>
-			<element name="fix-content" type="profile:ID_fix-content_currentDateType" /><!-- !!!type -->
+			<element name="fixContent" type="profile:ID_fixContent_currentDateType" /><!-- !!!type -->
 			<element name="content-selection_enumeration">
 				<complexType>
 					<sequence>
-						<group ref="profile:ID_fix-content_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
+						<group ref="profile:ID_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
 					</sequence>
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
@@ -140,10 +140,10 @@
 			</element>
 		</choice>
 	</group>
-	<complexType name="ID_fix-content_currentDateType"><!-- !!!name -->
-		<group ref="profile:ID_fix-content_currentDateGroup" /><!-- !!!ref -->
+	<complexType name="ID_fixContent_currentDateType"><!-- !!!name -->
+		<group ref="profile:ID_fixContent_currentDateGroup" /><!-- !!!ref -->
 	</complexType>
-	<group name="ID_fix-contentGroup"><!-- !!!name -->
+	<group name="ID_fixContentGroup"><!-- !!!name -->
 		<choice>
 			<element name="value">
 				<complexType>
@@ -181,22 +181,22 @@
 			</element>
 		</choice>
 	</group>
-	<group name="ID_fix-content_currentDateGroup"><!-- !!!name -->
+	<group name="ID_fixContent_currentDateGroup"><!-- !!!name -->
 		<choice>
-			<group ref="profile:ID_fix-contentGroup" minOccurs="0" /><!-- !!!ref -->
+			<group ref="profile:ID_fixContentGroup" minOccurs="0" /><!-- !!!ref -->
 			<element name="current-date" type="token" minOccurs="0" />
 		</choice>
 	</group>
 
 	<complexType name="ID_concatType">
 		<sequence maxOccurs="unbounded">
-			<element name="item" type="profile:ID_fix-content_currentDateType" />
+			<element name="item" type="profile:ID_fixContent_currentDateType" />
 			<element name="connector" type="string" minOccurs="0" />
 		</sequence>
 	</complexType>
 	<complexType name="ID_replaceType">
 		<sequence>
-			<element name="item" type="profile:ID_fix-content_currentDateType" />
+			<element name="item" type="profile:ID_fixContent_currentDateType" />
 		</sequence>
 		<attribute name="pattern" type="profile:regular_expression" use="required" />
 		<attribute name="replaceString" type="string" use="required" />
@@ -204,7 +204,7 @@
 
 	<complexType name="ID_substring-afterType">
 		<sequence>
-			<element name="item" type="profile:ID_fix-content_currentDateType" />
+			<element name="item" type="profile:ID_fixContent_currentDateType" />
 		</sequence>
 		<attribute name="substring" type="string" />
 	</complexType>
