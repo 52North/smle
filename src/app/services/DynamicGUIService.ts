@@ -9,7 +9,6 @@ import {Observable}     from 'rxjs/Observable';
 import {LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger} from "typescript-logging"
 
 declare var X2JS: any;
-declare var jQuery: any;
 
 class XPathElement {
     private _element: string;
@@ -31,6 +30,30 @@ class XPathElement {
         this._prefix = prefix;
     }
 }
+class Configuration {
+    private _fixValue: boolean;
+    private _requireValue: boolean;
+    private _hideField: boolean;
+
+    get fixValue(): boolean {
+        return this._fixValue;
+    }
+    set fixValue(fixValue: boolean) {
+        this._fixValue = fixValue;
+    }
+    get requireValue(): boolean {
+        return this._requireValue;
+    }
+    set requireValue(requireValue: boolean) {
+        this._requireValue = requireValue;
+    }
+    get hideField(): boolean {
+        return this._hideField;
+    }
+    set hideField(hideField: boolean) {
+        this._hideField = hideField;
+    }
+}
 
 @Injectable()
 export class DynamicGUIService {
@@ -39,11 +62,14 @@ export class DynamicGUIService {
     private _insertElements: InsertElements;
     private _model: any;
     private _profile: any;
+    private _config: Object;
+
     constructor(private http: Http) {
         this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
             .addLogGroupRule(new LogGroupRule(new RegExp(".+"), LogLevel.Info)));
         this._logger = this._loggerFactory.getLogger("DynamicGuiService");
         this._insertElements = new InsertElements();
+        this._config = {};
     }
 
     public getModel(): Observable<Object> {
@@ -66,8 +92,7 @@ export class DynamicGUIService {
                 throw new Error('JSON Object has no profile-element!');
             }
             this.createModel();
-            this.singleElementsConfiguration();
-            this.groupElementsConfiguration();
+            this.configure();
             this._logger.info('model with the fix values:' + (JSON.stringify(this._model)));
             return this._model;
         });
@@ -121,7 +146,7 @@ export class DynamicGUIService {
             }
         }
     }
-    private groupElementsConfiguration() {
+    private configure() {
         if (this._profile.formConfiguration) {
             let formComponents = this._profile.formConfiguration.formComponent;
             this.processFormComponents(formComponents);
@@ -145,6 +170,39 @@ export class DynamicGUIService {
                 this.processElementGroupRefs(this._model, formComponent[key], "");
             } else if (key == 'formComponent') {
                 this.processFormComponents(formComponent[key]);
+            } else if (key == 'element') {
+                this.processElementRefs(this._model, formComponent[key]);
+            }
+        }
+    }
+    private processElementRefs(model: any, elements: any) {
+        if (Array.isArray(elements)) {
+            for (var key in elements) {
+                this.processElementRef(model, elements[key]);
+            }
+        } else {
+            this.processElementRef(model, elements);
+        }
+    }
+    private processElementRef(model: any, element: any) {
+        let ref = element._ref;
+        this._logger.info('Process single global element: ' + ref);
+        for (let key in this._profile) {
+            if (key.indexOf('element') == 0 && key != 'elementGroup') {
+                let elementGlobal = this._profile[key];
+                if (Array.isArray(elementGlobal)) {
+                    for (var _key in elementGlobal) {
+                        if (ref == elementGlobal[_key]._ID) {
+                            this._logger.info('Single global element found: ' + elementGlobal[_key]._ID);
+                            this.insertSingleElement(model, elementGlobal[_key]);
+                        }
+                    }
+                } else {
+                    if (ref == elementGlobal._ID) {
+                        this._logger.info('Single global element found: ' + elementGlobal._ID);
+                        this.insertSingleElement(model, elementGlobal);
+                    }
+                }
             }
         }
     }
