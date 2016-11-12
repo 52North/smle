@@ -29,7 +29,7 @@
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
 					<assert
-						test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -40,13 +40,13 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:booleanGroup" /><!-- !!!ref -->
 				<assert
-					test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
+					test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
 
 	<complexType name="union_boolean">
-		<group ref="profile:booleanRestrictionGroup" minOccurs="0"/><!-- !!!ref -->
+		<group ref="profile:booleanRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
 	<group name="booleanGroup"><!-- !!!name -->

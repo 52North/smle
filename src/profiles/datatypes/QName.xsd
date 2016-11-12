@@ -26,7 +26,7 @@
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
 					<assert
-						test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>
@@ -37,7 +37,7 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:QNameGroup" /><!-- !!!ref -->
 				<assert
-					test="if(profile:fixContent) then (not(profile:defaultContent) and not(profile:use) and not(profile:occurrence)) else(true())" />
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>

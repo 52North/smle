@@ -8,7 +8,7 @@
 
 	<complexType name="elementType">
 		<sequence>
-			<element name="label" type="string" />
+			<element name="label" type="string" minOccurs="0"/>
 			<element name="description" type="string" minOccurs="0"/>
 		</sequence>
 		<attribute name="XPath" type="profile:XPath" use="required" />

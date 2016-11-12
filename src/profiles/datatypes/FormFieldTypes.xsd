@@ -19,17 +19,15 @@
 
 	<!-- Form field types -->
 
-	<element name="calendar" />
-	<element name="textField" />
+	<element name="calendar" type="profile:form-field_calendarType"/>
+	<element name="textField" type="profile:form-field_textType"/>
 	<element name="map" type="profile:form-field_mapType" />
-	<element name="checkbox" />
-	<element name="selectionBox" />
-	<element name="numberField" />
+	<element name="checkbox" type="profile:form-field_checkboxType" />
+	<element name="selectionBox" type="profile:form-field_selectionBoxType"/>
+	<element name="numberField" type="profile:form-field_numberFieldType"/>
 
 	<complexType name="form-fieldType">
-		<sequence>
-			<element name="hide" minOccurs="0" />
-		</sequence>
+		<attribute name="hide" default="false" type="boolean"/>
 	</complexType>
 	<complexType name="form-field_calendarType">
 		<complexContent>

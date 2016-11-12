@@ -3,18 +3,8 @@
 	xsi:schemaLocation="http://xmlProfile.de Profile2.xsd" class="sml:PhysicalSystem">
 
 
-	<p:elementString XPath="gml:description" ID="description">
-		<p:label>Description</p:label>
-		<p:restrictions>
-			<p:fixContent>
-				<p:value>description Test</p:value>
-			</p:fixContent>
-			<p:use>required</p:use>
-		</p:restrictions>
-		<p:input>
-			<p:textField />
-		</p:input>
-	</p:elementString>
+	<p:elementString XPath="gml:description" ID="description"/>
+
 
 	<p:elementGroup groupID="Identification" XPath="sml:Identification/sml:IdentifierList">
 		<p:elements>
@@ -27,15 +17,16 @@
 		XPath="sml:Identification/sml:IdentifierList/sml:Identifier/sml:Term">
 		<p:elements>
 			<p:elementString XPath="sml:label" ID="name_shortName">
-				<p:label>short name</p:label>
 				<p:restrictions>
 					<p:fixContent>
 						<p:value>Short name</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField />
+				</p:input>
 			</p:elementString>
 			<p:elementString XPath="@definition" ID="definition_shortName">
-				<p:label>Definition</p:label>
 				<p:restrictions>
 					<p:fixContent>
 						<p:value>urn:ogc:def:Identifier:OGC:1.0:shortName</p:value>
@@ -43,10 +34,6 @@
 				</p:restrictions>
 			</p:elementString>
 			<p:elementString XPath="swe:value" ID="value_shortName">
-				<p:label>short name</p:label>
-				<p:restrictions>
-					<p:use>required</p:use>
-				</p:restrictions>
 				<p:input>
 					<p:textField />
 				</p:input>
