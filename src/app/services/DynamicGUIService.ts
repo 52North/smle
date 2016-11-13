@@ -5,6 +5,7 @@ import * as sweLib from '../model/swe';
 import { Http, Response } from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Observable}     from 'rxjs/Observable';
+import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
 
 import {LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger} from "typescript-logging"
 
@@ -51,7 +52,7 @@ class Cache {
     }
 }
 
-class FormFields {
+export class FormFields {
     private _calendar: boolean;
     private _textField: boolean;
     private _map: boolean;
@@ -96,7 +97,7 @@ class FormFields {
         this._numberField = numberField;
     }
 }
-class Configuration {
+export class Configuration {
     private _fixValue: boolean;
     private _requireValue: boolean;
     private _hideField: FormFields;
@@ -140,6 +141,23 @@ class ConfigSet {
         this._configuration = configuration;
     }
 }
+export class ReturnObject {
+    private _model: any;
+    private _configuration: JSONDescriptionConfig;
+    get model(): any {
+        return this._model;
+    }
+    set model(model: any) {
+        this._model = model;
+    }
+    get configuration(): JSONDescriptionConfig {
+        return this._configuration;
+    }
+    set configuration(configuration: JSONDescriptionConfig) {
+        this._configuration = configuration;
+    }
+}
+
 @Injectable()
 export class DynamicGUIService {
     private _loggerFactory: LoggerFactory;
@@ -157,7 +175,7 @@ export class DynamicGUIService {
         this._config = {};
     }
 
-    public getModel(): Observable<Object> {
+    public getModelAndConfiguration(): Observable<Object> {
         let model = new smlLib.PhysicalSystem();
         let cache = new Cache(model, {});
         let path = this.splitXPath("sml:identification/sml:IdentifierList");
@@ -184,7 +202,10 @@ export class DynamicGUIService {
             this.configure();
             this._logger.info('model with the fix values:' + (JSON.stringify(this._model)));
             this._logger.info('configuration:' + (JSON.stringify(this._config)));
-            return this._model;
+            let returnObject = new ReturnObject();
+            returnObject.model = this._model;
+            returnObject.configuration = new JSONDescriptionConfig(this._config, true);
+            return returnObject;
         });
 
     }
@@ -216,7 +237,11 @@ export class DynamicGUIService {
         }
     }
     private processFormComponent(formComponent: any) {
-        let cache = new Cache(this._model, this._config);
+        if(!this._config["description"]){
+             this._config["description"] = {}; 
+        }
+        let config = this._config["description"];
+        let cache = new Cache(this._model, config);
         for (var key in formComponent) {
             if (key == 'elementGroup') {
                 this.processElementGroupRefs(cache, formComponent[key], "");
@@ -342,17 +367,17 @@ export class DynamicGUIService {
             }
         }
         if (element["input"]) {
-                let input = element["input"];
-                for (var key in input) {
-                    if (input[key]._hide == "true") {
-                        set.configuration.hideField[key] = true;
-                        this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is hidden");
-                    } else if (!(key.indexOf("_")==0)){
-                        set.configuration.hideField[key] = false;
-                        this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is visible");
-                    }
+            let input = element["input"];
+            for (var key in input) {
+                if (input[key]._hide == "true") {
+                    set.configuration.hideField[key] = true;
+                    this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is hidden");
+                } else if (!(key.indexOf("_") == 0)) {
+                    set.configuration.hideField[key] = false;
+                    this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is visible");
                 }
             }
+        }
         let xpath = element._XPath;
         let xpathElement: XPathElement[] = this.splitXPath(xpath);
         this._insertElements.add(cache, xpathElement, set);

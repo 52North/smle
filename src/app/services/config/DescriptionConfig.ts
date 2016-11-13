@@ -1,4 +1,4 @@
 export interface DescriptionConfig {
-  isFieldMandatory(name: string): boolean;
+  isFieldHidden(name: string, formFieldType?: string): boolean;
   getConfigFor(name: string): DescriptionConfig;
 }

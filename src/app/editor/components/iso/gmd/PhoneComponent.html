@@ -1,11 +1,11 @@
 <card [verticalMode]="hasChild" [title]="'Phone'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
       [(showAll)]="isShowAll">
     <form>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('voice')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('voice')">
             <label for="voice">{{getDisplayName('voice')}}</label>
             <strings [list]="model.voice"></strings>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('facsimile')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('facsimile')">
             <label for="facsimile">{{getDisplayName('facsimile')}}</label>
             <strings [list]="model.facsimile"></strings>
         </div>

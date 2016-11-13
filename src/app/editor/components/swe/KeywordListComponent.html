@@ -2,7 +2,7 @@
       (close)="close()" (closeChild)="closeChild()"  [(showAll)]="isShowAll">
     <form>
         <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'codeSpace'"></text-field>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('keywords')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('keywords')">
             <label for="keywords">Keywords</label>
             <strings [list]="model.keywords"></strings>
         </div>

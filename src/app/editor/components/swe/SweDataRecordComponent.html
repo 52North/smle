@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('fields')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('fields')">
     <label for="fields">{{getDisplayName('fields')}}</label>
     <list [list]="model.fields" (select)="openNewFieldItem($event)" (remove)="onRemoveField($event)">
         <list-add-section>

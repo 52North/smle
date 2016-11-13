@@ -1,7 +1,7 @@
 <card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
   <form>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'"></text-field>
-    <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('component')">
+    <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('component')">
       <div [ngSwitch]="componentType">
         <swe-text *ngSwitchCase="1" [model]="model.component" [config]="config.getConfigFor('component')" [isShowAll]="isShowAll"></swe-text>
         <swe-time *ngSwitchCase="2" [model]="model.component" [config]="config.getConfigFor('component')" [isShowAll]="isShowAll"></swe-time>

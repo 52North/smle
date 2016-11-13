@@ -15,7 +15,7 @@ import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeCo
 
 import { Http, Response } from '@angular/http';
 
-import { DynamicGUIService } from '../services/DynamicGUIService';
+import { DynamicGUIService,ReturnObject } from '../services/DynamicGUIService';
 enum DescriptionType {
     PhysicalSystem = 1,
     PhysicalComponent = 2,
@@ -67,8 +67,10 @@ export class Editor implements OnInit {
         } else if (type === 'PhysicalComponent') {
             this.setDescription(new PhysicalComponent());
         } else {
-            this.dynamicGUIService.getModel().subscribe((model: any) => {
-                this.setDescription(model);
+            this.dynamicGUIService.getModelAndConfiguration().subscribe((returnObject: ReturnObject) => {
+                this.setDescription(returnObject.model);
+                this.config = returnObject.configuration;
+              //  alert("this.config:" + JSON.stringify(returnObject.configuration))
             });
 
         }

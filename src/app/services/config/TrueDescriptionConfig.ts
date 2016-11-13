@@ -1,7 +1,7 @@
 import { DescriptionConfig } from './DescriptionConfig';
 
 export class TrueDescriptionConfig implements DescriptionConfig {
-  isFieldMandatory(name: string): boolean {
+  isFieldHidden(name: string): boolean {
     return true;
   }
 
