@@ -3,8 +3,11 @@
 	xsi:schemaLocation="http://xmlProfile.de Profile2.xsd" class="sml:PhysicalSystem">
 
 
-	<p:elementString XPath="gml:description" ID="description"/>
-
+	<p:elementString XPath="gml:description" ID="description">
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:elementString>
 
 	<p:elementGroup groupID="Identification" XPath="sml:Identification/sml:IdentifierList">
 		<p:elements>

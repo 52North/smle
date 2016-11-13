@@ -30,11 +30,81 @@ class XPathElement {
         this._prefix = prefix;
     }
 }
+class Cache {
+    private _parent: any;
+    private _config: Object;
+    constructor(parent?: any, config?: Object) {
+        this._parent = parent;
+        this._config = config;
+    }
+    get parent(): any {
+        return this._parent;
+    }
+    set parent(parent: any) {
+        this._parent = parent;
+    }
+    get config(): Object {
+        return this._config;
+    }
+    set config(config: Object) {
+        this._config = config;
+    }
+}
+
+class FormFields {
+    private _calendar: boolean;
+    private _textField: boolean;
+    private _map: boolean;
+    private _checkbox: boolean;
+    private _selectionBox: boolean;
+    private _numberField: boolean;
+
+    get calendar(): boolean {
+        return this._calendar;
+    }
+    set calendar(calendar: boolean) {
+        this._calendar = calendar;
+    }
+    get textField(): boolean {
+        return this._textField;
+    }
+    set textField(textField: boolean) {
+        this._textField = textField;
+    }
+    get map(): boolean {
+        return this._map;
+    }
+    set map(map: boolean) {
+        this._map = map;
+    }
+    get checkbox(): boolean {
+        return this._checkbox;
+    }
+    set checkbox(checkbox: boolean) {
+        this._checkbox = checkbox;
+    }
+    get selectionBox(): boolean {
+        return this._selectionBox;
+    }
+    set selectionBox(selectionBox: boolean) {
+        this._selectionBox = selectionBox;
+    }
+    get numberField(): boolean {
+        return this._numberField;
+    }
+    set numberField(numberField: boolean) {
+        this._numberField = numberField;
+    }
+}
 class Configuration {
     private _fixValue: boolean;
     private _requireValue: boolean;
-    private _hideField: boolean;
-
+    private _hideField: FormFields;
+    constructor() {
+        this._fixValue = false;
+        this._requireValue = true;
+        this._hideField = new FormFields();
+    }
     get fixValue(): boolean {
         return this._fixValue;
     }
@@ -47,14 +117,29 @@ class Configuration {
     set requireValue(requireValue: boolean) {
         this._requireValue = requireValue;
     }
-    get hideField(): boolean {
+    get hideField(): FormFields {
         return this._hideField;
     }
-    set hideField(hideField: boolean) {
+    set hideField(hideField: FormFields) {
         this._hideField = hideField;
     }
 }
-
+class ConfigSet {
+    private _value: string;
+    private _configuration: Configuration;
+    get value(): string {
+        return this._value;
+    }
+    set value(value: string) {
+        this._value = value;
+    }
+    get configuration(): Configuration {
+        return this._configuration;
+    }
+    set configuration(configuration: Configuration) {
+        this._configuration = configuration;
+    }
+}
 @Injectable()
 export class DynamicGUIService {
     private _loggerFactory: LoggerFactory;
@@ -74,15 +159,19 @@ export class DynamicGUIService {
 
     public getModel(): Observable<Object> {
         let model = new smlLib.PhysicalSystem();
+        let cache = new Cache(model, {});
         let path = this.splitXPath("sml:identification/sml:IdentifierList");
-        let list = this._insertElements.add(model, path, null);
+        let set = new ConfigSet();
+        let list = this._insertElements.add(cache, path, set);
         //alert(JSON.stringify(model));
         path = this.splitXPath("sml:Identifier/sml:Term/sml:label");
         //alert(JSON.stringify(path));
         let identifierList = new smlLib.IdentifierList();
-        this._insertElements.add(list, path, "short name");
+        set.value = "short name";
+        this._insertElements.add(list, path, set);
         path = this.splitXPath("sml:Identifier/sml:Term/sml:label");
-        this._insertElements.add(list, path, "long name");
+        set.value = "long name";
+        this._insertElements.add(list, path, set);
         // alert(JSON.stringify(model));
         return this.getProfile().map((json: any) => {
             this._logger.info('JSON profile:' + JSON.stringify(json));
@@ -94,6 +183,7 @@ export class DynamicGUIService {
             this.createModel();
             this.configure();
             this._logger.info('model with the fix values:' + (JSON.stringify(this._model)));
+            this._logger.info('configuration:' + (JSON.stringify(this._config)));
             return this._model;
         });
 
@@ -106,46 +196,7 @@ export class DynamicGUIService {
             throw new Error('Class of the profile has not the right format!');
         }
     }
-    private singleElementsConfiguration() {
-        let elements = this._profile;
-        for (var key in elements) {
-            if (key.indexOf('element') == 0 && key != 'elementGroup') {
-                this.insertSingleElements(this._model, elements[key]);
-            }
-        }
-    }
-    private insertSingleElements(model: any, elements: any) {
-        if (Array.isArray(elements)) {
-            for (var key in elements) {
-                this.insertSingleElement(model, elements[key]);
-            }
-        } else {
-            this.insertSingleElement(model, elements);
-        }
-    }
-    private insertSingleElement(model: any, element: any) {
-        if (element.restrictions) {
-            if (element.restrictions["fixContent"]) {
-                if (element.restrictions["fixContent"].value) {
-                    let fixValue = element.restrictions["fixContent"].value.__text;
-                    if (fixValue) {
-                        let xpath = element._XPath;
-                        let xpathElement: XPathElement[] = this.splitXPath(xpath);
-                        this._insertElements.add(model, xpathElement, fixValue);
-                    }
-                }
-            } else if (element.restrictions["defaultContent"]) {
-                if (element.restrictions["defaultContent"].value) {
-                    let fixValue = element.restrictions["defaultContent"].value.__text;
-                    if (fixValue) {
-                        let xpath = element._XPath;
-                        let xpathElement: XPathElement[] = this.splitXPath(xpath);
-                        this._insertElements.add(model, xpathElement, fixValue);
-                    }
-                }
-            }
-        }
-    }
+
     private configure() {
         if (this._profile.formConfiguration) {
             let formComponents = this._profile.formConfiguration.formComponent;
@@ -165,26 +216,27 @@ export class DynamicGUIService {
         }
     }
     private processFormComponent(formComponent: any) {
+        let cache = new Cache(this._model, this._config);
         for (var key in formComponent) {
             if (key == 'elementGroup') {
-                this.processElementGroupRefs(this._model, formComponent[key], "");
+                this.processElementGroupRefs(cache, formComponent[key], "");
             } else if (key == 'formComponent') {
                 this.processFormComponents(formComponent[key]);
             } else if (key == 'element') {
-                this.processElementRefs(this._model, formComponent[key]);
+                this.processElementRefs(cache, formComponent[key]);
             }
         }
     }
-    private processElementRefs(model: any, elements: any) {
+    private processElementRefs(cache: Cache, elements: any) {
         if (Array.isArray(elements)) {
             for (var key in elements) {
-                this.processElementRef(model, elements[key]);
+                this.processElementRef(cache, elements[key]);
             }
         } else {
-            this.processElementRef(model, elements);
+            this.processElementRef(cache, elements);
         }
     }
-    private processElementRef(model: any, element: any) {
+    private processElementRef(cache: Cache, element: any) {
         let ref = element._ref;
         this._logger.info('Process single global element: ' + ref);
         for (let key in this._profile) {
@@ -194,28 +246,28 @@ export class DynamicGUIService {
                     for (var _key in elementGlobal) {
                         if (ref == elementGlobal[_key]._ID) {
                             this._logger.info('Single global element found: ' + elementGlobal[_key]._ID);
-                            this.insertSingleElement(model, elementGlobal[_key]);
+                            this.insertSingleElement(cache, elementGlobal[_key]);
                         }
                     }
                 } else {
                     if (ref == elementGlobal._ID) {
                         this._logger.info('Single global element found: ' + elementGlobal._ID);
-                        this.insertSingleElement(model, elementGlobal);
+                        this.insertSingleElement(cache, elementGlobal);
                     }
                 }
             }
         }
     }
-    private processElementGroupRefs(model: any, elementGroups: any, parentXPath: string) {
+    private processElementGroupRefs(cache: Cache, elementGroups: any, parentXPath: string) {
         if (Array.isArray(elementGroups)) {
             for (var key in elementGroups) {
-                this.processElementGroupRef(model, elementGroups[key], parentXPath);
+                this.processElementGroupRef(cache, elementGroups[key], parentXPath);
             }
         } else {
-            this.processElementGroupRef(model, elementGroups, parentXPath);
+            this.processElementGroupRef(cache, elementGroups, parentXPath);
         }
     }
-    private processElementGroupRef(model: any, elementGroup: any, parentXPath: string) {
+    private processElementGroupRef(cache: Cache, elementGroup: any, parentXPath: string) {
         let groupID = elementGroup._groupRef;
         for (let key in this._profile) {
             if (key == "elementGroup") {
@@ -223,18 +275,18 @@ export class DynamicGUIService {
                 if (Array.isArray(elementGroupsGlobal)) {
                     for (var _key in elementGroupsGlobal) {
                         if (groupID == elementGroupsGlobal[_key]._groupID) {
-                            this.processElementGroup(model, elementGroupsGlobal[_key], parentXPath);
+                            this.processElementGroup(cache, elementGroupsGlobal[_key], parentXPath);
                         }
                     }
                 } else {
                     if (groupID == elementGroupsGlobal._groupID) {
-                        this.processElementGroup(model, elementGroupsGlobal, parentXPath);
+                        this.processElementGroup(cache, elementGroupsGlobal, parentXPath);
                     }
                 }
             }
         }
     }
-    private processElementGroup(model: any, elementGroup: any, parentXPath: string) {
+    private processElementGroup(cache: Cache, elementGroup: any, parentXPath: string) {
         let elements = elementGroup.elements;
         let XPath: string = elementGroup._XPath;
         let sliceLength: number = parentXPath.length;
@@ -244,15 +296,69 @@ export class DynamicGUIService {
         XPath = XPath.slice(sliceLength);
         this._logger.info("Element group: sliced XPath: " + XPath);
         let xpath: XPathElement[] = this.splitXPath(XPath);
-        let _model = this._insertElements.add(model, xpath, null);
+        let set = new ConfigSet();
+        let _cache = this._insertElements.add(cache, xpath, set);
         for (var key in elements) {
             if (key.indexOf('element') == 0 && key != 'elementGroup') {
-                this.insertSingleElements(_model, elements[key]);
+                this.insertSingleElements(_cache, elements[key]);
             } else if (key == "elementGroup") {
-                this.processElementGroupRefs(_model, elements[key], XPath);
+                this.processElementGroupRefs(_cache, elements[key], XPath);
             }
         }
     }
+
+    private insertSingleElements(cache: Cache, elements: any) {
+        if (Array.isArray(elements)) {
+            for (var key in elements) {
+                this.insertSingleElement(cache, elements[key]);
+            }
+        } else {
+            this.insertSingleElement(cache, elements);
+        }
+    }
+    private insertSingleElement(cache: Cache, element: any) {
+        let set = new ConfigSet();
+        set.configuration = new Configuration();
+        set.value = null;
+        if (element.restrictions) {
+            if (element.restrictions["fixContent"]) {
+                if (element.restrictions["fixContent"].value) {
+                    set.value = element.restrictions["fixContent"].value.__text;
+                    set.configuration.fixValue = true;
+                }
+
+            } else {
+                if (element.restrictions["defaultContent"]) {
+                    if (element.restrictions["defaultContent"].value) {
+                        set.value = element.restrictions["defaultContent"].value.__text;
+                    }
+                }
+                if (element.restrictions["use"]) {
+                    if (element.restrictions["use"].__text == "optional") {
+                        set.configuration.requireValue = false;
+                    }
+                }
+
+            }
+        }
+        if (element["input"]) {
+                let input = element["input"];
+                for (var key in input) {
+                    if (input[key]._hide == "true") {
+                        set.configuration.hideField[key] = true;
+                        this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is hidden");
+                    } else if (!(key.indexOf("_")==0)){
+                        set.configuration.hideField[key] = false;
+                        this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is visible");
+                    }
+                }
+            }
+        let xpath = element._XPath;
+        let xpathElement: XPathElement[] = this.splitXPath(xpath);
+        this._insertElements.add(cache, xpathElement, set);
+    }
+
+
     private getProfile(): Observable<JSON> {
         return this.http.get('../../profiles/Profile2_discovery.xml').map((response: Response) => {
             var x2js = new X2JS();
@@ -287,51 +393,48 @@ class InsertElements {
             .addLogGroupRule(new LogGroupRule(new RegExp(".+"), LogLevel.Info)));
         this._logger = this._loggerFactory.getLogger("DynamicGuiService");
     }
-    public add(parent: any, XPath: XPathElement[], value: string): Object {
-        let model = parent;
+    public add(cache: Cache, XPath: XPathElement[], set: ConfigSet): Cache {
         while (XPath.length > 0) {
             let xpathElement = XPath.shift();
             this._logger.info('XPath.length:' + XPath.length);
-            this._logger.info("\n" + 'xpathElement:' + xpathElement.element + '\n' + 'parent:' + JSON.stringify(parent));
-            parent = this.insertChild(parent, xpathElement, XPath, value);
+            this._logger.info("\n" + 'xpathElement:' + xpathElement.element + '\n' + 'parent:' + JSON.stringify(cache.parent));
+            cache = this.insertChild(cache, xpathElement, XPath, set);
         }
-        this._logger.info('model:' + JSON.stringify(model))
-        return parent;
+        return cache;
     }
-    private insertChild(parent: any, xpathElement: XPathElement, XPath: XPathElement[], value: string): Object {
-        let child;
-        if (XPath.length > 0 || (value == null && XPath.length == 0)) {
-            if (!Array.isArray(parent)) {
-                let childName = this.getChildName(parent, xpathElement.element);
-                if (!Array.isArray(parent[childName])) {
-                    child = this.setChildAsParentProperty(parent, xpathElement)
+    private insertChild(cache: Cache, xpathElement: XPathElement, XPath: XPathElement[], set: ConfigSet): Cache {
+        let child = new Cache();
+        child.config = cache.config;
+        if (XPath.length > 0 || (typeof set.value == 'undefined' && XPath.length == 0)) {
+            if (!Array.isArray(cache.parent)) {
+                let childName = this.getChildName(cache.parent, xpathElement.element);
+                if (!cache.config[childName]) {
+                    cache.config[childName] = {};
+                    this._logger.info('new configuration element added: ' + childName + ' result: ' + JSON.stringify(cache.config[childName]));
+                }
+                child.config = cache.config[childName];
+                if (Array.isArray(cache.parent[childName])) {
+                    child.parent = cache.parent[this.getChildName(cache.parent, xpathElement.element)];
                 } else {
-                    child = parent[this.getChildName(parent, xpathElement.element)];
+                    throw new Error('Child is not an array and no value has been passed!');
                 }
             } else {
-                child = this.pushChildToParent(parent, xpathElement);
+                child = this.pushChildToParent(cache, xpathElement);
             }
         } else {
-            parent[xpathElement.element] = value;
-            child = parent[xpathElement.element];
+            cache.parent[xpathElement.element] = set.value;
+            child.parent = cache.parent[xpathElement.element];
+            child.config[xpathElement.element] = set.configuration;
         }
         return child;
     }
-    private pushChildToParent(parent: any, xpathElement: XPathElement) {
-        let child;
+    private pushChildToParent(cache: Cache, xpathElement: XPathElement): Cache {
+        let child = new Cache();
+        child.config = cache.config;
         let _class = this.getClass(xpathElement.element, xpathElement.prefix);
-        parent.push(_class);
-        child = parent[parent.length - 1];
-        this._logger.info(child + ' in ' + parent + ' inserted');
-        return child;
-    }
-    private setChildAsParentProperty(parent: any, xpathElement: XPathElement): Object {
-        let child;
-        let childName = this.getChildName(parent, xpathElement.element);
-        let _class = this.getClass(xpathElement.element, xpathElement.prefix);
-        parent[childName] = _class;
-        child = parent[childName];
-        this._logger.info('New child:' + JSON.stringify(child));
+        cache.parent.push(_class);
+        child.parent = cache.parent[cache.parent.length - 1];
+        this._logger.info(child.parent + ' in ' + cache.parent + ' inserted');
         return child;
     }
 
