@@ -1,4 +1,4 @@
 <div class="form-group" *ngIf="isShowAll || config.isFieldVisible(fieldName,'textField')">
     <label [attr.for]="fieldName">{{getDisplayName(fieldName)}}</label>
-    <input type="text" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName" [disabled]="disabled">
+    <input [readonly]="config.isFieldFixed(fieldName)" type="text" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName" [disabled]="disabled">
 </div>

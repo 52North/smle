@@ -27,7 +27,14 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
     public isFieldFixed(name: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            return value._fixValue;
+            if(typeof value == 'undefined'){
+                return false;
+            }else{
+              if(typeof value._fixValue != "undefined"){
+                  return value._fixValue;
+              }
+              return false; 
+            }
         }
         return false;
     }
@@ -39,6 +46,9 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
                 return false;
             }else {
                 if(typeof value._hideField != "undefined"){
+                    if(typeof value._hideField["_"+formFieldType]== "undefined"){
+                        return false;
+                    }
                      return !value._hideField["_"+formFieldType];
                 }
                 return true;
