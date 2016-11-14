@@ -2,7 +2,7 @@ import {Component, ComponentResolver, ViewContainerRef} from '@angular/core';
 import {CardComponent} from '../basic/CardComponent';
 import {ListComponent} from '../basic/ListComponent';
 import {AbstractSWEComponent} from '../swe/AbstractSWEComponent';
-import {KeywordListComponent} from '../swe/KeywordListComponent';
+import {KeywordListComponent} from '../sml/KeywordListComponent';
 import {IdentifierListComponent} from './IdentifierListComponent';
 import {ClassifierListComponent} from './ClassifierListComponent';
 import {DocumentListComponent} from './DocumentListComponent';

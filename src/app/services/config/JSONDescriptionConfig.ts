@@ -12,7 +12,7 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
     public isFieldMandatory(name: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (typeof value == 'undefined') {
+            if (typeof value == 'undefined'|| value==null) {
                 return false;
             } else {
                 if (typeof value.requireValue != "undefined") {
@@ -27,7 +27,7 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
     public hasLabel(name: string): string {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (typeof value == 'undefined') {
+            if (typeof value == 'undefined'|| value==null) {
                 return null;
             } else {
                 if (typeof value.label != "undefined") {
@@ -41,13 +41,11 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
     public existInForm(name: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (typeof value == 'undefined') {
+            if (typeof value == 'undefined' || value==null) {
                 return true;
-            } else {
-                if (typeof value.existInForm != "undefined") {
-                    return value.existInForm;
-                }
-                return null;
+            }
+            if (typeof value.existInForm != "undefined") {
+                return value.existInForm;
             }
         }
         return true;
@@ -55,7 +53,7 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
     public isFieldFixed(name: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (typeof value == 'undefined') {
+            if (typeof value == 'undefined'|| value==null) {
                 return false;
             } else {
                 if (typeof value.fixValue != "undefined") {
@@ -70,7 +68,7 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
     public isFieldVisible(name: string, formFieldType: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (typeof value == 'undefined') {
+            if (typeof value == 'undefined'|| value==null) {
                 return false;
             } else {
                 if (typeof value.hideField != "undefined") {

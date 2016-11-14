@@ -10,6 +10,7 @@ import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
 import {LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger} from "typescript-logging"
 
 declare var X2JS: any;
+declare var jQuery: any;
 
 class XPathElement {
     private _element: string;
@@ -101,13 +102,13 @@ export class Configuration {
     private _fixValue: boolean;
     private _requireValue: boolean;
     private _hideField: FormFields;
-    private _label:string;
-    private _existInForm:boolean;
+    private _label: string;
+    private _existInForm: boolean;
     constructor() {
         this._fixValue = false;
         this._requireValue = true;
         this._hideField = new FormFields();
-        this._existInForm=true;
+        this._existInForm = true;
     }
     get fixValue(): boolean {
         return this._fixValue;
@@ -127,13 +128,13 @@ export class Configuration {
     set hideField(hideField: FormFields) {
         this._hideField = hideField;
     }
-     get label(): string {
+    get label(): string {
         return this._label;
     }
     set label(label: string) {
         this._label = label;
     }
-     get existInForm(): boolean {
+    get existInForm(): boolean {
         return this._existInForm;
     }
     set existInForm(existInForm: boolean) {
@@ -252,8 +253,8 @@ export class DynamicGUIService {
         }
     }
     private processFormComponent(formComponent: any) {
-        if(!this._config["description"]){
-             this._config["description"] = {}; 
+        if (!this._config["description"]) {
+            this._config["description"] = {};
         }
         let config = this._config["description"];
         let cache = new Cache(this._model, config);
@@ -381,7 +382,7 @@ export class DynamicGUIService {
 
             }
         }
-        
+
         if (element["input"]) {
             let input = element["input"];
             for (var key in input) {
@@ -393,13 +394,13 @@ export class DynamicGUIService {
                     this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is visible");
                 }
             }
-        }else{
-            set.configuration.existInForm=false; 
+        } else {
+            set.configuration.existInForm = false;
         }
         if (element["label"]) {
-            let label:string = element["label"].__text;
-            if (label.length>0){
-                set.configuration.label=label;
+            let label: string = element["label"].__text;
+            if (label.length > 0) {
+                set.configuration.label = label;
             }
         }
         let xpath = element._XPath;
@@ -471,9 +472,22 @@ class InsertElements {
                 child = this.pushChildToParent(cache, xpathElement);
             }
         } else {
-            cache.parent[xpathElement.element] = set.value;
-            child.parent = cache.parent[xpathElement.element];
-            child.config[xpathElement.element] = set.configuration;
+            let childName = this.getChildName(cache.parent, xpathElement.element);
+            if (childName != null) {
+                if (set.value != null) {
+                    let values = set.value.split(",");
+                    for (var key in values) {
+                        cache.parent[childName].push(values[key]);
+                    }
+                }
+                child.parent = cache.parent[childName];
+                child.config[childName] = set.configuration;
+            } else {
+                cache.parent[xpathElement.element] = set.value;
+                child.parent = cache.parent[xpathElement.element];
+                child.config[xpathElement.element] = set.configuration;
+            }
+
         }
         return child;
     }
@@ -515,6 +529,6 @@ class InsertElements {
                 return _child;
             }
         }
-        throw new Error('Child with name ' + child + ' with parent:' + parent + ' not found!');
+        return null;
     }
 }

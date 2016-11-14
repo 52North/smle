@@ -9,9 +9,24 @@
 		</p:input>
 	</p:elementString>
 
+	<p:elementGroup groupID="KeywordList" XPath="sml:keywords/sml:KeywordList">
+		<p:elements>
+			<p:elementString ID="keyword_KeywordList" XPath="sml:keyword">
+				<p:restrictions>
+					<p:use>optional</p:use>
+				</p:restrictions>
+				<p:input>
+					<p:textField />
+				</p:input>
+			</p:elementString>
+		</p:elements>
+	</p:elementGroup>
+
 	<p:elementGroup groupID="Identification" XPath="sml:Identification/sml:IdentifierList">
 		<p:elements>
 			<p:elementGroup groupRef="shortName"
+				XPath="sml:Identification/sml:IdentifierList/sml:Identifier/sml:Term" />
+			<p:elementGroup groupRef="longName"
 				XPath="sml:Identification/sml:IdentifierList/sml:Identifier/sml:Term" />
 		</p:elements>
 	</p:elementGroup>
@@ -19,14 +34,14 @@
 	<p:elementGroup groupID="shortName"
 		XPath="sml:Identification/sml:IdentifierList/sml:Identifier/sml:Term">
 		<p:elements>
-			<p:elementString XPath="sml:label" ID="name_shortName">
+			<p:elementString XPath="sml:label" ID="label_shortName">
 				<p:restrictions>
 					<p:fixContent>
 						<p:value>Short name</p:value>
 					</p:fixContent>
 				</p:restrictions>
 				<p:input>
-					<p:textField hide="true"/>
+					<p:textField hide="true" />
 				</p:input>
 			</p:elementString>
 			<p:elementString XPath="@definition" ID="definition_shortName">
@@ -44,13 +59,41 @@
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
+	<p:elementGroup groupID="longName"
+		XPath="sml:Identification/sml:IdentifierList/sml:Identifier/sml:Term">
+		<p:elements>
+			<p:elementString XPath="sml:label" ID="label_longName">
+				<p:restrictions>
+					<p:fixContent>
+						<p:value>Long name</p:value>
+					</p:fixContent>
+				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
+			</p:elementString>
+			<p:elementString XPath="@definition" ID="definition_longName">
+				<p:restrictions>
+					<p:fixContent>
+						<p:value>urn:ogc:def:Identifier:OGC:1.0:longName</p:value>
+					</p:fixContent>
+				</p:restrictions>
+			</p:elementString>
+			<p:elementString XPath="swe:value" ID="value_longName">
+				<p:label>Long name (swe:value)</p:label>
+				<p:input>
+					<p:textField />
+				</p:input>
+			</p:elementString>
+		</p:elements>
+	</p:elementGroup>
 
 	<p:formConfiguration>
 		<p:formComponent label="Form">
 			<p:element ref="description" />
-			<p:formComponent label="Identification">
-				<p:elementGroup groupRef="Identification" />
-			</p:formComponent>
+			<p:elementGroup groupRef="KeywordList" />
+			<p:elementGroup groupRef="Identification" />
+
 		</p:formComponent>
 	</p:formConfiguration>
 </p:profile>

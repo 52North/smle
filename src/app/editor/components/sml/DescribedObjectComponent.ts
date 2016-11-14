@@ -6,7 +6,7 @@ import {KeywordList} from '../../../model/sml/KeywordList';
 import {IdentifierList} from '../../../model/sml/IdentifierList';
 import {ClassifierList} from '../../../model/sml/ClassifierList';
 import {DocumentList} from '../../../model/sml/DocumentList';
-import {KeywordListComponent} from '../swe/KeywordListComponent';
+import {KeywordListComponent} from '../sml/KeywordListComponent';
 import {IdentifierListComponent} from './IdentifierListComponent';
 import {ClassifierListComponent} from './ClassifierListComponent';
 import {DocumentListComponent} from './DocumentListComponent';

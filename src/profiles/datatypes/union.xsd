@@ -29,7 +29,7 @@
 				<extension base="profile:elementType">
 					<group ref="profile:unionGroup" /><!-- !!!ref -->
 					<assert
-						test="if((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+						test="if(((.//profile:restrictions/profile:use[not(text()='optional')]) or (count(.//profile:restrictions/profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
 						test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
 					<assert test="count(.//profile:fixContent)&lt;2" />
@@ -45,7 +45,7 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:unionGroup" minOccurs="0" /><!-- !!!ref -->
 				<assert
-					test="if((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					test="if(((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 				<assert test="count(.//profile:fixContent)&lt;2" />
 				<assert
 					test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
