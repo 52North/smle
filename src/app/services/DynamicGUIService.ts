@@ -102,10 +102,12 @@ export class Configuration {
     private _requireValue: boolean;
     private _hideField: FormFields;
     private _label:string;
+    private _existInForm:boolean;
     constructor() {
         this._fixValue = false;
         this._requireValue = true;
         this._hideField = new FormFields();
+        this._existInForm=true;
     }
     get fixValue(): boolean {
         return this._fixValue;
@@ -130,6 +132,12 @@ export class Configuration {
     }
     set label(label: string) {
         this._label = label;
+    }
+     get existInForm(): boolean {
+        return this._existInForm;
+    }
+    set existInForm(existInForm: boolean) {
+        this._existInForm = existInForm;
     }
 }
 class ConfigSet {
@@ -385,6 +393,8 @@ export class DynamicGUIService {
                     this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is visible");
                 }
             }
+        }else{
+            set.configuration.existInForm=false; 
         }
         if (element["label"]) {
             let label:string = element["label"].__text;

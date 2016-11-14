@@ -15,8 +15,8 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
             if (typeof value == 'undefined') {
                 return false;
             } else {
-                if (typeof value._requireValue != "undefined") {
-                    return value._requireValue;
+                if (typeof value.requireValue != "undefined") {
+                    return value.requireValue;
                 }
                 return true;
             }
@@ -30,13 +30,27 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
             if (typeof value == 'undefined') {
                 return null;
             } else {
-                if (typeof value._label != "undefined") {
-                    return value._label;
+                if (typeof value.label != "undefined") {
+                    return value.label;
                 }
                 return null;
             }
         }
         return null;
+    }
+    public existInForm(name: string): boolean {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (typeof value == 'undefined') {
+                return true;
+            } else {
+                if (typeof value.existInForm != "undefined") {
+                    return value.existInForm;
+                }
+                return null;
+            }
+        }
+        return true;
     }
     public isFieldFixed(name: string): boolean {
         var value = this.getValue(name);
@@ -44,8 +58,8 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
             if (typeof value == 'undefined') {
                 return false;
             } else {
-                if (typeof value._fixValue != "undefined") {
-                    return value._fixValue;
+                if (typeof value.fixValue != "undefined") {
+                    return value.fixValue;
                 }
                 return false;
             }
@@ -59,11 +73,11 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
             if (typeof value == 'undefined') {
                 return false;
             } else {
-                if (typeof value._hideField != "undefined") {
-                    if (typeof value._hideField["_" + formFieldType] == "undefined") {
+                if (typeof value.hideField != "undefined") {
+                    if (typeof value.hideField["_" + formFieldType] == "undefined") {
                         return false;
                     }
-                    return !value._hideField["_" + formFieldType];
+                    return !value.hideField["_" + formFieldType];
                 }
                 return true;
             }

@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible(fieldName,'textField')">
+<div class="form-group" *ngIf="config.existInForm(fieldName) &&(isShowAll || config.isFieldVisible(fieldName,'textField'))">
      <span *ngIf="!config.hasLabel(fieldName)">
         <label [attr.for]="fieldName">{{getDisplayName(fieldName)}}</label>
     </span>
