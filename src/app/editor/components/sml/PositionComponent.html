@@ -1,11 +1,11 @@
 <card [verticalMode]="hasChild" [title]="'Position'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <div *ngIf="(latitude || latitude === null || latitude === 0) && (longitude || longitude === null || longitude === 0)">
-        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('latitude')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('latitude')">
             <label for="latitude">Latitude</label>
             <input type="number" class="form-control" [(ngModel)]="latitude" name="latitude">
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('longitude')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('longitude')">
             <label for="longitude">Longitude</label>
             <input type="number" class="form-control" [(ngModel)]="longitude" name="longitude">
         </div>
@@ -14,18 +14,18 @@
                 <i class="fa fa-globe"></i> Open map
             </button>
         </div>
-        <div *ngIf="(altitude || altitude === null || altitude === 0) && (isShowAll || config.isFieldHidden('altitude'))"
+        <div *ngIf="(altitude || altitude === null || altitude === 0) && (isShowAll || config.isFieldVisible('altitude'))"
              class="form-group">
             <label for="altitude">Altitude</label>
             <input type="number" class="form-control" [(ngModel)]="altitude" name="altitude">
         </div>
     </div>
     <div *ngIf="(trueHeading || trueHeading === null || trueHeading === 0) && (pitch || pitch === null || pitch === 0)">
-        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('trueHeading')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('trueHeading')">
             <label for="trueHeading">True Heading</label>
             <input type="number" class="form-control" [(ngModel)]="trueHeading" name="trueHeading">
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('pitch')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('pitch')">
             <label for="pitch">Pitch</label>
             <input type="number" class="form-control" [(ngModel)]="pitch" name="pitch">
         </div>

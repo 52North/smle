@@ -6,7 +6,7 @@
         <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'applicationProfile'"></text-field>
         <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'"></text-field>
         <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'description'"></text-field>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('function')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('function')">
             <label for="function">{{getDisplayName('function')}}</label>
             <select class="form-control" [(ngModel)]="model.function" name="function">
                 <option value="download">Download</option>

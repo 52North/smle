@@ -1,7 +1,7 @@
 <card [verticalMode]="hasChild" [title]="'Characteristic List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
   <form>
     <swe-abstract-named-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-named-metadata-list>
-    <div class="form-group" *ngIf="isShowAll || config.isFieldHidden('characteristics')">
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('characteristics')">
       <label for="characteristics">{{getDisplayName('characteristics')}}</label>
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="characteristicTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

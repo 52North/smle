@@ -1,7 +1,7 @@
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'gmlId'"></text-field>
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'description'"></text-field>
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'descriptionReference'"></text-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('identifier')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('identifier')">
   <label for="identifier">{{getDisplayName('identifier')}}</label>
   <div class="nested-element">
     <div *ngIf="model.identifier">

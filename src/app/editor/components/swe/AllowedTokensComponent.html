@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('values')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('values')">
     <label for="values">{{getDisplayName('values')}}</label>
     <strings [list]="model.values"></strings>
 </div>

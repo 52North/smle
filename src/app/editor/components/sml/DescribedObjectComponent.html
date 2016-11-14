@@ -1,24 +1,24 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('language')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('language')">
     <label for="language">{{getDisplayName('language')}}</label>
     <input type="text" class="form-control" [(ngModel)]="model.language" name="language">
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('keywords')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('keywords')">
     <label for="keywords">{{getDisplayName('keywords')}}</label>
     <list [list]="model.keywords" (select)="openNewKeywordListItem($event)"
           (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('identification')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('identification')">
     <label for="identification">{{getDisplayName('identification')}}</label>
     <list [list]="model.identification" (select)="openNewIdentifierListItem($event)"
           (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('classification')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('classification')">
     <label for="classification">{{getDisplayName('classification')}}</label>
     <list [list]="model.classification" (select)="openNewClassifierListItem($event)"
           (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('validTime')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('validTime')">
     <label for="validTime">{{getDisplayName('validTime')}}</label>
     <list [list]="model.validTime" (select)="openNewAbstractTimeItem($event)" (remove)="onRemoveAbstractTime($event)"
           [itemTitleFunc]="getAbstractTimeTitle">
@@ -32,27 +32,27 @@
         </list-add-section>
     </list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('characteristics')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('characteristics')">
     <label for="characteristics">{{getDisplayName('characteristics')}}</label>
     <list [list]="model.characteristics" (select)="openNewCharacteristicListItem($event)"
           (remove)="onRemoveCharacteristicList($event)" (add)="onAddCharacteristicList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('capabilities')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('capabilities')">
     <label for="capabilities">{{getDisplayName('capabilities')}}</label>
     <list [list]="model.capabilities" (select)="openNewCapabilityListItem($event)"
           (remove)="onRemoveCapabilityList($event)" (add)="onAddCapabilityList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('contacts')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('contacts')">
     <label for="contacts">{{getDisplayName('contacts')}}</label>
     <list [list]="model.contacts" (select)="openNewContactListItem($event)"
           (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('documentation')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('documentation')">
     <label for="documentation">{{getDisplayName('documentation')}}</label>
     <list [list]="model.documentation" (select)="openNewDocumentListItem($event)"
           (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('history')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('history')">
     <label for="history">{{getDisplayName('history')}}</label>
     <list [list]="model.history" (select)="openNewEventListItem($event)"
           (remove)="onRemoveEventList($event)" (add)="onAddEventList()"></list>

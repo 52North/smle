@@ -7,7 +7,7 @@ export class DefaultDescriptionConfig implements DescriptionConfig {
   isFieldFixed(name: string): boolean{
       return true;
   }
-  isFieldHidden(name:string):boolean{
+  isFieldVisible(name:string):boolean{
       return true;
   }
   

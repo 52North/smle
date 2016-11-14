@@ -1,6 +1,6 @@
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'value'"></text-field>
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'codeSpace'"></text-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('constraint')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('constraint')">
     <label for="constraint">{{getDisplayName('constraint')}}</label>
     <div class="nested-element">
         <swe-allowed-tokens [isShowAll]="isShowAll" [config]="config.getConfigFor('constraint')"

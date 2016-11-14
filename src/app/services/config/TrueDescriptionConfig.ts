@@ -1,7 +1,7 @@
 import { DescriptionConfig } from './DescriptionConfig';
 
 export class TrueDescriptionConfig implements DescriptionConfig {
-  isFieldHidden(name: string): boolean {
+  isFieldVisible(name: string): boolean {
     return true;
   }
 

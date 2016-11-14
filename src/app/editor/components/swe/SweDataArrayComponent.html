@@ -1,5 +1,5 @@
 <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'elementCount'"></number-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('elementType')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('elementType')">
     <label for="elementType">{{getDisplayName('elementType')}}</label>
     <div class="nested-element">
         <div class="dropdown" *ngIf="!model.elementType">
@@ -17,7 +17,7 @@
                           [config]="config.getConfigFor('elementType')" [model]="model.elementType"></swe-element-type>
     </div>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldHidden('encoding')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('encoding')">
     <label for="encoding">{{getDisplayName('encoding')}}</label>
     <div class="nested-element">
         <div class="dropdown" *ngIf="!model.encoding">

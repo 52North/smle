@@ -32,14 +32,14 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
         return false;
     }
 
-    public isFieldHidden(name: string, formFieldType: string): boolean {
+    public isFieldVisible(name: string, formFieldType: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
             if(typeof value == 'undefined'){
                 return false;
             }else {
-                if(typeof value._requireValue != "undefined"){
-                     return value._requireValue;
+                if(typeof value._hideField != "undefined"){
+                     return !value._hideField["_"+formFieldType];
                 }
                 return true;
             } 
