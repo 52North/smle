@@ -26,7 +26,7 @@
 					</p:fixContent>
 				</p:restrictions>
 				<p:input>
-					<p:textField />
+					<p:textField hide="true"/>
 				</p:input>
 			</p:elementString>
 			<p:elementString XPath="@definition" ID="definition_shortName">
@@ -37,6 +37,7 @@
 				</p:restrictions>
 			</p:elementString>
 			<p:elementString XPath="swe:value" ID="value_shortName">
+				<p:label>Short name (swe:value)</p:label>
 				<p:input>
 					<p:textField />
 				</p:input>

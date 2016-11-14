@@ -5,35 +5,49 @@ import { TrueDescriptionConfig } from './TrueDescriptionConfig';
 import { FalseDescriptionConfig } from './FalseDescriptionConfig';
 
 export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
-    constructor(private config: any, private dynamicGUI:boolean) {
-      //  alert(JSON.stringify(config));
+    constructor(private config: any, private dynamicGUI: boolean) {
+        //  alert(JSON.stringify(config));
     }
 
     public isFieldMandatory(name: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if(typeof value == 'undefined'){
+            if (typeof value == 'undefined') {
                 return false;
-            }else {
-                if(typeof value._requireValue != "undefined"){
-                     return value._requireValue;
+            } else {
+                if (typeof value._requireValue != "undefined") {
+                    return value._requireValue;
                 }
                 return true;
-            } 
+            }
         }
         return typeof value === 'undefined' || !!value;
     }
 
+    public hasLabel(name: string): string {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (typeof value == 'undefined') {
+                return null;
+            } else {
+                if (typeof value._label != "undefined") {
+                    return value._label;
+                }
+                return null;
+            }
+        }
+        return null;
+    }
     public isFieldFixed(name: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if(typeof value == 'undefined'){
+            if (typeof value == 'undefined') {
                 return false;
-            }else{
-              if(typeof value._fixValue != "undefined"){
-                  return value._fixValue;
-              }
-              return false; 
+            } else {
+                if (typeof value._fixValue != "undefined") {
+                    return value._fixValue;
+                }
+                return false;
             }
         }
         return false;
@@ -42,17 +56,17 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
     public isFieldVisible(name: string, formFieldType: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {
-            if(typeof value == 'undefined'){
+            if (typeof value == 'undefined') {
                 return false;
-            }else {
-                if(typeof value._hideField != "undefined"){
-                    if(typeof value._hideField["_"+formFieldType]== "undefined"){
+            } else {
+                if (typeof value._hideField != "undefined") {
+                    if (typeof value._hideField["_" + formFieldType] == "undefined") {
                         return false;
                     }
-                     return !value._hideField["_"+formFieldType];
+                    return !value._hideField["_" + formFieldType];
                 }
                 return true;
-            } 
+            }
         }
         return typeof value === 'undefined' || !!value;
     }

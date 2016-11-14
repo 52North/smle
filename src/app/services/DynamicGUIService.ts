@@ -101,6 +101,7 @@ export class Configuration {
     private _fixValue: boolean;
     private _requireValue: boolean;
     private _hideField: FormFields;
+    private _label:string;
     constructor() {
         this._fixValue = false;
         this._requireValue = true;
@@ -123,6 +124,12 @@ export class Configuration {
     }
     set hideField(hideField: FormFields) {
         this._hideField = hideField;
+    }
+     get label(): string {
+        return this._label;
+    }
+    set label(label: string) {
+        this._label = label;
     }
 }
 class ConfigSet {
@@ -377,6 +384,12 @@ export class DynamicGUIService {
                     set.configuration.hideField[key] = false;
                     this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is visible");
                 }
+            }
+        }
+        if (element["label"]) {
+            let label:string = element["label"].__text;
+            if (label.length>0){
+                set.configuration.label=label;
             }
         }
         let xpath = element._XPath;
