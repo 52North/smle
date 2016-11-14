@@ -5,5 +5,5 @@
     <span *ngIf="config.hasLabel(fieldName)l">
         <label [attr.for]="fieldName">{{config.hasLabel(fieldName)}}</label> 
     </span>
-    <input [readonly]="config.isFieldFixed(fieldName)" type="text" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName" [disabled]="disabled">
+     <input [required]="config.isFieldMandatory(fieldName)" [readonly]="config.isFieldFixed(fieldName)" type="text" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName" [disabled]="disabled">
 </div>
