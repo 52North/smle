@@ -1,4 +1,4 @@
-import { Input, Output, EventEmitter } from '@angular/core';
+import { Input, Output, EventEmitter,OnInit } from '@angular/core';
 import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 import { Type } from '@angular/core/src/facade/lang';
 import { BaseComponent } from './BaseComponent';
@@ -29,7 +29,7 @@ export class ChildMetadata {
   }
 }
 
-export abstract class TypedModelComponent<T> extends BaseComponent {
+export abstract class TypedModelComponent<T> extends BaseComponent implements OnInit{
   @Input()
   public model: T;
   @Input()
@@ -42,13 +42,17 @@ export abstract class TypedModelComponent<T> extends BaseComponent {
   @Output()
   public modelChange: EventEmitter<T> = new EventEmitter<T>();
 
+  private _storeProfileModel:T;
   protected abstract createModel(): T;
 
   protected extendModel(): void {
-    jQuery.extend(this.model, this.createModel());
+      jQuery.extend(this.model, this._storeProfileModel);
   }
 
   protected openNewChild(childMetadata: ChildMetadata) {
     this.openAsChild.emit(childMetadata);
   }
+   ngOnInit(): void {
+       this._storeProfileModel= Object.assign({},this.model);
+   }
 }

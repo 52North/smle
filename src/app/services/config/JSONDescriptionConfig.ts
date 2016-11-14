@@ -21,7 +21,7 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
                 return true;
             }
         }
-        return typeof value === 'undefined' || !!value;
+        return false;
     }
 
     public hasLabel(name: string): string {
