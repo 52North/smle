@@ -366,6 +366,7 @@ export class DynamicGUIService {
 
             }
         }
+        
         if (element["input"]) {
             let input = element["input"];
             for (var key in input) {

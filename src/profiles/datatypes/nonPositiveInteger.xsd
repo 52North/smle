@@ -18,7 +18,7 @@
 						</element>
 						<element name="input" minOccurs="0">
 							<complexType>
-								<choice><!-- change -->
+								<choice maxOccurs="unbounded"><!-- change -->
 									<element ref="profile:textField" />
 									<element ref="profile:selectionBox" />
 									<element ref="profile:numberField" />
@@ -27,6 +27,8 @@
 						</element>
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
+					<assert
+						test="if((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
 						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 				</extension>
@@ -39,14 +41,16 @@
 			<extension base="profile:elementRefType">
 				<group ref="profile:nonPositiveIntegerGroup" /><!-- !!!ref -->
 				<assert
-						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+					test="if((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+				<assert
+					test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>
 
-	
+
 	<complexType name="union_nonPositiveInteger">
-		<group ref="profile:nonPositiveIntegerRestrictionGroup" minOccurs="0"/><!-- !!!ref -->
+		<group ref="profile:nonPositiveIntegerRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
 	<group name="nonPositiveIntegerGroup"><!-- !!!name -->
@@ -213,7 +217,7 @@
 			<element name="current-date" type="token" minOccurs="0" />
 		</choice>
 	</group>
-	
+
 	<complexType name="nonPositiveInteger_roundingType">
 		<sequence>
 			<element name="item" type="profile:nonPositiveInteger_fixContentType" />
@@ -257,7 +261,7 @@
 			<group ref="profile:nonPositiveInteger_arithmetic_operatorGroup" />
 		</choice>
 	</complexType>
-		<complexType name="nonPositiveInteger_fixContentType">
+	<complexType name="nonPositiveInteger_fixContentType">
 		<group ref="profile:nonPositiveInteger_fixContentGroup" />
 	</complexType>
 </schema>

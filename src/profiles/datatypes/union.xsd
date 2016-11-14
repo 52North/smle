@@ -29,7 +29,9 @@
 				<extension base="profile:elementType">
 					<group ref="profile:unionGroup" /><!-- !!!ref -->
 					<assert
-					test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
+						test="if((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert
+						test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
 					<assert test="count(.//profile:fixContent)&lt;2" />
 					<assert
 						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
@@ -41,12 +43,14 @@
 	<complexType name="elementUnionRefType"><!-- !!!name -->
 		<complexContent>
 			<extension base="profile:elementRefType">
-				<group ref="profile:unionGroup" minOccurs="0"/><!-- !!!ref -->
+				<group ref="profile:unionGroup" minOccurs="0" /><!-- !!!ref -->
+				<assert
+					test="if((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 				<assert test="count(.//profile:fixContent)&lt;2" />
 				<assert
 					test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
 				<assert
-						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+					test="if(.//profile:fixContent) then (not(profile:defaultContent) and not(.//profile:use) and not(.//profile:occurrence)) else(true())" />
 			</extension>
 		</complexContent>
 	</complexType>

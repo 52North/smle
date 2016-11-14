@@ -17,7 +17,7 @@
 						</element>
 						<element name="input" minOccurs="0">
 							<complexType>
-								<choice><!-- change -->
+								<choice maxOccurs="unbounded"><!-- change -->
 									<element ref="profile:textField" />
 									<element ref="profile:selectionBox" />
 									<element ref="profile:calendar" />
@@ -26,6 +26,8 @@
 						</element>
 					</sequence>
 					<attribute name="XSDList" type="boolean" default="false" />
+					<assert
+						test="if((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
 						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 				</extension>
@@ -37,6 +39,8 @@
 		<complexContent>
 			<extension base="profile:elementRefType">
 				<group ref="profile:dateGroup" /><!-- !!!ref -->
+				<assert
+					test="if((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 				<assert
 					test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
 			</extension>
