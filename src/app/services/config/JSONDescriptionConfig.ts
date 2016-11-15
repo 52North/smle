@@ -24,20 +24,6 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
         return false;
     }
 
-    public hasLabel(name: string): string {
-        var value = this.getValue(name);
-        if (this.dynamicGUI) {
-            if (typeof value == 'undefined'|| value==null) {
-                return null;
-            } else {
-                if (typeof value.label != "undefined") {
-                    return value.label;
-                }
-                return null;
-            }
-        }
-        return null;
-    }
     public existInForm(name: string): boolean {
         var value = this.getValue(name);
         if (this.dynamicGUI) {

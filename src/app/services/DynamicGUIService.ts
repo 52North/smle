@@ -1,5 +1,5 @@
 import * as gmlLib from '../model/gml';
-import * as isoLib from '../model/iso';
+import * as gmdLib from '../model/iso/gmd';
 import * as smlLib from '../model/sml';
 import * as sweLib from '../model/swe';
 import { Http, Response } from '@angular/http';
@@ -102,7 +102,6 @@ export class Configuration {
     private _fixValue: boolean;
     private _requireValue: boolean;
     private _hideField: FormFields;
-    private _label: string;
     private _existInForm: boolean;
     constructor() {
         this._fixValue = false;
@@ -128,12 +127,7 @@ export class Configuration {
     set hideField(hideField: FormFields) {
         this._hideField = hideField;
     }
-    get label(): string {
-        return this._label;
-    }
-    set label(label: string) {
-        this._label = label;
-    }
+
     get existInForm(): boolean {
         return this._existInForm;
     }
@@ -281,7 +275,7 @@ export class DynamicGUIService {
         let ref = element._ref;
         this._logger.info('Process single global element: ' + ref);
         for (let key in this._profile) {
-            if (key.indexOf('element') == 0 && key != 'elementGroup') {
+            if (key.indexOf('element') == 0 && key != 'elementGroup'&& key != 'elementGroupRef') {
                 let elementGlobal = this._profile[key];
                 if (Array.isArray(elementGlobal)) {
                     for (var _key in elementGlobal) {
@@ -316,34 +310,39 @@ export class DynamicGUIService {
                 if (Array.isArray(elementGroupsGlobal)) {
                     for (var _key in elementGroupsGlobal) {
                         if (groupID == elementGroupsGlobal[_key]._groupID) {
-                            this.processElementGroup(cache, elementGroupsGlobal[_key], parentXPath);
+                            this.processElementGroup(cache, elementGroupsGlobal[_key], parentXPath, true);
                         }
                     }
                 } else {
                     if (groupID == elementGroupsGlobal._groupID) {
-                        this.processElementGroup(cache, elementGroupsGlobal, parentXPath);
+                        this.processElementGroup(cache, elementGroupsGlobal, parentXPath, true);
                     }
                 }
             }
         }
     }
-    private processElementGroup(cache: Cache, elementGroup: any, parentXPath: string) {
+    private processElementGroup(cache: Cache, elementGroup: any, parentXPath: string, global: boolean) {
         let elements = elementGroup.elements;
         let XPath: string = elementGroup._XPath;
-        let sliceLength: number = parentXPath.length;
-        if (XPath.substring(sliceLength, sliceLength + 1) == "/") {
-            sliceLength = sliceLength + 1;
+        if (global) {
+            let sliceLength: number = parentXPath.length;
+            if (XPath.substring(sliceLength, sliceLength + 1) == "/") {
+                sliceLength = sliceLength + 1;
+            }
+            XPath = XPath.slice(sliceLength);
+            this._logger.info("Element group: sliced XPath: " + XPath);
         }
-        XPath = XPath.slice(sliceLength);
-        this._logger.info("Element group: sliced XPath: " + XPath);
+
         let xpath: XPathElement[] = this.splitXPath(XPath);
         let set = new ConfigSet();
         let _cache = this._insertElements.add(cache, xpath, set);
         for (var key in elements) {
-            if (key.indexOf('element') == 0 && key != 'elementGroup') {
+            if (key.indexOf('element') == 0 && key != 'elementGroup' && key != 'elementGroupRef') {
                 this.insertSingleElements(_cache, elements[key]);
-            } else if (key == "elementGroup") {
+            } else if (key == "elementGroupRef") {
                 this.processElementGroupRefs(_cache, elements[key], XPath);
+            } else if (key == "elementGroup") {
+                this.processElementGroup(_cache, elements[key], XPath, false);
             }
         }
     }
@@ -396,12 +395,6 @@ export class DynamicGUIService {
             }
         } else {
             set.configuration.existInForm = false;
-        }
-        if (element["label"]) {
-            let label: string = element["label"].__text;
-            if (label.length > 0) {
-                set.configuration.label = label;
-            }
         }
         let xpath = element._XPath;
         let xpathElement: XPathElement[] = this.splitXPath(xpath);
@@ -504,12 +497,12 @@ class InsertElements {
     public getClass(name: string, prefix: string): Object {
         if (prefix == "gml") {
             return this._getClass(name, gmlLib);
-        } else if (prefix == "iso") {
-            return this._getClass(name, isoLib);
+        } else if (prefix == "gmd") {
+            return this._getClass(name, gmdLib);
         } else if (prefix == "sml") {
             return this._getClass(name, smlLib);
         } else if (prefix == "swe") {
-            return this._getClass(name, sweLib);
+            return this._getClass("SWE"+name, sweLib);
         }
         throw new Error('Prefix not found!');
     }

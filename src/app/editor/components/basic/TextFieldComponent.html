@@ -1,9 +1,4 @@
 <div class="form-group" *ngIf="config.existInForm(fieldName) &&(isShowAll || config.isFieldVisible(fieldName,'textField'))">
-     <span *ngIf="!config.hasLabel(fieldName)">
-        <label [attr.for]="fieldName">{{getDisplayName(fieldName)}}</label>
-    </span>
-    <span *ngIf="config.hasLabel(fieldName)l">
-        <label [attr.for]="fieldName">{{config.hasLabel(fieldName)}}</label> 
-    </span>
-     <input [required]="config.isFieldMandatory(fieldName)" [readonly]="config.isFieldFixed(fieldName)" type="text" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName" [disabled]="disabled">
+     <label [attr.for]="fieldName">{{getDisplayName(fieldName)}}</label>
+    <input [required]="config.isFieldMandatory(fieldName)" [readonly]="config.isFieldFixed(fieldName)" type="text" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName" [disabled]="disabled">
 </div>

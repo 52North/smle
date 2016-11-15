@@ -6,13 +6,10 @@ export class DefaultDescriptionConfig implements DescriptionConfigDynamicGUI {
         return false;
     }
     isFieldFixed(name: string): boolean {
-        return true;
+        return false;
     }
     isFieldVisible(name: string): boolean {
-        return true;
-    }
-    hasLabel(name: string): string {
-        return null;
+        return false;
     }
     existInForm(name: string): boolean {
         return true;

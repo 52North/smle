@@ -317,16 +317,17 @@
 			<element name="label" type="string" minOccurs="0" />
 			<element name="description" type="string" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
-			<element name="elements">
+			<element name="elements" minOccurs="0">
 				<complexType>
 					<choice maxOccurs="unbounded">
 						<element ref="profile:element" />
-						<element name="elementGroup">
+						<element name="elementGroupRef">
 							<complexType>
 								<attribute name="groupRef" type="string" use="required" />
 								<attribute name="XPath" type="profile:XPath" use="required" />
 							</complexType>
 						</element>
+						<element  name="elementGroup" type="profile:elementGroupType"/>
 					</choice>
 				</complexType>
 			</element>
@@ -335,9 +336,9 @@
 		<attribute name="groupID" type="string" use="required" />
 		<attribute name="XPath" type="string" use="required" />
 		<assert
-			test="count(profile:elements/*[not(local-name(.)='elementGroup')])=count(profile:elements/*[not(local-name(.)='elementGroup') and ends-with(@ID,concat('_',./../../@groupID))])" />
+			test="count(profile:elements/*[not(local-name(.)='elementGroup') and not(local-name(.)='elementGroupRef')])=count(profile:elements/*[not(local-name(.)='elementGroup') and not(local-name(.)='elementGroupRef') and ends-with(@ID,concat('_',./../../@groupID))])" />
 		<assert
-			test="count(profile:elements/profile:elementGroup) = count (profile:elements/profile:elementGroup[starts-with(@XPath,./../../@XPath)])" />
+			test="count(profile:elements/profile:elementGroupRef) = count (profile:elements/profile:elementGroupRef[starts-with(@XPath,./../../@XPath)])" />
 	</complexType>
 
 	<complexType name="dependenceRulesType">
