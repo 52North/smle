@@ -1,9 +1,9 @@
 {
-  "sosUrl": "http://localhost:3002/52n-sos-webapp/service",
-  "proxyUrl": "http://localhost:3001/api/proxy",
-  "authUrl": "http://localhost:3001/auth/github",
-  "logOutUrl": "http://localhost:3001/auth/logout",
-  "userInfoUrl": "http://localhost:3001/auth/info",
-  "templatesUrl": "http://localhost:3005/solr/yellowPages",
+  "sosUrl": "http://192.168.52.145:3002/52n-sos-webapp/service",
+  "proxyUrl": "http://192.168.52.145:3001/api/proxy",
+  "authUrl": "http://192.168.52.145:3001/auth/wp",
+  "logOutUrl": "http://192.168.52.145:3001/auth/logout",
+  "userInfoUrl": "http://192.168.52.145:3001/auth/info",
+  "templatesUrl": "http://192.168.52.145:3005/solr/yellowPages",
   "oauthCallbackUrl": "http://localhost:3000"
 }
