@@ -275,7 +275,7 @@ export class DynamicGUIService {
         let ref = element._ref;
         this._logger.info('Process single global element: ' + ref);
         for (let key in this._profile) {
-            if (key.indexOf('element') == 0 && key != 'elementGroup'&& key != 'elementGroupRef') {
+            if (key.indexOf('element') == 0 && key != 'elementGroup' && key != 'elementGroupRef') {
                 let elementGlobal = this._profile[key];
                 if (Array.isArray(elementGlobal)) {
                     for (var _key in elementGlobal) {
@@ -321,6 +321,15 @@ export class DynamicGUIService {
             }
         }
     }
+    private processElementGroups(cache: Cache, elementGroups: any, parentXPath: string, global: boolean) {
+        if (Array.isArray(elementGroups)) {
+            for (var key in elementGroups) {
+                this.processElementGroup(cache, elementGroups[key], parentXPath, global);
+            }
+        } else {
+            this.processElementGroup(cache, elementGroups, parentXPath, global);
+        }
+    }
     private processElementGroup(cache: Cache, elementGroup: any, parentXPath: string, global: boolean) {
         let elements = elementGroup.elements;
         let XPath: string = elementGroup._XPath;
@@ -342,7 +351,7 @@ export class DynamicGUIService {
             } else if (key == "elementGroupRef") {
                 this.processElementGroupRefs(_cache, elements[key], XPath);
             } else if (key == "elementGroup") {
-                this.processElementGroup(_cache, elements[key], XPath, false);
+                this.processElementGroups(_cache, elements[key], XPath, false);
             }
         }
     }
@@ -411,6 +420,7 @@ export class DynamicGUIService {
         });
     }
     private splitXPath(XPath: string): XPathElement[] {
+        this._logger.info('XPath to split:' + XPath);
         let XPath_splitted: XPathElement[] = [];
         let elements = XPath.split("/");
         for (let element of elements) {
@@ -459,7 +469,8 @@ class InsertElements {
                 if (Array.isArray(cache.parent[childName])) {
                     child.parent = cache.parent[this.getChildName(cache.parent, xpathElement.element)];
                 } else {
-                    throw new Error('Child is not an array and no value has been passed!');
+                    child.parent = cache.parent[childName];
+                    this._logger.warn('Child: ' + JSON.stringify(cache.parent[childName]) + ' is not an array and no value has been passed!');
                 }
             } else {
                 child = this.pushChildToParent(cache, xpathElement);
@@ -468,9 +479,13 @@ class InsertElements {
             let childName = this.getChildName(cache.parent, xpathElement.element);
             if (childName != null) {
                 if (set.value != null) {
-                    let values = set.value.split(",");
-                    for (var key in values) {
-                        cache.parent[childName].push(values[key]);
+                    if (Array.isArray(cache.parent[childName])) {
+                        let values = set.value.split(",");
+                        for (var key in values) {
+                            cache.parent[childName].push(values[key]);
+                        }
+                    } else {
+                        cache.parent[childName] = set.value;
                     }
                 }
                 child.parent = cache.parent[childName];
@@ -502,7 +517,7 @@ class InsertElements {
         } else if (prefix == "sml") {
             return this._getClass(name, smlLib);
         } else if (prefix == "swe") {
-            return this._getClass("SWE"+name, sweLib);
+            return this._getClass("SWE" + name, sweLib);
         }
         throw new Error('Prefix not found!');
     }
