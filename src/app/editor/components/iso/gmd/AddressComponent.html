@@ -8,12 +8,12 @@
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('deliveryPoint')">
             <label for="deliveryPoint">{{getDisplayName('deliveryPoint')}}</label>
-            <strings [list]="model.deliveryPoint"></strings>
+            <strings [list]="model.deliveryPoint" [config]="config" [fieldName]="'deliveryPoint'"></strings>
         </div>
 
         <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('electronicMailAddress')">
             <label for="electronicMailAddress">{{getDisplayName('electronicMailAddress')}}</label>
-            <strings [list]="model.electronicMailAddress"></strings>
+            <strings [list]="model.electronicMailAddress" [config]="config" [fieldName]="'electronicMailAddress'"></strings>
         </div>
     </form>
 </card>

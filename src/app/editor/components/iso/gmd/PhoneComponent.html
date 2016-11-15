@@ -3,11 +3,11 @@
     <form>
         <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('voice')">
             <label for="voice">{{getDisplayName('voice')}}</label>
-            <strings [list]="model.voice"></strings>
+            <strings [list]="model.voice" [config]="config" [fieldName]="'voice'"></strings>
         </div>
         <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('facsimile')">
             <label for="facsimile">{{getDisplayName('facsimile')}}</label>
-            <strings [list]="model.facsimile"></strings>
+            <strings [list]="model.facsimile" [config]="config" [fieldName]="'facsimile'"></strings>
         </div>
     </form>
 </card>
