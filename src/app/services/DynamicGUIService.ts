@@ -433,6 +433,7 @@ export class DynamicGUIService {
             }
 
         }
+        this._logger.info('New splitted XPath: ' + JSON.stringify(XPath_splitted));
         return XPath_splitted;
     }
 }
@@ -467,7 +468,14 @@ class InsertElements {
                 }
                 child.config = cache.config[childName];
                 if (Array.isArray(cache.parent[childName])) {
-                    child.parent = cache.parent[this.getChildName(cache.parent, xpathElement.element)];
+                    if(XPath.length==0){
+                        let newObject={};
+                        cache.parent[childName].push(newObject);
+                        child.parent = cache.parent[childName][cache.parent[childName].length - 1];
+                    }else{
+                         child.parent = cache.parent[childName];
+                    }
+                   
                 } else {
                     child.parent = cache.parent[childName];
                     this._logger.warn('Child: ' + JSON.stringify(cache.parent[childName]) + ' is not an array and no value has been passed!');
@@ -483,6 +491,7 @@ class InsertElements {
                         let values = set.value.split(",");
                         for (var key in values) {
                             cache.parent[childName].push(values[key]);
+                            this._logger.info(values[key] + ' pushed to ' + JSON.stringify(cache.parent[childName]));
                         }
                     } else {
                         cache.parent[childName] = set.value;
@@ -491,8 +500,16 @@ class InsertElements {
                 child.parent = cache.parent[childName];
                 child.config[childName] = set.configuration;
             } else {
+                // alert(xpathElement.element)
+//                if (Array.isArray(cache.parent)) {
+//                    let newChild = {};
+//                    newChild[xpathElement.element] = set.value;
+//                    cache.parent.push(newChild);
+//                    child.parent = cache.parent[cache.parent.length - 1];
+//                }
                 cache.parent[xpathElement.element] = set.value;
                 child.parent = cache.parent[xpathElement.element];
+                this._logger.info('Value: ' + set.value + ' set in parent: ' + cache.parent);
                 child.config[xpathElement.element] = set.configuration;
             }
 
@@ -505,7 +522,7 @@ class InsertElements {
         let _class = this.getClass(xpathElement.element, xpathElement.prefix);
         cache.parent.push(_class);
         child.parent = cache.parent[cache.parent.length - 1];
-        this._logger.info(child.parent + ' in ' + cache.parent + ' inserted');
+        this._logger.info(child.parent + ' pushed to ' + JSON.stringify(cache.parent));
         return child;
     }
 

@@ -287,20 +287,16 @@
 					</p:fixContent>
 				</p:restrictions>
 			</p:elementString>
-			<p:elementGroup groupID="uom_longitude_Position" XPath="swe:uom">
-				<p:elements>
-					<p:elementString ID="code_uom_longitude_Position" XPath="@code">
-						<p:restrictions>
-							<p:defaultContent>
-								<p:value>deg</p:value>
-							</p:defaultContent>
-						</p:restrictions>
-						<p:input>
-							<p:textField />
-						</p:input>
-					</p:elementString>
-				</p:elements>
-			</p:elementGroup>
+			<p:elementString ID="code_uom_longitude_Position" XPath="swe:uom/@code">
+				<p:restrictions>
+					<p:defaultContent>
+						<p:value>deg</p:value>
+					</p:defaultContent>
+				</p:restrictions>
+				<p:input>
+					<p:textField />
+				</p:input>
+			</p:elementString>
 			<p:elementDouble ID="value_longitude_Position" XPath="swe:value">
 				<p:input>
 					<p:textField />
@@ -346,7 +342,7 @@
 			</p:elementDouble>
 		</p:elements>
 	</p:elementGroup>
-	
+
 	<p:elementGroup groupID="altitude_Position" XPath="swe:field/swe:Quantity">
 		<p:elements>
 			<p:elementAnyURI ID="referenceFrame_altitude_Position" XPath="@referenceFrame">
