@@ -1,33 +1,32 @@
 <card [verticalMode]="hasChild" [title]="'Position'" (reset)="onReset()" (close)="close()"
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <div *ngIf="(latitude || latitude === null || latitude === 0) && (longitude || longitude === null || longitude === 0)">
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('latitude')">
+        <div class="form-group"  *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
             <label for="latitude">Latitude</label>
-            <input type="number" class="form-control" [(ngModel)]="latitude" name="latitude">
+            <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value')" [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="latitude" name="latitude">
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('longitude')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
             <label for="longitude">Longitude</label>
-            <input type="number" class="form-control" [(ngModel)]="longitude" name="longitude">
+            <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value')" [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="longitude" name="longitude">
         </div>
         <div class="form-group">
             <button class="btn btn-secondary" type="button" (click)="openMap()">
                 <i class="fa fa-globe"></i> Open map
             </button>
         </div>
-        <div *ngIf="(altitude || altitude === null || altitude === 0) && (isShowAll || config.isFieldVisible('altitude'))"
-             class="form-group">
+        <div *ngIf="(altitude || altitude === null || altitude === 0) && (isShowAll || config.isFieldVisible('swe:value','numberField'))" class="form-group">
             <label for="altitude">Altitude</label>
-            <input type="number" class="form-control" [(ngModel)]="altitude" name="altitude">
+            <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value')" class="form-control" [(ngModel)]="altitude" name="altitude">
         </div>
     </div>
     <div *ngIf="(trueHeading || trueHeading === null || trueHeading === 0) && (pitch || pitch === null || pitch === 0)">
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('trueHeading')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
             <label for="trueHeading">True Heading</label>
-            <input type="number" class="form-control" [(ngModel)]="trueHeading" name="trueHeading">
+            <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value')" [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="trueHeading" name="trueHeading">
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('pitch')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
             <label for="pitch">Pitch</label>
-            <input type="number" class="form-control" [(ngModel)]="pitch" name="pitch">
+            <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value')" [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="pitch" name="pitch">
         </div>
     </div>
 </card>

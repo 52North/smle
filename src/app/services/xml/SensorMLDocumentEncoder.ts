@@ -18,7 +18,7 @@ export class SensorMLDocumentEncoder {
     return doc;
   }
 
-  private createDocumentForProcess(object: AbstractProcess): Document {
+  public createDocumentForProcess(object: AbstractProcess): Document {
     if (object instanceof SimpleProcess) {
       return this.createDocument('sml', SimpleProcess.NAME, SimpleProcess.SCHEMA);
     } else if (object instanceof AggregateProcess) {

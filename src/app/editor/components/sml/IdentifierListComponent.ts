@@ -24,7 +24,7 @@ export class IdentifierListComponent extends EditorComponent<IdentifierList> {
     }
 
     private openNewIdentifierItem(item: Term) {
-        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('identifiers'));
+        var metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term'));
         this.openNewChild(metadata);
     }
 

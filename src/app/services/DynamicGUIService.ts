@@ -9,6 +9,11 @@ import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
 
 import {LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger} from "typescript-logging"
 
+import {SensorMLDocumentEncoder} from './xml/SensorMLDocumentEncoder';
+import {SensorMLDocumentDecoder} from './xml/SensorMLDocumentDecoder';
+import { AbstractProcess } from '../model/sml/AbstractProcess';
+import { Namespaces } from './xml/Namespaces';
+
 declare var X2JS: any;
 declare var jQuery: any;
 
@@ -33,16 +38,16 @@ class XPathElement {
     }
 }
 class Cache {
-    private _parent: any;
+    private _parent: Element;
     private _config: Object;
-    constructor(parent?: any, config?: Object) {
+    constructor(parent?: Element, config?: Object) {
         this._parent = parent;
         this._config = config;
     }
-    get parent(): any {
+    get parent(): Element {
         return this._parent;
     }
-    set parent(parent: any) {
+    set parent(parent: Element) {
         this._parent = parent;
     }
     get config(): Object {
@@ -152,12 +157,12 @@ class ConfigSet {
     }
 }
 export class ReturnObject {
-    private _model: any;
+    private _model: AbstractProcess;
     private _configuration: JSONDescriptionConfig;
-    get model(): any {
+    get model(): AbstractProcess {
         return this._model;
     }
-    set model(model: any) {
+    set model(model: AbstractProcess) {
         this._model = model;
     }
     get configuration(): JSONDescriptionConfig {
@@ -173,34 +178,39 @@ export class DynamicGUIService {
     private _loggerFactory: LoggerFactory;
     private _logger: Logger;
     private _insertElements: InsertElements;
-    private _model: any;
+    private _model: Document;
     private _profile: any;
     private _config: Object;
+    private _sensorML_decoder: SensorMLDocumentDecoder;
 
     constructor(private http: Http) {
         this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
             .addLogGroupRule(new LogGroupRule(new RegExp(".+"), LogLevel.Info)));
         this._logger = this._loggerFactory.getLogger("DynamicGuiService");
-        this._insertElements = new InsertElements();
         this._config = {};
+        this._sensorML_decoder = new SensorMLDocumentDecoder();
     }
 
     public getModelAndConfiguration(): Observable<Object> {
         let model = new smlLib.PhysicalSystem();
-        let cache = new Cache(model, {});
+        let encoder = new SensorMLDocumentEncoder();
+        this._model = encoder.createDocumentForProcess(model);
+        let cache = new Cache(this._model.documentElement, {});
         let path = this.splitXPath("sml:identification/sml:IdentifierList");
         let set = new ConfigSet();
+        set.configuration = new Configuration;
+        this._insertElements = new InsertElements(this._model);
         let list = this._insertElements.add(cache, path, set);
         //alert(JSON.stringify(model));
         path = this.splitXPath("sml:Identifier/sml:Term/sml:label");
         //alert(JSON.stringify(path));
         let identifierList = new smlLib.IdentifierList();
         set.value = "short name";
+
         this._insertElements.add(list, path, set);
         path = this.splitXPath("sml:Identifier/sml:Term/sml:label");
         set.value = "long name";
         this._insertElements.add(list, path, set);
-        // alert(JSON.stringify(model));
         return this.getProfile().map((json: any) => {
             this._logger.info('JSON profile:' + JSON.stringify(json));
             if (json.profile) {
@@ -210,10 +220,11 @@ export class DynamicGUIService {
             }
             this.createModel();
             this.configure();
-            this._logger.info('model with the fix values:' + (JSON.stringify(this._model)));
+            this._logger.info('model with the fix values:' + (this._model.documentElement.innerHTML));
             this._logger.info('configuration:' + (JSON.stringify(this._config)));
             let returnObject = new ReturnObject();
-            returnObject.model = this._model;
+            returnObject.model = this._sensorML_decoder.decode(this._model);
+            this._logger.info('model with the fix values:' + JSON.stringify(returnObject.model));
             returnObject.configuration = new JSONDescriptionConfig(this._config, true);
             return returnObject;
         });
@@ -222,9 +233,8 @@ export class DynamicGUIService {
     private createModel() {
         let modelClass: XPathElement[] = this.splitXPath(this._profile._class);
         if (modelClass.length == 1) {
-            this._model = this._insertElements.getClass(modelClass[0].element, modelClass[0].prefix);
-        } else {
-            throw new Error('Class of the profile has not the right format!');
+            this.setModel(modelClass[0].element);
+            this._insertElements = new InsertElements(this._model);
         }
     }
 
@@ -251,7 +261,7 @@ export class DynamicGUIService {
             this._config["description"] = {};
         }
         let config = this._config["description"];
-        let cache = new Cache(this._model, config);
+        let cache = new Cache(this._model.documentElement, config);
         for (var key in formComponent) {
             if (key == 'elementGroup') {
                 this.processElementGroupRefs(cache, formComponent[key], "");
@@ -344,6 +354,7 @@ export class DynamicGUIService {
 
         let xpath: XPathElement[] = this.splitXPath(XPath);
         let set = new ConfigSet();
+        set.configuration= new Configuration();
         let _cache = this._insertElements.add(cache, xpath, set);
         for (var key in elements) {
             if (key.indexOf('element') == 0 && key != 'elementGroup' && key != 'elementGroupRef') {
@@ -426,7 +437,7 @@ export class DynamicGUIService {
         for (let element of elements) {
             let prefix_elementName = element.split(":");
             if (prefix_elementName.length == 2) {
-                XPath_splitted.push(new XPathElement(prefix_elementName[1], prefix_elementName[0]));
+                XPath_splitted.push(new XPathElement(prefix_elementName[1], prefix_elementName[0].toUpperCase()));
             } else if (prefix_elementName.length == 1) {
                 let XPath_attribute = prefix_elementName[0].slice(1);
                 XPath_splitted.push(new XPathElement(XPath_attribute, "@"));
@@ -436,16 +447,47 @@ export class DynamicGUIService {
         this._logger.info('New splitted XPath: ' + JSON.stringify(XPath_splitted));
         return XPath_splitted;
     }
+
+    public setModel(modelClass: string) {
+        let encoder = new SensorMLDocumentEncoder();
+        let description: AbstractProcess;
+        switch (modelClass) {
+            case 'PhysicalSystem': {
+                description = new smlLib.PhysicalSystem();
+                this._model = encoder.createDocumentForProcess(description);
+                break;
+            }
+            case 'PhysicalComponent': {
+                description = new smlLib.PhysicalComponent();
+                this._model = encoder.createDocumentForProcess(description);
+                break;
+            }
+            case 'SimpleProcess': {
+                description = new smlLib.SimpleProcess();
+                this._model = encoder.createDocumentForProcess(description);
+            }
+            case 'AggregateProcess': {
+                description = new smlLib.AggregateProcess();
+                this._model = encoder.createDocumentForProcess(description);
+                break;
+            }
+            default: {
+                throw new Error('Class of the profile is not one of: PhysicalSystem, PhysicalComponent, SimpleProcess, AggregateProcess');
+            }
+        }
+    }
+
 }
 
 class InsertElements {
     private _loggerFactory: LoggerFactory;
     private _logger: Logger;
-
-    constructor() {
+    private _model: Document;
+    constructor(model: Document) {
         this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
             .addLogGroupRule(new LogGroupRule(new RegExp(".+"), LogLevel.Info)));
         this._logger = this._loggerFactory.getLogger("DynamicGuiService");
+        this._model = model;
     }
     public add(cache: Cache, XPath: XPathElement[], set: ConfigSet): Cache {
         while (XPath.length > 0) {
@@ -458,102 +500,46 @@ class InsertElements {
     }
     private insertChild(cache: Cache, xpathElement: XPathElement, XPath: XPathElement[], set: ConfigSet): Cache {
         let child = new Cache();
-        child.config = cache.config;
-        if (XPath.length > 0 || (typeof set.value == 'undefined' && XPath.length == 0)) {
-            if (!Array.isArray(cache.parent)) {
-                let childName = this.getChildName(cache.parent, xpathElement.element);
-                if (!cache.config[childName]) {
-                    cache.config[childName] = {};
-                    this._logger.info('new configuration element added: ' + childName + ' result: ' + JSON.stringify(cache.config[childName]));
-                }
-                child.config = cache.config[childName];
-                if (Array.isArray(cache.parent[childName])) {
-                    if(XPath.length==0){
-                        let newObject={};
-                        cache.parent[childName].push(newObject);
-                        child.parent = cache.parent[childName][cache.parent[childName].length - 1];
-                    }else{
-                         child.parent = cache.parent[childName];
-                    }
-                   
-                } else {
-                    child.parent = cache.parent[childName];
-                    this._logger.warn('Child: ' + JSON.stringify(cache.parent[childName]) + ' is not an array and no value has been passed!');
-                }
+        let childName = xpathElement.element;
+        let prefixAndChildName = xpathElement.prefix.toLowerCase() + ":" + xpathElement.element;
+        if (XPath.length > 0 || (typeof set.value == 'undefined')) {
+            let childNode = this._model.createElementNS(Namespaces[xpathElement.prefix], xpathElement.prefix.toLowerCase() + ":" + childName)
+            cache.parent.appendChild(childNode);
+            this._logger.info("New child: " + childNode.tagName + " appended");
+            child.parent = childNode;
+
+            if (XPath.length == 0) {
+                cache.config[prefixAndChildName] = set.configuration;
+                child.config = cache.config[prefixAndChildName];
             } else {
-                child = this.pushChildToParent(cache, xpathElement);
+                if (!cache.config[prefixAndChildName]) {
+                    cache.config[prefixAndChildName] = {};
+                    this._logger.info('new configuration element added: ' + prefixAndChildName + ' result: ' + JSON.stringify(cache.config[childName]));
+                }
+                child.config = cache.config[prefixAndChildName];
             }
+
         } else {
-            let childName = this.getChildName(cache.parent, xpathElement.element);
-            if (childName != null) {
-                if (set.value != null) {
-                    if (Array.isArray(cache.parent[childName])) {
-                        let values = set.value.split(",");
-                        for (var key in values) {
-                            cache.parent[childName].push(values[key]);
-                            this._logger.info(values[key] + ' pushed to ' + JSON.stringify(cache.parent[childName]));
-                        }
-                    } else {
-                        cache.parent[childName] = set.value;
+            if (set.value != null) {
+                if (xpathElement.prefix == "@") {
+                    cache.parent.setAttribute(xpathElement.element, set.value);
+                } else {
+                    let childNode: Element;
+                    let values = set.value.split(",");
+                    for (var key in values) {
+                        childNode = this._model.createElementNS(Namespaces[xpathElement.prefix], xpathElement.prefix.toLowerCase() + ":" + xpathElement.element);
+                        let textNode = this._model.createTextNode(values[key]);
+                        childNode.appendChild(textNode);
+                        this._logger.info(values[key] + ' pushed to ' + JSON.stringify(cache.parent));
+                        cache.parent.appendChild(childNode);
                     }
+
                 }
-                child.parent = cache.parent[childName];
-                child.config[childName] = set.configuration;
-            } else {
-                // alert(xpathElement.element)
-//                if (Array.isArray(cache.parent)) {
-//                    let newChild = {};
-//                    newChild[xpathElement.element] = set.value;
-//                    cache.parent.push(newChild);
-//                    child.parent = cache.parent[cache.parent.length - 1];
-//                }
-                cache.parent[xpathElement.element] = set.value;
-                child.parent = cache.parent[xpathElement.element];
-                this._logger.info('Value: ' + set.value + ' set in parent: ' + cache.parent);
-                child.config[xpathElement.element] = set.configuration;
             }
-
+            
+            cache.config[prefixAndChildName] = set.configuration;
+            child.config = cache.config[prefixAndChildName];
         }
         return child;
-    }
-    private pushChildToParent(cache: Cache, xpathElement: XPathElement): Cache {
-        let child = new Cache();
-        child.config = cache.config;
-        let _class = this.getClass(xpathElement.element, xpathElement.prefix);
-        cache.parent.push(_class);
-        child.parent = cache.parent[cache.parent.length - 1];
-        this._logger.info(child.parent + ' pushed to ' + JSON.stringify(cache.parent));
-        return child;
-    }
-
-    public getClass(name: string, prefix: string): Object {
-        if (prefix == "gml") {
-            return this._getClass(name, gmlLib);
-        } else if (prefix == "gmd") {
-            return this._getClass(name, gmdLib);
-        } else if (prefix == "sml") {
-            return this._getClass(name, smlLib);
-        } else if (prefix == "swe") {
-            return this._getClass("SWE" + name, sweLib);
-        }
-        throw new Error('Prefix not found!');
-    }
-    private _getClass(name: string, prefix: Object): Object {
-        for (let _class in prefix) {
-            if (name.toLowerCase().includes(_class.toLowerCase())) {
-                return new prefix[_class]();
-            }
-        }
-        throw new Error('Class with name:' + name + ' not found!');
-    }
-
-
-    private getChildName(parent: Object, child: string): string {
-        for (let _child in parent) {
-            if (_child.toLowerCase().includes(child.toLowerCase())) {
-                return _child;
-            }
-        }
-        return null;
     }
 }

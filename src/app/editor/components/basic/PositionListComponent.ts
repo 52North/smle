@@ -3,7 +3,6 @@ import { SweVector } from '../../../model/swe/SweVector';
 import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { Component } from '@angular/core';
 import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
-import { TrueDescriptionConfig } from '../../../services/config/TrueDescriptionConfig';
 import { PositionEditorComponent } from '../sml/PositionComponent';
 import { SweCoordinate } from '../../../model/swe/SweCoordinate';
 import { SweQuantity } from '../../../model/swe/SweQuantity';
@@ -12,104 +11,102 @@ import { SweField } from '../../../model/swe/SweField';
 import { ListComponent } from './ListComponent';
 
 @Component({
-  selector: 'position-list',
-  template: require('./PositionListComponent.html'),
-  directives: [ListComponent]
+    selector: 'position-list',
+    template: require('./PositionListComponent.html'),
+    directives: [ListComponent]
 })
 export class PositionListComponent extends TypedModelComponent<Array<Position>> {
-  private getPositionTypeName(positionItem: Position): string {
-    if (positionItem instanceof SweVector) {
-      return 'Vector';
-    } else if (positionItem instanceof SweDataRecord) {
-      return 'Data Record';
-    } else {
-      return '';
-    }
-  }
-
-  private addVector() {
-    var newItem = this.createPositionLocation();
-
-    this.addModelIfNotExist();
-    this.model.push(newItem);
-  }
-
-  private addModelIfNotExist() {
-    if (!this.model) {
-      this.model = [];
-      this.modelChange.emit(this.model);
-    }
-  }
-
-  private addDataRecord() {
-    var newItem = this.createPositionDataRecord();
-
-    this.addModelIfNotExist();
-    this.model.push(newItem);
-  }
-
-  private createPositionLocation(withAlt: boolean = false): SweVector {
-    var location = new SweVector();
-
-    location.coordinates.push(this.createCoordinate('Lat', 0, 'deg'));
-    location.coordinates.push(this.createCoordinate('Lon', 0, 'deg'));
-    if (withAlt) {
-      location.coordinates.push(this.createCoordinate('Alt', 0, 'm'));
+    private getPositionTypeName(positionItem: Position): string {
+        if (positionItem instanceof SweVector) {
+            return 'Vector';
+        } else if (positionItem instanceof SweDataRecord) {
+            return 'Data Record';
+        } else {
+            return '';
+        }
     }
 
-    return location;
-  }
+    private addVector() {
+        var newItem = this.createPositionLocation();
+        this.addModelIfNotExist();
+        this.model.push(newItem);
+    }
 
-  private createCoordinate(name: string, value: number, uom: string): SweCoordinate {
-    var coordinate = new SweCoordinate();
-    var quantity = new SweQuantity();
-    var unitOfMeasure = new UnitOfMeasure();
+    private addModelIfNotExist() {
+        if (!this.model) {
+            this.model = [];
+            this.modelChange.emit(this.model);
+        }
+    }
 
-    unitOfMeasure.code = uom;
+    private addDataRecord() {
+        var newItem = this.createPositionDataRecord();
+        this.addModelIfNotExist();
+        this.model.push(newItem);
+    }
 
-    quantity.value = value;
-    quantity.uom = unitOfMeasure;
+    private createPositionLocation(withAlt: boolean = false): SweVector {
+        var location = new SweVector();
 
-    coordinate.name = name;
-    coordinate.coordinate = quantity;
+        location.coordinates.push(this.createCoordinate('Lat', 0, 'deg'));
+        location.coordinates.push(this.createCoordinate('Lon', 0, 'deg'));
+        if (withAlt) {
+            location.coordinates.push(this.createCoordinate('Alt', 0, 'm'));
+        }
 
-    return coordinate;
-  }
+        return location;
+    }
 
-  private createPositionDataRecord(): SweDataRecord {
-    var dataRecord = new SweDataRecord();
-    var locationField = new SweField();
-    var orientationField = new SweField();
+    private createCoordinate(name: string, value: number, uom: string): SweCoordinate {
+        var coordinate = new SweCoordinate();
+        var quantity = new SweQuantity();
+        var unitOfMeasure = new UnitOfMeasure();
 
-    locationField.name = 'location';
-    locationField.component = this.createPositionLocation(true);
-    dataRecord.fields.push(locationField);
+        unitOfMeasure.code = uom;
 
-    orientationField.name = 'orientation';
-    orientationField.component = this.createPositionOrientation();
-    dataRecord.fields.push(orientationField);
+        quantity.value = value;
+        quantity.uom = unitOfMeasure;
 
-    return dataRecord;
-  }
+        coordinate.name = name;
+        coordinate.coordinate = quantity;
 
-  private createPositionOrientation(): SweVector {
-    var orientation = new SweVector();
+        return coordinate;
+    }
 
-    orientation.coordinates.push(this.createCoordinate('TrueHeading', 0, 'deg'));
-    orientation.coordinates.push(this.createCoordinate('Pitch', 0, 'deg'));
+    private createPositionDataRecord(): SweDataRecord {
+        var dataRecord = new SweDataRecord();
+        var locationField = new SweField();
+        var orientationField = new SweField();
 
-    return orientation;
-  }
+        locationField.name = 'location';
+        locationField.component = this.createPositionLocation(true);
+        dataRecord.fields.push(locationField);
 
-  private removeItem(index: number) {
-    this.model.splice(index, 1);
-  }
+        orientationField.name = 'orientation';
+        orientationField.component = this.createPositionOrientation();
+        dataRecord.fields.push(orientationField);
 
-  private openChild(item: Position) {
-    this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueDescriptionConfig()));
-  }
+        return dataRecord;
+    }
 
-  protected createModel(): Position[] {
-    return [];
-  }
+    private createPositionOrientation(): SweVector {
+        var orientation = new SweVector();
+
+        orientation.coordinates.push(this.createCoordinate('TrueHeading', 0, 'deg'));
+        orientation.coordinates.push(this.createCoordinate('Pitch', 0, 'deg'));
+
+        return orientation;
+    }
+
+    private removeItem(index: number) {
+        this.model.splice(index, 1);
+    }
+
+    private openChild(item: Position) {
+        this.openNewChild(new ChildMetadata(PositionEditorComponent, item, this.config.getConfigFor('swe:DataRecord').getConfigFor('swe:field').getConfigFor('swe:Vector').getConfigFor('swe:coordinate').getConfigFor('swe:Quantity')));
+    }
+
+    protected createModel(): Position[] {
+        return [];
+    }
 }

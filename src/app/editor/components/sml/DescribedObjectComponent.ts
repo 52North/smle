@@ -39,43 +39,43 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     private openNewKeywordListItem(item: KeywordList) {
-        var metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
+        var metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList'));
         this.openNewChild(metadata);
     }
 
     private openNewIdentifierListItem(item: IdentifierList) {
-        var metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('identification'));
+        var metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList'));
         this.openNewChild(metadata);
     }
 
     private openNewClassifierListItem(item: ClassifierList) {
-        var metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
+        var metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('sml:classification'));
         this.openNewChild(metadata);
     }
 
     private openNewContactListItem(item: ContactList) {
-        var metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('contacts'));
+        var metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('sml:contacts'));
         this.openNewChild(metadata);
     }
 
     private openNewEventListItem(item: EventList) {
-        var metadata = new ChildMetadata(EventListComponent, item, this.config.getConfigFor('history'));
+        var metadata = new ChildMetadata(EventListComponent, item, this.config.getConfigFor('sml:history'));
         this.openNewChild(metadata);
     }
 
     private openNewDocumentListItem(item: DocumentList) {
-        var metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
+        var metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('sml:documentation'));
         this.openNewChild(metadata);
     }
 
     private openNewCharacteristicListItem(item: CharacteristicList) {
         var metadata = new ChildMetadata(CharacteristicListComponent, item,
-            this.config.getConfigFor('characteristics'));
+            this.config.getConfigFor('sml:characteristics'));
         this.openNewChild(metadata);
     }
 
     private openNewCapabilityListItem(item: CapabilityList) {
-        var metadata = new ChildMetadata(CapabilityListComponent, item, this.config.getConfigFor('capabilities'));
+        var metadata = new ChildMetadata(CapabilityListComponent, item, this.config.getConfigFor('sml:capabilities'));
         this.openNewChild(metadata);
     }
 
@@ -83,9 +83,9 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
         var metadata: ChildMetadata;
 
         if (item instanceof TimeInstant) {
-            metadata = new ChildMetadata(TimeInstantComponent, item, this.config.getConfigFor('validTime'));
+            metadata = new ChildMetadata(TimeInstantComponent, item, this.config.getConfigFor('sml:validTime'));
         } else if (item instanceof TimePeriod) {
-            metadata = new ChildMetadata(TimePeriodComponent, item, this.config.getConfigFor('validTime'));
+            metadata = new ChildMetadata(TimePeriodComponent, item, this.config.getConfigFor('sml:validTime'));
         }
 
         this.openNewChild(metadata);

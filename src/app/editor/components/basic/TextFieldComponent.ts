@@ -12,6 +12,9 @@ export class TextFieldComponent extends BaseComponent implements OnChanges {
 
   @Input()
   fieldName: string;
+  
+  @Input()
+  configName: string;
 
   @Input()
   config: DescriptionConfig;

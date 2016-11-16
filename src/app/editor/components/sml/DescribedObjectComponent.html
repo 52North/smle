@@ -3,22 +3,22 @@
     <label for="language">{{getDisplayName('language')}}</label>
     <input type="text" class="form-control" [(ngModel)]="model.language" name="language">
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('keywords')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:keywords')">
     <label for="keywords">{{getDisplayName('keywords')}}</label>
     <list [list]="model.keywords" (select)="openNewKeywordListItem($event)"
           (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('identification')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:identification')">
     <label for="identification">{{getDisplayName('identification')}}</label>
     <list [list]="model.identification" (select)="openNewIdentifierListItem($event)"
           (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('classification')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:classification')">
     <label for="classification">{{getDisplayName('classification')}}</label>
     <list [list]="model.classification" (select)="openNewClassifierListItem($event)"
           (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('validTime')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:validTime')">
     <label for="validTime">{{getDisplayName('validTime')}}</label>
     <list [list]="model.validTime" (select)="openNewAbstractTimeItem($event)" (remove)="onRemoveAbstractTime($event)"
           [itemTitleFunc]="getAbstractTimeTitle">
@@ -32,28 +32,28 @@
         </list-add-section>
     </list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('characteristics')">
-    <label for="characteristics">{{getDisplayName('characteristics')}}</label>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:characteristics')">
+    <label for="characteristics">{{getDisplayName('sml:characteristics')}}</label>
     <list [list]="model.characteristics" (select)="openNewCharacteristicListItem($event)"
           (remove)="onRemoveCharacteristicList($event)" (add)="onAddCharacteristicList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('capabilities')">
-    <label for="capabilities">{{getDisplayName('capabilities')}}</label>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:capabilities')">
+    <label for="capabilities">{{getDisplayName('sml:capabilities')}}</label>
     <list [list]="model.capabilities" (select)="openNewCapabilityListItem($event)"
           (remove)="onRemoveCapabilityList($event)" (add)="onAddCapabilityList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('contacts')">
-    <label for="contacts">{{getDisplayName('contacts')}}</label>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:contacts')">
+    <label for="contacts">{{getDisplayName('sml:contacts')}}</label>
     <list [list]="model.contacts" (select)="openNewContactListItem($event)"
           (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('documentation')">
-    <label for="documentation">{{getDisplayName('documentation')}}</label>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:documentation')">
+    <label for="documentation">{{getDisplayName('sml:documentation')}}</label>
     <list [list]="model.documentation" (select)="openNewDocumentListItem($event)"
           (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('history')">
-    <label for="history">{{getDisplayName('history')}}</label>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:history')">
+    <label for="history">{{getDisplayName('sml:history')}}</label>
     <list [list]="model.history" (select)="openNewEventListItem($event)"
           (remove)="onRemoveEventList($event)" (add)="onAddEventList()"></list>
 </div>

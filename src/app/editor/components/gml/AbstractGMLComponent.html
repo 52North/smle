@@ -1,11 +1,11 @@
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'gmlId'"></text-field>
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'description'"></text-field>
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'descriptionReference'"></text-field>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'gml:id'" [fieldName]="'gmlId'"></text-field>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'gml:description'" [fieldName]="'description'"></text-field>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'gml:descriptionReference'"[fieldName]="'descriptionReference'"></text-field>
 <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('identifier')">
   <label for="identifier">{{getDisplayName('identifier')}}</label>
   <div class="nested-element">
     <div *ngIf="model.identifier">
-      <gml-code-type [model]="model.identifier" [config]="config.getConfigFor('identifier')" [isShowAll]="isShowAll"></gml-code-type>
+      <gml-code-type [model]="model.identifier" [config]="config.getConfigFor('gml:identifier')" [isShowAll]="isShowAll"></gml-code-type>
     </div>
     <div *ngIf="!model.identifier">
       <a type="button" class="btn btn-link" (click)="createIdentifier()">Create code type</a>

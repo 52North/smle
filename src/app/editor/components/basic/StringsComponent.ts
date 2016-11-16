@@ -11,10 +11,12 @@ export class StringsComponent {
     @Input()
     public list: string[];
     @Input()
-    public fieldName:string;
+    public fieldName: string;
+    @Input()
+    public configName: string;
     @Input()
     public config: DescriptionConfig;
-    
+
     public item: string;
 
     public remove(i: number): void {

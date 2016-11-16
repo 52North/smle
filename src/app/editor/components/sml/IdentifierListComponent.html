@@ -2,7 +2,7 @@
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
         <swe-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-metadata-list>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('identifiers')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:identifier')">
             <label for="identifiers">{{getDisplayName('identifiers')}}</label>
             <list [list]="model.identifiers" (select)="openNewIdentifierItem($event)"
                   (remove)="onRemoveIdentifier($event)" (add)="onAddIdentifier()"></list>

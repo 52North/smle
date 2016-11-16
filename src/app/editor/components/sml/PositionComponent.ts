@@ -62,7 +62,7 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     }
 
     private openMap() {
-        var mapData: MapData = new MapData({lat: this.latitude, lng: this.longitude});
+        var mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
 
         this.modalWindow.open(MapComponent, mapData).then((dialogRef) => {
             dialogRef.result.then((result) => {
