@@ -9,22 +9,7 @@
 		<complexType>
 			<complexContent>
 				<extension base="profile:elementType">
-					<sequence>
-						<element name="restrictions" minOccurs="0">
-							<complexType>
-								<group ref="profile:IDGroup" /><!-- !!!ref -->
-							</complexType>
-						</element>
-						<element name="input" minOccurs="0">
-							<complexType>
-								<choice maxOccurs="unbounded"><!-- change -->
-									<element ref="profile:textField" />
-									<element ref="profile:selectionBox" />
-								</choice>
-							</complexType>
-						</element>
-					</sequence>
-					<attribute name="XSDList" type="boolean" default="false" />
+					<group ref="profile:IDElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
@@ -51,11 +36,11 @@
 		<group ref="profile:IDRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractID" substitutionGroup="profile:abstractElement">
+	<element name="abstractElementID" substitutionGroup="profile:abstractElement">
 		<complexType>
 			<complexContent>
 				<extension base="profile:abstractElementType">
-					<group ref="profile:IDGroup" />
+					<group ref="profile:IDElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
@@ -64,6 +49,23 @@
 			</complexContent>
 		</complexType>
 	</element>
+	<group name="IDElementGroup">
+		<sequence>
+			<element name="restrictions" minOccurs="0">
+				<complexType>
+					<group ref="profile:IDGroup" /><!-- !!!ref -->
+				</complexType>
+			</element>
+			<element name="input" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded"><!-- change -->
+						<element ref="profile:textField" />
+						<element ref="profile:selectionBox" />
+					</choice>
+				</complexType>
+			</element>
+		</sequence>
+	</group>
 	<group name="IDGroup"><!-- !!!name -->
 		<sequence>
 			<element ref="profile:use" minOccurs="0" />

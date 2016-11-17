@@ -36,8 +36,8 @@
 						</annotation>
 					</element>
 				</choice>
-				<element name="groupDependenceRules" minOccurs="0"
-					type="profile:elementGroup_dependenceRulesType">
+				<element name="dependenceRules" minOccurs="0"
+					type="profile:global_dependenceRulesType">
 					<annotation>
 						<documentation>Definition of dependencies between the XML element groups.</documentation>
 					</annotation>
@@ -248,7 +248,7 @@
 	</complexType>
 
 	<!-- Group dependenceRules -->
-	<complexType name="elementGroup_dependenceRulesType">
+	<complexType name="global_dependenceRulesType">
 		<choice maxOccurs="unbounded">
 			<group ref="profile:logical_operation_elementGroup" />
 			<element name="implication" type="profile:implication_elementGroupType" />
@@ -273,6 +273,7 @@
 					<assert test="count(*)=count(*[ends-with(@ref,concat('_',./../@groupRef))])" />
 				</complexType>
 			</element>
+			<element ref="profile:abstractElement"/>
 			<group ref="profile:logical_operation_elementGroup" />
 		</choice>
 	</complexType>

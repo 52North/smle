@@ -54,18 +54,18 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	<element name="abstractNonPositiveInteger" substitutionGroup="profile:abstractElement">
+	<element name="abstractElementUnion" substitutionGroup="profile:abstractElement">
 		<complexType>
 			<complexContent>
 				<extension base="profile:abstractElementType">
 					<group ref="profile:unionGroup" />
 					<assert
-					test="if(((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
-				<assert test="count(.//profile:fixContent)&lt;2" />
-				<assert
-					test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
-				<assert
-					test="if(.//profile:fixContent) then (not(profile:defaultContent) and not(.//profile:use) and not(.//profile:occurrence)) else(true())" />
+						test="if(((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert test="count(.//profile:fixContent)&lt;2" />
+					<assert
+						test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
+					<assert
+						test="if(.//profile:fixContent) then (not(profile:defaultContent) and not(.//profile:use) and not(.//profile:occurrence)) else(true())" />
 				</extension>
 			</complexContent>
 		</complexType>

@@ -9,23 +9,7 @@
 		<complexType>
 			<complexContent>
 				<extension base="profile:elementType">
-					<sequence>
-						<element name="restrictions" minOccurs="0">
-							<complexType>
-								<group ref="profile:positiveIntegerGroup" /><!-- !!!ref -->
-							</complexType>
-						</element>
-						<element name="input" minOccurs="0">
-							<complexType>
-								<choice maxOccurs="unbounded"><!-- change -->
-									<element ref="profile:textField" />
-									<element ref="profile:selectionBox" />
-									<element ref="profile:numberField" />
-								</choice>
-							</complexType>
-						</element>
-					</sequence>
-					<attribute name="XSDList" type="boolean" default="false" />
+					<group ref="profile:positiveIntegerElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
@@ -51,11 +35,11 @@
 		<group ref="profile:positiveIntegerRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractPositiveInteger" substitutionGroup="profile:abstractElement">
+	<element name="abstractElementPositiveInteger" substitutionGroup="profile:abstractElement">
 		<complexType>
 			<complexContent>
 				<extension base="profile:abstractElementType">
-					<group ref="profile:positiveIntegerGroup" />
+					<group ref="profile:positiveIntegerElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
@@ -64,7 +48,24 @@
 			</complexContent>
 		</complexType>
 	</element>
-
+	<group name="positiveIntegerElementGroup">
+		<sequence>
+			<element name="restrictions" minOccurs="0">
+				<complexType>
+					<group ref="profile:positiveIntegerGroup" /><!-- !!!ref -->
+				</complexType>
+			</element>
+			<element name="input" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded"><!-- change -->
+						<element ref="profile:textField" />
+						<element ref="profile:selectionBox" />
+						<element ref="profile:numberField" />
+					</choice>
+				</complexType>
+			</element>
+		</sequence>
+	</group>
 	<group name="positiveIntegerGroup"><!-- !!!name -->
 		<sequence>
 			<element ref="profile:use" minOccurs="0" />

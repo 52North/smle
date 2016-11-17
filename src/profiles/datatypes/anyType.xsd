@@ -5,36 +5,20 @@
 	<include schemaLocation="FormFieldTypes.xsd" />
 	<!-- Datatypes: any Definition (Default) -->
 
-
 	<element name="elementAnyType" substitutionGroup="profile:element"><!-- name -->
 		<complexType>
 			<complexContent>
 				<extension base="profile:elementType">
-					<sequence>
-						<element name="restrictions" minOccurs="0">
-							<complexType>
-								<group ref="profile:anyTypeGroup" /><!-- !!!ref -->
-							</complexType>
-						</element>
-						<element name="input" minOccurs="0">
-							<complexType>
-								<choice maxOccurs="unbounded"><!-- change -->
-									<element ref="profile:textField" />
-									<element ref="profile:selectionBox" />
-								</choice>
-							</complexType>
-						</element>
-					</sequence>
-					<attribute name="XSDList" type="boolean" default="false" />
+					<group ref="profile:anyTypeElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
 						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
-
 				</extension>
 			</complexContent>
 		</complexType>
 	</element>
+
 
 	<complexType name="elementAnyTypeRefType"><!-- !!!name -->
 		<complexContent>
@@ -48,11 +32,11 @@
 		</complexContent>
 	</complexType>
 
-	<element name="abstractAnyType" substitutionGroup="profile:abstractElement">
+	<element name="abstractElementAnyType" substitutionGroup="profile:abstractElement">
 		<complexType>
 			<complexContent>
 				<extension base="profile:abstractElementType">
-					<group ref="profile:anyTypeGroup" />
+					<group ref="profile:anyTypeElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
@@ -61,6 +45,25 @@
 			</complexContent>
 		</complexType>
 	</element>
+
+	<group name="anyTypeElementGroup">
+		<sequence>
+			<element name="restrictions" minOccurs="0">
+				<complexType>
+					<group ref="profile:anyTypeGroup" /><!-- !!!ref -->
+				</complexType>
+			</element>
+			<element name="input" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded"><!-- change -->
+						<element ref="profile:textField" />
+						<element ref="profile:selectionBox" />
+					</choice>
+				</complexType>
+			</element>
+		</sequence>
+	</group>
+
 	<complexType name="union_anyType">
 		<group ref="profile:anyTypeRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>

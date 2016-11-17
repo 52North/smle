@@ -9,22 +9,7 @@
 		<complexType>
 			<complexContent>
 				<extension base="profile:elementType">
-					<sequence>
-						<element name="restrictions" minOccurs="0">
-							<complexType>
-								<group ref="profile:anyURIGroup" /><!-- !!!ref -->
-							</complexType>
-						</element>
-						<element name="input" minOccurs="0">
-							<complexType>
-								<choice maxOccurs="unbounded"> <!-- change -->
-									<element ref="profile:textField" />
-									<element ref="profile:selectionBox" />
-								</choice>
-							</complexType>
-						</element>
-					</sequence>
-					<attribute name="XSDList" type="boolean" default="false" />
+					<group ref="profile:anyURIElementGroup"/>
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
@@ -50,11 +35,11 @@
 	<complexType name="union_anyURI">
 		<group ref="profile:anyURIRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
-	<element name="abstractAnyURI" substitutionGroup="profile:abstractElement">
+	<element name="abstractElementAnyURI" substitutionGroup="profile:abstractElement">
 		<complexType>
 			<complexContent>
 				<extension base="profile:abstractElementType">
-					<group ref="profile:anyURIGroup" />
+					<group ref="profile:anyURIElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
 					<assert
@@ -63,6 +48,26 @@
 			</complexContent>
 		</complexType>
 	</element>
+
+	<group name="anyURIElementGroup">
+		<sequence>
+			<element name="restrictions" minOccurs="0">
+				<complexType>
+					<group ref="profile:anyURIGroup" /><!-- !!!ref -->
+				</complexType>
+			</element>
+			<element name="input" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded"> <!-- change -->
+						<element ref="profile:textField" />
+						<element ref="profile:selectionBox" />
+					</choice>
+				</complexType>
+			</element>
+		</sequence>
+
+	</group>
+
 	<group name="anyURIGroup"><!-- !!!name -->
 		<sequence>
 			<element ref="profile:use" minOccurs="0" />

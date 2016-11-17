@@ -2,26 +2,6 @@
 <p:profile xmlns:p="http://xmlProfile.de" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlProfile.de Profile2.xsd" class="sml:PhysicalSystem">
 
-
-	<p:elementString XPath="gml:description" ID="description">
-		<p:input>
-			<p:textField />
-		</p:input>
-	</p:elementString>
-
-	<p:elementGroup groupID="KeywordList" XPath="sml:keywords/sml:KeywordList">
-		<p:elements>
-			<p:elementString ID="keyword_KeywordList" XPath="sml:keyword">
-				<p:restrictions>
-					<p:use>optional</p:use>
-				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
-			</p:elementString>
-		</p:elements>
-	</p:elementGroup>
-
 	<p:elementGroup groupID="Identification" XPath="sml:identification/sml:IdentifierList">
 		<p:elements>
 			<p:elementGroupRef groupRef="uniqueID"
@@ -48,9 +28,6 @@
 						<p:value>Short name</p:value>
 					</p:fixContent>
 				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_shortName">
 				<p:restrictions>
@@ -61,9 +38,6 @@
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_shortName">
 				<p:label>Short name (swe:value)</p:label>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -76,9 +50,6 @@
 						<p:value>Long name</p:value>
 					</p:fixContent>
 				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_longName">
 				<p:restrictions>
@@ -89,9 +60,6 @@
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_longName">
 				<p:label>Long name (swe:value)</p:label>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -104,9 +72,6 @@
 						<p:value>UUID</p:value>
 					</p:fixContent>
 				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_uniqueID">
 				<p:restrictions>
@@ -117,9 +82,6 @@
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_uniqueID">
 				<p:label>Unique ID (swe:value)</p:label>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -132,9 +94,6 @@
 						<p:value>Device ID</p:value>
 					</p:fixContent>
 				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_deviceID">
 				<p:restrictions>
@@ -145,9 +104,6 @@
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_deviceID">
 				<p:label>Device ID (swe:value)</p:label>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -160,9 +116,6 @@
 						<p:value>Serial number</p:value>
 					</p:fixContent>
 				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_serialNumber">
 				<p:restrictions>
@@ -173,9 +126,6 @@
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_serialNumber">
 				<p:label>Serial number (swe:value)</p:label>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -188,9 +138,6 @@
 						<p:value>WMO</p:value>
 					</p:fixContent>
 				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_WMO">
 				<p:restrictions>
@@ -201,12 +148,10 @@
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_WMO">
 				<p:label>WMO (swe:value)</p:label>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
+
 	<p:elementGroup groupID="TimePeriod" XPath="sml:validTime/gml:TimePeriod">
 		<p:elements>
 			<p:elementString ID="ID_TimePeriod" XPath="gml:id">
@@ -219,16 +164,6 @@
 		</p:elements>
 	</p:elementGroup>
 
-	<p:elementGroup groupID="Contact"
-		XPath="sml:contact/sml:ContactList/sml:contact/gmd:CI_ResponsibleParty">
-		<p:elements>
-			<p:elementString ID="organisationName_Contact" XPath="gmd:organisationName">
-				<p:input>
-					<p:textField />
-				</p:input>
-			</p:elementString>
-		</p:elements>
-	</p:elementGroup>
 
 	<p:elementGroup groupID="Position" XPath="sml:position/swe:DataRecord">
 		<p:elements>
@@ -320,9 +255,6 @@
 						<p:value>deg</p:value>
 					</p:defaultContent>
 				</p:restrictions>
-				<p:input>
-					<p:textField />
-				</p:input>
 			</p:elementString>
 			<p:elementDouble ID="value_longitude_Quantity" XPath="swe:value">
 				<p:restrictions>
@@ -330,9 +262,6 @@
 						<p:value>0</p:value>
 					</p:defaultContent>
 				</p:restrictions>
-				<p:input>
-					<p:numberField />
-				</p:input>
 			</p:elementDouble>
 		</p:elements>
 	</p:elementGroup>
@@ -361,9 +290,6 @@
 								<p:value>deg</p:value>
 							</p:defaultContent>
 						</p:restrictions>
-						<p:input>
-							<p:textField />
-						</p:input>
 					</p:elementString>
 				</p:elements>
 			</p:elementGroup>
@@ -373,9 +299,6 @@
 						<p:value>0</p:value>
 					</p:defaultContent>
 				</p:restrictions>
-				<p:input>
-					<p:numberField />
-				</p:input>
 			</p:elementDouble>
 		</p:elements>
 	</p:elementGroup>
@@ -404,9 +327,6 @@
 								<p:value>m</p:value>
 							</p:defaultContent>
 						</p:restrictions>
-						<p:input>
-							<p:textField />
-						</p:input>
 					</p:elementString>
 				</p:elements>
 			</p:elementGroup>
@@ -416,31 +336,72 @@
 						<p:value>0</p:value>
 					</p:defaultContent>
 				</p:restrictions>
-				<p:input>
-					<p:numberField />
-				</p:input>
 			</p:elementDouble>
 		</p:elements>
 	</p:elementGroup>
 
 	<p:formConfiguration>
 		<p:formComponent label="Form">
-			<p:element ref="description" />
-			<p:elementGroup groupRef="KeywordList" />
 			<p:elementGroup groupRef="Identification" />
 			<p:elementGroup groupRef="TimePeriod" />
-			<p:elementGroup groupRef="Contact" />
 			<p:elementGroup groupRef="Position" />
 		</p:formComponent>
 	</p:formConfiguration>
+
 	<p:abstractComplexElement XPath="sml:identification/sml:IdentifierList">
 		<p:occurrence>
-			<p:fixQuantity/>
+			<p:fixQuantity />
 		</p:occurrence>
 	</p:abstractComplexElement>
 	<p:abstractComplexElement XPath="sml:identification/sml:IdentifierList/sml:identifier">
 		<p:occurrence>
-			<p:fixQuantity/>
+			<p:fixQuantity />
 		</p:occurrence>
 	</p:abstractComplexElement>
+
+	<p:abstractElementString XPath="gml:description">
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:abstractElementString>
+
+	<p:abstractElementString XPath="sml:keywords/sml:KeywordList/sml:keyword">
+		<p:restrictions>
+			<p:use>optional</p:use>
+		</p:restrictions>
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:abstractElementString>
+
+	<p:abstractElementString XPath="sml:identification/sml:IdentifierList/sml:identifier/sml:Term/sml:label">
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:abstractElementString>
+
+	<p:abstractElementString XPath="sml:identification/sml:IdentifierList/sml:identifier/sml:Term/sml:value">
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:abstractElementString>
+
+	<p:abstractElementString
+		XPath="sml:contact/sml:ContactList/sml:contact/gmd:CI_ResponsibleParty/gmd:organisationName">
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:abstractElementString>
+
+	<p:abstractElementString XPath="sml:position/swe:DataRecord/swe:coordinate/swe:Quantity/swe:uom/@code">
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:abstractElementString>
+	<p:abstractElementDouble XPath="sml:position/swe:DataRecord/swe:coordinate/swe:Quantity/swe:value">
+		<p:input>
+			<p:numberField />
+		</p:input>
+	</p:abstractElementDouble>
+
 </p:profile>
