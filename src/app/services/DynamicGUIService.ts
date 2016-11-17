@@ -109,6 +109,8 @@ export class Configuration {
     private _hideField: FormFields;
     private _existInForm: boolean;
     private _fixQuantity: boolean;
+    private _valueFix: any;
+    private _valueDefault: any;
     constructor() {
         this._fixValue = false;
         this._requireValue = true;
@@ -147,23 +149,20 @@ export class Configuration {
     set fixQuantity(fixQuantity: boolean) {
         this._fixQuantity = fixQuantity;
     }
-}
-class ConfigSet {
-    private _value: string;
-    private _configuration: Configuration;
-    get value(): string {
-        return this._value;
+    get valueFix(): any {
+        return this._valueFix;
     }
-    set value(value: string) {
-        this._value = value;
+    set valueFix(valueFix: any) {
+        this._valueFix = valueFix;
     }
-    get configuration(): Configuration {
-        return this._configuration;
+    get valueDefault(): any {
+        return this._valueDefault;
     }
-    set configuration(configuration: Configuration) {
-        this._configuration = configuration;
+    set valueDefault(valueDefault: any) {
+        this._valueDefault = valueDefault;
     }
 }
+
 export class ReturnObject {
     private _model: AbstractProcess;
     private _configuration: JSONDescriptionConfig;
@@ -205,20 +204,19 @@ export class DynamicGUIService {
         this._model = encoder.createDocumentForProcess(model);
         let cache = new Cache(this._model.documentElement, {});
         let path = this.splitXPath("sml:identification/sml:IdentifierList");
-        let set = new ConfigSet();
-        set.configuration = new Configuration;
+        let configuration = new Configuration;
         this._insertElements = new InsertElements(this._model);
-        let list = this._insertElements.add(cache, path, set);
+        let list = this._insertElements.add(cache, path, configuration);
         //alert(JSON.stringify(model));
         path = this.splitXPath("sml:Identifier/sml:Term/sml:label");
         //alert(JSON.stringify(path));
         let identifierList = new smlLib.IdentifierList();
-        set.value = "short name";
+        configuration.valueFix = "short name";
 
-        this._insertElements.add(list, path, set);
+        this._insertElements.add(list, path, configuration);
         path = this.splitXPath("sml:Identifier/sml:Term/sml:label");
-        set.value = "long name";
-        this._insertElements.add(list, path, set);
+        configuration.valueFix = "long name";
+        this._insertElements.add(list, path, configuration);
         return this.getProfile().map((json: any) => {
             this._logger.info('JSON profile:' + JSON.stringify(json));
             if (json.profile) {
@@ -283,9 +281,8 @@ export class DynamicGUIService {
     }
     private setAbstractConfiguration(abstractElement: any) {
         let XPath: XPathElement[] = this.splitXPath(abstractElement._XPath);
-        let set = new ConfigSet();
-        set.configuration = new Configuration();
-        this.setConfiguration(abstractElement, set);
+        let configuration = new Configuration();
+        this.setConfiguration(abstractElement, configuration);
         let config = this._config["description"];
         while (XPath.length > 0) {
             let xpathElement = XPath.shift();
@@ -295,7 +292,7 @@ export class DynamicGUIService {
             }
 
             if (XPath.length == 0) {
-                Object.assign(config[prefix_elementName], set.configuration);
+                Object.assign(config[prefix_elementName], configuration);
             } else {
                 config = config[prefix_elementName];
             }
@@ -398,16 +395,15 @@ export class DynamicGUIService {
         }
 
         let xpath: XPathElement[] = this.splitXPath(XPath);
-        let set = new ConfigSet();
-        set.configuration = new Configuration();
+        let configuration = new Configuration();
         if (elementGroup["occurrence"]) {
             let fixQuantity = elementGroup["occurrence"].fixQuantity;
             if (fixQuantity) {
-                set.configuration.fixQuantity = true;
+                configuration.fixQuantity = true;
             }
         }
 
-        let _cache = this._insertElements.add(cache, xpath, set);
+        let _cache = this._insertElements.add(cache, xpath, configuration);
         for (var key in elements) {
             if (key.indexOf('element') == 0 && key != 'elementGroup' && key != 'elementGroupRef') {
                 this.insertSingleElements(_cache, elements[key]);
@@ -429,32 +425,32 @@ export class DynamicGUIService {
         }
     }
     private insertSingleElement(cache: Cache, element: any) {
-        let set = new ConfigSet();
-        set.configuration = new Configuration();
-        set.value = null;
-        this.setConfiguration(element, set);
+        let configuration = new Configuration();
+        configuration.valueFix = null;
+        configuration.valueDefault = null;
+        this.setConfiguration(element, configuration);
         let xpath = element._XPath;
         let xpathElement: XPathElement[] = this.splitXPath(xpath);
-        this._insertElements.add(cache, xpathElement, set);
+        this._insertElements.add(cache, xpathElement, configuration);
     }
 
-    private setConfiguration(element: any, set: ConfigSet) {
+    private setConfiguration(element: any, configuration: Configuration) {
         if (element.restrictions) {
             if (element.restrictions["fixContent"]) {
                 if (element.restrictions["fixContent"].value) {
-                    set.value = element.restrictions["fixContent"].value.__text;
-                    set.configuration.fixValue = true;
+                    configuration.valueFix = element.restrictions["fixContent"].value.__text;
+                    configuration.fixValue = true;
                 }
 
             } else {
                 if (element.restrictions["defaultContent"]) {
                     if (element.restrictions["defaultContent"].value) {
-                        set.value = element.restrictions["defaultContent"].value.__text;
+                        configuration.valueDefault = element.restrictions["defaultContent"].value.__text;
                     }
                 }
                 if (element.restrictions["use"]) {
                     if (element.restrictions["use"].__text == "optional") {
-                        set.configuration.requireValue = false;
+                        configuration.requireValue = false;
                     }
                 }
 
@@ -465,20 +461,20 @@ export class DynamicGUIService {
             let input = element["input"];
             for (var key in input) {
                 if (input[key]._hide == "true") {
-                    set.configuration.hideField[key] = true;
+                    configuration.hideField[key] = true;
                     this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is hidden");
                 } else if (!(key.indexOf("_") == 0)) {
-                    set.configuration.hideField[key] = false;
+                    configuration.hideField[key] = false;
                     this._logger.info("For element " + JSON.stringify(element) + " form field " + key + " is visible");
                 }
             }
         } else {
-            set.configuration.existInForm = false;
+            configuration.existInForm = false;
         }
         if (element["occurrence"]) {
             let fixQuantity = element["occurrence"].fixQuantity;
             if (fixQuantity) {
-                set.configuration.fixQuantity = true;
+                configuration.fixQuantity = true;
             }
         }
     }
@@ -550,27 +546,27 @@ class InsertElements {
         this._logger = this._loggerFactory.getLogger("DynamicGuiService");
         this._model = model;
     }
-    public add(cache: Cache, XPath: XPathElement[], set: ConfigSet): Cache {
+    public add(cache: Cache, XPath: XPathElement[], configuration: Configuration): Cache {
         while (XPath.length > 0) {
             let xpathElement = XPath.shift();
             this._logger.info('XPath.length:' + XPath.length);
             this._logger.info("\n" + 'xpathElement:' + xpathElement.element + '\n' + 'parent:' + JSON.stringify(cache.parent));
-            cache = this.insertChild(cache, xpathElement, XPath, set);
+            cache = this.insertChild(cache, xpathElement, XPath, configuration);
         }
         return cache;
     }
-    private insertChild(cache: Cache, xpathElement: XPathElement, XPath: XPathElement[], set: ConfigSet): Cache {
+    private insertChild(cache: Cache, xpathElement: XPathElement, XPath: XPathElement[], configuration: Configuration): Cache {
         let child = new Cache();
         let childName = xpathElement.element;
         let prefixAndChildName = xpathElement.prefix.toLowerCase() + ":" + xpathElement.element;
-        if (XPath.length > 0 || (typeof set.value == 'undefined')) {
+        if (XPath.length > 0 || (typeof configuration.valueFix == 'undefined' && typeof configuration.valueDefault == 'undefined')) {
             let childNode = this._model.createElementNS(Namespaces[xpathElement.prefix], xpathElement.prefix.toLowerCase() + ":" + childName)
             cache.parent.appendChild(childNode);
             this._logger.info("New child: " + childNode.tagName + " appended");
             child.parent = childNode;
 
             if (XPath.length == 0) {
-                cache.config[prefixAndChildName] = set.configuration;
+                cache.config[prefixAndChildName] = configuration;
                 child.config = cache.config[prefixAndChildName];
             } else {
                 if (!cache.config[prefixAndChildName]) {
@@ -581,12 +577,18 @@ class InsertElements {
             }
 
         } else {
-            if (set.value != null) {
+            if (configuration.valueFix != null || configuration.valueDefault != null) {
+                let value;
+                if(configuration.valueFix!= null){
+                    value=configuration.valueFix;
+                }else{
+                    value=configuration.valueDefault;
+                }
                 if (xpathElement.prefix == "@") {
-                    cache.parent.setAttribute(xpathElement.element, set.value);
+                    cache.parent.setAttribute(xpathElement.element, value);
                 } else {
                     let childNode: Element;
-                    let values = set.value.split(",");
+                    let values = value.split(",");
                     for (var key in values) {
                         childNode = this._model.createElementNS(Namespaces[xpathElement.prefix], xpathElement.prefix.toLowerCase() + ":" + xpathElement.element);
                         let textNode = this._model.createTextNode(values[key]);
@@ -598,7 +600,7 @@ class InsertElements {
                 }
             }
 
-            cache.config[prefixAndChildName] = set.configuration;
+            cache.config[prefixAndChildName] = configuration;
             child.config = cache.config[prefixAndChildName];
         }
         return child;
