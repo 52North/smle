@@ -47,8 +47,9 @@
 						<documentation>Description of the structure of the form.</documentation>
 					</annotation>
 				</element>
+				<element ref="profile:abstractElement" minOccurs="0" maxOccurs="unbounded" />
 			</sequence>
-                        <attribute name="class" type="string"/>
+			<attribute name="class" type="string" />
 			<assert
 				test="count(.//profile:arithmetic-operators/profile:item/profile:ref/@ref)=count(.//profile:arithmetic-operators/profile:item/profile:ref[(@ref=preceding::profile:element_double/@ID) or (@ref=following::profile:element_double/@ID)or (@ref=preceding::profile:element_integer/@ID) or (@ref=following::profile:element_integer/@ID)or(@ref=preceding::profile:element_decimal/@ID) or (@ref=following::profile:element_decimal/@ID)or (@ref=preceding::profile:element_nonPositiveInteger/@ID) or (@ref=following::profile:element_nonPositiveInteger/@ID)or (@ref=preceding::profile:element_positiveInteger/@ID) or (@ref=following::profile:element_positiveInteger/@ID)])" />
 			<assert
@@ -327,7 +328,7 @@
 								<attribute name="XPath" type="profile:XPath" use="required" />
 							</complexType>
 						</element>
-						<element  name="elementGroup" type="profile:elementGroupType"/>
+						<element name="elementGroup" type="profile:elementGroupType" />
 					</choice>
 				</complexType>
 			</element>

@@ -18,7 +18,7 @@ export class ChildMetadata {
     return this._model;
   }
 
-  public get config(): DescriptionConfig {
+  public get config(): DescriptionConfig{
     return this._config;
   }
 

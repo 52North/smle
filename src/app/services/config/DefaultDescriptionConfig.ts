@@ -1,7 +1,7 @@
 import { DescriptionConfig } from './DescriptionConfig';
-import { DescriptionConfigDynamicGUI } from './DescriptionConfigDynamicGUI';
 
-export class DefaultDescriptionConfig implements DescriptionConfigDynamicGUI {
+
+export class DefaultDescriptionConfig implements DescriptionConfig {
     isFieldMandatory(name: string): boolean {
         return false;
     }
@@ -14,7 +14,9 @@ export class DefaultDescriptionConfig implements DescriptionConfigDynamicGUI {
     existInForm(name: string): boolean {
         return true;
     }
-
+    elementFixQuantity(name: string): boolean {
+        return false;
+    }
     getConfigFor(name: string): DescriptionConfig {
         return new DefaultDescriptionConfig();
     }

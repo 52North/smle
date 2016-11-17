@@ -8,16 +8,34 @@
 
 	<complexType name="elementType">
 		<sequence>
-			<element name="label" type="string" minOccurs="0"/>
-			<element name="description" type="string" minOccurs="0"/>
+			<element name="label" type="string" minOccurs="0" />
+			<element name="description" type="string" minOccurs="0" />
 		</sequence>
 		<attribute name="XPath" type="profile:XPath" use="required" />
 		<attribute name="ID" type="NMTOKEN" use="required" />
 	</complexType>
 
+	<complexType name="abstractElementType">
+		<attribute name="XPath" type="profile:XPath" use="required" />
+	</complexType>
+
 	<element name="element" type="profile:elementType" abstract="true" />
 	<element name="elementRef" type="profile:elementRefType" abstract="true" />
+	<element name="abstractElement" type="profile:abstractElementType" abstract="true" />
 
+
+	<!-- //////////////////////////////////////////// -->
+	<element name="abstractComplexElement" substitutionGroup="profile:abstractElement">
+		<complexType>
+			<complexContent>
+				<extension base="profile:abstractElementType">
+					<sequence>
+						<element ref="profile:occurrence" />
+					</sequence>
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
 	<!-- ////////////////////////////////////////////////////////////////////////////////////// -->
 	<!-- Default Type:element rules -->
 	<element name="element_rule" abstract="true" />
@@ -54,10 +72,10 @@
 			<element name="minOccurs" type="positiveInteger" minOccurs="0" />
 			<element name="maxOccurs" type="positiveInteger" minOccurs="0" />
 			<element name="valueExistence" type="boolean" minOccurs="0" />
-			<element name="occur" type="positiveInteger" minOccurs="0" />
+			<element name="fixQuantity" minOccurs="0" />
 		</sequence>
 		<assert
-			test="(profile:occur and not(profile:minOccurs) and not(profile:maxOccurs)) or (not(profile:occur) and(profile:minOccurs or profile:maxOccurs))" />
+			test="(profile:fixQuantity and not(profile:minOccurs) and not(profile:maxOccurs)) or (not(profile:fixQuantity) and(profile:minOccurs or profile:maxOccurs))" />
 		<assert
 			test="not(profile:minOccurs) or not(profile:maxOccurs) or (profile:minOccurs &lt; profile:maxOccurs)" />
 	</complexType>

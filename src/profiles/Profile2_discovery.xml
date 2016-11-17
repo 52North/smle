@@ -23,9 +23,6 @@
 	</p:elementGroup>
 
 	<p:elementGroup groupID="Identification" XPath="sml:identification/sml:IdentifierList">
-		<p:occurrence>
-			<p:occur>6</p:occur>
-		</p:occurrence>
 		<p:elements>
 			<p:elementGroupRef groupRef="uniqueID"
 				XPath="sml:identification/sml:IdentifierList/sml:identifier/sml:Term" />
@@ -303,21 +300,21 @@
 
 	<p:elementGroup groupID="longitude_Quantity" XPath="swe:coordinate/swe:Quantity">
 		<p:elements>
-			<p:elementAnyURI ID="referenceFrame_longitude_Position" XPath="@referenceFrame">
+			<p:elementAnyURI ID="referenceFrame_longitude_Quantity" XPath="@referenceFrame">
 				<p:restrictions>
 					<p:fixContent>
 						<p:value>urn:ogc:crs:EPSG:4326</p:value>
 					</p:fixContent>
 				</p:restrictions>
 			</p:elementAnyURI>
-			<p:elementString ID="axisID_longitude_Position" XPath="@axisID">
+			<p:elementString ID="axisID_longitude_Quantity" XPath="@axisID">
 				<p:restrictions>
 					<p:fixContent>
 						<p:value>Lon</p:value>
 					</p:fixContent>
 				</p:restrictions>
 			</p:elementString>
-			<p:elementString ID="code_uom_longitude_Position" XPath="swe:uom/@code">
+			<p:elementString ID="code_uom_longitude_Quantity" XPath="swe:uom/@code">
 				<p:restrictions>
 					<p:defaultContent>
 						<p:value>deg</p:value>
@@ -327,7 +324,7 @@
 					<p:textField />
 				</p:input>
 			</p:elementString>
-			<p:elementDouble ID="value_longitude_Position" XPath="swe:value">
+			<p:elementDouble ID="value_longitude_Quantity" XPath="swe:value">
 				<p:restrictions>
 					<p:defaultContent>
 						<p:value>0</p:value>
@@ -342,23 +339,23 @@
 
 	<p:elementGroup groupID="latitude_Quantity" XPath="swe:coordinate/swe:Quantity">
 		<p:elements>
-			<p:elementAnyURI ID="referenceFrame_latitude_Position" XPath="@referenceFrame">
+			<p:elementAnyURI ID="referenceFrame_latitude_Quantity" XPath="@referenceFrame">
 				<p:restrictions>
 					<p:fixContent>
 						<p:value>urn:ogc:crs:EPSG:4326</p:value>
 					</p:fixContent>
 				</p:restrictions>
 			</p:elementAnyURI>
-			<p:elementString ID="axisID_latitude_Position" XPath="@axisID">
+			<p:elementString ID="axisID_latitude_Quantity" XPath="@axisID">
 				<p:restrictions>
 					<p:fixContent>
 						<p:value>Lat</p:value>
 					</p:fixContent>
 				</p:restrictions>
 			</p:elementString>
-			<p:elementGroup groupID="uom_latitude_Position" XPath="swe:uom">
+			<p:elementGroup groupID="uom_latitude_Quantity" XPath="swe:uom">
 				<p:elements>
-					<p:elementString ID="code_uom_latitude_Position" XPath="@code">
+					<p:elementString ID="code_uom_latitude_Quantity" XPath="@code">
 						<p:restrictions>
 							<p:defaultContent>
 								<p:value>deg</p:value>
@@ -370,7 +367,7 @@
 					</p:elementString>
 				</p:elements>
 			</p:elementGroup>
-			<p:elementDouble ID="value_latitude_Position" XPath="swe:value">
+			<p:elementDouble ID="value_latitude_Quantity" XPath="swe:value">
 				<p:restrictions>
 					<p:defaultContent>
 						<p:value>0</p:value>
@@ -413,7 +410,7 @@
 					</p:elementString>
 				</p:elements>
 			</p:elementGroup>
-			<p:elementDouble ID="value_altitude_Position" XPath="swe:value">
+			<p:elementDouble ID="value_altitude_Quantity" XPath="swe:value">
 				<p:restrictions>
 					<p:defaultContent>
 						<p:value>0</p:value>
@@ -425,6 +422,7 @@
 			</p:elementDouble>
 		</p:elements>
 	</p:elementGroup>
+
 	<p:formConfiguration>
 		<p:formComponent label="Form">
 			<p:element ref="description" />
@@ -435,4 +433,14 @@
 			<p:elementGroup groupRef="Position" />
 		</p:formComponent>
 	</p:formConfiguration>
+	<p:abstractComplexElement XPath="sml:identification/sml:IdentifierList">
+		<p:occurrence>
+			<p:fixQuantity/>
+		</p:occurrence>
+	</p:abstractComplexElement>
+	<p:abstractComplexElement XPath="sml:identification/sml:IdentifierList/sml:identifier">
+		<p:occurrence>
+			<p:fixQuantity/>
+		</p:occurrence>
+	</p:abstractComplexElement>
 </p:profile>

@@ -9,11 +9,11 @@
             <span *ngIf="itemTitleFunc">{{itemTitleFunc.call(item, item, index, list)}}</span>
             <span *ngIf="!itemTitleFunc">{{item.toString()}}</span>
         </div>
-        <div class="list-remove">
-            <a class="btn btn-link" (click)="onRemove(item, i)"><i class="fa fa-remove"></i> Remove</a>
+        <div [hidden]="fixLength" class="list-remove">
+            <a class="btn btn-link"  (click)="onRemove(item, i)"><i class="fa fa-remove"></i> Remove</a>
         </div>
     </li>
-    <li class="list-group-item list-add-section">
+    <li  [hidden]="fixLength" class="list-group-item list-add-section">
         <ng-content select="list-add-section"></ng-content>
         <a (click)="onAdd()" class="btn btn-link list-add-section__default"><i class="fa fa-fw fa-plus"></i> Add</a>
     </li>

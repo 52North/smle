@@ -1,33 +1,39 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'list',
-  styles: [require('../styles/list-component.scss')],
-  template: require('./ListComponent.html')
+    selector: 'list',
+    styles: [require('../styles/list-component.scss')],
+    template: require('./ListComponent.html')
 })
 export class ListComponent {
-  @Input()
-  public list: any[];
-  @Input()
-  public itemTitleFunc: Function;
-  @Input()
-  public noSelect: boolean = false;
-  @Output()
-  public select: EventEmitter<any> = new EventEmitter<any>();
-  @Output()
-  public add: EventEmitter<any> = new EventEmitter<any>();
-  @Output()
-  public remove: EventEmitter<number> = new EventEmitter<number>();
+    @Input()
+    public list: any[];
+    @Input()
+    public fixLength: boolean;
+    @Input()
+    public itemTitleFunc: Function;
+    @Input()
+    public noSelect: boolean = false;
+    @Output()
+    public select: EventEmitter<any> = new EventEmitter<any>();
+    @Output()
+    public add: EventEmitter<any> = new EventEmitter<any>();
+    @Output()
+    public remove: EventEmitter<number> = new EventEmitter<number>();
 
-  private onClick(item: any, index: number) {
-    this.select.emit(item);
-  }
+    private onClick(item: any, index: number) {
+        this.select.emit(item);
+    }
 
-  private onRemove(item: any, index: number) {
-    this.remove.emit(index);
-  }
+    private onRemove(item: any, index: number) {
+        if (!this.fixLength) {
+        this.remove.emit(index);
+        }
+    }
 
-  private onAdd() {
-    this.add.emit(null);
-  }
+    private onAdd() {
+        if (!this.fixLength) {
+            this.add.emit(null);
+        }
+    }
 }

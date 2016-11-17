@@ -1,10 +1,9 @@
-import { DescriptionConfigDynamicGUI } from './DescriptionConfigDynamicGUI';
 import { DefaultDescriptionConfig } from './DefaultDescriptionConfig';
 import { DescriptionConfig } from './DescriptionConfig';
 import { TrueDescriptionConfig } from './TrueDescriptionConfig';
 import { FalseDescriptionConfig } from './FalseDescriptionConfig';
 
-export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
+export class JSONDescriptionConfig implements DescriptionConfig {
     constructor(private config: any, private dynamicGUI: boolean) {
         //  alert(JSON.stringify(config));
     }
@@ -15,8 +14,8 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
             if (typeof value == 'undefined'|| value==null) {
                 return false;
             } else {
-                if (typeof value.requireValue != "undefined") {
-                    return value.requireValue;
+                if (typeof value._requireValue != "undefined") {
+                    return value._requireValue;
                 }
                 return true;
             }
@@ -30,8 +29,8 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
             if (typeof value == 'undefined' || value==null) {
                 return true;
             }
-            if (typeof value.existInForm != "undefined") {
-                return value.existInForm;
+            if (typeof value._existInForm != "undefined") {
+                return value._existInForm;
             }
         }
         return true;
@@ -42,8 +41,22 @@ export class JSONDescriptionConfig implements DescriptionConfigDynamicGUI {
             if (typeof value == 'undefined'|| value==null) {
                 return false;
             } else {
-                if (typeof value.fixValue != "undefined") {
-                    return value.fixValue;
+                if (typeof value._fixValue != "undefined") {
+                    return value._fixValue;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+     public elementFixQuantity(name: string): boolean {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (typeof value == 'undefined'|| value==null) {
+                return false;
+            } else {
+                if (value._fixQuantity) {
+                    return true;
                 }
                 return false;
             }

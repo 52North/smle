@@ -52,6 +52,20 @@
 		<group ref="profile:timeRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
+	<element name="abstractTime" substitutionGroup="profile:abstractElement">
+		<complexType>
+			<complexContent>
+				<extension base="profile:abstractElementType">
+					<group ref="profile:timeGroup" />
+					<assert
+						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
 	<group name="timeGroup"><!-- !!!name -->
 		<sequence>
 			<element ref="profile:use" minOccurs="0" />

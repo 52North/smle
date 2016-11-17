@@ -108,11 +108,13 @@ export class Configuration {
     private _requireValue: boolean;
     private _hideField: FormFields;
     private _existInForm: boolean;
+    private _fixQuantity: boolean;
     constructor() {
         this._fixValue = false;
         this._requireValue = true;
         this._hideField = new FormFields();
         this._existInForm = true;
+        this._fixQuantity = false;
     }
     get fixValue(): boolean {
         return this._fixValue;
@@ -138,6 +140,12 @@ export class Configuration {
     }
     set existInForm(existInForm: boolean) {
         this._existInForm = existInForm;
+    }
+    get fixQuantity(): boolean {
+        return this._fixQuantity;
+    }
+    set fixQuantity(fixQuantity: boolean) {
+        this._fixQuantity = fixQuantity;
     }
 }
 class ConfigSet {
@@ -220,6 +228,7 @@ export class DynamicGUIService {
             }
             this.createModel();
             this.configure();
+            this.setAbstractConfigurations();
             this._logger.info('model with the fix values:' + (this._model.documentElement.innerHTML));
             this._logger.info('configuration:' + (JSON.stringify(this._config)));
             let returnObject = new ReturnObject();
@@ -254,6 +263,42 @@ export class DynamicGUIService {
         }
         else {
             this.processFormComponent(formComponents);
+        }
+    }
+    private setAbstractConfigurations() {
+        for (let key in this._profile) {
+            if (key.indexOf('abstract') == 0) {
+                let abstractElements = this._profile[key];
+                if (Array.isArray(abstractElements)) {
+                    for (var _key in abstractElements) {
+                        this.setAbstractConfiguration(abstractElements[_key]);
+                    }
+                } else {
+                    this.setAbstractConfiguration(abstractElements);
+
+                }
+
+            }
+        }
+    }
+    private setAbstractConfiguration(abstractElement: any) {
+        let XPath: XPathElement[] = this.splitXPath(abstractElement._XPath);
+        let set = new ConfigSet();
+        set.configuration = new Configuration();
+        this.setConfiguration(abstractElement, set);
+        let config = this._config["description"];
+        while (XPath.length > 0) {
+            let xpathElement = XPath.shift();
+            let prefix_elementName = xpathElement.prefix.toLowerCase() + ":" + xpathElement.element;
+            if (!config[prefix_elementName]) {
+                config[prefix_elementName] = {};
+            }
+
+            if (XPath.length == 0) {
+                Object.assign(config[prefix_elementName], set.configuration);
+            } else {
+                config = config[prefix_elementName];
+            }
         }
     }
     private processFormComponent(formComponent: any) {
@@ -354,7 +399,14 @@ export class DynamicGUIService {
 
         let xpath: XPathElement[] = this.splitXPath(XPath);
         let set = new ConfigSet();
-        set.configuration= new Configuration();
+        set.configuration = new Configuration();
+        if (elementGroup["occurrence"]) {
+            let fixQuantity = elementGroup["occurrence"].fixQuantity;
+            if (fixQuantity) {
+                set.configuration.fixQuantity = true;
+            }
+        }
+
         let _cache = this._insertElements.add(cache, xpath, set);
         for (var key in elements) {
             if (key.indexOf('element') == 0 && key != 'elementGroup' && key != 'elementGroupRef') {
@@ -380,6 +432,13 @@ export class DynamicGUIService {
         let set = new ConfigSet();
         set.configuration = new Configuration();
         set.value = null;
+        this.setConfiguration(element, set);
+        let xpath = element._XPath;
+        let xpathElement: XPathElement[] = this.splitXPath(xpath);
+        this._insertElements.add(cache, xpathElement, set);
+    }
+
+    private setConfiguration(element: any, set: ConfigSet) {
         if (element.restrictions) {
             if (element.restrictions["fixContent"]) {
                 if (element.restrictions["fixContent"].value) {
@@ -416,11 +475,13 @@ export class DynamicGUIService {
         } else {
             set.configuration.existInForm = false;
         }
-        let xpath = element._XPath;
-        let xpathElement: XPathElement[] = this.splitXPath(xpath);
-        this._insertElements.add(cache, xpathElement, set);
+        if (element["occurrence"]) {
+            let fixQuantity = element["occurrence"].fixQuantity;
+            if (fixQuantity) {
+                set.configuration.fixQuantity = true;
+            }
+        }
     }
-
 
     private getProfile(): Observable<JSON> {
         return this.http.get('../../profiles/Profile2_discovery.xml').map((response: Response) => {
@@ -536,7 +597,7 @@ class InsertElements {
 
                 }
             }
-            
+
             cache.config[prefixAndChildName] = set.configuration;
             child.config = cache.config[prefixAndChildName];
         }
