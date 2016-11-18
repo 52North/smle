@@ -40,6 +40,7 @@ class XPathElement {
 class Cache {
     private _parent: Element;
     private _config: Object;
+    private _profileID: string;
     constructor(parent?: Element, config?: Object) {
         this._parent = parent;
         this._config = config;
@@ -55,6 +56,12 @@ class Cache {
     }
     set config(config: Object) {
         this._config = config;
+    }
+    get profileID(): string {
+        return this._profileID;
+    }
+    set profileID(profileID: string) {
+        this._profileID = profileID;
     }
 }
 
@@ -188,6 +195,7 @@ export class DynamicGUIService {
     private _model: Document;
     private _profile: any;
     private _config: Object;
+    private _globalConfig: Object;
     private _sensorML_decoder: SensorMLDocumentDecoder;
 
     constructor(private http: Http) {
@@ -195,6 +203,9 @@ export class DynamicGUIService {
             .addLogGroupRule(new LogGroupRule(new RegExp(".+"), LogLevel.Info)));
         this._logger = this._loggerFactory.getLogger("DynamicGuiService");
         this._config = {};
+        this._globalConfig = {};
+        this._config["description"] = {};
+        this._globalConfig["description"] = {};
         this._sensorML_decoder = new SensorMLDocumentDecoder();
     }
 
@@ -228,7 +239,8 @@ export class DynamicGUIService {
             this.configure();
             this.setAbstractConfigurations();
             this._logger.info('model with the fix values:' + (this._model.documentElement.innerHTML));
-            this._logger.info('configuration:' + (JSON.stringify(this._config)));
+            this._logger.info('element configuration:' + (JSON.stringify(this._config)));
+            this._logger.info('global configuration:' + (JSON.stringify(this._globalConfig)))
             let returnObject = new ReturnObject();
             returnObject.model = this._sensorML_decoder.decode(this._model);
             this._logger.info('model with the fix values:' + JSON.stringify(returnObject.model));
@@ -283,7 +295,7 @@ export class DynamicGUIService {
         let XPath: XPathElement[] = this.splitXPath(abstractElement._XPath);
         let configuration = new Configuration();
         this.setConfiguration(abstractElement, configuration);
-        let config = this._config["description"];
+        let config = this._globalConfig["description"];
         while (XPath.length > 0) {
             let xpathElement = XPath.shift();
             let prefix_elementName = xpathElement.prefix.toLowerCase() + ":" + xpathElement.element;
@@ -299,9 +311,6 @@ export class DynamicGUIService {
         }
     }
     private processFormComponent(formComponent: any) {
-        if (!this._config["description"]) {
-            this._config["description"] = {};
-        }
         let config = this._config["description"];
         let cache = new Cache(this._model.documentElement, config);
         for (var key in formComponent) {
@@ -402,7 +411,7 @@ export class DynamicGUIService {
                 configuration.fixQuantity = true;
             }
         }
-
+        cache.profileID=elementGroup._groupID;
         let _cache = this._insertElements.add(cache, xpath, configuration);
         for (var key in elements) {
             if (key.indexOf('element') == 0 && key != 'elementGroup' && key != 'elementGroupRef') {
@@ -430,6 +439,7 @@ export class DynamicGUIService {
         configuration.valueDefault = null;
         this.setConfiguration(element, configuration);
         let xpath = element._XPath;
+        cache.profileID=element._ID;
         let xpathElement: XPathElement[] = this.splitXPath(xpath);
         this._insertElements.add(cache, xpathElement, configuration);
     }
@@ -557,17 +567,16 @@ class InsertElements {
     }
     private insertChild(cache: Cache, xpathElement: XPathElement, XPath: XPathElement[], configuration: Configuration): Cache {
         let child = new Cache();
+        child.profileID=cache.profileID;
         let childName = xpathElement.element;
         let prefixAndChildName = xpathElement.prefix.toLowerCase() + ":" + xpathElement.element;
         if (XPath.length > 0 || (typeof configuration.valueFix == 'undefined' && typeof configuration.valueDefault == 'undefined')) {
             let childNode = this._model.createElementNS(Namespaces[xpathElement.prefix], xpathElement.prefix.toLowerCase() + ":" + childName)
-            cache.parent.appendChild(childNode);
-            this._logger.info("New child: " + childNode.tagName + " appended");
-            child.parent = childNode;
-
+            
             if (XPath.length == 0) {
                 cache.config[prefixAndChildName] = configuration;
                 child.config = cache.config[prefixAndChildName];
+                childNode.setAttribute("profileID", cache.profileID);
             } else {
                 if (!cache.config[prefixAndChildName]) {
                     cache.config[prefixAndChildName] = {};
@@ -575,14 +584,17 @@ class InsertElements {
                 }
                 child.config = cache.config[prefixAndChildName];
             }
+            cache.parent.appendChild(childNode);
+            this._logger.info("New child: " + childNode.tagName + " appended");
+            child.parent = childNode;
 
         } else {
             if (configuration.valueFix != null || configuration.valueDefault != null) {
                 let value;
-                if(configuration.valueFix!= null){
-                    value=configuration.valueFix;
-                }else{
-                    value=configuration.valueDefault;
+                if (configuration.valueFix != null) {
+                    value = configuration.valueFix;
+                } else {
+                    value = configuration.valueDefault;
                 }
                 if (xpathElement.prefix == "@") {
                     cache.parent.setAttribute(xpathElement.element, value);
