@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractProcess } from '../model/sml';
 import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
@@ -7,6 +7,10 @@ import { EditorService } from '../services/EditorService';
 import { PhysicalSystem } from '../model/sml/PhysicalSystem';
 import { PhysicalComponent } from '../model/sml/PhysicalComponent';
 import { SimpleProcess } from '../model/sml/SimpleProcess';
+import { PublishDescriptionService } from '../sos/publish/publish.service';
+
+const PROCEDURE_ID_PARAM = 'procedureId';
+const SERVICE_URL_PARAM = 'serviceUrl';
 
 enum DescriptionType {
     PhysicalSystem = 1,
@@ -24,26 +28,51 @@ export class Editor implements OnInit {
     public config: DescriptionConfig;
 
     private descriptionType: DescriptionType;
+    private descriptionLoadingError: string;
     private descriptionIsLoading: boolean = true;
 
-    constructor(private configurationService: DescriptionConfigService,
+    constructor(
+        private publish: PublishDescriptionService,
+        private descriptionConfigService: DescriptionConfigService,
         private editorService: EditorService,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        private router: Router
+    ) {
+    }
+
+    publishDescription(): void {
+        this.publish.setDescription(this.description);
+        this.router.navigate(['/publish']);
     }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
             let id = params['id'];
-            this.editorService.getDescriptionForId(id).then(desc => {
-                this.descriptionIsLoading = false;
-                if (desc != null) {
-                    this.setDescription(desc);
-                }
-            }).catch(() => {
-                this.descriptionIsLoading = false;
-            });
+            if (id) {
+                this.editorService.getDescriptionForId(id).then(desc => {
+                    this.descriptionIsLoading = false;
+                    if (desc != null) {
+                        this.setDescription(desc);
+                    }
+                }).catch(() => {
+                    this.descriptionIsLoading = false;
+                });
+            }
         });
-        this.configurationService.getConfiguration().then(configuration => this.config = configuration);
+        this.route.queryParams.subscribe(queryParams => {
+            if (queryParams[PROCEDURE_ID_PARAM] && queryParams[SERVICE_URL_PARAM]) {
+                this.editorService.loadDescriptionByIdAndUrl(
+                    queryParams[PROCEDURE_ID_PARAM],
+                    queryParams[SERVICE_URL_PARAM]
+                ).subscribe(res => {
+                    this.setDescription(res);
+                }, error => {
+                    this.descriptionLoadingError = error;
+                    this.descriptionIsLoading = false;
+                });
+            }
+        });
+        this.descriptionConfigService.getConfiguration().then(configuration => this.config = configuration);
     }
 
     public onSelectDescriptionType(type: string) {

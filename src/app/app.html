@@ -1,17 +1,20 @@
 <header>
-    <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
-        <a class="navbar-brand" [routerLink]="['/']">
-            smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺
-        </a>
-        <ul class="nav navbar-nav">
-            <li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/']">Home</a>
-            </li>
-            <li router-active="active" class="nav-item">
-                <a class="nav-link" [routerLink]="['/editor', 'new']">Editor</a>
-            </li>
-        </ul>
-    </nav>
+    <div class="logos">
+        <a class="n52" href="https://52north.org/" target="_blank"></a>
+    </div>
+    <div>
+        <nav class="navbar navbar-dark bg-inverse">
+            <a class="navbar-brand" [routerLink]="['/']">
+                smle<sub>/ˈsmaɪli/</sub>
+                — The Friendly SensorML Editor ☺
+            </a>
+            <ul class="nav navbar-nav">
+                <li router-active="active" class="nav-item">
+                    <a class="nav-link" [routerLink]="['/editor', 'new']">New</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </header>
 <main class="container-fluid">
     <router-outlet></router-outlet>

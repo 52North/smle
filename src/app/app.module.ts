@@ -8,9 +8,11 @@ import { Application } from './app';
 import { ROUTES } from './routes';
 import { APP_PROVIDERS } from './providers';
 import { EditorModule } from './editor/editor.module';
+import { SosModule } from './sos/sos.module';
 
 import { Home } from './home/home';
 import { Editor } from './editor/editor';
+import { PublishDescription } from './sos/publish/publish.component';
 
 import { ConfigurationService } from './services/ConfigurationService';
 
@@ -20,13 +22,15 @@ export function getAppModule(conf) {
         declarations: [
             Application,
             Home,
-            Editor
+            Editor,
+            PublishDescription
         ],
         imports: [
             BrowserModule,
             FormsModule,
             HttpModule,
             EditorModule,
+            SosModule,
             CommonModule,
             RouterModule.forRoot(ROUTES, { useHash: true })
         ],

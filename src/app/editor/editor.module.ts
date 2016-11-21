@@ -90,6 +90,7 @@ import { SweTimeRangeComponent } from './components/swe/SweTimeRangeComponent';
 import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponent';
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
+import { SensorMLPipe } from './pipes/SensorMLPipe';
 
 @NgModule({
     declarations: [
@@ -176,7 +177,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent
+        UnitOfMeasureComponent,
+        SensorMLPipe
     ],
     imports: [
         CommonModule,
@@ -255,7 +257,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent
+        UnitOfMeasureComponent,
+        SensorMLPipe
     ],
     entryComponents: [
         KeywordListComponent,

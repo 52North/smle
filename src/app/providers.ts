@@ -4,12 +4,18 @@ import { XmlService } from './services/XmlService';
 import { SensorMLXmlService } from './services/SensorMLXmlService';
 import { SampleDataLoader } from './services/SampleDataLoader';
 import { DescriptionConfigService } from './services/DescriptionConfigService';
+import { ConfigurationService } from './services/ConfigurationService';
 import { EditorService } from './services/EditorService';
+import { PublishDescriptionService } from './sos/publish/publish.service';
+import { SosService } from './sos/sos.service';
 
 export const APP_PROVIDERS: any[] = [
     { provide: DescriptionRepository, useClass: InMemoryDescriptionRepository },
     { provide: XmlService, useClass: SensorMLXmlService },
-    { provide: SampleDataLoader, useClass: SampleDataLoader },
-    { provide: DescriptionConfigService, useClass: DescriptionConfigService },
-    { provide: EditorService, useClass: EditorService }
+    SampleDataLoader,
+    DescriptionConfigService,
+    ConfigurationService,
+    EditorService,
+    PublishDescriptionService,
+    SosService
 ];
