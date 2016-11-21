@@ -6,4 +6,5 @@ export interface DescriptionConfig {
     isFieldMandatory(name: string): boolean;
     existInForm(name: string): boolean;
     elementFixQuantity(name:string):boolean;
+    getLabel(name:string):string;
 }

@@ -49,12 +49,12 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     private openNewClassifierListItem(item: ClassifierList) {
-        var metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('sml:classification'));
+        var metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('sml:classification').getConfigFor('smlClassifierList'));
         this.openNewChild(metadata);
     }
 
     private openNewContactListItem(item: ContactList) {
-        var metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('sml:contacts'));
+        var metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList'));
         this.openNewChild(metadata);
     }
 

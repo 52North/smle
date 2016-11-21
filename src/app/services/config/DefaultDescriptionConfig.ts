@@ -2,6 +2,9 @@ import { DescriptionConfig } from './DescriptionConfig';
 
 
 export class DefaultDescriptionConfig implements DescriptionConfig {
+    constructor(private elementConfig: any){
+        
+    }
     isFieldMandatory(name: string): boolean {
         return false;
     }
@@ -17,7 +20,11 @@ export class DefaultDescriptionConfig implements DescriptionConfig {
     elementFixQuantity(name: string): boolean {
         return false;
     }
-    getConfigFor(name: string): DescriptionConfig {
-        return new DefaultDescriptionConfig();
+      getLabel(name:string):string{
+        return undefined;
     }
+    getConfigFor(name: string): DescriptionConfig {
+        return new DefaultDescriptionConfig(this.elementConfig);
+    }
+  
 }

@@ -1,6 +1,6 @@
 <list [list]="list" (remove)="remove($event)" [noSelect]="true">
     <list-add-section>
-        <input [required]="config.isFieldMandatory(configName)" [readonly]="config.isFieldFixed(configName)" type="text" class="form-control" [(ngModel)]="item" name="item"
+        <input [required]="config.isFieldMandatory(configName,model,fieldName)" [readonly]="config.isFieldFixed(configName,model,fieldName)" type="text" class="form-control" [(ngModel)]="item" name="item"
                (keyup.enter)="add()" (keyup.escape)="clear()">
         <button type="button" class="btn btn-link" (click)="add()">
             <i class="fa fa-fw fa-plus-circle"></i> Add

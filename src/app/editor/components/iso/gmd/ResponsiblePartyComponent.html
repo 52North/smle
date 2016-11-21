@@ -2,10 +2,10 @@
       (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
         <text-field [isShowAll]="isShowAll" [config]="config" [model]="model"
-                    [fieldName]="'individualName'"></text-field>
+               [configName]="'gmd:individualName'"     [fieldName]="'individualName'"></text-field>
         <text-field [isShowAll]="isShowAll" [config]="config" [model]="model"
-                    [fieldName]="'organisationName'"></text-field>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'positionName'"></text-field>
+              [configName]="'gmd:organisationName'" [fieldName]="'organisationName'"></text-field>
+        <text-field [isShowAll]="isShowAll" [configName]="'gmd:positionName'"[config]="config" [model]="model" [fieldName]="'positionName'"></text-field>
         <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('contactInfo')">
             <child-item [model]="model.contactInfo" [itemTitle]="getDisplayName('contactInfo')"
                         (add)="onAddContact()" (remove)="onRemoveContact()"

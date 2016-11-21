@@ -1,5 +1,5 @@
 <sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:position')">
+<div class="form-group" *ngIf="config.existInForm('sml:position',model,'position') &&(isShowAll || config.isFieldVisible('sml:position','textField',model,'position'))">
      <label for="position">{{getDisplayName('position')}}</label>
     <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('sml:position')" [(model)]="model.position"></position-list>
 </div>

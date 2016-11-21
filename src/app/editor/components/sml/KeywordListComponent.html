@@ -1,7 +1,7 @@
 <card [verticalMode]="hasChild" [title]="'Keyword List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"  [(showAll)]="isShowAll">
     <form>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'codeSpace'"></text-field>
-    <div class="form-group" *ngIf="config.existInForm('keywords') &&(isShowAll || config.isFieldVisible('sml:keyword','textField'))">
+    <div class="form-group" *ngIf="config.existInForm('sml:keyword',model,'keyword') &&(isShowAll || config.isFieldVisible('sml:keyword','textField',model,'keyword'))">
          <label for="keywords">Keywords</label>
         <strings [list]="model.keywords" [fieldName]="'keyword'" [configName]="'sml:keyword'" [config]="config"></strings>
     </div>

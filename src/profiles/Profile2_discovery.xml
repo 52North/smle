@@ -28,6 +28,9 @@
 						<p:value>Short name</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_shortName">
 				<p:restrictions>
@@ -35,9 +38,12 @@
 						<p:value>http://www.nexosproject.eu/dictionary/definitions.html#shortName</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_shortName">
-				<p:label>Short name (swe:value)</p:label>
+				<p:label>Short name (sml:value)</p:label>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -50,6 +56,9 @@
 						<p:value>Long name</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_longName">
 				<p:restrictions>
@@ -57,9 +66,12 @@
 						<p:value>http://www.nexosproject.eu/dictionary/definitions.html#longName</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_longName">
-				<p:label>Long name (swe:value)</p:label>
+				<p:label>Long name (sml:value)</p:label>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -72,6 +84,9 @@
 						<p:value>UUID</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_uniqueID">
 				<p:restrictions>
@@ -79,9 +94,12 @@
 						<p:value>http://www.nexosproject.eu/dictionary/definitions.html#UUID</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_uniqueID">
-				<p:label>Unique ID (swe:value)</p:label>
+				<p:label>Unique ID (sml:value)</p:label>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -94,6 +112,9 @@
 						<p:value>Device ID</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_deviceID">
 				<p:restrictions>
@@ -101,9 +122,12 @@
 						<p:value>http://www.nexosproject.eu/dictionary/definitions.html#deviceID</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_deviceID">
-				<p:label>Device ID (swe:value)</p:label>
+				<p:label>Device ID (sml:value)</p:label>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -116,6 +140,9 @@
 						<p:value>Serial number</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_serialNumber">
 				<p:restrictions>
@@ -123,9 +150,12 @@
 						<p:value>http://www.nexosproject.eu/dictionary/definitions.html#serialNumber</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_serialNumber">
-				<p:label>Serial number (swe:value)</p:label>
+				<p:label>Serial number (sml:value)</p:label>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -138,6 +168,9 @@
 						<p:value>WMO</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementString>
 			<p:elementAnyURI XPath="@definition" ID="definition_WMO">
 				<p:restrictions>
@@ -145,9 +178,12 @@
 						<p:value>http://www.nexosproject.eu/dictionary/definitions.html#WMO_ID</p:value>
 					</p:fixContent>
 				</p:restrictions>
+				<p:input>
+					<p:textField hide="true" />
+				</p:input>
 			</p:elementAnyURI>
 			<p:elementString XPath="sml:value" ID="value_WMO">
-				<p:label>WMO (swe:value)</p:label>
+				<p:label>WMO (sml:value)</p:label>
 			</p:elementString>
 		</p:elements>
 	</p:elementGroup>
@@ -348,18 +384,11 @@
 		</p:formComponent>
 	</p:formConfiguration>
 
-	<p:abstractComplexElement XPath="sml:identification/sml:IdentifierList">
-		<p:occurrence>
-			<p:fixQuantity />
-		</p:occurrence>
-	</p:abstractComplexElement>
-	<p:abstractComplexElement XPath="sml:identification/sml:IdentifierList/sml:identifier">
-		<p:occurrence>
-			<p:fixQuantity />
-		</p:occurrence>
-	</p:abstractComplexElement>
 
 	<p:abstractElementString XPath="gml:description">
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
 		<p:input>
 			<p:textField />
 		</p:input>
@@ -375,30 +404,57 @@
 	</p:abstractElementString>
 
 	<p:abstractElementString XPath="sml:identification/sml:IdentifierList/sml:identifier/sml:Term/sml:label">
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
 		<p:input>
 			<p:textField />
 		</p:input>
 	</p:abstractElementString>
 
 	<p:abstractElementString XPath="sml:identification/sml:IdentifierList/sml:identifier/sml:Term/sml:value">
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
 		<p:input>
 			<p:textField />
 		</p:input>
 	</p:abstractElementString>
 
 	<p:abstractElementString
-		XPath="sml:contact/sml:ContactList/sml:contact/gmd:CI_ResponsibleParty/gmd:organisationName">
+		XPath="sml:identification/sml:IdentifierList/sml:identifier/sml:Term/@definition">
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
 		<p:input>
 			<p:textField />
 		</p:input>
 	</p:abstractElementString>
 
-	<p:abstractElementString XPath="sml:position/swe:DataRecord/swe:coordinate/swe:Quantity/swe:uom/@code">
+	<p:abstractElementString
+		XPath="sml:contacts/sml:ContactList/sml:contact/gmd:CI_ResponsibleParty/gmd:organisationName">
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
 		<p:input>
 			<p:textField />
 		</p:input>
 	</p:abstractElementString>
-	<p:abstractElementDouble XPath="sml:position/swe:DataRecord/swe:coordinate/swe:Quantity/swe:value">
+
+	<p:abstractElementString
+		XPath="sml:position/swe:DataRecord/swe:field/swe:Vector/swe:coordinate/swe:Quantity/swe:uom/@code">
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
+		<p:input>
+			<p:textField />
+		</p:input>
+	</p:abstractElementString>
+	<p:abstractElementDouble
+		XPath="sml:position/swe:DataRecord/swe:field/swe:Vector/swe:coordinate/swe:Quantity/swe:value">
+		<p:restrictions>
+			<p:use>required</p:use>
+		</p:restrictions>
 		<p:input>
 			<p:numberField />
 		</p:input>

@@ -36,8 +36,7 @@
 						</annotation>
 					</element>
 				</choice>
-				<element name="dependenceRules" minOccurs="0"
-					type="profile:global_dependenceRulesType">
+				<element name="dependenceRules" minOccurs="0" type="profile:global_dependenceRulesType">
 					<annotation>
 						<documentation>Definition of dependencies between the XML element groups.</documentation>
 					</annotation>
@@ -47,7 +46,19 @@
 						<documentation>Description of the structure of the form.</documentation>
 					</annotation>
 				</element>
-				<element ref="profile:abstractElement" minOccurs="0" maxOccurs="unbounded" />
+				<choice>
+					<element ref="profile:abstractElement" minOccurs="0" maxOccurs="unbounded" />
+					<element name="choice">
+						<complexType>
+							<sequence>
+								<element name="label" type="string" minOccurs="0" />
+								<element name="description" type="string" minOccurs="0" />
+								<element ref="profile:abstractElement" minOccurs="0" maxOccurs="unbounded" />
+							</sequence>
+						</complexType>
+					</element>
+				</choice>
+
 			</sequence>
 			<attribute name="class" type="string" />
 			<assert
@@ -273,7 +284,7 @@
 					<assert test="count(*)=count(*[ends-with(@ref,concat('_',./../@groupRef))])" />
 				</complexType>
 			</element>
-			<element ref="profile:abstractElement"/>
+			<element ref="profile:abstractElement" />
 			<group ref="profile:logical_operation_elementGroup" />
 		</choice>
 	</complexType>
@@ -330,6 +341,15 @@
 							</complexType>
 						</element>
 						<element name="elementGroup" type="profile:elementGroupType" />
+						<element name="choice">
+							<complexType>
+								<sequence>
+									<element name="label" type="string" minOccurs="0" />
+									<element name="description" type="string" minOccurs="0" />
+									<element ref="profile:element" />
+								</sequence>
+							</complexType>
+						</element>
 					</choice>
 				</complexType>
 			</element>

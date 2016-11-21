@@ -17,6 +17,9 @@ export class TrueDescriptionConfig implements DescriptionConfig {
     elementFixQuantity(name: string): boolean {
         return false;
     }
+    getLabel(name: string): string {
+        return undefined;
+    }
     getConfigFor(name: string): DescriptionConfig {
         return new TrueDescriptionConfig();
     }
