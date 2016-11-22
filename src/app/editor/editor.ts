@@ -23,9 +23,10 @@ enum DescriptionType {
 export class Editor implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
+    public actionBarNeeded: boolean = false;
+
     private descriptionType: DescriptionType;
     private descriptionLoadingError: string;
-    //private procedureId: string;
     private descriptionIsLoading: boolean = true;
 
     constructor(
@@ -54,6 +55,7 @@ export class Editor implements OnInit {
                 snapshot.queryParams[PROCEDURE_ID_PARAM],
                 snapshot.queryParams[SOS_URL_PARAM]
             ).subscribe(res => {
+                this.actionBarNeeded = true;
                 this.setDescription(res);
             }, error => {
                 this.descriptionLoadingError = error;

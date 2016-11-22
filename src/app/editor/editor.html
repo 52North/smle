@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row editor" [ngClass]="{'actionBar': actionBarNeeded}">
 
     <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
         <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
@@ -30,18 +30,18 @@
         <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')"></sml-simple-process>
     </div>
 
-    <!-- show the bar only, when a button is presented -->
-    <div class="publish container" *ngIf="!!description">
-        <div class="row">
-            <div class="col-md-12">
-                <a class="btn btn-primary center-block" (click)="publishDescription()">Publish Description</a>
-            </div>
-        </div>
-    </div>
-
     <a class="btn-link visualizer-open-button" *ngIf="!!description" (click)="visualizerExpanded = true">Show tree</a>
     <div class="visualizer-container col-sm-3" [class.expanded]="visualizerExpanded" *ngIf="!!description">
         <object-tree class="description-visualizer" [model]="description"></object-tree>
         <a class="btn-link visualizer-close-button" (click)="visualizerExpanded = false">Hide tree</a>
+    </div>
+
+</div>
+
+<div class="row" *ngIf="actionBarNeeded">
+    <div class="publish container" *ngIf="!!description">
+        <div class="col-md-12">
+            <a class="btn btn-primary center-block" (click)="publishDescription()">Publish Description</a>
+        </div>
     </div>
 </div>

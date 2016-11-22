@@ -40,8 +40,12 @@ pre {
   word-wrap: break-word;
 }
 
-.row {
+.row.editor {
   height: 100%;
+
+  &.actionBar {
+    height: 95%;
+  }
 
   .dropdown-item {
     cursor: pointer;
@@ -52,7 +56,7 @@ pre {
   }
 
   .components-container {
-    height: 95%;
+    height: 100%;
     padding-top: 5px;
     padding-bottom: 15px;
     overflow-x: auto;
@@ -60,10 +64,10 @@ pre {
     width: auto;
     white-space: nowrap;
   }
+}
 
-  .publish {
-    height: 5%;
-  }
+.publish {
+  height: 5%;
 }
 
 :host {
