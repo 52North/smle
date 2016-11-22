@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AbstractProcess } from '../model/sml';
 import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
@@ -7,10 +7,7 @@ import { EditorService } from '../services/EditorService';
 import { PhysicalSystem } from '../model/sml/PhysicalSystem';
 import { PhysicalComponent } from '../model/sml/PhysicalComponent';
 import { SimpleProcess } from '../model/sml/SimpleProcess';
-import { PublishDescriptionService } from '../sos/publish/publish.service';
-
-const PROCEDURE_ID_PARAM = 'procedureId';
-const SERVICE_URL_PARAM = 'serviceUrl';
+import { PROCEDURE_ID_PARAM, SOS_URL_PARAM } from '../routes';
 
 enum DescriptionType {
     PhysicalSystem = 1,
@@ -26,52 +23,47 @@ enum DescriptionType {
 export class Editor implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
-
     private descriptionType: DescriptionType;
     private descriptionLoadingError: string;
+    //private procedureId: string;
     private descriptionIsLoading: boolean = true;
 
     constructor(
-        private publish: PublishDescriptionService,
         private descriptionConfigService: DescriptionConfigService,
         private editorService: EditorService,
-        private route: ActivatedRoute,
-        private router: Router
-    ) {
-    }
+        private route: ActivatedRoute
+    ) { }
 
     publishDescription(): void {
-        this.publish.setDescription(this.description);
-        this.router.navigate(['/publish']);
+        this.editorService.startPublishingDescription(this.description);
     }
 
     ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            let id = params['id'];
-            if (id) {
-                this.editorService.getDescriptionForId(id).then(desc => {
-                    this.descriptionIsLoading = false;
-                    if (desc != null) {
-                        this.setDescription(desc);
-                    }
-                }).catch(() => {
-                    this.descriptionIsLoading = false;
-                });
-            }
-        });
-        this.route.queryParams.subscribe(queryParams => {
-            if (queryParams[PROCEDURE_ID_PARAM] && queryParams[SERVICE_URL_PARAM]) {
-                this.editorService.loadDescriptionByIdAndUrl(
-                    queryParams[PROCEDURE_ID_PARAM],
-                    queryParams[SERVICE_URL_PARAM]
-                ).subscribe(res => {
-                    this.setDescription(res);
-                }, error => {
-                    this.descriptionLoadingError = error;
-                    this.descriptionIsLoading = false;
-                });
-            }
-        });
+        let snapshot = this.route.snapshot;
+        if (snapshot.params['id']) {
+            this.editorService.getDescriptionForId(snapshot.params['id']).then(desc => {
+                this.descriptionIsLoading = false;
+                if (desc != null) {
+                    this.setDescription(desc);
+                }
+            }).catch(() => {
+                this.descriptionIsLoading = false;
+            });
+        } else if (snapshot.queryParams[PROCEDURE_ID_PARAM] && snapshot.queryParams[SOS_URL_PARAM]) {
+            this.editorService.loadDescriptionByIdAndUrl(
+                snapshot.queryParams[PROCEDURE_ID_PARAM],
+                snapshot.queryParams[SOS_URL_PARAM]
+            ).subscribe(res => {
+                this.setDescription(res);
+            }, error => {
+                this.descriptionLoadingError = error;
+            }, () => {
+                this.descriptionIsLoading = false;
+            });
+        } else {
+            this.descriptionIsLoading = false;
+            this.setDescription(this.editorService.getDescription());
+        }
         this.descriptionConfigService.getConfiguration().then(configuration => this.config = configuration);
     }
 

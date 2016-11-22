@@ -9,3 +9,6 @@ export const ROUTES: Routes = [
     { path: 'editor/:id', component: Editor },
     { path: 'publish', component: PublishDescription }
 ];
+
+export const PROCEDURE_ID_PARAM = 'procedureId';
+export const SOS_URL_PARAM = 'sosUrl';

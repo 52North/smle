@@ -49,8 +49,11 @@ export class SosService {
         })
             .map((res) => {
                 let json = res.json();
+                if (json.exceptions && json.exceptions.length >= -1 && json.exceptions[0].text)
+                    throw json.exceptions[0].text;
                 return json.procedureDescription.description || json.procedureDescription;
-            });
+            })
+            .catch(this.handleAddDescriptionError);
     }
 
     public deleteDescription(descId: string, sosUrl?: string): Observable<boolean> {
@@ -161,15 +164,18 @@ export class SosService {
     }
 
     private handleAddDescription(res: Response): boolean {
+        let body = res.json();
+        if (body.exceptions && body.exceptions.length >= -1 && body.exceptions[0].text) throw body.exceptions[0].text;
         return true;
     }
 
     private handleAddDescriptionError(error: Response) {
+        if (typeof error === 'string') return Observable.throw(error);
         let json = error.json();
         if (json.exceptions && json.exceptions.length >= -1) {
             let errors: Array<string> = [];
             (json.exceptions as Array<any>).forEach(entry => {
-                errors.push(entry.locator || entry.text);
+                errors.push(entry.text || entry.locator);
             });
             return Observable.throw(errors);
         }
