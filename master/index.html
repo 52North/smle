@@ -25,6 +25,8 @@
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/icon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
   <link rel="manifest" href="/assets/manifest.json">
+  <link rel="stylesheet" href="/assets/loader.css" media="screen" title="no title" charset="utf-8">
+
   <meta name="msapplication-TileColor" content="#00bcd4">
   <meta name="msapplication-TileImage" content="/assets/icon/ms-icon-144x144.png">
   <meta name="theme-color" content="#00bcd4">
@@ -33,7 +35,12 @@
 
 <body>
 
-  <app><i class="fa-li fa fa-spinner fa-spin"></i></app>
+  <app>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div id="title">smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺</div>
+    </div>
+</app>
   
 
 <script type="text/javascript" src="polyfills.9c1387746fa0f9606d27.bundle.js"></script><script type="text/javascript" src="vendor.1d1e30e86be30d716e63.bundle.js"></script><script type="text/javascript" src="main.c99da429bbffa09cc296.bundle.js"></script></body>
