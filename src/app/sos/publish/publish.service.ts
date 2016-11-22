@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
-import { SosService } from '../sos.service';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class PublishDescriptionService {
 
     private description: AbstractProcess;
+    private sosUrl: string;
 
     constructor(
-        private sosService: SosService
     ) { }
 
     setDescription(desc: AbstractProcess): void {
@@ -26,5 +22,13 @@ export class PublishDescriptionService {
 
     getDescription(): AbstractProcess {
         return this.description;
+    }
+
+    setSosUrl(sosUrl: string) {
+        this.sosUrl = sosUrl;
+    }
+
+    getSosUrl(): string {
+        return this.sosUrl;
     }
 }

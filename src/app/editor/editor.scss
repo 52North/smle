@@ -1,4 +1,5 @@
-.visualizer-open-button, .visualizer-close-button {
+.visualizer-close-button,
+.visualizer-open-button {
   position: absolute;
   cursor: pointer;
 }
@@ -31,8 +32,20 @@
   }
 }
 
-.row {
+pre {
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.row.editor {
   height: 100%;
+
+  &.actionBar {
+    height: 95%;
+  }
 
   .dropdown-item {
     cursor: pointer;
@@ -43,7 +56,7 @@
   }
 
   .components-container {
-    height: 95%;
+    height: 100%;
     padding-top: 5px;
     padding-bottom: 15px;
     overflow-x: auto;
@@ -55,6 +68,10 @@
   .publish {
     height: 5%;
   }
+}
+
+.publish {
+  height: 5%;
 }
 
 :host {

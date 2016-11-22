@@ -18,6 +18,7 @@ export class PublishDescription implements OnInit {
     private errors: Array<string> = [];
     private success: string;
     private identifier: string;
+    private sosUrl: string;
 
     constructor(
         private publishServ: PublishDescriptionService,
@@ -28,6 +29,7 @@ export class PublishDescription implements OnInit {
 
     ngOnInit() {
         this.description = this.publishServ.getDescription();
+        this.sosUrl = this.publishServ.getSosUrl();
         if (this.description && !this.description.identifier) {
             this.description.identifier = new CodeType('');
         }
@@ -47,7 +49,7 @@ export class PublishDescription implements OnInit {
     }
 
     protected editDescription() {
-        this.editorServ.openEditorWithDescription(this.description);
+        this.editorServ.openEditorWithDescription(this.description, this.sosUrl);
     }
 
     protected addDescription() {
@@ -60,7 +62,7 @@ export class PublishDescription implements OnInit {
 
     protected updateDescription() {
         this.resetError();
-        this.sosService.updateDescription(this.description.identifier.value, this.description)
+        this.sosService.updateDescription(this.description.identifier.value, this.description, this.sosUrl)
             .subscribe(res => {
                 this.success = 'Successfully updated the description!';
             }, error => this.handleError(error));
@@ -69,7 +71,7 @@ export class PublishDescription implements OnInit {
     private hasSosDescription() {
         this.resetError();
         if (this.description && this.description.identifier && this.description.identifier.value) {
-            this.sosService.hasSosDescription(this.description.identifier.value)
+            this.sosService.hasSosDescription(this.description.identifier.value, this.sosUrl)
                 .subscribe(res => {
                     this.hasDescription = res;
                 }, (error) => this.handleError(error));

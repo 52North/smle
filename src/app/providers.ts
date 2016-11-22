@@ -13,15 +13,15 @@ import { AuthGuard } from './sos/components/auth-guard.service';
 import { AuthService } from './sos/components/auth.service';
 
 export const APP_PROVIDERS: any[] = [
-  { provide: DescriptionRepository, useClass: InMemoryDescriptionRepository },
-  { provide: XmlService, useClass: SensorMLXmlService },
-  SampleDataLoader,
-  DescriptionConfigService,
-  ConfigurationService,
-  EditorService,
-  PublishDescriptionService,
-  ConnectDescriptionService,
-  SosService,
-  AuthGuard,
-  AuthService
+    { provide: DescriptionRepository, useClass: InMemoryDescriptionRepository },
+    { provide: XmlService, useClass: SensorMLXmlService },
+    SampleDataLoader,
+    DescriptionConfigService,
+    ConfigurationService,
+    EditorService,
+    PublishDescriptionService,
+    ConnectDescriptionService,
+    SosService,
+    AuthGuard,
+    AuthService
 ];

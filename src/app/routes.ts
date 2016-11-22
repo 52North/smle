@@ -19,3 +19,6 @@ export const ROUTES: Routes = [
     { path: 'delete', component: DeleteDescription, canActivate: [AuthGuard] },
     { path: 'templates', component: Templates }
 ];
+
+export const PROCEDURE_ID_PARAM = 'procedureId';
+export const SOS_URL_PARAM = 'sosUrl';
