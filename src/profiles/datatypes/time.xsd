@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+	<include schemaLocation="Datatypes.xsd" />
+	<include schemaLocation="FormFieldTypes.xsd" />
+	<!-- Datatypes: any Definition (Default) -->
+
+	<element name="elementTime" substitutionGroup="profile:element"><!-- name -->
+		<complexType>
+			<complexContent>
+				<extension base="profile:elementType">
+					<group ref="profile:timeElementGroup" />
+					<assert
+						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<complexType name="elementTimeRefType"><!-- !!!name -->
+		<complexContent>
+			<extension base="profile:elementRefType">
+				<group ref="profile:timeGroup" /><!-- !!!ref -->
+				<assert
+					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+				<assert
+					test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+	<complexType name="union_time">
+		<group ref="profile:timeRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
+	</complexType>
+
+	<element name="abstractElementTime" substitutionGroup="profile:abstractElement">
+		<complexType>
+			<complexContent>
+				<extension base="profile:abstractElementType">
+					<group ref="profile:timeElementGroup" />
+					<assert
+						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+	<group name="timeElementGroup">
+		<sequence>
+			<element name="restrictions" minOccurs="0">
+				<complexType>
+					<group ref="profile:timeGroup" /><!-- !!!ref -->
+				</complexType>
+			</element>
+			<element name="input" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded"><!-- change -->
+						<element ref="profile:textField" />
+						<element ref="profile:selectionBox" />
+						<element ref="profile:calendar" />
+					</choice>
+				</complexType>
+			</element>
+		</sequence>
+	</group>
+	<group name="timeGroup"><!-- !!!name -->
+		<sequence>
+			<element ref="profile:use" minOccurs="0" />
+			<element ref="profile:occurrence" minOccurs="0" />
+			<group ref="profile:timeRestrictionGroup" minOccurs="0" />
+			<element name="defaultContent" type="profile:time_fixContent_currentDateType" minOccurs="0" /><!-- 
+				!!!type -->
+		</sequence>
+	</group>
+	<group name="timeRestrictionGroup">
+		<choice>
+			<element name="fixContent" type="profile:time_fixContent_currentDateType" /><!-- !!!type -->
+			<element name="content-selection_enumeration">
+				<complexType>
+					<sequence>
+						<group ref="profile:time_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
+					</sequence>
+					<attribute name="base" type="string" fixed="-" />
+				</complexType>
+			</element>
+			<element name="content-format">
+				<complexType>
+					<sequence>
+						<element name="pattern" minOccurs="0">
+							<complexType>
+								<sequence>
+									<element name="regular-expression" type="profile:regular_expression" maxOccurs="unbounded" />
+								</sequence>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="explicitTimezone" minOccurs="0">
+							<complexType>
+								<attribute name="type" use="required">
+									<simpleType>
+										<restriction base="string">
+											<enumeration value="required" />
+											<enumeration value="prohibited" />
+											<enumeration value="optional" />
+										</restriction>
+									</simpleType>
+								</attribute>
+								<attribute name="base" type="string" fixed="optional" />
+							</complexType>
+						</element>
+						<element name="whitespace" minOccurs="0">
+							<complexType>
+								<attribute name="method" fixed="collapse" use="required">
+									<simpleType>
+										<restriction base="string">
+											<enumeration value="preserve" />
+											<enumeration value="replace" />
+											<enumeration value="collapse" />
+										</restriction>
+									</simpleType>
+								</attribute>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="number-boundary" minOccurs="0">
+							<complexType>
+								<sequence>
+									<choice minOccurs="0">
+										<element name="minInclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:time_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+										<element name="minExclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:time_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+									</choice>
+									<choice minOccurs="0">
+										<element name="maxInclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:time_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+										<element name="maxExclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:time_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+									</choice>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+	</group>
+	<complexType name="time_fixContent_currentDateType"><!-- !!!name -->
+		<group ref="profile:time_fixContent_currentDateGroup" /><!-- !!!ref -->
+	</complexType>
+	<group name="time_fixContentGroup"><!-- !!!name -->
+		<choice>
+			<element name="value">
+				<complexType>
+					<simpleContent>
+						<extension base="time"><!-- !!!base -->
+							<attribute name="URL" type="anyURI" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="ref">
+				<complexType>
+					<complexContent>
+						<extension base="profile:elementRefType">
+							<attribute name="refValueNotExist" use="required">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="fail" />
+										<enumeration value="succeed" />
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</choice>
+	</group>
+	<group name="time_fixContent_currentDateGroup"><!-- !!!name -->
+		<choice>
+			<group ref="profile:time_fixContentGroup" minOccurs="0" /><!-- !!!ref -->
+			<element name="current-date" type="token" minOccurs="0" />
+		</choice>
+	</group>
+</schema>

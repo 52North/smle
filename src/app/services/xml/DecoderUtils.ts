@@ -1,3 +1,25 @@
+import { BidiMap } from '../DynamicGUIService';
+export class ReturnObject<T> {
+    private _value: T;
+    private _docElement: Element;
+
+    constructor(value: T, docElement: Element) {
+        this._value = value;
+        this._docElement = docElement;
+    }
+    get value(): T {
+        return this._value;
+    }
+    set value(value: T) {
+        this._value = value;
+    }
+    get docElement(): Element {
+        return this._docElement;
+    }
+    set docElement(docElement: Element) {
+        this._docElement = docElement;
+    }
+}
 export class DecoderUtils {
 
     public getAttributeOfElement(
@@ -5,11 +27,12 @@ export class DecoderUtils {
         elemName: string,
         elemNamespace: string,
         attributeName: string,
-        attributeNamespace: string): string {
+        attributeNamespace: string): ReturnObject<string> {
         let elem = this.getMatchingChildElements(root, elemName, elemNamespace);
         if (elem.length === 1) {
             if (elem[0].hasAttributeNS(attributeNamespace, attributeName)) {
-                return elem[0].getAttributeNS(attributeNamespace, attributeName);
+
+                return new ReturnObject(elem[0].getAttributeNS(attributeNamespace, attributeName), elem[0]);
             };
         }
     }
@@ -29,13 +52,16 @@ export class DecoderUtils {
         root: Element,
         elemName: string,
         elemNamespace: string,
-        decodeFunc: (elem: Element) => T): Array<T> {
+        profileIDMap: BidiMap,
+        decodeFunc: (elem: Element) => ReturnObject<T>): Array<T> {
         let list = new Array<T>();
         let elements = this.getMatchingChildElements(root, elemName, elemNamespace);
         if (elements.length >= 1) {
             for (let i = 0; i < elements.length; i++) {
-                let decodedElem = decodeFunc(elements[i]);
-                if (decodedElem != null) {
+                let returnObject: ReturnObject<T> = decodeFunc(elements[i]);
+                let decodedElem = returnObject.value;
+                if (decodedElem != null && returnObject.docElement != null) {
+                    this.processProfileID(returnObject.docElement, decodedElem, '', profileIDMap);
                     list.push(decodedElem);
                 }
             }
@@ -55,5 +81,33 @@ export class DecoderUtils {
             }
         }
         return matches;
+    }
+
+    public processProfileID(docElement: Element, modelElement: any, modelElementProperty: string, mapProfileID: BidiMap): BidiMap {
+        let attribute = docElement.getAttribute('profileID');
+        if (attribute != null) {
+            let profileID = attribute;
+            if (profileID && modelElement && mapProfileID) {
+                mapProfileID.addLinkage(modelElement, modelElementProperty, profileID);
+            }
+        }
+        let i = 0;
+        let loop = true;
+        while (loop) {
+            let attribute = docElement.getAttribute('profileID_' + i);
+            if (attribute != null) {
+                let profileID = attribute;
+                let profileIDSplit = profileID.split('_');
+                if (profileIDSplit.length === 2) {
+                    if (profileID && modelElement && mapProfileID) {
+                        mapProfileID.addLinkage(modelElement, profileIDSplit[0], profileID);
+                    }
+                }
+            } else {
+                loop = false;
+            }
+            i = i + 1;
+        }
+        return mapProfileID;
     }
 }

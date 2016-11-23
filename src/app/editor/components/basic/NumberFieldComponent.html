@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory(fieldName)">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible(configName,'numberField')">
     <label [attr.for]="fieldName">{{getDisplayName(fieldName)}}</label>
-    <input type="number" class="form-control" [(ngModel)]="model[fieldName]" [attr.name]="fieldName">
+    <input type="number" class="form-control" [class.valueRequired]="config.isFieldMandatory(configName)" [(ngModel)]="model[fieldName]" [attr.name]="fieldName">
 </div>

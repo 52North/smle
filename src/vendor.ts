@@ -14,3 +14,5 @@ import 'jquery-ui-timepicker-addon';
 import 'bootstrap-loader';
 
 import 'leaflet';
+
+import 'x2js';

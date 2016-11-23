@@ -8,10 +8,14 @@ import { PhysicalSystem } from '../model/sml/PhysicalSystem';
 import { PhysicalComponent } from '../model/sml/PhysicalComponent';
 import { SimpleProcess } from '../model/sml/SimpleProcess';
 
+import { Http, Response } from '@angular/http';
+
+import { DynamicGUIService, ReturnObject } from '../services/DynamicGUIService';
 enum DescriptionType {
     PhysicalSystem = 1,
     PhysicalComponent = 2,
-    SimpleProcess = 3
+    SimpleProcess = 3,
+    DynamicGUI = 4
 }
 
 @Component({
@@ -22,13 +26,16 @@ enum DescriptionType {
 export class Editor implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
-
     private descriptionType: DescriptionType;
     private descriptionIsLoading: boolean = true;
+    private visualizerExpanded: boolean = false;
+    private descriptionTypes: string[] = ["PhysicalSystem", "PhysicalComponent", "DiscoveryProfile"];
 
     constructor(private configurationService: DescriptionConfigService,
         private editorService: EditorService,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        private http: Http,
+        private dynamicGUIService: DynamicGUIService) {
     }
 
     ngOnInit(): void {
@@ -53,6 +60,12 @@ export class Editor implements OnInit {
             this.setDescription(new PhysicalComponent());
         } else if (type === 'SimpleProcess') {
             this.setDescription(new SimpleProcess());
+        } else {
+            this.dynamicGUIService.getModelAndConfiguration().subscribe((returnObject: ReturnObject) => {
+                this.setDescription(returnObject.model);
+                this.config = returnObject.configuration;
+                //  alert("this.config:" + JSON.stringify(returnObject.configuration))
+            });
         }
     }
 
@@ -69,7 +82,7 @@ export class Editor implements OnInit {
         } else if (desc instanceof SimpleProcess) {
             return DescriptionType.SimpleProcess;
         } else {
-            return undefined;
+            return DescriptionType.DynamicGUI;
         }
     }
 }

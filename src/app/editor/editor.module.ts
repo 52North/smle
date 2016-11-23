@@ -48,6 +48,7 @@ import { DocumentListComponent } from './components/sml/DocumentListComponent';
 import { EventComponent } from './components/sml/EventComponent';
 import { EventListComponent } from './components/sml/EventListComponent';
 import { IdentifierListComponent } from './components/sml/IdentifierListComponent';
+import { KeywordListComponent } from './components/sml/KeywordListComponent';
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
 import { NamedSweDataComponentComponent, SweFieldComponent }
     from './components/sml/NamedSweDataComponentComponent';
@@ -70,7 +71,6 @@ import { AbstractSweRangeComponent } from './components/swe/AbstractSweRangeComp
 import { AllowedTimesComponent } from './components/swe/AllowedTimesComponent';
 import { AllowedTokensComponent } from './components/swe/AllowedTokensComponent';
 import { AllowedValuesComponent } from './components/swe/AllowedValuesComponent';
-import { KeywordListComponent } from './components/swe/KeywordListComponent';
 import { SweBinaryBlockComponent } from './components/swe/SweBinaryBlockComponent';
 import { SweBinaryComponentComponent } from './components/swe/SweBinaryComponentComponent';
 import { SweBinaryEncodingComponent } from './components/swe/SweBinaryEncodingComponent';

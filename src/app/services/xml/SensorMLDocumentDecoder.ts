@@ -5,11 +5,20 @@ import { PhysicalComponent } from '../../model/sml/PhysicalComponent';
 import { PhysicalSystem } from '../../model/sml/PhysicalSystem';
 import { SensorMLDecoder } from './SensorMLDecoder';
 import { SimpleProcess } from '../../model/sml/SimpleProcess';
+import { BidiMap } from '../DynamicGUIService';
 
 export class SensorMLDocumentDecoder {
 
     private decoder = new SensorMLDecoder();
+    private _profileIDMap: BidiMap;
 
+    public get profileIDMap() {
+        return this._profileIDMap;
+    }
+    public set profileIDMap(profileIDMap: BidiMap) {
+        this._profileIDMap = profileIDMap;
+        this.decoder.profileIDMap = this._profileIDMap;
+    }
     public decode(document: Document): AbstractProcess {
         let process = this.createProcessOfDocument(document);
         this.decoder.decodeDocument(document.documentElement, process);

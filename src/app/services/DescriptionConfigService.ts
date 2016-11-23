@@ -4,6 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
 import { TrueDescriptionConfig } from './config/TrueDescriptionConfig';
+import { BidiMap } from './DynamicGUIService';
 
 @Injectable()
 export class DescriptionConfigService {
@@ -13,7 +14,7 @@ export class DescriptionConfigService {
     public getConfiguration(): Promise<DescriptionConfig> {
         return this.http.get('./description-config.json').toPromise().then((response: Response) => {
             let data = response.json();
-            return new JSONDescriptionConfig(data);
+            return new JSONDescriptionConfig(data, {}, new BidiMap(), false);
         }).catch(() => {
             return new TrueDescriptionConfig();
         });

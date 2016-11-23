@@ -1,6 +1,6 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('values')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('values')">
     <label for="values">{{getDisplayName('values')}}</label>
-    <strings [list]="model.values"></strings>
+    <strings [list]="model.values" [config]="config" [fieldName]="'values'"></strings>
 </div>
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'pattern'"></text-field>
 <swe-abstract-allowed-values [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-allowed-values>
