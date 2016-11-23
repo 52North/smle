@@ -15,7 +15,7 @@
             <span *ngIf="itemLabelFunc">{{itemLabelFunc.call(item, item, index, list)}}</span>
             <span *ngIf="!itemLabelFunc">{{item.toString()}}</span>
         </div>
-        <div [hidden]="fixLength" class="list-remove">
+        <div [hidden]="fixLength" class="remove">
             <a class="btn btn-link" (click)="onRemove(item, i)">
                 <i class="fa fa-remove"></i>
                 <span>Remove</span>
