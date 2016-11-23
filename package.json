@@ -81,7 +81,7 @@
     "jquery-ui": "^1.10.5",
     "jquery-ui-timepicker-addon": "^1.5.5",
     "leaflet": "^0.7.7",
-    "moment": "^2.13.0",
+    "moment": "2.16.0",
     "primeng": "1.0.0-beta.16",
     "primeui": "4.1.14",
     "rxjs": "5.0.0-beta.12",
@@ -143,8 +143,9 @@
     "url-loader": "^0.5.7",
     "w3c-schemas": "^1.4.0",
     "webpack": "2.1.0-beta.22",
+    "webpack-deploy2war": "^0.1.1",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-dev-server": "^2.1.0-beta.2",
+    "webpack-dev-server": "2.1.0-beta.10",
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^0.14.1"
   }
