@@ -111,19 +111,19 @@ export class SweDecoder {
             coordinate.coordinate = count;
         }
         if (coordinate.coordinate == null) {
-            let returnObject: ReturnObject<SweQuantity> = this.decodeQuantity(node);
-            if (returnObject) {
-                coordinate.coordinate = returnObject.value;
+            let quantityReturnObject: ReturnObject<SweQuantity> = this.decodeQuantity(node);
+            if (quantityReturnObject) {
+                coordinate.coordinate = quantityReturnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
-                    returnObject.docElement, coordinate, 'coordinate', this._profileIDMap
+                    quantityReturnObject.docElement, coordinate, 'coordinate', this._profileIDMap
                 );
             }
         } else if (coordinate.coordinate == null) {
-            let returnObject: ReturnObject<SweTime> = this.decodeTime(node);
-            if (returnObject) {
-                coordinate.coordinate = returnObject.value;
+            let timeReturnObject: ReturnObject<SweTime> = this.decodeTime(node);
+            if (timeReturnObject) {
+                coordinate.coordinate = timeReturnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
-                    returnObject.docElement, coordinate, 'coordinate', this._profileIDMap
+                    timeReturnObject.docElement, coordinate, 'coordinate', this._profileIDMap
                 );
             }
         }
@@ -647,7 +647,6 @@ export class SweDecoder {
                     this._profileIDMap = this.utils.processProfileID(
                         timeRangeElem, timeRange, 'value', this._profileIDMap
                     );
-
                 }
             }
 
@@ -1047,19 +1046,19 @@ export class SweDecoder {
             }
 
             allowedTimes.values = this.utils.getDecodedList(
-                allowedTimesElem, 'value', NAMESPACES.SWE, this._profileIDMap, (elem) => {
-                    if (!isNaN(Date.parse(elem.textContent))) {
-                        return new ReturnObject(new Date(Date.parse(elem.textContent)), elem);
+                allowedTimesElem, 'value', NAMESPACES.SWE, this._profileIDMap, (entry) => {
+                    if (!isNaN(Date.parse(entry.textContent))) {
+                        return new ReturnObject(new Date(Date.parse(entry.textContent)), entry);
                     }
                     return new ReturnObject(null, null);
                 });
 
             allowedTimes.values = this.utils.getDecodedList(
-                allowedTimesElem, 'interval', NAMESPACES.SWE, this._profileIDMap, (elem) => {
-                    let interval = elem.textContent.split(' ');
+                allowedTimesElem, 'interval', NAMESPACES.SWE, this._profileIDMap, (entry) => {
+                    let interval = entry.textContent.split(' ');
                     if (interval.length === 2 && !isNaN(Date.parse(interval[0])) && !isNaN(Date.parse(interval[1]))) {
                         return new ReturnObject(
-                            [new Date(Date.parse(interval[0])), new Date(Date.parse(interval[1]))], elem
+                            [new Date(Date.parse(interval[0])), new Date(Date.parse(interval[1]))], entry
                         );
                     }
                     return new ReturnObject(null, null);

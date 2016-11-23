@@ -74,16 +74,6 @@ export class GmlDecoder {
         }
     }
 
-    private getTime(elem: Element): Date {
-        if (elem.hasAttribute('indeterminatePosition') && elem.getAttribute('indeterminatePosition') === 'unknown') {
-            return null;
-        } else {
-            let date = new Date(Date.parse(elem.textContent));
-            this._profileIDMap = this.utils.processProfileID(elem, date, '', this._profileIDMap);
-            return date;
-        }
-    }
-
     public decodeAbstractGML(elem: Element, object: AbstractGML): void {
         if (elem.hasAttributeNS(NAMESPACES.GML, 'id')) {
             object.gmlId = elem.getAttributeNS(NAMESPACES.GML, 'id');
@@ -94,14 +84,18 @@ export class GmlDecoder {
         let descriptionElem = this.utils.getElement(elem, 'description', NAMESPACES.GML);
         if (descriptionElem != null) {
             object.description = descriptionElem.textContent;
-            this._profileIDMap = this.utils.processProfileID(descriptionElem, object, 'description', this._profileIDMap);
+            this._profileIDMap = this.utils.processProfileID(
+                descriptionElem, object, 'description', this._profileIDMap
+            );
 
         }
 
         let descriptionReferenceElem = this.utils.getElement(elem, 'descriptionReference', NAMESPACES.GML);
         if (descriptionReferenceElem != null) {
             object.descriptionReference = descriptionReferenceElem.textContent;
-            this._profileIDMap = this.utils.processProfileID(descriptionReferenceElem, object, 'descriptionReference', this._profileIDMap);
+            this._profileIDMap = this.utils.processProfileID(
+                descriptionReferenceElem, object, 'descriptionReference', this._profileIDMap
+            );
 
         }
 
@@ -110,12 +104,15 @@ export class GmlDecoder {
             let returnObject = this.decodeCodeType(identifierElem);
             if (returnObject) {
                 object.identifier = returnObject.value;
-                this._profileIDMap = this.utils.processProfileID(returnObject.docElement, object, 'identifier', this._profileIDMap);
+                this._profileIDMap = this.utils.processProfileID(
+                    returnObject.docElement, object, 'identifier', this._profileIDMap
+                );
             }
         }
 
-        object.name = this.utils.getDecodedList(elem, 'name', NAMESPACES.GML, this._profileIDMap, (nameElem) => this.decodeCodeType(nameElem));
-
+        object.name = this.utils.getDecodedList(
+            elem, 'name', NAMESPACES.GML, this._profileIDMap, (nameElem) => this.decodeCodeType(nameElem)
+        );
     }
 
     public decodeCodeType(elem: Element): ReturnObject<CodeType> {
@@ -222,6 +219,16 @@ export class GmlDecoder {
         if (elem.hasAttribute('uomLabels')) {
             referenced.uomLabels = elem.getAttribute('uomLabels').split(' ');
             this._profileIDMap = this.utils.processProfileID(elem, referenced, 'uomLabels', this._profileIDMap);
+        }
+    }
+
+    private getTime(elem: Element): Date {
+        if (elem.hasAttribute('indeterminatePosition') && elem.getAttribute('indeterminatePosition') === 'unknown') {
+            return null;
+        } else {
+            let date = new Date(Date.parse(elem.textContent));
+            this._profileIDMap = this.utils.processProfileID(elem, date, '', this._profileIDMap);
+            return date;
         }
     }
 }

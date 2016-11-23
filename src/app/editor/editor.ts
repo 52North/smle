@@ -8,8 +8,6 @@ import { PhysicalSystem } from '../model/sml/PhysicalSystem';
 import { PhysicalComponent } from '../model/sml/PhysicalComponent';
 import { SimpleProcess } from '../model/sml/SimpleProcess';
 
-import { Http, Response } from '@angular/http';
-
 import { DynamicGUIService, ReturnObject } from '../services/DynamicGUIService';
 enum DescriptionType {
     PhysicalSystem = 1,
@@ -26,15 +24,14 @@ enum DescriptionType {
 export class Editor implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
+    public visualizerExpanded: boolean = false;
+    public descriptionTypes: string[] = ['PhysicalSystem', 'PhysicalComponent', 'DiscoveryProfile'];
     private descriptionType: DescriptionType;
     private descriptionIsLoading: boolean = true;
-    private visualizerExpanded: boolean = false;
-    private descriptionTypes: string[] = ["PhysicalSystem", "PhysicalComponent", "DiscoveryProfile"];
 
     constructor(private configurationService: DescriptionConfigService,
         private editorService: EditorService,
         private route: ActivatedRoute,
-        private http: Http,
         private dynamicGUIService: DynamicGUIService) {
     }
 
@@ -64,7 +61,7 @@ export class Editor implements OnInit {
             this.dynamicGUIService.getModelAndConfiguration().subscribe((returnObject: ReturnObject) => {
                 this.setDescription(returnObject.model);
                 this.config = returnObject.configuration;
-                //  alert("this.config:" + JSON.stringify(returnObject.configuration))
+                //  alert('this.config:' + JSON.stringify(returnObject.configuration))
             });
         }
     }

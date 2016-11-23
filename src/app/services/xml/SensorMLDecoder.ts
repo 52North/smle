@@ -270,43 +270,43 @@ export class SensorMLDecoder {
 
         let settings = this.utils.getElement(elem, 'configuration', NAMESPACES.SML);
         if (settings != null) {
-            let returnObject: ReturnObject<Settings> = this.decodeSettings(settings);
-            if (returnObject) {
-                object.configuration = returnObject.value;
+            let settingsRo: ReturnObject<Settings> = this.decodeSettings(settings);
+            if (settingsRo) {
+                object.configuration = settingsRo.value;
                 this._profileIDMap = this.utils.processProfileID(
-                    returnObject.docElement, object, 'configuration', this._profileIDMap
+                    settingsRo.docElement, object, 'configuration', this._profileIDMap
                 );
             }
         }
 
         let features = this.utils.getElement(elem, 'featuresOfInterest', NAMESPACES.SML);
         if (features != null) {
-            let returnObject: ReturnObject<FeatureList> = this.decodeFeatureList(features);
-            if (returnObject) {
-                object.featureOfInterest = returnObject.value;
+            let featureListRo: ReturnObject<FeatureList> = this.decodeFeatureList(features);
+            if (featureListRo) {
+                object.featureOfInterest = featureListRo.value;
                 this._profileIDMap = this.utils.processProfileID(
-                    returnObject.docElement, object, 'featureOfInterest', this._profileIDMap
+                    featureListRo.docElement, object, 'featureOfInterest', this._profileIDMap
                 );
             }
         }
 
         let inputsElem = this.utils.getElement(elem, 'inputs', NAMESPACES.SML);
         if (inputsElem != null) {
-            let returnObject: ReturnObject<InputList> = this.decodeInputList(inputsElem);
-            if (returnObject) {
-                object.inputs = returnObject.value;
+            let inputListRo: ReturnObject<InputList> = this.decodeInputList(inputsElem);
+            if (inputListRo) {
+                object.inputs = inputListRo.value;
                 this._profileIDMap = this.utils.processProfileID(
-                    returnObject.docElement, object, 'inputs', this._profileIDMap
+                    inputListRo.docElement, object, 'inputs', this._profileIDMap
                 );
             }
 
             let outputsElem = this.utils.getElement(elem, 'outputs', NAMESPACES.SML);
             if (outputsElem != null) {
-                let returnObject: ReturnObject<OutputList> = this.decodeOutputList(outputsElem);
-                if (returnObject) {
-                    object.outputs = returnObject.value;
+                let outputListRo: ReturnObject<OutputList> = this.decodeOutputList(outputsElem);
+                if (outputListRo) {
+                    object.outputs = outputListRo.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, object, 'outputs', this._profileIDMap
+                        outputListRo.docElement, object, 'outputs', this._profileIDMap
                     );
                 }
             }
@@ -314,11 +314,11 @@ export class SensorMLDecoder {
 
             let parameters = this.utils.getElement(elem, 'parameters', NAMESPACES.SML);
             if (parameters != null) {
-                let returnObject: ReturnObject<ParameterList> = this.decodeParameterList(parameters);
-                if (returnObject) {
-                    object.parameters = returnObject.value;
+                let parameterListRo: ReturnObject<ParameterList> = this.decodeParameterList(parameters);
+                if (parameterListRo) {
+                    object.parameters = parameterListRo.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, object, 'parameters', this._profileIDMap
+                        parameterListRo.docElement, object, 'parameters', this._profileIDMap
                     );
                 }
             }

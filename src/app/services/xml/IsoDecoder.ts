@@ -47,7 +47,9 @@ export class IsoDecoder {
                 let returnObject: ReturnObject<OnlineResource> = this.decodeOnlineResource(onlineResourceElem);
                 if (returnObject) {
                     contact.onlineResource = returnObject.value;
-                    this._profileIDMap = this.utils.processProfileID(returnObject.docElement, contact, 'onlineResource', this._profileIDMap);
+                    this._profileIDMap = this.utils.processProfileID(
+                        returnObject.docElement, contact, 'onlineResource', this._profileIDMap
+                    );
                 }
             }
             let hoursOfServiceElem = this.utils.getElement(contactElem, 'hoursOfService', NAMESPACES.GMD);
@@ -55,7 +57,9 @@ export class IsoDecoder {
                 let returnObject: ReturnObject<string> = this.getDecodedCharacterString(hoursOfServiceElem);
                 if (returnObject) {
                     contact.hoursOfService = returnObject.value;
-                    this._profileIDMap = this.utils.processProfileID(returnObject.docElement, contact, 'hoursOfService', this._profileIDMap);
+                    this._profileIDMap = this.utils.processProfileID(
+                        returnObject.docElement, contact, 'hoursOfService', this._profileIDMap
+                    );
                 }
             }
             let contactInstructionsElem = this.utils.getElement(contactElem, 'contactInstructions', NAMESPACES.GMD);
@@ -63,7 +67,9 @@ export class IsoDecoder {
                 let returnObject: ReturnObject<string> = this.getDecodedCharacterString(contactInstructionsElem);
                 if (returnObject) {
                     contact.contactInstructions = returnObject.value;
-                    this._profileIDMap = this.utils.processProfileID(returnObject.docElement, contact, 'contactInstructions', this._profileIDMap);
+                    this._profileIDMap = this.utils.processProfileID(
+                        returnObject.docElement, contact, 'contactInstructions', this._profileIDMap
+                    );
                 }
             }
             return contact;
@@ -96,7 +102,9 @@ export class IsoDecoder {
         let onlineResourceElem = this.utils.getElement(elem, 'CI_OnlineResource', NAMESPACES.GMD);
         if (onlineResourceElem != null) {
             let onlineResource = new OnlineResource();
-            this._profileIDMap = this.utils.processProfileID(onlineResourceElem, onlineResource, '', this._profileIDMap);
+            this._profileIDMap = this.utils.processProfileID(
+                onlineResourceElem, onlineResource, '', this._profileIDMap
+            );
 
             let linkageElem = this.utils.getElement(onlineResourceElem, 'linkage', NAMESPACES.GMD);
             if (linkageElem != null) {

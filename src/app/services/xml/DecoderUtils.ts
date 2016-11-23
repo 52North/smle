@@ -69,21 +69,9 @@ export class DecoderUtils {
         return list;
     }
 
-    private getMatchingChildElements(root: Element, elemName: string, elemNamespace: string): Array<Element> {
-        let childNodes = root.childNodes;
-        let matches = new Array<Element>();
-        for (let i = 0; i < childNodes.length; i++) {
-            if (childNodes.item(i) instanceof Element) {
-                let elem = childNodes.item(i) as Element;
-                if (elem.namespaceURI === elemNamespace && elem.tagName.indexOf(elemName) > 0) {
-                    matches.push(elem);
-                }
-            }
-        }
-        return matches;
-    }
-
-    public processProfileID(docElement: Element, modelElement: any, modelElementProperty: string, mapProfileID: BidiMap): BidiMap {
+    public processProfileID(
+        docElement: Element, modelElement: any, modelElementProperty: string, mapProfileID: BidiMap
+    ): BidiMap {
         let attribute = docElement.getAttribute('profileID');
         if (attribute != null) {
             let profileID = attribute;
@@ -94,9 +82,8 @@ export class DecoderUtils {
         let i = 0;
         let loop = true;
         while (loop) {
-            let attribute = docElement.getAttribute('profileID_' + i);
-            if (attribute != null) {
-                let profileID = attribute;
+            let profileID = docElement.getAttribute('profileID_' + i);
+            if (profileID != null) {
                 let profileIDSplit = profileID.split('_');
                 if (profileIDSplit.length === 2) {
                     if (profileID && modelElement && mapProfileID) {
@@ -109,5 +96,19 @@ export class DecoderUtils {
             i = i + 1;
         }
         return mapProfileID;
+    }
+
+    private getMatchingChildElements(root: Element, elemName: string, elemNamespace: string): Array<Element> {
+        let childNodes = root.childNodes;
+        let matches = new Array<Element>();
+        for (let i = 0; i < childNodes.length; i++) {
+            if (childNodes.item(i) instanceof Element) {
+                let elem = childNodes.item(i) as Element;
+                if (elem.namespaceURI === elemNamespace && elem.tagName.indexOf(elemName) > 0) {
+                    matches.push(elem);
+                }
+            }
+        }
+        return matches;
     }
 }
