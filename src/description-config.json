@@ -1,5 +1,8 @@
 {
   "description": {
+    "id": {
+      "fixed": true
+    },
     "location": false,
     "boundedBy": false,
     "description": false,
@@ -119,7 +122,7 @@
       "description": false,
       "id": false,
       "extension": false,
-      "events":{
+      "events": {
         "id": false,
         "identifier": false,
         "name": false,

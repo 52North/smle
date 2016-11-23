@@ -47,7 +47,8 @@ export class Editor implements OnInit {
                 this.descriptionIsLoading = false;
             });
         });
-        this.configurationService.getConfiguration().then(configuration => this.config = configuration);
+        this.configurationService.getConfiguration(false)
+            .then(configuration => this.config = configuration);
     }
 
     public onSelectDescriptionType(type: string) {

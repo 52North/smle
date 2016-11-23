@@ -2,7 +2,7 @@ import * as smlLib from '../model/sml';
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
+import { DynamicDescriptionConfig } from './config/DynamicDescriptionConfig';
 import { LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger } from 'typescript-logging';
 import { SensorMLDocumentEncoder } from './xml/SensorMLDocumentEncoder';
 import { SensorMLDocumentDecoder } from './xml/SensorMLDocumentDecoder';
@@ -283,7 +283,7 @@ export class Configuration {
 
 export class ReturnObject {
     private _model: AbstractProcess;
-    private uration: JSONDescriptionConfig;
+    private uration: DynamicDescriptionConfig;
 
     get model(): AbstractProcess {
         return this._model;
@@ -293,11 +293,11 @@ export class ReturnObject {
         this._model = model;
     }
 
-    get configuration(): JSONDescriptionConfig {
+    get configuration(): DynamicDescriptionConfig {
         return this.uration;
     }
 
-    set configuration(configuration: JSONDescriptionConfig) {
+    set configuration(configuration: DynamicDescriptionConfig) {
         this.uration = configuration;
     }
 }
@@ -362,7 +362,7 @@ export class DynamicGUIService {
                 this._profileIDMap.getElementObject('value_shortName'))
             );
             this._logger.info('model with the fix values:' + JSON.stringify(returnObject.model));
-            returnObject.configuration = new JSONDescriptionConfig(
+            returnObject.configuration = new DynamicDescriptionConfig(
                 this._globalConfig, this._elementConfig, this._profileIDMap, true
             );
             return returnObject;
