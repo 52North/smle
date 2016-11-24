@@ -6,3 +6,9 @@
         <child-item [model]="model.configuration" [itemTitle]="getDisplayName('configuration')" (add)="createSettings()" (remove)="removeSettings()" (select)="openSettings()"></child-item>
     </div>
 </div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('parameters')">
+    <label for="configuration">Parameters</label>
+    <div>
+        <child-item [model]="model.parameters" [itemTitle]="getDisplayName('parameters')" (add)="createParameters()" (remove)="removeParameters()" (select)="openParameters()"></child-item>
+    </div>
+</div>
