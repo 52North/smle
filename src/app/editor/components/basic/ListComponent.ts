@@ -14,12 +14,18 @@ export class ListComponent {
     public itemValueFunc: Function;
     @Input()
     public noSelect: boolean = false;
+    @Input()
+    public shouldItemVisible: (value: any) => boolean;
     @Output()
     public select: EventEmitter<any> = new EventEmitter<any>();
     @Output()
     public add: EventEmitter<any> = new EventEmitter<any>();
     @Output()
     public remove: EventEmitter<number> = new EventEmitter<number>();
+
+    protected isVisible(item: any) {
+        return this.shouldItemVisible ? this.shouldItemVisible(item) : true;
+    }
 
     protected onClick(item: any, index: number) {
         this.select.emit(item);

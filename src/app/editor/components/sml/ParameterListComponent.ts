@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
 import { ParameterList, Parameter } from '../../../model/sml';
+import { AbstractDataComponent } from '../../../model/swe';
 import { ChildMetadata } from '../base/TypedModelComponent';
 import { ParameterComponent } from './ParameterComponent';
 import {
@@ -56,5 +57,14 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
     protected onRemoveParameter(index: number): void {
         this.closeChildWithModel(this.model.parameters[index]);
         this.model.parameters.splice(index, 1);
+    }
+
+    protected isItemVisible(parameter: Parameter): boolean {
+        // TODO only do this, when editor is in tracking mode
+        let tasking = true;
+        if (parameter.value instanceof AbstractDataComponent && tasking) {
+            return (parameter.value as AbstractDataComponent).updatable;
+        }
+        return true;
     }
 }

@@ -2,7 +2,7 @@
     <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('parameter')">
         <label for="setValue">{{getDisplayName('parameter')}}</label>
-        <list [list]="model.parameters" (select)="openNewParameter($event)" (remove)="onRemoveParameter($event)" (add)="onAddParameter()">
+        <list [list]="model.parameters" (select)="openNewParameter($event)" (remove)="onRemoveParameter($event)" (add)="onAddParameter()" [shouldItemVisible]="isItemVisible">
             <list-add-section>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="parameterTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
