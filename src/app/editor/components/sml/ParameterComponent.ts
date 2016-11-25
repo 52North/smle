@@ -79,7 +79,6 @@ export abstract class AbstractInputOrOutputOrParameterComponent
 }
 
 @Component({
-    selector: 'sml-named-swe-data-component',
     template: require('./ParameterComponent.html'),
     styles: [require('../styles/editor-component.scss')]
 })

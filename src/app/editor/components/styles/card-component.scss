@@ -29,7 +29,7 @@
         left: 0;
         top: 0;
         bottom: 0;
-        width: 6vw;
+        width: 100%;
         box-sizing: border-box;
         z-index: 10;
         border-bottom: none;
@@ -40,7 +40,7 @@
           top: 50%;
           padding: 0;
           transform-origin: left center;
-          margin-left: 20%;
+          margin-left: 10px;
           transform: rotate(-90deg);
         }
       }
@@ -52,7 +52,6 @@
       flex-shrink: 1;
     }
   }
-
   @media(max-width: 750px) {
     width: 495px;
 

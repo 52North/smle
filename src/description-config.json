@@ -119,7 +119,7 @@
       "description": false,
       "id": false,
       "extension": false,
-      "events":{
+      "events": {
         "id": false,
         "identifier": false,
         "name": false,
@@ -187,6 +187,27 @@
           }
         }
       }
+    },
+    "parameters": {
+      "parameter": {
+        "value": {
+          "constraint": false,
+          "definition": false,
+          "identifier": false,
+          "description": true,
+          "id": false,
+          "referenceFrame": false,
+          "axisId": false,
+          "optional": false,
+          "updatable": false
+        }
+      },
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
     }
   }
 }

@@ -1,5 +1,13 @@
 <card [verticalMode]="hasChild" [title]="'ParameterList'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="parameterTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Create new parameter entry
+        </button>
+        <div class="dropdown-menu" aria-labelledby="parameterTypeDropdown">
+            <a class="dropdown-item" *ngFor="let option of options" (click)="onAddParameter(option.type)">{{option.name}}</a>
+        </div>
+    </div>
     <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('parameter')">
         <label for="setValue">{{getDisplayName('parameter')}}</label>
         <list [list]="model.parameters" (select)="openNewParameter($event)" (remove)="onRemoveParameter($event)" (add)="onAddParameter()"></list>
