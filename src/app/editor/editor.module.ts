@@ -51,6 +51,8 @@ import { IdentifierListComponent } from './components/sml/IdentifierListComponen
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
 import { NamedSweDataComponentComponent, SweFieldComponent }
     from './components/sml/NamedSweDataComponentComponent';
+import { ParameterListComponent } from './components/sml/ParameterListComponent';
+import { ParameterComponent } from './components/sml/ParameterComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PositionEditorComponent } from './components/sml/PositionComponent';
@@ -139,6 +141,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ModeSettingComponent,
         NamedSweDataComponentComponent,
         SweFieldComponent,
+        ParameterListComponent,
+        ParameterComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -221,6 +225,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         EventListComponent,
         ModeSettingComponent,
         SweFieldComponent,
+        ParameterListComponent,
+        ParameterComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -272,6 +278,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ValueSettingComponent,
         ModeSettingComponent,
         StatusSettingComponent,
+        ParameterListComponent,
+        ParameterComponent,
         PositionEditorComponent,
         MapComponent,
         TimePeriodComponent,

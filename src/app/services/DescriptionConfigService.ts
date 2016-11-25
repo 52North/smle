@@ -12,8 +12,12 @@ export class DescriptionConfigService {
 
     public getConfiguration(): Promise<DescriptionConfig> {
         return this.http.get('./description-config.json').toPromise().then((response: Response) => {
-            let data = response.json();
-            return new JSONDescriptionConfig(data);
+            try {
+                let data = response.json();
+                return new JSONDescriptionConfig(data);
+            } catch (error) {
+                console.error('error while creating configuration: ' + error);
+            }
         }).catch(() => {
             return new TrueDescriptionConfig();
         });
