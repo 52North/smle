@@ -1,5 +1,5 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
-<!--<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('language')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('language')">
     <label for="language">{{getDisplayName('language')}}</label>
     <input type="text" class="form-control" [(ngModel)]="model.language" name="language">
 </div>
@@ -27,12 +27,12 @@
             </a>
         </list-add-section>
     </list>
-</div>-->
+</div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('characteristics')">
     <label for="characteristics">{{getDisplayName('characteristics')}}</label>
     <list [list]="model.characteristics" (select)="openNewCharacteristicListItem($event)" (remove)="onRemoveCharacteristicList($event)" (add)="onAddCharacteristicList()"></list>
 </div>
-<!--<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('capabilities')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('capabilities')">
     <label for="capabilities">{{getDisplayName('capabilities')}}</label>
     <list [list]="model.capabilities" (select)="openNewCapabilityListItem($event)" (remove)="onRemoveCapabilityList($event)" (add)="onAddCapabilityList()"></list>
 </div>
@@ -43,7 +43,7 @@
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('documentation')">
     <label for="documentation">{{getDisplayName('documentation')}}</label>
     <list [list]="model.documentation" (select)="openNewDocumentListItem($event)" (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
-</div>-->
+</div>
 <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('history')">
     <label for="history">{{getDisplayName('history')}}</label>
     <list [list]="model.history" (select)="openNewEventListItem($event)" (remove)="onRemoveEventList($event)" (add)="onAddEventList()"></list>
