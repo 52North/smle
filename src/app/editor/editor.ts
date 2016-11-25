@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AbstractProcess } from '../model/sml';
-import { DescriptionConfigService } from '../services/DescriptionConfigService';
+import { DescriptionConfigService, ConfigType } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService } from '../services/EditorService';
 import { PhysicalSystem } from '../model/sml/PhysicalSystem';
@@ -56,7 +56,7 @@ export class Editor implements OnInit {
                 snapshot.queryParams[SOS_URL_PARAM]
             ).subscribe(res => {
                 this.actionBarNeeded = true;
-                this.setDescription(res);
+                this.setDescription(res, ConfigType.Tasking);
             }, error => {
                 this.descriptionLoadingError = error;
             }, () => {
@@ -66,7 +66,6 @@ export class Editor implements OnInit {
             this.descriptionIsLoading = false;
             this.setDescription(this.editorService.getDescription());
         }
-        this.descriptionConfigService.getConfiguration().then(configuration => this.config = configuration);
     }
 
     public onSelectDescriptionType(type: string) {
@@ -79,9 +78,11 @@ export class Editor implements OnInit {
         }
     }
 
-    private setDescription(desc: AbstractProcess) {
+    private setDescription(desc: AbstractProcess, configType?: ConfigType) {
         this.description = desc;
         this.descriptionType = this.getDescriptionType(desc);
+        if (!configType) configType = ConfigType.Default;
+        this.descriptionConfigService.getConfiguration(configType).then(configuration => this.config = configuration);
     }
 
     private getDescriptionType(desc: AbstractProcess) {

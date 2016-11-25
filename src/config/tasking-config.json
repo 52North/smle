@@ -1,0 +1,47 @@
+{
+  "description": {
+    "location": false,
+    "boundedBy": false,
+    "description": false,
+    "descriptionReference": false,
+    "identifier": false,
+    "name": false,
+    "keywords": false,
+    "identification": false,
+    "characteristics": false,
+    "capabilities": false,
+    "classification": false,
+    "language": false,
+    "validTime": false,
+    "documentation": false,
+    "contacts": false,
+    "typeOf": false,
+    "history": false,
+    "settings": false,
+    "attachedTo": false,
+    "components": false,
+    "configuration": false,
+    "position": false,
+    "parameters": {
+      "parameter": {
+        "value": {
+          "constraint": false,
+          "definition": false,
+          "identifier": false,
+          "description": true,
+          "id": false,
+          "referenceFrame": false,
+          "axisId": false,
+          "optional": false,
+          "updatable": false
+        }
+      },
+      "definition": false,
+      "identifier": false,
+      "label": false,
+      "description": false,
+      "id": false,
+      "extension": false
+    }
+  }
+}
