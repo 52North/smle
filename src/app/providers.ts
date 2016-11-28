@@ -8,6 +8,7 @@ import { ConfigurationService } from './services/ConfigurationService';
 import { EditorService } from './services/EditorService';
 import { PublishDescriptionService } from './sos/publish/publish.service';
 import { SosService } from './sos/sos.service';
+import { DynamicGUIService } from './services/DynamicGUIService';
 
 export const APP_PROVIDERS: any[] = [
     { provide: DescriptionRepository, useClass: InMemoryDescriptionRepository },
@@ -17,5 +18,6 @@ export const APP_PROVIDERS: any[] = [
     ConfigurationService,
     EditorService,
     PublishDescriptionService,
-    SosService
+    SosService,
+    DynamicGUIService
 ];

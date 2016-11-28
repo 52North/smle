@@ -15,19 +15,20 @@
             Select the descriptionType
         </button>
         <div class="dropdown-menu" aria-labelledby="descriptionTypeDropdown">
-            <a class="dropdown-item" (click)="onSelectDescriptionType('PhysicalSystem')">PhysicalSystem</a>
-            <a class="dropdown-item" (click)="onSelectDescriptionType('PhysicalComponent')">PhysicalComponent</a>
-            <!-- <a class="dropdown-item" (click)="onSelectDescriptionType('SimpleProcess')">SimpleProcess</a> -->
+            <span *ngFor="let descriptionType of descriptionTypes">
+                <a class="dropdown-item" (click)="onSelectDescriptionType(descriptionType)">{{descriptionType}}</a>
+            </span>
         </div>
     </div>
 </div>
 
 <div class="row editor" [ngClass]="{'actionBar': editorMode > 0}">
 
-    <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
+    <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description  && !!config" [ngSwitch]="descriptionType">
         <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
         <sml-physical-component *ngSwitchCase="2" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-component>
         <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')"></sml-simple-process>
+        <sml-physical-system *ngSwitchCase="4" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
     </div>
 
     <a class="btn-link visualizer-open-button" *ngIf="!!description" (click)="visualizerExpanded = true">Show tree</a>
@@ -38,7 +39,7 @@
 
 </div>
 
-<div class="row" *ngIf="editorMode > 0">
+<div class="row" *ngIf="editorMode === 1">
     <div class="publish container" *ngIf="!!description">
         <div class="col-md-12">
             <a class="btn btn-primary center-block" (click)="publishDescription()" *ngIf="editorMode === 1">Publish Description</a>

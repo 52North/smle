@@ -1,7 +1,7 @@
 <ul class="list-group list-group-flush">
     <template ngFor let-item let-i="index" [ngForOf]="list">
         <li *ngIf="isVisible(item)" class="list-group-item">
-            <div class="remove">
+            <div [hidden]="fixLength" class="remove">
                 <a class="btn btn-link" (click)="onRemove(item, i)">
                     <i class="fa fa-remove"></i>
                     <span>Remove</span>
@@ -24,7 +24,7 @@
             </div>
         </li>
     </template>
-    <li class="list-group-item list-add-section">
+    <li [hidden]="fixLength" class="list-group-item list-add-section">
         <ng-content select="list-add-section"></ng-content>
         <a (click)="onAdd()" class="btn btn-link list-add-section__default">
             <i class="fa fa-fw fa-plus"></i>

@@ -1,21 +1,21 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('language')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('language')">
     <label for="language">{{getDisplayName('language')}}</label>
     <input type="text" class="form-control" [(ngModel)]="model.language" name="language">
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('keywords')">
+<div class="form-group" *ngIf="config.existInForm('sml:keywords',model,'keywords') &&(isShowAll || config.isFieldVisible('sml:keywords','textField',model,'keywords'))">
     <label for="keywords">{{getDisplayName('keywords')}}</label>
-    <list [list]="model.keywords" (select)="openNewKeywordListItem($event)" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
+    <list [list]="model.keywords" (select)="openNewKeywordListItem($event)" [fixLength]="config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identification')">
+<div class="form-group" *ngIf="config.existInForm('sml:identification',model,'identification') &&(isShowAll || config.isFieldVisible('sml:identification','textField',model,'identification'))">
     <label for="identification">{{getDisplayName('identification')}}</label>
-    <list [list]="model.identification" (select)="openNewIdentifierListItem($event)" (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
+    <list [list]="model.identification" [fixLength]="config.getConfigFor('sml:identification').elementFixQuantity('sml:IdentifierList')" (select)="openNewIdentifierListItem($event)" (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('classification')">
+<div class="form-group" *ngIf="config.existInForm('sml:classification',model,'classification') &&(isShowAll || config.isFieldVisible('sml:classification','textField',model,'classification'))">
     <label for="classification">{{getDisplayName('classification')}}</label>
     <list [list]="model.classification" (select)="openNewClassifierListItem($event)" (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('validTime')">
+<div class="form-group" *ngIf="config.existInForm('sml:validTime',model,'validTime') &&(isShowAll || config.isFieldVisible('sml:validTime','textField',model,'validTime'))">
     <label for="validTime">{{getDisplayName('validTime')}}</label>
     <list [list]="model.validTime" (select)="openNewAbstractTimeItem($event)" (remove)="onRemoveAbstractTime($event)">
         <list-add-section>
@@ -28,23 +28,23 @@
         </list-add-section>
     </list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('characteristics')">
+<div class="form-group" *ngIf="config.existInForm('sml:characteristics',model,'characteristics') &&(isShowAll || config.isFieldVisible('sml:characteristics','textField',model,'characteristics'))">
     <label for="characteristics">{{getDisplayName('characteristics')}}</label>
     <list [list]="model.characteristics" (select)="openNewCharacteristicListItem($event)" (remove)="onRemoveCharacteristicList($event)" (add)="onAddCharacteristicList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('capabilities')">
+<div class="form-group" *ngIf="config.existInForm('sml:capabilities',model,'capabilities') &&(isShowAll || config.isFieldVisible('sml:capabilities','textField',model,'capabilities'))">
     <label for="capabilities">{{getDisplayName('capabilities')}}</label>
     <list [list]="model.capabilities" (select)="openNewCapabilityListItem($event)" (remove)="onRemoveCapabilityList($event)" (add)="onAddCapabilityList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
+<div class="form-group" *ngIf="config.existInForm('sml:contacts',model,'contacts') &&(isShowAll || config.isFieldVisible('sml:contacts','textField',model,'contacts'))">
     <label for="contacts">{{getDisplayName('contacts')}}</label>
     <list [list]="model.contacts" (select)="openNewContactListItem($event)" (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('documentation')">
+<div class="form-group" *ngIf="config.existInForm('sml:documentation',model,'documentation') &&(isShowAll || config.isFieldVisible('sml:documentation','textField',model,'documentation'))">
     <label for="documentation">{{getDisplayName('documentation')}}</label>
     <list [list]="model.documentation" (select)="openNewDocumentListItem($event)" (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('history')">
+<div class="form-group" *ngIf="config.existInForm('sml:history',model,'history') &&(isShowAll || config.isFieldVisible('sml:history','textField',model,'history'))">
     <label for="history">{{getDisplayName('history')}}</label>
     <list [list]="model.history" (select)="openNewEventListItem($event)" (remove)="onRemoveEventList($event)" (add)="onAddEventList()"></list>
 </div>

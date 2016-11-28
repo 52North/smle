@@ -1,5 +1,8 @@
 {
   "description": {
+    "id": {
+      "fixed": true
+    },
     "location": false,
     "boundedBy": false,
     "description": false,

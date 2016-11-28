@@ -1,9 +1,9 @@
 <sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('position')">
+<div class="form-group" *ngIf="config.existInForm('sml:position',model,'position') &&(isShowAll || config.isFieldVisible('sml:position','textField',model,'position'))">
   <label for="position">{{getDisplayName('position')}}</label>
-  <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('position')" [(model)]="model.position"></position-list>
+  <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('sml:position')" [(model)]="model.position"></position-list>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('attachedTo')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:attachedTo')">
   <label for="attachedTo">{{getDisplayName('attachedTo')}}</label>
   <div *ngIf="model.attachedTo" class="plain-text">{{model.attachedTo}}</div>
 </div>

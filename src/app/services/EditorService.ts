@@ -9,11 +9,13 @@ import { Observable, Observer } from 'rxjs';
 import { DescriptionConfigService } from './DescriptionConfigService';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { EditorMode } from './EditorMode';
+import { DynamicGUIService, ReturnObject } from './DynamicGUIService';
 
 export enum DescriptionType {
     PhysicalSystem = 1,
     PhysicalComponent = 2,
-    SimpleProcess = 3
+    SimpleProcess = 3,
+    DynamicGUI = 4
 }
 
 @Injectable()
@@ -30,7 +32,8 @@ export class EditorService {
         private router: Router,
         private sosService: SosService,
         private xmlService: XmlService<AbstractProcess>,
-        private configService: DescriptionConfigService
+        private configService: DescriptionConfigService,
+        private dynamicGUIService: DynamicGUIService
     ) { }
 
     openEditorWithDescription(desc: AbstractProcess, sosUrl: string) {
@@ -82,6 +85,17 @@ export class EditorService {
         });
     }
 
+    useDiscoveryProfiles(): Observable<ReturnObject> {
+        return new Observable<ReturnObject>((observer: Observer<ReturnObject>) => {
+            this.dynamicGUIService.getModelAndConfiguration().subscribe((returnObject: ReturnObject) => {
+                this.editorMode = EditorMode.Dynamic;
+                this.description = returnObject.model;
+                observer.next(returnObject);
+                observer.complete();
+            });
+        });
+    }
+
     createOrUpdateVersion(description: AbstractProcess) {
         if (description.identification
             && description.identification.length > 0) {
@@ -114,11 +128,11 @@ export class EditorService {
         } else if (this.description instanceof SimpleProcess) {
             return DescriptionType.SimpleProcess;
         } else {
-            return undefined;
+            return DescriptionType.DynamicGUI;
         }
     }
 
-    getConfiguration(): Promise<DescriptionConfig> {
+    getConfiguration(): Observable<DescriptionConfig> {
         return this.configService.getConfiguration(this.editorMode);
     }
 

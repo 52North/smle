@@ -8,3 +8,4 @@ npm-debug.log
 nbproject/
 src/templates
 *.war
+.project

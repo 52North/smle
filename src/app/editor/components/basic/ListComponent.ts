@@ -6,20 +6,31 @@ import { Component, Input, Output, EventEmitter, Directive } from '@angular/core
     template: require('./ListComponent.html')
 })
 export class ListComponent {
+
     @Input()
     public list: any[];
+
     @Input()
     public itemLabelFunc: Function;
+
     @Input()
     public itemValueFunc: Function;
+
+    @Input()
+    public fixLength: boolean;
+
     @Input()
     public noSelect: boolean = false;
+
     @Input()
     public shouldItemVisible: (value: any) => boolean;
+
     @Output()
     public select: EventEmitter<any> = new EventEmitter<any>();
+
     @Output()
     public add: EventEmitter<any> = new EventEmitter<any>();
+
     @Output()
     public remove: EventEmitter<number> = new EventEmitter<number>();
 
@@ -32,11 +43,15 @@ export class ListComponent {
     }
 
     protected onRemove(item: any, index: number) {
-        this.remove.emit(index);
+        if (!this.fixLength) {
+            this.remove.emit(index);
+        }
     }
 
     protected onAdd() {
-        this.add.emit(null);
+        if (!this.fixLength) {
+            this.add.emit(null);
+        }
     }
 }
 @Directive({ selector: 'list-add-section' })

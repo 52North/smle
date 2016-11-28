@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory(fieldName)">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible(fieldName,'checkbox')">
     <div class="checkbox">
         <label class="c-input c-checkbox">
             <input type="checkbox" [(ngModel)]="model[fieldName]" [attr.name]="fieldName">

@@ -6,6 +6,7 @@ import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService, DescriptionType } from '../services/EditorService';
 import { EditorMode } from '../services/EditorMode';
 import { PROCEDURE_ID_PARAM, SOS_URL_PARAM } from '../routes';
+import { DynamicGUIService } from '../services/DynamicGUIService';
 
 @Component({
     selector: 'editor',
@@ -18,6 +19,9 @@ export class Editor implements OnInit {
     public editorMode: EditorMode;
     public actionBarNeeded: boolean = false;
 
+    public visualizerExpanded: boolean = false;
+    public descriptionTypes: string[] = ['PhysicalSystem', 'PhysicalComponent', 'DiscoveryProfile'];
+
     private descriptionType: DescriptionType;
     private descriptionLoadingError: string;
     private descriptionIsLoading: boolean = true;
@@ -25,8 +29,9 @@ export class Editor implements OnInit {
     constructor(
         private descriptionConfigService: DescriptionConfigService,
         private editorService: EditorService,
-        private route: ActivatedRoute
-    ) { }
+        private route: ActivatedRoute,
+        private dynamicGUIService: DynamicGUIService) {
+    }
 
     ngOnInit(): void {
         let snapshot = this.route.snapshot;
@@ -65,19 +70,27 @@ export class Editor implements OnInit {
     public onSelectDescriptionType(type: string) {
         if (type === 'PhysicalSystem') {
             this.editorService.setDescription(new PhysicalSystem());
+            this.updateEditor();
         } else if (type === 'PhysicalComponent') {
             this.editorService.setDescription(new PhysicalComponent());
+            this.updateEditor();
         } else if (type === 'SimpleProcess') {
             this.editorService.setDescription(new SimpleProcess());
-        }
-        this.updateEditor();
+            this.updateEditor();
+        } else if (type === 'DiscoveryProfile') {
+            this.editorService.useDiscoveryProfiles().subscribe(res => {
+                this.description = res.model;
+                this.config = res.configuration;
+                this.descriptionType = this.editorService.getDescriptionType();
+                this.editorMode = this.editorService.getEditorMode();
+            });
+        };
     }
 
     private updateEditor() {
         this.description = this.editorService.getDescription();
         this.descriptionType = this.editorService.getDescriptionType();
         this.editorMode = this.editorService.getEditorMode();
-        this.editorService.getConfiguration().then(config => this.config = config);
+        this.editorService.getConfiguration().subscribe(config => this.config = config);
     }
-
 }

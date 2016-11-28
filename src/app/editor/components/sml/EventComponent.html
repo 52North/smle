@@ -1,59 +1,59 @@
-<card [verticalMode]="hasChild" [title]="'Event'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
-      [(showAll)]="isShowAll">
+<card [verticalMode]="hasChild" [title]="'Event'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
-        <swe-abstract-identifiable [model]="model" [config]="config"
-                                   [isShowAll]="isShowAll"></swe-abstract-identifiable>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('definition')">
+        <swe-abstract-identifiable [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-identifiable>
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('definition')">
             <label for="definition">{{getDisplayName('definition')}}</label>
             <div class="nested-element">
                 <div *ngIf="model.definition">
-                    <gml-code-type [model]="model.definition"
-                                   [config]="config.getConfigFor('definition')"></gml-code-type>
+                    <gml-code-type [model]="model.definition" [config]="config.getConfigFor('definition')"></gml-code-type>
                     <a type="button" class="btn btn-link" (click)="resetDefinition()">
-                        <i class="fa fa-fw fa-close"></i> reset {{getDisplayName('definition')}}
+                        <i class="fa fa-fw fa-close"></i>
+                        reset
+                        {{getDisplayName('definition')}}
                     </a>
                 </div>
                 <div *ngIf="!model.definition">
                     <a type="button" class="btn btn-link" (click)="createDefinition()">
-                        <i class="fa fa-fw fa-plus"></i> create {{getDisplayName('definition')}}
+                        <i class="fa fa-fw fa-plus"></i>
+                        create
+                        {{getDisplayName('definition')}}
                     </a>
                 </div>
             </div>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('keywords')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('keywords')">
             <label for="keywords">{{getDisplayName('keywords')}}</label>
-            <list [list]="model.keywords" (select)="openNewKeywordListItem($event)"
-                  (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
+            <list [list]="model.keywords" (select)="openNewKeywordListItem($event)" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('identification')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('identification')">
             <label for="identification">{{getDisplayName('identification')}}</label>
-            <list [list]="model.identification" (select)="openNewIdentifierListItem($event)"
-                  (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
+            <list [list]="model.identification" (select)="openNewIdentifierListItem($event)" (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('classification')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('classification')">
             <label for="classification">{{getDisplayName('classification')}}</label>
-            <list [list]="model.classification" (select)="openNewClassifierListItem($event)"
-                  (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
+            <list [list]="model.classification" (select)="openNewClassifierListItem($event)" (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('contacts')">
             <label for="contacts">{{getDisplayName('contacts')}}</label>
-            <list [list]="model.contacts" (select)="openNewContactListItem($event)"
-                  (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
+            <list [list]="model.contacts" (select)="openNewContactListItem($event)" (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('documentation')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('documentation')">
             <label for="documentation">{{getDisplayName('documentation')}}</label>
-            <list [list]="model.documentation" (select)="openNewDocumentListItem($event)"
-                  (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
+            <list [list]="model.documentation" (select)="openNewDocumentListItem($event)" (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('time')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('time')">
             <label for="time">{{getDisplayName('time')}}</label>
             <div class="nested-element">
                 <div *ngIf="model.time">
                     <a class="btn btn-link" *ngIf="!isPeriod(model.time)" (click)="openTimeInstant(model.time)">Time:
                         {{model.time.time | date}}</a>
                     <a class="btn btn-link" *ngIf="isPeriod(model.time)" (click)="openTimePeriod(model.time)">Period:
-                        {{model.time.begin | date}} - {{model.time.end | date}}</a>
-                    <a class="btn btn-link" (click)="resetTime()"><i class="fa fa-remove"></i> Remove</a>
+                        {{model.time.begin | date}}
+                        -
+                        {{model.time.end | date}}</a>
+                    <a class="btn btn-link" (click)="resetTime()">
+                        <i class="fa fa-remove"></i>
+                        Remove</a>
                 </div>
                 <div *ngIf="!model.time">
                     <a type="button" class="btn btn-link" (click)="createTime()">
@@ -66,12 +66,10 @@
             </div>
         </div>
         <!--<sml-configuration [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-configuration>-->
-        <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('configuration')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('configuration')">
             <label for="configuration">{{getDisplayName('configuration')}}</label>
             <div>
-                <child-item [model]="model.configuration" [itemTitle]="getDisplayName('configuration')"
-                            (add)="createSettings()" (remove)="removeSettings()"
-                            (select)="openSettings()"></child-item>
+                <child-item [model]="model.configuration" [itemTitle]="getDisplayName('configuration')" (add)="createSettings()" (remove)="removeSettings()" (select)="openSettings()"></child-item>
             </div>
         </div>
     </form>

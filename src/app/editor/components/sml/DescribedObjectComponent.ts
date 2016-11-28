@@ -5,7 +5,7 @@ import { KeywordList } from '../../../model/sml/KeywordList';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { ClassifierList } from '../../../model/sml/ClassifierList';
 import { DocumentList } from '../../../model/sml/DocumentList';
-import { KeywordListComponent } from '../swe/KeywordListComponent';
+import { KeywordListComponent } from './KeywordListComponent';
 import { IdentifierListComponent } from './IdentifierListComponent';
 import { ClassifierListComponent } from './ClassifierListComponent';
 import { DocumentListComponent } from './DocumentListComponent';
@@ -34,43 +34,54 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     protected openNewKeywordListItem(item: KeywordList) {
-        let metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
+        let metadata = new ChildMetadata(
+            KeywordListComponent, item, this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
+        );
         this.openNewChild(metadata);
     }
 
     protected openNewIdentifierListItem(item: IdentifierList) {
-        let metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('identification'));
+        let metadata = new ChildMetadata(
+            IdentifierListComponent,
+            item,
+            this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+        );
         this.openNewChild(metadata);
     }
 
     protected openNewClassifierListItem(item: ClassifierList) {
-        let metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
+        let metadata = new ChildMetadata(
+            ClassifierListComponent,
+            item,
+            this.config.getConfigFor('sml:classification').getConfigFor('smlClassifierList')
+        );
         this.openNewChild(metadata);
     }
 
     protected openNewContactListItem(item: ContactList) {
-        let metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('contacts'));
+        let metadata = new ChildMetadata(
+            ContactListComponent, item, this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList'));
         this.openNewChild(metadata);
     }
 
     protected openNewEventListItem(item: EventList) {
-        let metadata = new ChildMetadata(EventListComponent, item, this.config.getConfigFor('history'));
+        let metadata = new ChildMetadata(EventListComponent, item, this.config.getConfigFor('sml:history'));
         this.openNewChild(metadata);
     }
 
     protected openNewDocumentListItem(item: DocumentList) {
-        let metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
+        let metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('sml:documentation'));
         this.openNewChild(metadata);
     }
 
     protected openNewCharacteristicListItem(item: CharacteristicList) {
         let metadata = new ChildMetadata(CharacteristicListComponent, item,
-            this.config.getConfigFor('characteristics'));
+            this.config.getConfigFor('sml:characteristics'));
         this.openNewChild(metadata);
     }
 
     protected openNewCapabilityListItem(item: CapabilityList) {
-        let metadata = new ChildMetadata(CapabilityListComponent, item, this.config.getConfigFor('capabilities'));
+        let metadata = new ChildMetadata(CapabilityListComponent, item, this.config.getConfigFor('sml:capabilities'));
         this.openNewChild(metadata);
     }
 
