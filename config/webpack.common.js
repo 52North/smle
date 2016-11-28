@@ -299,6 +299,7 @@ module.exports = function(options) {
                 jQuery: 'jquery',
                 $: 'jquery',
                 jquery: 'jquery',
+                X2JS: "x2js",
                 'Tether': 'tether',
                 'window.Tether': 'tether'
             })
