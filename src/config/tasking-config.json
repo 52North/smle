@@ -1,47 +1,60 @@
 {
   "description": {
-    "location": false,
-    "boundedBy": false,
-    "description": false,
-    "descriptionReference": false,
-    "identifier": false,
-    "name": false,
-    "keywords": false,
-    "identification": false,
-    "characteristics": false,
-    "capabilities": false,
-    "classification": false,
-    "language": false,
-    "validTime": false,
-    "documentation": false,
-    "contacts": false,
-    "typeOf": false,
-    "history": false,
-    "settings": false,
     "attachedTo": false,
+    "boundedBy": false,
+    "capabilities": false,
+    "characteristics": false,
+    "classification": false,
     "components": false,
     "configuration": false,
-    "position": false,
-    "parameters": {
-      "parameter": {
-        "value": {
-          "constraint": false,
-          "definition": false,
-          "identifier": false,
-          "description": true,
-          "id": false,
-          "referenceFrame": false,
-          "axisId": false,
-          "optional": false,
-          "updatable": false
-        }
-      },
+    "contacts": false,
+    "description": false,
+    "descriptionReference": false,
+    "documentation": false,
+    "history": false,
+    "identification": {
       "definition": false,
+      "description": false,
+      "extension": false,
+      "id": false,
+      "identifier": false,
+      "identifiers": {
+        "codeSpace": false,
+        "definition": false,
+        "extension": false,
+        "id": false
+      },
+      "label": false
+    },
+    "identifier": false,
+    "keywords": false,
+    "language": false,
+    "location": false,
+    "name": false,
+    "parameters": {
+      "definition": false,
+      "description": false,
+      "extension": false,
+      "id": false,
       "identifier": false,
       "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
-    }
+      "parameter": {
+        "value": {
+          "axisId": false,
+          "constraint": false,
+          "definition": false,
+          "description": true,
+          "id": false,
+          "identifier": false,
+          "optional": false,
+          "referenceFrame": false,
+          "updatable": false
+        }
+      }
+    },
+    "position": false,
+    "settings": false,
+    "typeOf": false,
+    "validTime": false
   }
 }
