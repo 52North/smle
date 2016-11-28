@@ -39,6 +39,8 @@ export class EditorService {
     }
 
     getDescriptionForId(id: string): Observable<AbstractProcess> {
+        this.sosUrl = null;
+        this.procedureId = null;
         this.editorMode = EditorMode.Default;
         return new Observable<AbstractProcess>((observer: Observer<AbstractProcess>) => {
             if (id) {

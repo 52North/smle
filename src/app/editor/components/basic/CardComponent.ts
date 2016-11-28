@@ -1,4 +1,6 @@
 import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import { EditorService } from '../../../services/EditorService';
+import { EditorMode } from '../../../services/EditorMode';
 
 @Component({
     selector: 'card',
@@ -30,6 +32,16 @@ export class CardComponent {
 
     @Output()
     public closeChild: EventEmitter<any> = new EventEmitter();
+
+    private optionsEnabled: boolean = true;
+
+    constructor(
+        editorService: EditorService
+    ) {
+        if (editorService.getEditorMode() === EditorMode.Tasking) {
+            this.optionsEnabled = false;
+        }
+    }
 
     public onReset(): void {
         this.reset.emit(null);
