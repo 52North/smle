@@ -1,59 +1,82 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AbstractProcess } from '../model/sml';
+import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess, Term } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 import { PublishDescriptionService } from '../sos/publish/publish.service';
 import { SosService } from '../sos/sos.service';
 import { XmlService } from '../services/XmlService';
-import { Observable } from 'rxjs/Observable';
-import { Term } from '../model/sml/Term';
-import { Observer } from 'rxjs/Observer';
+import { Observable, Observer } from 'rxjs';
+import { DescriptionConfigService } from './DescriptionConfigService';
+import { DescriptionConfig } from './config/DescriptionConfig';
+import { EditorMode } from './EditorMode';
+
+export enum DescriptionType {
+    PhysicalSystem = 1,
+    PhysicalComponent = 2,
+    SimpleProcess = 3
+}
 
 @Injectable()
 export class EditorService {
+
     private description: AbstractProcess;
+    private procedureId: string;
     private sosUrl: string;
+    private editorMode: EditorMode;
 
     constructor(
         private service: DescriptionRepository,
         private publish: PublishDescriptionService,
         private router: Router,
         private sosService: SosService,
-        private xmlService: XmlService<AbstractProcess>
-    ) {
-    }
+        private xmlService: XmlService<AbstractProcess>,
+        private configService: DescriptionConfigService
+    ) { }
 
     openEditorWithDescription(desc: AbstractProcess, sosUrl: string) {
         this.description = desc;
         this.router.navigate(['/editor']);
     }
 
-    getDescriptionForId(id: string): Promise<AbstractProcess> {
-        if (id) {
-            if (id === 'new') {
-                this.description = null;
+    getDescriptionForId(id: string): Observable<AbstractProcess> {
+        this.editorMode = EditorMode.Default;
+        return new Observable<AbstractProcess>((observer: Observer<AbstractProcess>) => {
+            if (id) {
+                this.service.getDescription(id).then(desc => {
+                    this.description = desc;
+                    observer.next(this.description);
+                    observer.complete();
+                }).catch(error => {
+                    observer.error(error);
+                    observer.complete();
+                });
             } else {
-                return this.service.getDescription(id);
+                if (!this.description) this.description = null;
+                observer.next(this.description);
+                observer.complete();
             }
-        }
-        if (!this.description) {
-            this.description = null;
-        }
-        return Promise.resolve(this.description);
+        });
     }
 
-    loadDescriptionByIdAndUrl(id: string, url: string): Observable<AbstractProcess> {
+    loadDescriptionForTasking(id: string, url: string): Observable<AbstractProcess> {
         return new Observable<AbstractProcess>((observer: Observer<AbstractProcess>) => {
-            this.sosService.fetchDescription(id, url).subscribe(res => {
-                let description = this.xmlService.deserialize(res);
-                this.createOrUpdateVersion(description);
+            if (id !== this.procedureId || url !== this.sosUrl) {
                 this.sosUrl = url;
-                observer.next(description);
+                this.procedureId = id;
+                this.editorMode = EditorMode.Tasking;
+                this.sosService.fetchDescription(id, url).subscribe(res => {
+                    this.description = this.xmlService.deserialize(res);
+                    this.createOrUpdateVersion(this.description);
+                    observer.next(this.description);
+                    observer.complete();
+                }, error => {
+                    observer.error(error);
+                    observer.complete();
+                });
+            } else {
+                observer.next(this.description);
                 observer.complete();
-            }, error => {
-                observer.error(error);
-                observer.complete();
-            });
+            }
         });
     }
 
@@ -81,11 +104,35 @@ export class EditorService {
         this.router.navigate(['/publish']);
     }
 
+    getDescriptionType() {
+        if (this.description instanceof PhysicalSystem) {
+            return DescriptionType.PhysicalSystem;
+        } else if (this.description instanceof PhysicalComponent) {
+            return DescriptionType.PhysicalComponent;
+        } else if (this.description instanceof SimpleProcess) {
+            return DescriptionType.SimpleProcess;
+        } else {
+            return undefined;
+        }
+    }
+
+    getConfiguration(): Promise<DescriptionConfig> {
+        return this.configService.getConfiguration(this.editorMode);
+    }
+
     setSosUrl(sosUrl: string) {
         this.sosUrl = sosUrl;
     }
 
+    getEditorMode(): EditorMode {
+        return this.editorMode;
+    }
+
     getDescription(): AbstractProcess {
         return this.description;
+    }
+
+    setDescription(desc: AbstractProcess) {
+        this.description = desc;
     }
 }

@@ -1,19 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AbstractProcess } from '../model/sml';
-import { DescriptionConfigService, ConfigType } from '../services/DescriptionConfigService';
+import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess } from '../model/sml';
+import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
-import { EditorService } from '../services/EditorService';
-import { PhysicalSystem } from '../model/sml/PhysicalSystem';
-import { PhysicalComponent } from '../model/sml/PhysicalComponent';
-import { SimpleProcess } from '../model/sml/SimpleProcess';
+import { EditorService, DescriptionType } from '../services/EditorService';
+import { EditorMode } from '../services/EditorMode';
 import { PROCEDURE_ID_PARAM, SOS_URL_PARAM } from '../routes';
-
-enum DescriptionType {
-    PhysicalSystem = 1,
-    PhysicalComponent = 2,
-    SimpleProcess = 3
-}
 
 @Component({
     selector: 'editor',
@@ -23,6 +15,7 @@ enum DescriptionType {
 export class Editor implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
+    public editorMode: EditorMode;
     public actionBarNeeded: boolean = false;
 
     private descriptionType: DescriptionType;
@@ -35,28 +28,25 @@ export class Editor implements OnInit {
         private route: ActivatedRoute
     ) { }
 
-    publishDescription(): void {
-        this.editorService.startPublishingDescription(this.description);
-    }
-
     ngOnInit(): void {
         let snapshot = this.route.snapshot;
         if (snapshot.params['id']) {
-            this.editorService.getDescriptionForId(snapshot.params['id']).then(desc => {
-                this.descriptionIsLoading = false;
+            this.editorService.getDescriptionForId(snapshot.params['id']).subscribe(desc => {
                 if (desc != null) {
-                    this.setDescription(desc);
+                    this.updateEditor();
                 }
-            }).catch(() => {
+            }, error => {
+                this.descriptionLoadingError = error;
+            }, () => {
                 this.descriptionIsLoading = false;
             });
         } else if (snapshot.queryParams[PROCEDURE_ID_PARAM] && snapshot.queryParams[SOS_URL_PARAM]) {
-            this.editorService.loadDescriptionByIdAndUrl(
+            this.editorService.loadDescriptionForTasking(
                 snapshot.queryParams[PROCEDURE_ID_PARAM],
                 snapshot.queryParams[SOS_URL_PARAM]
             ).subscribe(res => {
                 this.actionBarNeeded = true;
-                this.setDescription(res, ConfigType.Tasking);
+                this.updateEditor();
             }, error => {
                 this.descriptionLoadingError = error;
             }, () => {
@@ -64,36 +54,30 @@ export class Editor implements OnInit {
             });
         } else {
             this.descriptionIsLoading = false;
-            this.setDescription(this.editorService.getDescription());
+            this.updateEditor();
         }
+    }
+
+    public publishDescription(): void {
+        this.editorService.startPublishingDescription(this.description);
     }
 
     public onSelectDescriptionType(type: string) {
         if (type === 'PhysicalSystem') {
-            this.setDescription(new PhysicalSystem());
+            this.editorService.setDescription(new PhysicalSystem());
         } else if (type === 'PhysicalComponent') {
-            this.setDescription(new PhysicalComponent());
+            this.editorService.setDescription(new PhysicalComponent());
         } else if (type === 'SimpleProcess') {
-            this.setDescription(new SimpleProcess());
+            this.editorService.setDescription(new SimpleProcess());
         }
+        this.updateEditor();
     }
 
-    private setDescription(desc: AbstractProcess, configType?: ConfigType) {
-        this.description = desc;
-        this.descriptionType = this.getDescriptionType(desc);
-        if (!configType) configType = ConfigType.Default;
-        this.descriptionConfigService.getConfiguration(configType).then(configuration => this.config = configuration);
+    private updateEditor() {
+        this.description = this.editorService.getDescription();
+        this.descriptionType = this.editorService.getDescriptionType();
+        this.editorMode = this.editorService.getEditorMode();
+        this.editorService.getConfiguration().then(config => this.config = config);
     }
 
-    private getDescriptionType(desc: AbstractProcess) {
-        if (desc instanceof PhysicalSystem) {
-            return DescriptionType.PhysicalSystem;
-        } else if (desc instanceof PhysicalComponent) {
-            return DescriptionType.PhysicalComponent;
-        } else if (desc instanceof SimpleProcess) {
-            return DescriptionType.SimpleProcess;
-        } else {
-            return undefined;
-        }
-    }
 }

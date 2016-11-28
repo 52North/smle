@@ -4,11 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
 import { TrueDescriptionConfig } from './config/TrueDescriptionConfig';
-
-export enum ConfigType {
-    Default = 0,
-    Tasking = 1
-}
+import { EditorMode } from './EditorMode';
 
 @Injectable()
 export class DescriptionConfigService {
@@ -16,9 +12,9 @@ export class DescriptionConfigService {
     constructor(private http: Http) {
     }
 
-    public getConfiguration(configType: ConfigType): Promise<DescriptionConfig> {
-        switch (configType) {
-            case ConfigType.Tasking:
+    public getConfiguration(editorMode: EditorMode): Promise<DescriptionConfig> {
+        switch (editorMode) {
+            case EditorMode.Tasking:
                 return this.loadConfiguration('./config/tasking-config.json');
             default:
                 return this.loadConfiguration('./config/description-config.json');
