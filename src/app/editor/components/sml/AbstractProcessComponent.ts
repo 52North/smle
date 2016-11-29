@@ -31,7 +31,7 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
 
     protected openParameters() {
         this.openNewChild(
-            new ChildMetadata(ParameterListComponent, this.model.parameters, this.config.getConfigFor('parameters'))
+            new ChildMetadata(ParameterListComponent, this.model.parameters, this.config.getConfigFor('sml:parameters'))
         );
     }
 

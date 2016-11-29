@@ -1,38 +1,55 @@
 {
   "description": {
-    "id": false,
-    "attachedTo": false,
     "boundedBy": false,
-    "capabilities": false,
-    "characteristics": false,
-    "classification": false,
     "components": false,
-    "configuration": false,
-    "contacts": false,
-    "description": false,
-    "descriptionReference": false,
-    "documentation": false,
-    "history": false,
-    "identification": {
-      "definition": false,
-      "description": false,
-      "extension": false,
-      "id": false,
-      "identifier": false,
-      "identifiers": {
-        "codeSpace": false,
-        "definition": false,
-        "extension": false,
-        "id": false
-      },
-      "label": false
-    },
+    "gml:description": false,
+    "gml:descriptionReference": false,
+    "gml:id": false,
     "identifier": false,
-    "keywords": false,
     "language": false,
     "location": false,
     "name": false,
-    "parameters": {
+    "settings": false,
+    "sml:attachedTo": false,
+    "sml:capabilities": false,
+    "sml:characteristics": false,
+    "sml:classification": false,
+    "sml:configuration": false,
+    "sml:contacts": false,
+    "sml:documentation": false,
+    "sml:history": false,
+    "sml:identification": {
+      "sml:IdentifierList": {
+        "@:definition": false,
+        "fixedQuantity": true,
+        "sml:identifiers": {
+          "fixedQuantity": true,
+          "sml:Term": {
+            "@:definition": {
+              "fixed": true
+            },
+            "sml:codeSpace": {
+              "fixed": true
+            },
+            "sml:label": {
+              "fixed": true
+            },
+            "sml:value": {
+              "fixed": true
+            },
+            "swe:id": {
+              "fixed": true
+            }
+          }
+        },
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
+    "sml:keywords": false,
+    "sml:parameters": {
       "definition": false,
       "description": false,
       "extension": false,
@@ -53,9 +70,8 @@
         }
       }
     },
-    "position": false,
-    "settings": false,
-    "typeOf": false,
-    "validTime": false
+    "sml:position": false,
+    "sml:typeOf": false,
+    "sml:validTime": false
   }
 }

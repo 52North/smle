@@ -7,6 +7,7 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     private defaultVisibility: boolean = true;
     private defaultFixed: boolean = false;
     private defaultMandatory: boolean = false;
+    private defaultFixedQuantity: boolean = false;
 
     constructor(
         private config: Object
@@ -43,7 +44,8 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     }
 
     public elementFixQuantity(name: string): boolean {
-        throw 'not implemented';
+        let fixedQuantity = this.getConfigParameter(name, 'fixedQuantity');
+        return (typeof fixedQuantity === 'undefined') ? this.defaultFixedQuantity : fixedQuantity;
     }
 
     public getLabel(name: string): string {
@@ -51,8 +53,10 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     }
 
     private getConfigParameter(name: string, parameter: string): any {
-        let config = this.getConfig(name.substring(name.indexOf(':') + 1, name.length));
-        if (typeof config !== 'undefined' && typeof config[parameter] !== 'undefined')
+        let config = this.getConfig(name);
+        if (typeof config !== 'undefined'
+            && config.hasOwnProperty(parameter)
+            && typeof config[parameter] !== 'undefined')
             return config[parameter];
         if (typeof config === 'boolean') return config;
     }
