@@ -1,6 +1,6 @@
 <card [verticalMode]="hasChild" [title]="'ParameterList'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
-    <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('parameter')">
+    <div class="form-group" *ngIf="config.existInForm('sml:parameter',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:parameter','textField',model,'identifier'))">
         <label for="setValue">{{getDisplayName('parameter')}}</label>
         <list [list]="model.parameters" (select)="openNewParameter($event)" (remove)="onRemoveParameter($event)" (add)="onAddParameter()" [shouldItemVisible]="isItemVisible">
             <list-add-section>

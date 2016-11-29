@@ -44,7 +44,7 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
 
     protected openNewParameter(parameter: Parameter) {
         this.openNewChild(
-            new ChildMetadata(ParameterComponent, parameter, this.config.getConfigFor('parameter'))
+            new ChildMetadata(ParameterComponent, parameter, this.config.getConfigFor('sml:parameters'))
         );
     }
 

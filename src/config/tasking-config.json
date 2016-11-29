@@ -50,25 +50,27 @@
     },
     "sml:keywords": false,
     "sml:parameters": {
-      "definition": false,
-      "description": false,
-      "extension": false,
-      "id": false,
-      "identifier": false,
-      "label": false,
-      "parameter": {
-        "value": {
-          "axisId": false,
-          "constraint": false,
-          "definition": false,
-          "description": true,
-          "id": false,
-          "identifier": false,
-          "optional": false,
-          "referenceFrame": false,
-          "updatable": false
+      "sml:parameters": {
+        "@:axisId": false,
+        "@:definition": false,
+        "@:name": {
+          "fixed": true
+        },
+        "@:optional": false,
+        "@:referenceFrame": false,
+        "@:updatable": false,
+        "swe:description": {
+          "fixed": true
+        },
+        "swe:id": false,
+        "swe:identifier": {
+          "fixed": true
+        },
+        "swe:label": {
+          "fixed": true
         }
-      }
+      },
+      "swe:id": false
     },
     "sml:position": false,
     "sml:typeOf": false,
