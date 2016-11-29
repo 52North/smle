@@ -1,5 +1,6 @@
 {
   "description": {
+    "id": false,
     "attachedTo": false,
     "boundedBy": false,
     "capabilities": false,
