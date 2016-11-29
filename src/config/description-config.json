@@ -86,27 +86,6 @@
     "language": false,
     "location": false,
     "name": false,
-    "parameters": {
-      "definition": false,
-      "description": false,
-      "extension": false,
-      "id": false,
-      "identifier": false,
-      "label": false,
-      "parameter": {
-        "value": {
-          "axisId": false,
-          "constraint": false,
-          "definition": false,
-          "description": true,
-          "id": false,
-          "identifier": false,
-          "optional": false,
-          "referenceFrame": false,
-          "updatable": false
-        }
-      }
-    },
     "sml:capabilities": {
       "sml:CapabilitiesList": {
         "@:definition": false,
@@ -201,6 +180,19 @@
         "swe:id": false,
         "swe:identifier": false,
         "swe:label": false
+      }
+    },
+    "sml:parameters": {
+      "sml:ParameterList": {
+        "sml:parameter": {
+          "@:axisId": false,
+          "@:definition": false,
+          "@:optional": false,
+          "@:referenceFrame": false,
+          "@:updatable": false,
+          "swe:id": false
+        },
+        "swe:id": false
       }
     },
     "sml:validTime": {

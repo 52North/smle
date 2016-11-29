@@ -4,6 +4,8 @@ import { ParameterList, Parameter } from '../../../model/sml';
 import { AbstractDataComponent } from '../../../model/swe';
 import { ChildMetadata } from '../base/TypedModelComponent';
 import { ParameterComponent } from './ParameterComponent';
+import { EditorService } from '../../../services/EditorService';
+import { EditorMode } from '../../../services/EditorMode';
 import {
     SweText,
     SweTime,
@@ -34,8 +36,15 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
         // { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
-    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
+    private tasking: boolean = false;
+
+    constructor(
+        componentFactoryResolver: ComponentFactoryResolver,
+        viewContainerRef: ViewContainerRef,
+        private editorSrvc: EditorService
+    ) {
         super(componentFactoryResolver, viewContainerRef);
+        this.tasking = this.editorSrvc.getEditorMode() === EditorMode.Tasking;
     }
 
     protected createModel(): ParameterList {
@@ -44,7 +53,7 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
 
     protected openNewParameter(parameter: Parameter) {
         this.openNewChild(
-            new ChildMetadata(ParameterComponent, parameter, this.config.getConfigFor('sml:parameters'))
+            new ChildMetadata(ParameterComponent, parameter, this.config.getConfigFor('sml:parameter'))
         );
     }
 
@@ -60,9 +69,7 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
     }
 
     protected isItemVisible(parameter: Parameter): boolean {
-        // TODO only do this, when editor is in tracking mode
-        let tasking = true;
-        if (parameter.value instanceof AbstractDataComponent && tasking) {
+        if (parameter.value instanceof AbstractDataComponent && this.tasking) {
             return (parameter.value as AbstractDataComponent).updatable;
         }
         return true;

@@ -50,27 +50,29 @@
     },
     "sml:keywords": false,
     "sml:parameters": {
-      "sml:parameters": {
-        "@:axisId": false,
-        "@:definition": false,
-        "@:name": {
-          "fixed": true
+      "sml:ParameterList": {
+        "sml:parameter": {
+          "@:axisId": false,
+          "@:definition": false,
+          "@:name": {
+            "fixed": true
+          },
+          "@:optional": false,
+          "@:referenceFrame": false,
+          "@:updatable": false,
+          "swe:description": {
+            "fixed": true
+          },
+          "swe:id": false,
+          "swe:identifier": {
+            "fixed": true
+          },
+          "swe:label": {
+            "fixed": true
+          }
         },
-        "@:optional": false,
-        "@:referenceFrame": false,
-        "@:updatable": false,
-        "swe:description": {
-          "fixed": true
-        },
-        "swe:id": false,
-        "swe:identifier": {
-          "fixed": true
-        },
-        "swe:label": {
-          "fixed": true
-        }
-      },
-      "swe:id": false
+        "swe:id": false
+      }
     },
     "sml:position": false,
     "sml:typeOf": false,
