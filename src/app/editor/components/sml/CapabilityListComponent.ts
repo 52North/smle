@@ -43,15 +43,14 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
     }
 
     protected openNewCapabilityItem(item: Capability) {
-        let metadata = new ChildMetadata(NamedSweDataComponentComponent,
-            item, this.config.getConfigFor('capabilities'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(NamedSweDataComponentComponent, item, this.config.getConfigFor('sml:capabilities'))
+        );
     }
 
     protected onAddCapability(characteristicType: Type<AbstractDataComponent>): void {
         let newItem = new NamedSweDataComponent();
         newItem.component = new characteristicType();
-
         this.model.capabilities.push(newItem);
     }
 

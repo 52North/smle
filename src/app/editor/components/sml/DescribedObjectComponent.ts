@@ -53,7 +53,7 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
         let metadata = new ChildMetadata(
             ClassifierListComponent,
             item,
-            this.config.getConfigFor('sml:classification').getConfigFor('smlClassifierList')
+            this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
         );
         this.openNewChild(metadata);
     }
@@ -70,29 +70,39 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     protected openNewDocumentListItem(item: DocumentList) {
-        let metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('sml:documentation'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                DocumentListComponent,
+                item,
+                this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
+            )
+        );
     }
 
     protected openNewCharacteristicListItem(item: CharacteristicList) {
         let metadata = new ChildMetadata(CharacteristicListComponent, item,
-            this.config.getConfigFor('sml:characteristics'));
+            this.config.getConfigFor('sml:characteristics').getConfigFor('sml:CharacteristicList'));
         this.openNewChild(metadata);
     }
 
     protected openNewCapabilityListItem(item: CapabilityList) {
-        let metadata = new ChildMetadata(CapabilityListComponent, item, this.config.getConfigFor('sml:capabilities'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                CapabilityListComponent,
+                item,
+                this.config.getConfigFor('sml:capabilities').getConfigFor('sml:CapabilitiesList')
+            )
+        );
     }
 
     protected openNewAbstractTimeItem(item: AbstractTime) {
         let metadata: ChildMetadata<any>;
         if (item instanceof TimeInstant) {
             metadata = new ChildMetadata(TimeInstantComponent, item,
-                this.config.getConfigFor('validTime').getConfigFor('timeInstant'));
+                this.config.getConfigFor('sml:validTime').getConfigFor('gml:timeInstant'));
         } else if (item instanceof TimePeriod) {
             metadata = new ChildMetadata(TimePeriodComponent, item,
-                this.config.getConfigFor('validTime').getConfigFor('timePeriod'));
+                this.config.getConfigFor('sml:validTime').getConfigFor('gml:timePeriod'));
         }
 
         this.openNewChild(metadata);

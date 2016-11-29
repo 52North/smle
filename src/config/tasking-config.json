@@ -28,7 +28,7 @@
             "@:definition": {
               "fixed": true
             },
-            "sml:codeSpace": {
+            "@:codeSpace": {
               "fixed": true
             },
             "sml:label": {

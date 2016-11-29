@@ -1,216 +1,221 @@
 {
   "description": {
-    "id": {
-      "fixed": true
-    },
-    "location": false,
     "boundedBy": false,
-    "description": false,
-    "descriptionReference": false,
-    "identifier": {
-      "value": true,
-      "codeSpace": false
-    },
-    "name": false,
-    "keywords": {
-      "codeSpace": false,
-      "definition": false,
-      "identifier": false,
-      "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
-    },
-    "identification": {
-      "identifiers": {
-        "codeSpace": false,
-        "definition": false,
-        "id": false,
-        "extension": false
-      },
-      "definition": false,
-      "identifier": false,
-      "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
-    },
-    "characteristics": {
-      "characteristic": {
-        "component": {
-          "constraint": false,
-          "definition": false,
-          "identifier": false,
-          "description": false,
-          "id": false,
-          "referenceFrame": false,
-          "axisId": false,
-          "optional": false,
-          "updatable": false
-        }
-      },
-      "definition": false,
-      "identifier": false,
-      "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
-    },
-    "capabilities": {
-      "capabilities": {
-        "component": {
-          "constraint": false,
-          "definition": false,
-          "identifier": false,
-          "description": false,
-          "id": false,
-          "referenceFrame": false,
-          "axisId": false,
-          "optional": false,
-          "updatable": false
-        }
-      },
-      "definition": false,
-      "identifier": false,
-      "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
-    },
-    "classification": {
-      "classifiers": {
-        "codeSpace": false,
-        "definition": false,
-        "id": false,
-        "extension": false
-      },
-      "definition": false,
-      "identifier": false,
-      "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
-    },
-    "language": false,
-    "validTime": {
-      "timeInstant": {
-        "identifier": false,
-        "name": false,
-        "description": false,
-        "descriptionReference": false
-      },
-      "timePeriod": {
-        "identifier": false,
-        "name": false,
-        "description": false,
-        "descriptionReference": false
-      }
-    },
-    "documentation": {
-      "definition": false,
-      "identifier": false,
-      "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
+    "gml:description": false,
+    "gml:descriptionReference": false,
+    "gml:identifier": {
+      "@:codeSpace": false
     },
     "history": {
       "codeSpace": false,
       "definition": false,
-      "identifier": false,
-      "label": false,
       "description": false,
-      "id": false,
-      "extension": false,
       "events": {
-        "id": false,
-        "identifier": false,
-        "name": false,
-        "description": false,
-        "keywords": {
-          "definition": false,
-          "identifier": false,
-          "label": true,
-          "codeSpace": false,
-          "description": false,
-          "id": false,
-          "extension": false
-        },
-        "identification": {
-          "identifiers": {
-            "codeSpace": false,
-            "definition": false,
-            "id": false,
-            "extension": false
-          },
-          "definition": false,
-          "identifier": false,
-          "label": false,
-          "description": false,
-          "id": false,
-          "extension": false
-        },
         "classification": {
           "classifiers": {
             "codeSpace": false,
             "definition": false,
-            "id": false,
-            "extension": false
+            "extension": false,
+            "id": false
           },
           "definition": false,
-          "identifier": false,
-          "label": false,
           "description": false,
+          "extension": false,
           "id": false,
-          "extension": false
+          "identifier": false,
+          "label": false
         },
-        "time": {
-          "timeInstant": {
-            "identifier": false,
-            "name": false,
-            "description": false,
-            "descriptionReference": false
-          },
-          "timePeriod": {
-            "identifier": false,
-            "name": false,
-            "description": false,
-            "descriptionReference": false
-          }
-        },
+        "description": false,
         "documentation": {
           "definition": false,
-          "identifier": false,
-          "label": true,
           "description": false,
-          "id": false,
-          "extension": false,
           "documents": {
             "protocol": true
+          },
+          "extension": false,
+          "id": false,
+          "identifier": false,
+          "label": true
+        },
+        "id": false,
+        "identification": {
+          "definition": false,
+          "description": false,
+          "extension": false,
+          "id": false,
+          "identifier": false,
+          "identifiers": {
+            "codeSpace": false,
+            "definition": false,
+            "extension": false,
+            "id": false
+          },
+          "label": false
+        },
+        "identifier": false,
+        "keywords": {
+          "codeSpace": false,
+          "definition": false,
+          "description": false,
+          "extension": false,
+          "id": false,
+          "identifier": false,
+          "label": true
+        },
+        "name": false,
+        "time": {
+          "timeInstant": {
+            "description": false,
+            "descriptionReference": false,
+            "identifier": false,
+            "name": false
+          },
+          "timePeriod": {
+            "description": false,
+            "descriptionReference": false,
+            "identifier": false,
+            "name": false
           }
+        }
+      },
+      "extension": false,
+      "id": false,
+      "identifier": false,
+      "label": false
+    },
+    "language": false,
+    "location": false,
+    "name": false,
+    "parameters": {
+      "definition": false,
+      "description": false,
+      "extension": false,
+      "id": false,
+      "identifier": false,
+      "label": false,
+      "parameter": {
+        "value": {
+          "axisId": false,
+          "constraint": false,
+          "definition": false,
+          "description": true,
+          "id": false,
+          "identifier": false,
+          "optional": false,
+          "referenceFrame": false,
+          "updatable": false
         }
       }
     },
-    "parameters": {
-      "parameter": {
-        "value": {
-          "constraint": false,
-          "definition": false,
-          "identifier": false,
-          "description": true,
-          "id": false,
-          "referenceFrame": false,
-          "axisId": false,
-          "optional": false,
-          "updatable": false
-        }
+    "sml:capabilities": {
+      "sml:CapabilitiesList": {
+        "@:definition": false,
+        "sml:capabilities": {
+          "component": {
+            "@:axisId": false,
+            "@:definition": false,
+            "@:optional": false,
+            "@:referenceFrame": false,
+            "@:updatable": false,
+            "swe:constraint": false,
+            "swe:description": false,
+            "swe:id": false,
+            "swe:identifier": false
+          }
+        },
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
+    "sml:characteristics": {
+      "sml:CharacteristicList": {
+        "@:definition": false,
+        "sml:characteristic": {
+          "component": {
+            "@:axisId": false,
+            "@:definition": false,
+            "@:optional": false,
+            "@:referenceFrame": false,
+            "@:updatable": false,
+            "swe:constraint": false,
+            "swe:description": false,
+            "swe:id": false,
+            "swe:identifier": false
+          }
+        },
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
+    "sml:classification": {
+      "sml:ClassifierList": {
+        "@:definition": false,
+        "sml:classifiers": {
+          "sml:Term": {
+            "@:codeSpace": false,
+            "@:definition": false,
+            "swe:id": false
+          }
+        },
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
+    "sml:documentation": {
+      "sml:DocumentList": {
+        "@:definition": false,
+        "sml:document": true,
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
+    "sml:identification": {
+      "sml:IdentifierList": {
+        "@:definition": false,
+        "sml:identifiers": {
+          "sml:Term": {
+            "@:codeSpace": false,
+            "@:definition": false,
+            "swe:id": false
+          }
+        },
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
+    "sml:keywords": {
+      "sml:KeywordList": {
+        "@:codeSpace": false,
+        "@:definition": false,
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
+    "sml:validTime": {
+      "gml:timeInstant": {
+        "gml:description": false,
+        "gml:descriptionReference": false,
+        "gml:identifier": false,
+        "name": false
       },
-      "definition": false,
-      "identifier": false,
-      "label": false,
-      "description": false,
-      "id": false,
-      "extension": false
+      "gml:timePeriod": {
+        "gml:description": false,
+        "gml:descriptionReference": false,
+        "gml:identifier": false,
+        "name": false
+      }
     }
   }
 }

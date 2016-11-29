@@ -1,4 +1,5 @@
-<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'elementCount'"></number-field>
+<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'elementCount'" [configName]="'swe:elementCount'"></number-field>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'values'" [configName]="'swe:values'"></text-field>
 <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('elementType')">
     <label for="elementType">{{getDisplayName('elementType')}}</label>
     <div class="nested-element">

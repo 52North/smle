@@ -20,8 +20,9 @@ export class ClassifierListComponent extends EditorComponent<ClassifierList> {
     }
 
     protected openNewClassifierItem(item: Term) {
-        let metadata = new ChildMetadata(TermComponent, item, this.config.getConfigFor('classifiers'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(TermComponent, item, this.config.getConfigFor('sml:classifiers').getConfigFor('sml:Term'))
+        );
     }
 
     protected onAddClassifier(): void {
