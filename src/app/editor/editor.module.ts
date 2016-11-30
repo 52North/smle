@@ -57,6 +57,8 @@ import { ParameterComponent } from './components/sml/ParameterComponent';
 import { OutputListComponent } from './components/sml/OutputListComponent';
 import { OutputComponent } from './components/sml/OutputComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
+import { InputListComponent } from './components/sml/InputListComponent';
+import { InputComponent } from './components/sml/InputComponent';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PositionEditorComponent } from './components/sml/PositionComponent';
 import { SettingsComponent } from './components/sml/SettingsComponent';
@@ -147,6 +149,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ParameterComponent,
         OutputListComponent,
         OutputComponent,
+        InputListComponent,
+        InputComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -233,6 +237,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ParameterComponent,
         OutputListComponent,
         OutputComponent,
+        InputListComponent,
+        InputComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -288,6 +294,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ParameterComponent,
         OutputListComponent,
         OutputComponent,
+        InputListComponent,
+        InputComponent,
         PositionEditorComponent,
         MapComponent,
         TimePeriodComponent,

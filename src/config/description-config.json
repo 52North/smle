@@ -5,7 +5,6 @@
     "gml:identifier": {
       "@:codeSpace": false
     },
-    "sml:language": false,
     "location": false,
     "sml:capabilities": {
       "sml:CapabilitiesList": {
@@ -172,6 +171,20 @@
         "swe:label": false
       }
     },
+    "sml:inputs": {
+      "sml:InputList": {
+        "sml:input": {
+          "@:axisId": false,
+          "@:definition": false,
+          "@:optional": false,
+          "@:referenceFrame": false,
+          "@:updatable": false,
+          "swe:id": false,
+          "swe:identifier": false
+        },
+        "swe:id": false
+      }
+    },
     "sml:keywords": {
       "sml:KeywordList": {
         "@:codeSpace": false,
@@ -180,6 +193,21 @@
         "swe:id": false,
         "swe:identifier": false,
         "swe:label": false
+      }
+    },
+    "sml:language": false,
+    "sml:outputs": {
+      "sml:OutputList": {
+        "sml:output": {
+          "@:axisId": false,
+          "@:definition": false,
+          "@:optional": false,
+          "@:referenceFrame": false,
+          "@:updatable": false,
+          "swe:id": false,
+          "swe:identifier": false
+        },
+        "swe:id": false
       }
     },
     "sml:parameters": {
@@ -191,20 +219,6 @@
           "@:referenceFrame": false,
           "@:updatable": false,
           "swe:id": false
-        },
-        "swe:id": false
-      }
-    },
-    "sml:outputs": {
-      "sml:OutputList": {
-        "sml:output": {
-          "@:axisId": false,
-          "@:definition": false,
-          "@:optional": false,
-          "@:referenceFrame": false,
-          "@:updatable": false,
-          "swe:id": false,
-          "swe:identifier": false
         },
         "swe:id": false
       }
