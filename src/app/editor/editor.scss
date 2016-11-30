@@ -1,4 +1,5 @@
-.visualizer-open-button, .visualizer-close-button {
+.visualizer-close-button,
+.visualizer-open-button {
   position: absolute;
   cursor: pointer;
 }
@@ -31,8 +32,20 @@
   }
 }
 
-.row {
+pre {
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.row.editor {
   height: 100%;
+
+  &.actionBar {
+    height: 95%;
+  }
 
   .dropdown-item {
     cursor: pointer;
@@ -51,6 +64,10 @@
     width: auto;
     white-space: nowrap;
   }
+}
+
+.footer-buttons {
+  height: 5%;
 }
 
 :host {

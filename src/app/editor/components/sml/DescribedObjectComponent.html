@@ -1,8 +1,5 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('language')">
-    <label for="language">{{getDisplayName('language')}}</label>
-    <input type="text" class="form-control" [(ngModel)]="model.language" name="language">
-</div>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'language'" [configName]="'sml:language'"></text-field>
 <div class="form-group" *ngIf="config.existInForm('sml:keywords',model,'keywords') &&(isShowAll || config.isFieldVisible('sml:keywords','textField',model,'keywords'))">
     <label for="keywords">{{getDisplayName('keywords')}}</label>
     <list [list]="model.keywords" (select)="openNewKeywordListItem($event)" [fixLength]="config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>

@@ -43,8 +43,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     protected openNewKeywordListItem(item: KeywordList) {
-        let metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                KeywordListComponent,
+                item,
+                this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
+            )
+        );
     }
 
     protected onAddKeywordList() {
@@ -56,8 +61,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     protected openNewIdentifierListItem(item: IdentifierList) {
-        let metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('identification'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                IdentifierListComponent,
+                item,
+                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+            )
+        );
     }
 
     protected onAddIdentifierList() {
@@ -69,8 +79,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     protected openNewClassifierListItem(item: ClassifierList) {
-        let metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                ClassifierListComponent,
+                item,
+                this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
+            )
+        );
     }
 
     protected onAddClassifierList() {
@@ -82,8 +97,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     protected openNewContactListItem(item: ContactList) {
-        let metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('contacts'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                ContactListComponent,
+                item,
+                this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
+            )
+        );
     }
 
     protected onAddContactList() {
@@ -95,8 +115,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     protected openNewDocumentListItem(item: DocumentList) {
-        let metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                DocumentListComponent,
+                item,
+                this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
+            )
+        );
     }
 
     protected onAddDocumentList() {
@@ -112,21 +137,23 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     public openTimeInstant(item: TimeInstant): void {
-        let metadata = new ChildMetadata(
-            TimeInstantComponent,
-            item,
-            this.config.getConfigFor('time').getConfigFor('timeInstant')
+        this.openNewChild(
+            new ChildMetadata(
+                TimeInstantComponent,
+                item,
+                this.config.getConfigFor('sml:time').getConfigFor('sml:timeInstant')
+            )
         );
-        this.openNewChild(metadata);
     }
 
     public openTimePeriod(item: TimePeriod): void {
-        let metadata = new ChildMetadata(
-            TimePeriodComponent,
-            item,
-            this.config.getConfigFor('time').getConfigFor('timePeriod')
+        this.openNewChild(
+            new ChildMetadata(
+                TimePeriodComponent,
+                item,
+                this.config.getConfigFor('sml:time').getConfigFor('sml:timePeriod')
+            )
         );
-        this.openNewChild(metadata);
     }
 
     public createTime(): void {
@@ -147,9 +174,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     protected openSettings() {
-        let metadata =
-            new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                SettingsComponent,
+                this.model.configuration,
+                this.config.getConfigFor('sml:settings')
+            )
+        );
     }
 
     protected removeSettings() {

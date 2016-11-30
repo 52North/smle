@@ -43,9 +43,9 @@ export class CharacteristicListComponent extends EditorComponent<CharacteristicL
     }
 
     protected openNewCharacteristicItem(item: Characteristic) {
-        let metadata = new ChildMetadata(NamedSweDataComponentComponent,
-            item, this.config.getConfigFor('characteristic'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(NamedSweDataComponentComponent, item, this.config.getConfigFor('sml:characteristic'))
+        );
     }
 
     protected onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {

@@ -1,28 +1,30 @@
 <ul class="list-group list-group-flush">
-    <li *ngFor="let item of list; let i = index" class="list-group-item">
-        <div class="list-label" *ngIf="!noSelect">
-            <a class="btn btn-link" *ngIf="itemLabelFunc" (click)="onClick(item, i)">
-                <span class="item-label">{{itemLabelFunc.call(item, item, index, list)}}</span>
-                <span *ngIf="itemValueFunc" class="item-value">({{itemValueFunc.call(item, item, index, list)}})</span>
-            </a>
-            <a class="btn btn-link" *ngIf="!itemLabelFunc" (click)="onClick(item, i)">
-                <span *ngIf="item.getLabel" class="item-label">{{item.getLabel()}}</span>
-                <span *ngIf="item.getValue && item.getValue()" class="item-value">({{item.getValue()}})</span>
-                <span *ngIf="item.toString && !item.getLabel" class="item-label">{{item.toString()}}</span>
-            </a>
-        </div>
-        <div class="list-label" *ngIf="noSelect">
-            <span *ngIf="itemLabelFunc">{{itemLabelFunc.call(item, item, index, list)}}</span>
-            <span *ngIf="!itemLabelFunc">{{item.toString()}}</span>
-        </div>
-        <div [hidden]="fixLength" class="remove">
-            <a class="btn btn-link" (click)="onRemove(item, i)">
-                <i class="fa fa-remove"></i>
-                <span>Remove</span>
-            </a>
-        </div>
-    </li>
-    <li  [hidden]="fixLength" class="list-group-item list-add-section">
+    <template ngFor let-item let-i="index" [ngForOf]="list">
+        <li *ngIf="isVisible(item)" class="list-group-item">
+            <div [hidden]="fixLength" class="remove">
+                <a class="btn btn-link" (click)="onRemove(item, i)">
+                    <i class="fa fa-remove"></i>
+                    <span>Remove</span>
+                </a>
+            </div>
+            <div class="list-label" *ngIf="!noSelect">
+                <a class="btn btn-link" *ngIf="itemLabelFunc" (click)="onClick(item, i)">
+                    <span class="item-label">{{itemLabelFunc.call(item, item, index, list)}}</span>
+                    <span *ngIf="itemValueFunc" class="item-value">({{itemValueFunc.call(item, item, index, list)}})</span>
+                </a>
+                <a class="btn btn-link" *ngIf="!itemLabelFunc" (click)="onClick(item, i)">
+                    <span *ngIf="item.getLabel" class="item-label">{{item.getLabel()}}</span>
+                    <span *ngIf="item.getValue && item.getValue()" class="item-value">({{item.getValue()}})</span>
+                    <span *ngIf="item.toString && !item.getLabel" class="item-label">{{item.toString()}}</span>
+                </a>
+            </div>
+            <div class="list-label" *ngIf="noSelect">
+                <span *ngIf="itemLabelFunc">{{itemLabelFunc.call(item, item, index, list)}}</span>
+                <span *ngIf="!itemLabelFunc">{{item.toString()}}</span>
+            </div>
+        </li>
+    </template>
+    <li [hidden]="fixLength" class="list-group-item list-add-section">
         <ng-content select="list-add-section"></ng-content>
         <a (click)="onAdd()" class="btn btn-link list-add-section__default">
             <i class="fa fa-fw fa-plus"></i>

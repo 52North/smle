@@ -52,6 +52,8 @@ import { KeywordListComponent } from './components/sml/KeywordListComponent';
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
 import { NamedSweDataComponentComponent, SweFieldComponent }
     from './components/sml/NamedSweDataComponentComponent';
+import { ParameterListComponent } from './components/sml/ParameterListComponent';
+import { ParameterComponent } from './components/sml/ParameterComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PositionEditorComponent } from './components/sml/PositionComponent';
@@ -90,6 +92,7 @@ import { SweTimeRangeComponent } from './components/swe/SweTimeRangeComponent';
 import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponent';
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
+import { SensorMLPipe } from './pipes/SensorMLPipe';
 
 @NgModule({
     declarations: [
@@ -138,6 +141,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         ModeSettingComponent,
         NamedSweDataComponentComponent,
         SweFieldComponent,
+        ParameterListComponent,
+        ParameterComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -176,7 +181,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent
+        UnitOfMeasureComponent,
+        SensorMLPipe
     ],
     imports: [
         CommonModule,
@@ -219,6 +225,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         EventListComponent,
         ModeSettingComponent,
         SweFieldComponent,
+        ParameterListComponent,
+        ParameterComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -255,7 +263,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent
+        UnitOfMeasureComponent,
+        SensorMLPipe
     ],
     entryComponents: [
         KeywordListComponent,
@@ -269,6 +278,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         ValueSettingComponent,
         ModeSettingComponent,
         StatusSettingComponent,
+        ParameterListComponent,
+        ParameterComponent,
         PositionEditorComponent,
         MapComponent,
         TimePeriodComponent,

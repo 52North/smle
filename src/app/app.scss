@@ -1,13 +1,13 @@
 main {
-  top: 55px;
-  padding: {
-    top: 10px;
-    bottom: 10px;
-  }
+  top: 65px;
+  //padding: {
+  //  top: 10px;
+  //  bottom: 10px;
+  //}
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
 }
 
 fetch-description {
@@ -20,4 +20,24 @@ fetch-description {
 
 .nested-element {
   margin: 0 20px;
+}
+
+.logos {
+  height: 95px;
+
+  .n52 {
+    float: left;
+    background-image: url("assets/img/52n-logo-220x80.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 250px;
+    display: none;
+    height: 80px;
+    margin: 5px;
+  }
+  @media screen and (min-width: 768px) {
+    .n52 {
+      display: block;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
+import { SweQuantityRange, UnitOfMeasure, AllowedValues } from '../../../model/swe';
 
 @Component({
     selector: 'swe-quantity-range',
@@ -9,5 +9,13 @@ import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 export class SweQuantityRangeComponent extends TypedModelComponent<SweQuantityRange> {
     protected createModel(): SweQuantityRange {
         return new SweQuantityRange();
+    }
+
+    protected createUom() {
+        this.model.uom = new UnitOfMeasure();
+    }
+
+    protected createConstraint() {
+        this.model.constraint = new AllowedValues();
     }
 }

@@ -110,8 +110,8 @@ module.exports = function(env) {
                 to: 'config.json'
             }]),
             new CopyWebpackPlugin([{
-                from: 'src/description-config.json',
-                to: 'description-config.json'
+                from: 'src/config',
+                to: 'config'
             }]),
 
             /**

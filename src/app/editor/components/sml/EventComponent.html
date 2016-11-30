@@ -21,27 +21,27 @@
                 </div>
             </div>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('keywords')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:keywords')">
             <label for="keywords">{{getDisplayName('keywords')}}</label>
             <list [list]="model.keywords" (select)="openNewKeywordListItem($event)" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('identification')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:identification')">
             <label for="identification">{{getDisplayName('identification')}}</label>
             <list [list]="model.identification" (select)="openNewIdentifierListItem($event)" (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('classification')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:classification')">
             <label for="classification">{{getDisplayName('classification')}}</label>
             <list [list]="model.classification" (select)="openNewClassifierListItem($event)" (remove)="onRemoveClassifierList($event)" (add)="onAddClassifierList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('contacts')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:contacts')">
             <label for="contacts">{{getDisplayName('contacts')}}</label>
             <list [list]="model.contacts" (select)="openNewContactListItem($event)" (remove)="onRemoveContactList($event)" (add)="onAddContactList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('documentation')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:documentation')">
             <label for="documentation">{{getDisplayName('documentation')}}</label>
             <list [list]="model.documentation" (select)="openNewDocumentListItem($event)" (remove)="onRemoveDocumentList($event)" (add)="onAddDocumentList()"></list>
         </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('time')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:time')">
             <label for="time">{{getDisplayName('time')}}</label>
             <div class="nested-element">
                 <div *ngIf="model.time">
@@ -65,8 +65,7 @@
                 </div>
             </div>
         </div>
-        <!--<sml-configuration [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-configuration>-->
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('configuration')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:configuration')">
             <label for="configuration">{{getDisplayName('configuration')}}</label>
             <div>
                 <child-item [model]="model.configuration" [itemTitle]="getDisplayName('configuration')" (add)="createSettings()" (remove)="removeSettings()" (select)="openSettings()"></child-item>

@@ -1,17 +1,20 @@
 <card [verticalMode]="hasChild" [title]="'Characteristic List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
     <form>
         <sml-abstract-named-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-named-metadata-list>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('characteristics')">
+        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:characteristics')">
             <label for="characteristics">{{getDisplayName('characteristics')}}</label>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="characteristicTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Create new characteristic component
-                </button>
-                <div class="dropdown-menu" aria-labelledby="characteristicTypeDropdown">
-                    <a class="dropdown-item" *ngFor="let option of options" (click)="onAddCharacteristic(option.type)">{{option.name}}</a>
-                </div>
-            </div>
-            <list [list]="model.characteristics" (select)="openNewCharacteristicItem($event)" (remove)="onRemoveCharacteristic($event)" (add)="onAddCharacteristic()"></list>
+            <list [list]="model.characteristics" (select)="openNewCharacteristicItem($event)" (remove)="onRemoveCharacteristic($event)" (add)="onAddCharacteristic()">
+                <list-add-section>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="characteristicTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Create new characteristic component
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="characteristicTypeDropdown">
+                            <a class="dropdown-item" *ngFor="let option of options" (click)="onAddCharacteristic(option.type)">{{option.name}}</a>
+                        </div>
+                    </div>
+                </list-add-section>
+            </list>
         </div>
     </form>
 </card>
