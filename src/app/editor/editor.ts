@@ -63,8 +63,12 @@ export class Editor implements OnInit {
         }
     }
 
-    public publishDescription(): void {
+    public publishDescription() {
         this.editorService.startPublishingDescription(this.description);
+    }
+
+    public provideDownload() {
+        this.editorService.provideDownload(this.description);
     }
 
     public onSelectDescriptionType(type: string) {

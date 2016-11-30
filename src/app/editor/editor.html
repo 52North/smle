@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<div class="row editor" [ngClass]="{'actionBar': editorMode > 0}">
+<div class="row editor actionBar">
 
     <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description  && !!config" [ngSwitch]="descriptionType">
         <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
@@ -39,10 +39,11 @@
 
 </div>
 
-<div class="row" *ngIf="editorMode === 1">
-    <div class="publish container" *ngIf="!!description">
-        <div class="col-md-12">
-            <a class="btn btn-primary center-block" (click)="publishDescription()" *ngIf="editorMode === 1">Publish Description</a>
+<div class="row">
+    <div class="footer-buttons container" *ngIf="!!description">
+        <div class="col-md-12 center-block">
+            <a class="btn btn-primary" (click)="publishDescription()" *ngIf="editorMode === 1">Publish Description</a>
+            <a class="btn btn-primary" (click)="provideDownload()">Download Description</a>
         </div>
     </div>
 </div>

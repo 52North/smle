@@ -120,6 +120,13 @@ export class EditorService {
         this.router.navigate(['/publish']);
     }
 
+    provideDownload(description: AbstractProcess) {
+        let data = this.xmlService.serialize(description);
+        let blob = new Blob([data], { type: 'text/xml' });
+        let url = window.URL.createObjectURL(blob);
+        window.open(url);
+    }
+
     getDescriptionType() {
         if (this.description instanceof PhysicalSystem) {
             return DescriptionType.PhysicalSystem;
