@@ -29,44 +29,59 @@ import { TimePeriodComponent } from '../gml/TimePeriodComponent';
     template: require('./DescribedObjectComponent.html')
 })
 export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
+
     protected createModel(): DescribedObject {
         return undefined;
     }
 
     protected openNewKeywordListItem(item: KeywordList) {
-        let metadata = new ChildMetadata(
-            KeywordListComponent, item, this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
+        this.openNewChild(
+            new ChildMetadata(
+                KeywordListComponent,
+                item,
+                this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
+            )
         );
-        this.openNewChild(metadata);
     }
 
     protected openNewIdentifierListItem(item: IdentifierList) {
-        let metadata = new ChildMetadata(
-            IdentifierListComponent,
-            item,
-            this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+        this.openNewChild(
+            new ChildMetadata(
+                IdentifierListComponent,
+                item,
+                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+            )
         );
-        this.openNewChild(metadata);
     }
 
     protected openNewClassifierListItem(item: ClassifierList) {
-        let metadata = new ChildMetadata(
-            ClassifierListComponent,
-            item,
-            this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
+        this.openNewChild(
+            new ChildMetadata(
+                ClassifierListComponent,
+                item,
+                this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
+            )
         );
-        this.openNewChild(metadata);
     }
 
     protected openNewContactListItem(item: ContactList) {
-        let metadata = new ChildMetadata(
-            ContactListComponent, item, this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                ContactListComponent,
+                item,
+                this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
+            )
+        );
     }
 
     protected openNewEventListItem(item: EventList) {
-        let metadata = new ChildMetadata(EventListComponent, item, this.config.getConfigFor('sml:history'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                EventListComponent,
+                item,
+                this.config.getConfigFor('sml:history').getConfigFor('sml:EventList')
+            )
+        );
     }
 
     protected openNewDocumentListItem(item: DocumentList) {
@@ -80,9 +95,13 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     protected openNewCharacteristicListItem(item: CharacteristicList) {
-        let metadata = new ChildMetadata(CharacteristicListComponent, item,
-            this.config.getConfigFor('sml:characteristics').getConfigFor('sml:CharacteristicList'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                CharacteristicListComponent,
+                item,
+                this.config.getConfigFor('sml:characteristics').getConfigFor('sml:CharacteristicList')
+            )
+        );
     }
 
     protected openNewCapabilityListItem(item: CapabilityList) {
@@ -104,7 +123,6 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
             metadata = new ChildMetadata(TimePeriodComponent, item,
                 this.config.getConfigFor('sml:validTime').getConfigFor('gml:timePeriod'));
         }
-
         this.openNewChild(metadata);
     }
 

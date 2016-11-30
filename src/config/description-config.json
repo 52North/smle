@@ -6,86 +6,8 @@
     "gml:identifier": {
       "@:codeSpace": false
     },
-    "history": {
-      "codeSpace": false,
-      "definition": false,
-      "description": false,
-      "events": {
-        "classification": {
-          "classifiers": {
-            "codeSpace": false,
-            "definition": false,
-            "extension": false,
-            "id": false
-          },
-          "definition": false,
-          "description": false,
-          "extension": false,
-          "id": false,
-          "identifier": false,
-          "label": false
-        },
-        "description": false,
-        "documentation": {
-          "definition": false,
-          "description": false,
-          "documents": {
-            "protocol": true
-          },
-          "extension": false,
-          "id": false,
-          "identifier": false,
-          "label": true
-        },
-        "id": false,
-        "identification": {
-          "definition": false,
-          "description": false,
-          "extension": false,
-          "id": false,
-          "identifier": false,
-          "identifiers": {
-            "codeSpace": false,
-            "definition": false,
-            "extension": false,
-            "id": false
-          },
-          "label": false
-        },
-        "identifier": false,
-        "keywords": {
-          "codeSpace": false,
-          "definition": false,
-          "description": false,
-          "extension": false,
-          "id": false,
-          "identifier": false,
-          "label": true
-        },
-        "name": false,
-        "time": {
-          "timeInstant": {
-            "description": false,
-            "descriptionReference": false,
-            "identifier": false,
-            "name": false
-          },
-          "timePeriod": {
-            "description": false,
-            "descriptionReference": false,
-            "identifier": false,
-            "name": false
-          }
-        }
-      },
-      "extension": false,
-      "id": false,
-      "identifier": false,
-      "label": false
-    },
     "language": false,
     "location": false,
-    "name": false,
     "sml:capabilities": {
       "sml:CapabilitiesList": {
         "@:definition": false,
@@ -156,6 +78,85 @@
         "swe:label": false
       }
     },
+    "sml:history": {
+      "sml:EventList": {
+        "@:definition": false,
+        "sml:events": {
+          "sml:classification": {
+            "sml:ClassifierList": {
+              "@:definition": false,
+              "sml:classifiers": {
+                "sml:Term": {
+                  "@:codeSpace": false,
+                  "@:definition": false,
+                  "swe:id": false
+                }
+              },
+              "swe:description": false,
+              "swe:id": false,
+              "swe:identifier": false,
+              "swe:label": false
+            }
+          },
+          "sml:documentation": {
+            "sml:DocumentList": {
+              "@:definition": false,
+              "sml:document": {
+                "protocol": true
+              },
+              "swe:description": false,
+              "swe:id": false,
+              "swe:identifier": false
+            }
+          },
+          "sml:identification": {
+            "sml:IdentifierList": {
+              "@:definition": false,
+              "sml:identifiers": {
+                "sml:Term": {
+                  "@:codeSpace": false,
+                  "@:definition": false,
+                  "swe:id": false
+                }
+              },
+              "swe:description": false,
+              "swe:id": false,
+              "swe:identifier": false,
+              "swe:label": false
+            }
+          },
+          "sml:keywords": {
+            "sml:KeywordList": {
+              "@:codeSpace": false,
+              "@:definition": false,
+              "swe:description": false,
+              "swe:id": false,
+              "swe:identifier": false,
+              "swe:label": false
+            }
+          },
+          "sml:time": {
+            "sml:timeInstant": {
+              "gml:description": false,
+              "gml:descriptionReference": false,
+              "gml:identifier": false
+            },
+            "sml:timePeriod": {
+              "gml:description": false,
+              "gml:descriptionReference": false,
+              "gml:identifier": false
+            }
+          },
+          "swe:description": false,
+          "swe:id": false,
+          "swe:identifier": false
+        },
+        "swe:description": false,
+        "swe:id": false,
+        "swe:identifier": false,
+        "swe:label": false
+      }
+    },
     "sml:identification": {
       "sml:IdentifierList": {
         "@:definition": false,
@@ -199,14 +200,12 @@
       "gml:timeInstant": {
         "gml:description": false,
         "gml:descriptionReference": false,
-        "gml:identifier": false,
-        "name": false
+        "gml:identifier": false
       },
       "gml:timePeriod": {
         "gml:description": false,
         "gml:descriptionReference": false,
-        "gml:identifier": false,
-        "name": false
+        "gml:identifier": false
       }
     }
   }
