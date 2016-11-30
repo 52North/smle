@@ -1,12 +1,11 @@
 {
   "description": {
-    "boundedBy": false,
     "gml:description": false,
     "gml:descriptionReference": false,
     "gml:identifier": {
       "@:codeSpace": false
     },
-    "language": false,
+    "sml:language": false,
     "location": false,
     "sml:capabilities": {
       "sml:CapabilitiesList": {

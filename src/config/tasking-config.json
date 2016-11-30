@@ -1,15 +1,15 @@
 {
   "description": {
-    "boundedBy": false,
     "components": false,
     "gml:description": false,
     "gml:descriptionReference": false,
     "gml:id": false,
-    "identifier": false,
-    "language": false,
-    "location": false,
-    "name": false,
-    "settings": false,
+    "gml:identifier": {
+      "@:codeSpace": false,
+      "gml:value": {
+        "fixed": true
+      }
+    },
     "sml:attachedTo": false,
     "sml:capabilities": false,
     "sml:characteristics": false,
@@ -25,10 +25,10 @@
         "sml:identifiers": {
           "fixedQuantity": true,
           "sml:Term": {
-            "@:definition": {
+            "@:codeSpace": {
               "fixed": true
             },
-            "@:codeSpace": {
+            "@:definition": {
               "fixed": true
             },
             "sml:label": {
@@ -49,6 +49,7 @@
       }
     },
     "sml:keywords": false,
+    "sml:language": false,
     "sml:parameters": {
       "sml:ParameterList": {
         "sml:parameter": {
