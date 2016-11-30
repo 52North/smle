@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { SettingsComponent } from './SettingsComponent';
-import { Settings } from '../../../model/sml/Settings';
-import { ParameterList } from '../../../model/sml/ParameterList';
+import { Settings, ParameterList, OutputList } from '../../../model/sml';
 import { ParameterListComponent } from './ParameterListComponent';
+import { OutputListComponent } from './OutputListComponent';
 
 @Component({
     selector: 'sml-abstract-process',
@@ -45,5 +45,23 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
 
     protected createParameters() {
         this.model.parameters = new ParameterList();
+    }
+
+    protected openOutputs() {
+        this.openNewChild(
+            new ChildMetadata(
+                OutputListComponent,
+                this.model.outputs,
+                this.config.getConfigFor('sml:outputs').getConfigFor('sml:OutputList')
+            )
+        );
+    }
+
+    protected removeOutputs() {
+        this.model.outputs = null;
+    }
+
+    protected createOutputs() {
+        this.model.outputs = new OutputList();
     }
 }
