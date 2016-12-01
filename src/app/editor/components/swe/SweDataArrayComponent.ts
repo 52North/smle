@@ -1,14 +1,17 @@
 import { Component, AfterContentInit, Type } from '@angular/core';
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweText } from '../../../model/swe/SweText';
-import { SweTime } from '../../../model/swe/SweTime';
-import { SweCount } from '../../../model/swe/SweCount';
-import { SweBoolean } from '../../../model/swe/SweBoolean';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweCategory } from '../../../model/swe/SweCategory';
-import { SweTimeRange } from '../../../model/swe/SweTimeRange';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
-import { SweDataArray } from '../../../model/swe/SweDataArray';
+import {
+    SweText,
+    SweTime,
+    SweCount,
+    SweBoolean,
+    SweQuantity,
+    SweCategory,
+    SweTimeRange,
+    SweQuantityRange,
+    SweDataArray,
+    SweDataRecord
+} from '../../../model/swe';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
 import { SweElementType } from '../../../model/swe/SweElementType';
 import { SweXmlEncoding } from '../../../model/swe/SweXmlEncoding';
@@ -30,8 +33,8 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
         { name: 'SweCategory', type: SweCategory },
         { name: 'SweTimeRange', type: SweTimeRange },
         { name: 'SweQuantityRange', type: SweQuantityRange },
-        // { name: 'SweDataRecord', type: SweDataRecord },
-        // {name: 'SweDataArray', type: SweDataArray}
+        { name: 'SweDataRecord', type: SweDataRecord },
+        { name: 'SweDataArray', type: SweDataArray }
     ];
 
     protected encodingOptions = [

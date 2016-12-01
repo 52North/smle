@@ -12,3 +12,15 @@
         <child-item [model]="model.parameters" [itemTitle]="getDisplayName('parameters')" (add)="createParameters()" (remove)="removeParameters()" (select)="openParameters()"></child-item>
     </div>
 </div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:outputs')">
+    <label for="outputs">Outputs</label>
+    <div>
+        <child-item [model]="model.outputs" [itemTitle]="getDisplayName('outputs')" (add)="createOutputs()" (remove)="removeOutputs()" (select)="openOutputs()"></child-item>
+    </div>
+</div>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:inputs')">
+    <label for="inputs">Inputs</label>
+    <div>
+        <child-item [model]="model.inputs" [itemTitle]="getDisplayName('inputs')" (add)="createInputs()" (remove)="removeInputs()" (select)="openInputs()"></child-item>
+    </div>
+</div>
