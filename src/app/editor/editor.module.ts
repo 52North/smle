@@ -59,6 +59,8 @@ import { OutputComponent } from './components/sml/OutputComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
 import { InputListComponent } from './components/sml/InputListComponent';
 import { InputComponent } from './components/sml/InputComponent';
+import { ObservablePropertyComponent } from './components/sml/ObservablePropertyComponent';
+import { DataInterfaceComponent } from './components/sml/DataInterfaceComponent';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PositionEditorComponent } from './components/sml/PositionComponent';
 import { SettingsComponent } from './components/sml/SettingsComponent';
@@ -151,6 +153,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         OutputComponent,
         InputListComponent,
         InputComponent,
+        ObservablePropertyComponent,
+        DataInterfaceComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -239,6 +243,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         OutputComponent,
         InputListComponent,
         InputComponent,
+        ObservablePropertyComponent,
+        DataInterfaceComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -289,6 +295,8 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         SettingsComponent,
         ValueSettingComponent,
         ModeSettingComponent,
+        SweFieldComponent,
+        SweBinaryBlockComponent,
         StatusSettingComponent,
         ParameterListComponent,
         ParameterComponent,

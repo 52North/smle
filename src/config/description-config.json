@@ -175,7 +175,6 @@
       "sml:InputList": {
         "sml:input": {
           "@:axisId": false,
-          "@:definition": false,
           "@:optional": false,
           "@:referenceFrame": false,
           "@:updatable": false,

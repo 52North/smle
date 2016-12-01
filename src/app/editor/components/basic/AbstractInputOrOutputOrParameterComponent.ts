@@ -1,6 +1,6 @@
 import { ComponentFactoryResolver, ViewContainerRef, AfterContentInit, OnInit } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
-import { InputOrOutputOrParameter } from '../../../model/sml';
+import { InputOrOutputOrParameter, DataInterface, ObservableProperty } from '../../../model/sml';
 import {
     SweText,
     SweTime,
@@ -25,7 +25,9 @@ export enum InputOrOutputOrParameterType {
     SweTimeRange = 7,
     SweQuantityRange = 8,
     SweDataRecord = 9,
-    SweDataArray = 10
+    SweDataArray = 10,
+    DataInterface = 11,
+    ObservableProperty = 12
 }
 
 export abstract class AbstractInputOrOutputOrParameterComponent<T extends InputOrOutputOrParameter>
@@ -85,6 +87,10 @@ export abstract class AbstractInputOrOutputOrParameterComponent<T extends InputO
             return InputOrOutputOrParameterType.SweDataRecord;
         } else if (component instanceof SweDataArray) {
             return InputOrOutputOrParameterType.SweDataArray;
+        } else if (component instanceof DataInterface) {
+            return InputOrOutputOrParameterType.DataInterface;
+        } else if (component instanceof ObservableProperty) {
+            return InputOrOutputOrParameterType.ObservableProperty;
         } else {
             return InputOrOutputOrParameterType.Unknown;
         }

@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
 import { EditorComponent } from '../base/EditorComponent';
-import { ParameterList, Parameter } from '../../../model/sml';
+import { ParameterList, Parameter, DataInterface, ObservableProperty } from '../../../model/sml';
 import { ChildMetadata } from '../base/TypedModelComponent';
 import { ParameterComponent } from './ParameterComponent';
 import { EditorService } from '../../../services/EditorService';
@@ -29,7 +29,9 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
         { name: (new SweQuantity()).toString(), type: SweQuantity },
         { name: (new SweCategory()).toString(), type: SweCategory },
         { name: (new SweTimeRange()).toString(), type: SweTimeRange },
-        { name: (new SweQuantityRange()).toString(), type: SweQuantityRange }
+        { name: (new SweQuantityRange()).toString(), type: SweQuantityRange },
+        { name: (new DataInterface()).toString(), type: DataInterface },
+        { name: (new ObservableProperty()).toString(), type: ObservableProperty }
         // { name: (new SweDataRecord()).toString(), type: SweDataRecord },
         // { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
