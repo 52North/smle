@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 
 @Component({
     selector: 'child-item',
@@ -11,6 +12,12 @@ export class ChildItemComponent {
 
     @Input()
     public itemTitle: string;
+
+    @Input()
+    public config: DescriptionConfig;
+
+    @Input()
+    public configName: string;
 
     @Output()
     public remove: EventEmitter<any> = new EventEmitter<any>();
@@ -31,5 +38,9 @@ export class ChildItemComponent {
 
     protected onSelect() {
         this.select.emit(null);
+    }
+
+    protected isNotFixed() {
+        return !!this.config ? !this.config.isFieldFixed(this.configName) : true;
     }
 }

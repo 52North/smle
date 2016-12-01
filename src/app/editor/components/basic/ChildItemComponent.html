@@ -2,11 +2,11 @@
     <a *ngIf="model" class="btn btn-link" (click)="onSelect()">
         <span>{{itemTitle}}</span>
     </a>
-    <a *ngIf="model" class="btn btn-link" (click)="onRemove()" class="remove">
+    <a *ngIf="model && isNotFixed()" class="btn btn-link" (click)="onRemove()" class="remove">
         <i class="fa fa-remove"></i>
         <span>Remove</span>
     </a>
-    <a *ngIf="!model" class="btn btn-link" (click)="onAdd()">
+    <a *ngIf="!model && isNotFixed()" class="btn btn-link" (click)="onAdd()">
         <i class="fa fa-plus"></i>
         <span>Create</span>
         <span>{{itemTitle}}</span>

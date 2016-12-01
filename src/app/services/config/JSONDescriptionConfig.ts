@@ -53,6 +53,7 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     }
 
     private getConfigParameter(name: string, parameter: string): any {
+        if (typeof name === 'undefined') return null;
         let config = this.getConfig(name);
         if (typeof config !== 'undefined'
             && config.hasOwnProperty(parameter)
