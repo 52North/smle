@@ -11,7 +11,9 @@ import {
     SweQuantity,
     SweCategory,
     SweTimeRange,
-    SweQuantityRange
+    SweQuantityRange,
+    SweDataArray,
+    SweDataRecord
 } from '../../../model/swe';
 
 @Component({
@@ -30,9 +32,9 @@ export class InputListComponent extends EditorComponent<InputList> {
         { name: (new SweTimeRange()).toString(), type: SweTimeRange },
         { name: (new SweQuantityRange()).toString(), type: SweQuantityRange },
         { name: (new DataInterface()).toString(), type: DataInterface },
-        { name: (new ObservableProperty()).toString(), type: ObservableProperty }
-        // { name: (new SweDataRecord()).toString(), type: SweDataRecord },
-        // { name: (new SweDataArray()).toString(), type: SweDataArray }
+        { name: (new ObservableProperty()).toString(), type: ObservableProperty },
+        { name: (new SweDataRecord()).toString(), type: SweDataRecord },
+        { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
     constructor(

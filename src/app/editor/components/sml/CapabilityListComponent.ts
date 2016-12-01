@@ -6,14 +6,18 @@ import { CapabilityList } from '../../../model/sml/CapabilityList';
 import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
-import { SweText } from '../../../model/swe/SweText';
-import { SweTime } from '../../../model/swe/SweTime';
-import { SweCount } from '../../../model/swe/SweCount';
-import { SweBoolean } from '../../../model/swe/SweBoolean';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweCategory } from '../../../model/swe/SweCategory';
-import { SweTimeRange } from '../../../model/swe/SweTimeRange';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
+import {
+    SweText,
+    SweTime,
+    SweCount,
+    SweBoolean,
+    SweQuantity,
+    SweCategory,
+    SweTimeRange,
+    SweQuantityRange,
+    SweDataRecord,
+    SweDataArray
+} from '../../../model/swe';
 
 @Component({
     selector: 'sml-capability-list',
@@ -29,9 +33,9 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
         { name: (new SweQuantity()).toString(), type: SweQuantity },
         { name: (new SweCategory()).toString(), type: SweCategory },
         { name: (new SweTimeRange()).toString(), type: SweTimeRange },
-        { name: (new SweQuantityRange()).toString(), type: SweQuantityRange }
-        // { name: (new SweDataRecord()).toString(), type: SweDataRecord },
-        // { name: (new SweDataArray()).toString(), type: SweDataArray }
+        { name: (new SweQuantityRange()).toString(), type: SweQuantityRange },
+        { name: (new SweDataRecord()).toString(), type: SweDataRecord },
+        { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
