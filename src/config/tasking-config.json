@@ -48,8 +48,10 @@
         "swe:label": false
       }
     },
+    "sml:inputs": false,
     "sml:keywords": false,
     "sml:language": false,
+    "sml:outputs": false,
     "sml:parameters": {
       "sml:ParameterList": {
         "sml:parameter": {
