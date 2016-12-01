@@ -24,7 +24,7 @@
             </div>
         </li>
     </template>
-    <li [hidden]="fixLength" class="list-group-item list-add-section">
+    <li *ngIf="!fixLength" class="list-group-item list-add-section">
         <ng-content select="list-add-section"></ng-content>
         <a (click)="onAdd()" class="btn btn-link list-add-section__default">
             <i class="fa fa-fw fa-plus"></i>
