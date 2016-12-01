@@ -1,15 +1,18 @@
 import { Component, Type } from '@angular/core';
 import { ChildMetadata, TypedModelComponent } from '../base/TypedModelComponent';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
-import { SweField } from '../../../model/swe/SweField';
-import { SweText } from '../../../model/swe/SweText';
-import { SweTime } from '../../../model/swe/SweTime';
-import { SweCount } from '../../../model/swe/SweCount';
-import { SweBoolean } from '../../../model/swe/SweBoolean';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweCategory } from '../../../model/swe/SweCategory';
-import { SweTimeRange } from '../../../model/swe/SweTimeRange';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
+import {
+    SweDataRecord,
+    SweField,
+    SweText,
+    SweTime,
+    SweCount,
+    SweBoolean,
+    SweQuantity,
+    SweCategory,
+    SweTimeRange,
+    SweQuantityRange,
+    SweDataArray
+} from '../../../model/swe';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
 import { SweFieldComponent } from '../sml/NamedSweDataComponentComponent';
 
@@ -27,8 +30,8 @@ export class SweDataRecordComponent extends TypedModelComponent<SweDataRecord> {
         { name: 'SweCategory', type: SweCategory },
         { name: 'SweTimeRange', type: SweTimeRange },
         { name: 'SweQuantityRange', type: SweQuantityRange },
-        // {name: 'SweDataRecord', type: SweDataRecord},
-        // {name: 'SweDataArray', type: SweDataArray}
+        { name: 'SweDataRecord', type: SweDataRecord },
+        { name: 'SweDataArray', type: SweDataArray }
     ];
 
     protected createModel(): SweDataRecord {

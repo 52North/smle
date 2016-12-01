@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('value')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('value')">
     <label for="value">{{getDisplayName('value')}} 1</label>
     <div class="nested-element">
         <swe-time-position [isShowAll]="isShowAll" [config]="config.getConfigFor('value')"
@@ -10,21 +10,21 @@
                            [(model)]="model.value[1]"></swe-time-position>
     </div>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('referenceTime')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('referenceTime')">
     <label for="referenceTime">{{getDisplayName('referenceTime')}}</label>
     <div class="nested-element">
         <date-picker class="col-sm-12" [(model)]="model.referenceTime"></date-picker>
     </div>
 </div>
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'localFrame'"></text-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('uom')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('uom')">
     <label for="uom">{{getDisplayName('uom')}}</label>
     <div class="nested-element">
         <swe-unit-of-measure [isShowAll]="isShowAll" [config]="config.getConfigFor('uom')"
                              [model]="model.uom"></swe-unit-of-measure>
     </div>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('constraint')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('constraint')">
     <label for="constraint">{{getDisplayName('constraint')}}</label>
     <div class="nested-element">
         <swe-allowed-times [isShowAll]="isShowAll" [config]="config.getConfigFor('constraint')"

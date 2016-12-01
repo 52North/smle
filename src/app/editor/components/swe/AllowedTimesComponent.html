@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('values')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('values')">
     <label for="values">{{getDisplayName('values')}}</label>
     <list [list]="model.values" (remove)="removeValue($event)">
         <list-add-section>

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 
 @Component({
     selector: 'strings',
@@ -7,6 +8,16 @@ import { Component, Input } from '@angular/core';
 export class StringsComponent {
     @Input()
     public list: string[];
+
+    @Input()
+    public fieldName: string;
+
+    @Input()
+    public configName: string;
+
+    @Input()
+    public config: DescriptionConfig;
+
     public item: string;
 
     public remove(i: number): void {

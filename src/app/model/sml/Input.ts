@@ -1,3 +1,3 @@
 import { InputOrOutputOrParameter } from './InputOrOutputOrParameter';
 
-export type Input = InputOrOutputOrParameter;
+export class Input extends InputOrOutputOrParameter { }
