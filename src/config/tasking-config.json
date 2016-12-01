@@ -53,6 +53,7 @@
     "sml:language": false,
     "sml:outputs": false,
     "sml:parameters": {
+      "fixed": true,
       "sml:ParameterList": {
         "sml:parameter": {
           "@:axisId": false,
