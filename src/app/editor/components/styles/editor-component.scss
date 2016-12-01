@@ -1,22 +1,26 @@
 :host {
-  width: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  line-height: 0;
-  font-size: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: 0;
 
-  * {
-    line-height: initial;
-    font-size: initial;
-  }
+    * {
+        line-height: initial;
+        font-size: initial;
+    }
 
-  .plain-text {
-    white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
-    white-space: -pre-wrap; /* Opera */
-    white-space: -o-pre-wrap; /* Opera */
-    white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
-    word-wrap: break-word; /* IE 5.5+ */
-  }
+    .plain-text {
+        white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+        white-space: -pre-wrap; /* Opera */
+        white-space: -o-pre-wrap; /* Opera */
+        white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+        word-wrap: break-word; /* IE 5.5+ */
+    }
 
+    .valueRequired{
+         border-left: 5px solid #DF0101; /* red */
+    }
 }
+

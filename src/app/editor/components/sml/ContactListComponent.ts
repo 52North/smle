@@ -32,7 +32,11 @@ export class ContactListComponent extends EditorComponent<ContactList> {
     }
 
     protected openNewResponsiblePartyItem(item: ResponsibleParty) {
-        let metadata = new ChildMetadata(ResponsiblePartyComponent, item, this.config.getConfigFor('contacts'));
+        let metadata = new ChildMetadata(
+            ResponsiblePartyComponent,
+            item,
+            this.config.getConfigFor('sml:contact').getConfigFor('gmd:CI_ResponsibleParty')
+        );
         this.openNewChild(metadata);
     }
 }

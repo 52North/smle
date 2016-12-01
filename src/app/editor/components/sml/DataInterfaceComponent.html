@@ -1,0 +1,8 @@
+<swe-abstract-identifiable [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-identifiable>
+<pre>Data element currently not supported</pre><!-- TODO implement it -->
+<div class="form-group" *ngIf="config.existInForm('sml:interfaceParameters',model,'interfaceParameters') &&(isShowAll || config.isFieldVisible('sml:interfaceParameters','textField',model,'interfaceParameters'))">
+    <label for="classification">{{getDisplayName('interfaceParameters')}}</label>
+    <div class="nested-element">
+        <swe-data-record [model]="model.interfaceParameters" [config]="config" [isShowAll]="isShowAll" (openAsChild)="delegateOpenNewChild($event)"></swe-data-record>
+    </div>
+</div>

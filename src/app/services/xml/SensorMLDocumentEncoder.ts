@@ -11,13 +11,12 @@ export class SensorMLDocumentEncoder {
     private encoder = new SensorMLEncoder();
 
     public encode(object: AbstractProcess): Document {
-
         let doc = this.createDocumentForProcess(object);
         this.encoder.encodeProcess(object, doc, doc.documentElement);
         return doc;
     }
 
-    private createDocumentForProcess(object: AbstractProcess): Document {
+    public createDocumentForProcess(object: AbstractProcess): Document {
         if (object instanceof SimpleProcess) {
             return this.createDocument('sml', SimpleProcess.NAME, SimpleProcess.SCHEMA);
         } else if (object instanceof AggregateProcess) {

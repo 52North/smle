@@ -1,23 +1,35 @@
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('value')">
-    <label for="value1">{{getDisplayName('value')}} 1</label>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value')">
+    <label for="value1">
+        <span>{{getDisplayName('value')}}</span>
+        <span>1</span>
+    </label>
     <input type="number" class="form-control" [(ngModel)]="model.value[0]" name="value1">
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('value')">
-    <label for="value2">{{getDisplayName('value')}} 2</label>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value')">
+    <label for="value2">
+        <span>{{getDisplayName('value')}}</span>
+        <span>2</span>
+    </label>
     <input type="number" class="form-control" [(ngModel)]="model.value[1]" name="value2">
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('uom')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:uom')">
     <label for="uom">{{getDisplayName('uom')}}</label>
     <div class="nested-element">
-        <swe-unit-of-measure [isShowAll]="isShowAll" [config]="config.getConfigFor('uom')"
-                             [model]="model.uom"></swe-unit-of-measure>
+        <div *ngIf="!model.uom">
+            <a type="button" class="btn btn-link" (click)="createUom()">Create
+                {{getDisplayName('uom')}}</a>
+        </div>
+        <swe-unit-of-measure [isShowAll]="isShowAll" [config]="config.getConfigFor('swe:uom')" [model]="model.uom" *ngIf="model.uom"></swe-unit-of-measure>
     </div>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('constraint')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:constraint')">
     <label for="constraint">{{getDisplayName('constraint')}}</label>
     <div class="nested-element">
-        <swe-allowed-values [isShowAll]="isShowAll" [config]="config.getConfigFor('constraint')"
-                            [model]="model.constraint"></swe-allowed-values>
+        <div *ngIf="!model.constraint">
+            <a type="button" class="btn btn-link" (click)="createConstraint()">Create
+                {{getDisplayName('constraint')}}</a>
+        </div>
+        <swe-allowed-values [isShowAll]="isShowAll" [config]="config.getConfigFor('swe:constraint')" [model]="model.constraint" *ngIf="model.constraint"></swe-allowed-values>
     </div>
 </div>
 <swe-abstract-range [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-range>

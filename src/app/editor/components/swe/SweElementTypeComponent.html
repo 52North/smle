@@ -1,5 +1,5 @@
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'"></text-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('type')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('type')">
     <label for="type">{{getDisplayName('type')}}</label>
     <div class="nested-element" [ngSwitch]="typeType">
         <swe-text *ngSwitchCase="1" [model]="model.type" [config]="config.getConfigFor('type')"

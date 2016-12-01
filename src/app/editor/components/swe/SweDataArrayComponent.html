@@ -1,43 +1,35 @@
-<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'elementCount'"></number-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('elementType')">
+<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'elementCount'" [configName]="'swe:elementCount'"></number-field>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'values'" [configName]="'swe:values'"></text-field>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('elementType')">
     <label for="elementType">{{getDisplayName('elementType')}}</label>
     <div class="nested-element">
         <div class="dropdown" *ngIf="!model.elementType">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="elementTypeDropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="elementTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add element type
             </button>
             <div class="dropdown-menu" aria-labelledby="elementTypeDropdown">
-                <a class="dropdown-item" *ngFor="let option of options"
-                   (click)="onAddElementType(option.type)">{{option.name}}</a>
+                <a class="dropdown-item" *ngFor="let option of options" (click)="onAddElementType(option.type)">{{option.name}}</a>
             </div>
         </div>
         <a class="btn btn-link" *ngIf="!!model.elementType" (click)="removeElementType()">Remove</a>
-        <swe-element-type *ngIf="!!model.elementType" [isShowAll]="isShowAll"
-                          [config]="config.getConfigFor('elementType')" [model]="model.elementType"></swe-element-type>
+        <swe-element-type *ngIf="!!model.elementType" [isShowAll]="isShowAll" [config]="config.getConfigFor('elementType')" [model]="model.elementType" (openAsChild)="openNewChild($event)"></swe-element-type>
     </div>
 </div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('encoding')">
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('encoding')">
     <label for="encoding">{{getDisplayName('encoding')}}</label>
     <div class="nested-element">
         <div class="dropdown" *ngIf="!model.encoding">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="encodingDropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="encodingDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add encoding
             </button>
             <div class="dropdown-menu" aria-labelledby="encodingDropdown">
-                <a class="dropdown-item" *ngFor="let option of encodingOptions"
-                   (click)="onAddEncoding(option.type)">{{option.name}}</a>
+                <a class="dropdown-item" *ngFor="let option of encodingOptions" (click)="onAddEncoding(option.type)">{{option.name}}</a>
             </div>
         </div>
         <a class="btn btn-link" *ngIf="!!model.encoding" (click)="removeEncoding()">Remove</a>
-        <swe-text-encoding *ngIf="!!model.encoding && encodingType === 'text'" [isShowAll]="isShowAll"
-                          [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-text-encoding>
-        <swe-binary-encoding *ngIf="!!model.encoding && encodingType === 'binary'" [isShowAll]="isShowAll"
-                           [config]="config.getConfigFor('encoding')" [model]="model.encoding"
-                            (openAsChild)="openNewChild($event)"></swe-binary-encoding>
-        <swe-xml-encoding *ngIf="!!model.encoding && encodingType === 'xml'" [isShowAll]="isShowAll"
-                           [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-xml-encoding>
+        <swe-text-encoding *ngIf="!!model.encoding && encodingType === 'text'" [isShowAll]="isShowAll" [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-text-encoding>
+        <swe-binary-encoding *ngIf="!!model.encoding && encodingType === 'binary'" [isShowAll]="isShowAll" [config]="config.getConfigFor('encoding')" [model]="model.encoding" (openAsChild)="openNewChild($event)"></swe-binary-encoding>
+        <swe-xml-encoding *ngIf="!!model.encoding && encodingType === 'xml'" [isShowAll]="isShowAll" [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-xml-encoding>
     </div>
 </div>
 <swe-abstract-data [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-data>

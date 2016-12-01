@@ -1,0 +1,24 @@
+<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
+  <form>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'" [configName]="'@:name'"></text-field>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:value')">
+      <div [ngSwitch]="valueType">
+        <div *ngSwitchCase="0">
+            <span>Unknown type</span>
+        </div>
+        <swe-text *ngSwitchCase="1" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-text>
+        <swe-time *ngSwitchCase="2" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-time>
+        <swe-count *ngSwitchCase="3" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-count>
+        <swe-boolean *ngSwitchCase="4" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-boolean>
+        <swe-quantity *ngSwitchCase="5" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-quantity>
+        <swe-category *ngSwitchCase="6" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-category>
+        <swe-time-range *ngSwitchCase="7" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-time-range>
+        <swe-quantity-range *ngSwitchCase="8" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></swe-quantity-range>
+        <swe-data-record *ngSwitchCase="9" [model]="model.value" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></swe-data-record>
+        <swe-data-array *ngSwitchCase="10" [model]="model.value" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></swe-data-array>
+        <sml-data-interface *ngSwitchCase="11" [model]="model.value" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-data-interface>
+        <sml-observable-property *ngSwitchCase="12" [model]="model.value" [config]="config" [isShowAll]="isShowAll"></sml-observable-property>
+      </div>
+    </div>
+  </form>
+</card>
