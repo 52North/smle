@@ -41,16 +41,8 @@
 <div class="row">
     <div class="footer-buttons container" *ngIf="!!description">
         <div class="col-md-12 center-block">
-            <a class="btn btn-primary" (click)="publishDescription()" *ngIf="editorMode === 1">Publish Description</a>
+            <a class="btn btn-primary" (click)="publishDescription()" *loggedIn>Publish Description</a>
             <a class="btn btn-primary" (click)="provideDownload()">Download Description</a>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="publish container" *ngIf="!!description">
-        <div class="col-md-12" *loggedIn>
-            <a class="btn btn-primary center-block" (click)="publishDescription()">Publish Description</a>
         </div>
     </div>
 </div>

@@ -49,7 +49,7 @@ export class PublishDescription implements OnInit {
     }
 
     protected editDescription() {
-        this.editorServ.openEditorWithDescription(this.description, this.sosUrl);
+        this.editorServ.openEditorWithDescription(this.description);
     }
 
     protected addDescription() {
