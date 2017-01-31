@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+	<include schemaLocation="Datatypes.xsd" />
+	<include schemaLocation="FormFieldTypes.xsd" />
+	<!-- Datatypes: any Definition (Default) -->
+
+	<element name="elementDouble" substitutionGroup="profile:element"><!-- name -->
+		<complexType>
+			<complexContent>
+				<extension base="profile:elementType">
+					<group ref="profile:doubleElementGroup" />
+					<assert
+						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<complexType name="elementDoubleRefType"><!-- !!!name -->
+		<complexContent>
+			<extension base="profile:elementRefType">
+				<group ref="profile:doubleGroup" /><!-- !!!ref -->
+				<assert
+					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+				<assert
+					test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+	<complexType name="union_double">
+		<group ref="profile:doubleRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
+	</complexType>
+
+	<element name="abstractElementDouble" substitutionGroup="profile:abstractElement">
+		<complexType>
+			<complexContent>
+				<extension base="profile:abstractElementType">
+					<group ref="profile:doubleElementGroup" />
+					<assert
+						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<group name="doubleElementGroup">
+		<sequence>
+			<element name="restrictions" minOccurs="0">
+				<complexType>
+					<group ref="profile:doubleGroup" /><!-- !!!ref -->
+				</complexType>
+			</element>
+			<element name="input" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded"><!-- change -->
+						<element ref="profile:textField" />
+						<element ref="profile:selectionBox" />
+						<element ref="profile:numberField" />
+						<element ref="profile:map" />
+					</choice>
+				</complexType>
+			</element>
+		</sequence>
+	</group>
+	<group name="doubleGroup"><!-- !!!name -->
+		<sequence>
+			<element ref="profile:use" minOccurs="0" />
+			<element ref="profile:occurrence" minOccurs="0" />
+			<group ref="profile:doubleRestrictionGroup" minOccurs="0" />
+			<element name="defaultContent" type="profile:double_fixContent_currentDateType"
+				minOccurs="0" /><!-- !!!type -->
+		</sequence>
+
+	</group>
+	<group name="doubleRestrictionGroup">
+		<choice>
+			<element name="fixContent" type="profile:double_fixContent_currentDateType" /><!-- !!!type -->
+			<element name="content-selection_enumeration">
+				<complexType>
+					<sequence>
+						<group ref="profile:double_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
+					</sequence>
+					<attribute name="base" type="string" fixed="-" />
+				</complexType>
+			</element>
+			<element name="content-format">
+				<complexType>
+					<sequence>
+						<element name="pattern" minOccurs="0">
+							<complexType>
+								<sequence>
+									<element name="regular-expression" type="profile:regular_expression" maxOccurs="unbounded" />
+								</sequence>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="whitespace" minOccurs="0">
+							<complexType>
+								<attribute name="method" fixed="collapse" use="required">
+									<simpleType>
+										<restriction base="string">
+											<enumeration value="preserve" />
+											<enumeration value="replace" />
+											<enumeration value="collapse" />
+										</restriction>
+									</simpleType>
+								</attribute>
+								<attribute name="base" type="string" fixed="-" />
+							</complexType>
+						</element>
+						<element name="number-boundary" minOccurs="0">
+							<complexType>
+								<sequence>
+									<choice minOccurs="0">
+										<element name="minInclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+										<element name="minExclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+									</choice>
+									<choice minOccurs="0">
+										<element name="maxInclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+										<element name="maxExclusive">
+											<complexType>
+												<complexContent>
+													<extension base="profile:double_fixContent_currentDateType"><!-- !!!type -->
+														<attribute name="base" type="string" fixed="-" />
+													</extension>
+												</complexContent>
+											</complexType>
+										</element>
+									</choice>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+
+	</group>
+	<complexType name="double_fixContent_currentDateType"><!-- !!!name -->
+		<group ref="profile:double_fixContent_currentDateGroup" /><!-- !!!ref -->
+	</complexType>
+	<group name="double_fixContentGroup"><!-- !!!name -->
+		<choice>
+			<element name="value">
+				<complexType>
+					<simpleContent>
+						<extension base="double"><!-- !!!base -->
+							<attribute name="URL" type="anyURI" />
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="ref">
+				<complexType>
+					<complexContent>
+						<extension base="profile:elementRefType">
+							<attribute name="refValueNotExist" use="required">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="fail" />
+										<enumeration value="succeed" />
+									</restriction>
+								</simpleType>
+							</attribute>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="function">
+				<complexType>
+					<sequence>
+						<element name="rounding" type="profile:double_roundingType" minOccurs="0" />
+						<element name="arithmetic-operators" type="profile:double_arithmetic_operatorsType"
+							minOccurs="0" />
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+	</group>
+	<group name="double_fixContent_currentDateGroup"><!-- !!!name -->
+		<choice>
+			<group ref="profile:double_fixContentGroup" minOccurs="0" /><!-- !!!ref -->
+			<element name="current-date" type="token" minOccurs="0" />
+		</choice>
+	</group>
+	<complexType name="double_roundingType">
+		<sequence>
+			<element name="item" type="profile:double_fixContentType" />
+		</sequence>
+		<attribute name="method">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="ceiling" />
+					<enumeration value="floor" />
+					<enumeration value="round" />
+					<enumeration value="round-half-to-even" />
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="precision" type="integer" />
+		<assert
+			test="((@method='ceiling' or @method='floor') and not(@precision)) or ((@method='round' or @method='round-half-to-even') and @precision)" />
+	</complexType>
+	<complexType name="double_fixContentType">
+		<group ref="profile:double_fixContentGroup" />
+	</complexType>
+
+
+	<group name="double_arithmetic_operatorGroup">
+		<choice>
+			<element name="ADD" type="profile:double_arithmetic_operatorsType" />
+			<element name="Substract" type="profile:double_arithmetic_operatorsType" />
+			<element name="MULTIPLY" type="profile:double_arithmetic_operatorsType" />
+			<element name="DIVIDE" type="profile:double_arithmetic_operatorsType" />
+		</choice>
+	</group>
+
+	<complexType name="double_arithmetic_operatorsType">
+		<choice maxOccurs="unbounded">
+			<element name="item" type="profile:double_fixContentType" />
+			<element name="bracket">
+				<complexType>
+					<sequence>
+						<group ref="profile:double_arithmetic_operatorGroup" />
+					</sequence>
+				</complexType>
+			</element>
+			<group ref="profile:double_arithmetic_operatorGroup" />
+		</choice>
+	</complexType>
+</schema>

@@ -1,10 +1,8 @@
-<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'value'"></number-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('constraint')">
+<number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'value'" [configName]="'swe:value'"></number-field>
+<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:constraint')">
     <label for="constraint">{{getDisplayName('constraint')}}</label>
     <div class="nested-element">
-        <swe-allowed-values [isShowAll]="isShowAll" [config]="config.getConfigFor('constraint')"
-                            [model]="model.constraint"></swe-allowed-values>
+        <swe-allowed-values [isShowAll]="isShowAll" [config]="config.getConfigFor('swe:constraint')" [model]="model.constraint"></swe-allowed-values>
     </div>
 </div>
-<swe-abstract-simple-component [model]="model" [config]="config"
-                               [isShowAll]="isShowAll"></swe-abstract-simple-component>
+<swe-abstract-simple-component [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-simple-component>

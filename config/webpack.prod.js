@@ -1,6 +1,7 @@
 const helpers = require('./helpers');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
+const DeployToWar = require('webpack-deploy2war');
 
 /**
  * Webpack Plugins
@@ -109,8 +110,8 @@ module.exports = function(env) {
                 to: 'config.json'
             }]),
             new CopyWebpackPlugin([{
-                from: 'src/description-config.json',
-                to: 'description-config.json'
+                from: 'src/config',
+                to: 'config'
             }]),
             new CopyWebpackPlugin([{
                 from: 'src/loggedIn.html',
@@ -223,6 +224,9 @@ module.exports = function(env) {
             //   regExp: /\.css$|\.html$|\.js$|\.map$/,
             //   threshold: 2 * 1024
             // })
+            new DeployToWar({
+                fileName: "smle.war"
+            })
 
         ],
 

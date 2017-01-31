@@ -11,6 +11,6 @@ export class InputOrOutputOrParameter {
     value: SweDataComponent | ObservableProperty | DataInterface;
 
     toString() {
-        return this.name || 'Input or output or parameter';
+        return this.name || this.value.toString();
     }
 }

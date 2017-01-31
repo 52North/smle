@@ -7,11 +7,10 @@ github_name="Travis CI"
 github_mail="travis@travis-ci.org"
 branch="gh-pages"
 deploy_dir=$(mktemp -d)
-repo_url="https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
 
 git config --global user.name "${github_name}"
 git config --global user.email "${github_mail}"
-git clone --quiet --depth 1 --branch "${branch}" "${repo_url}" "${deploy_dir}"
+git clone --quiet --depth 1 --branch "${branch}" https://github.com/${TRAVIS_REPO_SLUG}.git "${deploy_dir}"
 
 rm -rf "${deploy_dir:?}/${TRAVIS_BRANCH}"
 cp -rv dist "${deploy_dir}/${TRAVIS_BRANCH}"
@@ -20,5 +19,5 @@ pushd "${deploy_dir}"
 git add --ignore-removal .
 git add --update :/
 git commit -m "Updating ${TRAVIS_BRANCH} on ${branch} to ${TRAVIS_COMMIT}"
-git push origin "${branch}"
+git push --force --quiet "https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" "${branch}" >/dev/null 2>&1
 popd

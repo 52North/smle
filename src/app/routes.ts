@@ -9,7 +9,8 @@ import { Templates } from './templates/templates';
 import { AuthGuard } from './sos/components/auth-guard.service';
 
 export const ROUTES: Routes = [
-    { path: '', component: Home },
+    { path: '', component: Editor },
+    { path: 'samples', component: Home },
     { path: 'editor', component: Editor },
     { path: 'editor/:id', component: Editor },
     { path: 'fetch', component: FetchDescription },

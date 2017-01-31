@@ -48,10 +48,19 @@ import { DocumentListComponent } from './components/sml/DocumentListComponent';
 import { EventComponent } from './components/sml/EventComponent';
 import { EventListComponent } from './components/sml/EventListComponent';
 import { IdentifierListComponent } from './components/sml/IdentifierListComponent';
+import { KeywordListComponent } from './components/sml/KeywordListComponent';
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
 import { NamedSweDataComponentComponent, SweFieldComponent }
     from './components/sml/NamedSweDataComponentComponent';
+import { ParameterListComponent } from './components/sml/ParameterListComponent';
+import { ParameterComponent } from './components/sml/ParameterComponent';
+import { OutputListComponent } from './components/sml/OutputListComponent';
+import { OutputComponent } from './components/sml/OutputComponent';
 import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
+import { InputListComponent } from './components/sml/InputListComponent';
+import { InputComponent } from './components/sml/InputComponent';
+import { ObservablePropertyComponent } from './components/sml/ObservablePropertyComponent';
+import { DataInterfaceComponent } from './components/sml/DataInterfaceComponent';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PositionEditorComponent } from './components/sml/PositionComponent';
 import { SettingsComponent } from './components/sml/SettingsComponent';
@@ -70,7 +79,6 @@ import { AbstractSweRangeComponent } from './components/swe/AbstractSweRangeComp
 import { AllowedTimesComponent } from './components/swe/AllowedTimesComponent';
 import { AllowedTokensComponent } from './components/swe/AllowedTokensComponent';
 import { AllowedValuesComponent } from './components/swe/AllowedValuesComponent';
-import { KeywordListComponent } from './components/swe/KeywordListComponent';
 import { SweBinaryBlockComponent } from './components/swe/SweBinaryBlockComponent';
 import { SweBinaryComponentComponent } from './components/swe/SweBinaryComponentComponent';
 import { SweBinaryEncodingComponent } from './components/swe/SweBinaryEncodingComponent';
@@ -139,6 +147,14 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ModeSettingComponent,
         NamedSweDataComponentComponent,
         SweFieldComponent,
+        ParameterListComponent,
+        ParameterComponent,
+        OutputListComponent,
+        OutputComponent,
+        InputListComponent,
+        InputComponent,
+        ObservablePropertyComponent,
+        DataInterfaceComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -221,6 +237,14 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         EventListComponent,
         ModeSettingComponent,
         SweFieldComponent,
+        ParameterListComponent,
+        ParameterComponent,
+        OutputListComponent,
+        OutputComponent,
+        InputListComponent,
+        InputComponent,
+        ObservablePropertyComponent,
+        DataInterfaceComponent,
         PhysicalComponentComponent,
         PhysicalSystemComponent,
         PositionEditorComponent,
@@ -271,7 +295,15 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         SettingsComponent,
         ValueSettingComponent,
         ModeSettingComponent,
+        SweFieldComponent,
+        SweBinaryBlockComponent,
         StatusSettingComponent,
+        ParameterListComponent,
+        ParameterComponent,
+        OutputListComponent,
+        OutputComponent,
+        InputListComponent,
+        InputComponent,
         PositionEditorComponent,
         MapComponent,
         TimePeriodComponent,

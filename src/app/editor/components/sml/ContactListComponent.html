@@ -1,5 +1,5 @@
 <card [verticalMode]="hasChild" [title]="'Contact List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <div class="form-group" *ngIf="isShowAll || config.isFieldMandatory('contacts')">
+    <div class="form-group" *ngIf="config.existInForm('sml:contacts',model,'contacts') &&(isShowAll || config.isFieldVisible('sml:contacts','textField',model,'contacts'))">
         <label for="contacts">{{getDisplayName('contacts')}}</label>
         <list [list]="model.contacts" (select)="openNewResponsiblePartyItem($event)" (remove)="onRemove($event)" (add)="onAdd()"></list>
     </div>

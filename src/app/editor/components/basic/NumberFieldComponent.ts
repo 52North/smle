@@ -7,11 +7,15 @@ import { BaseComponent } from '../base/BaseComponent';
     template: require('./NumberFieldComponent.html')
 })
 export class NumberFieldComponent extends BaseComponent implements OnChanges {
+
     @Input()
     model: Object;
 
     @Input()
     fieldName: string;
+
+    @Input()
+    configName: string;
 
     @Input()
     config: DescriptionConfig;

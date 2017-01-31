@@ -5,7 +5,7 @@ import { KeywordList } from '../../../model/sml/KeywordList';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { ClassifierList } from '../../../model/sml/ClassifierList';
 import { DocumentList } from '../../../model/sml/DocumentList';
-import { KeywordListComponent } from '../swe/KeywordListComponent';
+import { KeywordListComponent } from './KeywordListComponent';
 import { IdentifierListComponent } from './IdentifierListComponent';
 import { ClassifierListComponent } from './ClassifierListComponent';
 import { DocumentListComponent } from './DocumentListComponent';
@@ -29,61 +29,100 @@ import { TimePeriodComponent } from '../gml/TimePeriodComponent';
     template: require('./DescribedObjectComponent.html')
 })
 export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
+
     protected createModel(): DescribedObject {
         return undefined;
     }
 
     protected openNewKeywordListItem(item: KeywordList) {
-        let metadata = new ChildMetadata(KeywordListComponent, item, this.config.getConfigFor('keywords'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                KeywordListComponent,
+                item,
+                this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
+            )
+        );
     }
 
     protected openNewIdentifierListItem(item: IdentifierList) {
-        let metadata = new ChildMetadata(IdentifierListComponent, item, this.config.getConfigFor('identification'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                IdentifierListComponent,
+                item,
+                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+            )
+        );
     }
 
     protected openNewClassifierListItem(item: ClassifierList) {
-        let metadata = new ChildMetadata(ClassifierListComponent, item, this.config.getConfigFor('classification'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                ClassifierListComponent,
+                item,
+                this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
+            )
+        );
     }
 
     protected openNewContactListItem(item: ContactList) {
-        let metadata = new ChildMetadata(ContactListComponent, item, this.config.getConfigFor('contacts'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                ContactListComponent,
+                item,
+                this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
+            )
+        );
     }
 
     protected openNewEventListItem(item: EventList) {
-        let metadata = new ChildMetadata(EventListComponent, item, this.config.getConfigFor('history'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                EventListComponent,
+                item,
+                this.config.getConfigFor('sml:history').getConfigFor('sml:EventList')
+            )
+        );
     }
 
     protected openNewDocumentListItem(item: DocumentList) {
-        let metadata = new ChildMetadata(DocumentListComponent, item, this.config.getConfigFor('documentation'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                DocumentListComponent,
+                item,
+                this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
+            )
+        );
     }
 
     protected openNewCharacteristicListItem(item: CharacteristicList) {
-        let metadata = new ChildMetadata(CharacteristicListComponent, item,
-            this.config.getConfigFor('characteristics'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                CharacteristicListComponent,
+                item,
+                this.config.getConfigFor('sml:characteristics').getConfigFor('sml:CharacteristicList')
+            )
+        );
     }
 
     protected openNewCapabilityListItem(item: CapabilityList) {
-        let metadata = new ChildMetadata(CapabilityListComponent, item, this.config.getConfigFor('capabilities'));
-        this.openNewChild(metadata);
+        this.openNewChild(
+            new ChildMetadata(
+                CapabilityListComponent,
+                item,
+                this.config.getConfigFor('sml:capabilities').getConfigFor('sml:CapabilitiesList')
+            )
+        );
     }
 
     protected openNewAbstractTimeItem(item: AbstractTime) {
         let metadata: ChildMetadata<any>;
         if (item instanceof TimeInstant) {
             metadata = new ChildMetadata(TimeInstantComponent, item,
-                this.config.getConfigFor('validTime').getConfigFor('timeInstant'));
+                this.config.getConfigFor('sml:validTime').getConfigFor('gml:timeInstant'));
         } else if (item instanceof TimePeriod) {
             metadata = new ChildMetadata(TimePeriodComponent, item,
-                this.config.getConfigFor('validTime').getConfigFor('timePeriod'));
+                this.config.getConfigFor('sml:validTime').getConfigFor('gml:timePeriod'));
         }
-
         this.openNewChild(metadata);
     }
 

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+	<include schemaLocation="Datatypes.xsd" />
+	<include schemaLocation="FormFieldTypes.xsd" />
+
+	<include schemaLocation="string.xsd" />
+	<include schemaLocation="anyType.xsd" />
+	<include schemaLocation="boolean.xsd" />
+	<include schemaLocation="double.xsd" />
+	<include schemaLocation="NCName.xsd" />
+	<include schemaLocation="anyURI.xsd" />
+	<include schemaLocation="integer.xsd" />
+	<include schemaLocation="ID.xsd" />
+	<include schemaLocation="Name.xsd" />
+	<include schemaLocation="QName.xsd" />
+	<include schemaLocation="dateTime.xsd" />
+	<include schemaLocation="positiveInteger.xsd" />
+	<include schemaLocation="nonPositiveInteger.xsd" />
+	<include schemaLocation="decimal.xsd" />
+	<include schemaLocation="date.xsd" />
+	<include schemaLocation="duration.xsd" />
+	<include schemaLocation="time.xsd" />
+	<!-- Datatypes: any Definition (Default) -->
+
+	<element name="elementUnion" substitutionGroup="profile:element"><!-- name -->
+		<complexType>
+			<complexContent>
+				<extension base="profile:elementType">
+					<group ref="profile:unionGroup" /><!-- !!!ref -->
+					<assert
+						test="if(((.//profile:restrictions/profile:use[not(text()='optional')]) or (count(.//profile:restrictions/profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert
+						test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
+					<assert test="count(.//profile:fixContent)&lt;2" />
+					<assert
+						test="if(profile:restrictions/profile:fixContent) then (not(profile:restrictions/profile:defaultContent) and not(profile:restrictions/profile:use) and not(profile:restrictions/profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+
+	<complexType name="elementUnionRefType"><!-- !!!name -->
+		<complexContent>
+			<extension base="profile:elementRefType">
+				<group ref="profile:unionGroup" minOccurs="0" /><!-- !!!ref -->
+				<assert
+					test="if(((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+				<assert test="count(.//profile:fixContent)&lt;2" />
+				<assert
+					test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
+				<assert
+					test="if(.//profile:fixContent) then (not(profile:defaultContent) and not(.//profile:use) and not(.//profile:occurrence)) else(true())" />
+			</extension>
+		</complexContent>
+	</complexType>
+	<element name="abstractElementUnion" substitutionGroup="profile:abstractElement">
+		<complexType>
+			<complexContent>
+				<extension base="profile:abstractElementType">
+					<group ref="profile:unionGroup" />
+					<assert
+						test="if(((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
+					<assert test="count(.//profile:fixContent)&lt;2" />
+					<assert
+						test="if(.//profile:defaultContent) then(.//profile:defaultContent/*/name()=.//profile:union_Types/*/name())else(true())" />
+					<assert
+						test="if(.//profile:fixContent) then (not(profile:defaultContent) and not(.//profile:use) and not(.//profile:occurrence)) else(true())" />
+				</extension>
+			</complexContent>
+		</complexType>
+	</element>
+	<group name="unionGroup"><!-- !!!name -->
+		<sequence>
+			<element ref="profile:use" minOccurs="0" />
+			<element ref="profile:occurrence" minOccurs="0" />
+			<element name="union_Types">
+				<complexType>
+					<choice maxOccurs="unbounded">
+						<element name="anyType" type="profile:union_anyType" />
+						<element name="anyURI" type="profile:union_anyURI" />
+						<element name="boolean" type="profile:union_boolean" />
+						<element name="date" type="profile:union_date" />
+						<element name="dateTime" type="profile:union_dateTime" />
+						<element name="decimal" type="profile:union_decimal" />
+						<element name="double" type="profile:union_double" />
+						<element name="duration" type="profile:union_duration" />
+						<element name="ID" type="profile:union_ID" />
+						<element name="integer" type="profile:union_integer" />
+						<element name="Name" type="profile:union_Name" />
+						<element name="NCName" type="profile:union_NCName" />
+						<element name="nonPositiveInteger" type="profile:union_nonPositiveInteger" />
+						<element name="positiveInteger" type="profile:union_positiveInteger" />
+						<element name="QName" type="profile:union_QName" />
+						<element name="string" type="profile:union_string" />
+						<element name="time" type="profile:union_time" />
+					</choice>
+				</complexType>
+			</element>
+			<element name="defaultContent" minOccurs="0">
+				<complexType>
+					<choice>
+						<element name="anyType" type="profile:anyType_fixContent_currentDateType" />
+						<element name="anyURI" type="profile:anyURI_fixContent_currentDateType" />
+						<element name="boolean" type="profile:boolean_fixContent_currentDateType" />
+						<element name="date" type="profile:date_fixContent_currentDateType" />
+						<element name="dateTime" type="profile:dateTime_fixContent_currentDateType" />
+						<element name="decimal" type="profile:decimal_fixContent_currentDateType" />
+						<element name="double" type="profile:double_fixContent_currentDateType" />
+						<element name="duration" type="profile:duration_fixContent_currentDateType" />
+						<element name="ID" type="profile:ID_fixContent_currentDateType" />
+						<element name="integer" type="profile:integer_fixContent_currentDateType" />
+						<element name="Name" type="profile:Name_fixContent_currentDateType" />
+						<element name="NCName" type="profile:NCName_fixContent_currentDateType" />
+						<element name="nonPositiveInteger" type="profile:nonPositiveInteger_fixContent_currentDateType" />
+						<element name="positiveInteger" type="profile:positiveInteger_fixContent_currentDateType" />
+						<element name="QName" type="profile:QName_fixContent_currentDateType" />
+						<element name="string" type="profile:string_fixContent_currentDateType" />
+						<element name="time" type="profile:time_fixContent_currentDateType" />
+					</choice>
+				</complexType>
+			</element><!-- !!!type -->
+		</sequence>
+
+	</group>
+</schema>

@@ -26,6 +26,12 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
 
     protected openChild(item: Position) {
         this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueDescriptionConfig()));
+        // this.openNewChild(new ChildMetadata(
+        //     PositionEditorComponent,
+        //     item,
+        //     this.config.getConfigFor('swe:DataRecord').getConfigFor('swe:field')
+        //         .getConfigFor('swe:Vector').getConfigFor('swe:coordinate').getConfigFor('swe:Quantity')
+        // ));
     }
 
     protected getPositionLabel(positionItem: Position): string {
