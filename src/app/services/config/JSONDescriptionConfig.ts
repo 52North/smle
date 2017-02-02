@@ -1,71 +1,179 @@
+import { DefaultDescriptionConfig } from './DefaultDescriptionConfig';
 import { DescriptionConfig } from './DescriptionConfig';
 import { TrueDescriptionConfig } from './TrueDescriptionConfig';
 import { FalseDescriptionConfig } from './FalseDescriptionConfig';
+import { BidiMap} from '../dynamicGUI/BidiMap';
+import { DynamicGUIConfiguration} from '../dynamicGUI/DynamicGUIConfiguration';
+import {LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger} from "typescript-logging"
+
 
 export class JSONDescriptionConfig implements DescriptionConfig {
+    private _loggerFactory: LoggerFactory;
+    private _logger: Logger;
+    constructor(private globalConfig: any, private _elementConfig: any, private _profileIDMap: BidiMap, private dynamicGUI: boolean) {
+        //  alert(JSON.stringify(config));
 
-    private defaultVisibility: boolean = true;
-    private defaultFixed: boolean = false;
-    private defaultMandatory: boolean = false;
-    private defaultFixedQuantity: boolean = false;
+        this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
+            .addLogGroupRule(new LogGroupRule(new RegExp(".+"), LogLevel.Info)));
+        this._logger = this._loggerFactory.getLogger("JSONDescriptionConfig");
+    }
 
-    constructor(
-        private config: Object
-    ) { }
+    public isFieldMandatory(name: string, model?: any, fieldName?: string): boolean {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (!model || !fieldName) return false;
+            let elementConfig = this.getElementConfig(model, fieldName, "requireValue");
+            if (typeof elementConfig == "undefined") {
+                if (value) {
+                    if (typeof value._requireValue != "undefined" && typeof value._requireValue != "undefined") {
+                        return value._requireValue;
+                    }
+                    return new DynamicGUIConfiguration().getDefaultConfiguration()["requireValue"];
 
-    public getConfigFor(name: string): DescriptionConfig {
-        let value = this.getConfig(name);
-        if (value === true || typeof value === 'undefined') {
-            return new TrueDescriptionConfig();
-        } else if (!value) {
-            return new FalseDescriptionConfig();
-        } else {
-            return new JSONDescriptionConfig(value);
+                }
+                return elementConfig;
+
+            }
+
         }
     }
 
-    public isFieldVisible(name: string, formFieldType?: string): boolean {
-        let visible = this.getConfigParameter(name, 'visible');
-        return (typeof visible === 'undefined') ? this.defaultVisibility : visible;
-    }
+    public existInForm(name: string, model?: any, fieldName?: string): boolean {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (!model || !fieldName) return false;
+            let elementConfig = this.getElementConfig(model, fieldName, "existInForm");
+            if (typeof elementConfig == "undefined") {
+                if (value) {
+                    if (typeof value._existInForm != "undefined" && typeof value._existInForm != "undefined") {
+                        return value._existInForm;
+                    }
+                }
+                return new DynamicGUIConfiguration().getDefaultConfiguration()["existInForm"];
 
-    public isFieldFixed(name: string): boolean {
-        let fixed = this.getConfigParameter(name, 'fixed');
-        return (typeof fixed === 'undefined') ? this.defaultFixed : fixed;
-    }
-
-    public isFieldMandatory(name: string): boolean {
-        let mandatory = this.getConfigParameter(name, 'mandatory');
-        return (typeof mandatory === 'undefined') ? this.defaultMandatory : mandatory;
-    }
-
-    public existInForm(name: string): boolean {
+            }
+            return elementConfig;
+        }
         return true;
     }
+    public isFieldFixed(name: string, model?: any, fieldName?: string): boolean {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (!model || !fieldName) return false;
+            let elementConfig = this.getElementConfig(model, fieldName, "fixValue");
+            if (typeof elementConfig == "undefined") {
+                if (value) {
+                    if (typeof value._fixValue != "undefined" && typeof value._fixValue != "undefined") {
+                        return value._fixValue;
+                    }
+                }
+                return new DynamicGUIConfiguration().getDefaultConfiguration()["fixValue"];
 
-    public elementFixQuantity(name: string): boolean {
-        let fixedQuantity = this.getConfigParameter(name, 'fixedQuantity');
-        return (typeof fixedQuantity === 'undefined') ? this.defaultFixedQuantity : fixedQuantity;
+
+            }
+            return elementConfig;
+        }
+
     }
 
-    public getLabel(name: string): string {
-        return undefined;
+    public elementFixQuantity(name: string, model?: any, fieldName?: string): boolean {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (!model || !fieldName) return false;
+            let elementConfig = this.getElementConfig(model, fieldName, "fixQuantity");
+            if (typeof elementConfig == "undefined") {
+                if (value) {
+                    if (typeof value._fixQuantity != "undefined" && typeof value._fixQuantity != "undefined") {
+                        return value._fixQuantity;
+                    }
+
+                }
+                return new DynamicGUIConfiguration().getDefaultConfiguration()["fixQuantity"];
+
+
+            }
+            return elementConfig;
+        }
+    }
+    public isFieldVisible(name: string, formFieldType?: string, model?: any, fieldName?: string): boolean {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (!model || !fieldName) return false;
+            let elementConfig = this.getElementConfig(model, fieldName, "hideField", formFieldType);
+            if (typeof elementConfig == "undefined") {
+                this._logger.info(name+" has no element configuration!");
+                if (value) {
+                    this._logger.info(name+" has a global configuration!");
+                    if (typeof value._hideField != "undefined" && typeof value._hideField["_" + formFieldType] != "undefined") {
+                        return !value._hideField["_" + formFieldType];
+                    } return true;
+                }
+                this._logger.info("use default configuration for: "+name);
+                return new DynamicGUIConfiguration().getDefaultConfiguration()["hideField"][formFieldType];
+
+
+            }
+            this._logger.info("use element configuration for: "+name);
+            return elementConfig;
+        }
+
     }
 
-    private getConfigParameter(name: string, parameter: string): any {
-        if (typeof name === 'undefined') return null;
-        let config = this.getConfig(name);
-        if (typeof config !== 'undefined'
-            && config.hasOwnProperty(parameter)
-            && typeof config[parameter] !== 'undefined')
-            return config[parameter];
-        if (typeof config === 'boolean') return config;
-    }
+    public getLabel(name: string, model?: any, fieldName?: string): string {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (!model || !fieldName) return undefined;
+            let elementConfig = this.getElementConfig(model, fieldName, "label");
+            if (typeof elementConfig == "undefined") {
+                if (value) {
+                    if (typeof value._label != "undefined" && typeof value._label != "undefined") {
+                        return value._label;
+                    }
+                }
+                return new DynamicGUIConfiguration().getDefaultConfiguration()["label"];
 
-    private getConfig(name: string): any {
+
+            }
+            return elementConfig;
+        }
+    }
+    private getValue(name: string): any {
         if (typeof name !== 'string' || name.length === 0) {
             return null;
         }
-        return this.config[name];
+        return this.globalConfig[name];
+    }
+    getElementConfig(model: any, fieldName: string, configType: string, formField?: string): any {
+        if (configType == "hideField") {
+            if (!formField) throw new Error("Form field not exist, but configType == hideField");
+        }
+        let profileID = this._profileIDMap.getProfileID(model, fieldName);
+
+        if (profileID) {
+            let configuration: DynamicGUIConfiguration = this._elementConfig[profileID];
+            if (configType == "hideField") {
+                if (typeof configuration[configType][formField] != "undefined") {
+                    return !configuration[configType][formField];
+                } return true;
+            } else {
+                return configuration[configType];
+            }
+        }
+        return undefined;
+    }
+    public getConfigFor(name: string): DescriptionConfig {
+        var value = this.getValue(name);
+        if (this.dynamicGUI) {
+            if (typeof value === 'undefined') {
+                return new DefaultDescriptionConfig(this._elementConfig);
+            }
+        } else {
+            if (value === true || typeof value === 'undefined') {
+                return new TrueDescriptionConfig();
+            } else if (!value) {
+                return new FalseDescriptionConfig();
+            }
+        }
+        return new JSONDescriptionConfig(value, this._elementConfig, this._profileIDMap, this.dynamicGUI);
     }
 }

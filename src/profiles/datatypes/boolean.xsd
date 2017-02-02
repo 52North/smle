@@ -22,7 +22,7 @@
 
 	<complexType name="elementBooleanRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:booleanGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -36,10 +36,10 @@
 		<group ref="profile:booleanRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractElementBoolean" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceBoolean" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:booleanElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -81,7 +81,7 @@
 	<group name="booleanRestrictionGroup">
 		<choice>
 			<element name="fixContent" type="profile:boolean_fixContent_currentDateType" /><!-- !!!type -->
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -129,7 +129,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">

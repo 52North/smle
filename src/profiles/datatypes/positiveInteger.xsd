@@ -21,7 +21,7 @@
 
 	<complexType name="elementPositiveIntegerRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:positiveIntegerGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -35,10 +35,10 @@
 		<group ref="profile:positiveIntegerRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractElementPositiveInteger" substitutionGroup="profile:abstractElement">
+	<element name="elementInstancePositiveInteger" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:positiveIntegerElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -80,7 +80,7 @@
 		<choice>
 			<element name="fixContent" type="profile:positiveInteger_fixContent_currentDateType" /><!-- 
 				!!!type -->
-			<element name="content-selection_enumeration">
+			<element name="enumeration">
 				<complexType>
 					<sequence>
 						<group ref="profile:positiveInteger_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- 
@@ -89,7 +89,7 @@
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
 			</element>
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -200,7 +200,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">
@@ -217,7 +217,7 @@
 				<complexType>
 					<sequence>
 						<element name="rounding" type="profile:positiveInteger_roundingType" minOccurs="0" />
-						<element name="arithmetic-operators" type="profile:positiveInteger_arithmetic_operatorsType"
+						<element name="arithmeticOperator" type="profile:positiveInteger_arithmetic_operatorsType"
 							minOccurs="0" />
 					</sequence>
 				</complexType>

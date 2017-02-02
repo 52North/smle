@@ -42,7 +42,7 @@
 
 	<complexType name="elementUnionRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:unionGroup" minOccurs="0" /><!-- !!!ref -->
 				<assert
 					test="if(((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -54,10 +54,10 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	<element name="abstractElementUnion" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceUnion" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:unionGroup" />
 					<assert
 						test="if(((.//profile:use[not(text()='optional')]) or (count(.//profile:use)=0)) and not(.//profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
