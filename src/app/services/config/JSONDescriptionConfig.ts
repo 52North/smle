@@ -116,7 +116,7 @@ export class JSONDescriptionConfig implements DescriptionConfig {
             this._logger.info("use element configuration for: "+name);
             return elementConfig;
         }
-
+        return value;
     }
 
     public getLabel(name: string, model?: any, fieldName?: string): string {
