@@ -10,6 +10,9 @@
 }
 
 .visualizer-container {
+  height: 100%;
+  float: right;
+
   .visualizer-close-button {
     right: 30px;
     top: 0;
@@ -25,6 +28,7 @@
     background-color: white;
     overflow: auto;
     padding: 10px;
+    height: 100%;
   }
 
   &:not(.expanded) {

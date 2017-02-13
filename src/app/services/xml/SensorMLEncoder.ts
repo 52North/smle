@@ -104,7 +104,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.identifiers) {
-            object.identifiers.forEach(term => {
+            object.identifiers.forEach((term) => {
                 let identifierNode = document.createElementNS(NAMESPACES.SML, 'sml:identifier');
                 identifierNode.appendChild(this.encodeTerm(term, document));
                 node.appendChild(identifierNode);
@@ -127,7 +127,7 @@ export class SensorMLEncoder {
         }
 
         if (object.keywords) {
-            object.keywords.forEach(keyword => {
+            object.keywords.forEach((keyword) => {
                 let keywordNode = document.createElementNS(NAMESPACES.SML, 'sml:keyword');
                 keywordNode.textContent = keyword;
                 node.appendChild(keywordNode);
@@ -143,7 +143,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.classifiers) {
-            object.classifiers.forEach(term => {
+            object.classifiers.forEach((term) => {
                 let classifierNode = document.createElementNS(NAMESPACES.SML, 'sml:classifier');
                 classifierNode.appendChild(this.encodeTerm(term, document));
                 node.appendChild(classifierNode);
@@ -159,7 +159,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.characteristics) {
-            object.characteristics.forEach(c => {
+            object.characteristics.forEach((c) => {
                 let n = document.createElementNS(NAMESPACES.SML, 'sml:characteristic');
 
                 if (c.name) {
@@ -181,7 +181,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.events) {
-            object.events.forEach(event => {
+            object.events.forEach((event) => {
                 let eventNode = document.createElementNS(NAMESPACES.SML, 'sml:event');
                 eventNode.appendChild(this.encodeEvent(event, document));
                 node.appendChild(eventNode);
@@ -197,7 +197,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.capabilities) {
-            object.capabilities.forEach(c => {
+            object.capabilities.forEach((c) => {
 
                 let n = document.createElementNS(NAMESPACES.SML, 'sml:capability');
 
@@ -223,7 +223,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.contacts) {
-            object.contacts.forEach(contact => {
+            object.contacts.forEach((contact) => {
                 let contactNode = document.createElementNS(NAMESPACES.SML, 'sml:contact');
                 contactNode.appendChild(this.isoEncoder.encodeResponsibleParty(contact, document));
                 node.appendChild(contactNode);
@@ -239,7 +239,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.documents) {
-            object.documents.forEach(onlineResource => {
+            object.documents.forEach((onlineResource) => {
                 let onlineResourceNode = document.createElementNS(NAMESPACES.SML, 'sml:document');
                 onlineResourceNode.appendChild(this.isoEncoder.encodeOnlineResource(onlineResource, document));
                 node.appendChild(onlineResourceNode);
@@ -255,7 +255,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSweIdentifiable(node, object, document);
 
         if (object.keywords) {
-            object.keywords.forEach(list => {
+            object.keywords.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:keywords');
                 listNode.appendChild(this.encodeKeywordList(list, document));
                 node.appendChild(listNode);
@@ -263,7 +263,7 @@ export class SensorMLEncoder {
         }
 
         if (object.identification) {
-            object.identification.forEach(list => {
+            object.identification.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:identification');
                 listNode.appendChild(this.encodeIdentifierList(list, document));
                 node.appendChild(listNode);
@@ -271,7 +271,7 @@ export class SensorMLEncoder {
         }
 
         if (object.classification) {
-            object.classification.forEach(list => {
+            object.classification.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:classification');
                 listNode.appendChild(this.encodeClassifierList(list, document));
                 node.appendChild(listNode);
@@ -279,7 +279,7 @@ export class SensorMLEncoder {
         }
 
         if (object.contacts) {
-            object.contacts.forEach(list => {
+            object.contacts.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:contacts');
                 listNode.appendChild(this.encodeContactList(list, document));
                 node.appendChild(listNode);
@@ -287,7 +287,7 @@ export class SensorMLEncoder {
         }
 
         if (object.documentation) {
-            object.documentation.forEach(list => {
+            object.documentation.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:documentation');
                 listNode.appendChild(this.encodeDocumentList(list, document));
                 node.appendChild(listNode);
@@ -301,7 +301,7 @@ export class SensorMLEncoder {
         }
 
         if (object.properties) {
-            object.properties.forEach(property => {
+            object.properties.forEach((property) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:property');
                 listNode.appendChild(this.sweEncoder.encodeDataComponent(property, document));
                 node.appendChild(listNode);
@@ -326,7 +326,7 @@ export class SensorMLEncoder {
         }
 
         if (object.keywords) {
-            object.keywords.forEach(list => {
+            object.keywords.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:keywords');
                 listNode.appendChild(this.encodeKeywordList(list, document));
                 node.appendChild(listNode);
@@ -334,7 +334,7 @@ export class SensorMLEncoder {
         }
 
         if (object.identification) {
-            object.identification.forEach(list => {
+            object.identification.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:identification');
                 listNode.appendChild(this.encodeIdentifierList(list, document));
                 node.appendChild(listNode);
@@ -342,7 +342,7 @@ export class SensorMLEncoder {
         }
 
         if (object.classification) {
-            object.classification.forEach(list => {
+            object.classification.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:classification');
                 listNode.appendChild(this.encodeClassifierList(list, document));
                 node.appendChild(listNode);
@@ -350,7 +350,7 @@ export class SensorMLEncoder {
         }
 
         if (object.validTime) {
-            object.validTime.forEach(time => {
+            object.validTime.forEach((time) => {
                 let validTimeNode = document.createElementNS(NAMESPACES.SML, 'sml:validTime');
                 validTimeNode.appendChild(this.gmlEncoder.encodeTime(time, document));
                 node.appendChild(validTimeNode);
@@ -362,7 +362,7 @@ export class SensorMLEncoder {
         }
 
         if (object.legalConstraints) {
-            object.legalConstraints.forEach(legalConstraints => {
+            object.legalConstraints.forEach((legalConstraints) => {
                 let legalConstraintsNode = document.createElementNS(NAMESPACES.SML, 'sml:legalConstraints');
                 legalConstraintsNode.appendChild(this.isoEncoder.encodeLegalConstraints(legalConstraints, document));
                 node.appendChild(legalConstraintsNode);
@@ -370,7 +370,7 @@ export class SensorMLEncoder {
         }
 
         if (object.characteristics) {
-            object.characteristics.forEach(list => {
+            object.characteristics.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:characteristics');
                 listNode.appendChild(this.encodeCharacteristicList(list, document));
                 if (list.name) {
@@ -381,7 +381,7 @@ export class SensorMLEncoder {
         }
 
         if (object.capabilities) {
-            object.capabilities.forEach(list => {
+            object.capabilities.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:capabilities');
                 listNode.appendChild(this.encodeCapabilityList(list, document));
                 if (list.name) {
@@ -392,7 +392,7 @@ export class SensorMLEncoder {
         }
 
         if (object.contacts) {
-            object.contacts.forEach(list => {
+            object.contacts.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:contacts');
                 listNode.appendChild(this.encodeContactList(list, document));
                 node.appendChild(listNode);
@@ -400,7 +400,7 @@ export class SensorMLEncoder {
         }
 
         if (object.documentation) {
-            object.documentation.forEach(list => {
+            object.documentation.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:documentation');
                 listNode.appendChild(this.encodeDocumentList(list, document));
                 node.appendChild(listNode);
@@ -408,7 +408,7 @@ export class SensorMLEncoder {
         }
 
         if (object.history) {
-            object.history.forEach(list => {
+            object.history.forEach((list) => {
                 let listNode = document.createElementNS(NAMESPACES.SML, 'sml:history');
                 listNode.appendChild(this.encodeEventList(list, document));
                 node.appendChild(listNode);
@@ -457,7 +457,7 @@ export class SensorMLEncoder {
         }
 
         if (object.modes) {
-            object.modes.forEach(modes => {
+            object.modes.forEach((modes) => {
                 let modesNode = document.createElementNS(NAMESPACES.SML, 'sml:modes');
                 modesNode.appendChild(this.encodeModes(modes, document));
                 node.appendChild(modesNode);
@@ -486,7 +486,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSwe(node, object, document);
 
         if (object.modes) {
-            object.modes.forEach(mode => {
+            object.modes.forEach((mode) => {
                 let modeNode = document.createElementNS(NAMESPACES.SML, 'sml:mode');
                 modeNode.appendChild(this.encodeMode(mode, document));
                 node.appendChild(modeNode);
@@ -515,7 +515,7 @@ export class SensorMLEncoder {
 
         if (object.setValue) {
 
-            object.setValue.forEach(setting => {
+            object.setValue.forEach((setting) => {
                 let valueNode = document.createElementNS(NAMESPACES.SML, 'sml:setValue');
                 if (setting.ref) {
                     valueNode.setAttribute('ref', setting.ref);
@@ -533,7 +533,7 @@ export class SensorMLEncoder {
         }
 
         if (object.setArrayValue) {
-            object.setArrayValue.forEach(setting => {
+            object.setArrayValue.forEach((setting) => {
                 let arrayValueNode = document.createElementNS(NAMESPACES.SML, 'sml:setArrayValue');
                 if (setting.ref) {
                     arrayValueNode.setAttribute('ref', setting.ref);
@@ -555,7 +555,7 @@ export class SensorMLEncoder {
         }
 
         if (object.setConstraint) {
-            object.setConstraint.forEach(setting => {
+            object.setConstraint.forEach((setting) => {
                 let constraintNode = document.createElementNS(NAMESPACES.SML, 'sml:setConstraint');
                 if (setting.ref) {
                     constraintNode.setAttribute('ref', setting.ref);
@@ -568,7 +568,7 @@ export class SensorMLEncoder {
         }
 
         if (object.setMode) {
-            object.setMode.forEach(setting => {
+            object.setMode.forEach((setting) => {
                 let modeNode = document.createElementNS(NAMESPACES.SML, 'sml:setMode');
                 if (setting.ref) {
                     modeNode.setAttribute('ref', setting.ref);
@@ -581,7 +581,7 @@ export class SensorMLEncoder {
         }
 
         if (object.setStatus) {
-            object.setStatus.forEach(setting => {
+            object.setStatus.forEach((setting) => {
                 let statusNode = document.createElementNS(NAMESPACES.SML, 'sml:setStatus');
                 if (setting.ref) {
                     statusNode.setAttribute('ref', setting.ref);
@@ -602,7 +602,7 @@ export class SensorMLEncoder {
         this.encodeAbstractMetadataList(node, object, document);
 
         if (object.features) {
-            object.features.forEach(feature => {
+            object.features.forEach((feature) => {
                 let featureNode = document.createElementNS(NAMESPACES.SML, 'sml:feature');
                 featureNode.appendChild(this.gmlEncoder.encodeFeature(feature, document));
                 node.appendChild(featureNode);
@@ -617,7 +617,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSwe(node, object, document);
 
         if (object.inputs) {
-            object.inputs.forEach(input => {
+            object.inputs.forEach((input) => {
                 let inputNode = document.createElementNS(NAMESPACES.SML, 'sml:input');
                 this.encodeInputOrOutputOrParameter(inputNode, input, document);
                 node.appendChild(inputNode);
@@ -632,7 +632,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSwe(node, object, document);
 
         if (object.outputs) {
-            object.outputs.forEach(input => {
+            object.outputs.forEach((input) => {
                 let outputNode = document.createElementNS(NAMESPACES.SML, 'sml:output');
                 this.encodeInputOrOutputOrParameter(outputNode, input, document);
                 node.appendChild(outputNode);
@@ -647,7 +647,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSwe(node, object, document);
 
         if (object.parameters) {
-            object.parameters.forEach(parameter => {
+            object.parameters.forEach((parameter) => {
                 let parameterNode = document.createElementNS(NAMESPACES.SML, 'sml:parameter');
                 this.encodeInputOrOutputOrParameter(parameterNode, parameter, document);
                 node.appendChild(parameterNode);
@@ -715,7 +715,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSweIdentifiable(node, object, document);
 
         if (object.algorithm) {
-            object.algorithm.forEach(algorithm => {
+            object.algorithm.forEach((algorithm) => {
                 let algorithmNode = document.createElementNS(NAMESPACES.SML, 'sml:algorithm');
                 algorithmNode.appendChild(this.encodeAlgorithm(algorithm, document));
                 node.appendChild(algorithmNode);
@@ -745,7 +745,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSwe(node, object, document);
 
         if (object.connections) {
-            object.connections.forEach(connection => {
+            object.connections.forEach((connection) => {
                 let connectionNode = document.createElementNS(NAMESPACES.SML, 'sml:connection');
                 connectionNode.appendChild(this.encodeConnection(connection, document));
                 node.appendChild(connectionNode);
@@ -775,7 +775,7 @@ export class SensorMLEncoder {
         this.sweEncoder.encodeAbstractSwe(node, object, document);
 
         if (object.components) {
-            object.components.forEach(component => {
+            object.components.forEach((component) => {
                 let componentNode = document.createElementNS(NAMESPACES.SML, 'sml:component');
                 if (component.name) {
                     componentNode.setAttribute('name', component.name);
@@ -803,7 +803,7 @@ export class SensorMLEncoder {
         }
 
         if (object.localReferenceFrame) {
-            object.localReferenceFrame.forEach(frame => {
+            object.localReferenceFrame.forEach((frame) => {
                 let frameNode = document.createElementNS(NAMESPACES.SML, 'sml:localReferenceFrame');
                 frameNode.appendChild(this.encodeSpatialFrame(frame, document));
                 node.appendChild(frameNode);
@@ -811,7 +811,7 @@ export class SensorMLEncoder {
         }
 
         if (object.localTimeFrame) {
-            object.localTimeFrame.forEach(frame => {
+            object.localTimeFrame.forEach((frame) => {
                 let frameNode = document.createElementNS(NAMESPACES.SML, 'sml:localTimeFrame');
                 frameNode.appendChild(this.encodeTemporalFrame(frame, document));
                 node.appendChild(frameNode);
@@ -819,7 +819,7 @@ export class SensorMLEncoder {
         }
 
         if (object.position) {
-            object.position.forEach(position => {
+            object.position.forEach((position) => {
                 let positionNode = document.createElementNS(NAMESPACES.SML, 'sml:position');
                 positionNode.appendChild(this.encodePosition(position, document));
                 node.appendChild(positionNode);
@@ -827,7 +827,7 @@ export class SensorMLEncoder {
         }
 
         if (object.timePosition) {
-            object.timePosition.forEach(position => {
+            object.timePosition.forEach((position) => {
                 let positionNode = document.createElementNS(NAMESPACES.SML, 'sml:timePosition');
                 positionNode.appendChild(this.sweEncoder.encodeTime(position, document));
                 node.appendChild(positionNode);
@@ -888,7 +888,7 @@ export class SensorMLEncoder {
         }
 
         if (object.axis) {
-            object.axis.forEach(axis => {
+            object.axis.forEach((axis) => {
                 let axisNode = document.createElementNS(NAMESPACES.SML, 'sml:axis');
                 if (axis.name) {
                     axisNode.setAttribute('name', axis.name);

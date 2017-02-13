@@ -1,25 +1,6 @@
 import { BidiMap } from '../DynamicGUIService';
-export class ReturnObject<T> {
-    private _value: T;
-    private _docElement: Element;
+import { ReturnObject } from './ReturnObject';
 
-    constructor(value: T, docElement: Element) {
-        this._value = value;
-        this._docElement = docElement;
-    }
-    get value(): T {
-        return this._value;
-    }
-    set value(value: T) {
-        this._value = value;
-    }
-    get docElement(): Element {
-        return this._docElement;
-    }
-    set docElement(docElement: Element) {
-        this._docElement = docElement;
-    }
-}
 export class DecoderUtils {
 
     public getAttributeOfElement(
@@ -31,9 +12,8 @@ export class DecoderUtils {
         let elem = this.getMatchingChildElements(root, elemName, elemNamespace);
         if (elem.length === 1) {
             if (elem[0].hasAttributeNS(attributeNamespace, attributeName)) {
-
                 return new ReturnObject(elem[0].getAttributeNS(attributeNamespace, attributeName), elem[0]);
-            };
+            }
         }
     }
 
@@ -53,12 +33,12 @@ export class DecoderUtils {
         elemName: string,
         elemNamespace: string,
         profileIDMap: BidiMap,
-        decodeFunc: (elem: Element) => ReturnObject<T>): Array<T> {
+        decodeFunc: (elem: Element) => ReturnObject<T>): T[] {
         let list = new Array<T>();
         let elements = this.getMatchingChildElements(root, elemName, elemNamespace);
         if (elements.length >= 1) {
-            for (let i = 0; i < elements.length; i++) {
-                let returnObject: ReturnObject<T> = decodeFunc(elements[i]);
+            for (let element of elements) {
+                let returnObject: ReturnObject<T> = decodeFunc(element);
                 let decodedElem = returnObject.value;
                 if (decodedElem != null && returnObject.docElement != null) {
                     this.processProfileID(returnObject.docElement, decodedElem, '', profileIDMap);
@@ -98,7 +78,7 @@ export class DecoderUtils {
         return mapProfileID;
     }
 
-    private getMatchingChildElements(root: Element, elemName: string, elemNamespace: string): Array<Element> {
+    private getMatchingChildElements(root: Element, elemName: string, elemNamespace: string): Element[] {
         let childNodes = root.childNodes;
         let matches = new Array<Element>();
         for (let i = 0; i < childNodes.length; i++) {

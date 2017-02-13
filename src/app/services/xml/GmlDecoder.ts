@@ -8,7 +8,8 @@ import { Referenced } from '../../model/gml/Referenced';
 import { TimeInstant } from '../../model/gml/TimeInstant';
 import { TimePeriod } from '../../model/gml/TimePeriod';
 import { AbstractTime } from '../../model/gml/AbstractTime';
-import { DecoderUtils, ReturnObject } from './DecoderUtils';
+import { DecoderUtils } from './DecoderUtils';
+import { ReturnObject } from './ReturnObject';
 import { BidiMap } from '../DynamicGUIService';
 
 export class GmlDecoder {

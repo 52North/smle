@@ -28,7 +28,8 @@ export class ChildMetadata<T> {
     }
 }
 
-export abstract class TypedModelComponent<T> extends BaseComponent implements OnInit {
+export abstract class TypedModelComponent<T>
+    extends BaseComponent implements OnInit {
 
     @Input()
     public model: T;

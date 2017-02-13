@@ -53,7 +53,7 @@ export class IsoEncoder {
         let node = document.createElementNS(NAMESPACES.GMD, 'gmd:CI_Telephone');
 
         if (phone.voice) {
-            phone.voice.forEach(voice => {
+            phone.voice.forEach((voice) => {
                 let voiceNode = document.createElementNS(NAMESPACES.GMD, 'gmd:voice');
                 voiceNode.appendChild(this.encodeCharacterString(voice, document));
                 node.appendChild(voiceNode);
@@ -61,7 +61,7 @@ export class IsoEncoder {
         }
 
         if (phone.facsimile) {
-            phone.facsimile.forEach(facsimile => {
+            phone.facsimile.forEach((facsimile) => {
                 let facsimileNode = document.createElementNS(NAMESPACES.GMD, 'gmd:facsimile');
                 facsimileNode.appendChild(this.encodeCharacterString(facsimile, document));
                 node.appendChild(facsimileNode);
@@ -118,7 +118,7 @@ export class IsoEncoder {
         let node = document.createElementNS(NAMESPACES.GMD, 'gmd:CI_Address');
 
         if (address.deliveryPoint) {
-            address.deliveryPoint.forEach(deliveryPoint => {
+            address.deliveryPoint.forEach((deliveryPoint) => {
                 let deliveryPointNode = document.createElementNS(NAMESPACES.GMD, 'gmd:deliveryPoint');
                 deliveryPointNode.appendChild(this.encodeCharacterString(deliveryPoint, document));
                 node.appendChild(deliveryPointNode);
@@ -150,7 +150,7 @@ export class IsoEncoder {
         }
 
         if (address.electronicMailAddress) {
-            address.electronicMailAddress.forEach(electronicMailAddress => {
+            address.electronicMailAddress.forEach((electronicMailAddress) => {
                 let electronicMailAddressNode = document.createElementNS(NAMESPACES.GMD, 'gmd:electronicMailAddress');
                 electronicMailAddressNode.appendChild(this.encodeCharacterString(electronicMailAddress, document));
                 node.appendChild(electronicMailAddressNode);
@@ -212,7 +212,7 @@ export class IsoEncoder {
         let node = document.createElementNS(NAMESPACES.GMD, 'gmd:MD_LegalConstraints');
 
         if (legalConstraints.accessConstraints) {
-            legalConstraints.accessConstraints.forEach(contraint => {
+            legalConstraints.accessConstraints.forEach((contraint) => {
                 let accessConstraintsNode = document.createElementNS(NAMESPACES.GMD, 'gmd:accessConstraints');
                 accessConstraintsNode.appendChild(this.encodeRestriction(contraint, document));
                 node.appendChild(accessConstraintsNode);
@@ -220,7 +220,7 @@ export class IsoEncoder {
         }
 
         if (legalConstraints.useConstraints) {
-            legalConstraints.useConstraints.forEach(contraint => {
+            legalConstraints.useConstraints.forEach((contraint) => {
                 let useConstraintsNode = document.createElementNS(NAMESPACES.GMD, 'gmd:useConstraints');
                 useConstraintsNode.appendChild(this.encodeRestriction(contraint, document));
                 node.appendChild(useConstraintsNode);
@@ -228,7 +228,7 @@ export class IsoEncoder {
         }
 
         if (legalConstraints.otherConstraints) {
-            legalConstraints.otherConstraints.forEach(contraint => {
+            legalConstraints.otherConstraints.forEach((contraint) => {
                 let otherConstraintsNode = document.createElementNS(NAMESPACES.GMD, 'gmd:otherConstraints');
                 otherConstraintsNode.appendChild(this.encodeCharacterString(contraint, document));
                 node.appendChild(otherConstraintsNode);

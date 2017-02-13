@@ -9,8 +9,8 @@ import { DynamicGUIService } from '../services/DynamicGUIService';
 
 @Component({
     selector: 'editor',
-    template: require('./editor.html'),
-    styles: [require('./editor.scss')]
+    templateUrl: './editor.html',
+    styleUrls: ['./editor.scss']
 })
 export class Editor implements OnInit {
     public description: AbstractProcess;
@@ -35,11 +35,11 @@ export class Editor implements OnInit {
     ngOnInit(): void {
         let snapshot = this.route.snapshot;
         if (snapshot.params['id']) {
-            this.editorService.getDescriptionForId(snapshot.params['id']).subscribe(desc => {
+            this.editorService.getDescriptionForId(snapshot.params['id']).subscribe((desc) => {
                 if (desc != null) {
                     this.updateEditor();
                 }
-            }, error => {
+            }, (error) => {
                 this.descriptionLoadingError = error;
             }, () => {
                 this.descriptionIsLoading = false;
@@ -65,19 +65,19 @@ export class Editor implements OnInit {
             this.editorService.setDescription(new SimpleProcess());
             this.updateEditor();
         } else if (type === 'DiscoveryProfile') {
-            this.editorService.useDiscoveryProfiles().subscribe(res => {
+            this.editorService.useDiscoveryProfiles().subscribe((res) => {
                 this.description = res.model;
                 this.config = res.configuration;
                 this.descriptionType = this.editorService.getDescriptionType();
                 this.editorMode = this.editorService.getEditorMode();
             });
-        };
+        }
     }
 
     private updateEditor() {
         this.description = this.editorService.getDescription();
         this.descriptionType = this.editorService.getDescriptionType();
         this.editorMode = this.editorService.getEditorMode();
-        this.editorService.getConfiguration().subscribe(config => this.config = config);
+        this.editorService.getConfiguration().subscribe((config) => this.config = config);
     }
 }

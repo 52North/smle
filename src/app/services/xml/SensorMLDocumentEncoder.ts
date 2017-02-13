@@ -32,7 +32,7 @@ export class SensorMLDocumentEncoder {
 
     private createDocument(prefix: string, name: string, schemaURL: string): Document {
         let namespaces = this.resolver.getPrefixes()
-            .map(entry => `xmlns:${entry}="${this.resolver.getNamespace(entry)}"`)
+            .map((entry) => `xmlns:${entry}="${this.resolver.getNamespace(entry)}"`)
             .join(' ');
         let namespace = this.resolver.getNamespace(prefix);
         let sl = `xsi:schemaLocation="${namespace} ${schemaURL}"`;

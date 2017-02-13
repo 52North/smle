@@ -14,6 +14,7 @@ const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -34,13 +35,6 @@ module.exports = function(env) {
     return webpackMerge(commonConfig({
         env: ENV
     }), {
-
-        /**
-         * Switch loaders to debug mode.
-         *
-         * See: http://webpack.github.io/docs/configuration.html#debug
-         */
-        debug: false,
 
         /**
          * Developer tool to enhance debugging
@@ -90,6 +84,38 @@ module.exports = function(env) {
 
         },
 
+        module: {
+
+            rules: [
+
+                /*
+                 * Extract CSS files from .src/styles directory to external CSS file
+                 */
+                {
+                    test: /\.css$/,
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: 'css-loader'
+                    }),
+                    include: [helpers.root('src', 'styles')]
+                },
+
+                /*
+                 * Extract and compile SCSS files from .src/styles directory to external CSS file
+                 */
+                {
+                    test: /\.scss$/,
+                    loader: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: 'css-loader!sass-loader'
+                    }),
+                    include: [helpers.root('src', 'styles')]
+                },
+
+            ]
+
+        },
+
         /**
          * Add additional plugins to the compiler.
          *
@@ -123,14 +149,12 @@ module.exports = function(env) {
             new WebpackMd5Hash(),
 
             /**
-             * Plugin: DedupePlugin
-             * Description: Prevents the inclusion of duplicate code into your bundle
-             * and instead applies a copy of the function at runtime.
+             * Plugin: ExtractTextPlugin
+             * Description: Extracts imported CSS files into external stylesheet
              *
-             * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-             * See: https://github.com/webpack/docs/wiki/optimization#deduplication
+             * See: https://github.com/webpack/extract-text-webpack-plugin
              */
-            // new DedupePlugin(), // see: https://github.com/angular/angular-cli/issues/1587
+            new ExtractTextPlugin('[name].[contenthash].css'),
 
             /**
              * Plugin: DefinePlugin
@@ -161,21 +185,6 @@ module.exports = function(env) {
              */
             // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
             new UglifyJsPlugin({
-                // beautify: true, //debug
-                // mangle: false, //debug
-                // dead_code: false, //debug
-                // unused: false, //debug
-                // deadCode: false, //debug
-                // compress: {
-                //   screw_ie8: true,
-                //   keep_fnames: true,
-                //   drop_debugger: false,
-                //   dead_code: false,
-                //   unused: false
-                // }, // debug
-                // comments: true, //debug
-
-
                 beautify: false, //prod
                 mangle: {
                     screw_ie8: true,
@@ -199,62 +208,11 @@ module.exports = function(env) {
                 helpers.root('config/modules/angular2-hmr-prod.js')
             ),
 
-            /**
-             * Plugin: IgnorePlugin
-             * Description: Don’t generate modules for requests matching the provided RegExp.
-             *
-             * See: http://webpack.github.io/docs/list-of-plugins.html#ignoreplugin
-             */
-
-            // new IgnorePlugin(/angular2-hmr/),
-
-            /**
-             * Plugin: CompressionPlugin
-             * Description: Prepares compressed versions of assets to serve
-             * them with Content-Encoding
-             *
-             * See: https://github.com/webpack/compression-webpack-plugin
-             */
-            //  install compression-webpack-plugin
-            // new CompressionPlugin({
-            //   regExp: /\.css$|\.html$|\.js$|\.map$/,
-            //   threshold: 2 * 1024
-            // })
             new DeployToWar({
                 fileName: "smle.war"
             })
 
         ],
-
-        /**
-         * Static analysis linter for TypeScript advanced options configuration
-         * Description: An extensible linter for the TypeScript language.
-         *
-         * See: https://github.com/wbuchwalter/tslint-loader
-         */
-        tslint: {
-            emitErrors: true,
-            failOnHint: true,
-            resourcePath: 'src'
-        },
-
-        /**
-         * Html loader advanced options
-         *
-         * See: https://github.com/webpack/html-loader#advanced-options
-         */
-        // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-        htmlLoader: {
-            minimize: true,
-            removeAttributeQuotes: false,
-            caseSensitive: true,
-            customAttrSurround: [
-                [/#/, /(?:)/],
-                [/\*/, /(?:)/],
-                [/\[?\(?/, /(?:)/]
-            ],
-            customAttrAssign: [/\)?\]?=/]
-        },
 
         /*
          * Include polyfills or mocks for various node stuff
@@ -263,7 +221,7 @@ module.exports = function(env) {
          * See: https://webpack.github.io/docs/configuration.html#node
          */
         node: {
-            global: 'window',
+            global: true,
             crypto: 'empty',
             process: false,
             module: false,

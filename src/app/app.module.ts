@@ -14,6 +14,8 @@ import { Editor } from './editor/editor';
 
 import { ConfigurationService } from './services/ConfigurationService';
 
+import '../styles/styles.scss';
+
 export function getAppModule(conf) {
     @NgModule({
         bootstrap: [Application],

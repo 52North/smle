@@ -106,7 +106,7 @@ export class SweEncoder {
         this.encodeAbstractDataComponent(node, component, document);
 
         if (component.coordinates) {
-            component.coordinates.forEach(coord =>
+            component.coordinates.forEach((coord) =>
                 node.appendChild(this.encodeCoordinate(coord, document)));
         }
 
@@ -138,7 +138,7 @@ export class SweEncoder {
         this.encodeAbstractDataComponent(node, component, document);
 
         if (component.fields) {
-            component.fields.forEach(field => node.appendChild(this.encodeField(field, document)));
+            component.fields.forEach((field) => node.appendChild(this.encodeField(field, document)));
         }
 
         return node;
@@ -209,7 +209,7 @@ export class SweEncoder {
         this.encodeAbstractSwe(node, encoding, document);
 
         if (encoding.members) {
-            encoding.members.forEach(member => {
+            encoding.members.forEach((member) => {
                 let memberNode = document.createElementNS(NAMESPACES.SWE, 'swe:member');
                 if (member instanceof SweBinaryComponent) {
                     memberNode.appendChild(this.encodeBinaryComponent(member, document));
@@ -329,13 +329,13 @@ export class SweEncoder {
 
         if (component.choiceValue && component.choiceValue.length > 0) {
             let choiceValueNode = document.createElementNS(NAMESPACES.SWE, 'swe:choiceValue');
-            component.choiceValue.forEach(category =>
+            component.choiceValue.forEach((category) =>
                 choiceValueNode.appendChild(this.encodeCategory(category, document)));
             node.appendChild(choiceValueNode);
         }
 
         if (component.items) {
-            component.items.forEach(item => {
+            component.items.forEach((item) => {
                 let itemNode = document.createElementNS(NAMESPACES.SWE, 'swe:item');
                 if (item.name) {
                     itemNode.setAttribute('name', item.name);
@@ -405,11 +405,11 @@ export class SweEncoder {
         if (component.value != null) {
             let valueNode = document.createElementNS(NAMESPACES.SWE, 'swe:value');
 
-            let value = component.value.map(value => {
-                if (value instanceof Date) {
-                    return value.toISOString();
+            let value = component.value.map((v) => {
+                if (v instanceof Date) {
+                    return v.toISOString();
                 } else {
-                    return value;
+                    return v;
                 }
             });
 
@@ -653,7 +653,7 @@ export class SweEncoder {
         this.encodeAbstractSwe(node, allowedTokens, document);
 
         if (allowedTokens.values) {
-            allowedTokens.values.forEach(value => {
+            allowedTokens.values.forEach((value) => {
                 let valueNode = document.createElementNS(NAMESPACES.SWE, 'swe:value');
                 valueNode.textContent = value;
                 node.appendChild(valueNode);
@@ -675,14 +675,14 @@ export class SweEncoder {
         this.encodeAbstractSwe(node, allowedValues, document);
 
         if (allowedValues.values) {
-            allowedValues.values.filter(x => !isNaN(+x))
-                .forEach(x => {
+            allowedValues.values.filter((x) => !isNaN(+x))
+                .forEach((x) => {
                     let n = document.createElementNS(NAMESPACES.SWE, 'swe:value');
                     n.textContent = x.toString();
                     node.appendChild(n);
                 });
-            allowedValues.values.filter(x => x instanceof Array)
-                .forEach(x => {
+            allowedValues.values.filter((x) => x instanceof Array)
+                .forEach((x) => {
                     let n = document.createElementNS(NAMESPACES.SWE, 'swe:interval');
                     n.textContent = `${x[0]} ${x[1]}`;
                     node.appendChild(n);
@@ -704,7 +704,7 @@ export class SweEncoder {
         this.encodeAbstractSwe(node, allowedTimes, document);
 
         if (allowedTimes.values) {
-            allowedTimes.values.forEach(allowedTime => {
+            allowedTimes.values.forEach((allowedTime) => {
                 let value: string;
                 if (allowedTime instanceof Date) {
                     value = allowedTime.toISOString();
@@ -718,9 +718,9 @@ export class SweEncoder {
                 }
             });
 
-            allowedTimes.values.forEach(allowedTime => {
+            allowedTimes.values.forEach((allowedTime) => {
                 if (allowedTime instanceof Array) {
-                    let value = allowedTime.map(v => {
+                    let value = allowedTime.map((v) => {
                         if (v instanceof Date) {
                             return v.toISOString();
                         } else {
@@ -828,7 +828,7 @@ export class SweEncoder {
         this.encodeAbstractDataComponent(node, component, document);
 
         if (component.quality) {
-            component.quality.forEach(quality => node.appendChild(this.encodeQuality(quality, document)));
+            component.quality.forEach((quality) => node.appendChild(this.encodeQuality(quality, document)));
         }
 
         if (component.nilValues && component.nilValues.length > 0) {
@@ -837,7 +837,7 @@ export class SweEncoder {
             outerNilValuesNode.appendChild(innerNilValuesNode);
             node.appendChild(outerNilValuesNode);
             component.nilValues.forEach(
-                nilValue => innerNilValuesNode.appendChild(this.encodeNilValue(nilValue, document))
+                (nilValue) => innerNilValuesNode.appendChild(this.encodeNilValue(nilValue, document))
             );
         }
 
@@ -857,7 +857,7 @@ export class SweEncoder {
 
         if (object.elementCount) {
             let elementCountNode = document.createElementNS(NAMESPACES.SWE, 'swe:elementCount');
-            object.elementCount.forEach(elementCount =>
+            object.elementCount.forEach((elementCount) =>
                 elementCountNode.appendChild(this.encodeCount(elementCount, document)));
             node.appendChild(elementCountNode);
         }

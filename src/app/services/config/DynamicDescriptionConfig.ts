@@ -103,7 +103,8 @@ export class DynamicDescriptionConfig implements DescriptionConfig {
                     if (typeof value._hideField !== 'undefined'
                         && typeof value._hideField['_' + formFieldType] !== 'undefined') {
                         return !value._hideField['_' + formFieldType];
-                    } return true;
+                    }
+                    return true;
                 }
                 this._logger.info('use default configuration for: ' + name);
                 return new Configuration().getDefaultConfiguration()['hideField'][formFieldType];
@@ -141,7 +142,8 @@ export class DynamicDescriptionConfig implements DescriptionConfig {
             if (configType === 'hideField') {
                 if (typeof configuration[configType][formField] !== 'undefined') {
                     return !configuration[configType][formField];
-                } return true;
+                }
+                return true;
             } else {
                 return configuration[configType];
             }

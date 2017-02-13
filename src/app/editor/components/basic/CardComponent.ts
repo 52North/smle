@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/co
 
 @Component({
     selector: 'card',
-    template: require('./CardComponent.html'),
-    styles: [require('../styles/card-component.scss')]
+    templateUrl: './CardComponent.html',
+    styleUrls: ['../styles/card-component.scss']
 })
 export class CardComponent {
     @Input()

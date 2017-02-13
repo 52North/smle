@@ -35,20 +35,6 @@ module.exports = function(options) {
     }), {
 
         /**
-         * Merged metadata from webpack.common.js for index.html
-         *
-         * See: (custom attribute)
-         */
-        metadata: METADATA,
-
-        /**
-         * Switch loaders to debug mode.
-         *
-         * See: http://webpack.github.io/docs/configuration.html#debug
-         */
-        debug: true,
-
-        /**
          * Developer tool to enhance debugging
          *
          * See: http://webpack.github.io/docs/configuration.html#devtool
@@ -97,6 +83,44 @@ module.exports = function(options) {
             libraryTarget: 'var',
         },
 
+        module: {
+            rules: [{
+                    test: /\.ts$/,
+                    use: [{
+                        loader: 'tslint-loader',
+                        options: {
+                            configFile: 'tslint.json'
+                        }
+                    }],
+                    exclude: [/\.(spec|e2e)\.ts$/]
+                },
+
+                /*
+                 * css loader support for *.css files (styles directory only)
+                 * Loads external css styles into the DOM, supports HMR
+                 *
+                 */
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader'],
+                    include: [helpers.root('src', 'styles')]
+                },
+
+                /*
+                 * sass loader support for *.scss files (styles directory only)
+                 * Loads external sass styles into the DOM, supports HMR
+                 *
+                 */
+                {
+                    test: /\.scss$/,
+                    use: ['style-loader', 'css-loader', 'sass-loader'],
+                    include: [helpers.root('src', 'styles')]
+                },
+
+            ]
+
+        },
+
         plugins: [
 
             /**
@@ -130,18 +154,6 @@ module.exports = function(options) {
         ],
 
         /**
-         * Static analysis linter for TypeScript advanced options configuration
-         * Description: An extensible linter for the TypeScript language.
-         *
-         * See: https://github.com/wbuchwalter/tslint-loader
-         */
-        tslint: {
-            emitErrors: false,
-            failOnHint: false,
-            resourcePath: 'src'
-        },
-
-        /**
          * Webpack Development Server configuration
          * Description: The webpack-dev-server is a little node.js Express server.
          * The server emits information about the compilation state to the client,
@@ -156,8 +168,8 @@ module.exports = function(options) {
             watchOptions: {
                 aggregateTimeout: 300,
                 poll: 1000
-            },
-            outputPath: helpers.root('dist')
+            }
+            // outputPath: helpers.root('dist')
         },
 
         /*
@@ -167,7 +179,7 @@ module.exports = function(options) {
          * See: https://webpack.github.io/docs/configuration.html#node
          */
         node: {
-            global: 'window',
+            global: true,
             crypto: 'empty',
             process: true,
             module: false,
