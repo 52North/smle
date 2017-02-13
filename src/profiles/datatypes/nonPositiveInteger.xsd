@@ -22,7 +22,7 @@
 
 	<complexType name="elementNonPositiveIntegerRefType "><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:nonPositiveIntegerGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -37,10 +37,10 @@
 		<group ref="profile:nonPositiveIntegerRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractElementNonPositiveInteger" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceNonPositiveInteger" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:nonPositiveIntegerElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -83,7 +83,7 @@
 		<choice>
 			<element name="fixContent" type="profile:nonPositiveInteger_fixContent_currentDateType" /><!-- 
 				!!!type -->
-			<element name="content-selection_enumeration">
+			<element name="enumeration">
 				<complexType>
 					<sequence>
 						<group ref="profile:nonPositiveInteger_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- 
@@ -92,7 +92,7 @@
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
 			</element>
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -203,7 +203,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">
@@ -220,7 +220,7 @@
 				<complexType>
 					<sequence>
 						<element name="rounding" type="profile:nonPositiveInteger_roundingType" minOccurs="0" />
-						<element name="arithmetic-operators" type="profile:nonPositiveInteger_arithmetic_operatorsType"
+						<element name="arithmeticOperator" type="profile:nonPositiveInteger_arithmetic_operatorsType"
 							minOccurs="0" />
 					</sequence>
 				</complexType>

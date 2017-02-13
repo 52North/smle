@@ -1,4 +1,4 @@
-import { BidiMap } from '../DynamicGUIService';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 export class ReturnObject<T> {
     private _value: T;
     private _docElement: Element;

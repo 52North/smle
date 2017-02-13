@@ -5,9 +5,11 @@ import { Observable, Observer } from 'rxjs';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
 import { TrueDescriptionConfig } from './config/TrueDescriptionConfig';
+
 import { EditorMode } from './EditorMode';
-import { DynamicDescriptionConfig } from './config/DynamicDescriptionConfig';
-import { BidiMap } from './DynamicGUIService';
+
+import { BidiMap } from './dynamicGUI/BidiMap';
+
 
 @Injectable()
 export class DescriptionConfigService {
@@ -19,10 +21,10 @@ export class DescriptionConfigService {
         return new Observable<DescriptionConfig>((observer: Observer<DescriptionConfig>) => {
             switch (editorMode) {
                 case EditorMode.Dynamic:
-                    this.loadConfiguration('./config/description-config.json').then(config => {
-                        observer.next(new DynamicDescriptionConfig(config, {}, new BidiMap(), false));
+/*                    this.loadConfiguration('./config/description-config.json').then(config => {
+                        observer.next(new JSONDescriptionConfig(config, {}, new BidiMap(), true));
                         observer.complete();
-                    });
+                    });*/
                     break;
                 default:
                     this.loadConfiguration('./config/description-config.json').then(config => {
@@ -36,7 +38,7 @@ export class DescriptionConfigService {
         return this.http.get(location).toPromise().then((response: Response) => {
             try {
                 let data = response.json();
-                return new JSONDescriptionConfig(data);
+          return new JSONDescriptionConfig(data, {}, new BidiMap(), false);
             } catch (error) {
                 console.error('error while creating configuration: ' + error);
             }

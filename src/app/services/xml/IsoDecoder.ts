@@ -9,7 +9,7 @@ import { ResponsibleParty } from '../../model/iso/gmd/ResponsibleParty';
 import { Restriction } from '../../model/iso/gmd/Restriction';
 import { Role } from '../../model/iso/gmd/Role';
 import { DecoderUtils, ReturnObject } from './DecoderUtils';
-import { BidiMap } from '../DynamicGUIService';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 
 
 export class IsoDecoder {
