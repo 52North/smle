@@ -60,7 +60,7 @@ import { Term } from '../../model/sml/Term';
 import { ValueSetting } from '../../model/sml/ValueSetting';
 import { DecoderUtils } from './DecoderUtils';
 import { ReturnObject } from './ReturnObject';
-import { BidiMap } from '../DynamicGUIService';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class SensorMLDecoder {
 

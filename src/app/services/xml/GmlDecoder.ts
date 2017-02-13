@@ -10,7 +10,7 @@ import { TimePeriod } from '../../model/gml/TimePeriod';
 import { AbstractTime } from '../../model/gml/AbstractTime';
 import { DecoderUtils } from './DecoderUtils';
 import { ReturnObject } from './ReturnObject';
-import { BidiMap } from '../DynamicGUIService';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class GmlDecoder {
 

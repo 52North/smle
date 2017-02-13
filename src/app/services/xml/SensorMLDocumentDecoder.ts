@@ -5,7 +5,7 @@ import { PhysicalComponent } from '../../model/sml/PhysicalComponent';
 import { PhysicalSystem } from '../../model/sml/PhysicalSystem';
 import { SensorMLDecoder } from './SensorMLDecoder';
 import { SimpleProcess } from '../../model/sml/SimpleProcess';
-import { BidiMap } from '../DynamicGUIService';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class SensorMLDocumentDecoder {
 

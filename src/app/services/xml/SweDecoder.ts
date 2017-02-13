@@ -37,7 +37,7 @@ import { SweXmlEncoding } from '../../model/swe/SweXmlEncoding';
 import { UnitOfMeasure } from '../../model/swe/UnitOfMeasure';
 import { DecoderUtils } from './DecoderUtils';
 import { ReturnObject } from './ReturnObject';
-import { BidiMap } from '../DynamicGUIService';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class SweDecoder {
 

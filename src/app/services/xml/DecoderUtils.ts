@@ -1,4 +1,4 @@
-import { BidiMap } from '../DynamicGUIService';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 import { ReturnObject } from './ReturnObject';
 
 export class DecoderUtils {

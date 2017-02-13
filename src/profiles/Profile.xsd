@@ -1,0 +1,542 @@
+<?xml version="1.0"?>
+
+<schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+
+	<include schemaLocation="datatypes/Datatypes.xsd" />
+	<include schemaLocation="datatypes/string.xsd" />
+	<include schemaLocation="datatypes/anyType.xsd" />
+	<include schemaLocation="datatypes/boolean.xsd" />
+	<include schemaLocation="datatypes/double.xsd" />
+	<include schemaLocation="datatypes/NCName.xsd" />
+	<include schemaLocation="datatypes/anyURI.xsd" />
+	<include schemaLocation="datatypes/integer.xsd" />
+	<include schemaLocation="datatypes/ID.xsd" />
+	<include schemaLocation="datatypes/Name.xsd" />
+	<include schemaLocation="datatypes/QName.xsd" />
+	<include schemaLocation="datatypes/dateTime.xsd" />
+	<include schemaLocation="datatypes/positiveInteger.xsd" />
+	<include schemaLocation="datatypes/nonPositiveInteger.xsd" />
+	<include schemaLocation="datatypes/decimal.xsd" />
+	<include schemaLocation="datatypes/date.xsd" />
+	<include schemaLocation="datatypes/duration.xsd" />
+	<include schemaLocation="datatypes/time.xsd" />
+	<include schemaLocation="datatypes/union.xsd" />
+
+	<include schemaLocation="datatypes/FormFieldTypes.xsd" />
+
+	<element name="profile">
+		<complexType>
+			<sequence>
+				<element name="formConfiguration" type="profile:formConfigurationType">
+					<annotation>
+						<documentation>Description of the structure of the form.</documentation>
+					</annotation>
+				</element>
+				<element ref="profile:element" minOccurs="0" maxOccurs="unbounded">
+					<annotation>
+						<documentation>Elements for the description of the general restrictions and specifications.
+						</documentation>
+					</annotation>
+				</element>
+				<element name="BeginElementInstances">
+					<annotation>
+						<documentation>Element that separate the elements for the general description from the
+							elements for the instance description.
+						</documentation>
+					</annotation>
+				</element>
+				<choice minOccurs="0" maxOccurs="unbounded">
+					<element ref="profile:elementInstance">
+						<annotation>
+							<documentation>Elements for the description of the element instances.</documentation>
+						</annotation>
+					</element>
+					<element ref="profile:complexElementInstance">
+						<annotation>
+							<documentation>Description of the complex element instance. They can contain further element
+								instances and complex element instances.
+							</documentation>
+						</annotation>
+					</element>
+				</choice>
+				<element name="dependenceRules" minOccurs="0" type="profile:global_dependenceRulesType">
+					<annotation>
+						<documentation>Definition of dependencies between the elements.</documentation>
+					</annotation>
+				</element>
+			</sequence>
+			<attribute name="class" type="string">
+				<annotation>
+					<documentation>The name of the root of the XML document.</documentation>
+				</annotation>
+			</attribute>
+			<!-- The following asserts test, if the referenced elementInstances are a number type -->
+			<assert
+				test="count(.//profile:arithmeticOperator/profile:item/profile:ref/@ref)=count(.//profile:arithmeticOperator/profile:item/profile:ref[(@ref=preceding::profile:elementInstanceDouble/@ID) or (@ref=following::profile:elementInstanceDouble/@ID)or (@ref=preceding::profile:elementInstanceInteger/@ID) or (@ref=following::profile:elementInstanceInteger/@ID)or(@ref=preceding::profile:elementInstanceDecimal/@ID) or (@ref=following::profile:elementInstanceDecimal/@ID)or (@ref=preceding::profile:elementInstanceNonPositiveInteger/@ID) or (@ref=following::profile:elementInstanceNonPositiveInteger/@ID)or (@ref=preceding::profile:elementInstancePositiveInteger/@ID) or (@ref=following::profile:elementInstancePositiveInteger/@ID)])" />
+			<assert
+				test="count(.//profile:rounding/profile:item/profile:ref/@ref)=count(.//profile:rounding/profile:item/profile:ref[(@ref=preceding::profile:elementInstanceDouble/@ID) or (@ref=following::profile:elementInstanceDouble/@ID)or (@ref=preceding::profile:elementInstanceInteger/@ID) or (@ref=following::profile:elementInstanceInteger/@ID)or(@ref=preceding::profile:elementInstanceDecimal/@ID) or (@ref=following::profile:elementInstanceDecimal/@ID)or (@ref=preceding::profile:elementInstanceNonPositiveInteger/@ID) or (@ref=following::profile:elementInstanceNonPositiveInteger/@ID)or (@ref=preceding::profile:elementInstancePositiveInteger/@ID) or (@ref=following::profile:elementInstancePositiveInteger/@ID)])" />
+
+			<!-- The following asserts test, if the referenced elementInstances are of the same type -->
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceAnyType]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceAnyType]/profile:ref[(@ref=preceding::profile:elementInstanceAnyType/@ID) or (@ref=following::profile:elementInstanceAnyType/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceAnyURI]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceAnyURI]/profile:ref[(@ref=preceding::profile:elementInstanceAnyURI/@ID) or (@ref=following::profile:elementInstanceAnyURI/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceBoolean]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceBoolean]/profile:ref[(@ref=preceding::profile:elementInstanceBoolean/@ID) or (@ref=following::profile:elementInstanceBoolean/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceDate]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceDate]/profile:ref[(@ref=preceding::profile:elementInstanceDate/@ID) or (@ref=following::profile:elementInstanceDate/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceDateTime]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceDateTime]/profile:ref[(@ref=preceding::profile:elementInstanceDateTime/@ID) or (@ref=following::profile:elementInstanceDateTime/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceDecimal]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceDecimal]/profile:ref[(@ref=preceding::profile:elementInstanceDecimal/@ID) or (@ref=following::profile:elementInstanceDecimal/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceDouble]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceDouble]/profile:ref[(@ref=preceding::profile:elementInstanceDouble/@ID) or (@ref=following::profile:elementInstanceDouble/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceDuration]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceDuration]/profile:ref[(@ref=preceding::profile:elementInstanceDuration/@ID) or (@ref=following::profile:elementInstanceDuration/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceID]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceID]/profile:ref[(@ref=preceding::profile:elementInstanceID/@ID) or (@ref=following::profile:elementInstanceID/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceInteger]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceInteger]/profile:ref[(@ref=preceding::profile:elementInstanceInteger/@ID) or (@ref=following::profile:elementInstanceInteger/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceName]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceName]/profile:ref[(@ref=preceding::profile:elementInstanceName/@ID) or (@ref=following::profile:elementInstanceName/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceNCName]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceNCName]/profile:ref[(@ref=preceding::profile:elementInstanceNCName/@ID) or (@ref=following::profile:elementInstanceNCName/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceNonPositiveInteger]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceNonPositiveInteger]/profile:ref[(@ref=preceding::profile:elementInstanceNonPositiveInteger/@ID) or (@ref=following::profile:elementInstanceNonPositiveInteger/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstancePositiveInteger]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstancePositiveInteger]/profile:ref[(@ref=preceding::profile:elementInstancePositiveInteger/@ID) or (@ref=following::profile:elementInstancePositiveInteger/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceQName]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceQName]/profile:ref[(@ref=preceding::profileelementInstanceQName/@ID) or (@ref=following::profile:elementInstanceQName/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceString]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceString]/profile:ref[(@ref=preceding::profile:elementInstanceString/@ID) or (@ref=following::profile:elementInstanceString/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceTime]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::elementInstanceTime]/profile:ref[(@ref=preceding::profile:elementInstanceTime/@ID) or (@ref=following::profile:elementInstanceTime/@ID)])" />
+			<assert
+				test="count(.//profile:fixContent[ancestor::profile:elementInstanceUnion]/profile:ref/@ref)=count(.//profile:fixContent[ancestor::profile:elementInstanceUnion]/profile:ref[(@ref=preceding::profile:elementInstanceUnion/@ID) or (@ref=following::profile:elementInstanceUnion/@ID)])" />
+
+			<assert
+				test="count(.//profile:elementInstanceAnyTypeRef/@ref)=count(.//profile:elementInstanceAnyTypeRef[(@ref=preceding::profile:elementInstanceAnyType/@ID) or (@ref=following::profile:elementInstanceAnyType/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceAnyURIRef/@ref)=count(.//profile:elementInstanceAnyURIRef[(@ref=preceding::profile:elementInstanceAnyURI/@ID) or (@ref=following::profile:elementInstanceAnyURI/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceBooleanRef/@ref)=count(.//profile:elementInstanceBooleanRef[(@ref=preceding::profile:elementInstanceBoolean/@ID) or (@ref=following::profile:elementInstanceBoolean/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceDateRef/@ref)=count(.//profile:elementInstanceDateRef[(@ref=preceding::profile:elementInstanceDate/@ID) or (@ref=following::profile:elementInstanceDate/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceDateTimeRef/@ref)=count(.//profile:elementInstanceDateTimeRef[(@ref=preceding::profile:elementInstanceDateTime/@ID) or (@ref=following::profile:elementInstanceDateTime/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceDecimalRef/@ref)=count(.//profile:elementInstanceDecimalRef[(@ref=preceding::profile:elementInstanceDecimal/@ID) or (@ref=following::profile:elementInstanceDecimal/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceDoubleRef/@ref)=count(.//profile:elementInstanceDoubleRef[(@ref=preceding::profile:elementInstanceDouble/@ID) or (@ref=following::profile:elementInstanceDouble/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceDurationRef/@ref)=count(.//profile:elementInstanceDurationRef[(@ref=preceding::profile:elementInstanceDuration/@ID) or (@ref=following::profile:elementInstanceDuration/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceIDRef/@ref)=count(.//profile:elementInstanceIDRef[(@ref=preceding::profile:elementInstanceID/@ID) or (@ref=following::profile:elementInstanceID/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceIntegerRef/@ref)=count(.//profile:elementInstanceIntegerRef[(@ref=preceding::profile:elementInstanceInteger/@ID) or (@ref=following::profile:elementInstanceInteger/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceNameRef/@ref)=count(.//profile:elementInstanceNameRef[(@ref=preceding::profile:elementInstanceName/@ID) or (@ref=following::profile:elementInstanceName/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceNCNameRef/@ref)=count(.//profile:elementInstanceNCNameRef[(@ref=preceding::profile:elementInstanceNCName/@ID) or (@ref=following::profile:elementInstanceNCName/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceNonPositiveIntegerRef/@ref)=count(.//profile:elementInstanceNonPositiveIntegerRef[(@ref=preceding::profile:elementInstanceNonPositiveInteger/@ID) or (@ref=following::profile:elementInstanceNonPositiveInteger/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstancePositiveIntegerRef/@ref)=count(.//profile:elementInstancePositiveIntegerRef[(@ref=preceding::profile:elementInstancePositiveInteger/@ID) or (@ref=following::profile:elementInstancePositiveInteger/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceQNameRef/@ref)=count(.//profile:elementInstanceQNameRef[(@ref=preceding::profile:elementInstanceQName/@ID) or (@ref=following::profile:elementInstanceQName/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceStringRef/@ref)=count(.//profile:elementInstanceStringRef[(@ref=preceding::profile:elementInstanceString/@ID) or (@ref=following::profile:elementInstanceString/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceTimeRef/@ref)=count(.//profile:elementInstanceTimeRef[(@ref=preceding::profile:elementInstanceTime/@ID) or (@ref=following::profile:elementInstanceTime/@ID)])" />
+			<assert
+				test="count(.//profile:elementInstanceUnionRef/@ref)=count(.//profile:elementInstanceUnionRef[(@ref=preceding::profile:elementInstanceUnion/@ID) or (@ref=following::profile:elementInstanceUnion/@ID)])" />
+
+			<assert
+				test="not(.//*[./../../profile:occurrence/profile:occur&gt;1 or ./../../profile:occurrence/profile:maxOccurs&gt;1 or ./../../profile:occurrence/profile:minOccurs&gt;1]/@ID = .//*[not(profile:enumeration)]/profile:fixContent/profile:ref/@ref)">
+				<annotation>
+					<documentation>Test, if the reference of fix content is not a multi-element.</documentation>
+				</annotation>
+			</assert>
+			<assert
+				test="not(.//*[./*/profile:occurrence/profile:occur&gt;1 or ./*/profile:occurrence/profile:maxOccurs&gt;1 or ./*/profile:occurrence/profile:minOccurs&gt;1]/@ID = .//*[not(profile:enumeration)]/profile:fixContent/profile:ref/@ref)">
+				<annotation>
+					<documentation>Test, if the reference of fix content is not a multi-element.</documentation>
+				</annotation>
+			</assert>
+		</complexType>
+		<!-- unique element IDs -->
+		<unique name="elementID">
+			<annotation>
+				<documentation>Every instance element has to have a unique ID.</documentation>
+			</annotation>
+			<selector xpath=".//*" />
+			<field xpath="@ID" />
+		</unique>
+		<keyref name="elementID-ref_attribute" refer="profile:elementID">
+			<annotation>
+				<documentation>Every ref-attribute has to refer to an element ID.
+				</documentation>
+			</annotation>
+			<selector xpath=".//*" />
+			<field xpath="@ref" />
+		</keyref>
+		<!-- unique complex element instances -->
+		<key name="complexElementInstance_ID">
+			<annotation>
+				<documentation>Every complexElementInstance name has to be unique.</documentation>
+			</annotation>
+			<selector xpath="profile:complexElementInstance" />
+			<field xpath="@complexElementID" />
+		</key>
+		<key name="complexElementInstance_ID_XPath">
+			<annotation>
+				<documentation>Every complexElementInstance name and XPath combination has to be unique.
+				</documentation>
+			</annotation>
+			<selector xpath="profile:complexElementInstance" />
+			<field xpath="@complexElementID" />
+			<field xpath="@XPath" />
+		</key>
+		<keyref name="complexElementInstance_name_ref" refer="profile:complexElementInstance_ID">
+			<annotation>
+				<documentation>Every complexElementInstance reference has to refer to a
+					complexElementInstance
+					name.
+				</documentation>
+			</annotation>
+			<selector xpath=".//*" />
+			<field xpath="@complexElementRef" />
+		</keyref>
+		<keyref name="complexElementInstance_name_XPath_ref" refer="profile:complexElementInstance_ID_XPath">
+			<annotation>
+				<documentation>Every complexElementInstance reference has to refer to a
+					complexElementInstance
+					name.
+				</documentation>
+			</annotation>
+			<selector xpath=".//*" />
+			<field xpath="@complexElementRef" />
+			<field xpath="@XPath" />
+		</keyref>
+		<!-- unique form components -->
+		<key name="editor-formComponent-names">
+			<annotation>
+				<documentation>Every formComponent name has to be unique within the
+					editor_config_form element.
+				</documentation>
+			</annotation>
+			<selector xpath=".//profile:editor_config_form" />
+			<field xpath="profile:formComponent/@name" />
+		</key>
+		<keyref name="formComponent_complexElementInstance_ref" refer="profile:complexElementInstance_ID">
+			<selector xpath=".//formComponent/profile:complexElementInstance" />
+			<field xpath="@complexElementRef" />
+		</keyref>
+		<!-- unique key and unique definitions -->
+		<key name="key_unique_names">
+			<selector xpath=".//profile:keys/profile:key|.//profile:keys/profile:unique" />
+			<field xpath="@name"></field>
+		</key>
+		<key name="keyRef_names">
+			<selector xpath=".//profile:dependenceRules/profile:keys/profile:keyRef" />
+			<field xpath="@name"></field>
+		</key>
+		<keyref name="keyRef_refer" refer="profile:key_unique_names">
+			<selector xpath=".//profile:dependenceRules/profile:keyRef" />
+			<field xpath="@refer" />
+		</keyref>
+	</element>
+
+	<!-- Form Configuration -->
+	<complexType name="formConfigurationType">
+		<sequence>
+			<element name="formComponent" type="profile:formComponentType" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="formComponentType">
+		<sequence>
+			<element name="description" type="string" minOccurs="0" />
+			<choice maxOccurs="unbounded">
+				<element name="formComponent" type="profile:formComponentType" />
+				<element name="complexElementInstance">
+					<complexType>
+						<attribute name="complexElementRef" type="string" use="required" />
+					</complexType>
+				</element>
+				<element name="elementInstance">
+					<complexType>
+						<attribute name="ref" type="string" use="required" />
+					</complexType>
+				</element>
+			</choice>
+		</sequence>
+		<attribute name="label" type="NMTOKEN" use="required" />
+	</complexType>
+
+	<!-- global dependenceRules -->
+	<complexType name="global_dependenceRulesType">
+		<sequence>
+			<element name="logic" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded">
+						<group ref="profile:global_logical_operation" />
+						<element name="implication" type="profile:global_implication" />
+					</choice>
+				</complexType>
+			</element>
+			<element name="keys" minOccurs="0">
+				<complexType>
+					<group ref="profile:globalKeys" maxOccurs="unbounded" />
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<group name="global_logical_operation">
+		<choice>
+			<element name="AND" type="profile:global_logical_operation" />
+			<element name="OR" type="profile:global_logical_operation" />
+			<element name="XOR" type="profile:global_logical_operation" />
+			<element name="NOT" type="profile:global_logical_operation" />
+		</choice>
+	</group>
+	<complexType name="global_logical_operation">
+		<choice minOccurs="0" maxOccurs="unbounded">
+			<element name="complexElementInstance">
+				<complexType>
+					<sequence>
+						<group ref="profile:complexElement_logical_operationGroup" minOccurs="0" maxOccurs="unbounded" />
+					</sequence>
+					<attribute name="complexElementRef" type="string" use="required" />
+					<assert test="count(*)=count(*[ends-with(@ref,concat('_',./../@complexElementRef))])" />
+				</complexType>
+			</element>
+			<element ref="profile:element" />
+			<group ref="profile:elementInstanceRefGroup" />
+			<group ref="profile:global_logical_operation" />
+		</choice>
+	</complexType>
+
+	<complexType name="global_implication">
+		<sequence>
+			<element name="if">
+				<complexType>
+					<group ref="profile:global_logical_operation" />
+				</complexType>
+			</element>
+			<element name="then">
+				<complexType>
+					<group ref="profile:global_logical_operation" />
+				</complexType>
+			</element>
+			<element name="else" minOccurs="0">
+				<complexType>
+					<group ref="profile:global_logical_operation" />
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
+	<!-- Keys and Unique elements / attributes -->
+	<group name="globalKeys">
+		<choice>
+			<element name="key" type="profile:keyType" />
+			<element name="keyRef" type="profile:keyRefType" />
+			<element name="unique" type="profile:uniqueType" />
+		</choice>
+	</group>
+
+	<complexType name="globalKeyType">
+		<attribute name="name" use="required" />
+		<attribute name="selector" use="required" />
+		<attribute name="field" use="required" />
+	</complexType>
+
+	<complexType name="globalKeyRefType">
+		<sequence>
+			<element name="field" type="token" />
+		</sequence>
+		<attribute name="name" use="required" />
+		<attribute name="refer" use="required" />
+	</complexType>
+
+	<complexType name="globalUniqueType">
+		<attribute name="name" use="required" />
+		<attribute name="selector" use="required" />
+		<attribute name="field" use="required" />
+	</complexType>
+
+	<!-- complex element instance -->
+	<element name="complexElementInstance" type="profile:complexElementInstanceType">
+		<unique name="local_elementID">
+			<selector xpath="profile:elements/*" />
+			<field xpath="@ID" />
+		</unique>
+		<keyref name="local_elementID_ref_key" refer="profile:local_elementID">
+			<selector
+				xpath="profile:dependenceRules/profile:key|profile:dependenceRules/profile:keyRef|profile:dependenceRules/profile:unique" />
+			<field xpath="profile:field"></field>
+		</keyref>
+	</element>
+	<complexType name="complexElementInstanceType">
+		<sequence>
+			<element name="label" type="string" minOccurs="0" />
+			<element name="description" type="string" minOccurs="0" />
+			<element ref="profile:occurrence" minOccurs="0" />
+			<element name="elements" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded">
+						<element ref="profile:elementInstance" />
+						<element name="complexElementInstanceRef">
+							<complexType>
+								<attribute name="complexElementRef" type="string" use="required" />
+								<attribute name="XPath" type="profile:XPath" use="required" />
+							</complexType>
+						</element>
+						<element name="complexElementInstance" type="profile:complexElementInstanceType" />
+						<element name="choice">
+							<complexType>
+								<sequence>
+									<element name="label" type="string" minOccurs="0" />
+									<element name="description" type="string" minOccurs="0" />
+									<element ref="profile:element" />
+								</sequence>
+							</complexType>
+						</element>
+					</choice>
+				</complexType>
+			</element>
+			<element name="dependenceRules" type="profile:complexElementInstanceDependenceRulesType"
+				minOccurs="0">
+				<keyref name="local_elementID_ref" refer="profile:local_elementID">
+					<selector xpath=".//*" />
+					<field xpath="@ref"></field>
+				</keyref>
+			</element>
+		</sequence>
+		<attribute name="complexElementID" type="string" use="required" />
+		<attribute name="XPath" type="string" use="required" />
+		<assert
+			test="count(profile:elements/*[not(local-name(.)='complexElementInstance') and not(local-name(.)='complexElementInstanceRef')])=count(profile:elements/*[not(local-name(.)='complexElementInstance') and not(local-name(.)='complexElementInstanceRef') and ends-with(@ID,concat('_',./../../@complexElementID))])" />
+		<assert
+			test="count(profile:elements/profile:complexElementInstanceRef) = count (profile:elements/profile:complexElementInstanceRef[starts-with(@XPath,./../../@XPath)])" />
+		<assert
+			test="if(.//profile:map) then (count(.//profile:map/@coordinate='longitude')=1 and count(.//profile:map/@coordinate='latitude')=1) else(true())" />
+	</complexType>
+
+	<!-- complex element dependence Rules -->
+	<complexType name="complexElementInstanceDependenceRulesType">
+		<sequence>
+			<element name="logic" minOccurs="0">
+				<complexType>
+					<choice maxOccurs="unbounded">
+						<group ref="profile:complexElement_logical_operation" />
+						<element name="implication" type="profile:complexElement_implicationType" />
+					</choice>
+				</complexType>
+			</element>
+			<element name="keys" minOccurs="0">
+				<complexType>
+					<group ref="profile:keys" maxOccurs="unbounded" />
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
+	<group name="complexElement_logical_operation">
+		<choice>
+			<element name="AND" type="profile:complexElement_logical_operationType" />
+			<element name="OR" type="profile:complexElement_logical_operationType" />
+			<element name="XOR" type="profile:complexElement_logical_operationType" />
+			<element name="NOT" type="profile:complexElement_logical_operationType" />
+		</choice>
+	</group>
+
+	<complexType name="complexElement_logical_operationType">
+		<group ref="profile:complexElement_logical_operationGroup" minOccurs="0" maxOccurs="unbounded" />
+	</complexType>
+
+	<group name="complexElement_logical_operationGroup">
+		<choice>
+			<group ref="profile:elementInstanceRefGroup" />
+
+			<element name="group-occurrence" type="profile:occurrenceType" minOccurs="0" />
+
+			<group ref="profile:complexElement_logical_operation" minOccurs="0" maxOccurs="unbounded" />
+		</choice>
+	</group>
+
+	<complexType name="complexElement_implicationType">
+		<sequence>
+			<element name="if">
+				<complexType>
+					<group ref="profile:complexElement_logical_operation" />
+				</complexType>
+			</element>
+			<element name="then">
+				<complexType>
+					<group ref="profile:complexElement_logical_operation" />
+				</complexType>
+			</element>
+			<element name="else" minOccurs="0">
+				<complexType>
+					<group ref="profile:complexElement_logical_operation" />
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<!-- Keys and Unique elements / attributes -->
+	<group name="keys">
+		<choice>
+			<element name="key" type="profile:keyType" />
+			<element name="keyRef" type="profile:keyRefType" />
+			<element name="unique" type="profile:uniqueType" />
+		</choice>
+	</group>
+
+	<complexType name="keyType">
+		<sequence>
+			<element name="field" type="token" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="name" use="required" />
+	</complexType>
+
+	<complexType name="keyRefType">
+		<sequence>
+			<element name="field" type="token" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="name" use="required" />
+		<attribute name="refer" use="required" />
+	</complexType>
+
+	<complexType name="uniqueType">
+		<sequence>
+			<element name="field" type="token" maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="name" use="required" />
+	</complexType>
+	<!-- element instance references -->
+	<group name="elementInstanceRefGroup">
+		<choice>
+			<element name="elementInstanceAnyTypeRef" type="profile:elementAnyTypeRefType" />
+			<element name="elementInstanceAnyURIRef" type="profile:elementAnyURIRefType" />
+			<element name="elementInstanceBooleanRef" type="profile:elementBooleanRefType" />
+			<element name="elementInstanceDateRef" type="profile:elementDateRefType" />
+			<element name="elementInstanceDateTimeRef" type="profile:elementDateTimeRefType" />
+			<element name="elementInstanceDecimalRef" type="profile:elementDecimalRefType" />
+			<element name="elementInstanceDoubleRef" type="profile:elementDoubleRefType" />
+			<element name="elementInstanceDurationRef" type="profile:elementDurationRefType" />
+			<element name="elementInstanceIDRef" type="profile:elementIDRefType" />
+			<element name="elementInstanceIntegerRef" type="profile:elementIntegerRefType" />
+			<element name="elementInstanceNameRef" type="profile:elementNameRefType" />
+			<element name="elementInstanceNCNameRef" type="profile:elementNCNameRefType" />
+			<element name="elementInstanceNonPositiveIntegerRef" type="profile:elementNonPositiveIntegerRefType" />
+			<element name="elementInstancePositiveIntegerRef" type="profile:elementPositiveIntegerRefType" />
+			<element name="elementInstanceQNameRef" type="profile:elementQNameRefType" />
+			<element name="elementInstanceStringRef" type="profile:elementStringRefType" />
+			<element name="elementInstanceTimeRef" type="profile:elementTimeRefType" />
+			<element name="elementInstanceUnionRef" type="profile:elementUnionRefType" />
+		</choice>
+	</group>
+</schema>

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema version="1.1" xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
 	targetNamespace="http://xmlProfile.de" xmlns:profile="http://xmlProfile.de">
+	<include schemaLocation="string.xsd" />
+	<include schemaLocation="./../Profile2.xsd" />
 	<!-- Defaullt Type -->
-	<complexType name="elementRefType">
+	<complexType name="elementInstanceRefType">
 		<attribute name="ref" type="NMTOKEN" use="required" />
 	</complexType>
 
-	<complexType name="elementType">
+	<complexType name="elementInstanceType">
 		<sequence>
 			<element name="label" type="string" minOccurs="0" />
 			<element name="description" type="string" minOccurs="0" />
@@ -16,7 +18,7 @@
 		<attribute name="XSDList" type="boolean" default="false" />
 	</complexType>
 
-	<complexType name="abstractElementType">
+	<complexType name="elementType">
 		<sequence>
 			<element name="label" type="string" minOccurs="0" />
 			<element name="description" type="string" minOccurs="0" />
@@ -26,18 +28,37 @@
 	</complexType>
 
 	<element name="element" type="profile:elementType" abstract="true" />
-	<element name="elementRef" type="profile:elementRefType" abstract="true" />
-	<element name="abstractElement" type="profile:abstractElementType" abstract="true" />
+	<element name="elementInstanceRef" type="profile:elementInstanceRefType" abstract="true" />
+	<element name="elementInstance" type="profile:elementInstanceType" abstract="true" />
 
 
 	<!-- //////////////////////////////////////////// -->
-	<element name="abstractComplexElement" substitutionGroup="profile:abstractElement">
+	<element name="complexElement" substitutionGroup="profile:element">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementType">
 					<sequence>
-						<element ref="profile:occurrence" />
+						<element ref="profile:occurrence" minOccurs="0" />
+						<element name="attribute" minOccurs="0" maxOccurs="unbounded">
+							<complexType>
+								<group ref="profile:stringGroup"></group>
+							</complexType>
+						</element>
+						<element name="child" minOccurs="0" maxOccurs="unbounded">
+							<complexType>
+								<sequence>
+									<element ref="profile:use" />
+								</sequence>
+								<attribute name="XPath" type="string" use="required" />
+							</complexType>
+						</element>
+						<element name="keys" minOccurs="0">
+							<complexType>
+								<group ref="profile:keys" maxOccurs="unbounded" />
+							</complexType>
+						</element>
 					</sequence>
+					<attribute name="XSDList" use="prohibited"></attribute>
 				</extension>
 			</complexContent>
 		</complexType>
@@ -56,7 +77,7 @@
 
 	<simpleType name="XPath">
 		<restriction base="token">
-			<pattern value="(((([A-Za-z]+[:])|@)[A-Za-z_]+)*/?)+" />
+			<pattern value="(((([A-Za-z]+[:])|@)[A-Za-z_]+(\[@[A-Za-z_]+\=[A-Za-z_]+\])?)*/?)+" />
 		</restriction>
 	</simpleType>
 
@@ -64,6 +85,7 @@
 		<restriction base="string">
 			<enumeration value="optional" />
 			<enumeration value="required" />
+			<!-- <enumeration value="prohibited" /> -->
 		</restriction>
 	</simpleType>
 
@@ -78,12 +100,15 @@
 			<element name="minOccurs" type="positiveInteger" minOccurs="0" />
 			<element name="maxOccurs" type="positiveInteger" minOccurs="0" />
 			<element name="occur" type="positiveInteger" minOccurs="0" />
-			<element name="valueExistence" type="boolean" minOccurs="0" />
+			<element name="nillable" type="boolean" minOccurs="0" />
 			<element name="fixQuantity" minOccurs="0" />
+			<element name="notExist" minOccurs="0" />
 		</sequence>
 		<assert
-			test="(profile:fixQuantity and not(profile:minOccurs) and not(profile:maxOccurs)) or (not(profile:fixQuantity) and(profile:minOccurs or profile:maxOccurs))" />
+			test="(profile:fixQuantity and not(profile:minOccurs) and not(profile:maxOccurs)) or not(profile:fixQuantity)" />
 		<assert
 			test="not(profile:minOccurs) or not(profile:maxOccurs) or (profile:minOccurs &lt; profile:maxOccurs)" />
+		<assert
+			test="if(profile:notExist) then(not(profile:minOccurs) and not(profile:maxOccurs) and not(profile:occur) and not(profile:valueExistence) and not(profile:fixQuantity))else (true())" />
 	</complexType>
 </schema>

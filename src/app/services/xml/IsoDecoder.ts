@@ -10,8 +10,7 @@ import { Restriction } from '../../model/iso/gmd/Restriction';
 import { Role } from '../../model/iso/gmd/Role';
 import { DecoderUtils } from './DecoderUtils';
 import { ReturnObject } from './ReturnObject';
-import { BidiMap } from '../DynamicGUIService';
-
+import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class IsoDecoder {
 
