@@ -1,22 +1,19 @@
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
-import { JSONDescriptionConfig } from './../config/JSONDescriptionConfig';
-
+import { DynamicGUIDescriptionConfig } from '../config/DynamicGUIDescriptionConfig';
 
 export class DynamicGUIObject {
     private _model: AbstractProcess;
-    private _configuration: JSONDescriptionConfig;
+    private _configuration: DynamicGUIDescriptionConfig;
     get model(): AbstractProcess {
         return this._model;
     }
     set model(model: AbstractProcess) {
         this._model = model;
     }
-    get configuration(): JSONDescriptionConfig {
+    get configuration(): DynamicGUIDescriptionConfig {
         return this._configuration;
     }
-    set configuration(configuration: JSONDescriptionConfig) {
+    set configuration(configuration: DynamicGUIDescriptionConfig) {
         this._configuration = configuration;
     }
 }
-
-
