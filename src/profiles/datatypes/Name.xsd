@@ -21,7 +21,7 @@
 
 	<complexType name="elementNameRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:NameGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -35,10 +35,10 @@
 		<group ref="profile:NameRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractElementName" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceName" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:NameElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -70,14 +70,14 @@
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:NameRestrictionGroup" minOccurs="0" />
-			<element name="defaultContent" type="profile:Name_fixContent_currentDateType" minOccurs="0" /><!-- 
+			<element name="defaultContent" type="profile:Name_fixContent_currentDateType" minOccurs="0" /><!--
 				!!!type -->
 		</sequence>
 	</group>
 	<group name="NameRestrictionGroup">
 		<choice>
 			<element name="fixContent" type="profile:Name_fixContent_currentDateType" /><!-- !!!type -->
-			<element name="content-selection_enumeration">
+			<element name="enumeration">
 				<complexType>
 					<sequence>
 						<group ref="profile:Name_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
@@ -85,7 +85,7 @@
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
 			</element>
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -174,7 +174,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">
@@ -192,7 +192,7 @@
 					<sequence>
 						<element name="concat" type="profile:Name_concatType" minOccurs="0" />
 						<element name="replace" type="profile:Name_replaceType" minOccurs="0" />
-						<element name="substring-after" type="profile:Name_substring-afterType" minOccurs="0" />
+						<element name="substringAfter" type="profile:Name_substringAfterType" minOccurs="0" />
 					</sequence>
 				</complexType>
 			</element>
@@ -213,7 +213,7 @@
 		<attribute name="replaceString" type="string" use="required" />
 	</complexType>
 
-	<complexType name="Name_substring-afterType">
+	<complexType name="Name_substringAfterType">
 		<sequence>
 			<element name="item" type="profile:Name_fixContent_currentDateType" />
 		</sequence>

@@ -21,7 +21,7 @@
 
 	<complexType name="elementDateTimeRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:dateTimeGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0))and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -35,10 +35,10 @@
 	<complexType name="union_dateTime">
 		<group ref="profile:dateTimeRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
-	<element name="abstractElementDateTime" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceDateTime" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:dateTimeElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -79,7 +79,7 @@
 	<group name="dateTimeRestrictionGroup">
 		<choice>
 			<element name="fixContent" type="profile:dateTime_fixContent_currentDateType" /><!-- !!!type -->
-			<element name="content-selection_enumeration">
+			<element name="enumeration">
 				<complexType>
 					<sequence>
 						<group ref="profile:dateTime_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
@@ -87,7 +87,7 @@
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
 			</element>
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -194,7 +194,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">

@@ -35,8 +35,9 @@ import { SweTimeRange } from '../../model/swe/SweTimeRange';
 import { SweVector } from '../../model/swe/SweVector';
 import { SweXmlEncoding } from '../../model/swe/SweXmlEncoding';
 import { UnitOfMeasure } from '../../model/swe/UnitOfMeasure';
-import { DecoderUtils, ReturnObject } from './DecoderUtils';
-import { BidiMap } from '../DynamicGUIService';
+import { DecoderUtils } from './DecoderUtils';
+import { ReturnObject } from './ReturnObject';
+import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class SweDecoder {
 

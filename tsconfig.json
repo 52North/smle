@@ -30,4 +30,5 @@
     "forkChecker": true,
     "cacheDirectory": "node_modules/.awesome-typescript-loader-cache"
   }
+
 }

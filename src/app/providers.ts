@@ -11,7 +11,7 @@ import { ConnectDescriptionService } from './sos/connect/connect.service';
 import { SosService } from './sos/sos.service';
 import { AuthGuard } from './sos/components/auth-guard.service';
 import { AuthService } from './sos/components/auth.service';
-import { DynamicGUIService } from './services/DynamicGUIService';
+import { DynamicGUIService } from './services/dynamicGUI/DynamicGUIService';
 
 export const APP_PROVIDERS: any[] = [
     { provide: DescriptionRepository, useClass: InMemoryDescriptionRepository },

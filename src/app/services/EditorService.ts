@@ -9,7 +9,8 @@ import { Observable, Observer } from 'rxjs';
 import { DescriptionConfigService } from './DescriptionConfigService';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { EditorMode } from './EditorMode';
-import { DynamicGUIService, ReturnObject } from './DynamicGUIService';
+import { DynamicGUIService } from './dynamicGUI/DynamicGUIService';
+import { DynamicGUIObject } from './dynamicGUI/DynamicGUIObject';
 
 export enum DescriptionType {
     PhysicalSystem = 1,
@@ -36,7 +37,7 @@ export class EditorService {
         private sosService: SosService
     ) { }
 
-    openEditorWithDescription(desc: AbstractProcess) {
+    openEditorWithDescription(desc: AbstractProcess, sosUrl: string) {
         this.description = desc;
         this.router.navigate(['/editor']);
     }
@@ -63,9 +64,9 @@ export class EditorService {
         });
     }
 
-    useDiscoveryProfiles(): Observable<ReturnObject> {
-        return new Observable<ReturnObject>((observer: Observer<ReturnObject>) => {
-            this.dynamicGUIService.getModelAndConfiguration().subscribe((returnObject: ReturnObject) => {
+    useDiscoveryProfiles(): Observable<DynamicGUIObject> {
+        return new Observable<DynamicGUIObject>((observer: Observer<DynamicGUIObject>) => {
+            this.dynamicGUIService.getModelAndConfiguration().subscribe((returnObject: DynamicGUIObject) => {
                 this.editorMode = EditorMode.Dynamic;
                 this.description = returnObject.model;
                 observer.next(returnObject);

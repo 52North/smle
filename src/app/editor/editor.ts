@@ -5,11 +5,10 @@ import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService, DescriptionType } from '../services/EditorService';
 import { EditorMode } from '../services/EditorMode';
-// import { PhysicalSystem } from '../model/sml/PhysicalSystem';
-// import { PhysicalComponent } from '../model/sml/PhysicalComponent';
-// import { SimpleProcess } from '../model/sml/SimpleProcess';
-import { DynamicGUIService } from '../services/DynamicGUIService';
 import { PROCEDURE_ID_PARAM, SOS_URL_PARAM } from '../routes';
+import { DynamicGUIService } from '../services/dynamicGUI/DynamicGUIService';
+import { DynamicGUIObject } from '../services/dynamicGUI/DynamicGUIObject';
+
 
 @Component({
     selector: 'editor',

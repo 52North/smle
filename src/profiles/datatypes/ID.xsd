@@ -21,7 +21,7 @@
 
 	<complexType name="elementIDRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:IDGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -36,10 +36,10 @@
 		<group ref="profile:IDRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractElementID" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceID" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:IDElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -71,7 +71,7 @@
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:IDRestrictionGroup" minOccurs="0" />
-			<element name="defaultContent" type="profile:ID_fixContent_currentDateType" minOccurs="0" /><!-- 
+			<element name="defaultContent" type="profile:ID_fixContent_currentDateType" minOccurs="0" /><!--
 				!!!type -->
 		</sequence>
 
@@ -79,7 +79,7 @@
 	<group name="IDRestrictionGroup">
 		<choice>
 			<element name="fixContent" type="profile:ID_fixContent_currentDateType" /><!-- !!!type -->
-			<element name="content-selection_enumeration">
+			<element name="enumeration">
 				<complexType>
 					<sequence>
 						<group ref="profile:ID_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
@@ -87,7 +87,7 @@
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
 			</element>
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -176,7 +176,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">
@@ -194,7 +194,7 @@
 					<sequence>
 						<element name="concat" type="profile:ID_concatType" minOccurs="0" />
 						<element name="replace" type="profile:ID_replaceType" minOccurs="0" />
-						<element name="substring-after" type="profile:ID_substring-afterType" minOccurs="0" />
+						<element name="substringAfter" type="profile:ID_substringAfterType" minOccurs="0" />
 					</sequence>
 				</complexType>
 			</element>
@@ -221,7 +221,7 @@
 		<attribute name="replaceString" type="string" use="required" />
 	</complexType>
 
-	<complexType name="ID_substring-afterType">
+	<complexType name="ID_substringAfterType">
 		<sequence>
 			<element name="item" type="profile:ID_fixContent_currentDateType" />
 		</sequence>

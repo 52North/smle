@@ -21,7 +21,7 @@
 
 	<complexType name="elementAnyURIRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:anyURIGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -35,10 +35,10 @@
 	<complexType name="union_anyURI">
 		<group ref="profile:anyURIRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
-	<element name="abstractElementAnyURI" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceAnyURI" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:anyURIElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -82,7 +82,7 @@
 	<group name="anyURIRestrictionGroup">
 		<choice>
 			<element name="fixContent" type="profile:anyURI_fixContent_currentDateType" /><!-- !!!type -->
-			<element name="content-selection_enumeration">
+			<element name="enumeration">
 				<complexType>
 					<sequence>
 						<group ref="profile:anyURI_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
@@ -90,7 +90,7 @@
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
 			</element>
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -180,7 +180,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">
@@ -198,7 +198,7 @@
 					<sequence>
 						<element name="concat" type="profile:anyURI_concatType" minOccurs="0" />
 						<element name="replace" type="profile:anyURI_replaceType" minOccurs="0" />
-						<element name="substring-after" type="profile:anyURI_substring-afterType" minOccurs="0" />
+						<element name="substringAfter" type="profile:anyURI_substringAfterType" minOccurs="0" />
 					</sequence>
 				</complexType>
 			</element>
@@ -218,7 +218,7 @@
 		<attribute name="replaceString" type="string" use="required" />
 	</complexType>
 
-	<complexType name="anyURI_substring-afterType">
+	<complexType name="anyURI_substringAfterType">
 		<sequence>
 			<element name="item" type="profile:anyURI_fixContent_currentDateType" />
 		</sequence>

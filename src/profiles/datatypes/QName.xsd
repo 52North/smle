@@ -21,7 +21,7 @@
 
 	<complexType name="elementQNameRefType"><!-- !!!name -->
 		<complexContent>
-			<extension base="profile:elementRefType">
+			<extension base="profile:elementInstanceRefType">
 				<group ref="profile:QNameGroup" /><!-- !!!ref -->
 				<assert
 					test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -36,10 +36,10 @@
 		<group ref="profile:QNameRestrictionGroup" minOccurs="0" /><!-- !!!ref -->
 	</complexType>
 
-	<element name="abstractElementQName" substitutionGroup="profile:abstractElement">
+	<element name="elementInstanceQName" substitutionGroup="profile:elementInstance">
 		<complexType>
 			<complexContent>
-				<extension base="profile:abstractElementType">
+				<extension base="profile:elementInstanceType">
 					<group ref="profile:QNameElementGroup" />
 					<assert
 						test="if(((profile:restrictions/profile:use[not(text()='optional')]) or (count(profile:restrictions/profile:use)=0)) and not(profile:restrictions/profile:fixContent)) then ((profile:input/*[@hide=false()])or not(profile:input)) else(true())" />
@@ -72,14 +72,14 @@
 			<element ref="profile:use" minOccurs="0" />
 			<element ref="profile:occurrence" minOccurs="0" />
 			<group ref="profile:QNameRestrictionGroup" minOccurs="0" />
-			<element name="defaultContent" type="profile:QName_fixContent_currentDateType" minOccurs="0" /><!-- 
+			<element name="defaultContent" type="profile:QName_fixContent_currentDateType" minOccurs="0" /><!--
 				!!!type -->
 		</sequence>
 	</group>
 	<group name="QNameRestrictionGroup">
 		<choice>
 			<element name="fixContent" type="profile:QName_fixContent_currentDateType" /><!-- !!!type -->
-			<element name="content-selection_enumeration">
+			<element name="enumeration">
 				<complexType>
 					<sequence>
 						<group ref="profile:QName_fixContent_currentDateGroup" maxOccurs="unbounded" /><!-- !!!ref -->
@@ -87,7 +87,7 @@
 					<attribute name="base" type="string" fixed="-" />
 				</complexType>
 			</element>
-			<element name="content-format">
+			<element name="contentFormat">
 				<complexType>
 					<sequence>
 						<element name="pattern" minOccurs="0">
@@ -176,7 +176,7 @@
 			<element name="ref">
 				<complexType>
 					<complexContent>
-						<extension base="profile:elementRefType">
+						<extension base="profile:elementInstanceRefType">
 							<attribute name="refValueNotExist" use="required">
 								<simpleType>
 									<restriction base="string">
@@ -194,7 +194,7 @@
 					<sequence>
 						<element name="concat" type="profile:QName_concatType" minOccurs="0" />
 						<element name="replace" type="profile:QName_replaceType" minOccurs="0" />
-						<element name="substring-after" type="profile:QName_substring-afterType" minOccurs="0" />
+						<element name="substringAfter" type="profile:QName_substringAfterType" minOccurs="0" />
 					</sequence>
 				</complexType>
 			</element>
@@ -220,7 +220,7 @@
 		<attribute name="replaceString" type="string" use="required" />
 	</complexType>
 
-	<complexType name="QName_substring-afterType">
+	<complexType name="QName_substringAfterType">
 		<sequence>
 			<element name="item" type="profile:QName_fixContent_currentDateType" />
 		</sequence>
