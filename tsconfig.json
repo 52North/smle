@@ -15,7 +15,7 @@
       "dom",
       "es6"
     ],
-    "typeroots": [
+    "typeRoots": [
       "node_modules/@types"
     ],
     "types": [
