@@ -32,7 +32,7 @@ export class EditorService {
         private dynamicGUIService: DynamicGUIService
     ) { }
 
-    openEditorWithDescription(desc: AbstractProcess, sosUrl: string) {
+    openEditorWithDescription(desc: AbstractProcess) {
         this.description = desc;
         this.router.navigate(['/editor']);
     }
