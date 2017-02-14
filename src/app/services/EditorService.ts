@@ -37,7 +37,7 @@ export class EditorService {
         private sosService: SosService
     ) { }
 
-    openEditorWithDescription(desc: AbstractProcess, sosUrl: string) {
+    openEditorWithDescription(desc: AbstractProcess) {
         this.description = desc;
         this.router.navigate(['/editor']);
     }
