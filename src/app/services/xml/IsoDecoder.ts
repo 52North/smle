@@ -8,7 +8,8 @@ import { Phone } from '../../model/iso/gmd/Phone';
 import { ResponsibleParty } from '../../model/iso/gmd/ResponsibleParty';
 import { Restriction } from '../../model/iso/gmd/Restriction';
 import { Role } from '../../model/iso/gmd/Role';
-import { DecoderUtils, ReturnObject } from './DecoderUtils';
+import { DecoderUtils } from './DecoderUtils';
+import { ReturnObject } from './ReturnObject';
 import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class IsoDecoder {

@@ -1,18 +1,16 @@
 import * as smlLib from '../../model/sml';
 import { Http, Response } from '@angular/http';
-import {Injectable} from '@angular/core';
-import {Observable}     from 'rxjs/Observable';
-import { JSONDescriptionConfig } from './../config/JSONDescriptionConfig';
-
-import {LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger} from "typescript-logging"
-
-import {SensorMLDocumentEncoder} from './../xml/SensorMLDocumentEncoder';
-import {SensorMLDocumentDecoder} from './../xml/SensorMLDocumentDecoder';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { DynamicGUIDescriptionConfig } from '../config/DynamicGUIDescriptionConfig';
+import { LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger } from "typescript-logging"
+import { SensorMLDocumentEncoder } from './../xml/SensorMLDocumentEncoder';
+import { SensorMLDocumentDecoder } from './../xml/SensorMLDocumentDecoder';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
 import { NAMESPACES } from './../xml/Namespaces';
 import { BidiMap } from './BidiMap';
 import { DynamicGUIObject } from './DynamicGUIObject';
-import { DynamicGUIConfiguration} from './DynamicGUIConfiguration';
+import { DynamicGUIConfiguration } from './DynamicGUIConfiguration';
 declare var X2JS: any;
 
 class XPathElement {
@@ -99,7 +97,7 @@ export class DynamicGUIService {
             returnObject.model = this._sensorML_decoder.decode(this._model);
             this._logger.info('profile IDs map:' + JSON.stringify(this._profileIDMap.getElementObject("value_shortName")));
             this._logger.info('model with the fix values:' + JSON.stringify(returnObject.model));
-            returnObject.configuration = new JSONDescriptionConfig(this._globalConfig, this._elementConfig, this._profileIDMap, true);
+            returnObject.configuration = new DynamicGUIDescriptionConfig(this._globalConfig, this._elementConfig, this._profileIDMap, true);
             return returnObject;
         });
 
@@ -111,7 +109,7 @@ export class DynamicGUIService {
             this._XMLDocument = new XMLDocument(this._model);
         }
     }
-// Process Form Configuration
+    // Process Form Configuration
     private processFormConfiguration() {
         if (this._profile.formConfiguration) {
             let formComponents = this._profile.formConfiguration.formComponent;
@@ -142,7 +140,7 @@ export class DynamicGUIService {
             }
         }
     }
-    
+
     // Process general element descriptions
     private processGeneralElementDescriptions() {
         for (let key in this._profile) {
@@ -180,7 +178,7 @@ export class DynamicGUIService {
             }
         }
     }
-// Process element instance references
+    // Process element instance references
     private processElementInstanceRefs(cache: Cache, elements: any) {
         if (Array.isArray(elements)) {
             for (var key in elements) {
@@ -212,7 +210,7 @@ export class DynamicGUIService {
             }
         }
     }
-    
+
     //Process complex element instance references
     private processComplexElementInstanceRefs(cache: Cache, complexElementInstances: any, parentXPath: string) {
         if (Array.isArray(complexElementInstances)) {
@@ -242,7 +240,7 @@ export class DynamicGUIService {
             }
         }
     }
-    
+
     //Process complex element instances
     private processComplexElementInstances(cache: Cache, complexElementInstances: any, parentXPath: string, global: boolean) {
         if (Array.isArray(complexElementInstances)) {
@@ -282,7 +280,7 @@ export class DynamicGUIService {
         }
     }
 
-//Process element instances
+    //Process element instances
     private processElementInstances(cache: Cache, elements: any) {
         if (Array.isArray(elements)) {
             for (var key in elements) {

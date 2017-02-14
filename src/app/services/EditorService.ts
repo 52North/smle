@@ -48,11 +48,11 @@ export class EditorService {
         this.editorMode = EditorMode.Default;
         return new Observable<AbstractProcess>((observer: Observer<AbstractProcess>) => {
             if (id) {
-                this.service.getDescription(id).then(desc => {
+                this.service.getDescription(id).then((desc) => {
                     this.description = desc;
                     observer.next(this.description);
                     observer.complete();
-                }).catch(error => {
+                }).catch((error) => {
                     observer.error(error);
                     observer.complete();
                 });
@@ -79,7 +79,7 @@ export class EditorService {
         if (description.identification
             && description.identification.length > 0) {
             let identifers = description.identification[0].identifiers;
-            let versionElem = identifers.find(entry => {
+            let versionElem = identifers.find((entry) => {
                 return entry.label === 'version' ? true : false;
             });
             if (versionElem) {

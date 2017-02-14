@@ -1,9 +1,8 @@
-import { ReflectiveInjector, Injectable, OpaqueToken, Injector, NgModule } from '@angular/core';
+import { ReflectiveInjector } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { getAppModule } from './app/app.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
+
 import {
     Http, CookieXSRFStrategy, XSRFStrategy, RequestOptions, BaseRequestOptions,
     ResponseOptions, BaseResponseOptions, XHRBackend, BrowserXhr, Response
@@ -37,7 +36,7 @@ export function main() {
             let conf = res.json();
             platformBrowserDynamic().bootstrapModule(getAppModule(conf));
         })
-        .catch(error => { console.error(error); });
+        .catch((error) => { console.error(error); });
 }
 
 function bootstrapDomReady() {
@@ -53,7 +52,6 @@ if ('development' === ENV) {
         } else {
             bootstrapDomReady();
         }
-        module.hot.accept();
     } else {
         bootstrapDomReady();
     }

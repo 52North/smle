@@ -11,7 +11,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'jquery';
 import 'jquery-ui/ui/widgets/datepicker';
 import 'jquery-ui-timepicker-addon';
-import 'bootstrap-loader';
+import 'bootstrap';
+// import 'bootstrap-loader';
 
 import 'leaflet';
 

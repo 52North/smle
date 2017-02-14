@@ -70,7 +70,7 @@ export class GmlEncoder {
         }
 
         if (object.name) {
-            object.name.forEach(identifier =>
+            object.name.forEach((identifier) =>
                 node.appendChild(this.encodeName(identifier, document)));
         }
     }
@@ -111,7 +111,7 @@ export class GmlEncoder {
     public encodePos(object: [number, number][], document: Document): Node {
         let node = document.createElementNS(NAMESPACES.GML, 'gml:pos');
         node.setAttribute('count', object.length.toString());
-        node.textContent = object.map(x => x.join(' ')).join(' ');
+        node.textContent = object.map((x) => x.join(' ')).join(' ');
         return node;
     }
 

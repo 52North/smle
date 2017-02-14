@@ -591,11 +591,11 @@ export class SweDecoder {
 
             let constraint = this.utils.getElement(quantityRangeElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
-                if (returnObject) {
-                    quantityRange.constraint = returnObject.value;
+                let allowedValues: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
+                if (allowedValues) {
+                    quantityRange.constraint = allowedValues.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, quantityRange, 'constraint', this._profileIDMap
+                        allowedValues.docElement, quantityRange, 'constraint', this._profileIDMap
                     );
                 }
             }
@@ -633,7 +633,8 @@ export class SweDecoder {
             if (valueElem != null) {
                 let values = valueElem.textContent.split(' ');
                 if (values.length === 2) {
-                    let start, end;
+                    let start;
+                    let end;
                     if (!isNaN(Date.parse(values[0]))) {
                         start = new Date(Date.parse(values[0]));
                     } else if (values[0] === 'now') {
@@ -653,11 +654,11 @@ export class SweDecoder {
 
             let constraint = this.utils.getElement(timeRangeElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
-                if (returnObject) {
-                    timeRange.constraint = returnObject.value;
+                let allowedTimes: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
+                if (allowedTimes) {
+                    timeRange.constraint = allowedTimes.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, timeRange, 'constraint', this._profileIDMap
+                        allowedTimes.docElement, timeRange, 'constraint', this._profileIDMap
                     );
                 }
             }
@@ -750,11 +751,11 @@ export class SweDecoder {
 
             let constraintElem = this.utils.getElement(categoryRangeElem, 'constraint', NAMESPACES.SWE);
             if (constraintElem != null) {
-                let returnObject: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraintElem);
-                if (returnObject) {
-                    categoryRange.constraint = returnObject.value;
+                let allowedTokens: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraintElem);
+                if (allowedTokens) {
+                    categoryRange.constraint = allowedTokens.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, categoryRange, 'constraint', this._profileIDMap
+                        allowedTokens.docElement, categoryRange, 'constraint', this._profileIDMap
                     );
                 }
             }
@@ -869,11 +870,11 @@ export class SweDecoder {
             }
             let constraint = this.utils.getElement(timeElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
-                if (returnObject) {
-                    time.constraint = returnObject.value;
+                let allowedTimes: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
+                if (allowedTimes) {
+                    time.constraint = allowedTimes.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, time, 'constraint', this._profileIDMap
+                        allowedTimes.docElement, time, 'constraint', this._profileIDMap
                     );
                 }
             }
@@ -922,11 +923,11 @@ export class SweDecoder {
 
             let constraint = this.utils.getElement(catElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraint);
-                if (returnObject) {
-                    category.constraint = returnObject.value;
+                let allowedTokens: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraint);
+                if (allowedTokens) {
+                    category.constraint = allowedTokens.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, category, 'constraint', this._profileIDMap
+                        allowedTokens.docElement, category, 'constraint', this._profileIDMap
                     );
                 }
             }

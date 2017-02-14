@@ -58,7 +58,8 @@ import { SweEncoding } from '../../model/swe/SweEncoding';
 import { TemporalFrame } from '../../model/sml/TemporalFrame';
 import { Term } from '../../model/sml/Term';
 import { ValueSetting } from '../../model/sml/ValueSetting';
-import { DecoderUtils, ReturnObject } from './DecoderUtils';
+import { DecoderUtils } from './DecoderUtils';
+import { ReturnObject } from './ReturnObject';
 import { BidiMap } from '../dynamicGUI/BidiMap';
 
 export class SensorMLDecoder {

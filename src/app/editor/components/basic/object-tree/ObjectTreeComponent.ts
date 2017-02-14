@@ -68,8 +68,8 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
                     continue;
                 }
 
-                let oldNode = oldNodes.find((oldNode) => {
-                    return oldNode.id === propertyName;
+                let oldNode = oldNodes.find((node) => {
+                    return node.id === propertyName;
                 });
                 let displayName = getDisplayName(object, propertyName) || propertyName;
                 let newNode: INode = {
