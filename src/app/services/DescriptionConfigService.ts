@@ -6,10 +6,8 @@ import { DescriptionConfig } from './config/DescriptionConfig';
 import { JSONDescriptionConfig } from './config/JSONDescriptionConfig';
 import { TrueDescriptionConfig } from './config/TrueDescriptionConfig';
 import { DynamicGUIDescriptionConfig } from './config/DynamicGUIDescriptionConfig';
-
 import { EditorMode } from './EditorMode';
-import { DynamicDescriptionConfig } from './config/DynamicDescriptionConfig';
-import { BidiMap } from './DynamicGUIService';
+import { BidiMap } from './dynamicGUI/BidiMap';
 
 @Injectable()
 export class DescriptionConfigService {
