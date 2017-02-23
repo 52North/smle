@@ -2,8 +2,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { ContactList } from '../../../model/sml';
 import { ResponsibleParty } from '../../../model/iso';
 import { ResponsiblePartyComponent } from '../iso/gmd/ResponsiblePartyComponent';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { ChildMetadata, EditorComponent } from '../base';
 
 @Component({
     selector: 'sml-contact-list',

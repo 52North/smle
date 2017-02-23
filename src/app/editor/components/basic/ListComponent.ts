@@ -55,6 +55,6 @@ export class ListComponent {
     }
 }
 @Directive({ selector: 'list-add-section' })
-export class ListAddSection {
+export class ListAddSectionDirective {
     // No behavior - The only purpose is to "declare" the tag in Angular2
 }

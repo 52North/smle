@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
+import { ChildMetadata, TypedModelComponent } from '../base';
 import { SweBinaryEncoding } from '../../../model/swe/SweBinaryEncoding';
 import { SweBinaryBlock } from '../../../model/swe/SweBinaryBlock';
 import { SweBinaryComponent } from '../../../model/swe/SweBinaryComponent';

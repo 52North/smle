@@ -4,13 +4,13 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { Application } from './app';
+import { ApplicationComponent } from './app';
 import { ROUTES } from './routes';
 import { APP_PROVIDERS } from './providers';
 import { EditorModule } from './editor/editor.module';
 
-import { Home } from './home/home';
-import { Editor } from './editor/editor';
+import { HomeComponent } from './home/home';
+import { EditorComponent } from './editor/editor';
 
 import { ConfigurationService } from './services/ConfigurationService';
 
@@ -18,11 +18,11 @@ import '../styles/styles.scss';
 
 export function getAppModule(conf) {
     @NgModule({
-        bootstrap: [Application],
+        bootstrap: [ApplicationComponent],
         declarations: [
-            Application,
-            Home,
-            Editor
+            ApplicationComponent,
+            HomeComponent,
+            EditorComponent
         ],
         imports: [
             BrowserModule,

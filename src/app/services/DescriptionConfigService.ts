@@ -21,13 +21,13 @@ export class DescriptionConfigService {
         return new Observable<DescriptionConfig>((observer: Observer<DescriptionConfig>) => {
             switch (editorMode) {
                 case EditorMode.Dynamic:
-                    this.loadConfiguration('./config/description-config.json').then(config => {
+                    this.loadConfiguration('./config/description-config.json').then((config) => {
                         observer.next(new DynamicGUIDescriptionConfig(config, {}, new BidiMap(), true));
                         observer.complete();
                     });
                     break;
                 default:
-                    this.loadConfiguration('./config/description-config.json').then(config => {
+                    this.loadConfiguration('./config/description-config.json').then((config) => {
                         observer.next(config); observer.complete();
                     });
             }

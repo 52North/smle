@@ -2,8 +2,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { EventList } from '../../../model/sml/EventList';
 import { EventComponent } from './EventComponent';
 import { Event } from '../../../model/sml/Event';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 
 @Component({
     selector: 'sml-event-list',

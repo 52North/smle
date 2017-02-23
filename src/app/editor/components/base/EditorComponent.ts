@@ -1,5 +1,6 @@
 import { ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from './TypedModelComponent';
+import { TypedModelComponent } from './TypedModelComponent';
+import { ChildMetadata } from './ChildMetadata';
 
 export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     private parentComponent: EditorComponent<any>;

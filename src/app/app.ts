@@ -12,7 +12,7 @@ import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
     styles: [require('./app.scss')],
     template: require('./app.html')
 })
-export class Application {
+export class ApplicationComponent {
     constructor(viewContainer: ViewContainerRef) {
     }
 }

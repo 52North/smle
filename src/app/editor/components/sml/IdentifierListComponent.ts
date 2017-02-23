@@ -2,8 +2,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { Term } from '../../../model/sml/Term';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { TermComponent } from './TermComponent';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 
 @Component({
     selector: 'sml-identifier-list',

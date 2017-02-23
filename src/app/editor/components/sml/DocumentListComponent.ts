@@ -1,6 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 import { DocumentList } from '../../../model/sml/DocumentList';
 import { OnlineResource } from '../../../model/iso/gmd/OnlineResource';
 import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';

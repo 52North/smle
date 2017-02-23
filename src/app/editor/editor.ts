@@ -3,20 +3,16 @@ import { ActivatedRoute } from '@angular/router';
 import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess } from '../model/sml';
 import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
-
 import { EditorService, DescriptionType } from '../services/EditorService';
 import { EditorMode } from '../services/EditorMode';
-
-import { DynamicGUIService} from '../services/dynamicGUI/DynamicGUIService';
-import { DynamicGUIObject } from '../services/dynamicGUI/DynamicGUIObject';
-
+import { DynamicGUIService } from '../services/dynamicGUI/DynamicGUIService';
 
 @Component({
     selector: 'editor',
     templateUrl: './editor.html',
     styleUrls: ['./editor.scss']
 })
-export class Editor implements OnInit {
+export class EditorComponent implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
     public editorMode: EditorMode;
@@ -25,9 +21,9 @@ export class Editor implements OnInit {
     public visualizerExpanded: boolean = false;
     public descriptionTypes: string[] = ['PhysicalSystem', 'PhysicalComponent', 'DiscoveryProfile'];
 
-    private descriptionType: DescriptionType;
-    private descriptionLoadingError: string;
-    private descriptionIsLoading: boolean = true;
+    public descriptionType: DescriptionType;
+    public descriptionLoadingError: string;
+    public descriptionIsLoading: boolean = true;
 
     constructor(
         private descriptionConfigService: DescriptionConfigService,

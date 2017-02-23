@@ -2,8 +2,7 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { Term } from '../../../model/sml/Term';
 import { TermComponent } from './TermComponent';
 import { ClassifierList } from '../../../model/sml/ClassifierList';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 
 @Component({
     selector: 'sml-classifier-list',

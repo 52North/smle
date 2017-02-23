@@ -1,7 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 import { OutputList, Output, DataInterface, ObservableProperty } from '../../../model/sml';
-import { ChildMetadata } from '../base/TypedModelComponent';
 import { OutputComponent } from './OutputComponent';
 import {
     SweText,

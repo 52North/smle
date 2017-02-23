@@ -91,8 +91,8 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     private static getValueNodes(name: string, type: string, oldNodes: Array<INode>, parentId: string): Array<INode> {
         let node: INode = {
             id: parentId + '$value',
-            name: name,
-            type: type,
+            name,
+            type,
             children: null,
             isExpanded: false
         };

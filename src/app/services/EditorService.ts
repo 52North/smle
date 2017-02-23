@@ -8,7 +8,7 @@ import { DescriptionConfigService } from './DescriptionConfigService';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { EditorMode } from './EditorMode';
 import { DynamicGUIService } from './dynamicGUI/DynamicGUIService';
-import { DynamicGUIObject} from './dynamicGUI/DynamicGUIObject';
+import { DynamicGUIObject } from './dynamicGUI/DynamicGUIObject';
 export enum DescriptionType {
     PhysicalSystem = 1,
     PhysicalComponent = 2,

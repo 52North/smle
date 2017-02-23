@@ -25,6 +25,7 @@
       true,
       120
     ],
+    "max-classes-per-file": [true, 5],
     "member-access": false,
     "member-ordering": [
       true,

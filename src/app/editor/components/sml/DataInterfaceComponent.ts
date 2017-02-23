@@ -1,6 +1,5 @@
 import { ComponentFactoryResolver, ViewContainerRef, Component } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 import { DataInterface } from '../../../model/sml/DataInterface';
 
 @Component({

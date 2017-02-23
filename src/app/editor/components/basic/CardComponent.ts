@@ -43,7 +43,7 @@ export class CardComponent {
         this.closeChild.emit(null);
     }
 
-    protected onShowAllChange(value) {
+    public onShowAllChange(value) {
         this.showAll = value;
         this.showAllChange.emit(value);
     }

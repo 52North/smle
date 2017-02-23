@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
-import { Editor } from './editor/editor';
+import { HomeComponent } from './home/home';
+import { EditorComponent } from './editor/editor';
 
 export const ROUTES: Routes = [
-    { path: '', component: Editor },
-    { path: 'samples', component: Home },
-    { path: 'editor', component: Editor },
-    { path: 'editor/:id', component: Editor }
+    { path: '', component: EditorComponent },
+    { path: 'samples', component: HomeComponent },
+    { path: 'editor', component: EditorComponent },
+    { path: 'editor/:id', component: EditorComponent }
 ];
