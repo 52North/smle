@@ -11,7 +11,7 @@ import { SosService } from '../sos.service';
     selector: 'connect-description',
     template: require('./connect.template.html')
 })
-export class ConnectDescription implements OnInit {
+export class ConnectDescriptionComponent implements OnInit {
 
     private childDescription: AbstractPhysicalProcess;
     private parentDescription: AggregatingProcess;
@@ -44,26 +44,26 @@ export class ConnectDescription implements OnInit {
     protected onSelectChildDescription(selectedDesc: SelectedDescription) {
         // TODO check if description is AbstractPhysicalProcess!
         let desc = new SensorMLXmlService().deserialize(selectedDesc.description) as any as AbstractPhysicalProcess;
-        this.connectDescService.connectDescriptions(desc, this.parentDescription).subscribe(res => {
+        this.connectDescService.connectDescriptions(desc, this.parentDescription).subscribe((res) => {
             this.updateIgnoreIds();
         });
     }
 
     protected onRemoveComponent(idx: number) {
-        this.connectDescService.removeComponent(this.parentDescription, idx).subscribe(res => {
+        this.connectDescService.removeComponent(this.parentDescription, idx).subscribe((res) => {
             this.updateIgnoreIds();
         });
     }
 
     protected clearAttachedTo() {
         this.connectDescService.clearAttachedTo(this.childDescription, this.getAttachedToIdentifier())
-            .subscribe(res => {
+            .subscribe((res) => {
                 this.updateIgnoreIds();
             });
     }
 
     protected publishAttachedTo() {
-        this.connectDescService.connectDescriptions(this.childDescription, this.parentDescription).subscribe(res => {
+        this.connectDescService.connectDescriptions(this.childDescription, this.parentDescription).subscribe((res) => {
             this.parentDescription = null;
             this.updateIgnoreIds();
         });
@@ -88,7 +88,7 @@ export class ConnectDescription implements OnInit {
 
         if (this.parentDescription && this.parentDescription.components) {
             this.ignoreIds.push((this.parentDescription as any as AbstractProcess).identifier.value);
-            this.parentDescription.components.components.forEach(entry => {
+            this.parentDescription.components.components.forEach((entry) => {
                 this.ignoreIds.push(entry.title);
             });
         }

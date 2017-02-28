@@ -5,7 +5,7 @@ import { SosService } from '../sos.service';
     selector: 'description-id-selection',
     template: require('./selectDescription.template.html')
 })
-export class DescriptionSelection implements OnInit, DoCheck {
+export class DescriptionSelectionComponent implements OnInit, DoCheck {
 
     @Input()
     public ignoreIds: Array<string>;
@@ -38,11 +38,11 @@ export class DescriptionSelection implements OnInit, DoCheck {
 
     public loadDescIds() {
         this.loadingDescriptionIds = true;
-        this.sosService.fetchDescriptionIDs(this.authorized).subscribe(res => {
+        this.sosService.fetchDescriptionIDs(this.authorized).subscribe((res) => {
             this.loadingDescriptionIds = false;
             this.descriptionIds = res;
             if (this.ignoreIds && this.ignoreIds.length > 0) {
-                this.ignoreIds.forEach(ignoreId => {
+                this.ignoreIds.forEach((ignoreId) => {
                     let idx = this.descriptionIds.indexOf(ignoreId);
                     if (idx >= -1) {
                         this.descriptionIds.splice(idx, 1);
@@ -55,7 +55,7 @@ export class DescriptionSelection implements OnInit, DoCheck {
     public onSelectDescriptionID(descId: string) {
         if (this.selectedDescriptionId !== undefined)
             this.sosService.fetchDescription(this.selectedDescriptionId)
-                .subscribe(res => {
+                .subscribe((res) => {
                     this.onSelectedDescription.emit(new SelectedDescription(this.selectedDescriptionId, res));
                 });
     }

@@ -45,7 +45,7 @@ export class TemplatesService {
         let result = new Result();
         result.count = json.response.numFound;
         result.templates = new Array<Template>();
-        json.response.docs.forEach(entry => {
+        json.response.docs.forEach((entry) => {
             result.templates.push(entry);
         });
         return result;

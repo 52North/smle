@@ -11,7 +11,7 @@ import { UUID } from 'angular2-uuid';
     template: require('./publish.template.html'),
     styles: [require('./publish.style.scss')]
 })
-export class PublishDescription implements OnInit {
+export class PublishDescriptionComponent implements OnInit {
 
     private description: AbstractProcess;
     private hasDescription: boolean = null;
@@ -55,7 +55,7 @@ export class PublishDescription implements OnInit {
     protected addDescription() {
         this.resetError();
         this.sosService.addDescription(this.description)
-            .subscribe(res => {
+            .subscribe((res) => {
                 this.success = 'Successfully added the description!';
             }, (error) => this.handleError(error));
     }
@@ -63,16 +63,16 @@ export class PublishDescription implements OnInit {
     protected updateDescription() {
         this.resetError();
         this.sosService.updateDescription(this.description.identifier.value, this.description, this.sosUrl)
-            .subscribe(res => {
+            .subscribe((res) => {
                 this.success = 'Successfully updated the description!';
-            }, error => this.handleError(error));
+            }, (error) => this.handleError(error));
     }
 
     private hasSosDescription() {
         this.resetError();
         if (this.description && this.description.identifier && this.description.identifier.value) {
             this.sosService.hasSosDescription(this.description.identifier.value, this.sosUrl)
-                .subscribe(res => {
+                .subscribe((res) => {
                     this.hasDescription = res;
                 }, (error) => this.handleError(error));
         }

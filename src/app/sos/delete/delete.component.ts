@@ -1,15 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { SosService } from '../sos.service';
-import { DescriptionSelection, SelectedDescription } from '../components/selectDescription.component';
+import { DescriptionSelectionComponent, SelectedDescription } from '../components/selectDescription.component';
 
 @Component({
     selector: 'delete-description',
     template: require('./delete.template.html'),
     styles: [require('./delete.style.scss')],
 })
-export class DeleteDescription {
+export class DeleteDescriptionComponent {
 
-    @ViewChild(DescriptionSelection) descSelection: DescriptionSelection;
+    @ViewChild(DescriptionSelectionComponent) descSelection: DescriptionSelectionComponent;
 
     private selectedDesc: SelectedDescription;
     private successfullDeleted: boolean;
@@ -24,13 +24,13 @@ export class DeleteDescription {
     }
 
     public onDeleteDescription() {
-        this.sosService.deleteDescription(this.selectedDesc.id).subscribe(res => {
+        this.sosService.deleteDescription(this.selectedDesc.id).subscribe((res) => {
             this.successfullDeleted = res;
             if (res) {
                 this.loadDescriptions();
                 this.selectedDesc = null;
             }
-        }, error => {
+        }, (error) => {
             this.successfullDeleted = false;
         });
     }

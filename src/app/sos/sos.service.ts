@@ -25,9 +25,9 @@ export class SosService {
 
     public fetchDescriptionIDs(authorized?: boolean, sosUrl?: string): Observable<Array<string>> {
         let body = JSON.stringify({
-            'request': 'GetCapabilities',
-            'service': 'SOS',
-            'sections': [
+            request: 'GetCapabilities',
+            service: 'SOS',
+            sections: [
                 'OperationsMetadata'
             ]
         });
@@ -42,11 +42,11 @@ export class SosService {
 
     public fetchDescription(descId: string, sosUrl?: string): Observable<string> {
         let body = JSON.stringify({
-            'request': 'DescribeSensor',
-            'service': 'SOS',
-            'version': '2.0.0',
-            'procedure': descId,
-            'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0'
+            request: 'DescribeSensor',
+            service: 'SOS',
+            version: '2.0.0',
+            procedure: descId,
+            procedureDescriptionFormat: 'http://www.opengis.net/sensorml/2.0'
         });
         return this.http.post(this.useSosUrl(sosUrl), body, {
             headers: this.createJsonHeader(),
@@ -63,10 +63,10 @@ export class SosService {
 
     public deleteDescription(descId: string, sosUrl?: string): Observable<boolean> {
         let body = JSON.stringify({
-            'request': 'DeleteSensor',
-            'service': 'SOS',
-            'version': '2.0.0',
-            'procedure': descId
+            request: 'DeleteSensor',
+            service: 'SOS',
+            version: '2.0.0',
+            procedure: descId
         });
         return this.http.post(this.useProxyUrl(sosUrl), body, {
             headers: this.createJsonHeader(),
@@ -100,20 +100,20 @@ export class SosService {
 
     public addDescription(description: AbstractProcess, sosUrl?: string): Observable<boolean> {
         let body = JSON.stringify({
-            'request': 'InsertSensor',
-            'service': 'SOS',
-            'version': '2.0.0',
-            'procedureId': description.identifier.value,
-            'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
-            'procedureDescription': new SensorMLXmlService().serialize(description),
+            request: 'InsertSensor',
+            service: 'SOS',
+            version: '2.0.0',
+            procedureId: description.identifier.value,
+            procedureDescriptionFormat: 'http://www.opengis.net/sensorml/2.0',
+            procedureDescription: new SensorMLXmlService().serialize(description),
             // featureOfInterest auswählbar machen
-            'featureOfInterestType': 'http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint',
+            featureOfInterestType: 'http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint',
             // observationType auswählbar machen ???
-            'observationType': [
+            observationType: [
                 'http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement'
             ],
             // observableProperty auswählbar machen ???
-            'observableProperty': [
+            observableProperty: [
                 'http://www.52north.org/test/observableProperty/9_1']
         });
         return this.http.post(this.useProxyUrl(sosUrl), body, {
@@ -126,12 +126,12 @@ export class SosService {
 
     public updateDescription(descID: string, description: AbstractProcess, sosUrl?: string): Observable<boolean> {
         let body = JSON.stringify({
-            'request': 'UpdateSensorDescription',
-            'service': 'SOS',
-            'version': '2.0.0',
-            'procedure': descID,
-            'procedureDescriptionFormat': 'http://www.opengis.net/sensorml/2.0',
-            'procedureDescription': new SensorMLXmlService().serialize(description)
+            request: 'UpdateSensorDescription',
+            service: 'SOS',
+            version: '2.0.0',
+            procedure: descID,
+            procedureDescriptionFormat: 'http://www.opengis.net/sensorml/2.0',
+            procedureDescription: new SensorMLXmlService().serialize(description)
         });
         return this.http.post(this.useProxyUrl(sosUrl), body, {
             headers: this.createJsonHeader(),
@@ -179,7 +179,7 @@ export class SosService {
         let json = error.json();
         if (json.exceptions && json.exceptions.length >= -1) {
             let errors: Array<string> = [];
-            (json.exceptions as Array<any>).forEach(entry => {
+            (json.exceptions as Array<any>).forEach((entry) => {
                 errors.push(entry.text || entry.locator);
             });
             return Observable.throw(errors);

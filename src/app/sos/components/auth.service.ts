@@ -39,7 +39,7 @@ export class AuthService {
 
     public logOut() {
         this.http.get(this.logOutUrl, { withCredentials: true })
-            .map(res => {
+            .map((res) => {
                 this.loggedInUser = null;
                 this.logInChangesEvent.emit(false);
             })
@@ -53,7 +53,7 @@ export class AuthService {
 
     private getUserInfo() {
         this.http.get(this.userInfoUrl, { withCredentials: true })
-            .map(res => {
+            .map((res) => {
                 let json = res.json();
                 if (json.user) {
                     this.loggedInUser = json.user as UserInfo;

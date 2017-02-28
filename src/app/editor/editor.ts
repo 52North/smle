@@ -50,15 +50,13 @@ export class EditorComponent implements OnInit {
                 this.descriptionIsLoading = false;
             });
         } else if (snapshot.queryParams[PROCEDURE_ID_PARAM] && snapshot.queryParams[SOS_URL_PARAM]) {
-            debugger;
             this.editorService.loadDescriptionByIdAndUrl(
                 snapshot.queryParams[PROCEDURE_ID_PARAM],
                 snapshot.queryParams[SOS_URL_PARAM]
-            ).subscribe(res => {
+            ).subscribe((res) => {
                 this.actionBarNeeded = true;
-                debugger;
                 // this.setDescription(res);
-            }, error => {
+            }, (error) => {
                 this.descriptionLoadingError = error;
             }, () => {
                 this.descriptionIsLoading = false;

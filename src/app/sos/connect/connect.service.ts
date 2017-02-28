@@ -38,7 +38,7 @@ export class ConnectDescriptionService {
 
     public clearAttachedTo(childDesc: AbstractPhysicalProcess, parentId: string): Observable<boolean> {
         return new Observable<boolean>((observer: Observer<boolean>) => {
-            this.sosService.fetchDescription(parentId).subscribe(res => {
+            this.sosService.fetchDescription(parentId).subscribe((res) => {
                 let parentDesc = new SensorMLXmlService().deserialize(res) as any as AggregatingProcess;
                 let idx = -1;
                 parentDesc.components.components.forEach((entry, i) => {
@@ -61,9 +61,9 @@ export class ConnectDescriptionService {
         return new Observable<boolean>((observer: Observer<boolean>) => {
             // remove in components
             let removedComponent = parentDesc.components.components.splice(idx, 1);
-            this.updateDescription(parentDesc as any as AbstractProcess).subscribe(res => {
+            this.updateDescription(parentDesc as any as AbstractProcess).subscribe((res) => {
                 // remove attachedTo of description
-                this.sosService.fetchDescription(removedComponent[0].title).subscribe(result => {
+                this.sosService.fetchDescription(removedComponent[0].title).subscribe((result) => {
                     let desc = new SensorMLXmlService().deserialize(result) as any as AbstractPhysicalProcess;
                     desc.attachedTo = null;
                     this.updateDescription(desc).subscribe(() => {
@@ -81,7 +81,7 @@ export class ConnectDescriptionService {
         return new Observable<boolean>((observer: Observer<boolean>) => {
             let parentDescAbsPro = parentDesc as any as AbstractProcess;
             childDesc.attachedTo = this.sosService.createDescribeSensorUrl(parentDescAbsPro.identifier.value);
-            this.updateDescription(childDesc).subscribe(res => {
+            this.updateDescription(childDesc).subscribe((res) => {
                 let component = new Component(
                     childDesc.gmlId,
                     this.sosService.createDescribeSensorUrl(childDesc.identifier.value),

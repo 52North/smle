@@ -13,7 +13,7 @@ import { SensorMLXmlService } from '../services/SensorMLXmlService';
     providers: [TemplatesService],
     template: require('./templates.html')
 })
-export class Templates {
+export class TemplatesComponent {
 
     searchTerm: string;
     resultCount: number;
@@ -36,7 +36,7 @@ export class Templates {
         this.description = undefined;
         this.selection = undefined;
         this.templatesServ.search(this.searchTerm).subscribe(
-            res => {
+            (res) => {
                 this.resultCount = res.count;
                 this.templates = res.templates;
             }
@@ -50,7 +50,7 @@ export class Templates {
     onSelectTemplate(): void {
         if (this.selection !== undefined)
             this.templatesServ.getTemplate(this.selection).subscribe(
-                res => {
+                (res) => {
                     this.choosenTemplate = res;
                     this.description = new SensorMLXmlService().deserialize(res.plainText);
                     if (!this.description.identifier) {

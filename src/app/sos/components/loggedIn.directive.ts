@@ -11,7 +11,7 @@ export class LoggedInDirective {
         private authService: AuthService
     ) {
         this.updateView(this.authService.isLoggedIn());
-        this.authService.logInChangesEvent.subscribe(res => {
+        this.authService.logInChangesEvent.subscribe((res) => {
             this.updateView(res);
         });
     }

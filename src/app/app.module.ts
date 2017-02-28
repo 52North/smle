@@ -12,11 +12,11 @@ import { SosModule } from './sos/sos.module';
 import { TemplatesModule } from './templates/templates.module';
 import { HomeComponent } from './home/home';
 import { EditorComponent } from './editor/editor';
-import { FetchDescription } from './sos/fetch/fetch.component';
-import { PublishDescription } from './sos/publish/publish.component';
-import { ConnectDescription } from './sos/connect/connect.component';
-import { DeleteDescription } from './sos/delete/delete.component';
-import { Templates } from './templates/templates';
+import { FetchDescriptionComponent } from './sos/fetch/fetch.component';
+import { PublishDescriptionComponent } from './sos/publish/publish.component';
+import { ConnectDescriptionComponent } from './sos/connect/connect.component';
+import { DeleteDescriptionComponent } from './sos/delete/delete.component';
+import { TemplatesComponent } from './templates/templates';
 
 import { ConfigurationService } from './services/ConfigurationService';
 
@@ -29,11 +29,11 @@ export function getAppModule(conf) {
             ApplicationComponent,
             HomeComponent,
             EditorComponent,
-            FetchDescription,
-            PublishDescription,
-            ConnectDescription,
-            DeleteDescription,
-            Templates
+            FetchDescriptionComponent,
+            PublishDescriptionComponent,
+            ConnectDescriptionComponent,
+            DeleteDescriptionComponent,
+            TemplatesComponent
         ],
         imports: [
             BrowserModule,

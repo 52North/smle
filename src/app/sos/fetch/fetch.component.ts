@@ -11,7 +11,7 @@ import { SelectedDescription } from '../components/selectDescription.component';
     template: require('./fetch.template.html'),
     styles: [require('./fetch.style.scss')],
 })
-export class FetchDescription implements OnInit {
+export class FetchDescriptionComponent implements OnInit {
 
     private selectedDesc: AbstractProcess;
 
@@ -23,10 +23,10 @@ export class FetchDescription implements OnInit {
     ) { }
 
     public ngOnInit(): void {
-        this.route.params.subscribe(params => {
+        this.route.params.subscribe((params) => {
             let id = params['id'];
             if (id) {
-                this.sosService.fetchDescription(id).subscribe(res => {
+                this.sosService.fetchDescription(id).subscribe((res) => {
                     this.selectedDesc = new SensorMLXmlService().deserialize(res);
                 });
             }
