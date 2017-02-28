@@ -10,8 +10,8 @@ import { DynamicGUIService } from '../services/dynamicGUI/DynamicGUIService';
 
 @Component({
     selector: 'editor',
-    templateUrl: './editor.html',
-    styleUrls: ['./editor.scss']
+    template: require('./editor.html'),
+    styles: [require('./editor.scss')]
 })
 export class EditorComponent implements OnInit {
     public description: AbstractProcess;
