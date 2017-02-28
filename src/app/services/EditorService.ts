@@ -147,8 +147,6 @@ export class EditorService {
         });
     }
 
-    // -------
-
     startPublishingDescription(description: AbstractProcess) {
         this.publish.setDescription(description);
         this.publish.setSosUrl(this.sosUrl);

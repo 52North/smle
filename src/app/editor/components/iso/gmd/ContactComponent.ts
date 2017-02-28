@@ -6,8 +6,7 @@ import { OnlineResourceComponent } from './OnlineResourceComponent';
 import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
 import { Address } from '../../../../model/iso/gmd/Address';
 import { Phone } from '../../../../model/iso/gmd/Phone';
-import { EditorComponent } from '../../base/EditorComponent';
-import { ChildMetadata } from '../../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../../base';
 
 @Component({
     selector: 'iso-contact',

@@ -1,5 +1,5 @@
 import { ComponentFactoryResolver, ViewContainerRef, AfterContentInit, OnInit } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { EditorComponent } from '../base';
 import { InputOrOutputOrParameter, DataInterface, ObservableProperty } from '../../../model/sml';
 import {
     SweText,

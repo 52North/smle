@@ -11,7 +11,7 @@ import { TreeModule } from 'angular2-tree-component';
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
-import { ListComponent, ListAddSection } from './components/basic/ListComponent';
+import { ListComponent, ListAddSectionDirective } from './components/basic/ListComponent';
 import { MapComponent } from './components/basic/MapComponent';
 import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
@@ -107,7 +107,7 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         CheckboxComponent,
         ChildItemComponent,
         ListComponent,
-        ListAddSection,
+        ListAddSectionDirective,
         MapComponent,
         NumberFieldComponent,
         PositionListComponent,

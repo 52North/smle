@@ -13,7 +13,7 @@ import { ContactListComponent } from './ContactListComponent';
 import { ContactList } from '../../../model/sml/ContactList';
 import { EventList } from '../../../model/sml/EventList';
 import { EventListComponent } from './EventListComponent';
-import { ChildMetadata, TypedModelComponent } from '../base/TypedModelComponent';
+import { ChildMetadata, TypedModelComponent } from '../base';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
 import { CharacteristicListComponent } from './CharacteristicListComponent';
 import { CapabilityList } from '../../../model/sml/CapabilityList';

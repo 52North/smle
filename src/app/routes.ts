@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { Home } from './home/home';
-import { Editor } from './editor/editor';
+import { HomeComponent } from './home/home';
+import { EditorComponent } from './editor/editor';
 import { FetchDescription } from './sos/fetch/fetch.component';
 import { PublishDescription } from './sos/publish/publish.component';
 import { ConnectDescription } from './sos/connect/connect.component';
@@ -9,10 +9,10 @@ import { Templates } from './templates/templates';
 import { AuthGuard } from './sos/components/auth-guard.service';
 
 export const ROUTES: Routes = [
-    { path: '', component: Editor },
-    { path: 'samples', component: Home },
-    { path: 'editor', component: Editor },
-    { path: 'editor/:id', component: Editor },
+    { path: '', component: EditorComponent },
+    { path: 'samples', component: HomeComponent },
+    { path: 'editor', component: EditorComponent },
+    { path: 'editor/:id', component: EditorComponent },
     { path: 'fetch', component: FetchDescription },
     { path: 'fetch/:id', component: FetchDescription },
     { path: 'publish', component: PublishDescription },

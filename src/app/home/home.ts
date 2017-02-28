@@ -7,7 +7,7 @@ import { DescriptionRepository } from '../services/DescriptionRepository';
     template: require('./home.html'),
     styles: [require('./home.scss')]
 })
-export class Home implements OnInit {
+export class HomeComponent implements OnInit {
 
     descriptions: string[];
     private _selected: string;
@@ -28,7 +28,7 @@ export class Home implements OnInit {
 
     ngOnInit() {
         this._service.getDescriptions()
-            .then(ids => this.descriptions = ids);
+            .then((ids) => this.descriptions = ids);
     }
 
 }

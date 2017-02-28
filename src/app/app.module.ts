@@ -4,15 +4,14 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { Application } from './app';
+import { ApplicationComponent } from './app';
 import { ROUTES } from './routes';
 import { APP_PROVIDERS } from './providers';
 import { EditorModule } from './editor/editor.module';
 import { SosModule } from './sos/sos.module';
 import { TemplatesModule } from './templates/templates.module';
-
-import { Home } from './home/home';
-import { Editor } from './editor/editor';
+import { HomeComponent } from './home/home';
+import { EditorComponent } from './editor/editor';
 import { FetchDescription } from './sos/fetch/fetch.component';
 import { PublishDescription } from './sos/publish/publish.component';
 import { ConnectDescription } from './sos/connect/connect.component';
@@ -25,11 +24,11 @@ import '../styles/styles.scss';
 
 export function getAppModule(conf) {
     @NgModule({
-        bootstrap: [Application],
+        bootstrap: [ApplicationComponent],
         declarations: [
-            Application,
-            Home,
-            Editor,
+            ApplicationComponent,
+            HomeComponent,
+            EditorComponent,
             FetchDescription,
             PublishDescription,
             ConnectDescription,

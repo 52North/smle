@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { SettingsComponent } from './SettingsComponent';
 import { Settings, ParameterList, OutputList, InputList } from '../../../model/sml';

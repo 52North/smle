@@ -2,7 +2,7 @@ import { Position } from '../../../model/sml/Position';
 import { SweVector } from '../../../model/swe/SweVector';
 import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { Component } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base/TypedModelComponent';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { TrueDescriptionConfig } from '../../../services/config/TrueDescriptionConfig';
 import { PositionEditorComponent } from '../sml/PositionComponent';
 import { SweCoordinate } from '../../../model/swe/SweCoordinate';
@@ -47,7 +47,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     protected getPositionValue(positionItem: Position): string {
         if (positionItem instanceof SweVector) {
             let value = [];
-            positionItem.coordinates.forEach(entry => {
+            positionItem.coordinates.forEach((entry) => {
                 value.push(entry.name + ': ' + entry.coordinate.value);
             });
             return value.join(', ');

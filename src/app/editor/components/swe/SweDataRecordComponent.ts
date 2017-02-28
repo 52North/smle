@@ -1,5 +1,5 @@
 import { Component, Type } from '@angular/core';
-import { ChildMetadata, TypedModelComponent } from '../base/TypedModelComponent';
+import { ChildMetadata, TypedModelComponent } from '../base';
 import {
     SweDataRecord,
     SweField,

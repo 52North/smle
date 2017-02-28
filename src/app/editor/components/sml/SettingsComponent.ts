@@ -1,7 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 import { Settings, ValueSetting, ModeSetting, StatusSetting } from '../../../model/sml';
-import { ChildMetadata } from '../base/TypedModelComponent';
 import { ValueSettingComponent } from './ValueSettingComponent';
 import { ModeSettingComponent } from './ModeSettingComponent';
 import { StatusSettingComponent } from './StatusSettingComponent';

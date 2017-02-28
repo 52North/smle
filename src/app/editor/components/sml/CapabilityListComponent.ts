@@ -1,6 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 import { Capability } from '../../../model/sml/Capability';
 import { CapabilityList } from '../../../model/sml/CapabilityList';
 import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';

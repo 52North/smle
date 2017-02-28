@@ -1,6 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
-import { ChildMetadata } from '../base/TypedModelComponent';
+import { EditorComponent, ChildMetadata } from '../base';
 import { Characteristic } from '../../../model/sml/Characteristic';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
 import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
