@@ -20,9 +20,7 @@ WORKDIR /tmp
 
 COPY . /tmp/
 
-RUN npm install && npm install
-
-RUN npm run typings-install
+RUN npm install
 
 RUN npm run build:prod \
     && cp -r dist/* /usr/share/nginx/html/ \

@@ -26,9 +26,7 @@ WORKDIR /tmp
 RUN curl -LO https://github.com/janschulte/smle/archive/$BRANCH.zip && unzip $BRANCH.zip
 
 WORKDIR /tmp/smle-$BRANCH
-RUN npm install && npm install
-
-RUN npm run typings-install
+RUN npm install
 
 RUN npm run build:prod \
     && cp -r dist/* /usr/share/nginx/html/ \
