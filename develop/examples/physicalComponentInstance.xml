@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This document contains an exemplary description of specific component (instance of a type): In this case the pressure detector of a specific hydrophone-->
+<!--This SensorML 2.0 example is based on the sensor registry work of the ESONET Network of Excellence and was further advanced in WP4 of the NeXOS project.
+ESONET was cofunded by the European Commission in the Sixth Framework Programme (FP6) under contract no. 036851.
+NeXOS has received funding from the European Union’s Seventh Programme (FP7) for research, technological development and demonstration under grant agreement no. 614102.
+-->
+<sml:PhysicalComponent gml:id="pressureDetector_of_ExampleHydrophone1" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sml="http://www.opengis.net/sensorml/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.opengis.net/sensorml/2.0 http://schemas.opengis.net/sensorML/2.0/sensorML.xsd http://www.opengis.net/swe/2.0 http://schemas.opengis.net/sweCommon/2.0/swe.xsd">
+   <!--Reference to the description of the component type. The referenced URL links to a SensorML document describing all properties which are the same for all components of this type.-->
+   <sml:typeOf xlink:href="http://52north.org/pressureDetector_Type_XY123.xml"/>
+   <!--Parameters of the component-->
+   <sml:parameters>
+      <sml:ParameterList>
+         <!--The preamplifier gain of the component-->
+         <sml:parameter name="preamplifierGain">
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#preamplifierGain">
+               <swe:label>Preamplifier Gain</swe:label>
+               <swe:uom code="dB"/>
+               <swe:value>20</swe:value>
+            </swe:Quantity>
+         </sml:parameter>
+         <sml:parameter name="offset">
+            <!--The offset of the component-->
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#offset">
+               <swe:label>Offset</swe:label>
+               <swe:uom code="V"/>
+               <swe:value>0</swe:value>
+            </swe:Quantity>
+         </sml:parameter>
+         <sml:parameter name="highPassFilter">
+            <!--The high pass filter of the component-->
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#highPassFilter">
+               <swe:label>High Pass Filter</swe:label>
+               <swe:uom code="Hz_[-3.dB]"/>
+               <swe:value>15</swe:value>
+            </swe:Quantity>
+         </sml:parameter>
+         <sml:parameter name="lowPassFilter">
+            <!--The low pass filter of the component-->
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#lowPassFilter">
+               <swe:label>Low Pass Filter</swe:label>
+               <swe:uom code="Hz_[-3.dB]"/>
+               <swe:value>150000</swe:value>
+            </swe:Quantity>
+         </sml:parameter>
+         <sml:parameter name="outputVoltage">
+            <!--The output voltage of the component-->
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#outputVoltage">
+               <swe:label>OutputVoltage</swe:label>
+               <swe:uom code="V"/>
+               <swe:value>2</swe:value>
+            </swe:Quantity>
+         </sml:parameter>
+         <sml:parameter name="accuracy">
+            <!--The accuracy of the component-->
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#accuracy">
+               <swe:label>Accuracy</swe:label>
+               <swe:uom code="dB"/>
+               <swe:value>1.5</swe:value>
+            </swe:Quantity>
+         </sml:parameter>
+      </sml:ParameterList>
+   </sml:parameters>
+   <!--This element refers to the sensor system or platform to which this component is attached. When following this link, a SensorML document containing all metadata on system/platform level is returned.-->
+   <sml:attachedTo xlink:href="http://52north.org/ExampleHydrophone1.xml"/>
+   <sml:position>
+      <!--A vector describing the location of the sensor in a system/on a platform. The referenceFrame refers to the local reference frame defined on system/platform level.-->
+      <swe:Vector referenceFrame="hydrophoneFrame">
+         <!--The X coordinate describing the location of the sensor within the system/on the platform (in metres)-->
+         <swe:coordinate name="X">
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#distance">
+               <swe:uom code="m"/>
+               <swe:value>0.5</swe:value>
+            </swe:Quantity>
+         </swe:coordinate>
+         <!--The Y coordinate describing the location of the sensor within the system/on the platform (in metres)-->
+         <swe:coordinate name="Y">
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#distance">
+               <swe:uom code="m"/>
+               <swe:value>-0.2</swe:value>
+            </swe:Quantity>
+         </swe:coordinate>
+         <!--The Z coordinate describing the location of the sensor within the system/on the platform (in metres)-->
+         <swe:coordinate name="Z">
+            <swe:Quantity definition="http://www.nexosproject.eu/dictionary/definitions.html#distance">
+               <swe:uom code="m"/>
+               <swe:value>0.4</swe:value>
+            </swe:Quantity>
+         </swe:coordinate>
+      </swe:Vector>
+   </sml:position>
+</sml:PhysicalComponent>
