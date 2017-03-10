@@ -1667,33 +1667,6 @@ button.ui-button::-moz-focus-inner {
 }
 
 
-.ui-datalist .ui-datalist-header,
-.ui-datalist .ui-datalist-footer {
-    text-align:center;
-    padding:4px 10px;
-}
-
-.ui-datalist .ui-datalist-header {
-    border-bottom: 0px none;
-}
-
-.ui-datalist .ui-datalist-footer {
-    border-top: 0px none;
-}
-
-.ui-datalist .ui-paginator {
-    border-top: 0px none;
-}
-
-.ui-datalist .ui-datalist-data {
-    margin: 0;
-    padding: 0;
-}
-
-.ui-datalist .ui-datalist-data > li {
-    list-style-type: none;
-    
-}
 .ui-datascroller {
 }
 
@@ -1739,6 +1712,33 @@ button.ui-button::-moz-focus-inner {
     padding: 0;
     margin: 0;
     display: inline-block;
+}
+.ui-datalist .ui-datalist-header,
+.ui-datalist .ui-datalist-footer {
+    text-align:center;
+    padding:4px 10px;
+}
+
+.ui-datalist .ui-datalist-header {
+    border-bottom: 0px none;
+}
+
+.ui-datalist .ui-datalist-footer {
+    border-top: 0px none;
+}
+
+.ui-datalist .ui-paginator {
+    border-top: 0px none;
+}
+
+.ui-datalist .ui-datalist-data {
+    margin: 0;
+    padding: 0;
+}
+
+.ui-datalist .ui-datalist-data > li {
+    list-style-type: none;
+    
 }
 .ui-datatable table {
 	border-collapse:collapse;
@@ -1877,6 +1877,7 @@ button.ui-button::-moz-focus-inner {
 
 /* Resizable */
 .ui-datatable .ui-column-resizer {
+    display: block;
     position: absolute !important;
     top: 0px;
     right: 0px;
@@ -2113,6 +2114,10 @@ button.ui-button::-moz-focus-inner {
     font-weight: normal;
     width: 100%;
     float:left;
+}
+
+.ui-dropdown .ui-dropdown-label-empty {
+    text-indent: -9999px;   
 }
 
 .ui-dropdown.ui-state-disabled .ui-dropdown-trigger,
@@ -4798,7 +4803,7 @@ button.ui-button::-moz-focus-inner {
 .leaflet-container.leaflet-touch-drag {
 	-ms-touch-action: pinch-zoom;
 	}
-.leaflet-container.leaflet-touch-drag.leaflet-touch-drag {
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
 	-ms-touch-action: none;
 	touch-action: none;
 }
@@ -12254,4 +12259,4 @@ a.bg-danger:focus, a.bg-danger:hover {
   overflow: visible;
   clip: auto; }
 
-/*# sourceMappingURL=main.708f9d1154c6e58a6ab2.bundle.map*/
+/*# sourceMappingURL=main.66c8b02dad1c08bd37bd.bundle.map*/
