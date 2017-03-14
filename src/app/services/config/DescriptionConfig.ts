@@ -4,6 +4,7 @@ export interface DescriptionConfig {
     isFieldFixed(name: string): boolean;
     isFieldMandatory(name: string): boolean;
     existInForm(name: string): boolean;
+    isExpanded(): boolean;
     elementFixQuantity(name: string): boolean;
     getLabel(name: string): string;
 }

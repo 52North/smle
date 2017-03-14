@@ -13,6 +13,9 @@ export class TrueDescriptionConfig implements DescriptionConfig {
     existInForm(name: string): boolean {
         return true;
     }
+    isExpanded(): boolean {
+        return true;
+    }
     elementFixQuantity(name: string): boolean {
         return false;
     }

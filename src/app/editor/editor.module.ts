@@ -12,6 +12,7 @@ import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
 import { ListComponent, ListAddSectionDirective } from './components/basic/ListComponent';
+import { ExpandWrapperComponent } from './components/basic/expand-wrapper.component';
 import { MapComponent } from './components/basic/MapComponent';
 import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
@@ -122,6 +123,7 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         HostDirective,
         DynamicElementComponent,
         NestedCardComponent,
+        ExpandWrapperComponent,
         // gml components
         AbstractFeatureComponent,
         AbstractGMLComponent,

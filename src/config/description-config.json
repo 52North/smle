@@ -186,8 +186,9 @@
       }
     },
     "sml:keywords": {
+      "isExpanded": true,
       "sml:KeywordList": {
-        "fixedQuantity": true,
+        "fixedQuantity": false,
         "@:codeSpace": false,
         "@:definition": false,
         "swe:description": false,

@@ -17,6 +17,9 @@ export class DefaultDescriptionConfig implements DescriptionConfig {
     existInForm(name: string): boolean {
         return true;
     }
+    isExpanded(): boolean {
+        return false;
+    }
     elementFixQuantity(name: string): boolean {
         return false;
     }
