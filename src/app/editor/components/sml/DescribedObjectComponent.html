@@ -1,12 +1,38 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
 <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'language'" [configName]="'sml:language'"></text-field>
-<div class="form-group" *ngIf="config.existInForm('sml:keywords',model,'keywords') &&(isShowAll || config.isFieldVisible('sml:keywords','textField',model,'keywords'))">
-    <label for="keywords">{{getDisplayName('keywords')}}</label>
-    <list [list]="model.keywords" (select)="openNewKeywordListItem($event)" [fixLength]="config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')" (remove)="onRemoveKeywordList($event)" (add)="onAddKeywordList()"></list>
+<div class="form-group" *ngIf="config.existInForm('sml:keywords',model,'keywords') && (isShowAll || config.isFieldVisible('sml:keywords','textField',model,'keywords'))">
+    <h4 for="keywords">{{getDisplayName('keywords')}}</h4>
+    <list *ngIf="!config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')"
+          [list]="model.keywords"
+          [fixLength]="config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')"
+          (select)="openNewKeywordListItem($event)"
+          (remove)="onRemoveKeywordList($event)"
+          (add)="onAddKeywordList()">
+    </list>
+    <dynamic-element *ngIf="config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')"
+                  [componentType]="keywordListComponent"
+                  [model]="model.keywords[0]"
+                  [config]="config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')"
+                  [isShowAll]="isShowAll"
+                  (openAsNewChild)="openChild($event)">
+    </dynamic-element>
 </div>
-<div class="form-group" *ngIf="config.existInForm('sml:identification',model,'identification') &&(isShowAll || config.isFieldVisible('sml:identification','textField',model,'identification'))">
-    <label for="identification">{{getDisplayName('identification')}}</label>
-    <list [list]="model.identification" [fixLength]="config.getConfigFor('sml:identification').elementFixQuantity('sml:IdentifierList')" (select)="openNewIdentifierListItem($event)" (remove)="onRemoveIdentifierList($event)" (add)="onAddIdentifierList()"></list>
+<div class="form-group" *ngIf="config.existInForm('sml:identification',model,'identification') && (isShowAll || config.isFieldVisible('sml:identification','textField',model,'identification'))">
+    <h4 for="identification">{{getDisplayName('identification')}}</h4>
+    <list *ngIf="!config.getConfigFor('sml:identification').elementFixQuantity('sml:IdentifierList')"
+          [list]="model.identification"
+          [fixLength]="config.getConfigFor('sml:identification').elementFixQuantity('sml:IdentifierList')"
+          (select)="openNewIdentifierListItem($event)"
+          (remove)="onRemoveIdentifierList($event)"
+          (add)="onAddIdentifierList()">
+    </list>
+    <dynamic-element *ngIf="config.getConfigFor('sml:identification').elementFixQuantity('sml:IdentifierList')"
+                  [componentType]="identifierListComponent"
+                  [model]="model.identification[0]"
+                  [config]="config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')"
+                  [isShowAll]="isShowAll"
+                  (openAsChild)="openNewChild($event)">
+    </dynamic-element>
 </div>
 <div class="form-group" *ngIf="config.existInForm('sml:classification',model,'classification') &&(isShowAll || config.isFieldVisible('sml:classification','textField',model,'classification'))">
     <label for="classification">{{getDisplayName('classification')}}</label>

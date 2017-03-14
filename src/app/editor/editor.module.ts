@@ -100,6 +100,10 @@ import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
 import { SensorMLPipe } from './pipes/SensorMLPipe';
 
+import { DynamicElementComponent } from './components/base/dynamic-element.component';
+import { HostDirective } from './components/base/host.directive';
+import { NestedCardComponent } from './components/basic/NestedCardComponent';
+
 @NgModule({
     declarations: [
         // basic components
@@ -115,6 +119,9 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         TextFieldComponent,
         ObjectTreeComponent,
         TreeNodeComponent,
+        HostDirective,
+        DynamicElementComponent,
+        NestedCardComponent,
         // gml components
         AbstractFeatureComponent,
         AbstractGMLComponent,
@@ -217,6 +224,7 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         TextFieldComponent,
         ObjectTreeComponent,
         TreeNodeComponent,
+        NestedCardComponent,
         // gml components
         AbstractFeatureComponent,
         AbstractGMLComponent,
@@ -316,7 +324,9 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ContactComponent,
         PhoneComponent,
         AddressComponent,
-        OnlineResourceComponent
+        OnlineResourceComponent,
+        NestedCardComponent,
+        DynamicElementComponent
     ]
 })
 export class EditorModule { }

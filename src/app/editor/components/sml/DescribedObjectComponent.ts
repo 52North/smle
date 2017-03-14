@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Type } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { DescribedObject } from '../../../model/sml/DescribedObject';
 import { KeywordList } from '../../../model/sml/KeywordList';
@@ -14,6 +14,7 @@ import { ContactList } from '../../../model/sml/ContactList';
 import { EventList } from '../../../model/sml/EventList';
 import { EventListComponent } from './EventListComponent';
 import { ChildMetadata, TypedModelComponent } from '../base';
+import { NestedChildMetadata } from '../base/NestedChildMetadata';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
 import { CharacteristicListComponent } from './CharacteristicListComponent';
 import { CapabilityList } from '../../../model/sml/CapabilityList';
@@ -23,12 +24,16 @@ import { TimeInstant } from '../../../model/gml/TimeInstant';
 import { TimePeriod } from '../../../model/gml/TimePeriod';
 import { TimeInstantComponent } from '../gml/TimeInstantComponent';
 import { TimePeriodComponent } from '../gml/TimePeriodComponent';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 
 @Component({
     selector: 'sml-described-object',
     template: require('./DescribedObjectComponent.html')
 })
 export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
+
+    public keywordListComponent: Type<any> = KeywordListComponent;
+    public identifierListComponent: Type<any> = IdentifierListComponent;
 
     protected createModel(): DescribedObject {
         return undefined;
@@ -46,10 +51,12 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewIdentifierListItem(item: IdentifierList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 IdentifierListComponent,
+                'Identifier List',
                 item,
-                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList'),
             )
         );
     }

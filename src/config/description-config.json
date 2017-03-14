@@ -157,6 +157,7 @@
     },
     "sml:identification": {
       "sml:IdentifierList": {
+        "fixedQuantity": false,
         "@:definition": false,
         "sml:identifiers": {
           "sml:Term": {
@@ -186,6 +187,7 @@
     },
     "sml:keywords": {
       "sml:KeywordList": {
+        "fixedQuantity": true,
         "@:codeSpace": false,
         "@:definition": false,
         "swe:description": false,
