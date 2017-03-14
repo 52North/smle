@@ -11,7 +11,7 @@
     </list>
     <dynamic-element *ngIf="config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')"
                      [componentType]="keywordListComponent"
-                     [model]="model.keywords[0]"
+                     [model]="model.keywords"
                      [config]="config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')"
                      [isShowAll]="isShowAll"
                      (openAsNewChild)="openChild($event)">
@@ -29,7 +29,7 @@
     </list>
     <dynamic-element *ngIf="config.getConfigFor('sml:identification').elementFixQuantity('sml:IdentifierList')"
                      [componentType]="identifierListComponent"
-                     [model]="model.identification[0]"
+                     [model]="model.identification"
                      [config]="config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')"
                      [isShowAll]="isShowAll"
                      (openAsChild)="openNewChild($event)">

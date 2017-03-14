@@ -61,7 +61,18 @@ export class DynamicElementComponent implements OnDestroy, OnChanges {
         let viewContainerRef = this.listItemHost.viewContainerRef;
         viewContainerRef.clear();
         let componentRef = viewContainerRef.createComponent(componentFactory);
-        (<TypedModelComponent<any>>componentRef.instance).model = this.model;
+        let model;
+        if (Array.isArray(this.model)) {
+            if (this.model.length === 0) {
+                model = (new this.componentType()).createModel();
+                this.model.push(model);
+                (<TypedModelComponent<any>>componentRef.instance).model = model;
+            } else {
+                (<TypedModelComponent<any>>componentRef.instance).model = this.model[0];
+            }
+        } else {
+            (<TypedModelComponent<any>>componentRef.instance).model = this.model;
+        }
         (<TypedModelComponent<any>>componentRef.instance).config = this.config;
         (<TypedModelComponent<any>>componentRef.instance).isShowAll = this.isShowAll;
         (<TypedModelComponent<any>>componentRef.instance).openAsChild.subscribe((childMetadata) => {

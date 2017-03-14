@@ -41,8 +41,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewKeywordListItem(item: KeywordList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 KeywordListComponent,
+                'Keyword List',
                 item,
                 this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
             )
