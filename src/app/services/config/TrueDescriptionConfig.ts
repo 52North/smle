@@ -14,10 +14,10 @@ export class TrueDescriptionConfig implements DescriptionConfig {
         return true;
     }
     isExpanded(): boolean {
-        return true;
+        return false;
     }
     showFlatten(name: string): boolean {
-        return true;
+        return false;
     }
     elementFixQuantity(name: string): boolean {
         return false;
