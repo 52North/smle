@@ -167,6 +167,7 @@
       }
     },
     "sml:identification": {
+      "isExpanded": true,
       "sml:IdentifierList": {
         "@:definition": false,
         "showFlatten": true,
