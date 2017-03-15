@@ -26,7 +26,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
 
     private static getNodes(object: any, oldNodes: Array<INode>, parentId: string): Array<INode> {
         let nodes: Array<INode>;
-        let type = object;
+        let type = (typeof object).toString();
 
         if (object === null || type === 'undefined' || type === 'function') {
             return null;
@@ -44,9 +44,9 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
                 parentId
             );
         } else {
-            if (typeof type === 'string' && ObjectTreeComponent.isEmail(object)) {
+            if (type === 'string' && ObjectTreeComponent.isEmail(object)) {
                 type = 'email';
-            } else if (typeof type === 'string' && ObjectTreeComponent.isUrl(object)) {
+            } else if (type === 'string' && ObjectTreeComponent.isUrl(object)) {
                 type = 'url';
             }
 
@@ -118,15 +118,15 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
             };
 
             let name = elem.toString();
-            let type = elem;
+            let type = (typeof elem).toString();
 
             if (type === 'object' && !(elem instanceof Date) || elem instanceof Array) {
                 node.children = ObjectTreeComponent.getNodes(elem, oldNode && oldNode.children, node.id);
             } else if (elem instanceof Date) {
                 name = elem.toLocaleString().replace(/ /g, '\xa0');
-            } else if (typeof type === 'string' && ObjectTreeComponent.isEmail(name)) {
+            } else if (type === 'string' && ObjectTreeComponent.isEmail(name)) {
                 type = 'email';
-            } else if (typeof type === 'string' && ObjectTreeComponent.isUrl(name)) {
+            } else if (type === 'string' && ObjectTreeComponent.isUrl(name)) {
                 type = 'url';
             }
 

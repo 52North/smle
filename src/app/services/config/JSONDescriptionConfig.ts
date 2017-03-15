@@ -8,6 +8,8 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     private defaultFixed: boolean = false;
     private defaultMandatory: boolean = false;
     private defaultFixedQuantity: boolean = false;
+    private defaultShowFlatten: boolean = false;
+    private defaultIsExpanded: boolean = false;
 
     constructor(
         private config: Object
@@ -46,6 +48,16 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     public elementFixQuantity(name: string): boolean {
         let fixedQuantity = this.getConfigParameter(name, 'fixedQuantity');
         return (typeof fixedQuantity === 'undefined') ? this.defaultFixedQuantity : fixedQuantity;
+    }
+
+    public isExpanded(): boolean {
+        let isExpanded = this.config['isExpanded'];
+        return (typeof isExpanded === 'undefined') ? this.defaultIsExpanded : isExpanded;
+    }
+
+    public showFlatten(name: string): boolean {
+        let showFlatten = this.getConfigParameter(name, 'showFlatten');
+        return (typeof showFlatten === 'undefined') ? this.defaultShowFlatten : showFlatten;
     }
 
     public getLabel(name: string): string {

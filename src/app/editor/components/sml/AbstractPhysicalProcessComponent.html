@@ -1,12 +1,14 @@
 <sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
-<div class="form-group" *ngIf="config.existInForm('sml:position',model,'position') &&(isShowAll || config.isFieldVisible('sml:position','textField',model,'position'))">
-    <label for="position">{{getDisplayName('position')}}</label>
+<expand-wrapper [title]="getDisplayName('position')" [expanded]="config.getConfigFor('sml:position').isExpanded()">
+  <div class="form-group" *ngIf="config.existInForm('sml:position',model,'position') &&(isShowAll || config.isFieldVisible('sml:position','textField',model,'position'))">
     <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('sml:position')" [(model)]="model.position"></position-list>
-</div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:attachedTo')">
-  <label for="attachedTo">{{getDisplayName('attachedTo')}}</label>
-  <div *ngIf="model.attachedTo" class="plain-text">{{model.attachedTo}}</div>
-  <div>
-    <button type="button" class="btn btn-secondary" (click)="changeAttachedTo()">Change attached to connection</button>
   </div>
-</div>
+</expand-wrapper>
+<expand-wrapper [title]="getDisplayName('attachedTo')" [expanded]="config.getConfigFor('sml:attachedTo').isExpanded()">
+  <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:attachedTo')">
+    <div *ngIf="model.attachedTo" class="plain-text">{{model.attachedTo}}</div>
+    <div>
+      <button type="button" class="btn btn-secondary" (click)="changeAttachedTo()">Change attached to connection</button>
+    </div>
+  </div>
+</expand-wrapper>

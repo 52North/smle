@@ -12,6 +12,7 @@ import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
 import { ListComponent, ListAddSectionDirective } from './components/basic/ListComponent';
+import { ExpandWrapperComponent } from './components/basic/expand-wrapper.component';
 import { MapComponent } from './components/basic/MapComponent';
 import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
@@ -100,6 +101,10 @@ import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
 import { SensorMLPipe } from './pipes/SensorMLPipe';
 
+import { DynamicElementComponent } from './components/base/dynamic-element.component';
+import { HostDirective } from './components/base/host.directive';
+import { NestedCardComponent } from './components/basic/NestedCardComponent';
+
 @NgModule({
     declarations: [
         // basic components
@@ -115,6 +120,10 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         TextFieldComponent,
         ObjectTreeComponent,
         TreeNodeComponent,
+        HostDirective,
+        DynamicElementComponent,
+        NestedCardComponent,
+        ExpandWrapperComponent,
         // gml components
         AbstractFeatureComponent,
         AbstractGMLComponent,
@@ -217,6 +226,7 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         TextFieldComponent,
         ObjectTreeComponent,
         TreeNodeComponent,
+        NestedCardComponent,
         // gml components
         AbstractFeatureComponent,
         AbstractGMLComponent,
@@ -316,7 +326,9 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ContactComponent,
         PhoneComponent,
         AddressComponent,
-        OnlineResourceComponent
+        OnlineResourceComponent,
+        NestedCardComponent,
+        DynamicElementComponent
     ]
 })
 export class EditorModule { }

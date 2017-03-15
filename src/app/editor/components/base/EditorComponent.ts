@@ -1,6 +1,8 @@
 import { ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
 import { TypedModelComponent } from './TypedModelComponent';
-import { ChildMetadata } from './ChildMetadata';
+import { ChildMetadata } from '../base';
+import { NestedChildMetadata } from './NestedChildMetadata';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 
 export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     private parentComponent: EditorComponent<any>;
@@ -49,6 +51,10 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
         this.childComponentRef.instance.model = model;
         this.childComponentRef.instance.config = config;
         this.childComponentRef.instance.parentComponent = this;
+        if (childMetadata instanceof NestedChildMetadata) {
+            (<NestedCardComponent> this.childComponentRef.instance).componentType = childMetadata.contentType;
+            (<NestedCardComponent> this.childComponentRef.instance).title = childMetadata.title;
+        }
     }
 
     protected close() {

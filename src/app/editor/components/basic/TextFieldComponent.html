@@ -1,5 +1,5 @@
 <div class="form-group" *ngIf="config.existInForm(configName,model,fieldName) &&(isShowAll || config.isFieldVisible(configName,'textField',model,fieldName))">
-     <span *ngIf="!config.getLabel(configName,model,fieldName)">
+     <span *ngIf="!config.getLabel(configName,model,fieldName) && showLabel">
         <label [attr.for]="fieldName">{{getDisplayName(fieldName)}}</label>
     </span>
     <span *ngIf="config.getLabel(configName,model,fieldName)">

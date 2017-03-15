@@ -56,6 +56,16 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
         return true;
     }
 
+    public isExpanded(): boolean {
+        // TODO needs to be implemented
+        return false;
+    }
+
+    public showFlatten(name: string): boolean {
+        // TODO needs to be implemented
+        return false;
+    }
+
     public isFieldFixed(name: string, model?: any, fieldName?: string): boolean {
         let value = this.getValue(name);
         if (this.dynamicGUI) {

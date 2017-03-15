@@ -1,0 +1,3 @@
+<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
+    <dynamic-element [componentType]="componentType" [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></dynamic-element>
+</card>

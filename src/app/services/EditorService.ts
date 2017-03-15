@@ -95,9 +95,8 @@ export class EditorService {
 
     provideDownload(description: AbstractProcess) {
         let data = this.xmlService.serialize(description);
-        let blob = new Blob([data], { type: 'text/xml' });
-        let url = window.URL.createObjectURL(blob);
-        window.open(url);
+        let uriContent = 'data:application/octet-stream,' + encodeURIComponent(data);
+        window.open(uriContent, 'neuesDokument');
     }
 
     getDescriptionType() {
