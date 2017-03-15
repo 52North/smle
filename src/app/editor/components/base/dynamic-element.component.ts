@@ -3,7 +3,6 @@ import {
     Input,
     ViewChild,
     ComponentFactoryResolver,
-    OnDestroy,
     OnChanges,
     SimpleChanges,
     Type,
@@ -16,9 +15,9 @@ import { TypedModelComponent } from './TypedModelComponent';
 
 @Component({
     selector: 'dynamic-element',
-    template: `<template host></template>`
+    templateUrl: 'dynamic-element.component.html'
 })
-export class DynamicElementComponent implements OnDestroy, OnChanges {
+export class DynamicElementComponent implements OnChanges {
     @Input()
     public item: ChildMetadata<any>;
 
@@ -45,15 +44,24 @@ export class DynamicElementComponent implements OnDestroy, OnChanges {
     constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
     public ngOnChanges(changes: SimpleChanges) {
-        if (changes.model) {
-            this.loadComponent();
-        }
-        if (changes.isShowAll) {
-            this.loadComponent();
+        if (this.isModelSet()) {
+            if (changes.model) {
+                this.loadComponent();
+            }
+            if (changes.isShowAll) {
+                this.loadComponent();
+            }
         }
     }
 
-    public ngOnDestroy() {
+    public createElement() {
+        if (Array.isArray(this.model) && this.model.length === 0) {
+            let model = (new this.componentType()).createModel();
+            this.model.push(model);
+        } else {
+            this.model = (new this.componentType()).createModel();
+        }
+        this.loadComponent();
     }
 
     public loadComponent() {
@@ -61,19 +69,9 @@ export class DynamicElementComponent implements OnDestroy, OnChanges {
         let viewContainerRef = this.listItemHost.viewContainerRef;
         viewContainerRef.clear();
         let componentRef = viewContainerRef.createComponent(componentFactory);
-        let model;
         if (Array.isArray(this.model)) {
-            if (this.model.length === 0) {
-                model = (new this.componentType()).createModel();
-                this.model.push(model);
-                (<TypedModelComponent<any>>componentRef.instance).model = model;
-            } else {
-                (<TypedModelComponent<any>>componentRef.instance).model = this.model[0];
-            }
+            (<TypedModelComponent<any>>componentRef.instance).model = this.model[0];
         } else {
-            if (!this.model) {
-                this.model = (new this.componentType()).createModel();
-            }
             (<TypedModelComponent<any>>componentRef.instance).model = this.model;
         }
         (<TypedModelComponent<any>>componentRef.instance).config = this.config;
@@ -81,6 +79,12 @@ export class DynamicElementComponent implements OnDestroy, OnChanges {
         (<TypedModelComponent<any>>componentRef.instance).openAsChild.subscribe((childMetadata) => {
             this.openAsChild.emit(childMetadata);
         });
+    }
+
+    public isModelSet(): boolean {
+        if (Array.isArray(this.model) && this.model.length > 0) return true;
+        if (!Array.isArray(this.model) && this.model) return true;
+        return false;
     }
 
 }
