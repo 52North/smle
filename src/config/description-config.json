@@ -69,14 +69,13 @@
         "swe:label": false
       }
     },
-    "sml:configuration": {
-    },
     "sml:contacts": {
       "sml:ContactList": {
         "showFlatten": true
       }
     },
     "sml:documentation": {
+      "showFlatten": true,
       "sml:DocumentList": {
         "@:definition": false,
         "showFlatten": true,
