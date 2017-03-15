@@ -8,6 +8,7 @@
     "location": false,
     "sml:capabilities": {
       "sml:CapabilitiesList": {
+        "fixedQuantity": true,
         "@:definition": false,
         "sml:capabilities": {
           "component": {
@@ -28,8 +29,14 @@
         "swe:label": false
       }
     },
+    "sml:contacts": {
+      "sml:ContactList": {
+        "fixedQuantity": true
+      }
+    },
     "sml:characteristics": {
       "sml:CharacteristicList": {
+        "fixedQuantity": true,
         "@:definition": false,
         "sml:characteristic": {
           "component": {
@@ -52,6 +59,7 @@
     },
     "sml:classification": {
       "sml:ClassifierList": {
+        "fixedQuantity": true,
         "@:definition": false,
         "sml:classifiers": {
           "sml:Term": {
@@ -68,6 +76,7 @@
     },
     "sml:documentation": {
       "sml:DocumentList": {
+        "fixedQuantity": false,
         "@:definition": false,
         "sml:document": true,
         "swe:description": false,
@@ -78,6 +87,7 @@
     },
     "sml:history": {
       "sml:EventList": {
+        "fixedQuantity": true,
         "@:definition": false,
         "sml:events": {
           "sml:classification": {
@@ -157,7 +167,7 @@
     },
     "sml:identification": {
       "sml:IdentifierList": {
-        "fixedQuantity": false,
+        "fixedQuantity": true,
         "@:definition": false,
         "sml:identifiers": {
           "sml:Term": {
@@ -186,9 +196,9 @@
       }
     },
     "sml:keywords": {
-      "isExpanded": true,
+      "isExpanded": false,
       "sml:KeywordList": {
-        "fixedQuantity": false,
+        "fixedQuantity": true,
         "@:codeSpace": false,
         "@:definition": false,
         "swe:description": false,

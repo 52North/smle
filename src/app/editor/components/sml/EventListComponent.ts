@@ -1,18 +1,15 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { EventList } from '../../../model/sml/EventList';
 import { EventComponent } from './EventComponent';
 import { Event } from '../../../model/sml/Event';
-import { EditorComponent, ChildMetadata } from '../base';
+import { TypedModelComponent, ChildMetadata } from '../base';
 
 @Component({
     selector: 'sml-event-list',
     template: require('./EventListComponent.html'),
     styles: [require('../styles/editor-component.scss')]
 })
-export class EventListComponent extends EditorComponent<EventList> {
-    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
+export class EventListComponent extends TypedModelComponent<EventList> {
 
     protected createModel(): EventList {
         return new EventList();
@@ -28,7 +25,6 @@ export class EventListComponent extends EditorComponent<EventList> {
     }
 
     protected onRemoveEvent(index: number): void {
-        this.closeChildWithModel(this.model.events[index]);
         this.model.events.splice(index, 1);
     }
 }

@@ -34,6 +34,12 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     public keywordListComponent: Type<any> = KeywordListComponent;
     public identifierListComponent: Type<any> = IdentifierListComponent;
+    public classifierListComponent: Type<any> = ClassifierListComponent;
+    public characteristicsListComponent: Type<any> = CharacteristicListComponent;
+    public capabilitiesListComponent: Type<any> = CapabilityListComponent;
+    public documentListComponent: Type<any> = DocumentListComponent;
+    public eventListComponent: Type<any> = EventListComponent;
+    public contactListComponent: Type<any> = ContactListComponent;
 
     protected createModel(): DescribedObject {
         return undefined;
@@ -65,8 +71,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewClassifierListItem(item: ClassifierList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 ClassifierListComponent,
+                'Classifier List',
                 item,
                 this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
             )
@@ -75,8 +83,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewContactListItem(item: ContactList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 ContactListComponent,
+                'Contact List',
                 item,
                 this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
             )
@@ -85,8 +95,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewEventListItem(item: EventList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 EventListComponent,
+                'Event List',
                 item,
                 this.config.getConfigFor('sml:history').getConfigFor('sml:EventList')
             )
@@ -95,8 +107,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewDocumentListItem(item: DocumentList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 DocumentListComponent,
+                'Document List',
                 item,
                 this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
             )
@@ -105,8 +119,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewCharacteristicListItem(item: CharacteristicList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 CharacteristicListComponent,
+                'Characteristic List',
                 item,
                 this.config.getConfigFor('sml:characteristics').getConfigFor('sml:CharacteristicList')
             )
@@ -115,8 +131,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewCapabilityListItem(item: CapabilityList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 CapabilityListComponent,
+                'Capability List',
                 item,
                 this.config.getConfigFor('sml:capabilities').getConfigFor('sml:CapabilitiesList')
             )
