@@ -1,0 +1,7 @@
+<template host></template>
+<div *ngIf="!isModelSet()">
+  <a (click)="createElement()" class="btn btn-link">
+      <i class="fa fa-fw fa-plus"></i>
+      <span>create element</span>
+  </a>
+</div>
