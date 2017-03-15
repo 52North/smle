@@ -17,7 +17,7 @@
     </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('identification')">
+<expand-wrapper [title]="getDisplayName('identification')" [expanded]="config.getConfigFor('sml:identification').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:identification',model,'identification') && (isShowAll || config.isFieldVisible('sml:identification','textField',model,'identification'))">
     <list *ngIf="!config.getConfigFor('sml:identification').showFlatten('sml:IdentifierList')"
           [list]="model.identification"
@@ -35,7 +35,7 @@
     </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('classification')">
+<expand-wrapper [title]="getDisplayName('classification')" [expanded]="config.getConfigFor('sml:classification').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:classification',model,'classification') &&(isShowAll || config.isFieldVisible('sml:classification','textField',model,'classification'))">
       <list *ngIf="!config.getConfigFor('sml:classification').showFlatten('sml:ClassifierList')"
             [list]="model.classification"
@@ -53,7 +53,7 @@
       </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('validTime')">
+<expand-wrapper [title]="getDisplayName('validTime')" [expanded]="config.getConfigFor('sml:validTime').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:validTime',model,'validTime') &&(isShowAll || config.isFieldVisible('sml:validTime','textField',model,'validTime'))">
       <list [list]="model.validTime" (select)="openNewAbstractTimeItem($event)" (remove)="onRemoveAbstractTime($event)">
           <list-add-section>
@@ -67,7 +67,7 @@
       </list>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('characteristics')">
+<expand-wrapper [title]="getDisplayName('characteristics')" [expanded]="config.getConfigFor('sml:characteristics').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:characteristics',model,'characteristics') &&(isShowAll || config.isFieldVisible('sml:characteristics','textField',model,'characteristics'))">
       <list *ngIf="!config.getConfigFor('sml:characteristics').showFlatten('sml:CharacteristicList')"
             [list]="model.characteristics"
@@ -85,7 +85,7 @@
       </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('capabilities')">
+<expand-wrapper [title]="getDisplayName('capabilities')" [expanded]="config.getConfigFor('sml:capabilities').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:capabilities',model,'capabilities') &&(isShowAll || config.isFieldVisible('sml:capabilities','textField',model,'capabilities'))">
       <list *ngIf="!config.getConfigFor('sml:capabilities').showFlatten('sml:CapabilitiesList')"
             [list]="model.capabilities"
@@ -103,7 +103,7 @@
       </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('contacts')">
+<expand-wrapper [title]="getDisplayName('contacts')" [expanded]="config.getConfigFor('sml:contacts').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:contacts',model,'contacts') &&(isShowAll || config.isFieldVisible('sml:contacts','textField',model,'contacts'))">
       <list *ngIf="!config.getConfigFor('sml:contacts').showFlatten('sml:ContactList')"
             [list]="model.contacts"
@@ -121,7 +121,7 @@
       </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('documentation')">
+<expand-wrapper [title]="getDisplayName('documentation')" [expanded]="config.getConfigFor('sml:documentation').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:documentation',model,'documentation') &&(isShowAll || config.isFieldVisible('sml:documentation','textField',model,'documentation'))">
       <list *ngIf="!config.getConfigFor('sml:documentation').showFlatten('sml:DocumentList')"
             [list]="model.documentation"
@@ -139,7 +139,7 @@
       </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('history')">
+<expand-wrapper [title]="getDisplayName('history')" [expanded]="config.getConfigFor('sml:history').isExpanded()">
   <div class="form-group" *ngIf="config.existInForm('sml:history',model,'history') &&(isShowAll || config.isFieldVisible('sml:history','textField',model,'history'))">
       <list *ngIf="!config.getConfigFor('sml:history').showFlatten('sml:EventList')"
             [list]="model.history"
