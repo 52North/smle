@@ -95,7 +95,7 @@
             (add)="onAddCapabilityList()">
       </list>
       <dynamic-element *ngIf="config.getConfigFor('sml:capabilities').showFlatten('sml:CapabilitiesList')"
-                       [componentType]="capabilitiesListComponent"
+                       [componentType]="capabilityListComponent"
                        [model]="model.capabilities"
                        [config]="config.getConfigFor('sml:capabilities').getConfigFor('sml:CapabilitiesList')"
                        [isShowAll]="isShowAll"

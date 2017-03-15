@@ -36,7 +36,7 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     public identifierListComponent: Type<any> = IdentifierListComponent;
     public classifierListComponent: Type<any> = ClassifierListComponent;
     public characteristicsListComponent: Type<any> = CharacteristicListComponent;
-    public capabilitiesListComponent: Type<any> = CapabilityListComponent;
+    public capabilityListComponent: Type<any> = CapabilityListComponent;
     public documentListComponent: Type<any> = DocumentListComponent;
     public eventListComponent: Type<any> = EventListComponent;
     public contactListComponent: Type<any> = ContactListComponent;
