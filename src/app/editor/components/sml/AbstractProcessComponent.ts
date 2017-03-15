@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
+import { Component, Type } from '@angular/core';
+import { TypedModelComponent } from '../base';
+import { NestedChildMetadata } from '../base/NestedChildMetadata';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { SettingsComponent } from './SettingsComponent';
 import { Settings, ParameterList, OutputList, InputList } from '../../../model/sml';
@@ -12,13 +14,25 @@ import { InputListComponent } from './InputListComponent';
     template: require('./AbstractProcessComponent.html')
 })
 export class AbstractProcessComponent extends TypedModelComponent<AbstractProcess> {
+
+    public settingsComponent: Type<any> = SettingsComponent;
+    public parameterListComponent: Type<any> = ParameterListComponent;
+    public outputListComponent: Type<any> = OutputListComponent;
+    public inputListComponent: Type<any> = InputListComponent;
+
     protected createModel(): AbstractProcess {
         return undefined;
     }
 
     protected openSettings() {
         this.openNewChild(
-            new ChildMetadata(SettingsComponent, this.model.configuration, this.config.getConfigFor('settings'))
+            new NestedChildMetadata(
+              NestedCardComponent,
+              SettingsComponent,
+              'Settings',
+              this.model.configuration,
+              this.config.getConfigFor('settings')
+            )
         );
     }
 
@@ -32,8 +46,10 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
 
     protected openParameters() {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 ParameterListComponent,
+                'Parameter list',
                 this.model.parameters,
                 this.config.getConfigFor('sml:parameters').getConfigFor('sml:ParameterList')
             )
@@ -50,8 +66,10 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
 
     protected openOutputs() {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 OutputListComponent,
+                'Output list',
                 this.model.outputs,
                 this.config.getConfigFor('sml:outputs').getConfigFor('sml:OutputList')
             )
@@ -68,8 +86,10 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
 
     protected openInputs() {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 InputListComponent,
+                'Input list',
                 this.model.inputs,
                 this.config.getConfigFor('sml:inputs').getConfigFor('sml:InputList')
             )

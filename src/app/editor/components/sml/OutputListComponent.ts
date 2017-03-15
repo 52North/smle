@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent, ChildMetadata } from '../base';
+import { Component, Type } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { OutputList, Output, DataInterface, ObservableProperty } from '../../../model/sml';
 import { OutputComponent } from './OutputComponent';
 import {
@@ -19,7 +19,7 @@ import {
     selector: 'sml-output-list',
     template: require('./OutputListComponent.html')
 })
-export class OutputListComponent extends EditorComponent<OutputList> {
+export class OutputListComponent extends TypedModelComponent<OutputList> {
 
     protected options = [
         { name: (new SweText()).toString(), type: SweText },
@@ -35,13 +35,6 @@ export class OutputListComponent extends EditorComponent<OutputList> {
         { name: (new SweDataRecord()).toString(), type: SweDataRecord },
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
-
-    constructor(
-        componentFactoryResolver: ComponentFactoryResolver,
-        viewContainerRef: ViewContainerRef
-    ) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
 
     protected createModel(): OutputList {
         return new OutputList();
@@ -60,7 +53,6 @@ export class OutputListComponent extends EditorComponent<OutputList> {
     }
 
     protected onRemoveOutput(index: number): void {
-        this.closeChildWithModel(this.model.outputs[index]);
         this.model.outputs.splice(index, 1);
     }
 

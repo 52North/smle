@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { EditorComponent, ChildMetadata } from '../base';
+import { Component } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { Settings, ValueSetting, ModeSetting, StatusSetting } from '../../../model/sml';
 import { ValueSettingComponent } from './ValueSettingComponent';
 import { ModeSettingComponent } from './ModeSettingComponent';
@@ -9,11 +9,7 @@ import { StatusSettingComponent } from './StatusSettingComponent';
     selector: 'sml-settings',
     template: require('./SettingsComponent.html')
 })
-export class SettingsComponent extends EditorComponent<Settings> {
-
-    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
+export class SettingsComponent extends TypedModelComponent<Settings> {
 
     protected createModel(): Settings {
         return new Settings();
@@ -25,7 +21,6 @@ export class SettingsComponent extends EditorComponent<Settings> {
     }
 
     protected onRemoveSetValue(index: number): void {
-        this.closeChildWithModel(this.model.setValue[index]);
         this.model.setValue.splice(index, 1);
     }
 
@@ -39,7 +34,6 @@ export class SettingsComponent extends EditorComponent<Settings> {
     }
 
     protected onRemoveSetMode(index: number): void {
-        this.closeChildWithModel(this.model.setMode[index]);
         this.model.setMode.splice(index, 1);
     }
 
@@ -53,7 +47,6 @@ export class SettingsComponent extends EditorComponent<Settings> {
     }
 
     protected onRemoveSetStatus(index: number): void {
-        this.closeChildWithModel(this.model.setStatus[index]);
         this.model.setStatus.splice(index, 1);
     }
 

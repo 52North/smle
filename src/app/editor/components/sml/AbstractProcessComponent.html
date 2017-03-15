@@ -1,26 +1,78 @@
 <sml-described-object [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-described-object>
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'typeOf'" [configName]="'sml:typeOf'"></text-field>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:configuration')">
-    <label for="configuration">Configuration</label>
-    <div>
-        <child-item [model]="model.configuration" [itemTitle]="getDisplayName('configuration')" (add)="createSettings()" (remove)="removeSettings()" (select)="openSettings()"></child-item>
-    </div>
-</div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:parameters')">
-    <label for="parameters">Parameters</label>
-    <div>
-        <child-item [model]="model.parameters" [itemTitle]="getDisplayName('parameters')" [config]="config" [configName]="'sml:parameters'" (add)="createParameters()" (remove)="removeParameters()" (select)="openParameters()"></child-item>
-    </div>
-</div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:outputs')">
-    <label for="outputs">Outputs</label>
-    <div>
-        <child-item [model]="model.outputs" [itemTitle]="getDisplayName('outputs')" (add)="createOutputs()" (remove)="removeOutputs()" (select)="openOutputs()"></child-item>
-    </div>
-</div>
-<div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:inputs')">
-    <label for="inputs">Inputs</label>
-    <div>
-        <child-item [model]="model.inputs" [itemTitle]="getDisplayName('inputs')" (add)="createInputs()" (remove)="removeInputs()" (select)="openInputs()"></child-item>
-    </div>
-</div>
+<expand-wrapper [title]="getDisplayName('typeOf')">
+  <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'typeOf'" [configName]="'sml:typeOf'" [showLabel]="false"></text-field>
+</expand-wrapper>
+<expand-wrapper [title]="getDisplayName('configuration')">
+  <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:configuration')">
+    <child-item *ngIf="!config.getConfigFor('sml:configuration').showFlatten('settings')"
+                [model]="model.configuration"
+                [itemTitle]="getDisplayName('configuration')"
+                (add)="createSettings()"
+                (remove)="removeSettings()"
+                (select)="openSettings()">
+    </child-item>
+    <dynamic-element *ngIf="config.getConfigFor('sml:configuration').showFlatten('settings')"
+                     [componentType]="settingsComponent"
+                     [model]="model.configuration"
+                     [config]="config.getConfigFor('sml:configuration').getConfigFor('settings')"
+                     [isShowAll]="isShowAll"
+                     (openAsChild)="openNewChild($event)">
+    </dynamic-element>
+  </div>
+</expand-wrapper>
+<expand-wrapper [title]="getDisplayName('parameters')">
+  <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:parameters')">
+    <child-item *ngIf="!config.getConfigFor('sml:parameters').showFlatten('sml:ParameterList')"
+                [model]="model.parameters"
+                [itemTitle]="getDisplayName('parameters')"
+                [config]="config"
+                [configName]="'sml:parameters'"
+                (add)="createParameters()"
+                (remove)="removeParameters()"
+                (select)="openParameters()">
+    </child-item>
+    <dynamic-element *ngIf="config.getConfigFor('sml:parameters').showFlatten('sml:ParameterList')"
+                     [componentType]="parameterListComponent"
+                     [model]="model.parameters"
+                     [config]="config.getConfigFor('sml:parameters').getConfigFor('sml:ParameterList')"
+                     [isShowAll]="isShowAll"
+                     (openAsChild)="openNewChild($event)">
+    </dynamic-element>
+  </div>
+</expand-wrapper>
+<expand-wrapper [title]="getDisplayName('outputs')">
+  <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:outputs')">
+    <child-item *ngIf="!config.getConfigFor('sml:outputs').showFlatten('sml:OutputList')"
+                [model]="model.outputs"
+                [itemTitle]="getDisplayName('outputs')"
+                (add)="createOutputs()"
+                (remove)="removeOutputs()"
+                (select)="openOutputs()">
+    </child-item>
+    <dynamic-element *ngIf="config.getConfigFor('sml:outputs').showFlatten('sml:OutputList')"
+                     [componentType]="outputListComponent"
+                     [model]="model.outputs"
+                     [config]="config.getConfigFor('sml:outputs').getConfigFor('sml:OutputList')"
+                     [isShowAll]="isShowAll"
+                     (openAsChild)="openNewChild($event)">
+    </dynamic-element>
+  </div>
+</expand-wrapper>
+<expand-wrapper [title]="getDisplayName('inputs')">
+  <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:inputs')">
+    <child-item *ngIf="!config.getConfigFor('sml:inputs').showFlatten('sml:InputList')"
+                [model]="model.inputs"
+                [itemTitle]="getDisplayName('inputs')"
+                (add)="createInputs()"
+                (remove)="removeInputs()"
+                (select)="openInputs()">
+    </child-item>
+    <dynamic-element *ngIf="config.getConfigFor('sml:inputs').showFlatten('sml:InputList')"
+                     [componentType]="inputListComponent"
+                     [model]="model.inputs"
+                     [config]="config.getConfigFor('sml:inputs').getConfigFor('sml:InputList')"
+                     [isShowAll]="isShowAll"
+                     (openAsChild)="openNewChild($event)">
+    </dynamic-element>
+  </div>
+</expand-wrapper>

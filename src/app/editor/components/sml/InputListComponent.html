@@ -1,18 +1,16 @@
-<card [verticalMode]="hasChild" [title]="'InputList'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
-    <div class="form-group" *ngIf="config.existInForm('sml:input',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:input','textField',model,'identifier'))">
-        <label for="setValue">{{getDisplayName('input')}}</label>
-        <list [list]="model.inputs" (select)="openNewInput($event)" (remove)="onRemoveInput($event)" (add)="onAddInput()">
-            <list-add-section>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="inputTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
+<div class="form-group" *ngIf="config.existInForm('sml:input',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:input','textField',model,'identifier'))">
+    <label for="setValue">{{getDisplayName('input')}}</label>
+    <list [list]="model.inputs" (select)="openNewInput($event)" (remove)="onRemoveInput($event)" (add)="onAddInput()">
+        <list-add-section>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="inputTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Create new input entry
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="inputTypeDropdown">
-                        <a class="dropdown-item" *ngFor="let option of options" (click)="onAddInput(option.type)">{{option.name}}</a>
-                    </div>
+                <div class="dropdown-menu" aria-labelledby="inputTypeDropdown">
+                    <a class="dropdown-item" *ngFor="let option of options" (click)="onAddInput(option.type)">{{option.name}}</a>
                 </div>
-            </list-add-section>
-        </list>
-    </div>
-</card>
+            </div>
+        </list-add-section>
+    </list>
+</div>

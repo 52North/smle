@@ -71,6 +71,9 @@ export class DynamicElementComponent implements OnDestroy, OnChanges {
                 (<TypedModelComponent<any>>componentRef.instance).model = this.model[0];
             }
         } else {
+            if (!this.model) {
+                this.model = (new this.componentType()).createModel();
+            }
             (<TypedModelComponent<any>>componentRef.instance).model = this.model;
         }
         (<TypedModelComponent<any>>componentRef.instance).config = this.config;

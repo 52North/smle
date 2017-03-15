@@ -8,8 +8,8 @@
     "location": false,
     "sml:capabilities": {
       "sml:CapabilitiesList": {
-        "fixedQuantity": true,
         "@:definition": false,
+        "showFlatten": true,
         "sml:capabilities": {
           "component": {
             "@:axisId": false,
@@ -29,15 +29,10 @@
         "swe:label": false
       }
     },
-    "sml:contacts": {
-      "sml:ContactList": {
-        "fixedQuantity": true
-      }
-    },
     "sml:characteristics": {
       "sml:CharacteristicList": {
-        "fixedQuantity": true,
         "@:definition": false,
+        "showFlatten": true,
         "sml:characteristic": {
           "component": {
             "@:axisId": false,
@@ -59,8 +54,8 @@
     },
     "sml:classification": {
       "sml:ClassifierList": {
-        "fixedQuantity": true,
         "@:definition": false,
+        "showFlatten": true,
         "sml:classifiers": {
           "sml:Term": {
             "@:codeSpace": false,
@@ -74,10 +69,17 @@
         "swe:label": false
       }
     },
+    "sml:configuration": {
+    },
+    "sml:contacts": {
+      "sml:ContactList": {
+        "showFlatten": true
+      }
+    },
     "sml:documentation": {
       "sml:DocumentList": {
-        "fixedQuantity": false,
         "@:definition": false,
+        "showFlatten": true,
         "sml:document": true,
         "swe:description": false,
         "swe:id": false,
@@ -87,8 +89,8 @@
     },
     "sml:history": {
       "sml:EventList": {
-        "fixedQuantity": true,
         "@:definition": false,
+        "showFlatten": true,
         "sml:events": {
           "sml:classification": {
             "sml:ClassifierList": {
@@ -167,8 +169,8 @@
     },
     "sml:identification": {
       "sml:IdentifierList": {
-        "fixedQuantity": true,
         "@:definition": false,
+        "showFlatten": true,
         "sml:identifiers": {
           "sml:Term": {
             "@:codeSpace": false,
@@ -184,6 +186,7 @@
     },
     "sml:inputs": {
       "sml:InputList": {
+        "showFlatten": true,
         "sml:input": {
           "@:axisId": false,
           "@:optional": false,
@@ -198,9 +201,10 @@
     "sml:keywords": {
       "isExpanded": false,
       "sml:KeywordList": {
-        "fixedQuantity": true,
         "@:codeSpace": false,
         "@:definition": false,
+        "fixedQuantity": false,
+        "showFlatten": true,
         "swe:description": false,
         "swe:id": false,
         "swe:identifier": false,
@@ -210,6 +214,7 @@
     "sml:language": false,
     "sml:outputs": {
       "sml:OutputList": {
+        "showFlatten": true,
         "sml:output": {
           "@:axisId": false,
           "@:definition": false,
@@ -224,6 +229,7 @@
     },
     "sml:parameters": {
       "sml:ParameterList": {
+        "showFlatten": true,
         "sml:parameter": {
           "@:axisId": false,
           "@:definition": false,

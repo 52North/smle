@@ -16,6 +16,9 @@ export class TrueDescriptionConfig implements DescriptionConfig {
     isExpanded(): boolean {
         return true;
     }
+    showFlatten(name: string): boolean {
+        return true;
+    }
     elementFixQuantity(name: string): boolean {
         return false;
     }
