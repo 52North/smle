@@ -1,0 +1,25 @@
+<script type="text/javascript">
+
+    document.onreadystatechange = () => {
+        //setTimeout(function() {
+            var xmlhttp = new XMLHttpRequest();
+            var url = "config.json";
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if (document.readyState === 'complete') {
+                        var url = JSON.parse(this.responseText).oauthCallbackUrl;
+                        window.opener.postMessage('LogInSuccessfull', url);
+                        setTimeout(function() {
+                            window.close();
+                        }, 1000);
+                    }
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        //}, 1000)
+    };
+</script>
+<div>
+    Successfully logged in!
+</div>
