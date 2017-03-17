@@ -3,7 +3,7 @@ MAINTAINER Jan Schulte <j.schulte@52north.org>
 
 # Project: https://github.com/52North/smle
 
-## Install required dependencies, including late Node.js
+## Install required dependencies, including latest Node.js
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --fix-missing \
     #ca-certificates \
