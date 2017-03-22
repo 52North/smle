@@ -11,6 +11,7 @@ import { EditorModule } from './editor/editor.module';
 
 import { HomeComponent } from './home/home';
 import { EditorComponent } from './editor/editor';
+import { CreateComponent } from './create/create.component';
 
 import { ConfigurationService } from './services/ConfigurationService';
 
@@ -22,7 +23,8 @@ export function getAppModule(conf) {
         declarations: [
             ApplicationComponent,
             HomeComponent,
-            EditorComponent
+            EditorComponent,
+            CreateComponent
         ],
         imports: [
             BrowserModule,

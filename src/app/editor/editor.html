@@ -6,22 +6,6 @@
     </div>
 </div>
 
-<div *ngIf="!description && !descriptionIsLoading" class="col-sm-offset-4 col-sm-4 type-selector-container">
-    <div>
-        Create a new description:
-    </div>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="descriptionTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select the descriptionType
-        </button>
-        <div class="dropdown-menu" aria-labelledby="descriptionTypeDropdown">
-            <span *ngFor="let descriptionType of descriptionTypes">
-                <a class="dropdown-item" (click)="onSelectDescriptionType(descriptionType)">{{descriptionType}}</a>
-            </span>
-        </div>
-    </div>
-</div>
-
 <div class="row editor actionBar">
 
     <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description  && !!config" [ngSwitch]="descriptionType">
