@@ -9,7 +9,7 @@ import { ROUTES } from './routes';
 import { APP_PROVIDERS } from './providers';
 import { EditorModule } from './editor/editor.module';
 
-import { HomeComponent } from './home/home';
+import { SamplesComponent } from './samples/samples.component';
 import { EditorComponent } from './editor/editor';
 import { CreateComponent } from './create/create.component';
 
@@ -22,7 +22,7 @@ export function getAppModule(conf) {
         bootstrap: [ApplicationComponent],
         declarations: [
             ApplicationComponent,
-            HomeComponent,
+            SamplesComponent,
             EditorComponent,
             CreateComponent
         ],
