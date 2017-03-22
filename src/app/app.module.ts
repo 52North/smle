@@ -10,8 +10,9 @@ import { APP_PROVIDERS } from './providers';
 import { EditorModule } from './editor/editor.module';
 import { SosModule } from './sos/sos.module';
 import { TemplatesModule } from './templates/templates.module';
-import { HomeComponent } from './home/home';
+import { SamplesComponent } from './samples/samples.component';
 import { EditorComponent } from './editor/editor';
+import { CreateComponent } from './create/create.component';
 import { FetchDescriptionComponent } from './sos/fetch/fetch.component';
 import { PublishDescriptionComponent } from './sos/publish/publish.component';
 import { ConnectDescriptionComponent } from './sos/connect/connect.component';
@@ -27,8 +28,9 @@ export function getAppModule(conf) {
         bootstrap: [ApplicationComponent],
         declarations: [
             ApplicationComponent,
-            HomeComponent,
+            SamplesComponent,
             EditorComponent,
+            CreateComponent,
             FetchDescriptionComponent,
             PublishDescriptionComponent,
             ConnectDescriptionComponent,

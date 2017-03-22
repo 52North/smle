@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
-    selector: 'home',
-    template: require('./home.html'),
-    styles: [require('./home.scss')]
+    selector: 'samples',
+    template: require('./samples.component.html'),
+    styles: [require('./samples.component.scss')]
 })
-export class HomeComponent implements OnInit {
+export class SamplesComponent implements OnInit {
 
     descriptions: string[];
     private _selected: string;

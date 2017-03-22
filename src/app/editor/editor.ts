@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess } from '../model/sml';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AbstractProcess } from '../model/sml';
 import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService, DescriptionType } from '../services/EditorService';
@@ -20,7 +20,6 @@ export class EditorComponent implements OnInit {
     public actionBarNeeded: boolean = false;
 
     public visualizerExpanded: boolean = false;
-    public descriptionTypes: string[] = ['PhysicalSystem', 'PhysicalComponent', 'DiscoveryProfile'];
 
     public descriptionType: DescriptionType;
     public descriptionLoadingError: string;
@@ -29,8 +28,9 @@ export class EditorComponent implements OnInit {
     constructor(
         private descriptionConfigService: DescriptionConfigService,
         private editorService: EditorService,
-        private dynamicGUIService: DynamicGUIService,
-        private route: ActivatedRoute
+        private router: Router,
+        private route: ActivatedRoute,
+        private dynamicGUIService: DynamicGUIService
     ) { }
 
     publishDescription(): void {
@@ -71,27 +71,10 @@ export class EditorComponent implements OnInit {
         this.editorService.provideDownload(this.description);
     }
 
-    public onSelectDescriptionType(type: string) {
-        if (type === 'PhysicalSystem') {
-            this.editorService.setDescription(new PhysicalSystem());
-            this.updateEditor();
-        } else if (type === 'PhysicalComponent') {
-            this.editorService.setDescription(new PhysicalComponent());
-            this.updateEditor();
-        } else if (type === 'SimpleProcess') {
-            this.editorService.setDescription(new SimpleProcess());
-            this.updateEditor();
-        } else if (type === 'DiscoveryProfile') {
-            this.editorService.useDiscoveryProfiles().subscribe((res) => {
-                this.description = res.model;
-                this.config = res.configuration;
-                this.descriptionType = this.editorService.getDescriptionType();
-                this.editorMode = this.editorService.getEditorMode();
-            });
-        }
-    }
-
     private updateEditor() {
+        if (this.editorService.getDescription() == null) {
+            this.router.navigate(['/create']);
+        }
         this.description = this.editorService.getDescription();
         this.descriptionType = this.editorService.getDescriptionType();
         this.editorMode = this.editorService.getEditorMode();
