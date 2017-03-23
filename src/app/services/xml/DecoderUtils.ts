@@ -84,7 +84,7 @@ export class DecoderUtils {
         for (let i = 0; i < childNodes.length; i++) {
             if (childNodes.item(i) instanceof Element) {
                 let elem = childNodes.item(i) as Element;
-                if (elem.namespaceURI === elemNamespace && elem.tagName.indexOf(elemName) > 0) {
+                if (elem.namespaceURI === elemNamespace && elem.tagName.indexOf(elemName) >= 0) {
                     matches.push(elem);
                 }
             }
