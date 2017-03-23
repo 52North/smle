@@ -6,7 +6,7 @@
                     <span>Currently the description with the identifer '{{childDescription.identifier.value}}' is attached to '{{getAttachedToIdentifier()}}'.</span>
                     <button class="btn btn-primary center-block" type="button" (click)="clearAttachedTo()">Reset the attached to connection</button>
                 </div>
-                <div class="form-group">
+                <div class="form-group" *ngIf="!childDescription.attachedTo">
                     <label for="attachedTo">Choose one description which should be attached to the '{{childDescription.identifier.value}}' description:</label>
                     <description-id-selection [ignoreIds]="ignoreIds" (onSelectedDescription)="onSelectParentDescription($event)"></description-id-selection>
                 </div>

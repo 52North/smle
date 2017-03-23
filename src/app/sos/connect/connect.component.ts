@@ -26,6 +26,9 @@ export class ConnectDescriptionComponent implements OnInit {
     ) { }
 
     public ngOnInit() {
+        if (!this.connectDescService.childDescription && !this.connectDescService.parentDescription) {
+            this.router.navigate(['/editor']);
+        }
         this.attachedTo = this.connectDescService.attachedTo;
         this.childDescription = this.connectDescService.childDescription;
         this.parentDescription = this.connectDescService.parentDescription;
