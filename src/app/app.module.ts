@@ -8,10 +8,10 @@ import { ApplicationComponent } from './app';
 import { ROUTES } from './routes';
 import { APP_PROVIDERS } from './providers';
 import { EditorModule } from './editor/editor.module';
+import { CreateModule } from './create/create.module';
 
 import { SamplesComponent } from './samples/samples.component';
 import { EditorComponent } from './editor/editor';
-import { CreateComponent } from './create/create.component';
 
 import { ConfigurationService } from './services/ConfigurationService';
 
@@ -23,14 +23,14 @@ export function getAppModule(conf) {
         declarations: [
             ApplicationComponent,
             SamplesComponent,
-            EditorComponent,
-            CreateComponent
+            EditorComponent
         ],
         imports: [
             BrowserModule,
             FormsModule,
             HttpModule,
             EditorModule,
+            CreateModule,
             CommonModule,
             RouterModule.forRoot(ROUTES, { useHash: true })
         ],
