@@ -1,27 +1,42 @@
 import { Component } from '@angular/core';
 import { EditorService } from '../../services/EditorService';
+import { SensorMLXmlService } from '../../services/SensorMLXmlService';
+import { AbstractProcess } from '../../model/sml';
 
 @Component({
-    selector: 'import-description',
-    template: require('./import.component.html'),
-    styles: [require('./import.component.scss')]
+  selector: 'import-description',
+  template: require('./import.component.html'),
+  styles: [require('./import.component.scss')]
 })
 export class ImportComponent {
 
-    public description: string;
+  public description: AbstractProcess;
 
-    constructor(
-        private editorService: EditorService) {
-    }
+  public error: string;
 
-    changeListener($event): void {
-        let file: File = $event.target.files[0];
-        let myReader: FileReader = new FileReader();
+  constructor(
+    private editorService: EditorService) {
+  }
 
-        myReader.onloadend = (e) => {
-            this.description = myReader.result;
-        };
+  public changeListener($event): void {
+    let file: File = $event.target.files[0];
+    let myReader: FileReader = new FileReader();
 
-        myReader.readAsText(file);
-    }
+    this.error = null;
+    this.description = null;
+
+    myReader.onloadend = (e) => {
+      try {
+        this.description = new SensorMLXmlService().deserialize(myReader.result);
+      } catch (error) {
+        this.error = error.message;
+      }
+    };
+
+    myReader.readAsText(file);
+  }
+
+  public openInEditor(): void {
+    this.editorService.openEditorWithDescription(this.description);
+  }
 }
