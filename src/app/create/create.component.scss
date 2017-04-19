@@ -1,5 +1,31 @@
-.center-new-description {
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.box .header {
+  flex: 0 1 auto;
+  padding: 10px 10px 20px;
   display: flex;
   justify-content: center;
-  margin: 10px auto 30px;
+  border-bottom: 1px solid #ddd;
+  new-description {
+    width: 300px;
+  }
+}
+
+.box .content {
+  flex: 1 1 auto;
+  padding: 10px;
+  position: relative;
+
+  .import-content {
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
 }
