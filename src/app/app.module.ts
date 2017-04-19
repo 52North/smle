@@ -14,12 +14,6 @@ import { SosModule } from './sos/sos.module';
 import { TemplatesModule } from './templates/templates.module';
 import { SamplesComponent } from './samples/samples.component';
 import { EditorComponent } from './editor/editor';
-import { FetchDescriptionComponent } from './sos/fetch/fetch.component';
-import { PublishDescriptionComponent } from './sos/publish/publish.component';
-import { ConnectDescriptionComponent } from './sos/connect/connect.component';
-import { DeleteDescriptionComponent } from './sos/delete/delete.component';
-import { TemplatesComponent } from './templates/templates';
-
 import { ConfigurationService } from './services/ConfigurationService';
 
 import '../styles/styles.scss';
@@ -30,12 +24,7 @@ export function getAppModule(conf) {
         declarations: [
             ApplicationComponent,
             SamplesComponent,
-            EditorComponent,
-            FetchDescriptionComponent,
-            PublishDescriptionComponent,
-            ConnectDescriptionComponent,
-            DeleteDescriptionComponent,
-            TemplatesComponent
+            EditorComponent
         ],
         imports: [
             BrowserModule,

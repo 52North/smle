@@ -9,9 +9,9 @@ import { SensorMLXmlService } from '../services/SensorMLXmlService';
 
 @Component({
     selector: 'templates',
-    styles: [require('./templates.scss')],
+    styles: [require('./templates.component.scss')],
     providers: [TemplatesService],
-    template: require('./templates.html')
+    template: require('./templates.component.html')
 })
 export class TemplatesComponent {
 

@@ -6,7 +6,7 @@ import { FetchDescriptionComponent } from './sos/fetch/fetch.component';
 import { PublishDescriptionComponent } from './sos/publish/publish.component';
 import { ConnectDescriptionComponent } from './sos/connect/connect.component';
 import { DeleteDescriptionComponent } from './sos/delete/delete.component';
-import { TemplatesComponent } from './templates/templates';
+import { TemplatesComponent } from './templates/templates.component';
 import { AuthGuard } from './sos/components/auth-guard.service';
 
 export const ROUTES: Routes = [

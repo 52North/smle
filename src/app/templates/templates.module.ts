@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
+
 import { TemplateSortPipe } from './templates.pipe';
+
+import { TemplatesComponent } from './templates.component';
 
 @NgModule({
     declarations: [
-        TemplateSortPipe
+        TemplateSortPipe,
+        TemplatesComponent
     ],
     imports: [
         CommonModule,
