@@ -105,7 +105,7 @@ export class SosService {
             version: '2.0.0',
             procedureId: description.identifier.value,
             procedureDescriptionFormat: 'http://www.opengis.net/sensorml/2.0',
-            procedureDescription: new SensorMLXmlService().serialize(description),
+            procedureDescription: new SensorMLXmlService().serialize(description, false),
             // featureOfInterest auswählbar machen
             featureOfInterestType: 'http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint',
             // observationType auswählbar machen ???
@@ -131,7 +131,7 @@ export class SosService {
             version: '2.0.0',
             procedure: descID,
             procedureDescriptionFormat: 'http://www.opengis.net/sensorml/2.0',
-            procedureDescription: new SensorMLXmlService().serialize(description)
+            procedureDescription: new SensorMLXmlService().serialize(description, false)
         });
         return this.http.post(this.useProxyUrl(sosUrl), body, {
             headers: this.createJsonHeader(),
