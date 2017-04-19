@@ -99,7 +99,6 @@ import { SweTimeRangeComponent } from './components/swe/SweTimeRangeComponent';
 import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponent';
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
-import { SensorMLPipe } from './pipes/SensorMLPipe';
 
 import { DynamicElementComponent } from './components/base/dynamic-element.component';
 import { HostDirective } from './components/base/host.directive';
@@ -202,8 +201,7 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent,
-        SensorMLPipe
+        UnitOfMeasureComponent
     ],
     imports: [
         CommonModule,
@@ -291,8 +289,7 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent,
-        SensorMLPipe
+        UnitOfMeasureComponent
     ],
     entryComponents: [
         KeywordListComponent,

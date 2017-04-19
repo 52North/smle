@@ -1,0 +1,20 @@
+<div class="center" *ngIf="process">
+  <div class="highlight">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#tree" role="tab">as Tree</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#xml" role="tab">as XML</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="tree" role="tabpanel">
+        <!-- <object-tree class="description-visualizer" [model]="process" [shouldRebuildTree]=false></object-tree> -->
+      </div>
+      <div class="tab-pane" id="xml" role="tabpanel">
+        <pre>{{process | toSensorml}}</pre>
+      </div>
+    </div>
+  </div>
+</div>

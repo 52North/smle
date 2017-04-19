@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CreateComponent } from './create.component';
 import { NewComponent } from './new/new.component';
 import { ImportComponent } from './import/import.component';
+import { CommonSmleModule } from '../common/common.module';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { ImportComponent } from './import/import.component';
     ],
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        CommonSmleModule
     ],
     exports: [
     ],

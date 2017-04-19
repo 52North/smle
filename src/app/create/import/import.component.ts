@@ -3,9 +3,12 @@ import { EditorService } from '../../services/EditorService';
 
 @Component({
     selector: 'import-description',
-    template: require('./import.component.html')
+    template: require('./import.component.html'),
+    styles: [require('./import.component.scss')]
 })
 export class ImportComponent {
+
+    public description: string;
 
     constructor(
         private editorService: EditorService) {
@@ -16,7 +19,7 @@ export class ImportComponent {
         let myReader: FileReader = new FileReader();
 
         myReader.onloadend = (e) => {
-            console.log(myReader.result);
+            this.description = myReader.result;
         };
 
         myReader.readAsText(file);

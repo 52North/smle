@@ -4,7 +4,8 @@ import { EditorService } from '../services/EditorService';
 
 @Component({
     selector: 'create',
-    template: require('./create.component.html')
+    template: require('./create.component.html'),
+    styles: [require('./create.component.scss')]
 })
 export class CreateComponent {
     public descriptionTypes: string[] = [
