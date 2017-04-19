@@ -6,7 +6,7 @@ import { CalendarModule } from 'primeng/primeng';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
-import { TreeModule } from 'angular2-tree-component';
+
 
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
@@ -18,8 +18,6 @@ import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
 import { StringsComponent } from './components/basic/StringsComponent';
 import { TextFieldComponent } from './components/basic/TextFieldComponent';
-import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
-import { TreeNodeComponent } from './components/basic/object-tree/TreeNodeComponent';
 
 import { AbstractFeatureComponent } from './components/gml/AbstractFeatureComponent';
 import { AbstractGMLComponent } from './components/gml/AbstractGMLComponent';
@@ -117,8 +115,6 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         PositionListComponent,
         StringsComponent,
         TextFieldComponent,
-        ObjectTreeComponent,
-        TreeNodeComponent,
         HostDirective,
         DynamicElementComponent,
         NestedCardComponent,
@@ -208,8 +204,7 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         FormsModule,
         CalendarModule,
         ModalModule.forRoot(),
-        BootstrapModalModule,
-        TreeModule
+        BootstrapModalModule
     ],
     exports: [
         // basic components
@@ -222,8 +217,6 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         PositionListComponent,
         StringsComponent,
         TextFieldComponent,
-        ObjectTreeComponent,
-        TreeNodeComponent,
         NestedCardComponent,
         // gml components
         AbstractFeatureComponent,
