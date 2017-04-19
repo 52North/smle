@@ -1,5 +1,5 @@
 import { AbstractSetting } from './AbstractSetting';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class ModeSetting extends AbstractSetting {
     @DisplayName('Value')

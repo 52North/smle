@@ -1,6 +1,6 @@
 import { AbstractSimpleComponent } from './AbstractSimpleComponent';
 import { AllowedValues } from './AllowedValues';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Scalar component with integer representation used for a discrete counting

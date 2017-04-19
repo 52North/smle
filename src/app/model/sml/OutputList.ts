@@ -1,6 +1,6 @@
 import { AbstractSWE } from '../swe/AbstractSWE';
 import { Output } from './Output';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class OutputList extends AbstractSWE {
     @DisplayName('Outputs')

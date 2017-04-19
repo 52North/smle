@@ -2,7 +2,7 @@ import { EncodedValues } from './EncodedValues';
 import { AbstractDataComponent } from './AbstractDataComponent';
 import { SweElementType } from './SweElementType';
 import { SweEncoding } from './SweEncoding';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Implementation of ISO-11404 Array datatype. This defines an array of

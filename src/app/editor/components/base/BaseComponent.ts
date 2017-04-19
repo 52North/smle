@@ -1,4 +1,4 @@
-import { getDisplayName } from '../../../decorators/DisplayName';
+import { getDisplayName } from '../../../common/decorators/DisplayName';
 
 export class BaseComponent {
     public model: any;

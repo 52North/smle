@@ -1,6 +1,6 @@
 import { Contact } from './Contact';
 import { Role } from './Role';
-import { DisplayName } from '../../../decorators/DisplayName';
+import { DisplayName } from '../../../common/decorators/DisplayName';
 
 /**
  * Identification of, and means of communication with, person(s) and

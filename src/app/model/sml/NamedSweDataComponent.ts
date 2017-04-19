@@ -1,5 +1,5 @@
 import { AbstractDataComponent } from '../swe';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class NamedSweDataComponent {
     @DisplayName('Name')

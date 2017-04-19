@@ -1,5 +1,5 @@
 import { SweEncoding } from './SweEncoding';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Parameters of the text encoding method

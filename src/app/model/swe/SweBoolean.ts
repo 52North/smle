@@ -1,5 +1,5 @@
 import { AbstractSimpleComponent } from './AbstractSimpleComponent';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Scalar component used to express truth: True or False, 0 or 1

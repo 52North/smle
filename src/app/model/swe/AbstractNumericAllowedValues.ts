@@ -1,5 +1,5 @@
 import { AbstractAllowedValues } from './AbstractAllowedValues';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class AbstractNumericAllowedValues extends AbstractAllowedValues {
     @DisplayName('Significant figures')

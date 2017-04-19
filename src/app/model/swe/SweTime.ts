@@ -2,7 +2,7 @@ import { AbstractSimpleComponent } from './AbstractSimpleComponent';
 import { TimePosition } from './TimePosition';
 import { UnitOfMeasure } from './UnitOfMeasure';
 import { AllowedTimes } from './AllowedTimes';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Scalar component used to represent a time quantity either as ISO 8601

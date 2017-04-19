@@ -1,6 +1,6 @@
 import { Citation } from './Citation';
 import { KeywordType } from './KeywordType';
-import { DisplayName } from '../../../decorators/DisplayName';
+import { DisplayName } from '../../../common/decorators/DisplayName';
 
 export class Keywords {
     @DisplayName('Keywords')

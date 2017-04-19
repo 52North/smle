@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
-import { getDisplayName } from '../../../decorators/DisplayName';
+import { getDisplayName } from '../../decorators/DisplayName';
 
 const emailRegex = new RegExp('^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$');
 const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?');

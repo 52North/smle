@@ -1,6 +1,6 @@
 import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
 import { Axis } from './Axis';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * A general spatial Cartesian Reference Frame where the axes and origin will be
