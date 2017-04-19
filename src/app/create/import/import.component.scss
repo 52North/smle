@@ -1,19 +1,33 @@
-.center {
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.box .header {
+  flex: 0 1 auto;
   display: flex;
   justify-content: center;
+  div {
+    width: 300px;
+  }
 }
 
-.type-selector-container {
-  padding-top: 15px;
+.box .content {
+  flex: 1 1 auto;
+  position: relative;
+
+  .import {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+  }
 }
 
-.import {
-  height: 500px;
-  overflow: auto;
-}
-
-.import-button {
-  margin: 10px auto;
+.box .footer {
+  flex: 0 1 40px;
   display: flex;
   justify-content: center;
 }
