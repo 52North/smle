@@ -26,7 +26,7 @@
 .center {
   position: absolute;
   top: 40px;
-  bottom: 40px;
+  bottom: 50px;
   left: 0px;
   right: 0px;
   overflow: auto;
@@ -38,32 +38,4 @@
   right: 0;
   left: 0;
   height: 40px;
-}
-
-.highlight {
-  pre, .description-visualizer {
-    background-color: #f7f7f9;
-    padding: 10px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
-}
-
-.tab-content {
-  position: absolute;
-  top: 42px;
-  bottom: 15px;
-  right: 0;
-  left: 0;
-}
-
-pre {
-  white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
-  white-space: -pre-wrap; /* Opera */
-  white-space: -o-pre-wrap; /* Opera */
-  white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
-  word-wrap: break-word; /* IE 5.5+ */
 }
