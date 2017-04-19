@@ -1,0 +1,38 @@
+.preview-container {
+  position: relative;
+  height: 100%;
+}
+
+.tab-pane {
+  background-color: #f7f7f9;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.tab-content {
+  background-color: red;
+  position: absolute;
+  top: 42px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+pre {
+  /* Mozilla, supported since 1999 */
+  white-space: -moz-pre-wrap;
+  /* Opera */
+  white-space: -pre-wrap;
+  /* Opera */
+  white-space: -o-pre-wrap;
+  /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+  white-space: pre-wrap;
+  /* IE 5.5+ */
+  word-wrap: break-word;
+  margin: 0;
+}
