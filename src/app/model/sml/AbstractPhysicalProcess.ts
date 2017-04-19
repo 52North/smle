@@ -3,7 +3,7 @@ import { SpatialFrame } from './SpatialFrame';
 import { TemporalFrame } from './TemporalFrame';
 import { SweTime } from '../swe/SweTime';
 import { Position } from './Position';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * A physical process where the spatial and temporal state of the process is

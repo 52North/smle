@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CommonSmleModule } from '../common/common.module';
 import { DescriptionSelectionComponent } from './components/selectDescription.component';
 import { AuthComponent } from './components/auth.component';
 import { LoggedInDirective } from './components/loggedIn.directive';
@@ -13,7 +14,8 @@ import { LoggedInDirective } from './components/loggedIn.directive';
     ],
     imports: [
         CommonModule,
-        FormsModule
+        FormsModule,
+        CommonSmleModule
     ],
     exports: [
         AuthComponent,

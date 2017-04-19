@@ -1,4 +1,4 @@
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 /**
  * gml:CodeType is a generalized type to be used for a term, keyword or name.
  * It adds a XML attribute codeSpace to a term, where the value of the codeSpace

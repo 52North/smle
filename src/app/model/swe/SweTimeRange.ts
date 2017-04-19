@@ -2,7 +2,7 @@ import { AbstractSweRange } from './AbstractSweRange';
 import { TimePosition } from './TimePosition';
 import { UnitOfMeasure } from './UnitOfMeasure';
 import { AllowedTimes } from './AllowedTimes';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Time value pair for specifying a time range (can be a decimal or ISO 8601)

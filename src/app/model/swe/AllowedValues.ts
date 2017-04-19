@@ -1,5 +1,5 @@
 import { AbstractNumericAllowedValues } from './AbstractNumericAllowedValues';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Defines the permitted values for the component as an enumerated list and/or

@@ -1,0 +1,21 @@
+<div class="center">
+  <div>
+    <div>
+      Import description by file:
+    </div>
+    <div>
+      <input type="file" (change)="changeListener($event)">
+    </div>
+  </div>
+</div>
+<div *ngIf="error" class="alert alert-danger text-center" role="alert">
+  {{error}}
+</div>
+<div *ngIf="description">
+  <div class="import">
+    <preview-description [description]="description"></preview-description>
+  </div>
+  <div class="import-button">
+    <a class="btn btn-primary" (click)="openInEditor()">Open in editor</a>
+  </div>
+</div>

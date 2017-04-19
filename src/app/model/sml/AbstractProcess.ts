@@ -5,7 +5,7 @@ import { InputList } from './InputList';
 import { OutputList } from './OutputList';
 import { ParameterList } from './ParameterList';
 import { AbstractModes } from './AbstractModes';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * The general base model for any process.

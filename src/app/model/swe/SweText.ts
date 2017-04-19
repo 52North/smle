@@ -1,6 +1,6 @@
 import { AbstractSimpleComponent } from './AbstractSimpleComponent';
 import { AllowedTokens } from './AllowedTokens';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Free text component used to store comments or any other type of textual

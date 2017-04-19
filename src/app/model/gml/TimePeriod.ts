@@ -1,5 +1,5 @@
 import { AbstractTime } from './AbstractTime';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * gml:TimePeriod acts as a one-dimensional geometric primitive that represents

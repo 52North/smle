@@ -1,6 +1,6 @@
 import { AbstractMetadataList } from './AbstractMetadataList';
 import { OnlineResource } from '../iso/gmd/OnlineResource';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class DocumentList extends AbstractMetadataList {
     @DisplayName('Documents')

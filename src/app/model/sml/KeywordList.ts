@@ -1,5 +1,5 @@
 import { AbstractMetadataList } from './AbstractMetadataList';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class KeywordList extends AbstractMetadataList {
     /**

@@ -1,6 +1,6 @@
 import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
 import { AbstractAlgorithm } from './AbstractAlgorithm';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class ProcessMethod extends AbstractSWEIdentifiable {
     @DisplayName('Algorithm')

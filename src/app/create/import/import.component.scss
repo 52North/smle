@@ -1,0 +1,19 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.type-selector-container {
+  padding-top: 15px;
+}
+
+.import {
+  max-height: 500px;
+  overflow: auto;
+}
+
+.import-button {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+}

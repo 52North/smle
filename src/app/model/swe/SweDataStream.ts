@@ -3,7 +3,7 @@ import { EncodedValues } from './EncodedValues';
 import { SweCount } from './SweCount';
 import { SweEncoding } from './SweEncoding';
 import { SweElementType } from './SweElementType';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Defines the structure of the element that will be repeated in the stream

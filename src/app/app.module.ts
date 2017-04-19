@@ -8,11 +8,12 @@ import { ApplicationComponent } from './app';
 import { ROUTES } from './routes';
 import { APP_PROVIDERS } from './providers';
 import { EditorModule } from './editor/editor.module';
+import { CreateModule } from './create/create.module';
+import { CommonSmleModule } from './common/common.module';
 import { SosModule } from './sos/sos.module';
 import { TemplatesModule } from './templates/templates.module';
 import { SamplesComponent } from './samples/samples.component';
 import { EditorComponent } from './editor/editor';
-import { CreateComponent } from './create/create.component';
 import { FetchDescriptionComponent } from './sos/fetch/fetch.component';
 import { PublishDescriptionComponent } from './sos/publish/publish.component';
 import { ConnectDescriptionComponent } from './sos/connect/connect.component';
@@ -30,7 +31,6 @@ export function getAppModule(conf) {
             ApplicationComponent,
             SamplesComponent,
             EditorComponent,
-            CreateComponent,
             FetchDescriptionComponent,
             PublishDescriptionComponent,
             ConnectDescriptionComponent,
@@ -44,7 +44,9 @@ export function getAppModule(conf) {
             EditorModule,
             SosModule,
             TemplatesModule,
+            CreateModule,
             CommonModule,
+            CommonSmleModule,
             RouterModule.forRoot(ROUTES, { useHash: true })
         ],
         providers: [

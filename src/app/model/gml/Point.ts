@@ -1,5 +1,5 @@
 import { AbstractGeometricPrimitive } from './AbstractGeometricPrimitive';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class Point extends AbstractGeometricPrimitive {
     @DisplayName('X')

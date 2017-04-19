@@ -2,7 +2,7 @@ import { AbstractDataComponent } from './AbstractDataComponent';
 import { SweQuality } from './SweQuality';
 import { AbstractAllowedValues } from './AbstractAllowedValues';
 import { SweNilValue } from './SweNilValue';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export abstract class AbstractSimpleComponent extends AbstractDataComponent {
     /**

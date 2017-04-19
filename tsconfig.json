@@ -11,6 +11,10 @@
     "noEmitHelpers": true,
     "importHelpers": true,
     "strictNullChecks": false,
+    "baseUrl": "./src",
+    "rootDirs": [
+      "./src"
+    ],
     "lib": [
       "dom",
       "es6"
@@ -40,5 +44,4 @@
   "atom": {
     "rewriteTsconfig": false
   }
-
 }

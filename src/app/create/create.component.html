@@ -1,15 +1,6 @@
-<div class="col-sm-offset-4 col-sm-4 type-selector-container">
-    <div>
-        Create a new description:
-    </div>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="descriptionTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Select the descriptionType
-        </button>
-        <div class="dropdown-menu" aria-labelledby="descriptionTypeDropdown">
-            <span *ngFor="let descriptionType of descriptionTypes">
-                <a class="dropdown-item" (click)="onSelectDescriptionType(descriptionType)">{{descriptionType}}</a>
-            </span>
-        </div>
-    </div>
+<div class="center-new-description">
+  <new-description></new-description>
+</div>
+<div class="">
+  <import-description></import-description>
 </div>

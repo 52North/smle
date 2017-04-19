@@ -1,7 +1,7 @@
 import { AbstractSweRange } from './AbstractSweRange';
 import { UnitOfMeasure } from './UnitOfMeasure';
 import { AllowedValues } from './AllowedValues';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Decimal pair for specifying a quantity range with a unit of measure

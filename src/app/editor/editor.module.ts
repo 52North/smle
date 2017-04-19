@@ -6,7 +6,7 @@ import { CalendarModule } from 'primeng/primeng';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
-import { TreeModule } from 'angular2-tree-component';
+
 
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
@@ -18,8 +18,6 @@ import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
 import { StringsComponent } from './components/basic/StringsComponent';
 import { TextFieldComponent } from './components/basic/TextFieldComponent';
-import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
-import { TreeNodeComponent } from './components/basic/object-tree/TreeNodeComponent';
 
 import { AbstractFeatureComponent } from './components/gml/AbstractFeatureComponent';
 import { AbstractGMLComponent } from './components/gml/AbstractGMLComponent';
@@ -99,7 +97,6 @@ import { SweTimeRangeComponent } from './components/swe/SweTimeRangeComponent';
 import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponent';
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
-import { SensorMLPipe } from './pipes/SensorMLPipe';
 
 import { DynamicElementComponent } from './components/base/dynamic-element.component';
 import { HostDirective } from './components/base/host.directive';
@@ -118,8 +115,6 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         PositionListComponent,
         StringsComponent,
         TextFieldComponent,
-        ObjectTreeComponent,
-        TreeNodeComponent,
         HostDirective,
         DynamicElementComponent,
         NestedCardComponent,
@@ -202,16 +197,14 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent,
-        SensorMLPipe
+        UnitOfMeasureComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         CalendarModule,
         ModalModule.forRoot(),
-        BootstrapModalModule,
-        TreeModule
+        BootstrapModalModule
     ],
     exports: [
         // basic components
@@ -224,8 +217,6 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         PositionListComponent,
         StringsComponent,
         TextFieldComponent,
-        ObjectTreeComponent,
-        TreeNodeComponent,
         NestedCardComponent,
         // gml components
         AbstractFeatureComponent,
@@ -291,8 +282,7 @@ import { NestedCardComponent } from './components/basic/NestedCardComponent';
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent,
-        SensorMLPipe
+        UnitOfMeasureComponent
     ],
     entryComponents: [
         KeywordListComponent,

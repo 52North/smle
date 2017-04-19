@@ -94,7 +94,7 @@ export class EditorService {
     }
 
     provideDownload(description: AbstractProcess) {
-        let data = this.xmlService.serialize(description);
+        let data = this.xmlService.serialize(description, true);
         let uriContent = 'data:application/octet-stream,' + encodeURIComponent(data);
         window.open(uriContent, 'neuesDokument');
     }

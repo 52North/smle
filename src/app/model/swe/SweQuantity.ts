@@ -1,7 +1,7 @@
 import { AbstractSimpleComponent } from './AbstractSimpleComponent';
 import { AllowedValues } from './AllowedValues';
 import { UnitOfMeasure } from './UnitOfMeasure';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Scalar component with decimal representation and a unit of measure used to

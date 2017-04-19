@@ -1,6 +1,6 @@
 import { AbstractDataComponent } from './AbstractDataComponent';
 import { SweCoordinate } from './SweCoordinate';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Implementation of a mathematical vector composed of a list of scalar

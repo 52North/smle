@@ -1,4 +1,4 @@
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 export class UnitOfMeasure {
     @DisplayName('Code')
     code: string;

@@ -1,7 +1,7 @@
 import { Phone } from './Phone';
 import { Address } from './Address';
 import { OnlineResource } from './OnlineResource';
-import { DisplayName } from '../../../decorators/DisplayName';
+import { DisplayName } from '../../../common/decorators/DisplayName';
 
 /**
  * Information required enabling contact with the  responsible person and/or

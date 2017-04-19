@@ -1,5 +1,5 @@
 import { AbstractReferenced } from './AbstractReferenced';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Envelope defines an extent using a pair of positions defining opposite

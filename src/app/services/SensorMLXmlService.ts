@@ -10,11 +10,11 @@ export class SensorMLXmlService extends AbstractXmlService<AbstractProcess> {
     private encoder = new SensorMLDocumentEncoder();
     private decoder = new SensorMLDocumentDecoder();
 
-    decode(document: Document): AbstractProcess {
+    protected decode(document: Document): AbstractProcess {
         return this.decoder.decode(document);
     }
 
-    encode(description: AbstractProcess): Document {
+    protected encode(description: AbstractProcess): Document {
         return this.encoder.encode(description);
     }
 }
