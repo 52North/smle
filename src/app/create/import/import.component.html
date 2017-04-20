@@ -10,14 +10,16 @@
     </div>
   </div>
   <div class="content">
-    <div *ngIf="error" class="alert alert-danger text-center" role="alert">
-      {{error}}
+    <div *ngIf="error" class="error">
+      <div class="alert alert-danger text-center" role="alert">
+        {{error}}
+      </div>
     </div>
-    <div class="import">
+    <div class="import" *ngIf="description">
       <preview-description [description]="description"></preview-description>
     </div>
   </div>
-  <div class="footer">
+  <div class="footer" *ngIf="description">
     <a class="btn btn-primary" (click)="openInEditor()">Open in editor</a>
   </div>
 </div>

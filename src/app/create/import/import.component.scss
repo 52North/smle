@@ -17,6 +17,12 @@
   flex: 1 1 auto;
   position: relative;
 
+  .error {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
   .import {
     position: absolute;
     top: 10px;
