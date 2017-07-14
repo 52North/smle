@@ -49,8 +49,10 @@ import { EventListComponent } from './components/sml/EventListComponent';
 import { IdentifierListComponent } from './components/sml/IdentifierListComponent';
 import { KeywordListComponent } from './components/sml/KeywordListComponent';
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
-import { NamedSweDataComponentComponent, SweFieldComponent }
-    from './components/sml/NamedSweDataComponentComponent';
+import {
+    NamedSweDataComponentComponent,
+    SweFieldComponent
+} from './components/sml/NamedSweDataComponentComponent';
 import { ParameterListComponent } from './components/sml/ParameterListComponent';
 import { ParameterComponent } from './components/sml/ParameterComponent';
 import { OutputListComponent } from './components/sml/OutputListComponent';

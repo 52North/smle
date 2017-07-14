@@ -25,26 +25,26 @@ export class IsoDecoder {
         this._profileIDMap = profileIDMap;
     }
     public decodeContact(elem: Element): Contact {
-        let contactElem = this.utils.getElement(elem, 'CI_Contact', NAMESPACES.GMD);
+        const contactElem = this.utils.getElement(elem, 'CI_Contact', NAMESPACES.GMD);
         if (contactElem != null) {
-            let contact = new Contact();
+            const contact = new Contact();
             this._profileIDMap = this.utils.processProfileID(contactElem, contact, '', this._profileIDMap);
 
-            let phoneElem = this.utils.getElement(contactElem, 'phone', NAMESPACES.GMD);
+            const phoneElem = this.utils.getElement(contactElem, 'phone', NAMESPACES.GMD);
             if (phoneElem != null) {
                 contact.phone = this.decodePhone(phoneElem);
                 this._profileIDMap = this.utils.processProfileID(phoneElem, contact, 'phone', this._profileIDMap);
 
             }
-            let addressElem = this.utils.getElement(contactElem, 'address', NAMESPACES.GMD);
+            const addressElem = this.utils.getElement(contactElem, 'address', NAMESPACES.GMD);
             if (addressElem != null) {
                 contact.address = this.decodeAddress(addressElem);
                 this._profileIDMap = this.utils.processProfileID(addressElem, contact, 'address', this._profileIDMap);
 
             }
-            let onlineResourceElem = this.utils.getElement(contactElem, 'onlineResource', NAMESPACES.GMD);
+            const onlineResourceElem = this.utils.getElement(contactElem, 'onlineResource', NAMESPACES.GMD);
             if (onlineResourceElem != null) {
-                let returnObject: ReturnObject<OnlineResource> = this.decodeOnlineResource(onlineResourceElem);
+                const returnObject: ReturnObject<OnlineResource> = this.decodeOnlineResource(onlineResourceElem);
                 if (returnObject) {
                     contact.onlineResource = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -52,9 +52,9 @@ export class IsoDecoder {
                     );
                 }
             }
-            let hoursOfServiceElem = this.utils.getElement(contactElem, 'hoursOfService', NAMESPACES.GMD);
+            const hoursOfServiceElem = this.utils.getElement(contactElem, 'hoursOfService', NAMESPACES.GMD);
             if (hoursOfServiceElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(hoursOfServiceElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(hoursOfServiceElem);
                 if (returnObject) {
                     contact.hoursOfService = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -62,9 +62,9 @@ export class IsoDecoder {
                     );
                 }
             }
-            let contactInstructionsElem = this.utils.getElement(contactElem, 'contactInstructions', NAMESPACES.GMD);
+            const contactInstructionsElem = this.utils.getElement(contactElem, 'contactInstructions', NAMESPACES.GMD);
             if (contactInstructionsElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(contactInstructionsElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(contactInstructionsElem);
                 if (returnObject) {
                     contact.contactInstructions = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -77,9 +77,9 @@ export class IsoDecoder {
     }
 
     public decodePhone(elem: Element): Phone {
-        let phoneElem = this.utils.getElement(elem, 'CI_Telephone', NAMESPACES.GMD);
+        const phoneElem = this.utils.getElement(elem, 'CI_Telephone', NAMESPACES.GMD);
         if (phoneElem != null) {
-            let phone = new Phone();
+            const phone = new Phone();
             this._profileIDMap = this.utils.processProfileID(phoneElem, phone, '', this._profileIDMap);
 
             phone.voice = this.utils.getDecodedList(
@@ -99,16 +99,16 @@ export class IsoDecoder {
     }
 
     public decodeOnlineResource(elem: Element): ReturnObject<OnlineResource> {
-        let onlineResourceElem = this.utils.getElement(elem, 'CI_OnlineResource', NAMESPACES.GMD);
+        const onlineResourceElem = this.utils.getElement(elem, 'CI_OnlineResource', NAMESPACES.GMD);
         if (onlineResourceElem != null) {
-            let onlineResource = new OnlineResource();
+            const onlineResource = new OnlineResource();
             this._profileIDMap = this.utils.processProfileID(
                 onlineResourceElem, onlineResource, '', this._profileIDMap
             );
 
-            let linkageElem = this.utils.getElement(onlineResourceElem, 'linkage', NAMESPACES.GMD);
+            const linkageElem = this.utils.getElement(onlineResourceElem, 'linkage', NAMESPACES.GMD);
             if (linkageElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedUrl(linkageElem);
+                const returnObject: ReturnObject<string> = this.getDecodedUrl(linkageElem);
                 if (returnObject) {
                     onlineResource.linkage = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -117,9 +117,9 @@ export class IsoDecoder {
                 }
             }
 
-            let protocolElem = this.utils.getElement(onlineResourceElem, 'protocol', NAMESPACES.GMD);
+            const protocolElem = this.utils.getElement(onlineResourceElem, 'protocol', NAMESPACES.GMD);
             if (protocolElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(protocolElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(protocolElem);
                 if (returnObject) {
                     onlineResource.protocol = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -128,11 +128,11 @@ export class IsoDecoder {
                 }
             }
 
-            let applicationProfileElem = this.utils.getElement(
+            const applicationProfileElem = this.utils.getElement(
                 onlineResourceElem, 'applicationProfile', NAMESPACES.GMD
             );
             if (applicationProfileElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(applicationProfileElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(applicationProfileElem);
                 if (returnObject) {
                     onlineResource.applicationProfile = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -140,9 +140,9 @@ export class IsoDecoder {
                     );
                 }
             }
-            let nameElem = this.utils.getElement(onlineResourceElem, 'name', NAMESPACES.GMD);
+            const nameElem = this.utils.getElement(onlineResourceElem, 'name', NAMESPACES.GMD);
             if (nameElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(nameElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(nameElem);
                 if (returnObject) {
                     onlineResource.name = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -151,9 +151,9 @@ export class IsoDecoder {
                 }
             }
 
-            let descriptionElem = this.utils.getElement(onlineResourceElem, 'description', NAMESPACES.GMD);
+            const descriptionElem = this.utils.getElement(onlineResourceElem, 'description', NAMESPACES.GMD);
             if (descriptionElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(descriptionElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(descriptionElem);
                 if (returnObject) {
                     onlineResource.description = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -161,7 +161,7 @@ export class IsoDecoder {
                     );
                 }
             }
-            let functionElem = this.utils.getElement(onlineResourceElem, 'function', NAMESPACES.GMD);
+            const functionElem = this.utils.getElement(onlineResourceElem, 'function', NAMESPACES.GMD);
             if (functionElem != null) {
                 onlineResource.function = this.decodeOnlineFunction(functionElem);
                 this._profileIDMap = this.utils.processProfileID(
@@ -173,14 +173,14 @@ export class IsoDecoder {
     }
 
     public decodeAddress(elem: Element): Address {
-        let addressElem = this.utils.getElement(elem, 'CI_Address', NAMESPACES.GMD);
+        const addressElem = this.utils.getElement(elem, 'CI_Address', NAMESPACES.GMD);
         if (addressElem != null) {
-            let address = new Address();
+            const address = new Address();
             this._profileIDMap = this.utils.processProfileID(addressElem, address, '', this._profileIDMap);
 
-            let cityElem = this.utils.getElement(addressElem, 'city', NAMESPACES.GMD);
+            const cityElem = this.utils.getElement(addressElem, 'city', NAMESPACES.GMD);
             if (cityElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(cityElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(cityElem);
                 if (returnObject) {
                     address.city = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -189,9 +189,9 @@ export class IsoDecoder {
                 }
             }
 
-            let administrativeAreaElem = this.utils.getElement(addressElem, 'administrativeArea', NAMESPACES.GMD);
+            const administrativeAreaElem = this.utils.getElement(addressElem, 'administrativeArea', NAMESPACES.GMD);
             if (administrativeAreaElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(administrativeAreaElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(administrativeAreaElem);
                 if (returnObject) {
                     address.administrativeArea = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -200,9 +200,9 @@ export class IsoDecoder {
                 }
             }
 
-            let postalCodeElem = this.utils.getElement(addressElem, 'postalCode', NAMESPACES.GMD);
+            const postalCodeElem = this.utils.getElement(addressElem, 'postalCode', NAMESPACES.GMD);
             if (postalCodeElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(postalCodeElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(postalCodeElem);
                 if (returnObject) {
                     address.postalCode = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -211,9 +211,9 @@ export class IsoDecoder {
                 }
             }
 
-            let countryElem = this.utils.getElement(addressElem, 'country', NAMESPACES.GMD);
+            const countryElem = this.utils.getElement(addressElem, 'country', NAMESPACES.GMD);
             if (countryElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(countryElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(countryElem);
                 if (returnObject) {
                     address.country = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -239,15 +239,15 @@ export class IsoDecoder {
     }
 
     public decodeResponsibleParty(elem: Element): ReturnObject<ResponsibleParty> {
-        let respPartyElem = this.utils.getElement(elem, 'CI_ResponsibleParty', NAMESPACES.GMD);
+        const respPartyElem = this.utils.getElement(elem, 'CI_ResponsibleParty', NAMESPACES.GMD);
 
         if (respPartyElem != null) {
-            let respParty = new ResponsibleParty();
+            const respParty = new ResponsibleParty();
             this._profileIDMap = this.utils.processProfileID(respPartyElem, respParty, '', this._profileIDMap);
 
-            let individualNameElem = this.utils.getElement(respPartyElem, 'individualName', NAMESPACES.GMD);
+            const individualNameElem = this.utils.getElement(respPartyElem, 'individualName', NAMESPACES.GMD);
             if (individualNameElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(individualNameElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(individualNameElem);
                 if (returnObject) {
                     respParty.individualName = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -256,9 +256,9 @@ export class IsoDecoder {
                 }
             }
 
-            let organisationNameElem = this.utils.getElement(respPartyElem, 'organisationName', NAMESPACES.GMD);
+            const organisationNameElem = this.utils.getElement(respPartyElem, 'organisationName', NAMESPACES.GMD);
             if (organisationNameElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(organisationNameElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(organisationNameElem);
                 if (returnObject) {
                     respParty.organisationName = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -267,9 +267,9 @@ export class IsoDecoder {
                 }
             }
 
-            let positionNameElem = this.utils.getElement(respPartyElem, 'positionName', NAMESPACES.GMD);
+            const positionNameElem = this.utils.getElement(respPartyElem, 'positionName', NAMESPACES.GMD);
             if (positionNameElem != null) {
-                let returnObject: ReturnObject<string> = this.getDecodedCharacterString(positionNameElem);
+                const returnObject: ReturnObject<string> = this.getDecodedCharacterString(positionNameElem);
                 if (returnObject) {
                     respParty.positionName = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -278,7 +278,7 @@ export class IsoDecoder {
                 }
             }
 
-            let contactInfoElem = this.utils.getElement(respPartyElem, 'contactInfo', NAMESPACES.GMD);
+            const contactInfoElem = this.utils.getElement(respPartyElem, 'contactInfo', NAMESPACES.GMD);
             if (contactInfoElem != null) {
                 respParty.contactInfo = this.decodeContact(contactInfoElem);
                 this._profileIDMap = this.utils.processProfileID(
@@ -286,7 +286,7 @@ export class IsoDecoder {
                 );
             }
 
-            let roleElem = this.utils.getElement(respPartyElem, 'role', NAMESPACES.GMD);
+            const roleElem = this.utils.getElement(respPartyElem, 'role', NAMESPACES.GMD);
             if (roleElem != null) {
                 respParty.role = this.decodeRole(roleElem);
                 this._profileIDMap = this.utils.processProfileID(roleElem, respParty, 'role', this._profileIDMap);
@@ -297,10 +297,10 @@ export class IsoDecoder {
     }
 
     public decodeRole(elem: Element): Role {
-        let roleElem = this.utils.getElement(elem, 'CI_RoleCode', NAMESPACES.GMD);
+        const roleElem = this.utils.getElement(elem, 'CI_RoleCode', NAMESPACES.GMD);
 
         if (roleElem != null) {
-            let role = roleElem.getAttribute('codeListValue');
+            const role = roleElem.getAttribute('codeListValue');
             if (role.indexOf('resourceProvider') >= 0) return 'resourceProvider';
             if (role.indexOf('custodian') >= 0) return 'custodian';
             if (role.indexOf('user') >= 0) return 'user';
@@ -315,10 +315,10 @@ export class IsoDecoder {
     }
 
     public decodeOnlineFunction(elem: Element): OnlineFunction {
-        let onlineFunctionElem = this.utils.getElement(elem, 'CI_OnLineFunctionCode', NAMESPACES.GMD);
+        const onlineFunctionElem = this.utils.getElement(elem, 'CI_OnLineFunctionCode', NAMESPACES.GMD);
 
         if (onlineFunctionElem != null) {
-            let onlineFunction = onlineFunctionElem.getAttribute('codeListValue');
+            const onlineFunction = onlineFunctionElem.getAttribute('codeListValue');
             if (onlineFunction.indexOf('download') >= 0) return 'download';
             if (onlineFunction.indexOf('information') >= 0) return 'information';
             if (onlineFunction.indexOf('offlineAccess') >= 0) return 'offlineAccess';
@@ -328,10 +328,10 @@ export class IsoDecoder {
     }
 
     public decodeRestriction(elem: Element): ReturnObject<Restriction> {
-        let restrictionElem = this.utils.getElement(elem, 'MD_RestrictionCode', NAMESPACES.GMD);
+        const restrictionElem = this.utils.getElement(elem, 'MD_RestrictionCode', NAMESPACES.GMD);
 
         if (restrictionElem != null) {
-            let restriction = restrictionElem.getAttribute('codeListValue');
+            const restriction = restrictionElem.getAttribute('codeListValue');
             if (restriction.indexOf('copyright') >= 0)
                 return new ReturnObject<Restriction>('copyright', restrictionElem);
             if (restriction.indexOf('patent') >= 0)
@@ -352,10 +352,10 @@ export class IsoDecoder {
     }
 
     public decodeLegalConstraints(elem: Element): ReturnObject<LegalConstraints> {
-        let legalConstraintsElem = this.utils.getElement(elem, 'MD_LegalConstraints', NAMESPACES.GMD);
+        const legalConstraintsElem = this.utils.getElement(elem, 'MD_LegalConstraints', NAMESPACES.GMD);
 
         if (legalConstraintsElem != null) {
-            let legalConstraints = new LegalConstraints();
+            const legalConstraints = new LegalConstraints();
             this._profileIDMap = this.utils.processProfileID(
                 legalConstraintsElem, legalConstraints, '', this._profileIDMap
             );
@@ -383,13 +383,13 @@ export class IsoDecoder {
     }
 
     private getDecodedCharacterString(elem: Element): ReturnObject<string> {
-        let charStringElem = this.utils.getElement(elem, 'CharacterString', NAMESPACES.GCO);
+        const charStringElem = this.utils.getElement(elem, 'CharacterString', NAMESPACES.GCO);
 
         if (charStringElem != null) return new ReturnObject(charStringElem.textContent, charStringElem);
     }
 
     private getDecodedUrl(elem: Element): ReturnObject<string> {
-        let urlElem = this.utils.getElement(elem, 'URL', NAMESPACES.GMD);
+        const urlElem = this.utils.getElement(elem, 'URL', NAMESPACES.GMD);
 
         if (urlElem != null) return new ReturnObject(urlElem.textContent, urlElem);
     }

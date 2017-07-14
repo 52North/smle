@@ -52,67 +52,67 @@ export class SweDecoder {
         this._profileIDMap = profileIDMap;
     }
     public decodeDataComponent(elem: Element): ReturnObject<AbstractDataComponent> {
-        let vector = this.decodeVector(elem);
+        const vector = this.decodeVector(elem);
         if (vector != null) return vector;
 
-        let dataRecord = this.decodeDataRecord(elem);
+        const dataRecord = this.decodeDataRecord(elem);
         if (dataRecord != null) return dataRecord;
 
-        let matrix = this.decodeMatrix(elem);
+        const matrix = this.decodeMatrix(elem);
         if (matrix != null) return matrix;
 
-        let dataArray = this.decodeDataArray(elem);
+        const dataArray = this.decodeDataArray(elem);
         if (dataArray != null) return dataArray;
 
-        let dataChoice = this.decodeDataChoice(elem);
+        const dataChoice = this.decodeDataChoice(elem);
         if (dataChoice != null) return dataChoice;
 
-        let quantityRange = this.decodeQuantityRange(elem);
+        const quantityRange = this.decodeQuantityRange(elem);
         if (quantityRange != null) return quantityRange;
 
-        let timeRange = this.decodeTimeRange(elem);
+        const timeRange = this.decodeTimeRange(elem);
         if (timeRange != null) return timeRange;
 
-        let countRange = this.decodeCountRange(elem);
+        const countRange = this.decodeCountRange(elem);
         if (countRange != null) return countRange;
 
-        let categoryRange = this.decodeCategoryRange(elem);
+        const categoryRange = this.decodeCategoryRange(elem);
         if (categoryRange != null) return categoryRange;
 
-        let sweBoolean = this.decodeBoolean(elem);
+        const sweBoolean = this.decodeBoolean(elem);
         if (sweBoolean != null) return sweBoolean;
 
-        let count = this.decodeCount(elem);
+        const count = this.decodeCount(elem);
         if (count != null) return count;
 
-        let quantity = this.decodeQuantity(elem);
+        const quantity = this.decodeQuantity(elem);
         if (quantity != null) return quantity;
 
-        let time = this.decodeTime(elem);
+        const time = this.decodeTime(elem);
         if (time != null) return time;
 
-        let category = this.decodeCategory(elem);
+        const category = this.decodeCategory(elem);
         if (category != null) return category;
 
-        let text = this.decodeText(elem);
+        const text = this.decodeText(elem);
         if (text != null) return text;
     }
 
     public decodeCoordinate(node: Element): ReturnObject<SweCoordinate> {
-        let coordinate = new SweCoordinate();
+        const coordinate = new SweCoordinate();
 
         if (node.hasAttribute('name')) {
             coordinate.name = node.getAttribute('name');
             this._profileIDMap = this.utils.processProfileID(node, coordinate, 'name', this._profileIDMap);
 
         }
-        let returnObject: ReturnObject<SweCount> = this.decodeCount(node);
+        const returnObject: ReturnObject<SweCount> = this.decodeCount(node);
         if (returnObject) {
-            let count = returnObject.value;
+            const count = returnObject.value;
             coordinate.coordinate = count;
         }
         if (coordinate.coordinate == null) {
-            let quantityReturnObject: ReturnObject<SweQuantity> = this.decodeQuantity(node);
+            const quantityReturnObject: ReturnObject<SweQuantity> = this.decodeQuantity(node);
             if (quantityReturnObject) {
                 coordinate.coordinate = quantityReturnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -120,7 +120,7 @@ export class SweDecoder {
                 );
             }
         } else if (coordinate.coordinate == null) {
-            let timeReturnObject: ReturnObject<SweTime> = this.decodeTime(node);
+            const timeReturnObject: ReturnObject<SweTime> = this.decodeTime(node);
             if (timeReturnObject) {
                 coordinate.coordinate = timeReturnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -132,9 +132,9 @@ export class SweDecoder {
     }
 
     public decodeVector(node: Element): ReturnObject<SweVector> {
-        let vectorNode = this.utils.getElement(node, 'Vector', NAMESPACES.SWE);
+        const vectorNode = this.utils.getElement(node, 'Vector', NAMESPACES.SWE);
         if (vectorNode != null) {
-            let vector = new SweVector();
+            const vector = new SweVector();
 
             this.decodeAbstractDataComponent(vectorNode, vector);
 
@@ -162,13 +162,13 @@ export class SweDecoder {
 
     public decodeField(fieldNode: Element): ReturnObject<SweField> {
 
-        let field = new SweField();
+        const field = new SweField();
 
         if (fieldNode.hasAttribute('name')) {
             field.name = fieldNode.getAttribute('name');
             this._profileIDMap = this.utils.processProfileID(fieldNode, field, 'name', this._profileIDMap);
         }
-        let returnObject: ReturnObject<AbstractDataComponent> = this.decodeDataComponent(fieldNode.firstElementChild);
+        const returnObject: ReturnObject<AbstractDataComponent> = this.decodeDataComponent(fieldNode.firstElementChild);
         if (returnObject) {
             field.component = returnObject.value;
             this._profileIDMap = this.utils.processProfileID(
@@ -180,9 +180,9 @@ export class SweDecoder {
     }
 
     public decodeDataRecord(elem: Element): ReturnObject<SweDataRecord> {
-        let dataRecordElem = this.utils.getElement(elem, 'DataRecord', NAMESPACES.SWE);
+        const dataRecordElem = this.utils.getElement(elem, 'DataRecord', NAMESPACES.SWE);
         if (dataRecordElem != null) {
-            let dataRecord = new SweDataRecord();
+            const dataRecord = new SweDataRecord();
 
             this.decodeAbstractDataComponent(dataRecordElem, dataRecord);
 
@@ -197,9 +197,9 @@ export class SweDecoder {
     }
 
     public decodeDataStream(elem: Element): ReturnObject<SweDataStream> {
-        let dataStreamElem = this.utils.getElement(elem, 'DataStream', NAMESPACES.SML);
+        const dataStreamElem = this.utils.getElement(elem, 'DataStream', NAMESPACES.SML);
         if (dataStreamElem != null) {
-            let dataStream = new SweDataStream();
+            const dataStream = new SweDataStream();
 
             this.decodeAbstractSweIdentifiable(dataStreamElem, dataStream);
 
@@ -208,7 +208,7 @@ export class SweDecoder {
                 'elementCount',
                 NAMESPACES.SWE, this._profileIDMap,
                 (elemCount) => this.decodeCount(elemCount));
-            let returnObject: ReturnObject<SweElementType> = this.decodeElementType(dataStreamElem);
+            const returnObject: ReturnObject<SweElementType> = this.decodeElementType(dataStreamElem);
             if (returnObject) {
                 dataStream.elementType = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -216,7 +216,7 @@ export class SweDecoder {
                 );
             }
 
-            let returnObject2: ReturnObject<SweEncoding> = this.decodeAbstractEncoding(dataStreamElem);
+            const returnObject2: ReturnObject<SweEncoding> = this.decodeAbstractEncoding(dataStreamElem);
             if (returnObject2) {
                 dataStream.encoding = returnObject2.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -228,9 +228,9 @@ export class SweDecoder {
     }
 
     public decodeMatrix(elem: Element): ReturnObject<SweMatrix> {
-        let matrixElem = this.utils.getElement(elem, 'Matrix', NAMESPACES.SWE);
+        const matrixElem = this.utils.getElement(elem, 'Matrix', NAMESPACES.SWE);
         if (matrixElem != null) {
-            let matrix = new SweMatrix();
+            const matrix = new SweMatrix();
 
             this.decodeAbstractDataArray(matrixElem, matrix);
 
@@ -251,9 +251,9 @@ export class SweDecoder {
     }
 
     public decodeDataArray(elem: Element): ReturnObject<SweDataArray> {
-        let dataArrayElem = this.utils.getElement(elem, 'DataArray', NAMESPACES.SWE);
+        const dataArrayElem = this.utils.getElement(elem, 'DataArray', NAMESPACES.SWE);
         if (dataArrayElem != null) {
-            let dataArray = new SweDataArray();
+            const dataArray = new SweDataArray();
 
             this.decodeAbstractDataArray(dataArrayElem, dataArray);
             return new ReturnObject(dataArray, dataArrayElem);
@@ -262,22 +262,22 @@ export class SweDecoder {
 
     public decodeAbstractEncoding(elem: Element): ReturnObject<SweEncoding> {
 
-        let textEncoding = this.decodeTextEncoding(elem);
+        const textEncoding = this.decodeTextEncoding(elem);
         if (textEncoding != null) return textEncoding;
 
-        let binaryEncoding = this.decodeBinaryEncoding(elem);
+        const binaryEncoding = this.decodeBinaryEncoding(elem);
         if (binaryEncoding != null) return binaryEncoding;
 
-        let xmlEncoding = this.decodeXmlEncoding(elem);
+        const xmlEncoding = this.decodeXmlEncoding(elem);
         if (xmlEncoding != null) return xmlEncoding;
 
         throw new Error('Unsupported encoding type');
     }
 
     public decodeTextEncoding(elem: Element): ReturnObject<SweTextEncoding> {
-        let textEncodingElem = this.utils.getElement(elem, 'TextEncoding', NAMESPACES.SWE);
+        const textEncodingElem = this.utils.getElement(elem, 'TextEncoding', NAMESPACES.SWE);
         if (textEncodingElem != null) {
-            let textEncoding = new SweTextEncoding();
+            const textEncoding = new SweTextEncoding();
 
             this.decodeAbstractSwe(textEncodingElem, textEncoding);
 
@@ -314,14 +314,14 @@ export class SweDecoder {
     }
 
     public decodeBinaryEncoding(elem: Element): ReturnObject<SweBinaryEncoding> {
-        let binaryEncodingElem = this.utils.getElement(elem, 'BinaryEncoding', NAMESPACES.SWE);
+        const binaryEncodingElem = this.utils.getElement(elem, 'BinaryEncoding', NAMESPACES.SWE);
         if (binaryEncodingElem != null) {
-            let binaryEncoding = new SweBinaryEncoding();
+            const binaryEncoding = new SweBinaryEncoding();
 
             this.decodeAbstractSwe(binaryEncodingElem, binaryEncoding);
 
             if (binaryEncodingElem.hasAttribute('byteOrder')) {
-                let byteOrder = binaryEncodingElem.getAttribute('byteOrder');
+                const byteOrder = binaryEncodingElem.getAttribute('byteOrder');
                 if (byteOrder === 'bigEndian') {
                     binaryEncoding.byteOrder = 'bigEndian';
                     this._profileIDMap = this.utils.processProfileID(
@@ -337,7 +337,7 @@ export class SweDecoder {
             }
 
             if (binaryEncodingElem.hasAttribute('byteEncoding')) {
-                let byteEncoding = binaryEncodingElem.getAttribute('byteEncoding');
+                const byteEncoding = binaryEncodingElem.getAttribute('byteEncoding');
                 if (byteEncoding === 'base64') {
                     binaryEncoding.byteEncoding = 'base64';
                     this._profileIDMap = this.utils.processProfileID(
@@ -359,11 +359,11 @@ export class SweDecoder {
 
             binaryEncoding.members = this.utils.getDecodedList(
                 binaryEncodingElem, 'member', NAMESPACES.SWE, this._profileIDMap, (member) => {
-                    let component = this.decodeBinaryComponent(member);
+                    const component = this.decodeBinaryComponent(member);
                     if (component != null) {
                         return new ReturnObject(component, member);
                     }
-                    let block = this.decodeBinaryBlock(member);
+                    const block = this.decodeBinaryBlock(member);
                     if (block != null) {
                         return new ReturnObject(block, member);
                     }
@@ -377,9 +377,9 @@ export class SweDecoder {
 
     public decodeBinaryComponent(elem: Element): ReturnObject<SweBinaryComponent> {
 
-        let componentElem = this.utils.getElement(elem, 'Component', NAMESPACES.SWE);
+        const componentElem = this.utils.getElement(elem, 'Component', NAMESPACES.SWE);
         if (componentElem != null) {
-            let component = new SweBinaryComponent();
+            const component = new SweBinaryComponent();
 
             this.decodeAbstractSwe(componentElem, component);
 
@@ -431,9 +431,9 @@ export class SweDecoder {
 
     public decodeBinaryBlock(elem: Element): ReturnObject<SweBinaryBlock> {
 
-        let blockElem = this.utils.getElement(elem, 'Block', NAMESPACES.SWE);
+        const blockElem = this.utils.getElement(elem, 'Block', NAMESPACES.SWE);
         if (blockElem != null) {
-            let block = new SweBinaryBlock();
+            const block = new SweBinaryBlock();
 
             this.decodeAbstractSwe(blockElem, block);
 
@@ -477,9 +477,9 @@ export class SweDecoder {
 
 
     public decodeXmlEncoding(elem: Element): ReturnObject<SweXmlEncoding> {
-        let xmlEncodingElem = this.utils.getElement(elem, 'XMLEncoding', NAMESPACES.SWE);
+        const xmlEncodingElem = this.utils.getElement(elem, 'XMLEncoding', NAMESPACES.SWE);
         if (xmlEncodingElem != null) {
-            let xmlEncoding = new SweXmlEncoding();
+            const xmlEncoding = new SweXmlEncoding();
 
             this.decodeAbstractSwe(xmlEncodingElem, xmlEncoding);
 
@@ -488,9 +488,9 @@ export class SweDecoder {
     }
 
     public decodeElementType(elem: Element): ReturnObject<SweElementType> {
-        let elementTypeElem = this.utils.getElement(elem, 'elementType', NAMESPACES.SWE);
+        const elementTypeElem = this.utils.getElement(elem, 'elementType', NAMESPACES.SWE);
         if (elementTypeElem != null) {
-            let elementType = new SweElementType();
+            const elementType = new SweElementType();
 
             if (elementTypeElem.hasAttribute('name')) {
                 elementType.name = elementTypeElem.getAttribute('name');
@@ -498,7 +498,7 @@ export class SweDecoder {
                     elementTypeElem, elementType, 'name', this._profileIDMap
                 );
             }
-            let returnObject: ReturnObject<AbstractDataComponent> =
+            const returnObject: ReturnObject<AbstractDataComponent> =
                 this.decodeDataComponent(elementTypeElem.firstElementChild);
             if (returnObject) {
                 elementType.type = returnObject.value;
@@ -511,9 +511,9 @@ export class SweDecoder {
     }
 
     public decodeDataChoice(elem: Element): ReturnObject<SweDataChoice> {
-        let dataChoiceElem = this.utils.getElement(elem, 'DataChoice', NAMESPACES.SWE);
+        const dataChoiceElem = this.utils.getElement(elem, 'DataChoice', NAMESPACES.SWE);
         if (dataChoiceElem != null) {
-            let dataChoice = new SweDataChoice();
+            const dataChoice = new SweDataChoice();
 
             this.decodeAbstractDataComponent(dataChoiceElem, dataChoice);
 
@@ -534,7 +534,7 @@ export class SweDecoder {
     }
 
     public decodeDataChoiceItem(elem: Element): ReturnObject<SweDataChoiceItem> {
-        let dataChoiceItem = new SweDataChoiceItem();
+        const dataChoiceItem = new SweDataChoiceItem();
 
         if (elem.hasAttribute('name')) {
             dataChoiceItem.name = elem.getAttribute('name');
@@ -543,7 +543,7 @@ export class SweDecoder {
         }
 
         if (elem.firstElementChild != null) {
-            let returnObject: ReturnObject<AbstractDataComponent> = this.decodeDataComponent(elem.firstElementChild);
+            const returnObject: ReturnObject<AbstractDataComponent> = this.decodeDataComponent(elem.firstElementChild);
             if (returnObject) {
                 dataChoiceItem.item = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -556,9 +556,9 @@ export class SweDecoder {
     }
 
     public decodeUnitOfMeasure(elem: Element): ReturnObject<UnitOfMeasure> {
-        let uomElem = this.utils.getElement(elem, 'uom', NAMESPACES.SWE);
+        const uomElem = this.utils.getElement(elem, 'uom', NAMESPACES.SWE);
         if (uomElem != null) {
-            let uom = new UnitOfMeasure();
+            const uom = new UnitOfMeasure();
 
             if (uomElem.hasAttribute('code')) {
                 uom.code = uomElem.getAttribute('code');
@@ -575,13 +575,13 @@ export class SweDecoder {
     }
 
     public decodeQuantityRange(elem: Element): ReturnObject<SweQuantityRange> {
-        let quantityRangeElem = this.utils.getElement(elem, 'QuantityRange', NAMESPACES.SWE);
+        const quantityRangeElem = this.utils.getElement(elem, 'QuantityRange', NAMESPACES.SWE);
         if (quantityRangeElem != null) {
-            let quantityRange = new SweQuantityRange();
+            const quantityRange = new SweQuantityRange();
 
             this.decodeAbstractSimpleComponent(quantityRangeElem, quantityRange);
 
-            let returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(elem);
+            const returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(elem);
             if (returnObject) {
                 quantityRange.uom = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -589,9 +589,9 @@ export class SweDecoder {
                 );
             }
 
-            let constraint = this.utils.getElement(quantityRangeElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(quantityRangeElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let allowedValues: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
+                const allowedValues: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
                 if (allowedValues) {
                     quantityRange.constraint = allowedValues.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -600,9 +600,9 @@ export class SweDecoder {
                 }
             }
 
-            let valueElem = this.utils.getElement(quantityRangeElem, 'value', NAMESPACES.SWE);
+            const valueElem = this.utils.getElement(quantityRangeElem, 'value', NAMESPACES.SWE);
             if (valueElem != null) {
-                let values = valueElem.textContent.split(' ');
+                const values = valueElem.textContent.split(' ');
                 if (values.length === 2 && !isNaN(+values[0]) && !isNaN(+values[1])) {
                     quantityRange.value = [+values[0], +values[1]];
                     this._profileIDMap = this.utils.processProfileID(
@@ -616,22 +616,22 @@ export class SweDecoder {
     }
 
     public decodeTimeRange(elem: Element): ReturnObject<SweTimeRange> {
-        let timeRangeElem = this.utils.getElement(elem, 'TimeRange', NAMESPACES.SWE);
+        const timeRangeElem = this.utils.getElement(elem, 'TimeRange', NAMESPACES.SWE);
         if (timeRangeElem != null) {
-            let timeRange = new SweTimeRange();
+            const timeRange = new SweTimeRange();
 
             this.decodeAbstractSimpleComponent(timeRangeElem, timeRange);
 
-            let returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(timeRangeElem);
+            const returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(timeRangeElem);
             if (returnObject) {
                 timeRange.uom = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
                     returnObject.docElement, timeRange, 'uom', this._profileIDMap
                 );
             }
-            let valueElem = this.utils.getElement(timeRangeElem, 'value', NAMESPACES.SWE);
+            const valueElem = this.utils.getElement(timeRangeElem, 'value', NAMESPACES.SWE);
             if (valueElem != null) {
-                let values = valueElem.textContent.split(' ');
+                const values = valueElem.textContent.split(' ');
                 if (values.length === 2) {
                     let start;
                     let end;
@@ -652,9 +652,9 @@ export class SweDecoder {
                 }
             }
 
-            let constraint = this.utils.getElement(timeRangeElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(timeRangeElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let allowedTimes: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
+                const allowedTimes: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
                 if (allowedTimes) {
                     timeRange.constraint = allowedTimes.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -664,7 +664,7 @@ export class SweDecoder {
             }
 
             if (timeRangeElem.hasAttribute('referenceTime')) {
-                let timeStr = timeRangeElem.getAttribute('referenceTime');
+                const timeStr = timeRangeElem.getAttribute('referenceTime');
                 if (!isNaN(Date.parse(timeStr))) {
                     timeRange.referenceTime = new Date(Date.parse(timeStr));
                     this._profileIDMap = this.utils.processProfileID(
@@ -685,15 +685,15 @@ export class SweDecoder {
     }
 
     public decodeCountRange(elem: Element): ReturnObject<SweCountRange> {
-        let countRangeElem = this.utils.getElement(elem, 'CountRange', NAMESPACES.SWE);
+        const countRangeElem = this.utils.getElement(elem, 'CountRange', NAMESPACES.SWE);
         if (countRangeElem != null) {
-            let countRange = new SweCountRange();
+            const countRange = new SweCountRange();
 
             this.decodeAbstractSimpleComponent(countRangeElem, countRange);
 
-            let constraint = this.utils.getElement(countRangeElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(countRangeElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
+                const returnObject: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
                 if (returnObject) {
                     countRange.constraint = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -702,9 +702,9 @@ export class SweDecoder {
                 }
             }
 
-            let valueElem = this.utils.getElement(countRangeElem, 'value', NAMESPACES.SWE);
+            const valueElem = this.utils.getElement(countRangeElem, 'value', NAMESPACES.SWE);
             if (valueElem != null) {
-                let values = valueElem.textContent.split(' ');
+                const values = valueElem.textContent.split(' ');
                 if (values.length === 2 && !isNaN(+values[0]) && !isNaN(+values[1])) {
                     countRange.value = [+values[0], +values[1]];
                     this._profileIDMap = this.utils.processProfileID(
@@ -718,26 +718,26 @@ export class SweDecoder {
     }
 
     public decodeConstraint(elem: Element): ReturnObject<AllowedTimes | AllowedTokens | AllowedValues> {
-        let allowedTimes = this.decodeAllowedTimes(elem);
+        const allowedTimes = this.decodeAllowedTimes(elem);
         if (allowedTimes != null) return allowedTimes;
 
-        let allowedTokens = this.decodeAllowedTokens(elem);
+        const allowedTokens = this.decodeAllowedTokens(elem);
         if (allowedTokens != null) return allowedTokens;
 
-        let allowedValues = this.decodeAllowedValues(elem);
+        const allowedValues = this.decodeAllowedValues(elem);
         if (allowedValues != null) return allowedValues;
 
         throw new Error('Unsupported constraint type');
     }
 
     public decodeCategoryRange(elem: Element): ReturnObject<SweCategoryRange> {
-        let categoryRangeElem = this.utils.getElement(elem, 'CategoryRange', NAMESPACES.SWE);
+        const categoryRangeElem = this.utils.getElement(elem, 'CategoryRange', NAMESPACES.SWE);
         if (categoryRangeElem != null) {
-            let categoryRange = new SweCategoryRange();
+            const categoryRange = new SweCategoryRange();
 
             this.decodeAbstractSimpleComponent(categoryRangeElem, categoryRange);
 
-            let returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
+            const returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
                 categoryRangeElem, 'codeSpace', NAMESPACES.SWE, 'href', NAMESPACES.XLINK
             );
             if (returnObject) {
@@ -749,9 +749,9 @@ export class SweDecoder {
                 }
             }
 
-            let constraintElem = this.utils.getElement(categoryRangeElem, 'constraint', NAMESPACES.SWE);
+            const constraintElem = this.utils.getElement(categoryRangeElem, 'constraint', NAMESPACES.SWE);
             if (constraintElem != null) {
-                let allowedTokens: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraintElem);
+                const allowedTokens: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraintElem);
                 if (allowedTokens) {
                     categoryRange.constraint = allowedTokens.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -760,9 +760,9 @@ export class SweDecoder {
                 }
             }
 
-            let valueElem = this.utils.getElement(categoryRangeElem, 'value', NAMESPACES.SWE);
+            const valueElem = this.utils.getElement(categoryRangeElem, 'value', NAMESPACES.SWE);
             if (valueElem != null) {
-                let values = valueElem.textContent.split(' ');
+                const values = valueElem.textContent.split(' ');
                 if (values.length === 2) {
                     categoryRange.value = [values[0], values[1]];
                     this._profileIDMap = this.utils.processProfileID(
@@ -776,13 +776,13 @@ export class SweDecoder {
     }
 
     public decodeBoolean(elem: Element): ReturnObject<SweBoolean> {
-        let boolElem = this.utils.getElement(elem, 'Boolean', NAMESPACES.SWE);
+        const boolElem = this.utils.getElement(elem, 'Boolean', NAMESPACES.SWE);
         if (boolElem != null) {
-            let bool = new SweBoolean();
+            const bool = new SweBoolean();
 
             this.decodeAbstractSimpleComponent(boolElem, bool);
 
-            let value = this.utils.getElement(boolElem, 'value', NAMESPACES.SWE);
+            const value = this.utils.getElement(boolElem, 'value', NAMESPACES.SWE);
             if (value != null) {
                 bool.value = value.textContent === 'true';
                 this._profileIDMap = this.utils.processProfileID(boolElem, bool, 'value', this._profileIDMap);
@@ -793,15 +793,15 @@ export class SweDecoder {
     }
 
     public decodeCount(elem: Element): ReturnObject<SweCount> {
-        let countElem = this.utils.getElement(elem, 'Count', NAMESPACES.SWE);
+        const countElem = this.utils.getElement(elem, 'Count', NAMESPACES.SWE);
         if (countElem != null) {
-            let count = new SweCount();
+            const count = new SweCount();
 
             this.decodeAbstractSimpleComponent(countElem, count);
 
-            let constraint = this.utils.getElement(countElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(countElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
+                const returnObject: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
                 if (returnObject) {
                     count.constraint = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -810,7 +810,7 @@ export class SweDecoder {
                 }
             }
 
-            let value = this.utils.getElement(countElem, 'value', NAMESPACES.SWE);
+            const value = this.utils.getElement(countElem, 'value', NAMESPACES.SWE);
             if (value != null && !isNaN(+value.textContent)) {
                 count.value = +value.textContent;
                 this._profileIDMap = this.utils.processProfileID(countElem, count, 'value', this._profileIDMap);
@@ -822,30 +822,30 @@ export class SweDecoder {
     }
 
     public decodeQuantity(elem: Element): ReturnObject<SweQuantity> {
-        let quantityElem = this.utils.getElement(elem, 'Quantity', NAMESPACES.SWE);
+        const quantityElem = this.utils.getElement(elem, 'Quantity', NAMESPACES.SWE);
         if (quantityElem != null) {
-            let quantity = new SweQuantity();
+            const quantity = new SweQuantity();
 
             this.decodeAbstractSimpleComponent(quantityElem, quantity);
 
-            let constraint = this.utils.getElement(quantityElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(quantityElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
-                if (returnObject) {
-                    quantity.constraint = returnObject.value;
+                const allowedValuesObject: ReturnObject<AllowedValues> = this.decodeAllowedValues(constraint);
+                if (allowedValuesObject) {
+                    quantity.constraint = allowedValuesObject.value;
                     this._profileIDMap = this.utils.processProfileID(
-                        returnObject.docElement, quantity, 'constraint', this._profileIDMap
+                        allowedValuesObject.docElement, quantity, 'constraint', this._profileIDMap
                     );
                 }
             }
 
-            let value = this.utils.getElement(quantityElem, 'value', NAMESPACES.SWE);
+            const value = this.utils.getElement(quantityElem, 'value', NAMESPACES.SWE);
             if (value != null && !isNaN(+value.textContent)) {
                 quantity.value = +value.textContent;
                 this._profileIDMap = this.utils.processProfileID(quantityElem, quantity, 'value', this._profileIDMap);
 
             }
-            let returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(quantityElem);
+            const returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(quantityElem);
             if (returnObject) {
                 quantity.uom = returnObject.value;
                 if (quantity.uom) {
@@ -857,20 +857,20 @@ export class SweDecoder {
     }
 
     public decodeTime(elem: Element): ReturnObject<SweTime> {
-        let timeElem = this.utils.getElement(elem, 'Time', NAMESPACES.SWE);
+        const timeElem = this.utils.getElement(elem, 'Time', NAMESPACES.SWE);
         if (timeElem != null) {
-            let time = new SweTime();
+            const time = new SweTime();
 
             this.decodeAbstractSimpleComponent(timeElem, time);
 
-            let returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(timeElem);
+            const returnObject: ReturnObject<UnitOfMeasure> = this.decodeUnitOfMeasure(timeElem);
             if (returnObject) {
                 time.uom = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(timeElem, time, 'uom', this._profileIDMap);
             }
-            let constraint = this.utils.getElement(timeElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(timeElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let allowedTimes: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
+                const allowedTimes: ReturnObject<AllowedTimes> = this.decodeAllowedTimes(constraint);
                 if (allowedTimes) {
                     time.constraint = allowedTimes.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -889,7 +889,7 @@ export class SweDecoder {
                 this._profileIDMap = this.utils.processProfileID(timeElem, time, 'localFrame', this._profileIDMap);
             }
 
-            let value = this.utils.getElement(timeElem, 'value', NAMESPACES.SWE);
+            const value = this.utils.getElement(timeElem, 'value', NAMESPACES.SWE);
             if (value != null) {
                 if (!isNaN(Date.parse(value.textContent))) {
                     time.value = new Date(Date.parse(value.textContent));
@@ -905,13 +905,13 @@ export class SweDecoder {
     }
 
     public decodeCategory(elem: Element): ReturnObject<SweCategory> {
-        let catElem = this.utils.getElement(elem, 'Category', NAMESPACES.SWE);
+        const catElem = this.utils.getElement(elem, 'Category', NAMESPACES.SWE);
         if (catElem != null) {
-            let category = new SweCategory();
+            const category = new SweCategory();
 
             this.decodeAbstractSimpleComponent(catElem, category);
 
-            let returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
+            const returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
                 catElem, 'codeSpace', NAMESPACES.SWE, 'href', NAMESPACES.XLINK
             );
             if (returnObject) {
@@ -921,9 +921,9 @@ export class SweDecoder {
                 );
             }
 
-            let constraint = this.utils.getElement(catElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(catElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let allowedTokens: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraint);
+                const allowedTokens: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraint);
                 if (allowedTokens) {
                     category.constraint = allowedTokens.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -932,7 +932,7 @@ export class SweDecoder {
                 }
             }
 
-            let value = this.utils.getElement(catElem, 'value', NAMESPACES.SWE);
+            const value = this.utils.getElement(catElem, 'value', NAMESPACES.SWE);
             if (value != null) {
                 category.value = value.textContent;
                 this._profileIDMap = this.utils.processProfileID(value, category, 'value', this._profileIDMap);
@@ -944,15 +944,15 @@ export class SweDecoder {
     }
 
     public decodeText(elem: Element): ReturnObject<SweText> {
-        let textElem = this.utils.getElement(elem, 'Text', NAMESPACES.SWE);
+        const textElem = this.utils.getElement(elem, 'Text', NAMESPACES.SWE);
         if (textElem != null) {
-            let text = new SweText();
+            const text = new SweText();
 
             this.decodeAbstractSimpleComponent(textElem, text);
 
-            let constraint = this.utils.getElement(textElem, 'constraint', NAMESPACES.SWE);
+            const constraint = this.utils.getElement(textElem, 'constraint', NAMESPACES.SWE);
             if (constraint != null) {
-                let returnObject: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraint);
+                const returnObject: ReturnObject<AllowedTokens> = this.decodeAllowedTokens(constraint);
                 if (returnObject) {
                     text.constraint = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -961,7 +961,7 @@ export class SweDecoder {
                 }
             }
 
-            let value = this.utils.getElement(textElem, 'value', NAMESPACES.SWE);
+            const value = this.utils.getElement(textElem, 'value', NAMESPACES.SWE);
             if (value != null) {
                 text.value = value.textContent;
                 this._profileIDMap = this.utils.processProfileID(value, text, 'value', this._profileIDMap);
@@ -972,9 +972,9 @@ export class SweDecoder {
     }
 
     public decodeAllowedTokens(elem: Element): ReturnObject<AllowedTokens> {
-        let allowedTokensElem = this.utils.getElement(elem, 'AllowedTokens', NAMESPACES.SWE);
+        const allowedTokensElem = this.utils.getElement(elem, 'AllowedTokens', NAMESPACES.SWE);
         if (allowedTokensElem != null) {
-            let allowedTokens = new AllowedTokens();
+            const allowedTokens = new AllowedTokens();
 
             this.decodeAbstractSwe(allowedTokensElem, allowedTokens);
 
@@ -984,7 +984,7 @@ export class SweDecoder {
                 NAMESPACES.SWE, this._profileIDMap,
                 (v) => new ReturnObject(allowedTokens.values.push(v.textContent), allowedTokensElem));
 
-            let pattern = this.utils.getElement(allowedTokensElem, 'pattern', NAMESPACES.SWE);
+            const pattern = this.utils.getElement(allowedTokensElem, 'pattern', NAMESPACES.SWE);
             if (pattern != null) {
                 allowedTokens.pattern = pattern.textContent;
                 this._profileIDMap = this.utils.processProfileID(pattern, allowedTokens, 'pattern', this._profileIDMap);
@@ -995,14 +995,14 @@ export class SweDecoder {
     }
 
     public decodeAllowedValues(elem: Element): ReturnObject<AllowedValues> {
-        let allowedValuesElem = this.utils.getElement(elem, 'AllowedValues', NAMESPACES.SWE);
+        const allowedValuesElem = this.utils.getElement(elem, 'AllowedValues', NAMESPACES.SWE);
         if (allowedValuesElem != null) {
-            let allowedValues = new AllowedValues();
+            const allowedValues = new AllowedValues();
 
 
             this.decodeAbstractSwe(allowedValuesElem, allowedValues);
 
-            let significantFigures = this.utils.getElement(allowedValuesElem, 'significantFigures', NAMESPACES.SWE);
+            const significantFigures = this.utils.getElement(allowedValuesElem, 'significantFigures', NAMESPACES.SWE);
             if (significantFigures != null && !isNaN(+significantFigures.textContent)) {
                 allowedValues.significantFigures = +significantFigures.textContent;
                 this._profileIDMap = this.utils.processProfileID(
@@ -1020,7 +1020,7 @@ export class SweDecoder {
             allowedValues.values = this.utils.getDecodedList(
                 allowedValuesElem, 'interval', NAMESPACES.SWE, this._profileIDMap, (v) => {
                     if (v.textContent != null) {
-                        let interval = v.textContent.split(' ');
+                        const interval = v.textContent.split(' ');
                         if (interval.length === 2 && !isNaN(+interval[0]) && !isNaN(+interval[1])) {
                             return new ReturnObject([+interval[0], +interval[1]], v);
                         }
@@ -1032,13 +1032,13 @@ export class SweDecoder {
     }
 
     public decodeAllowedTimes(elem: Element): ReturnObject<AllowedTimes> {
-        let allowedTimesElem = this.utils.getElement(elem, 'AllowedTimes', NAMESPACES.SWE);
+        const allowedTimesElem = this.utils.getElement(elem, 'AllowedTimes', NAMESPACES.SWE);
         if (allowedTimesElem != null) {
-            let allowedTimes = new AllowedTimes();
+            const allowedTimes = new AllowedTimes();
 
             this.decodeAbstractSwe(allowedTimesElem, allowedTimes);
 
-            let significantFigures = this.utils.getElement(allowedTimesElem, 'significantFigures', NAMESPACES.SWE);
+            const significantFigures = this.utils.getElement(allowedTimesElem, 'significantFigures', NAMESPACES.SWE);
             if (significantFigures != null && !isNaN(+significantFigures.textContent)) {
                 allowedTimes.significantFigures = +significantFigures.textContent;
                 this._profileIDMap = this.utils.processProfileID(
@@ -1057,7 +1057,7 @@ export class SweDecoder {
 
             allowedTimes.values = this.utils.getDecodedList(
                 allowedTimesElem, 'interval', NAMESPACES.SWE, this._profileIDMap, (entry) => {
-                    let interval = entry.textContent.split(' ');
+                    const interval = entry.textContent.split(' ');
                     if (interval.length === 2 && !isNaN(Date.parse(interval[0])) && !isNaN(Date.parse(interval[1]))) {
                         return new ReturnObject(
                             [new Date(Date.parse(interval[0])), new Date(Date.parse(interval[1]))], entry
@@ -1071,7 +1071,7 @@ export class SweDecoder {
     }
 
     public decodeNilValue(elem: Element): ReturnObject<SweNilValue> {
-        let nilValue = new SweNilValue();
+        const nilValue = new SweNilValue();
 
         if (elem.hasAttribute('reason')) {
             nilValue.reason = elem.getAttribute('reason');
@@ -1087,16 +1087,16 @@ export class SweDecoder {
     }
 
     public decodeQuality(elem: Element): ReturnObject<SweQuality> {
-        let quantity = this.decodeQuantity(elem);
+        const quantity = this.decodeQuantity(elem);
         if (quantity != null) return quantity;
 
-        let quantityRange = this.decodeQuantityRange(elem);
+        const quantityRange = this.decodeQuantityRange(elem);
         if (quantityRange != null) return quantityRange;
 
-        let category = this.decodeCategory(elem);
+        const category = this.decodeCategory(elem);
         if (category != null) return category;
 
-        let text = this.decodeText(elem);
+        const text = this.decodeText(elem);
         if (text != null) return text;
     }
 
@@ -1149,9 +1149,9 @@ export class SweDecoder {
             NAMESPACES.SWE, this._profileIDMap,
             (quality) => this.decodeQuality(quality));
 
-        let outerNilValuesElem = this.utils.getElement(elem, 'nilValues', NAMESPACES.SWE);
+        const outerNilValuesElem = this.utils.getElement(elem, 'nilValues', NAMESPACES.SWE);
         if (outerNilValuesElem != null) {
-            let innerNilValuesElem = this.utils.getElement(outerNilValuesElem, 'NilValues', NAMESPACES.SWE);
+            const innerNilValuesElem = this.utils.getElement(outerNilValuesElem, 'NilValues', NAMESPACES.SWE);
             if (innerNilValuesElem != null) {
                 component.nilValues = this.utils.getDecodedList(
                     innerNilValuesElem,
@@ -1174,24 +1174,24 @@ export class SweDecoder {
 
         this.decodeAbstractDataComponent(elem, component);
 
-        let elementCount = this.utils.getElement(elem, 'elementCount', NAMESPACES.SWE);
+        const elementCount = this.utils.getElement(elem, 'elementCount', NAMESPACES.SWE);
         if (elementCount != null && !isNaN(+elementCount.textContent)) {
             component.elementCount = +elementCount.textContent;
             this._profileIDMap = this.utils.processProfileID(elem, component, 'elementCount', this._profileIDMap);
         }
 
-        let elementType = this.utils.getElement(elem, 'elementType', NAMESPACES.SWE);
+        const elementType = this.utils.getElement(elem, 'elementType', NAMESPACES.SWE);
         if (elementType != null) {
-            let returnObject: ReturnObject<SweElementType> = this.decodeElementType(elementType);
+            const returnObject: ReturnObject<SweElementType> = this.decodeElementType(elementType);
             if (returnObject) {
                 component.elementType = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(elem, component, 'elementType', this._profileIDMap);
             }
         }
 
-        let encoding = this.utils.getElement(elem, 'encoding', NAMESPACES.SWE);
+        const encoding = this.utils.getElement(elem, 'encoding', NAMESPACES.SWE);
         if (encoding != null) {
-            let returnObject: ReturnObject<SweEncoding> = this.decodeAbstractEncoding(encoding);
+            const returnObject: ReturnObject<SweEncoding> = this.decodeAbstractEncoding(encoding);
             if (returnObject) {
                 component.encoding = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -1200,7 +1200,7 @@ export class SweDecoder {
             }
         }
 
-        let values = this.utils.getElement(elem, 'values', NAMESPACES.SWE);
+        const values = this.utils.getElement(elem, 'values', NAMESPACES.SWE);
         if (values != null) {
             component.values = values.textContent;
             this._profileIDMap = this.utils.processProfileID(elem, component, 'values', this._profileIDMap);

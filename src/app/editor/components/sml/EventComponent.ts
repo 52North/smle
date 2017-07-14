@@ -168,13 +168,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     public createTime(): void {
-        let time = new TimeInstant();
+        const time = new TimeInstant();
         time.time = new Date();
         this.model.time = time;
     }
 
     public createPeriod(): void {
-        let period = new TimePeriod();
+        const period = new TimePeriod();
         period.begin = new Date();
         period.end = new Date();
         this.model.time = period;

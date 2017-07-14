@@ -29,7 +29,7 @@ export abstract class AbstractDataComponent extends AbstractSWEIdentifiable {
 
     public getLabel() {
         return this.label;
-    };
+    }
 
     abstract getValue();
 }

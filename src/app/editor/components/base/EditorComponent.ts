@@ -17,7 +17,7 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
 
     public onReset(): void {
         this.closeChild();
-        for (let prop in this.model) {
+        for (const prop in this.model) {
             if (this.model[prop]) delete this.model[prop];
         }
         this.extendModel();
@@ -32,9 +32,9 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     }
 
     protected openNewChild(childMetadata: ChildMetadata<any>) {
-        let model = childMetadata.model;
-        let componentType = childMetadata.componentType;
-        let config = childMetadata.config;
+        const model = childMetadata.model;
+        const componentType = childMetadata.componentType;
+        const config = childMetadata.config;
 
         if (this.childComponentRef &&
             this.childComponentRef.componentType === componentType &&
@@ -52,8 +52,8 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
         this.childComponentRef.instance.config = config;
         this.childComponentRef.instance.parentComponent = this;
         if (childMetadata instanceof NestedChildMetadata) {
-            (<NestedCardComponent> this.childComponentRef.instance).componentType = childMetadata.contentType;
-            (<NestedCardComponent> this.childComponentRef.instance).title = childMetadata.title;
+            (this.childComponentRef.instance as NestedCardComponent).componentType = childMetadata.contentType;
+            (this.childComponentRef.instance as NestedCardComponent).title = childMetadata.title;
         }
     }
 

@@ -28,7 +28,7 @@ export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty>
     }
 
     protected openNewContactInfoItem(item: Contact) {
-        let metadata = new ChildMetadata(ContactComponent, item, this.config.getConfigFor('contactInfo'));
+        const metadata = new ChildMetadata(ContactComponent, item, this.config.getConfigFor('contactInfo'));
         this.openNewChild(metadata);
     }
 }

@@ -22,7 +22,7 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
     }
 
     ngAfterViewInit(): void {
-        let center = this.dialog.context.center;
+        const center = this.dialog.context.center;
 
         this.map = new L.Map('map', {
             center: [center.lat, center.lng],
@@ -50,7 +50,7 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
         });
 
         this.marker.on('drag', (e) => {
-            let markerCoords = this.marker.getLatLng();
+            const markerCoords = this.marker.getLatLng();
             this.updateMarkerText(markerCoords);
         });
     }
@@ -60,8 +60,8 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
     }
 
     protected saveAndClose(): void {
-        let centerLatLng = this.marker.getLatLng();
-        let center = {
+        const centerLatLng = this.marker.getLatLng();
+        const center = {
             lat: centerLatLng.lat,
             lng: centerLatLng.lng
         };
@@ -70,7 +70,7 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
     }
 
     private updateMarkerText(markerCoords) {
-        let markerText = this.getCoordText(markerCoords);
+        const markerText = this.getCoordText(markerCoords);
         this.marker.setPopupContent(markerText);
     }
 

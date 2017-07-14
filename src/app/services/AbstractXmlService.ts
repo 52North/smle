@@ -3,7 +3,7 @@ import { XmlService } from './XmlService';
 
 export abstract class AbstractXmlService<T> extends XmlService<T> {
   serialize(description: T, prettify: boolean) {
-    let serializer = new XMLSerializer();
+    const serializer = new XMLSerializer();
     let document = this.encode(description);
     if (prettify) document = this.prettyPrint(document);
     return serializer.serializeToString(document);
@@ -14,7 +14,7 @@ export abstract class AbstractXmlService<T> extends XmlService<T> {
     if (xml instanceof Document) {
       document = xml;
     } else if (typeof (xml) === 'string') {
-      let deserializer = new DOMParser();
+      const deserializer = new DOMParser();
       document = deserializer.parseFromString(xml as string, 'application/xml');
     } else {
       return null;
@@ -37,7 +37,7 @@ export abstract class AbstractXmlService<T> extends XmlService<T> {
               </xsl:copy>
             </xsl:template>
           </xsl:stylesheet>`, 'application/xml');
-    let processor = new XSLTProcessor();
+    const processor = new XSLTProcessor();
     processor.importStylesheet(stylesheet);
     return processor.transformToDocument(source);
   }

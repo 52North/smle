@@ -2,7 +2,6 @@ import { Component, Type } from '@angular/core';
 import { TypedModelComponent, ChildMetadata } from '../base';
 import { ParameterList, Parameter, DataInterface, ObservableProperty } from '../../../model/sml';
 import { ParameterComponent } from './ParameterComponent';
-import { EditorService } from '../../../services/EditorService';
 import {
     SweText,
     SweTime,
@@ -37,9 +36,7 @@ export class ParameterListComponent extends TypedModelComponent<ParameterList> {
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
-    constructor(
-        private editorSrvc: EditorService
-    ) {
+    constructor() {
         super();
     }
 
@@ -54,7 +51,7 @@ export class ParameterListComponent extends TypedModelComponent<ParameterList> {
     }
 
     protected onAddParameter(parameterType: Type<any>): void {
-        let parameter = new Parameter();
+        const parameter = new Parameter();
         parameter.value = new parameterType();
         this.model.parameters.push(parameter);
     }

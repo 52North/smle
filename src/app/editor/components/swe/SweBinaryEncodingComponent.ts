@@ -16,12 +16,12 @@ export class SweBinaryEncodingComponent extends TypedModelComponent<SweBinaryEnc
     }
 
     protected addBinaryBlock() {
-        let newItem = new SweBinaryBlock();
+        const newItem = new SweBinaryBlock();
         this.model.members.push(newItem);
     }
 
     protected addBinaryComponent() {
-        let newItem = new SweBinaryComponent();
+        const newItem = new SweBinaryComponent();
         this.model.members.push(newItem);
     }
 

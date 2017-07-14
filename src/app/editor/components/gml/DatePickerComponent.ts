@@ -24,12 +24,12 @@ export class DatePickerComponent implements OnChanges {
     private momentDateFormat: string = 'DD.MM.YYYY';
 
     public ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
-        let modelChange = changes['model'];
+        const modelChange = changes['model'];
         if (!modelChange) {
             return;
         }
 
-        let dateTime = this.model;
+        const dateTime = this.model;
         if (dateTime) {
             this.dateTimeString =
                 this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
@@ -51,8 +51,8 @@ export class DatePickerComponent implements OnChanges {
     }
 
     protected getMinFormattedTime(): string {
-        let minDate = this.minDateTime;
-        let currentDate = this.model;
+        const minDate = this.minDateTime;
+        const currentDate = this.model;
 
         if (!minDate) {
             return null;
@@ -70,8 +70,8 @@ export class DatePickerComponent implements OnChanges {
     }
 
     protected getMaxFormattedTime(): string {
-        let maxDate = this.maxDateTime;
-        let currentDate = this.model;
+        const maxDate = this.maxDateTime;
+        const currentDate = this.model;
 
         if (!maxDate) {
             return null;
@@ -85,7 +85,7 @@ export class DatePickerComponent implements OnChanges {
     }
 
     protected onStringDateChange(newDateTimeString: string): void {
-        let parsedDate = moment(newDateTimeString, this.momentDateFormat + ' ' + this.timeFormat).toDate();
+        const parsedDate = moment(newDateTimeString, this.momentDateFormat + ' ' + this.timeFormat).toDate();
         this.dateTimeString = newDateTimeString;
         this.modelChange.emit(parsedDate);
     }
@@ -102,7 +102,7 @@ export class DatePickerComponent implements OnChanges {
     }
 
     private getFormattedTime(dateTime: Date): string {
-        let timeObject = this.getTimeObject(dateTime);
+        const timeObject = this.getTimeObject(dateTime);
         return moment(timeObject).format(this.timeFormat);
     }
 
