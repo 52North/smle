@@ -118,7 +118,7 @@ export class SensorMLDecoder {
     public decodeAbstractPhysicalProcess(elem: Element, object: AbstractPhysicalProcess): void {
         this.decodeAbstractProcess(elem, object);
 
-        let returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
+        const returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
             elem, 'attachedTo', NAMESPACES.SML, 'href', NAMESPACES.XLINK
         );
 
@@ -152,15 +152,15 @@ export class SensorMLDecoder {
     }
 
     public decodeSpatialFrame(elem: Element): ReturnObject<SpatialFrame> {
-        let spatialFrame = new SpatialFrame();
+        const spatialFrame = new SpatialFrame();
 
-        let spatialFrameElem = this.utils.getElement(elem, 'SpatialFrame', NAMESPACES.SML);
+        const spatialFrameElem = this.utils.getElement(elem, 'SpatialFrame', NAMESPACES.SML);
         this._profileIDMap = this.utils.processProfileID(spatialFrameElem, spatialFrame, '', this._profileIDMap);
 
         if (spatialFrameElem != null) {
             this.sweDecoder.decodeAbstractSweIdentifiable(spatialFrameElem, spatialFrame);
 
-            let originElem = this.utils.getElement(spatialFrameElem, 'origin', NAMESPACES.SML);
+            const originElem = this.utils.getElement(spatialFrameElem, 'origin', NAMESPACES.SML);
             if (originElem != null) {
                 spatialFrame.origin = originElem.textContent.trim();
                 this._profileIDMap = this.utils.processProfileID(
@@ -179,14 +179,14 @@ export class SensorMLDecoder {
     }
 
     public decodeTemporalFrame(elem: Element): ReturnObject<TemporalFrame> {
-        let temporalFrame = new TemporalFrame();
+        const temporalFrame = new TemporalFrame();
 
-        let temporalFrameElem = this.utils.getElement(elem, 'TemporalFrame', NAMESPACES.SML);
+        const temporalFrameElem = this.utils.getElement(elem, 'TemporalFrame', NAMESPACES.SML);
 
         if (temporalFrameElem != null) {
             this.sweDecoder.decodeAbstractSweIdentifiable(temporalFrameElem, temporalFrame);
 
-            let originElem = this.utils.getElement(temporalFrameElem, 'origin', NAMESPACES.SML);
+            const originElem = this.utils.getElement(temporalFrameElem, 'origin', NAMESPACES.SML);
             if (originElem != null) {
                 temporalFrame.origin = originElem.textContent.trim();
                 this._profileIDMap = this.utils.processProfileID(
@@ -198,15 +198,15 @@ export class SensorMLDecoder {
     }
 
     public decodeAxis(elem: Element): ReturnObject<Axis> {
-        let axis = new Axis();
+        const axis = new Axis();
 
-        let name = elem.getAttribute('name');
+        const name = elem.getAttribute('name');
         if (name != null) {
             axis.name = name;
             this._profileIDMap = this.utils.processProfileID(elem, axis, 'name', this._profileIDMap);
         }
 
-        let description = elem.textContent.trim();
+        const description = elem.textContent.trim();
         if (description != null) {
             axis.description = description;
             this._profileIDMap = this.utils.processProfileID(elem, axis, 'description', this._profileIDMap);
@@ -215,25 +215,25 @@ export class SensorMLDecoder {
     }
 
     public decodePosition(elem: Element): ReturnObject<Position> {
-        let point = this.gmlDecoder.decodePoint(elem);
+        const point = this.gmlDecoder.decodePoint(elem);
         if (point != null) return point;
-        let text = this.sweDecoder.decodeText(elem);
+        const text = this.sweDecoder.decodeText(elem);
         if (text != null) return text;
-        let vector = this.sweDecoder.decodeVector(elem);
+        const vector = this.sweDecoder.decodeVector(elem);
         if (vector != null) return vector;
-        let dataRecord = this.sweDecoder.decodeDataRecord(elem);
+        const dataRecord = this.sweDecoder.decodeDataRecord(elem);
         if (dataRecord != null) return dataRecord;
-        let matrix = this.sweDecoder.decodeMatrix(elem);
+        const matrix = this.sweDecoder.decodeMatrix(elem);
         if (matrix != null) return matrix;
-        let dataArray = this.sweDecoder.decodeDataArray(elem);
+        const dataArray = this.sweDecoder.decodeDataArray(elem);
         if (dataArray != null) return dataArray;
         // TODO decode if process
     }
 
     public decodeAggregatingProcess(elem: Element, object: AggregatingProcess): void {
-        let componentsElem = this.utils.getElement(elem, 'components', NAMESPACES.SML);
+        const componentsElem = this.utils.getElement(elem, 'components', NAMESPACES.SML);
         if (componentsElem != null) {
-            let returnObject: ReturnObject<ComponentList> = this.decodeComponentList(componentsElem);
+            const returnObject: ReturnObject<ComponentList> = this.decodeComponentList(componentsElem);
             if (returnObject) {
                 object.components = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -243,9 +243,9 @@ export class SensorMLDecoder {
         }
 
 
-        let connectionsElem = this.utils.getElement(elem, 'connections', NAMESPACES.SML);
+        const connectionsElem = this.utils.getElement(elem, 'connections', NAMESPACES.SML);
         if (connectionsElem != null) {
-            let returnObject: ReturnObject<ConnectionList> = this.decodeConnectionList(connectionsElem);
+            const returnObject: ReturnObject<ConnectionList> = this.decodeConnectionList(connectionsElem);
             if (returnObject) {
                 object.connections = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -259,7 +259,7 @@ export class SensorMLDecoder {
     public decodeAbstractProcess(elem: Element, object: AbstractProcess): void {
         this.decodeDescribedObject(elem, object);
 
-        let returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
+        const returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
             elem, 'typeOf', NAMESPACES.SML, 'href', NAMESPACES.XLINK
         );
         if (returnObject) {
@@ -269,9 +269,9 @@ export class SensorMLDecoder {
             );
         }
 
-        let settings = this.utils.getElement(elem, 'configuration', NAMESPACES.SML);
+        const settings = this.utils.getElement(elem, 'configuration', NAMESPACES.SML);
         if (settings != null) {
-            let settingsRo: ReturnObject<Settings> = this.decodeSettings(settings);
+            const settingsRo: ReturnObject<Settings> = this.decodeSettings(settings);
             if (settingsRo) {
                 object.configuration = settingsRo.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -280,9 +280,9 @@ export class SensorMLDecoder {
             }
         }
 
-        let features = this.utils.getElement(elem, 'featuresOfInterest', NAMESPACES.SML);
+        const features = this.utils.getElement(elem, 'featuresOfInterest', NAMESPACES.SML);
         if (features != null) {
-            let featureListRo: ReturnObject<FeatureList> = this.decodeFeatureList(features);
+            const featureListRo: ReturnObject<FeatureList> = this.decodeFeatureList(features);
             if (featureListRo) {
                 object.featureOfInterest = featureListRo.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -291,9 +291,9 @@ export class SensorMLDecoder {
             }
         }
 
-        let inputsElem = this.utils.getElement(elem, 'inputs', NAMESPACES.SML);
+        const inputsElem = this.utils.getElement(elem, 'inputs', NAMESPACES.SML);
         if (inputsElem != null) {
-            let inputListRo: ReturnObject<InputList> = this.decodeInputList(inputsElem);
+            const inputListRo: ReturnObject<InputList> = this.decodeInputList(inputsElem);
             if (inputListRo) {
                 object.inputs = inputListRo.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -301,9 +301,9 @@ export class SensorMLDecoder {
                 );
             }
 
-            let outputsElem = this.utils.getElement(elem, 'outputs', NAMESPACES.SML);
+            const outputsElem = this.utils.getElement(elem, 'outputs', NAMESPACES.SML);
             if (outputsElem != null) {
-                let outputListRo: ReturnObject<OutputList> = this.decodeOutputList(outputsElem);
+                const outputListRo: ReturnObject<OutputList> = this.decodeOutputList(outputsElem);
                 if (outputListRo) {
                     object.outputs = outputListRo.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -313,9 +313,9 @@ export class SensorMLDecoder {
             }
 
 
-            let parameters = this.utils.getElement(elem, 'parameters', NAMESPACES.SML);
+            const parameters = this.utils.getElement(elem, 'parameters', NAMESPACES.SML);
             if (parameters != null) {
-                let parameterListRo: ReturnObject<ParameterList> = this.decodeParameterList(parameters);
+                const parameterListRo: ReturnObject<ParameterList> = this.decodeParameterList(parameters);
                 if (parameterListRo) {
                     object.parameters = parameterListRo.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -337,9 +337,9 @@ export class SensorMLDecoder {
     }
 
     public decodeFeatureList(elem: Element): ReturnObject<FeatureList> {
-        let featureListElem = this.utils.getElement(elem, 'FeatureList', NAMESPACES.SML);
+        const featureListElem = this.utils.getElement(elem, 'FeatureList', NAMESPACES.SML);
         if (featureListElem != null) {
-            let featureList = new FeatureList();
+            const featureList = new FeatureList();
             this._profileIDMap = this.utils.processProfileID(featureListElem, featureList, '', this._profileIDMap);
 
             this.decodeAbstractMetadataList(featureListElem, featureList);
@@ -356,14 +356,14 @@ export class SensorMLDecoder {
     }
 
     public decodeModes(elem: Element): ReturnObject<AbstractModes> {
-        let modeChoice = this.decodeModeChoice(elem);
+        const modeChoice = this.decodeModeChoice(elem);
         if (modeChoice != null) return new ReturnObject(modeChoice, elem);
     }
 
     public decodeModeChoice(elem: Element): ModeChoice {
-        let modeChoiceElem = this.utils.getElement(elem, 'ModeChoice', NAMESPACES.SML);
+        const modeChoiceElem = this.utils.getElement(elem, 'ModeChoice', NAMESPACES.SML);
         if (modeChoiceElem != null) {
-            let modeChoice = new ModeChoice();
+            const modeChoice = new ModeChoice();
             this._profileIDMap = this.utils.processProfileID(modeChoiceElem, modeChoice, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSwe(modeChoiceElem, modeChoice);
@@ -378,16 +378,16 @@ export class SensorMLDecoder {
     }
 
     public decodeMode(elem: Element): ReturnObject<Mode> {
-        let modeElem = this.utils.getElement(elem, 'Mode', NAMESPACES.SML);
+        const modeElem = this.utils.getElement(elem, 'Mode', NAMESPACES.SML);
         if (modeElem != null) {
-            let mode = new Mode();
+            const mode = new Mode();
             this._profileIDMap = this.utils.processProfileID(modeElem, mode, '', this._profileIDMap);
 
             this.decodeDescribedObject(modeElem, mode);
 
-            let settingsElem = this.utils.getElement(modeElem, 'configuration', NAMESPACES.SML);
+            const settingsElem = this.utils.getElement(modeElem, 'configuration', NAMESPACES.SML);
             if (settingsElem != null) {
-                let returnObject: ReturnObject<Settings> = this.decodeSettings(settingsElem);
+                const returnObject: ReturnObject<Settings> = this.decodeSettings(settingsElem);
                 if (returnObject) {
                     mode.configuration = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -427,7 +427,7 @@ export class SensorMLDecoder {
             NAMESPACES.SML, this._profileIDMap,
             (validTime) => this.gmlDecoder.decodeTime(validTime));
 
-        let secConstElem = this.utils.getElement(elem, 'securityConstraints', NAMESPACES.SML);
+        const secConstElem = this.utils.getElement(elem, 'securityConstraints', NAMESPACES.SML);
         if (secConstElem != null) {
             throw new Error('Security Constraints currently not supported');
         }
@@ -470,9 +470,9 @@ export class SensorMLDecoder {
     }
 
     public decodeComponentList(elem: Element): ReturnObject<ComponentList> {
-        let componentListElem = this.utils.getElement(elem, 'ComponentList', NAMESPACES.SML);
+        const componentListElem = this.utils.getElement(elem, 'ComponentList', NAMESPACES.SML);
         if (componentListElem != null) {
-            let compList = new ComponentList();
+            const compList = new ComponentList();
             this._profileIDMap = this.utils.processProfileID(componentListElem, compList, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSwe(componentListElem, compList);
@@ -488,7 +488,7 @@ export class SensorMLDecoder {
     }
 
     public decodeComponent(elem: Element): ReturnObject<Component> {
-        let component = new Component();
+        const component = new Component();
 
         if (elem.hasAttribute('name')) {
             component.name = elem.getAttribute('name');
@@ -512,9 +512,9 @@ export class SensorMLDecoder {
     }
 
     public decodeConnectionList(elem: Element): ReturnObject<ConnectionList> {
-        let connectionListElem = this.utils.getElement(elem, 'ConnectionList', NAMESPACES.SML);
+        const connectionListElem = this.utils.getElement(elem, 'ConnectionList', NAMESPACES.SML);
         if (connectionListElem != null) {
-            let connList = new ConnectionList();
+            const connList = new ConnectionList();
             this._profileIDMap = this.utils.processProfileID(connectionListElem, connList, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSwe(connectionListElem, connList);
@@ -530,9 +530,9 @@ export class SensorMLDecoder {
     }
 
     public decodeConnection(elem: Element): ReturnObject<Connection> {
-        let connectionElem = this.utils.getElement(elem, 'Link', NAMESPACES.SML);
+        const connectionElem = this.utils.getElement(elem, 'Link', NAMESPACES.SML);
         if (connectionElem != null) {
-            let conn = new Connection();
+            const conn = new Connection();
 
             let returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
                 connectionElem, 'source', NAMESPACES.SML, 'ref', ''
@@ -557,9 +557,9 @@ export class SensorMLDecoder {
     }
 
     public decodeContactList(elem: Element): ReturnObject<ContactList> {
-        let contactListElem = this.utils.getElement(elem, 'ContactList', NAMESPACES.SML);
+        const contactListElem = this.utils.getElement(elem, 'ContactList', NAMESPACES.SML);
         if (contactListElem != null) {
-            let contactList = new ContactList();
+            const contactList = new ContactList();
             this._profileIDMap = this.utils.processProfileID(contactListElem, contactList, '', this._profileIDMap);
 
             this.decodeAbstractMetadataList(contactListElem, contactList);
@@ -574,9 +574,9 @@ export class SensorMLDecoder {
     }
 
     public decodeInputList(elem: Element): ReturnObject<InputList> {
-        let inputListElem = this.utils.getElement(elem, 'InputList', NAMESPACES.SML);
+        const inputListElem = this.utils.getElement(elem, 'InputList', NAMESPACES.SML);
         if (inputListElem != null) {
-            let inputList = new InputList();
+            const inputList = new InputList();
             this._profileIDMap = this.utils.processProfileID(inputListElem, inputList, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSwe(inputListElem, inputList);
@@ -592,9 +592,9 @@ export class SensorMLDecoder {
     }
 
     public decodeOutputList(elem: Element): ReturnObject<OutputList> {
-        let outputListElem = this.utils.getElement(elem, 'OutputList', NAMESPACES.SML);
+        const outputListElem = this.utils.getElement(elem, 'OutputList', NAMESPACES.SML);
         if (outputListElem != null) {
-            let outputList = new OutputList();
+            const outputList = new OutputList();
 
             this.sweDecoder.decodeAbstractSwe(outputListElem, outputList);
 
@@ -609,9 +609,9 @@ export class SensorMLDecoder {
     }
 
     public decodeParameterList(elem: Element): ReturnObject<ParameterList> {
-        let parameterListElem = this.utils.getElement(elem, 'ParameterList', NAMESPACES.SML);
+        const parameterListElem = this.utils.getElement(elem, 'ParameterList', NAMESPACES.SML);
         if (parameterListElem != null) {
-            let parameterList = new ParameterList();
+            const parameterList = new ParameterList();
             this._profileIDMap = this.utils.processProfileID(parameterListElem, parameterList, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSwe(parameterListElem, parameterList);
@@ -627,7 +627,7 @@ export class SensorMLDecoder {
     }
 
     public decodeInputOrOutputOrParameter(elem: Element): ReturnObject<InputOrOutputOrParameter> {
-        let param = new InputOrOutputOrParameter();
+        const param = new InputOrOutputOrParameter();
         this._profileIDMap = this.utils.processProfileID(elem, param, '', this._profileIDMap);
 
         if (elem.hasAttribute('name')) {
@@ -637,16 +637,16 @@ export class SensorMLDecoder {
         }
 
         if (elem.firstElementChild != null) {
-            let returnObject: ReturnObject<ObservableProperty> = this.decodeObservableProperty(elem);
+            const returnObject: ReturnObject<ObservableProperty> = this.decodeObservableProperty(elem);
             if (returnObject && returnObject.value != null) {
                 param.value = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
                     returnObject.docElement, param, 'value', this._profileIDMap
                 );
             }
-            let returnObject1: ReturnObject<DataInterface> = this.decodeDataInterface(elem);
+            const returnObject1: ReturnObject<DataInterface> = this.decodeDataInterface(elem);
             if (returnObject1) {
-                let dataInterface = returnObject1.value;
+                const dataInterface = returnObject1.value;
                 if (dataInterface != null) {
                     param.value = dataInterface;
                     this._profileIDMap = this.utils.processProfileID(
@@ -654,9 +654,9 @@ export class SensorMLDecoder {
                     );
                 }
             }
-            let returnObject2: ReturnObject<AbstractDataComponent> = this.sweDecoder.decodeDataComponent(elem);
+            const returnObject2: ReturnObject<AbstractDataComponent> = this.sweDecoder.decodeDataComponent(elem);
             if (returnObject2) {
-                let dataComponent = returnObject2.value;
+                const dataComponent = returnObject2.value;
                 if (dataComponent != null) {
                     param.value = dataComponent;
                     this._profileIDMap = this.utils.processProfileID(
@@ -669,9 +669,9 @@ export class SensorMLDecoder {
     }
 
     public decodeObservableProperty(elem: Element): ReturnObject<ObservableProperty> {
-        let obsPropElem = this.utils.getElement(elem, 'ObservableProperty', NAMESPACES.SML);
+        const obsPropElem = this.utils.getElement(elem, 'ObservableProperty', NAMESPACES.SML);
         if (obsPropElem != null) {
-            let obsProp = new ObservableProperty();
+            const obsProp = new ObservableProperty();
             this._profileIDMap = this.utils.processProfileID(obsPropElem, obsProp, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSweIdentifiable(obsPropElem, obsProp);
@@ -687,17 +687,17 @@ export class SensorMLDecoder {
     }
 
     public decodeDataInterface(elem: Element): ReturnObject<DataInterface> {
-        let dataInterfaceElem = this.utils.getElement(elem, 'DataInterface', NAMESPACES.SML);
+        const dataInterfaceElem = this.utils.getElement(elem, 'DataInterface', NAMESPACES.SML);
 
         if (dataInterfaceElem != null) {
-            let dataInterface = new DataInterface();
+            const dataInterface = new DataInterface();
             this._profileIDMap = this.utils.processProfileID(dataInterfaceElem, dataInterface, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSweIdentifiable(dataInterfaceElem, dataInterface);
 
-            let dataElem = this.utils.getElement(dataInterfaceElem, 'data', NAMESPACES.SML);
+            const dataElem = this.utils.getElement(dataInterfaceElem, 'data', NAMESPACES.SML);
             if (dataElem != null) {
-                let returnObject: ReturnObject<SweDataStream> = this.sweDecoder.decodeDataStream(dataElem);
+                const returnObject: ReturnObject<SweDataStream> = this.sweDecoder.decodeDataStream(dataElem);
                 if (returnObject) {
                     dataInterface.data = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -706,9 +706,9 @@ export class SensorMLDecoder {
                 }
             }
 
-            let interfaceParams = this.utils.getElement(dataInterfaceElem, 'interfaceParameters', NAMESPACES.SML);
+            const interfaceParams = this.utils.getElement(dataInterfaceElem, 'interfaceParameters', NAMESPACES.SML);
             if (interfaceParams != null) {
-                let returnObject: ReturnObject<SweDataRecord> = this.sweDecoder.decodeDataRecord(interfaceParams);
+                const returnObject: ReturnObject<SweDataRecord> = this.sweDecoder.decodeDataRecord(interfaceParams);
                 if (returnObject) {
                     dataInterface.interfaceParameters = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -722,9 +722,9 @@ export class SensorMLDecoder {
     }
 
     public decodeCharacteristicList(elem: Element): ReturnObject<CharacteristicList> {
-        let characteristicListElem = this.utils.getElement(elem, 'CharacteristicList', NAMESPACES.SML);
+        const characteristicListElem = this.utils.getElement(elem, 'CharacteristicList', NAMESPACES.SML);
         if (characteristicListElem != null) {
-            let characteristicList = new CharacteristicList();
+            const characteristicList = new CharacteristicList();
             this._profileIDMap = this.utils.processProfileID(
                 characteristicListElem, characteristicList, '', this._profileIDMap
             );
@@ -742,9 +742,9 @@ export class SensorMLDecoder {
     }
 
     public decodeCapabilitiesList(elem: Element): ReturnObject<CapabilityList> {
-        let capabilitiesListElem = this.utils.getElement(elem, 'CapabilityList', NAMESPACES.SML);
+        const capabilitiesListElem = this.utils.getElement(elem, 'CapabilityList', NAMESPACES.SML);
         if (capabilitiesListElem != null) {
-            let capabilitiesList = new CapabilityList();
+            const capabilitiesList = new CapabilityList();
             this._profileIDMap = this.utils.processProfileID(
                 capabilitiesListElem, capabilitiesList, '', this._profileIDMap
             );
@@ -763,7 +763,7 @@ export class SensorMLDecoder {
 
     public decodeNamedSweDataComponent(elem: Element): ReturnObject<NamedSweDataComponent> {
         if (elem != null) {
-            let comp = new NamedSweDataComponent();
+            const comp = new NamedSweDataComponent();
 
             if (elem.hasAttribute('name')) {
                 comp.name = elem.getAttribute('name');
@@ -772,7 +772,7 @@ export class SensorMLDecoder {
             }
 
             if (elem.firstElementChild != null) {
-                let returnObject: ReturnObject<AbstractDataComponent> =
+                const returnObject: ReturnObject<AbstractDataComponent> =
                     this.sweDecoder.decodeDataComponent(elem.firstElementChild);
                 if (returnObject) {
                     comp.component = returnObject.value;
@@ -787,14 +787,14 @@ export class SensorMLDecoder {
     }
 
     public decodeKeywordList(elem: Element): ReturnObject<KeywordList> {
-        let keywordListElem = this.utils.getElement(elem, 'KeywordList', NAMESPACES.SML);
+        const keywordListElem = this.utils.getElement(elem, 'KeywordList', NAMESPACES.SML);
         if (keywordListElem != null) {
-            let keywordList = new KeywordList();
+            const keywordList = new KeywordList();
             this._profileIDMap = this.utils.processProfileID(keywordListElem, keywordList, '', this._profileIDMap);
 
             this.decodeAbstractMetadataList(keywordListElem, keywordList);
 
-            let returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
+            const returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
                 keywordListElem, 'codeSpace', NAMESPACES.SML, 'href', NAMESPACES.XLINK
             );
 
@@ -815,9 +815,9 @@ export class SensorMLDecoder {
     }
 
     public decodeIdentifierList(elem: Element): ReturnObject<IdentifierList> {
-        let identifierListElem = this.utils.getElement(elem, 'IdentifierList', NAMESPACES.SML);
+        const identifierListElem = this.utils.getElement(elem, 'IdentifierList', NAMESPACES.SML);
         if (identifierListElem != null) {
-            let identifierList = new IdentifierList();
+            const identifierList = new IdentifierList();
             this._profileIDMap = this.utils.processProfileID(
                 identifierListElem, identifierList, '', this._profileIDMap
             );
@@ -833,9 +833,9 @@ export class SensorMLDecoder {
     }
 
     public decodeClassifierList(elem: Element): ReturnObject<ClassifierList> {
-        let classifierListElem = this.utils.getElement(elem, 'ClassifierList', NAMESPACES.SML);
+        const classifierListElem = this.utils.getElement(elem, 'ClassifierList', NAMESPACES.SML);
         if (classifierListElem != null) {
-            let classifierList = new ClassifierList();
+            const classifierList = new ClassifierList();
 
             this.decodeAbstractMetadataList(classifierListElem, classifierList);
             classifierList.classifiers = this.utils.getDecodedList(
@@ -848,9 +848,9 @@ export class SensorMLDecoder {
     }
 
     public decodeEventList(elem: Element): ReturnObject<EventList> {
-        let eventListElem = this.utils.getElement(elem, 'EventList', NAMESPACES.SML);
+        const eventListElem = this.utils.getElement(elem, 'EventList', NAMESPACES.SML);
         if (eventListElem != null) {
-            let eventList = new EventList();
+            const eventList = new EventList();
 
             this.decodeAbstractMetadataList(eventListElem, eventList);
             eventList.events = this.utils.getDecodedList(
@@ -863,9 +863,9 @@ export class SensorMLDecoder {
     }
 
     public decodeDocumentList(elem: Element): ReturnObject<DocumentList> {
-        let documentListElem = this.utils.getElement(elem, 'DocumentList', NAMESPACES.SML);
+        const documentListElem = this.utils.getElement(elem, 'DocumentList', NAMESPACES.SML);
         if (documentListElem != null) {
-            let documentList = new DocumentList();
+            const documentList = new DocumentList();
             this._profileIDMap = this.utils.processProfileID(documentListElem, documentList, '', this._profileIDMap);
 
             this.decodeAbstractMetadataList(documentListElem, documentList);
@@ -879,9 +879,9 @@ export class SensorMLDecoder {
     }
 
     public decodeProcessMethodProcess(elem: Element, object: ProcessMethodProcess): void {
-        let methodElem = this.utils.getElement(elem, 'method', NAMESPACES.SML);
+        const methodElem = this.utils.getElement(elem, 'method', NAMESPACES.SML);
         if (methodElem != null) {
-            let returnObject: ReturnObject<ProcessMethod> = this.decodeProcessMethod(methodElem);
+            const returnObject: ReturnObject<ProcessMethod> = this.decodeProcessMethod(methodElem);
             if (returnObject) {
                 object.method = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -892,9 +892,9 @@ export class SensorMLDecoder {
     }
 
     public decodeProcessMethod(elem: Element): ReturnObject<ProcessMethod> {
-        let processMethodElem = this.utils.getElement(elem, 'ProcessMethod', NAMESPACES.SML);
+        const processMethodElem = this.utils.getElement(elem, 'ProcessMethod', NAMESPACES.SML);
         if (processMethodElem != null) {
-            let processMethod = new ProcessMethod();
+            const processMethod = new ProcessMethod();
             this._profileIDMap = this.utils.processProfileID(processMethodElem, processMethod, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSweIdentifiable(processMethodElem, processMethod);
@@ -930,9 +930,9 @@ export class SensorMLDecoder {
     }
 
     public decodeEvent(elem: Element): ReturnObject<Event> {
-        let eventElem = this.utils.getElement(elem, 'Event', NAMESPACES.SML);
+        const eventElem = this.utils.getElement(elem, 'Event', NAMESPACES.SML);
         if (eventElem != null) {
-            let event = new Event();
+            const event = new Event();
             this._profileIDMap = this.utils.processProfileID(eventElem, event, '', this._profileIDMap);
 
             this.sweDecoder.decodeAbstractSweIdentifiable(eventElem, event);
@@ -966,9 +966,9 @@ export class SensorMLDecoder {
                 NAMESPACES.SML, this._profileIDMap,
                 (keyword) => this.decodeKeywordList(keyword));
 
-            let timeElem = this.utils.getElement(eventElem, 'time', NAMESPACES.SML);
+            const timeElem = this.utils.getElement(eventElem, 'time', NAMESPACES.SML);
             if (timeElem != null) {
-                let returnObject: ReturnObject<AbstractTime> = this.gmlDecoder.decodeTime(timeElem);
+                const returnObject: ReturnObject<AbstractTime> = this.gmlDecoder.decodeTime(timeElem);
                 if (returnObject) {
                     event.time = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -977,15 +977,15 @@ export class SensorMLDecoder {
                 }
             }
 
-            let propertiesElem = this.utils.getElement(eventElem, 'property', NAMESPACES.SML);
+            const propertiesElem = this.utils.getElement(eventElem, 'property', NAMESPACES.SML);
             if (propertiesElem != null) {
                 throw new Error('not implemented');
                 //                event.properties = this.sweDecoder.decodeDataComponent(propertiesElem);
             }
 
-            let configurationElem = this.utils.getElement(eventElem, 'configuration', NAMESPACES.SML);
+            const configurationElem = this.utils.getElement(eventElem, 'configuration', NAMESPACES.SML);
             if (configurationElem != null) {
-                let returnObject: ReturnObject<Settings> = this.decodeSettings(configurationElem);
+                const returnObject: ReturnObject<Settings> = this.decodeSettings(configurationElem);
                 if (returnObject) {
                     event.configuration = returnObject.value;
                     this._profileIDMap = this.utils.processProfileID(
@@ -999,9 +999,9 @@ export class SensorMLDecoder {
     }
 
     public decodeSettings(elem: Element): ReturnObject<Settings> {
-        let settingsElem = this.utils.getElement(elem, 'Settings', NAMESPACES.SML);
+        const settingsElem = this.utils.getElement(elem, 'Settings', NAMESPACES.SML);
         if (settingsElem != null) {
-            let settings = new Settings();
+            const settings = new Settings();
 
             this.sweDecoder.decodeAbstractSwe(settingsElem, settings);
 
@@ -1040,7 +1040,7 @@ export class SensorMLDecoder {
     }
 
     public decodeSetStatus(elem: Element): ReturnObject<StatusSetting> {
-        let statusSett = new StatusSetting();
+        const statusSett = new StatusSetting();
 
         if (elem.hasAttribute('ref')) {
             statusSett.ref = elem.getAttribute('ref');
@@ -1062,7 +1062,7 @@ export class SensorMLDecoder {
     }
 
     public decodeSetMode(elem: Element): ReturnObject<ModeSetting> {
-        let modeSett = new ModeSetting();
+        const modeSett = new ModeSetting();
 
         if (elem.hasAttribute('ref')) {
             modeSett.ref = elem.getAttribute('ref');
@@ -1076,7 +1076,7 @@ export class SensorMLDecoder {
     }
 
     public decodeSetValue(elem: Element): ReturnObject<ValueSetting> {
-        let valueSett = new ValueSetting();
+        const valueSett = new ValueSetting();
 
         if (elem.hasAttribute('ref')) {
             valueSett.ref = elem.getAttribute('ref');
@@ -1098,7 +1098,7 @@ export class SensorMLDecoder {
     }
 
     public decodeSetArrayValue(elem: Element): ReturnObject<ArrayValueSetting> {
-        let arrayValueSett = new ArrayValueSetting();
+        const arrayValueSett = new ArrayValueSetting();
 
         if (elem.hasAttribute('ref')) {
             arrayValueSett.ref = elem.getAttribute('ref');
@@ -1106,9 +1106,9 @@ export class SensorMLDecoder {
 
         }
 
-        let encodingElem = this.utils.getElement(elem, 'encoding', NAMESPACES.SML);
+        const encodingElem = this.utils.getElement(elem, 'encoding', NAMESPACES.SML);
         if (encodingElem != null) {
-            let returnObject: ReturnObject<SweEncoding> = this.sweDecoder.decodeAbstractEncoding(encodingElem);
+            const returnObject: ReturnObject<SweEncoding> = this.sweDecoder.decodeAbstractEncoding(encodingElem);
             if (returnObject) {
                 arrayValueSett.encoding = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -1117,7 +1117,7 @@ export class SensorMLDecoder {
             }
         }
 
-        let valueElem = this.utils.getElement(elem, 'value', NAMESPACES.SML);
+        const valueElem = this.utils.getElement(elem, 'value', NAMESPACES.SML);
         if (valueElem != null) {
             arrayValueSett.value = valueElem.textContent;
             this._profileIDMap = this.utils.processProfileID(valueElem, arrayValueSett, 'value', this._profileIDMap);
@@ -1128,7 +1128,7 @@ export class SensorMLDecoder {
     }
 
     public decodeSetConstraint(elem: Element): ReturnObject<ConstraintSetting> {
-        let constraintSett = new ConstraintSetting();
+        const constraintSett = new ConstraintSetting();
 
         if (elem.hasAttribute('ref')) {
             constraintSett.ref = elem.getAttribute('ref');
@@ -1137,7 +1137,7 @@ export class SensorMLDecoder {
         }
 
         if (elem.firstElementChild != null) {
-            let returnObject: ReturnObject<AllowedTimes | AllowedTokens | AllowedValues> =
+            const returnObject: ReturnObject<AllowedTimes | AllowedTokens | AllowedValues> =
                 this.sweDecoder.decodeConstraint(elem.firstElementChild);
             if (returnObject) {
                 constraintSett.value = returnObject.value;
@@ -1151,9 +1151,9 @@ export class SensorMLDecoder {
     }
 
     public decodeTerm(elem: Element): ReturnObject<Term> {
-        let termElem = this.utils.getElement(elem, 'Term', NAMESPACES.SML);
+        const termElem = this.utils.getElement(elem, 'Term', NAMESPACES.SML);
         if (termElem != null) {
-            let term = new Term();
+            const term = new Term();
             this._profileIDMap = this.utils.processProfileID(termElem, term, 'Term', this._profileIDMap);
 
 
@@ -1161,21 +1161,21 @@ export class SensorMLDecoder {
                 term.definition = termElem.getAttribute('definition');
             }
 
-            let label = this.utils.getElement(termElem, 'label', NAMESPACES.SML);
+            const label = this.utils.getElement(termElem, 'label', NAMESPACES.SML);
             if (label != null) {
                 term.label = label.textContent;
                 this._profileIDMap = this.utils.processProfileID(label, term, 'label', this._profileIDMap);
 
             }
 
-            let value = this.utils.getElement(termElem, 'value', NAMESPACES.SML);
+            const value = this.utils.getElement(termElem, 'value', NAMESPACES.SML);
             if (value != null) {
                 term.value = value.textContent;
                 this._profileIDMap = this.utils.processProfileID(value, term, 'value', this._profileIDMap);
 
             }
 
-            let returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
+            const returnObject: ReturnObject<string> = this.utils.getAttributeOfElement(
                 termElem, 'codeSpace', NAMESPACES.SML, 'href', NAMESPACES.XLINK
             );
             if (returnObject) {

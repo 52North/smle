@@ -56,7 +56,7 @@ export class DynamicElementComponent implements OnChanges {
 
     public createElement() {
         if (Array.isArray(this.model) && this.model.length === 0) {
-            let model = (new this.componentType()).createModel();
+            const model = (new this.componentType()).createModel();
             this.model.push(model);
         } else {
             this.model = (new this.componentType()).createModel();
@@ -65,18 +65,18 @@ export class DynamicElementComponent implements OnChanges {
     }
 
     public loadComponent() {
-        let componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.componentType);
-        let viewContainerRef = this.listItemHost.viewContainerRef;
+        const componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.componentType);
+        const viewContainerRef = this.listItemHost.viewContainerRef;
         viewContainerRef.clear();
-        let componentRef = viewContainerRef.createComponent(componentFactory);
+        const componentRef = viewContainerRef.createComponent(componentFactory);
         if (Array.isArray(this.model)) {
-            (<TypedModelComponent<any>>componentRef.instance).model = this.model[0];
+            componentRef.instance.model = this.model[0];
         } else {
-            (<TypedModelComponent<any>>componentRef.instance).model = this.model;
+            componentRef.instance.model = this.model;
         }
-        (<TypedModelComponent<any>>componentRef.instance).config = this.config;
-        (<TypedModelComponent<any>>componentRef.instance).isShowAll = this.isShowAll;
-        (<TypedModelComponent<any>>componentRef.instance).openAsChild.subscribe((childMetadata) => {
+        componentRef.instance.config = this.config;
+        componentRef.instance.isShowAll = this.isShowAll;
+        componentRef.instance.openAsChild.subscribe((childMetadata) => {
             this.openAsChild.emit(childMetadata);
         });
     }

@@ -19,8 +19,8 @@ export class ImportComponent {
   }
 
   public changeListener($event): void {
-    let file: File = $event.target.files[0];
-    let myReader: FileReader = new FileReader();
+    const file: File = $event.target.files[0];
+    const myReader: FileReader = new FileReader();
 
     this.error = null;
     this.description = null;

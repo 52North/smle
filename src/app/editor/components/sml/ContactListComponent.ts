@@ -24,7 +24,7 @@ export class ContactListComponent extends TypedModelComponent<ContactList> {
     }
 
     protected openNewResponsiblePartyItem(item: ResponsibleParty) {
-        let metadata = new ChildMetadata(
+        const metadata = new ChildMetadata(
             ResponsiblePartyComponent,
             item,
             this.config.getConfigFor('sml:contact').getConfigFor('gmd:CI_ResponsibleParty')

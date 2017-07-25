@@ -47,7 +47,7 @@ export class OutputListComponent extends TypedModelComponent<OutputList> {
     }
 
     protected onAddOutput(outputType: Type<any>): void {
-        let output = new Output();
+        const output = new Output();
         output.value = new outputType();
         this.model.outputs.push(output);
     }

@@ -34,7 +34,7 @@ export class DescriptionConfigService {
     private loadConfiguration(location: string): Promise<DescriptionConfig> {
         return this.http.get(location).toPromise().then((response: Response) => {
             try {
-                let data = response.json();
+                const data = response.json();
                 return new JSONDescriptionConfig(data);
             } catch (error) {
                 console.error('error while creating configuration: ' + error);

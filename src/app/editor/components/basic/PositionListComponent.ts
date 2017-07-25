@@ -46,7 +46,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
 
     protected getPositionValue(positionItem: Position): string {
         if (positionItem instanceof SweVector) {
-            let value = [];
+            const value = [];
             positionItem.coordinates.forEach((entry) => {
                 value.push(entry.name + ': ' + entry.coordinate.value);
             });
@@ -59,14 +59,14 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     protected addVector() {
-        let newItem = this.createPositionLocation();
+        const newItem = this.createPositionLocation();
 
         this.addModelIfNotExist();
         this.model.push(newItem);
     }
 
     protected addDataRecord() {
-        let newItem = this.createPositionDataRecord();
+        const newItem = this.createPositionDataRecord();
 
         this.addModelIfNotExist();
         this.model.push(newItem);
@@ -80,7 +80,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private createPositionLocation(withAlt: boolean = false): SweVector {
-        let location = new SweVector();
+        const location = new SweVector();
 
         location.coordinates.push(this.createCoordinate('Lat', 0, 'deg'));
         location.coordinates.push(this.createCoordinate('Lon', 0, 'deg'));
@@ -92,9 +92,9 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private createCoordinate(name: string, value: number, uom: string): SweCoordinate {
-        let coordinate = new SweCoordinate();
-        let quantity = new SweQuantity();
-        let unitOfMeasure = new UnitOfMeasure();
+        const coordinate = new SweCoordinate();
+        const quantity = new SweQuantity();
+        const unitOfMeasure = new UnitOfMeasure();
 
         unitOfMeasure.code = uom;
 
@@ -108,9 +108,9 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private createPositionDataRecord(): SweDataRecord {
-        let dataRecord = new SweDataRecord();
-        let locationField = new SweField();
-        let orientationField = new SweField();
+        const dataRecord = new SweDataRecord();
+        const locationField = new SweField();
+        const orientationField = new SweField();
 
         locationField.name = 'location';
         locationField.component = this.createPositionLocation(true);
@@ -124,7 +124,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
     }
 
     private createPositionOrientation(): SweVector {
-        let orientation = new SweVector();
+        const orientation = new SweVector();
 
         orientation.coordinates.push(this.createCoordinate('TrueHeading', 0, 'deg'));
         orientation.coordinates.push(this.createCoordinate('Pitch', 0, 'deg'));

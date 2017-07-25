@@ -11,10 +11,10 @@ export class ListComponent {
     public list: any[];
 
     @Input()
-    public itemLabelFunc: Function;
+    public itemLabelFunc: () => void;
 
     @Input()
-    public itemValueFunc: Function;
+    public itemValueFunc: () => void;
 
     @Input()
     public fixLength: boolean;

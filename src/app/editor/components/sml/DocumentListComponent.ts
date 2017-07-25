@@ -24,7 +24,7 @@ export class DocumentListComponent extends TypedModelComponent<DocumentList> {
     }
 
     protected openNewOnlineResourceItem(item: OnlineResource) {
-        let metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('documents'));
+        const metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('documents'));
         this.openNewChild(metadata);
     }
 }

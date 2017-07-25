@@ -11,7 +11,7 @@ export class SensorMLDocumentEncoder {
     private encoder = new SensorMLEncoder();
 
     public encode(object: AbstractProcess): Document {
-        let doc = this.createDocumentForProcess(object);
+        const doc = this.createDocumentForProcess(object);
         this.encoder.encodeProcess(object, doc, doc.documentElement);
         return doc;
     }
@@ -31,12 +31,12 @@ export class SensorMLDocumentEncoder {
     }
 
     private createDocument(prefix: string, name: string, schemaURL: string): Document {
-        let namespaces = this.resolver.getPrefixes()
+        const namespaces = this.resolver.getPrefixes()
             .map((entry) => `xmlns:${entry}="${this.resolver.getNamespace(entry)}"`)
             .join(' ');
-        let namespace = this.resolver.getNamespace(prefix);
-        let sl = `xsi:schemaLocation="${namespace} ${schemaURL}"`;
-        let s = `<${prefix}:${name} ${namespaces} ${sl}></${prefix}:${name}>`;
+        const namespace = this.resolver.getNamespace(prefix);
+        const sl = `xsi:schemaLocation="${namespace} ${schemaURL}"`;
+        const s = `<${prefix}:${name} ${namespaces} ${sl}></${prefix}:${name}>`;
         return new DOMParser().parseFromString(s, 'application/xml');
     }
 }

@@ -16,7 +16,7 @@ export class SettingsComponent extends TypedModelComponent<Settings> {
     }
 
     protected openNewSetValueItem(valueSetting: ValueSetting) {
-        let metadata = new ChildMetadata(ValueSettingComponent, valueSetting, this.config.getConfigFor('setValue'));
+        const metadata = new ChildMetadata(ValueSettingComponent, valueSetting, this.config.getConfigFor('setValue'));
         this.openNewChild(metadata);
     }
 
@@ -29,7 +29,7 @@ export class SettingsComponent extends TypedModelComponent<Settings> {
     }
 
     protected openNewSetModeItem(modeSetting: ModeSetting) {
-        let metadata = new ChildMetadata(ModeSettingComponent, modeSetting, this.config.getConfigFor('setMode'));
+        const metadata = new ChildMetadata(ModeSettingComponent, modeSetting, this.config.getConfigFor('setMode'));
         this.openNewChild(metadata);
     }
 
@@ -42,7 +42,9 @@ export class SettingsComponent extends TypedModelComponent<Settings> {
     }
 
     protected openNewSetStatusItem(statusSetting: StatusSetting) {
-        let metadata = new ChildMetadata(StatusSettingComponent, statusSetting, this.config.getConfigFor('setStatus'));
+        const metadata = new ChildMetadata(
+            StatusSettingComponent, statusSetting, this.config.getConfigFor('setStatus')
+        );
         this.openNewChild(metadata);
     }
 
@@ -51,7 +53,7 @@ export class SettingsComponent extends TypedModelComponent<Settings> {
     }
 
     protected onAddSetStatus(): void {
-        let statusSetting = new StatusSetting();
+        const statusSetting = new StatusSetting();
         statusSetting.value = 'enabled';
         this.model.setStatus.push(statusSetting);
     }

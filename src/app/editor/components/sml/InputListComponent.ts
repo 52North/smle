@@ -47,7 +47,7 @@ export class InputListComponent extends TypedModelComponent<InputList> {
     }
 
     protected onAddInput(inputType: Type<any>): void {
-        let input = new Input();
+        const input = new Input();
         input.value = new inputType();
         this.model.inputs.push(input);
     }

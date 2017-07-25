@@ -15,7 +15,7 @@ export class SampleDataLoader {
     }
 
     private extractProcess(res: Response) {
-        let body = res.text();
+        const body = res.text();
         return new SensorMLXmlService().deserialize(body);
     }
 }

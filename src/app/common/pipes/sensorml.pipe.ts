@@ -9,8 +9,8 @@ declare var jQuery: any;
 })
 export class SensorMLPipe implements PipeTransform {
     transform(description: any): string {
-        let service = new SensorMLXmlService();
-        let serialize = service.serialize(description, true);
+        const service = new SensorMLXmlService();
+        const serialize = service.serialize(description, true);
         return serialize;
     }
 }

@@ -23,17 +23,17 @@ export class ContactComponent extends EditorComponent<Contact> {
     }
 
     protected openNewPhoneItem(item: Phone) {
-        let metadata = new ChildMetadata(PhoneComponent, item, this.config.getConfigFor('phone'));
+        const metadata = new ChildMetadata(PhoneComponent, item, this.config.getConfigFor('phone'));
         this.openNewChild(metadata);
     }
 
     protected openNewAddressItem(item: Address) {
-        let metadata = new ChildMetadata(AddressComponent, item, this.config.getConfigFor('address'));
+        const metadata = new ChildMetadata(AddressComponent, item, this.config.getConfigFor('address'));
         this.openNewChild(metadata);
     }
 
     protected openNewOnlineResourceItem(item: OnlineResource) {
-        let metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('onlineResource'));
+        const metadata = new ChildMetadata(OnlineResourceComponent, item, this.config.getConfigFor('onlineResource'));
         this.openNewChild(metadata);
     }
 }

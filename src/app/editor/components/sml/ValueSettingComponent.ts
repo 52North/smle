@@ -24,7 +24,7 @@ export class ValueSettingComponent extends EditorComponent<ValueSetting> impleme
     }
 
     private getValueType(): any {
-        let temp = this.model.value;
+        const temp = this.model.value;
         if (temp instanceof Date) {
             return 'date';
         } else if (typeof temp === 'string') {

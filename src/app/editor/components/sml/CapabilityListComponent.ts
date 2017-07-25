@@ -48,7 +48,7 @@ export class CapabilityListComponent extends TypedModelComponent<CapabilityList>
     }
 
     protected onAddCapability(characteristicType: Type<AbstractDataComponent>): void {
-        let newItem = new NamedSweDataComponent();
+        const newItem = new NamedSweDataComponent();
         newItem.component = new characteristicType();
         this.model.capabilities.push(newItem);
     }

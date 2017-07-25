@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractProcess } from '../model/sml';
-import { DescriptionConfigService } from '../services/DescriptionConfigService';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService, DescriptionType } from '../services/EditorService';
 import { EditorMode } from '../services/EditorMode';
@@ -26,7 +25,6 @@ export class EditorComponent implements OnInit {
     public descriptionIsLoading: boolean = true;
 
     constructor(
-        private descriptionConfigService: DescriptionConfigService,
         private editorService: EditorService,
         private router: Router,
         private route: ActivatedRoute,
@@ -38,7 +36,7 @@ export class EditorComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        let snapshot = this.route.snapshot;
+        const snapshot = this.route.snapshot;
         if (snapshot.params['id']) {
             this.editorService.getDescriptionForId(snapshot.params['id']).subscribe((desc) => {
                 if (desc != null) {

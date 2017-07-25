@@ -39,7 +39,7 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
     }
 
     saveDescription(description: AbstractProcess): Promise<void> {
-        let id = this._getId(description);
+        const id = this._getId(description);
         if (this._descriptions[id]) {
             return Promise.reject(new Error('already saved'));
         }
@@ -48,7 +48,7 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
     }
 
     updateDescription(description: AbstractProcess): Promise<void> {
-        let id = this._getId(description);
+        const id = this._getId(description);
         if (!this._descriptions[id]) {
             return Promise.reject(new Error('not yet saved'));
         }

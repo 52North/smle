@@ -48,7 +48,7 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
             return ComponentType.Unknown;
         }
 
-        let component = (<any>this.model).component;
+        const component = (this.model as any).component;
 
         if (component instanceof SweText) {
             return ComponentType.SweText;

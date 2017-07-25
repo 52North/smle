@@ -16,7 +16,7 @@ export class IdentifierListComponent extends TypedModelComponent<IdentifierList>
     }
 
     protected openNewIdentifierItem(item: Term) {
-        let metadata = new ChildMetadata(
+        const metadata = new ChildMetadata(
             TermComponent, item, this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term')
         );
         this.openNewChild(metadata);

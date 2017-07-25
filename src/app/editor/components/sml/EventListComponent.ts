@@ -16,7 +16,7 @@ export class EventListComponent extends TypedModelComponent<EventList> {
     }
 
     protected openNewEventItem(item: Event) {
-        let metadata = new ChildMetadata(EventComponent, item, this.config.getConfigFor('sml:events'));
+        const metadata = new ChildMetadata(EventComponent, item, this.config.getConfigFor('sml:events'));
         this.openNewChild(metadata);
     }
 

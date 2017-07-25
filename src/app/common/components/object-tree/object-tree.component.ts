@@ -56,23 +56,23 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         return nodes;
     }
 
-    private static getNodesForObject(object: Object, oldNodes: Array<INode> = [], parentId: string): Array<INode> {
-        let nodes: Array<INode> = [];
+    private static getNodesForObject(object: any, oldNodes: Array<INode> = [], parentId: string): Array<INode> {
+        const nodes: Array<INode> = [];
 
-        for (let propertyName in object) {
+        for (const propertyName in object) {
             if (object[propertyName]) {
-                let nodeValue: any = object[propertyName];
+                const nodeValue: any = object[propertyName];
 
                 if (Object.prototype.hasOwnProperty(propertyName) ||
                     nodeValue === undefined || nodeValue === null || nodeValue.length === 0) {
                     continue;
                 }
 
-                let oldNode = oldNodes.find((node) => {
+                const oldNode = oldNodes.find((node) => {
                     return node.id === propertyName;
                 });
-                let displayName = getDisplayName(object, propertyName) || propertyName;
-                let newNode: INode = {
+                const displayName = getDisplayName(object, propertyName) || propertyName;
+                const newNode: INode = {
                     id: parentId + propertyName,
                     name: displayName,
                     type: 'object',
@@ -89,7 +89,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     }
 
     private static getValueNodes(name: string, type: string, oldNodes: Array<INode>, parentId: string): Array<INode> {
-        let node: INode = {
+        const node: INode = {
             id: parentId + '$value',
             name,
             type,
@@ -105,11 +105,11 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     }
 
     private static getNodesForArray(array: Array<any>, oldNodes: Array<INode> = [], parentId: string): Array<INode> {
-        let nodes = <Array<any>>array.map((elem: any, index: number) => {
-            let oldNode = oldNodes.find((node) => {
-                return node.id === index.toString();
+        const nodes = array.map((elem: any, index: number) => {
+            const oldNode = oldNodes.find((entry) => {
+                return entry.id === index.toString();
             });
-            let node: INode = {
+            const node: INode = {
                 id: parentId + index.toString(),
                 name: null,
                 type: null,
@@ -160,26 +160,26 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        let modelChange = changes['model'];
+        const modelChange = changes['model'];
         if (modelChange) {
             this.rebuildTree(modelChange.currentValue);
         }
     }
 
     protected onToggle(event) {
-        let path = event.node.path;
+        const path = event.node.path;
         let nodes = this.nodes;
 
-        let getPredicate = (index: number) => {
-            return (node) => {
-                return node.id === path[index];
+        const getPredicate = (index: number) => {
+            return (entry) => {
+                return entry.id === path[index];
             };
         };
 
         for (let i = 0; i < path.length - 1; i++) {
             nodes = nodes.find(getPredicate(i)).children;
         }
-        let node = nodes.find(getPredicate(path.length - 1));
+        const node = nodes.find(getPredicate(path.length - 1));
 
         event.node.data.isExpanded = event.isExpanded;
         node.isExpanded = event.isExpanded;
@@ -195,7 +195,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     }
 
     private rebuildTree(currentModel) {
-        let nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes, '');
+        const nodes = ObjectTreeComponent.getNodes(currentModel, this.nodes, '');
         this.nodes = nodes || [];
     }
 

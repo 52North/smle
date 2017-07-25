@@ -50,7 +50,7 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
     }
 
     protected onAddElementType(typeType: Type<AbstractDataComponent>) {
-        let newItem = new SweElementType();
+        const newItem = new SweElementType();
         newItem.type = new typeType();
 
         this.model.elementType = newItem;
@@ -61,7 +61,7 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
     }
 
     protected onAddEncoding(encodingType: Type<SweEncoding>) {
-        let newItem = new encodingType();
+        const newItem = new encodingType();
 
         this.model.encoding = newItem;
         this.encodingType = this.getEncodingType();
@@ -76,7 +76,7 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
     }
 
     private getEncodingType(): string {
-        let encoding = this.model.encoding;
+        const encoding = this.model.encoding;
 
         if (encoding instanceof SweTextEncoding) {
             return 'text';

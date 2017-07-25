@@ -186,14 +186,14 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     protected onAddTimeInstant() {
-        let instant = new TimeInstant();
+        const instant = new TimeInstant();
         instant.time = new Date();
 
         this.model.validTime.push(instant);
     }
 
     protected onAddTimePeriod() {
-        let period = new TimePeriod();
+        const period = new TimePeriod();
         period.begin = new Date();
         period.end = new Date();
 
@@ -237,8 +237,8 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     protected getAbstractTimeTitle(item: AbstractTime) {
-        let datePipe = new DatePipe('en');
-        let format = 'mediumDate';
+        const datePipe = new DatePipe('en');
+        const format = 'mediumDate';
 
         if (item instanceof TimeInstant) {
             return `Time: ${datePipe.transform(item.time, format)}`;

@@ -14,7 +14,7 @@ function getHttp(): Http {
         configureRequest(request) { }
     }
 
-    let providers = [
+    const providers = [
         {
             provide: Http, useFactory: (backend: XHRBackend, options: RequestOptions) => {
                 return new Http(backend, options);
@@ -33,7 +33,7 @@ function getHttp(): Http {
 export function main() {
     getHttp().get('./config.json').toPromise()
         .then((res: Response) => {
-            let conf = res.json();
+            const conf = res.json();
             platformBrowserDynamic().bootstrapModule(getAppModule(conf));
         })
         .catch((error) => { console.error(error); });

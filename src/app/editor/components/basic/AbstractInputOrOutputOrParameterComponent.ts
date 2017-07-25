@@ -65,7 +65,7 @@ export abstract class AbstractInputOrOutputOrParameterComponent<T extends InputO
         if (!this.model) {
             return InputOrOutputOrParameterType.Unknown;
         }
-        let component = (<any>this.model).value;
+        const component = (this.model as any).value;
 
         if (component instanceof SweText) {
             return InputOrOutputOrParameterType.SweText;

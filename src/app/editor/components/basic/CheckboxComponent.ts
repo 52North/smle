@@ -8,7 +8,7 @@ import { BaseComponent } from '../base/BaseComponent';
 })
 export class CheckboxComponent extends BaseComponent implements OnChanges {
     @Input()
-    model: Object;
+    model: any;
 
     @Input()
     fieldName: string;
