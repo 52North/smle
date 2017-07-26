@@ -46,44 +46,6 @@ export class DatePickerComponent implements OnChanges {
         this.modelChange.emit(this.model);
     }
 
-    protected getMinFormattedDate(): string {
-        return this.minDateTime ? this.getFormattedDate(this.minDateTime) : null;
-    }
-
-    protected getMinFormattedTime(): string {
-        const minDate = this.minDateTime;
-        const currentDate = this.model;
-
-        if (!minDate) {
-            return null;
-        }
-
-        return minDate.getFullYear() === currentDate.getFullYear()
-            && minDate.getMonth() === currentDate.getMonth()
-            && minDate.getDay() === currentDate.getDay()
-            ? this.getFormattedTime(minDate)
-            : this.getFormattedTime(new Date(0));
-    }
-
-    protected getMaxFormattedDate(): string {
-        return this.maxDateTime ? this.getFormattedDate(this.maxDateTime) : null;
-    }
-
-    protected getMaxFormattedTime(): string {
-        const maxDate = this.maxDateTime;
-        const currentDate = this.model;
-
-        if (!maxDate) {
-            return null;
-        }
-
-        return maxDate.getFullYear() === currentDate.getFullYear()
-            && maxDate.getMonth() === currentDate.getMonth()
-            && maxDate.getDay() === currentDate.getDay()
-            ? this.getFormattedTime(new Date(1970, 0, 1, 23, 59, 59))
-            : this.getFormattedTime(maxDate);
-    }
-
     protected onStringDateChange(newDateTimeString: string): void {
         const parsedDate = moment(newDateTimeString, this.momentDateFormat + ' ' + this.timeFormat).toDate();
         this.dateTimeString = newDateTimeString;
