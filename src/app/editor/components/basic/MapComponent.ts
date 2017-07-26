@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { DialogRef, ModalComponent } from 'angular2-modal';
-import { BSModalContext } from 'angular2-modal/plugins/bootstrap/index';
+import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
 
 declare var L: any;
 
