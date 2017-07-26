@@ -64,7 +64,6 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         viewContainerRef: ViewContainerRef
     ) {
         super(componentFactoryResolver, viewContainerRef);
-        overlay.defaultViewContainer = viewContainerRef;
     }
 
     protected openMap() {
