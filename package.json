@@ -73,7 +73,7 @@
     "@angular/router": "^4.3.1",
     "@angularclass/hmr-loader": "~3.0.2",
     "angular2-modal": "2.0.3",
-    "angular2-tree-component": "2.8.1",
+    "angular2-tree-component": "^3.1.0",
     "angular2-uuid": "^1.0.7",
     "bootstrap": "4.0.0-alpha.2",
     "core-js": "^2.4.1",
