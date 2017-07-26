@@ -134,7 +134,7 @@ export class EditorService {
     loadDescriptionByIdAndUrl(id: string, url: string): Observable<AbstractProcess> {
         return new Observable<AbstractProcess>((observer: Observer<AbstractProcess>) => {
             this.sosService.fetchDescription(id, url).subscribe((res) => {
-                let description = this.xmlService.deserialize(res);
+                const description = this.xmlService.deserialize(res);
                 this.createOrUpdateVersion(description);
                 this.sosUrl = url;
                 observer.next(description);

@@ -24,7 +24,7 @@ export class FetchDescriptionComponent implements OnInit {
 
     public ngOnInit(): void {
         this.route.params.subscribe((params) => {
-            let id = params['id'];
+            const id = params['id'];
             if (id) {
                 this.sosService.fetchDescription(id).subscribe((res) => {
                     this.selectedDesc = new SensorMLXmlService().deserialize(res);

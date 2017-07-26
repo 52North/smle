@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, URLSearchParams, Jsonp } from '@angular/http';
+import { Response, URLSearchParams, Jsonp } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { ConfigurationService } from '../services/ConfigurationService';
 
@@ -9,7 +9,6 @@ export class TemplatesService {
     private templatesUrl = 'http://localhost:8983/solr/horst';
 
     constructor(
-        private http: Http,
         private jsonp: Jsonp,
         private configurationSrvc: ConfigurationService
     ) {
@@ -18,7 +17,7 @@ export class TemplatesService {
 
     search(searchTerm: string): Observable<Result> {
         searchTerm = searchTerm ? searchTerm : '*';
-        let params: URLSearchParams = new URLSearchParams();
+        const params: URLSearchParams = new URLSearchParams();
         params.set('fl', 'id,name');
         params.set('rows', '500');
         params.set('wt', 'json');
@@ -30,7 +29,7 @@ export class TemplatesService {
     }
 
     public getTemplate(template: Template): Observable<Template> {
-        let params: URLSearchParams = new URLSearchParams();
+        const params: URLSearchParams = new URLSearchParams();
         params.set('wt', 'json');
         params.set('id', template.id);
         params.set('json.wrf', 'JSONP_CALLBACK');
@@ -41,8 +40,8 @@ export class TemplatesService {
 
     private extractTemplates(res: Response): Result {
         // TODO resultscount mit ausgeben
-        let json = res.json();
-        let result = new Result();
+        const json = res.json();
+        const result = new Result();
         result.count = json.response.numFound;
         result.templates = new Array<Template>();
         json.response.docs.forEach((entry) => {

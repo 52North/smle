@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
-import { EditorService } from '../../services/EditorService';
 import { ConnectDescriptionService } from './connect.service';
 import { SelectedDescription } from '../components/selectDescription.component';
 import { AbstractPhysicalProcess, AggregatingProcess, AbstractProcess } from '../../model/sml';
@@ -21,7 +20,6 @@ export class ConnectDescriptionComponent implements OnInit {
     constructor(
         private router: Router,
         private connectDescService: ConnectDescriptionService,
-        private editorService: EditorService,
         private sosService: SosService
     ) { }
 
@@ -36,7 +34,7 @@ export class ConnectDescriptionComponent implements OnInit {
     }
 
     protected onSelectParentDescription(selectedDesc: SelectedDescription) {
-        let desc = new SensorMLXmlService().deserialize(selectedDesc.description);
+        const desc = new SensorMLXmlService().deserialize(selectedDesc.description);
         if (this.isAggregatingProcess(desc)) {
             this.parentDescription = (desc as any as AggregatingProcess);
         } else {
@@ -46,7 +44,7 @@ export class ConnectDescriptionComponent implements OnInit {
 
     protected onSelectChildDescription(selectedDesc: SelectedDescription) {
         // TODO check if description is AbstractPhysicalProcess!
-        let desc = new SensorMLXmlService().deserialize(selectedDesc.description) as any as AbstractPhysicalProcess;
+        const desc = new SensorMLXmlService().deserialize(selectedDesc.description) as any as AbstractPhysicalProcess;
         this.connectDescService.connectDescriptions(desc, this.parentDescription).subscribe((res) => {
             this.updateIgnoreIds();
         });

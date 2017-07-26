@@ -17,7 +17,6 @@ export class ConnectDescriptionService {
     public attachedTo: boolean;
 
     constructor(
-        private http: Http,
         private router: Router,
         private sosService: SosService
     ) { }
@@ -39,7 +38,7 @@ export class ConnectDescriptionService {
     public clearAttachedTo(childDesc: AbstractPhysicalProcess, parentId: string): Observable<boolean> {
         return new Observable<boolean>((observer: Observer<boolean>) => {
             this.sosService.fetchDescription(parentId).subscribe((res) => {
-                let parentDesc = new SensorMLXmlService().deserialize(res) as any as AggregatingProcess;
+                const parentDesc = new SensorMLXmlService().deserialize(res) as any as AggregatingProcess;
                 let idx = -1;
                 parentDesc.components.components.forEach((entry, i) => {
                     if (entry.title === childDesc.identifier.value) idx = i;
@@ -60,11 +59,11 @@ export class ConnectDescriptionService {
     public removeComponent(parentDesc: AggregatingProcess, idx: number): Observable<boolean> {
         return new Observable<boolean>((observer: Observer<boolean>) => {
             // remove in components
-            let removedComponent = parentDesc.components.components.splice(idx, 1);
+            const removedComponent = parentDesc.components.components.splice(idx, 1);
             this.updateDescription(parentDesc as any as AbstractProcess).subscribe((res) => {
                 // remove attachedTo of description
                 this.sosService.fetchDescription(removedComponent[0].title).subscribe((result) => {
-                    let desc = new SensorMLXmlService().deserialize(result) as any as AbstractPhysicalProcess;
+                    const desc = new SensorMLXmlService().deserialize(result) as any as AbstractPhysicalProcess;
                     desc.attachedTo = null;
                     this.updateDescription(desc).subscribe(() => {
                         observer.next(true);
@@ -79,10 +78,10 @@ export class ConnectDescriptionService {
         childDesc: AbstractPhysicalProcess, parentDesc: AggregatingProcess
     ): Observable<boolean> {
         return new Observable<boolean>((observer: Observer<boolean>) => {
-            let parentDescAbsPro = parentDesc as any as AbstractProcess;
+            const parentDescAbsPro = parentDesc as any as AbstractProcess;
             childDesc.attachedTo = this.sosService.createDescribeSensorUrl(parentDescAbsPro.identifier.value);
             this.updateDescription(childDesc).subscribe((res) => {
-                let component = new Component(
+                const component = new Component(
                     childDesc.gmlId,
                     this.sosService.createDescribeSensorUrl(childDesc.identifier.value),
                     childDesc.identifier.value

@@ -19,7 +19,7 @@ export class AuthService {
         private http: Http,
         private configurationService: ConfigurationService
     ) {
-        let config = this.configurationService.config;
+        const config = this.configurationService.config;
         this.authUrl = config.authUrl;
         this.logOutUrl = config.logOutUrl;
         this.userInfoUrl = config.userInfoUrl;
@@ -29,7 +29,7 @@ export class AuthService {
 
     public logIn() {
         window.open(this.authUrl, '_blank');
-        let listener = (event) => {
+        const listener = (event) => {
             if (event.origin !== this.oauthCallbackUrl) return;
             window.removeEventListener('message', listener, true);
             this.getUserInfo();
@@ -54,7 +54,7 @@ export class AuthService {
     private getUserInfo() {
         this.http.get(this.userInfoUrl, { withCredentials: true })
             .map((res) => {
-                let json = res.json();
+                const json = res.json();
                 if (json.user) {
                     this.loggedInUser = json.user as UserInfo;
                     this.logInChangesEvent.emit(true);

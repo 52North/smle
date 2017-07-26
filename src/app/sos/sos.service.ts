@@ -24,14 +24,14 @@ export class SosService {
     }
 
     public fetchDescriptionIDs(authorized?: boolean, sosUrl?: string): Observable<Array<string>> {
-        let body = JSON.stringify({
+        const body = JSON.stringify({
             request: 'GetCapabilities',
             service: 'SOS',
             sections: [
                 'OperationsMetadata'
             ]
         });
-        let url = authorized ? this.useProxyUrl(sosUrl) : this.useSosUrl(sosUrl);
+        const url = authorized ? this.useProxyUrl(sosUrl) : this.useSosUrl(sosUrl);
         return this.http.post(url, body, {
             headers: this.createJsonHeader(),
             withCredentials: true
@@ -41,7 +41,7 @@ export class SosService {
     }
 
     public fetchDescription(descId: string, sosUrl?: string): Observable<string> {
-        let body = JSON.stringify({
+        const body = JSON.stringify({
             request: 'DescribeSensor',
             service: 'SOS',
             version: '2.0.0',
@@ -53,7 +53,7 @@ export class SosService {
             withCredentials: true
         })
             .map((res) => {
-                let json = res.json();
+                const json = res.json();
                 if (json.exceptions && json.exceptions.length >= -1 && json.exceptions[0].text)
                     throw json.exceptions[0].text;
                 return json.procedureDescription.description || json.procedureDescription;
@@ -62,7 +62,7 @@ export class SosService {
     }
 
     public deleteDescription(descId: string, sosUrl?: string): Observable<boolean> {
-        let body = JSON.stringify({
+        const body = JSON.stringify({
             request: 'DeleteSensor',
             service: 'SOS',
             version: '2.0.0',
@@ -73,7 +73,7 @@ export class SosService {
             withCredentials: true
         })
             .map((res) => {
-                let json = res.json();
+                const json = res.json();
                 return json.deletedProcedure === descId ? true : false;
             });
     }
@@ -99,7 +99,7 @@ export class SosService {
     }
 
     public addDescription(description: AbstractProcess, sosUrl?: string): Observable<boolean> {
-        let body = JSON.stringify({
+        const body = JSON.stringify({
             request: 'InsertSensor',
             service: 'SOS',
             version: '2.0.0',
@@ -125,7 +125,7 @@ export class SosService {
     }
 
     public updateDescription(descID: string, description: AbstractProcess, sosUrl?: string): Observable<boolean> {
-        let body = JSON.stringify({
+        const body = JSON.stringify({
             request: 'UpdateSensorDescription',
             service: 'SOS',
             version: '2.0.0',
@@ -152,7 +152,7 @@ export class SosService {
     }
 
     public getIdentifierOfDescribeSensorUrl(describeSensorUrl: string): string {
-        let index = describeSensorUrl.indexOf('procedure=');
+        const index = describeSensorUrl.indexOf('procedure=');
         return describeSensorUrl.substr(index + 10);
     }
 
@@ -164,21 +164,21 @@ export class SosService {
     }
 
     private extractDescriptionIDs(res: Response): Array<string> {
-        let json = res.json();
+        const json = res.json();
         return json.operationMetadata.operations.DescribeSensor.parameters.procedure.allowedValues;
     }
 
     private handleAddDescription(res: Response): boolean {
-        let body = res.json();
+        const body = res.json();
         if (body.exceptions && body.exceptions.length >= -1 && body.exceptions[0].text) throw body.exceptions[0].text;
         return true;
     }
 
     private handleAddDescriptionError(error: Response) {
         if (typeof error === 'string') return Observable.throw(error);
-        let json = error.json();
+        const json = error.json();
         if (json.exceptions && json.exceptions.length >= -1) {
-            let errors: Array<string> = [];
+            const errors: Array<string> = [];
             (json.exceptions as Array<any>).forEach((entry) => {
                 errors.push(entry.text || entry.locator);
             });

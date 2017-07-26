@@ -1,6 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter, DoCheck } from '@angular/core';
 import { SosService } from '../sos.service';
 
+export class SelectedDescription {
+    constructor(
+        public id: string,
+        public description: string
+    ) { }
+}
+
 @Component({
     selector: 'description-id-selection',
     template: require('./selectDescription.template.html')
@@ -43,7 +50,7 @@ export class DescriptionSelectionComponent implements OnInit, DoCheck {
             this.descriptionIds = res;
             if (this.ignoreIds && this.ignoreIds.length > 0) {
                 this.ignoreIds.forEach((ignoreId) => {
-                    let idx = this.descriptionIds.indexOf(ignoreId);
+                    const idx = this.descriptionIds.indexOf(ignoreId);
                     if (idx >= -1) {
                         this.descriptionIds.splice(idx, 1);
                     }
@@ -59,11 +66,4 @@ export class DescriptionSelectionComponent implements OnInit, DoCheck {
                     this.onSelectedDescription.emit(new SelectedDescription(this.selectedDescriptionId, res));
                 });
     }
-}
-
-export class SelectedDescription {
-    constructor(
-        public id: string,
-        public description: string
-    ) { }
 }
