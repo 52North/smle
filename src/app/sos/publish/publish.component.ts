@@ -71,7 +71,7 @@ export class PublishDescriptionComponent implements OnInit {
     private hasSosDescription() {
         this.resetError();
         if (this.description && this.description.identifier && this.description.identifier.value) {
-            this.sosService.hasSosDescription(this.description.identifier.value, this.sosUrl)
+            this.sosService.hasSosDescription(this.description.identifier.value, false, this.sosUrl)
                 .subscribe((res) => {
                     this.hasDescription = res;
                 }, (error) => this.handleError(error));

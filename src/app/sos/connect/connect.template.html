@@ -8,7 +8,7 @@
                 </div>
                 <div class="form-group" *ngIf="!childDescription.attachedTo">
                     <label for="attachedTo">Choose one description which should be attached to the '{{childDescription.identifier.value}}' description:</label>
-                    <description-id-selection [ignoreIds]="ignoreIds" (onSelectedDescription)="onSelectParentDescription($event)"></description-id-selection>
+                    <description-id-selection [ignoreIds]="ignoreIds" [authorized]="true" (onSelectedDescription)="onSelectParentDescription($event)"></description-id-selection>
                 </div>
                 <div *ngIf="parentDescription">
                     <div class="">
@@ -40,7 +40,7 @@
                     <label for="attachedTo">{{parentDescription.identifier.value}}
                         <span>should have the following components:</span>
                     </label>
-                    <description-id-selection [ignoreIds]="ignoreIds" (onSelectedDescription)="onSelectChildDescription($event)"></description-id-selection>
+                    <description-id-selection [ignoreIds]="ignoreIds" [authorized]="true" (onSelectedDescription)="onSelectChildDescription($event)"></description-id-selection>
                 </div>
             </div>
         </div>

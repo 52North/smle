@@ -1,5 +1,6 @@
 {
   "description": {
+    "gml:id": false,
     "gml:description": false,
     "gml:descriptionReference": false,
     "gml:identifier": {

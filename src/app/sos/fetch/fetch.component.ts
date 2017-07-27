@@ -15,6 +15,8 @@ export class FetchDescriptionComponent implements OnInit {
 
     private selectedDesc: AbstractProcess;
 
+    private isEditable = false;
+
     constructor(
         private editorService: EditorService,
         private sosService: SosService,
@@ -29,6 +31,9 @@ export class FetchDescriptionComponent implements OnInit {
                 this.sosService.fetchDescription(id).subscribe((res) => {
                     this.selectedDesc = new SensorMLXmlService().deserialize(res);
                 });
+                this.sosService.hasSosDescription(id, true).subscribe(
+                    (res) => { this.isEditable = res; }
+                );
             }
         });
     }

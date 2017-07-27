@@ -78,9 +78,9 @@ export class SosService {
             });
     }
 
-    public hasSosDescription(descID: string, sosUrl?: string): Observable<boolean> {
+    public hasSosDescription(descID: string, authorized?: boolean, sosUrl?: string): Observable<boolean> {
         return new Observable<boolean>((observer: Observer<boolean>) => {
-            this.fetchDescriptionIDs(false, this.useSosUrl(sosUrl)).subscribe((res) => {
+            this.fetchDescriptionIDs(authorized, this.useSosUrl(sosUrl)).subscribe((res) => {
                 if (res) {
                     res.forEach((entry) => {
                         if (entry === descID) {
@@ -196,7 +196,7 @@ export class SosService {
     }
 
     private useProxyUrl(proxyUrl: string) {
-        return proxyUrl || this.proxyUrl;
+        return this.proxyUrl;
     }
 
 }

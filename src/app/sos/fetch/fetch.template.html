@@ -43,7 +43,7 @@
         <div class="footer">
             <div class="text-xs-center">
                 <div class="btn-group">
-                    <button class="btn btn-primary" type="button" (click)="openToEdit()">Edit sensor description</button>
+                    <button class="btn btn-primary" *ngIf="isEditable" type="button" (click)="openToEdit()">Edit sensor description</button>
                     <button class="btn btn-primary" type="button" (click)="openToCopy()">Copy sensor description</button>
                 </div>
             </div>
