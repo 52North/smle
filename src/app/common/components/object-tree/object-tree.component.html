@@ -1,5 +1,5 @@
 <tree-root [nodes]="nodes" [options]="options" (onToggle)="onToggle($event)">
-    <template #treeNodeTemplate let-node>
+    <ng-template #treeNodeTemplate let-node>
         <smle-tree-node [node]="node"></smle-tree-node>
-    </template>
+    </ng-template>
 </tree-root>
