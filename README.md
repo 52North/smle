@@ -46,7 +46,7 @@ A tutorial based documentation of the SensorML Editor can be accessed on the [do
 
 ## Funding organizations/projects
 
-The development the 52°North smle implementations was supported by several organizations and projects. Among other we would like to thank the following organisations and project
+The development the 52°North **smle** implementations was supported by several organizations and projects. Among other we would like to thank the following organisations and project
 
 | Project/Logo | Description |
 | :-------------: | :------------- |
