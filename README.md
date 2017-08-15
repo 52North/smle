@@ -44,7 +44,7 @@ The latest demo version of smle is available [here](http://52north.github.io/sml
 
 A tutorial based documentation of the SensorML Editor can be accessed on the [documentation page](documentation/SMLE_Manual.md)
 
-## Funding organizations/projects
+## Credits
 
 The development of the 52°North **smle** implementation was supported by several organizations and projects. Among other we would like to thank the following organisations and project
 
