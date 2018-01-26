@@ -77,7 +77,7 @@
     "bootstrap-loader": "2.0.0-beta.20",
     "core-js": "^2.4.1",
     "font-awesome": "^4.5.0",
-    "jquery": "^2.2.4",
+    "jquery": "^3.3.1",
     "jquery-ui": "^1.10.5",
     "jquery-ui-timepicker-addon": "^1.5.5",
     "leaflet": "1.0.2",
