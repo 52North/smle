@@ -4,7 +4,7 @@ import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 
 @Component({
     selector: 'swe-time-range',
-    template: require('./SweTimeRangeComponent.html')
+    templateUrl: './SweTimeRangeComponent.html'
 })
 export class SweTimeRangeComponent extends TypedModelComponent<SweTimeRange> {
     protected createModel(): SweTimeRange {

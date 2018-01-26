@@ -5,7 +5,7 @@ const DATE_TIME_SEPARATOR = ' ';
 
 @Component({
     selector: 'date-picker',
-    template: require('./DatePickerComponent.html')
+    templateUrl: './DatePickerComponent.html'
 })
 export class DatePickerComponent implements OnChanges {
     @Input()

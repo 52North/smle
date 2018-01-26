@@ -28,7 +28,7 @@ import { NestedCardComponent } from '../basic/NestedCardComponent';
 
 @Component({
     selector: 'sml-described-object',
-    template: require('./DescribedObjectComponent.html')
+    templateUrl: './DescribedObjectComponent.html'
 })
 export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
 

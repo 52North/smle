@@ -6,8 +6,8 @@ import { ChildMetadata, TypedModelComponent } from '../base';
 
 @Component({
     selector: 'sml-identifier-list',
-    template: require('./IdentifierListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './IdentifierListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class IdentifierListComponent extends TypedModelComponent<IdentifierList> {
 

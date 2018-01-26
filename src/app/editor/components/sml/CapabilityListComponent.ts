@@ -20,8 +20,8 @@ import {
 
 @Component({
     selector: 'sml-capability-list',
-    template: require('./CapabilityListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './CapabilityListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class CapabilityListComponent extends TypedModelComponent<CapabilityList> {
     protected options = [

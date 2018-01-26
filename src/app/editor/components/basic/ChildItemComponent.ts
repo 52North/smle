@@ -3,8 +3,8 @@ import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 
 @Component({
     selector: 'child-item',
-    styles: [require('../styles/basic-component.scss')],
-    template: require('./ChildItemComponent.html')
+    styleUrls: ['../styles/basic-component.scss'],
+    templateUrl: './ChildItemComponent.html'
 })
 export class ChildItemComponent {
     @Input()

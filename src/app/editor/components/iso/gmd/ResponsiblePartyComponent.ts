@@ -6,8 +6,8 @@ import { EditorComponent, ChildMetadata } from '../../base';
 
 @Component({
     selector: 'iso-responsible-party',
-    template: require('./ResponsiblePartyComponent.html'),
-    styles: [require('../../styles/editor-component.scss')]
+    templateUrl: './ResponsiblePartyComponent.html',
+    styleUrls: ['../../styles/editor-component.scss']
 })
 export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty> {
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

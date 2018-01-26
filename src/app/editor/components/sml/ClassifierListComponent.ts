@@ -6,8 +6,8 @@ import { ChildMetadata, TypedModelComponent } from '../base';
 
 @Component({
     selector: 'sml-classifier-list',
-    template: require('./ClassifierListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './ClassifierListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class ClassifierListComponent extends TypedModelComponent<ClassifierList> {
 

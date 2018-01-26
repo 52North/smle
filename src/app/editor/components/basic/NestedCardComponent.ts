@@ -3,8 +3,8 @@ import { EditorComponent } from '../base';
 
 @Component({
     selector: 'sml-identifier-list',
-    template: require('./NestedCardComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './NestedCardComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class NestedCardComponent extends EditorComponent<any> {
 

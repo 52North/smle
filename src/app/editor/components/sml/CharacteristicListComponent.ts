@@ -20,8 +20,8 @@ import {
 
 @Component({
     selector: 'sml-characteristic-list',
-    template: require('./CharacteristicListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './CharacteristicListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class CharacteristicListComponent extends TypedModelComponent<CharacteristicList> {
     protected options = [

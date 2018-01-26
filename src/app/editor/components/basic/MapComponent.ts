@@ -1,6 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { DialogRef, ModalComponent } from 'angular2-modal';
-import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { BSModalContext } from 'angular2-modal/plugins/bootstrap/src/bootstrap';
 
 declare var L: any;
 
@@ -12,7 +12,7 @@ export class MapData extends BSModalContext {
 
 @Component({
     selector: 'map',
-    template: require('./MapComponent.html')
+    templateUrl: './MapComponent.html'
 })
 export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
     private map: any;

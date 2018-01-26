@@ -7,7 +7,7 @@ import { StatusSettingComponent } from './StatusSettingComponent';
 
 @Component({
     selector: 'sml-settings',
-    template: require('./SettingsComponent.html')
+    templateUrl: './SettingsComponent.html'
 })
 export class SettingsComponent extends TypedModelComponent<Settings> {
 

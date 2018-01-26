@@ -11,7 +11,7 @@ import { InputListComponent } from './InputListComponent';
 
 @Component({
     selector: 'sml-abstract-process',
-    template: require('./AbstractProcessComponent.html')
+    templateUrl: './AbstractProcessComponent.html'
 })
 export class AbstractProcessComponent extends TypedModelComponent<AbstractProcess> {
 

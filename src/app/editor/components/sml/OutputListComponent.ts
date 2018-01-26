@@ -17,7 +17,7 @@ import {
 
 @Component({
     selector: 'sml-output-list',
-    template: require('./OutputListComponent.html')
+    templateUrl: './OutputListComponent.html'
 })
 export class OutputListComponent extends TypedModelComponent<OutputList> {
 

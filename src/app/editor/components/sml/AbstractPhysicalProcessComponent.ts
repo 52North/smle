@@ -4,8 +4,8 @@ import { AbstractPhysicalProcess } from '../../../model/sml/AbstractPhysicalProc
 
 @Component({
     selector: 'sml-abstract-physical-process',
-    template: require('./AbstractPhysicalProcessComponent.html'),
-    styles: [require('../styles/editor-component.scss')],
+    templateUrl: './AbstractPhysicalProcessComponent.html',
+    styleUrls: ['../styles/editor-component.scss'],
 })
 export class AbstractPhysicalProcessComponent extends TypedModelComponent<AbstractPhysicalProcess> {
     protected createModel(): AbstractPhysicalProcess {

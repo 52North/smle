@@ -10,8 +10,8 @@ import { EditorComponent, ChildMetadata } from '../../base';
 
 @Component({
     selector: 'iso-contact',
-    template: require('./ContactComponent.html'),
-    styles: [require('../../styles/editor-component.scss')]
+    templateUrl: './ContactComponent.html',
+    styleUrls: ['../../styles/editor-component.scss']
 })
 export class ContactComponent extends EditorComponent<Contact> {
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

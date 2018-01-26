@@ -12,7 +12,7 @@ import { SweField } from '../../../model/swe/SweField';
 
 @Component({
     selector: 'position-list',
-    template: require('./PositionListComponent.html')
+    templateUrl: './PositionListComponent.html'
 })
 export class PositionListComponent extends TypedModelComponent<Array<Position>> {
 

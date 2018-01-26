@@ -17,7 +17,7 @@ import {
 
 @Component({
     selector: 'sml-parameter-list',
-    template: require('./ParameterListComponent.html')
+    templateUrl: './ParameterListComponent.html'
 })
 export class ParameterListComponent extends TypedModelComponent<ParameterList> {
 

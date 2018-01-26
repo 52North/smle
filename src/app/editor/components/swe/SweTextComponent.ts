@@ -4,7 +4,7 @@ import { SweText } from '../../../model/swe/SweText';
 
 @Component({
     selector: 'swe-text',
-    template: require('./SweTextComponent.html')
+    templateUrl: './SweTextComponent.html'
 })
 export class SweTextComponent extends TypedModelComponent<SweText> {
     protected createModel(): SweText {

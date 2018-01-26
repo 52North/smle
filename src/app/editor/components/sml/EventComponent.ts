@@ -23,8 +23,8 @@ import { Settings } from '../../../model/sml/Settings';
 
 @Component({
     selector: 'sml-event',
-    template: require('./EventComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './EventComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class EventComponent extends EditorComponent<Event> {
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

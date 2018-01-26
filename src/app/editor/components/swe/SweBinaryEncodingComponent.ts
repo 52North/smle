@@ -8,7 +8,7 @@ import { SweBinaryComponentComponent } from './SweBinaryComponentComponent';
 
 @Component({
     selector: 'swe-binary-encoding',
-    template: require('./SweBinaryEncodingComponent.html')
+    templateUrl: './SweBinaryEncodingComponent.html'
 })
 export class SweBinaryEncodingComponent extends TypedModelComponent<SweBinaryEncoding> {
     protected createModel(): SweBinaryEncoding {

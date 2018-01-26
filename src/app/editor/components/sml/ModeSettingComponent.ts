@@ -4,8 +4,8 @@ import { ModeSetting } from '../../../model/sml/ModeSetting';
 
 @Component({
     selector: 'sml-mode-setting',
-    template: require('./ModeSettingComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './ModeSettingComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class ModeSettingComponent extends EditorComponent<ModeSetting> {
 

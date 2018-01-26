@@ -961,14 +961,12 @@ export class SensorMLEncoder {
 
     private encodeInputOrOutputOrParameterValue(
         value: SweDataComponent | DataInterface | ObservableProperty): Node {
-        if (value instanceof ObservableProperty) {
-            return this.encodeObservableProperty(value, document);
-        }
-        if (value instanceof DataInterface) {
-            return this.encodeDataInterface(value, document);
-        }
         if (value instanceof AbstractDataComponent) {
             return this.sweEncoder.encodeDataComponent(value, document);
+        } else if (value instanceof ObservableProperty) {
+            return this.encodeObservableProperty(value, document);
+        } else if (value instanceof DataInterface) {
+            return this.encodeDataInterface(value, document);
         }
     }
 }

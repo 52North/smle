@@ -6,8 +6,8 @@ import { ChildMetadata, TypedModelComponent } from '../base';
 
 @Component({
     selector: 'sml-contact-list',
-    template: require('./ContactListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './ContactListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class ContactListComponent extends TypedModelComponent<ContactList> {
 

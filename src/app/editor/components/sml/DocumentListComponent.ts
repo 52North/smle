@@ -6,8 +6,8 @@ import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';
 
 @Component({
     selector: 'sml-document-list',
-    template: require('./DocumentListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './DocumentListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class DocumentListComponent extends TypedModelComponent<DocumentList> {
 

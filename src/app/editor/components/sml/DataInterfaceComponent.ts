@@ -4,7 +4,7 @@ import { DataInterface } from '../../../model/sml/DataInterface';
 
 @Component({
     selector: 'sml-data-interface',
-    template: require('./DataInterfaceComponent.html')
+    templateUrl: './DataInterfaceComponent.html'
 })
 export class DataInterfaceComponent extends EditorComponent<DataInterface> {
 

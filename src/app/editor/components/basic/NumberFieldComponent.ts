@@ -4,7 +4,7 @@ import { BaseComponent } from '../base/BaseComponent';
 
 @Component({
     selector: 'number-field',
-    template: require('./NumberFieldComponent.html')
+    templateUrl: './NumberFieldComponent.html'
 })
 export class NumberFieldComponent extends BaseComponent implements OnChanges {
 

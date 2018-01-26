@@ -4,7 +4,7 @@ import { BaseComponent } from '../base/BaseComponent';
 
 @Component({
     selector: 'smle-checkbox',
-    template: require('./CheckboxComponent.html')
+    templateUrl: './CheckboxComponent.html'
 })
 export class CheckboxComponent extends BaseComponent implements OnChanges {
     @Input()

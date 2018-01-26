@@ -18,7 +18,7 @@ import { SweFieldComponent } from '../sml/NamedSweDataComponentComponent';
 
 @Component({
     selector: 'swe-data-record',
-    template: require('./SweDataRecordComponent.html')
+    templateUrl: './SweDataRecordComponent.html'
 })
 export class SweDataRecordComponent extends TypedModelComponent<SweDataRecord> {
     protected options = [

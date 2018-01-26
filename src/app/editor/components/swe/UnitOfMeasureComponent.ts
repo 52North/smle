@@ -4,7 +4,7 @@ import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
 
 @Component({
     selector: 'swe-unit-of-measure',
-    template: require('./UnitOfMeasureComponent.html')
+    templateUrl: './UnitOfMeasureComponent.html'
 })
 export class UnitOfMeasureComponent extends TypedModelComponent<UnitOfMeasure> {
     protected createModel(): UnitOfMeasure {

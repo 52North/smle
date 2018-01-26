@@ -6,8 +6,8 @@ import { TypedModelComponent, ChildMetadata } from '../base';
 
 @Component({
     selector: 'sml-event-list',
-    template: require('./EventListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './EventListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class EventListComponent extends TypedModelComponent<EventList> {
 

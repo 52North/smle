@@ -4,8 +4,8 @@ import { EditorComponent } from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-address',
-    template: require('./AddressComponent.html'),
-    styles: [require('../../styles/editor-component.scss')]
+    templateUrl: './AddressComponent.html',
+    styleUrls: ['../../styles/editor-component.scss']
 })
 export class AddressComponent extends EditorComponent<Address> {
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

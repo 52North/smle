@@ -4,8 +4,8 @@ import { ValueSetting } from '../../../model/sml/ValueSetting';
 
 @Component({
     selector: 'sml-value-setting',
-    template: require('./ValueSettingComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './ValueSettingComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class ValueSettingComponent extends EditorComponent<ValueSetting> implements OnInit {
 

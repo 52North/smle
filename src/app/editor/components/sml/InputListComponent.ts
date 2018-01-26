@@ -17,7 +17,7 @@ import {
 
 @Component({
     selector: 'sml-input-list',
-    template: require('./InputListComponent.html')
+    templateUrl: './InputListComponent.html'
 })
 export class InputListComponent extends TypedModelComponent<InputList> {
 

@@ -4,8 +4,8 @@ import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
     selector: 'samples',
-    template: require('./samples.component.html'),
-    styles: [require('./samples.component.scss')]
+    templateUrl: './samples.component.html',
+    styleUrls: ['./samples.component.scss']
 })
 export class SamplesComponent implements OnInit {
 

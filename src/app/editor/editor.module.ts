@@ -1,37 +1,34 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { ModalModule } from 'angular2-modal';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/src/bootstrap';
 import { CalendarModule } from 'primeng/primeng';
 
-import { ModalModule } from 'angular2-modal';
-import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
-
-
+import { DynamicElementComponent } from './components/base/dynamic-element.component';
+import { HostDirective } from './components/base/host.directive';
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
-import { ListComponent, ListAddSectionDirective } from './components/basic/ListComponent';
 import { ExpandWrapperComponent } from './components/basic/expand-wrapper.component';
+import { ListAddSectionDirective, ListComponent } from './components/basic/ListComponent';
 import { MapComponent } from './components/basic/MapComponent';
+import { NestedCardComponent } from './components/basic/NestedCardComponent';
 import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
 import { StringsComponent } from './components/basic/StringsComponent';
 import { TextFieldComponent } from './components/basic/TextFieldComponent';
-
 import { AbstractFeatureComponent } from './components/gml/AbstractFeatureComponent';
 import { AbstractGMLComponent } from './components/gml/AbstractGMLComponent';
 import { CodeTypeComponent } from './components/gml/CodeTypeComponent';
 import { DatePickerComponent } from './components/gml/DatePickerComponent';
 import { TimeInstantComponent } from './components/gml/TimeInstantComponent';
 import { TimePeriodComponent } from './components/gml/TimePeriodComponent';
-
 import { AddressComponent } from './components/iso/gmd/AddressComponent';
 import { ContactComponent } from './components/iso/gmd/ContactComponent';
 import { OnlineResourceComponent } from './components/iso/gmd/OnlineResourceComponent';
 import { PhoneComponent } from './components/iso/gmd/PhoneComponent';
 import { ResponsiblePartyComponent } from './components/iso/gmd/ResponsiblePartyComponent';
-
 import { AbstractMetadataListComponent } from './components/sml/AbstractMetadataListComponent';
 import { AbstractNamedMetadataListComponent } from './components/sml/AbstractNamedMetadataListComponent';
 import { AbstractPhysicalProcessComponent } from './components/sml/AbstractPhysicalProcessComponent';
@@ -42,26 +39,23 @@ import { CapabilityListComponent } from './components/sml/CapabilityListComponen
 import { CharacteristicListComponent } from './components/sml/CharacteristicListComponent';
 import { ClassifierListComponent } from './components/sml/ClassifierListComponent';
 import { ContactListComponent } from './components/sml/ContactListComponent';
+import { DataInterfaceComponent } from './components/sml/DataInterfaceComponent';
 import { DescribedObjectComponent } from './components/sml/DescribedObjectComponent';
 import { DocumentListComponent } from './components/sml/DocumentListComponent';
 import { EventComponent } from './components/sml/EventComponent';
 import { EventListComponent } from './components/sml/EventListComponent';
 import { IdentifierListComponent } from './components/sml/IdentifierListComponent';
+import { InputComponent } from './components/sml/InputComponent';
+import { InputListComponent } from './components/sml/InputListComponent';
 import { KeywordListComponent } from './components/sml/KeywordListComponent';
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
-import {
-    NamedSweDataComponentComponent,
-    SweFieldComponent
-} from './components/sml/NamedSweDataComponentComponent';
-import { ParameterListComponent } from './components/sml/ParameterListComponent';
-import { ParameterComponent } from './components/sml/ParameterComponent';
-import { OutputListComponent } from './components/sml/OutputListComponent';
-import { OutputComponent } from './components/sml/OutputComponent';
-import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
-import { InputListComponent } from './components/sml/InputListComponent';
-import { InputComponent } from './components/sml/InputComponent';
+import { NamedSweDataComponentComponent, SweFieldComponent } from './components/sml/NamedSweDataComponentComponent';
 import { ObservablePropertyComponent } from './components/sml/ObservablePropertyComponent';
-import { DataInterfaceComponent } from './components/sml/DataInterfaceComponent';
+import { OutputComponent } from './components/sml/OutputComponent';
+import { OutputListComponent } from './components/sml/OutputListComponent';
+import { ParameterComponent } from './components/sml/ParameterComponent';
+import { ParameterListComponent } from './components/sml/ParameterListComponent';
+import { PhysicalComponentComponent } from './components/sml/PhysicalComponentComponent';
 import { PhysicalSystemComponent } from './components/sml/PhysicalSystemComponent';
 import { PositionEditorComponent } from './components/sml/PositionComponent';
 import { SettingsComponent } from './components/sml/SettingsComponent';
@@ -69,7 +63,6 @@ import { SimpleProcessComponent } from './components/sml/SimpleProcessComponent'
 import { StatusSettingComponent } from './components/sml/StatusSettingComponent';
 import { TermComponent } from './components/sml/TermComponent';
 import { ValueSettingComponent } from './components/sml/ValueSettingComponent';
-
 import { AbstractAllowedValuesComponent } from './components/swe/AbstractAllowedValuesComponent';
 import { AbstractDataComponentComponent } from './components/swe/AbstractDataComponentComponent';
 import { AbstractNumericAllowedValuesComponent } from './components/swe/AbstractNumericAllowedValuesComponent';
@@ -100,9 +93,6 @@ import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponen
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
 
-import { DynamicElementComponent } from './components/base/dynamic-element.component';
-import { HostDirective } from './components/base/host.directive';
-import { NestedCardComponent } from './components/basic/NestedCardComponent';
 
 @NgModule({
     declarations: [

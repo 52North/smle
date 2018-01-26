@@ -4,7 +4,7 @@ import { TimePeriod } from '../../../model/gml/TimePeriod';
 
 @Component({
     selector: 'gml-time-period',
-    template: require('./TimePeriodComponent.html')
+    templateUrl: './TimePeriodComponent.html'
 })
 export class TimePeriodComponent extends EditorComponent<TimePeriod> {
     @Input()

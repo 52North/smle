@@ -4,7 +4,7 @@ import { BaseComponent } from '../base/BaseComponent';
 
 @Component({
     selector: 'text-field',
-    template: require('./TextFieldComponent.html')
+    templateUrl: './TextFieldComponent.html'
 })
 export class TextFieldComponent extends BaseComponent implements OnChanges {
     @Input()

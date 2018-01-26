@@ -1,11 +1,12 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+
 import { StatusSetting } from '../../../model/sml/StatusSetting';
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-status-setting',
-    template: require('./StatusSettingComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './StatusSettingComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class StatusSettingComponent extends EditorComponent<StatusSetting> implements OnInit {
 

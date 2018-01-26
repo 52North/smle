@@ -7,8 +7,8 @@ import { EditorMode } from '../services/EditorMode';
 
 @Component({
     selector: 'editor',
-    template: require('./editor.html'),
-    styles: [require('./editor.scss')]
+    templateUrl: './editor.html',
+    styleUrls: ['./editor.scss']
 })
 export class EditorComponent implements OnInit {
     public description: AbstractProcess;

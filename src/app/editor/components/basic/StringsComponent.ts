@@ -3,7 +3,7 @@ import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 
 @Component({
     selector: 'strings',
-    template: require('./StringsComponent.html')
+    templateUrl: './StringsComponent.html'
 })
 export class StringsComponent {
     @Input()

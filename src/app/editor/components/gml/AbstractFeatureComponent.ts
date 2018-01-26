@@ -4,7 +4,7 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'gml-abstract-feature',
-    template: require('./AbstractFeatureComponent.html')
+    templateUrl: './AbstractFeatureComponent.html'
 })
 export class AbstractFeatureComponent extends TypedModelComponent<AbstractFeature> {
     protected createModel(): AbstractFeature {

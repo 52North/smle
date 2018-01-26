@@ -4,7 +4,7 @@ import { SweCount } from '../../../model/swe/SweCount';
 
 @Component({
     selector: 'swe-count',
-    template: require('./SweCountComponent.html')
+    templateUrl: './SweCountComponent.html'
 })
 export class SweCountComponent extends TypedModelComponent<SweCount> {
     protected createModel(): SweCount {

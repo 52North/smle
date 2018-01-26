@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter, Directive } from '@angular/core
 
 @Component({
     selector: 'list',
-    styles: [require('../styles/basic-component.scss')],
-    template: require('./ListComponent.html')
+    styleUrls: ['../styles/basic-component.scss'],
+    templateUrl: './ListComponent.html'
 })
 export class ListComponent {
 

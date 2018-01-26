@@ -4,7 +4,7 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'gml-code-type',
-    template: require('./CodeTypeComponent.html')
+    templateUrl: './CodeTypeComponent.html'
 })
 export class CodeTypeComponent extends TypedModelComponent<CodeType> {
     protected createModel(): CodeType {

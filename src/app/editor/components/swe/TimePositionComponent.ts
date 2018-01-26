@@ -4,7 +4,7 @@ import { TimePosition } from '../../../model/swe/TimePosition';
 
 @Component({
     selector: 'swe-time-position',
-    template: require('./TimePositionComponent.html'),
+    templateUrl: './TimePositionComponent.html',
     styles: ['label {display: inline-block; margin-bottom: 0;} label:not(:only-child) {margin-bottom: 8px;}']
 })
 export class TimePositionComponent extends TypedModelComponent<TimePosition> implements OnChanges {

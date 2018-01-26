@@ -2,18 +2,18 @@ import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/
 import { EditorComponent } from '../base/EditorComponent';
 import { Position } from '../../../model/sml/Position';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
-import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { MapComponent, MapData } from '../basic/MapComponent';
 import { SweVector } from '../../../model/swe/SweVector';
 import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweCoordinate } from '../../../model/swe/SweCoordinate';
 import { SweQuantity } from '../../../model/swe/SweQuantity';
 import { SweField } from '../../../model/swe/SweField';
+import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap/src/bootstrap';
 
 @Component({
     selector: 'sml-position',
-    template: require('./PositionComponent.html'),
-    styles: [require('../styles/editor-component.scss')],
+    templateUrl: './PositionComponent.html',
+    styleUrls: ['../styles/editor-component.scss'],
     providers: [Modal]
 })
 export class PositionEditorComponent extends EditorComponent<Position> {

@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'expand-wrapper',
-    template: require('./expand-wrapper.component.html'),
-    styles: [require('../styles/expand-wrapper-component.scss')]
+    templateUrl: './expand-wrapper.component.html',
+    styleUrls: ['../styles/expand-wrapper-component.scss']
 })
 export class ExpandWrapperComponent {
 
