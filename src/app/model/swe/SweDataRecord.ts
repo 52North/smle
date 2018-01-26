@@ -1,6 +1,6 @@
 import { AbstractDataComponent } from './AbstractDataComponent';
 import { SweField } from './SweField';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Implementation of ISO-11404 Record datatype. This allows grouping (sequence)

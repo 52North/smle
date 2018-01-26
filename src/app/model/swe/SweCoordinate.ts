@@ -1,5 +1,5 @@
 import { SweAnyNumerical } from './SweAnyNumerical';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class SweCoordinate {
     @DisplayName('Name')

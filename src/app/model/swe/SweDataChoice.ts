@@ -1,7 +1,7 @@
 import { AbstractDataComponent } from './AbstractDataComponent';
 import { SweCategory } from './SweCategory';
 import { SweDataChoiceItem } from './SweDataChoiceItem';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Implementation of a choice of two or more Data Components (also called

@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent, ChildMetadata } from '../base';
+import { Component, Type } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { InputList, Input, DataInterface, ObservableProperty } from '../../../model/sml';
 import { InputComponent } from './InputComponent';
 import {
@@ -19,7 +19,7 @@ import {
     selector: 'sml-input-list',
     template: require('./InputListComponent.html')
 })
-export class InputListComponent extends EditorComponent<InputList> {
+export class InputListComponent extends TypedModelComponent<InputList> {
 
     protected options = [
         { name: (new SweText()).toString(), type: SweText },
@@ -36,13 +36,6 @@ export class InputListComponent extends EditorComponent<InputList> {
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
-    constructor(
-        componentFactoryResolver: ComponentFactoryResolver,
-        viewContainerRef: ViewContainerRef
-    ) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
-
     protected createModel(): InputList {
         return new InputList();
     }
@@ -54,13 +47,12 @@ export class InputListComponent extends EditorComponent<InputList> {
     }
 
     protected onAddInput(inputType: Type<any>): void {
-        let input = new Input();
+        const input = new Input();
         input.value = new inputType();
         this.model.inputs.push(input);
     }
 
     protected onRemoveInput(index: number): void {
-        this.closeChildWithModel(this.model.inputs[index]);
         this.model.inputs.splice(index, 1);
     }
 

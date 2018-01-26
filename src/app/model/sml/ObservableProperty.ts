@@ -1,5 +1,5 @@
 import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * A physical property that can be observed and possibly measured (e.g.

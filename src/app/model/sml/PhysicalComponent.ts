@@ -1,7 +1,7 @@
 import { AbstractPhysicalProcess } from './AbstractPhysicalProcess';
 import { ProcessMethod } from './ProcessMethod';
 import { ProcessMethodProcess } from './ProcessMethodProcess';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * A PhysicalComponent is a physical process that will not be further divided

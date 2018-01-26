@@ -9,7 +9,7 @@ import { BaseComponent } from '../base/BaseComponent';
 export class NumberFieldComponent extends BaseComponent implements OnChanges {
 
     @Input()
-    model: Object;
+    model: any;
 
     @Input()
     fieldName: string;

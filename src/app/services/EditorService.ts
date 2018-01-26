@@ -73,14 +73,14 @@ export class EditorService {
     createOrUpdateVersion(description: AbstractProcess) {
         if (description.identification
             && description.identification.length > 0) {
-            let identifers = description.identification[0].identifiers;
-            let versionElem = identifers.find((entry) => {
+            const identifers = description.identification[0].identifiers;
+            const versionElem = identifers.find((entry) => {
                 return entry.label === 'version' ? true : false;
             });
             if (versionElem) {
                 versionElem.value = parseInt(versionElem.value, 10) + 1 + '';
             } else {
-                let term = new Term();
+                const term = new Term();
                 term.label = 'version';
                 term.value = '1';
                 identifers.push(term);
@@ -89,10 +89,9 @@ export class EditorService {
     }
 
     provideDownload(description: AbstractProcess) {
-        let data = this.xmlService.serialize(description);
-        let blob = new Blob([data], { type: 'text/xml' });
-        let url = window.URL.createObjectURL(blob);
-        window.open(url);
+        const data = this.xmlService.serialize(description, true);
+        const uriContent = 'data:application/octet-stream,' + encodeURIComponent(data);
+        window.open(uriContent, 'neuesDokument');
     }
 
     getDescriptionType() {

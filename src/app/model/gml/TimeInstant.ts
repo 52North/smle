@@ -1,5 +1,5 @@
 import { AbstractTime } from './AbstractTime';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class TimeInstant extends AbstractTime {
     @DisplayName('Time')
@@ -15,7 +15,7 @@ export class TimeInstant extends AbstractTime {
 
     getValue() {
         if (this.time) {
-            return this.time.toLocaleString().replace(/ /g, '\xa0');
+            return this.time.toLocaleDateString().replace(/ /g, '\xa0');
         }
         return this.toString();
     }

@@ -4,7 +4,7 @@ import { ArrayValueSetting } from './ArrayValueSetting';
 import { ConstraintSetting } from './ConstraintSetting';
 import { ModeSetting } from './ModeSetting';
 import { StatusSetting } from './StatusSetting';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class Settings extends AbstractSWE {
     @DisplayName('Set value')

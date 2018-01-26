@@ -39,12 +39,12 @@ export class SweDataRecordComponent extends TypedModelComponent<SweDataRecord> {
     }
 
     protected openNewFieldItem(item: SweField) {
-        let metadata = new ChildMetadata(SweFieldComponent, item, this.config.getConfigFor('fields'));
+        const metadata = new ChildMetadata(SweFieldComponent, item, this.config.getConfigFor('fields'));
         this.openNewChild(metadata);
     }
 
     protected onAddField(fieldType: Type<AbstractDataComponent>) {
-        let newItem = new SweField();
+        const newItem = new SweField();
         newItem.component = new fieldType();
 
         this.model.fields.push(newItem);

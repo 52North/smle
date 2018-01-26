@@ -1,6 +1,6 @@
 import { AbstractModes } from './AbstractModes';
 import { Mode } from './Mode';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class ModeChoice extends AbstractModes {
     @DisplayName('Modes')

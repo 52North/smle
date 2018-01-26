@@ -11,9 +11,9 @@ export class TimePositionComponent extends TypedModelComponent<TimePosition> imp
     private dateValue: Date = new Date();
 
     ngOnChanges(changes: SimpleChanges) {
-        let modelChange = changes['model'];
+        const modelChange = changes['model'];
         if (modelChange && this.isDate()) {
-            this.dateValue = <Date>this.model;
+            this.dateValue = this.model as Date;
         }
     }
 

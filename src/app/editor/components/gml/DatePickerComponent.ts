@@ -24,12 +24,12 @@ export class DatePickerComponent implements OnChanges {
     private momentDateFormat: string = 'DD.MM.YYYY';
 
     public ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
-        let modelChange = changes['model'];
+        const modelChange = changes['model'];
         if (!modelChange) {
             return;
         }
 
-        let dateTime = this.model;
+        const dateTime = this.model;
         if (dateTime) {
             this.dateTimeString =
                 this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
@@ -46,46 +46,8 @@ export class DatePickerComponent implements OnChanges {
         this.modelChange.emit(this.model);
     }
 
-    protected getMinFormattedDate(): string {
-        return this.minDateTime ? this.getFormattedDate(this.minDateTime) : null;
-    }
-
-    protected getMinFormattedTime(): string {
-        let minDate = this.minDateTime;
-        let currentDate = this.model;
-
-        if (!minDate) {
-            return null;
-        }
-
-        return minDate.getFullYear() === currentDate.getFullYear()
-            && minDate.getMonth() === currentDate.getMonth()
-            && minDate.getDay() === currentDate.getDay()
-            ? this.getFormattedTime(minDate)
-            : this.getFormattedTime(new Date(0));
-    }
-
-    protected getMaxFormattedDate(): string {
-        return this.maxDateTime ? this.getFormattedDate(this.maxDateTime) : null;
-    }
-
-    protected getMaxFormattedTime(): string {
-        let maxDate = this.maxDateTime;
-        let currentDate = this.model;
-
-        if (!maxDate) {
-            return null;
-        }
-
-        return maxDate.getFullYear() === currentDate.getFullYear()
-            && maxDate.getMonth() === currentDate.getMonth()
-            && maxDate.getDay() === currentDate.getDay()
-            ? this.getFormattedTime(new Date(1970, 0, 1, 23, 59, 59))
-            : this.getFormattedTime(maxDate);
-    }
-
     protected onStringDateChange(newDateTimeString: string): void {
-        let parsedDate = moment(newDateTimeString, this.momentDateFormat + ' ' + this.timeFormat).toDate();
+        const parsedDate = moment(newDateTimeString, this.momentDateFormat + ' ' + this.timeFormat).toDate();
         this.dateTimeString = newDateTimeString;
         this.modelChange.emit(parsedDate);
     }
@@ -102,7 +64,7 @@ export class DatePickerComponent implements OnChanges {
     }
 
     private getFormattedTime(dateTime: Date): string {
-        let timeObject = this.getTimeObject(dateTime);
+        const timeObject = this.getTimeObject(dateTime);
         return moment(timeObject).format(this.timeFormat);
     }
 

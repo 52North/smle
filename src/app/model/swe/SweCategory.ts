@@ -1,6 +1,6 @@
 import { AbstractSimpleComponent } from './AbstractSimpleComponent';
 import { AllowedTokens } from './AllowedTokens';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Scalar component used to represent a categorical value as a simple token

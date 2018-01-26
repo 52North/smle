@@ -1,28 +1,21 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { ContactList } from '../../../model/sml';
 import { ResponsibleParty } from '../../../model/iso';
 import { ResponsiblePartyComponent } from '../iso/gmd/ResponsiblePartyComponent';
-import { ChildMetadata, EditorComponent } from '../base';
+import { ChildMetadata, TypedModelComponent } from '../base';
 
 @Component({
     selector: 'sml-contact-list',
     template: require('./ContactListComponent.html'),
     styles: [require('../styles/editor-component.scss')]
 })
-export class ContactListComponent extends EditorComponent<ContactList> {
-    constructor(
-        componentFactoryResolver: ComponentFactoryResolver,
-        viewContainerRef: ViewContainerRef
-    ) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
+export class ContactListComponent extends TypedModelComponent<ContactList> {
 
     protected createModel() {
         return new ContactList();
     }
 
     protected onRemove(index: number): void {
-        this.closeChildWithModel(this.model.contacts[index]);
         this.model.contacts.splice(index, 1);
     }
 
@@ -31,7 +24,7 @@ export class ContactListComponent extends EditorComponent<ContactList> {
     }
 
     protected openNewResponsiblePartyItem(item: ResponsibleParty) {
-        let metadata = new ChildMetadata(
+        const metadata = new ChildMetadata(
             ResponsiblePartyComponent,
             item,
             this.config.getConfigFor('sml:contact').getConfigFor('gmd:CI_ResponsibleParty')

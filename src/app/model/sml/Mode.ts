@@ -1,6 +1,6 @@
 import { DescribedObject } from './DescribedObject';
 import { Settings } from './Settings';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class Mode extends DescribedObject {
     @DisplayName('Configuration')

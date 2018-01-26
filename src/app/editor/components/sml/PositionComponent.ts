@@ -64,11 +64,10 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         viewContainerRef: ViewContainerRef
     ) {
         super(componentFactoryResolver, viewContainerRef);
-        overlay.defaultViewContainer = viewContainerRef;
     }
 
     protected openMap() {
-        let mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
+        const mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
 
         this.modalWindow
             .open(MapComponent, overlayConfigFactory(mapData, BSModalContext)).then((dialogRef) => {
@@ -86,7 +85,7 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     }
 
     private setFieldValue(vectorName: string, fieldName: string, value: number) {
-        let quantity = this.getQuantity(vectorName, fieldName);
+        const quantity = this.getQuantity(vectorName, fieldName);
         if (quantity) {
             quantity.value = value;
         }
@@ -101,11 +100,11 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         }
 
         if (vectorName === 'location' && this.model instanceof SweVector) {
-            vector = <SweVector>this.model;
+            vector = this.model;
         } else if (this.model instanceof SweDataRecord) {
-            vector = <SweVector>((<SweDataRecord>this.model).fields.find((field) => {
+            vector = ((this.model as SweDataRecord).fields.find((field) => {
                 return field.name === vectorName;
-            }) || <SweField>{}).component;
+            }) || {} as SweField).component as SweVector;
         }
 
         if (!vector) {
@@ -120,11 +119,11 @@ export class PositionEditorComponent extends EditorComponent<Position> {
             return undefined;
         }
 
-        return <SweQuantity>coordinate.coordinate;
+        return coordinate.coordinate as SweQuantity;
     }
 
     private getFieldValue(vectorName: string, fieldName: string): number {
-        let quantity = this.getQuantity(vectorName, fieldName);
+        const quantity = this.getQuantity(vectorName, fieldName);
         return quantity ? quantity.value : undefined;
     }
 }

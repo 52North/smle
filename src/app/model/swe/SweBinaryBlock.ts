@@ -1,5 +1,5 @@
 import { AbstractSWE } from './AbstractSWE';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Binary encoding parameters used to encode a block of values at once. This is

@@ -1,0 +1,26 @@
+:host {
+    height: 100%;
+    width: 100%;
+    margin: 0 5px;
+    vertical-align: top;
+
+    .wrapper-title {
+        background-color: rgb(217, 241, 248);
+        padding: 5px;
+
+        .fa {
+            float: right;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .wrapper-body {
+        border: 2px;
+        border-color: rgb(217, 241, 248);
+        border-style: solid;
+        padding: 10px;
+    }
+}

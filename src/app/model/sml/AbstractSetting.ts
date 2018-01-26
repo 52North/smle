@@ -1,4 +1,4 @@
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export abstract class AbstractSetting {
     @DisplayName('Value')

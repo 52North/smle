@@ -2,6 +2,6 @@
 $fa-font-path: "~font-awesome/fonts" !default;
 
 @import '../../node_modules/font-awesome/scss/font-awesome';
-@import '../../node_modules/primeui/themes/omega/theme.css';
-@import '../../node_modules/primeui/primeui-ng-all.css';
+@import '../../node_modules/primeng/resources/themes/bootstrap/theme.css';
+@import '../../node_modules/primeng/resources/primeng.min.css';
 @import '../../node_modules/leaflet/dist/leaflet.css';

@@ -3,7 +3,7 @@ import { SweBinaryBlock } from './SweBinaryBlock';
 import { SweByteOrder } from './SweByteOrder';
 import { SweByteEncoding } from './SweByteEncoding';
 import { SweEncoding } from './SweEncoding';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Parameters of the binary encoding method

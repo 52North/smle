@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Type } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { DescribedObject } from '../../../model/sml/DescribedObject';
 import { KeywordList } from '../../../model/sml/KeywordList';
@@ -14,6 +14,7 @@ import { ContactList } from '../../../model/sml/ContactList';
 import { EventList } from '../../../model/sml/EventList';
 import { EventListComponent } from './EventListComponent';
 import { ChildMetadata, TypedModelComponent } from '../base';
+import { NestedChildMetadata } from '../base/NestedChildMetadata';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
 import { CharacteristicListComponent } from './CharacteristicListComponent';
 import { CapabilityList } from '../../../model/sml/CapabilityList';
@@ -23,6 +24,7 @@ import { TimeInstant } from '../../../model/gml/TimeInstant';
 import { TimePeriod } from '../../../model/gml/TimePeriod';
 import { TimeInstantComponent } from '../gml/TimeInstantComponent';
 import { TimePeriodComponent } from '../gml/TimePeriodComponent';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 
 @Component({
     selector: 'sml-described-object',
@@ -30,14 +32,25 @@ import { TimePeriodComponent } from '../gml/TimePeriodComponent';
 })
 export class DescribedObjectComponent extends TypedModelComponent<DescribedObject> {
 
+    public keywordListComponent: Type<any> = KeywordListComponent;
+    public identifierListComponent: Type<any> = IdentifierListComponent;
+    public classifierListComponent: Type<any> = ClassifierListComponent;
+    public characteristicsListComponent: Type<any> = CharacteristicListComponent;
+    public capabilityListComponent: Type<any> = CapabilityListComponent;
+    public documentListComponent: Type<any> = DocumentListComponent;
+    public eventListComponent: Type<any> = EventListComponent;
+    public contactListComponent: Type<any> = ContactListComponent;
+
     protected createModel(): DescribedObject {
         return undefined;
     }
 
     protected openNewKeywordListItem(item: KeywordList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 KeywordListComponent,
+                'Keyword List',
                 item,
                 this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
             )
@@ -46,18 +59,22 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewIdentifierListItem(item: IdentifierList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 IdentifierListComponent,
+                'Identifier List',
                 item,
-                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList'),
             )
         );
     }
 
     protected openNewClassifierListItem(item: ClassifierList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 ClassifierListComponent,
+                'Classifier List',
                 item,
                 this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
             )
@@ -66,8 +83,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewContactListItem(item: ContactList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 ContactListComponent,
+                'Contact List',
                 item,
                 this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
             )
@@ -76,8 +95,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewEventListItem(item: EventList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 EventListComponent,
+                'Event List',
                 item,
                 this.config.getConfigFor('sml:history').getConfigFor('sml:EventList')
             )
@@ -86,8 +107,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewDocumentListItem(item: DocumentList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 DocumentListComponent,
+                'Document List',
                 item,
                 this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
             )
@@ -96,8 +119,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewCharacteristicListItem(item: CharacteristicList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 CharacteristicListComponent,
+                'Characteristic List',
                 item,
                 this.config.getConfigFor('sml:characteristics').getConfigFor('sml:CharacteristicList')
             )
@@ -106,8 +131,10 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
 
     protected openNewCapabilityListItem(item: CapabilityList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 CapabilityListComponent,
+                'Capability List',
                 item,
                 this.config.getConfigFor('sml:capabilities').getConfigFor('sml:CapabilitiesList')
             )
@@ -159,14 +186,14 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     protected onAddTimeInstant() {
-        let instant = new TimeInstant();
+        const instant = new TimeInstant();
         instant.time = new Date();
 
         this.model.validTime.push(instant);
     }
 
     protected onAddTimePeriod() {
-        let period = new TimePeriod();
+        const period = new TimePeriod();
         period.begin = new Date();
         period.end = new Date();
 
@@ -210,8 +237,8 @@ export class DescribedObjectComponent extends TypedModelComponent<DescribedObjec
     }
 
     protected getAbstractTimeTitle(item: AbstractTime) {
-        let datePipe = new DatePipe('en');
-        let format = 'mediumDate';
+        const datePipe = new DatePipe('en');
+        const format = 'mediumDate';
 
         if (item instanceof TimeInstant) {
             return `Time: ${datePipe.transform(item.time, format)}`;

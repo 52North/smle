@@ -6,6 +6,8 @@ import { DocumentListComponent } from './DocumentListComponent';
 import { ContactListComponent } from './ContactListComponent';
 import { Event } from '../../../model/sml/Event';
 import { EditorComponent, ChildMetadata } from '../base';
+import { NestedChildMetadata } from '../base/NestedChildMetadata';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { ClassifierList } from '../../../model/sml/ClassifierList';
 import { ContactList } from '../../../model/sml/ContactList';
@@ -43,8 +45,10 @@ export class EventComponent extends EditorComponent<Event> {
 
     protected openNewKeywordListItem(item: KeywordList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 KeywordListComponent,
+                'Keyword list',
                 item,
                 this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
             )
@@ -61,8 +65,10 @@ export class EventComponent extends EditorComponent<Event> {
 
     protected openNewIdentifierListItem(item: IdentifierList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 IdentifierListComponent,
+                'Identifier list',
                 item,
                 this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
             )
@@ -79,8 +85,10 @@ export class EventComponent extends EditorComponent<Event> {
 
     protected openNewClassifierListItem(item: ClassifierList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 ClassifierListComponent,
+                'Classifier list',
                 item,
                 this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
             )
@@ -97,8 +105,10 @@ export class EventComponent extends EditorComponent<Event> {
 
     protected openNewContactListItem(item: ContactList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 ContactListComponent,
+                'Contact list',
                 item,
                 this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
             )
@@ -115,8 +125,10 @@ export class EventComponent extends EditorComponent<Event> {
 
     protected openNewDocumentListItem(item: DocumentList) {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 DocumentListComponent,
+                'Document list',
                 item,
                 this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
             )
@@ -156,13 +168,13 @@ export class EventComponent extends EditorComponent<Event> {
     }
 
     public createTime(): void {
-        let time = new TimeInstant();
+        const time = new TimeInstant();
         time.time = new Date();
         this.model.time = time;
     }
 
     public createPeriod(): void {
-        let period = new TimePeriod();
+        const period = new TimePeriod();
         period.begin = new Date();
         period.end = new Date();
         this.model.time = period;
@@ -174,8 +186,10 @@ export class EventComponent extends EditorComponent<Event> {
 
     protected openSettings() {
         this.openNewChild(
-            new ChildMetadata(
+            new NestedChildMetadata(
+                NestedCardComponent,
                 SettingsComponent,
+                'Settings',
                 this.model.configuration,
                 this.config.getConfigFor('sml:settings')
             )

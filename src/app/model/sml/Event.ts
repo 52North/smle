@@ -8,7 +8,7 @@ import { ContactList } from './ContactList';
 import { DocumentList } from './DocumentList';
 import { Settings } from './Settings';
 import { AbstractTime } from '../gml/AbstractTime';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * A time tagged Event with description and relevant property values.

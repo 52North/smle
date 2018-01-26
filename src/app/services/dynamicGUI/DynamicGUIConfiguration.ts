@@ -62,7 +62,7 @@ export class DynamicGUIConfiguration {
         this._label = label;
     }
     public getDefaultConfiguration(): DynamicGUIConfiguration {
-        let configuration = new DynamicGUIConfiguration();
+        const configuration = new DynamicGUIConfiguration();
         configuration.fixValue = false;
         configuration.requireValue = false;
         configuration.existInForm = true;
@@ -72,4 +72,3 @@ export class DynamicGUIConfiguration {
         return configuration;
     }
 }
-

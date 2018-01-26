@@ -20,7 +20,7 @@ export class SensorMLDocumentDecoder {
         this.decoder.profileIDMap = this._profileIDMap;
     }
     public decode(document: Document): AbstractProcess {
-        let process = this.createProcessOfDocument(document);
+        const process = this.createProcessOfDocument(document);
         this.decoder.decodeDocument(document.documentElement, process);
         return process;
     }

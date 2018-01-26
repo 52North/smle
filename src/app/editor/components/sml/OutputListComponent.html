@@ -1,18 +1,16 @@
-<card [verticalMode]="hasChild" [title]="'OutputList'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
-    <div class="form-group" *ngIf="config.existInForm('sml:output',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:output','textField',model,'identifier'))">
-        <label for="setValue">{{getDisplayName('output')}}</label>
-        <list [list]="model.outputs" (select)="openNewOutput($event)" (remove)="onRemoveOutput($event)" (add)="onAddOutput()">
-            <list-add-section>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="outputTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
+<div class="form-group" *ngIf="config.existInForm('sml:output',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:output','textField',model,'identifier'))">
+    <label for="setValue">{{getDisplayName('output')}}</label>
+    <list [list]="model.outputs" (select)="openNewOutput($event)" (remove)="onRemoveOutput($event)" (add)="onAddOutput()">
+        <list-add-section>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="outputTypeDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Create new output entry
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="outputTypeDropdown">
-                        <a class="dropdown-item" *ngFor="let option of options" (click)="onAddOutput(option.type)">{{option.name}}</a>
-                    </div>
+                <div class="dropdown-menu" aria-labelledby="outputTypeDropdown">
+                    <a class="dropdown-item" *ngFor="let option of options" (click)="onAddOutput(option.type)">{{option.name}}</a>
                 </div>
-            </list-add-section>
-        </list>
-    </div>
-</card>
+            </div>
+        </list-add-section>
+    </list>
+</div>

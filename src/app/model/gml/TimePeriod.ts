@@ -1,5 +1,5 @@
 import { AbstractTime } from './AbstractTime';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * gml:TimePeriod acts as a one-dimensional geometric primitive that represents
@@ -22,8 +22,8 @@ export class TimePeriod extends AbstractTime {
 
     getValue() {
         if (this.begin && this.end) {
-            return this.begin.toLocaleString().replace(/ /g, '\xa0') + ' - '
-                + this.end.toLocaleString().replace(/ /g, '\xa0');
+            return this.begin.toLocaleDateString().replace(/ /g, '\xa0') + ' - '
+                + this.end.toLocaleDateString().replace(/ /g, '\xa0');
         }
         return this.toString();
     }

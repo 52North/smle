@@ -1,5 +1,5 @@
 import { CodeType } from './CodeType';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * The abstract element gml:AbstractGML is "any GML object having identity".

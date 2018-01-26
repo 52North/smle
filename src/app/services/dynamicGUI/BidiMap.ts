@@ -1,4 +1,4 @@
-import { LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger } from 'typescript-logging';
+import { LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, Logger, LoggerFactory } from 'typescript-logging';
 
 class ObjectAndProperty {
     private _object: any;
@@ -36,7 +36,7 @@ export class BidiMap {
     }
 
     public addLinkage(elementObject: any, objectProperty: string, profileID: string) {
-        let elementAndPrefix = new ObjectAndProperty(elementObject, objectProperty);
+        const elementAndPrefix = new ObjectAndProperty(elementObject, objectProperty);
         let innerMap = this.elementToID.get(elementObject);
         if (!innerMap) {
             innerMap = new Map<string, string>();
@@ -53,7 +53,7 @@ export class BidiMap {
             );
         this._logger.info('get ProfileID for object:' + modelObject + ' and property: ' + objectProperty);
         if (this.elementToID.get(modelObject) instanceof Map) {
-            let innerMap = this.elementToID.get(modelObject);
+            const innerMap = this.elementToID.get(modelObject);
             this._logger.info('found entry in BidiMap for object:' + modelObject);
             return innerMap.get(objectProperty);
         }

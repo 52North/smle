@@ -2,7 +2,7 @@ import { AbstractPhysicalProcess } from './AbstractPhysicalProcess';
 import { AggregatingProcess } from './AggregatingProcess';
 import { ComponentList } from './ComponentList';
 import { ConnectionList } from './ConnectionList';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class PhysicalSystem extends AbstractPhysicalProcess implements AggregatingProcess {
     @DisplayName('Components')

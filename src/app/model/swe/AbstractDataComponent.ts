@@ -1,5 +1,5 @@
 import { AbstractSWEIdentifiable } from './AbstractSWEIdentifiable';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Abstract base class for all data components
@@ -29,7 +29,7 @@ export abstract class AbstractDataComponent extends AbstractSWEIdentifiable {
 
     public getLabel() {
         return this.label;
-    };
+    }
 
     abstract getValue();
 }

@@ -26,9 +26,9 @@ export class GmlEncoder {
     }
 
     public encodeTimeInstant(timeInstant: TimeInstant, document: Document): Element {
-        let node = document.createElementNS(NAMESPACES.GML, 'gml:TimeInstant');
+        const node = document.createElementNS(NAMESPACES.GML, 'gml:TimeInstant');
 
-        let timePostionNode = document.createElementNS(NAMESPACES.GML, 'gml:timePosition');
+        const timePostionNode = document.createElementNS(NAMESPACES.GML, 'gml:timePosition');
         this.setTime(timePostionNode, timeInstant.time);
         node.appendChild(timePostionNode);
 
@@ -36,13 +36,13 @@ export class GmlEncoder {
     }
 
     public encodeTimePeriod(timePeriod: TimePeriod, document: Document): Element {
-        let node = document.createElementNS(NAMESPACES.GML, 'gml:TimePeriod');
+        const node = document.createElementNS(NAMESPACES.GML, 'gml:TimePeriod');
 
-        let beginNode = document.createElementNS(NAMESPACES.GML, 'gml:beginPosition');
+        const beginNode = document.createElementNS(NAMESPACES.GML, 'gml:beginPosition');
         this.setTime(beginNode, timePeriod.begin);
         node.appendChild(beginNode);
 
-        let endNode = document.createElementNS(NAMESPACES.GML, 'gml:endPosition');
+        const endNode = document.createElementNS(NAMESPACES.GML, 'gml:endPosition');
         this.setTime(endNode, timePeriod.end);
         node.appendChild(endNode);
 
@@ -55,13 +55,13 @@ export class GmlEncoder {
         }
 
         if (object.description) {
-            let n = document.createElementNS(NAMESPACES.GML, 'gml:description');
+            const n = document.createElementNS(NAMESPACES.GML, 'gml:description');
             n.textContent = object.description;
             node.appendChild(n);
         }
 
         if (object.descriptionReference) {
-            let n = document.createElementNS(NAMESPACES.GML, 'gml:descriptionReference');
+            const n = document.createElementNS(NAMESPACES.GML, 'gml:descriptionReference');
             n.setAttributeNS(NAMESPACES.XLINK, 'xlink:href', object.descriptionReference);
             node.appendChild(n);
         }
@@ -76,13 +76,13 @@ export class GmlEncoder {
     }
 
     public encodeIdentifier(object: CodeType, document: Document): Node {
-        let node = document.createElementNS(NAMESPACES.GML, 'gml:identifier');
+        const node = document.createElementNS(NAMESPACES.GML, 'gml:identifier');
         this.encodeCodeType(node, object, document);
         return node;
     }
 
     public encodeName(object: CodeType, document: Document): Node {
-        let node = document.createElementNS(NAMESPACES.GML, 'gml:name');
+        const node = document.createElementNS(NAMESPACES.GML, 'gml:name');
         this.encodeCodeType(node, object, document);
         return node;
     }
@@ -102,14 +102,14 @@ export class GmlEncoder {
     }
 
     public encodePoint(object: Point, document: Document): Node {
-        let node = document.createElementNS(NAMESPACES.GML, 'gml:Point');
+        const node = document.createElementNS(NAMESPACES.GML, 'gml:Point');
         this.encodeReferenced(node, object, document);
         node.appendChild(this.encodePos([[object.x, object.y]], document));
         return node;
     }
 
     public encodePos(object: [number, number][], document: Document): Node {
-        let node = document.createElementNS(NAMESPACES.GML, 'gml:pos');
+        const node = document.createElementNS(NAMESPACES.GML, 'gml:pos');
         node.setAttribute('count', object.length.toString());
         node.textContent = object.map((x) => x.join(' ')).join(' ');
         return node;
@@ -124,7 +124,7 @@ export class GmlEncoder {
         }
 
         if (object.boundedBy) {
-            let n = document.createElementNS(NAMESPACES.GML, 'gml:boundedBy');
+            const n = document.createElementNS(NAMESPACES.GML, 'gml:boundedBy');
             n.appendChild(this.encodeEnvelope(object.boundedBy, document));
             node.appendChild(n);
         }
@@ -132,12 +132,12 @@ export class GmlEncoder {
     }
 
     public encodeEnvelope(object: Envelope, document: Document): Node {
-        let node = document.createElementNS(NAMESPACES.GML, 'gml:Envelope');
-        let lowerCornerNode = document.createElementNS(NAMESPACES.GML, 'gml:lowerCorner');
+        const node = document.createElementNS(NAMESPACES.GML, 'gml:Envelope');
+        const lowerCornerNode = document.createElementNS(NAMESPACES.GML, 'gml:lowerCorner');
         lowerCornerNode.textContent = object.lowerCorner.join(' ');
         node.appendChild(lowerCornerNode);
 
-        let upperCornerNode = document.createElementNS(NAMESPACES.GML, 'gml:upperCorner');
+        const upperCornerNode = document.createElementNS(NAMESPACES.GML, 'gml:upperCorner');
         lowerCornerNode.textContent = object.upperCorner.join(' ');
         node.appendChild(upperCornerNode);
 
@@ -171,7 +171,5 @@ export class GmlEncoder {
             elem.setAttribute('indeterminatePosition', 'unknown');
         }
     }
-
-
 
 }

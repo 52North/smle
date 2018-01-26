@@ -1,5 +1,5 @@
 import { AbstractSimpleComponent } from './AbstractSimpleComponent';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class AbstractSweRange extends AbstractSimpleComponent {
     @DisplayName('Value')

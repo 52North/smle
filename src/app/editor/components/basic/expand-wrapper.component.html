@@ -1,0 +1,8 @@
+<div class="wrapper-title" (click)="toggle()">
+    <i *ngIf="expanded" class="fa fa-minus-square-o" aria-hidden="true"></i>
+    <i *ngIf="!expanded" class="fa fa-plus-square-o" aria-hidden="true"></i>
+    <span>{{title}}</span>
+</div>
+<div *ngIf="expanded" class="wrapper-body">
+    <ng-content></ng-content>
+</div>

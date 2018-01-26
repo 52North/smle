@@ -1,6 +1,6 @@
 import { AbstractSWE } from '../swe/AbstractSWE';
 import { Connection } from './Connection';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class ConnectionList extends AbstractSWE {
     @DisplayName('Connections')

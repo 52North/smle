@@ -8,7 +8,7 @@ import { BaseComponent } from '../base/BaseComponent';
 })
 export class TextFieldComponent extends BaseComponent implements OnChanges {
     @Input()
-    model: Object;
+    model: any;
 
     @Input()
     fieldName: string;
@@ -24,6 +24,9 @@ export class TextFieldComponent extends BaseComponent implements OnChanges {
 
     @Input()
     disabled: boolean;
+
+    @Input()
+    showLabel: boolean = true;
 
     ngOnChanges(changes: SimpleChanges): any {
         // if (this.model && this.fieldName && !this.model.hasOwnProperty(this.fieldName)) {

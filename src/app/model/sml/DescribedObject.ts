@@ -9,7 +9,7 @@ import { CapabilityList } from './CapabilityList';
 import { ContactList } from './ContactList';
 import { EventList } from './EventList';
 import { DocumentList } from './DocumentList';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 /**
  * A feature with generic metadata which further clarifies the object and
  * supports object discovery.

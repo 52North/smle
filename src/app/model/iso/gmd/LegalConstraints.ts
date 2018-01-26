@@ -1,5 +1,5 @@
 import { Restriction } from './Restriction';
-import { DisplayName } from '../../../decorators/DisplayName';
+import { DisplayName } from '../../../common/decorators/DisplayName';
 
 /**
  * Restrictions and legal prerequisites for accessing and using the dataset.

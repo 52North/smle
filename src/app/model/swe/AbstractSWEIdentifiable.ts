@@ -1,5 +1,5 @@
 import { AbstractSWE } from './AbstractSWE';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * Base substitution groups for all SWE Common objects with

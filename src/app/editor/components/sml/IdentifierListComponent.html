@@ -1,9 +1,7 @@
-<card [verticalMode]="hasChild" [title]="'Identifier List'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <form>
-        <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
-        <div class="form-group" *ngIf="config.existInForm('sml:identifier',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:identifier','textField',model,'identifier'))">
-            <label for="identifiers">{{getDisplayName('identifiers')}}</label>
-            <list [list]="model.identifiers" [fixLength]="config.elementFixQuantity('sml:identifiers')" (select)="openNewIdentifierItem($event)" (remove)="onRemoveIdentifier($event)" (add)="onAddIdentifier()"></list>
-        </div>
-    </form>
-</card>
+<form>
+    <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
+    <div class="form-group" *ngIf="config.existInForm('sml:identifier',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:identifier','textField',model,'identifier'))">
+        <label for="identifiers">{{getDisplayName('identifiers')}}</label>
+        <list [list]="model.identifiers" [fixLength]="config.elementFixQuantity('sml:identifiers')" (select)="openNewIdentifierItem($event)" (remove)="onRemoveIdentifier($event)" (add)="onAddIdentifier()"></list>
+    </div>
+</form>

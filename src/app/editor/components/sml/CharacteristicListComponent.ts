@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent, ChildMetadata } from '../base';
+import { Component, Type } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { Characteristic } from '../../../model/sml/Characteristic';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
 import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
@@ -23,7 +23,7 @@ import {
     template: require('./CharacteristicListComponent.html'),
     styles: [require('../styles/editor-component.scss')]
 })
-export class CharacteristicListComponent extends EditorComponent<CharacteristicList> {
+export class CharacteristicListComponent extends TypedModelComponent<CharacteristicList> {
     protected options = [
         { name: (new SweText()).toString(), type: SweText },
         { name: (new SweTime()).toString(), type: SweTime },
@@ -37,10 +37,6 @@ export class CharacteristicListComponent extends EditorComponent<CharacteristicL
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
-    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
-
     protected createModel(): CharacteristicList {
         return new CharacteristicList();
     }
@@ -52,13 +48,12 @@ export class CharacteristicListComponent extends EditorComponent<CharacteristicL
     }
 
     protected onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {
-        let newItem = new NamedSweDataComponent();
+        const newItem = new NamedSweDataComponent();
         newItem.component = new characteristicType();
         this.model.characteristics.push(newItem);
     }
 
     protected onRemoveCharacteristic(index: number): void {
-        this.closeChildWithModel(this.model.characteristics[index]);
         this.model.characteristics.splice(index, 1);
     }
 }

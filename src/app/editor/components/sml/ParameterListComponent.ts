@@ -1,8 +1,7 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent, ChildMetadata } from '../base';
+import { Component, Type } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { ParameterList, Parameter, DataInterface, ObservableProperty } from '../../../model/sml';
 import { ParameterComponent } from './ParameterComponent';
-import { EditorService } from '../../../services/EditorService';
 import {
     SweText,
     SweTime,
@@ -20,7 +19,7 @@ import {
     selector: 'sml-parameter-list',
     template: require('./ParameterListComponent.html')
 })
-export class ParameterListComponent extends EditorComponent<ParameterList> {
+export class ParameterListComponent extends TypedModelComponent<ParameterList> {
 
     protected options = [
         { name: (new SweText()).toString(), type: SweText },
@@ -37,12 +36,8 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
-    constructor(
-        componentFactoryResolver: ComponentFactoryResolver,
-        viewContainerRef: ViewContainerRef,
-        private editorSrvc: EditorService
-    ) {
-        super(componentFactoryResolver, viewContainerRef);
+    constructor() {
+        super();
     }
 
     protected createModel(): ParameterList {
@@ -56,13 +51,12 @@ export class ParameterListComponent extends EditorComponent<ParameterList> {
     }
 
     protected onAddParameter(parameterType: Type<any>): void {
-        let parameter = new Parameter();
+        const parameter = new Parameter();
         parameter.value = new parameterType();
         this.model.parameters.push(parameter);
     }
 
     protected onRemoveParameter(index: number): void {
-        this.closeChildWithModel(this.model.parameters[index]);
         this.model.parameters.splice(index, 1);
     }
 

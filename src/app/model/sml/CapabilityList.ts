@@ -1,6 +1,6 @@
 import { AbstractNamedMetadataList } from './AbstractNamedMetadataList';
 import { Capability } from './Capability';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 
 export class CapabilityList extends AbstractNamedMetadataList {

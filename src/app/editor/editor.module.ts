@@ -6,19 +6,18 @@ import { CalendarModule } from 'primeng/primeng';
 
 import { ModalModule } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
-import { TreeModule } from 'angular2-tree-component';
+
 
 import { CardComponent } from './components/basic/CardComponent';
 import { CheckboxComponent } from './components/basic/CheckboxComponent';
 import { ChildItemComponent } from './components/basic/ChildItemComponent';
 import { ListComponent, ListAddSectionDirective } from './components/basic/ListComponent';
+import { ExpandWrapperComponent } from './components/basic/expand-wrapper.component';
 import { MapComponent } from './components/basic/MapComponent';
 import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
 import { StringsComponent } from './components/basic/StringsComponent';
 import { TextFieldComponent } from './components/basic/TextFieldComponent';
-import { ObjectTreeComponent } from './components/basic/object-tree/ObjectTreeComponent';
-import { TreeNodeComponent } from './components/basic/object-tree/TreeNodeComponent';
 
 import { AbstractFeatureComponent } from './components/gml/AbstractFeatureComponent';
 import { AbstractGMLComponent } from './components/gml/AbstractGMLComponent';
@@ -50,8 +49,10 @@ import { EventListComponent } from './components/sml/EventListComponent';
 import { IdentifierListComponent } from './components/sml/IdentifierListComponent';
 import { KeywordListComponent } from './components/sml/KeywordListComponent';
 import { ModeSettingComponent } from './components/sml/ModeSettingComponent';
-import { NamedSweDataComponentComponent, SweFieldComponent }
-    from './components/sml/NamedSweDataComponentComponent';
+import {
+    NamedSweDataComponentComponent,
+    SweFieldComponent
+} from './components/sml/NamedSweDataComponentComponent';
 import { ParameterListComponent } from './components/sml/ParameterListComponent';
 import { ParameterComponent } from './components/sml/ParameterComponent';
 import { OutputListComponent } from './components/sml/OutputListComponent';
@@ -98,7 +99,10 @@ import { SweTimeRangeComponent } from './components/swe/SweTimeRangeComponent';
 import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponent';
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
-import { SensorMLPipe } from './pipes/SensorMLPipe';
+
+import { DynamicElementComponent } from './components/base/dynamic-element.component';
+import { HostDirective } from './components/base/host.directive';
+import { NestedCardComponent } from './components/basic/NestedCardComponent';
 
 @NgModule({
     declarations: [
@@ -113,8 +117,10 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         PositionListComponent,
         StringsComponent,
         TextFieldComponent,
-        ObjectTreeComponent,
-        TreeNodeComponent,
+        HostDirective,
+        DynamicElementComponent,
+        NestedCardComponent,
+        ExpandWrapperComponent,
         // gml components
         AbstractFeatureComponent,
         AbstractGMLComponent,
@@ -193,16 +199,14 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent,
-        SensorMLPipe
+        UnitOfMeasureComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         CalendarModule,
         ModalModule.forRoot(),
-        BootstrapModalModule,
-        TreeModule
+        BootstrapModalModule
     ],
     exports: [
         // basic components
@@ -215,8 +219,7 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         PositionListComponent,
         StringsComponent,
         TextFieldComponent,
-        ObjectTreeComponent,
-        TreeNodeComponent,
+        NestedCardComponent,
         // gml components
         AbstractFeatureComponent,
         AbstractGMLComponent,
@@ -281,8 +284,7 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent,
-        SensorMLPipe
+        UnitOfMeasureComponent
     ],
     entryComponents: [
         KeywordListComponent,
@@ -316,7 +318,9 @@ import { SensorMLPipe } from './pipes/SensorMLPipe';
         ContactComponent,
         PhoneComponent,
         AddressComponent,
-        OnlineResourceComponent
+        OnlineResourceComponent,
+        NestedCardComponent,
+        DynamicElementComponent
     ]
 })
 export class EditorModule { }

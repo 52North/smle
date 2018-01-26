@@ -1,5 +1,5 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, Type } from '@angular/core';
-import { EditorComponent, ChildMetadata } from '../base';
+import { Component, Type } from '@angular/core';
+import { TypedModelComponent, ChildMetadata } from '../base';
 import { Capability } from '../../../model/sml/Capability';
 import { CapabilityList } from '../../../model/sml/CapabilityList';
 import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
@@ -23,7 +23,7 @@ import {
     template: require('./CapabilityListComponent.html'),
     styles: [require('../styles/editor-component.scss')]
 })
-export class CapabilityListComponent extends EditorComponent<CapabilityList> {
+export class CapabilityListComponent extends TypedModelComponent<CapabilityList> {
     protected options = [
         { name: (new SweText()).toString(), type: SweText },
         { name: (new SweTime()).toString(), type: SweTime },
@@ -37,10 +37,6 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
-    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
-
     protected createModel(): CapabilityList {
         return new CapabilityList();
     }
@@ -52,13 +48,12 @@ export class CapabilityListComponent extends EditorComponent<CapabilityList> {
     }
 
     protected onAddCapability(characteristicType: Type<AbstractDataComponent>): void {
-        let newItem = new NamedSweDataComponent();
+        const newItem = new NamedSweDataComponent();
         newItem.component = new characteristicType();
         this.model.capabilities.push(newItem);
     }
 
     protected onRemoveCapability(index: number): void {
-        this.closeChildWithModel(this.model.capabilities[index]);
         this.model.capabilities.splice(index, 1);
     }
 }

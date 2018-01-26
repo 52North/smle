@@ -27,21 +27,21 @@ export class GmlDecoder {
     }
 
     public decodeTime(elem: Element): ReturnObject<AbstractTime> {
-        let timeInstant = this.decodeTimeInstant(elem);
+        const timeInstant = this.decodeTimeInstant(elem);
         if (timeInstant != null) return timeInstant;
 
-        let timePeriod = this.decodeTimePeriod(elem);
+        const timePeriod = this.decodeTimePeriod(elem);
         if (timePeriod != null) return timePeriod;
     }
 
     public decodeTimeInstant(elem: Element): ReturnObject<AbstractTime> {
-        let timeElem = this.utils.getElement(elem, 'TimeInstant', NAMESPACES.GML);
+        const timeElem = this.utils.getElement(elem, 'TimeInstant', NAMESPACES.GML);
         if (timeElem != null) {
-            let instant = new TimeInstant();
+            const instant = new TimeInstant();
             this._profileIDMap = this.utils.processProfileID(timeElem, instant, '', this._profileIDMap);
             this.decodeAbstractGML(timeElem, instant);
 
-            let timePositionElem = this.utils.getElement(timeElem, 'timePosition', NAMESPACES.GML);
+            const timePositionElem = this.utils.getElement(timeElem, 'timePosition', NAMESPACES.GML);
             if (timePositionElem != null) {
                 instant.time = this.getTime(timePositionElem);
                 this._profileIDMap = this.utils.processProfileID(timePositionElem, instant, 'time', this._profileIDMap);
@@ -51,13 +51,13 @@ export class GmlDecoder {
     }
 
     public decodeTimePeriod(elem: Element): ReturnObject<AbstractTime> {
-        let timeElem = this.utils.getElement(elem, 'TimePeriod', NAMESPACES.GML);
+        const timeElem = this.utils.getElement(elem, 'TimePeriod', NAMESPACES.GML);
         if (timeElem != null) {
-            let period = new TimePeriod();
+            const period = new TimePeriod();
             this._profileIDMap = this.utils.processProfileID(timeElem, period, '', this._profileIDMap);
             this.decodeAbstractGML(timeElem, period);
 
-            let beginPositionElem = this.utils.getElement(timeElem, 'beginPosition', NAMESPACES.GML);
+            const beginPositionElem = this.utils.getElement(timeElem, 'beginPosition', NAMESPACES.GML);
             if (beginPositionElem != null) {
                 period.begin = this.getTime(beginPositionElem);
                 this._profileIDMap = this.utils.processProfileID(
@@ -65,7 +65,7 @@ export class GmlDecoder {
                 );
             }
 
-            let endPositionElem = this.utils.getElement(timeElem, 'endPosition', NAMESPACES.GML);
+            const endPositionElem = this.utils.getElement(timeElem, 'endPosition', NAMESPACES.GML);
             if (endPositionElem != null) {
                 period.end = this.getTime(endPositionElem);
                 this._profileIDMap = this.utils.processProfileID(endPositionElem, period, 'end', this._profileIDMap);
@@ -82,7 +82,7 @@ export class GmlDecoder {
 
         }
 
-        let descriptionElem = this.utils.getElement(elem, 'description', NAMESPACES.GML);
+        const descriptionElem = this.utils.getElement(elem, 'description', NAMESPACES.GML);
         if (descriptionElem != null) {
             object.description = descriptionElem.textContent;
             this._profileIDMap = this.utils.processProfileID(
@@ -91,7 +91,7 @@ export class GmlDecoder {
 
         }
 
-        let descriptionReferenceElem = this.utils.getElement(elem, 'descriptionReference', NAMESPACES.GML);
+        const descriptionReferenceElem = this.utils.getElement(elem, 'descriptionReference', NAMESPACES.GML);
         if (descriptionReferenceElem != null) {
             object.descriptionReference = descriptionReferenceElem.textContent;
             this._profileIDMap = this.utils.processProfileID(
@@ -100,9 +100,9 @@ export class GmlDecoder {
 
         }
 
-        let identifierElem = this.utils.getElement(elem, 'identifier', NAMESPACES.GML);
+        const identifierElem = this.utils.getElement(elem, 'identifier', NAMESPACES.GML);
         if (identifierElem != null) {
-            let returnObject = this.decodeCodeType(identifierElem);
+            const returnObject = this.decodeCodeType(identifierElem);
             if (returnObject) {
                 object.identifier = returnObject.value;
                 this._profileIDMap = this.utils.processProfileID(
@@ -123,7 +123,7 @@ export class GmlDecoder {
             codeSpace = elem.getAttribute('codeSpace');
         }
 
-        let codeType = new CodeType(elem.textContent, codeSpace);
+        const codeType = new CodeType(elem.textContent, codeSpace);
         if (elem.hasAttribute('codeSpace')) {
             this._profileIDMap = this.utils.processProfileID(elem, codeType, 'codeSpace', this._profileIDMap);
         }
@@ -132,9 +132,9 @@ export class GmlDecoder {
     }
 
     public decodePoint(elem: Element): ReturnObject<Point> {
-        let pointElem = this.utils.getElement(elem, 'Point', NAMESPACES.GML);
+        const pointElem = this.utils.getElement(elem, 'Point', NAMESPACES.GML);
         if (pointElem != null) {
-            let point = new Point();
+            const point = new Point();
             this._profileIDMap = this.utils.processProfileID(pointElem, point, '', this._profileIDMap);
             this.decodeReferenced(pointElem, point);
             this.decodePos(pointElem, point);
@@ -143,9 +143,9 @@ export class GmlDecoder {
     }
 
     public decodePos(elem: Element, point: Point) {
-        let posElem = this.utils.getElement(elem, 'pos', NAMESPACES.GML);
+        const posElem = this.utils.getElement(elem, 'pos', NAMESPACES.GML);
         if (posElem != null) {
-            let content = posElem.textContent.split(' ');
+            const content = posElem.textContent.split(' ');
             if (content[0]) {
                 point.x = +content[0];
                 this._profileIDMap = this.utils.processProfileID(posElem, point, 'x', this._profileIDMap);
@@ -159,7 +159,7 @@ export class GmlDecoder {
 
     public decodeAbstractFeature(elem: Element, abstractFeature: AbstractFeature): void {
         this.decodeAbstractGML(elem, abstractFeature);
-        let boundedByElem = this.utils.getElement(elem, 'boundedBy', NAMESPACES.GML);
+        const boundedByElem = this.utils.getElement(elem, 'boundedBy', NAMESPACES.GML);
         if (boundedByElem != null) {
             abstractFeature.boundedBy = this.decodeEnvelope(boundedByElem);
             this._profileIDMap = this.utils.processProfileID(
@@ -169,15 +169,15 @@ export class GmlDecoder {
     }
 
     public decodeEnvelope(elem: Element): Envelope {
-        let envelopeElem = this.utils.getElement(elem, 'Envelope', NAMESPACES.GML);
+        const envelopeElem = this.utils.getElement(elem, 'Envelope', NAMESPACES.GML);
         if (envelopeElem != null) {
-            let envelope = new Envelope();
+            const envelope = new Envelope();
             this._profileIDMap = this.utils.processProfileID(envelopeElem, envelope, '', this._profileIDMap);
             this.decodeReferenced(envelopeElem, envelope);
 
-            let lowerCorner = this.utils.getElement(envelopeElem, 'lowerCorner', NAMESPACES.GML);
+            const lowerCorner = this.utils.getElement(envelopeElem, 'lowerCorner', NAMESPACES.GML);
             if (lowerCorner != null) {
-                let lc = lowerCorner.textContent.split(' ');
+                const lc = lowerCorner.textContent.split(' ');
                 if (lc.length === 2) {
                     envelope.lowerCorner = [+lc[0], +lc[1]];
                     this._profileIDMap = this.utils.processProfileID(
@@ -186,9 +186,9 @@ export class GmlDecoder {
                 }
             }
 
-            let upperCorner = this.utils.getElement(envelopeElem, 'upperCorner', NAMESPACES.GML);
+            const upperCorner = this.utils.getElement(envelopeElem, 'upperCorner', NAMESPACES.GML);
             if (upperCorner != null) {
-                let uc = upperCorner.textContent.split(' ');
+                const uc = upperCorner.textContent.split(' ');
                 if (uc.length === 2) {
                     envelope.upperCorner = [+uc[0], +uc[1]];
                     this._profileIDMap = this.utils.processProfileID(
@@ -227,7 +227,7 @@ export class GmlDecoder {
         if (elem.hasAttribute('indeterminatePosition') && elem.getAttribute('indeterminatePosition') === 'unknown') {
             return null;
         } else {
-            let date = new Date(Date.parse(elem.textContent));
+            const date = new Date(Date.parse(elem.textContent));
             this._profileIDMap = this.utils.processProfileID(elem, date, '', this._profileIDMap);
             return date;
         }

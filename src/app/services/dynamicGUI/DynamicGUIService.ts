@@ -62,8 +62,8 @@ export class DynamicGUIService {
     private _XMLDocument: XMLDocument;
     private _model: Document;
     private _profile: any;
-    private _elementConfig: Object = {};
-    private _globalConfig: Object = {};
+    private _elementConfig: any = {};
+    private _globalConfig: any = {};
     private _sensorMlDecoder: SensorMLDocumentDecoder = new SensorMLDocumentDecoder();
     private _profileIDMap: BidiMap;
 
@@ -76,7 +76,7 @@ export class DynamicGUIService {
         this._sensorMlDecoder.profileIDMap = this._profileIDMap;
     }
 
-    public getModelAndConfiguration(): Observable<Object> {
+    public getModelAndConfiguration(): Observable<any> {
         return this.getProfile().map((json: any) => {
             this._logger.info('JSON profile:' + JSON.stringify(json));
             if (json.profile) {
@@ -91,7 +91,7 @@ export class DynamicGUIService {
             this._logger.info('model with the fix values:' + (this._model.documentElement.innerHTML));
             this._logger.info('element configuration:' + (JSON.stringify(this._elementConfig)));
             this._logger.info('global configuration:' + (JSON.stringify(this._globalConfig)));
-            let returnObject = new DynamicGUIObject();
+            const returnObject = new DynamicGUIObject();
             returnObject.model = this._sensorMlDecoder.decode(this._model);
             this._logger.info('profile IDs map:' + JSON.stringify(
                 this._profileIDMap.getElementObject('value_shortName'))
@@ -105,7 +105,7 @@ export class DynamicGUIService {
     }
 
     public setModel(modelClass: string) {
-        let encoder = new SensorMLDocumentEncoder();
+        const encoder = new SensorMLDocumentEncoder();
         let description: AbstractProcess;
         switch (modelClass) {
             case 'PhysicalSystem':
@@ -133,7 +133,7 @@ export class DynamicGUIService {
     }
 
     private createModel() {
-        let modelClass: XPathElement[] = this.splitXPath(this._profile._class);
+        const modelClass: XPathElement[] = this.splitXPath(this._profile._class);
         if (modelClass.length === 1) {
             this.setModel(modelClass[0].element);
             this._XMLDocument = new XMLDocument(this._model);
@@ -143,7 +143,7 @@ export class DynamicGUIService {
     // Process Form Configuration
     private processFormConfiguration() {
         if (this._profile.formConfiguration) {
-            let formComponents = this._profile.formConfiguration.formComponent;
+            const formComponents = this._profile.formConfiguration.formComponent;
             this.processFormComponents(formComponents);
         } else {
             throw new Error('JSON Object has no formConfiguration-element!');
@@ -152,7 +152,7 @@ export class DynamicGUIService {
 
     private processFormComponents(formComponents: any) {
         if (Array.isArray(formComponents)) {
-            for (let key in formComponents) {
+            for (const key in formComponents) {
                 if (formComponents[key])
                     this.processFormComponent(formComponents[key]);
             }
@@ -161,8 +161,8 @@ export class DynamicGUIService {
     }
 
     private processFormComponent(formComponent: any) {
-        let cache = new Cache(this._model.documentElement);
-        for (let key in formComponent) {
+        const cache = new Cache(this._model.documentElement);
+        for (const key in formComponent) {
             if (key === 'complexElementInstance') {
                 this.processComplexElementInstanceRefs(cache, formComponent[key], '');
             } else if (key === 'formComponent') {
@@ -175,11 +175,11 @@ export class DynamicGUIService {
 
     // Process general element descriptions
     private processGeneralElementDescriptions() {
-        for (let key in this._profile) {
+        for (const key in this._profile) {
             if (key.indexOf('element') === 0 && key.indexOf('elementInstance') !== 0) {
-                let abstractElements = this._profile[key];
+                const abstractElements = this._profile[key];
                 if (Array.isArray(abstractElements)) {
-                    for (let _key in abstractElements) {
+                    for (const _key in abstractElements) {
                         if (abstractElements[_key])
                             this.processGeneralElementDescription(abstractElements[_key]);
                     }
@@ -191,14 +191,14 @@ export class DynamicGUIService {
     }
 
     private processGeneralElementDescription(abstractElement: any) {
-        let xPath: XPathElement[] = this.splitXPath(abstractElement._XPath);
-        let configuration = new DynamicGUIConfiguration();
+        const xPath: XPathElement[] = this.splitXPath(abstractElement._XPath);
+        const configuration = new DynamicGUIConfiguration();
 
         this.setConfigurationValues(abstractElement, configuration);
         let config = this._globalConfig['description'];
         while (xPath.length > 0) {
-            let xpathElement = xPath.shift();
-            let prefixElementName = xpathElement.prefix.toLowerCase() + ':' + xpathElement.element;
+            const xpathElement = xPath.shift();
+            const prefixElementName = xpathElement.prefix.toLowerCase() + ':' + xpathElement.element;
             if (!config[prefixElementName]) {
                 config[prefixElementName] = {};
             }
@@ -213,7 +213,7 @@ export class DynamicGUIService {
     // Process element instance references
     private processElementInstanceRefs(cache: Cache, elements: any) {
         if (Array.isArray(elements)) {
-            for (let key in elements) {
+            for (const key in elements) {
                 if (elements[key])
                     this.processElementInstanceRef(cache, elements[key]);
             }
@@ -223,15 +223,15 @@ export class DynamicGUIService {
     }
 
     private processElementInstanceRef(cache: Cache, element: any) {
-        let ref = element._ref;
+        const ref = element._ref;
         this._logger.info('Process single global element: ' + ref);
-        for (let key in this._profile) {
+        for (const key in this._profile) {
             if (key.indexOf('element') === 0
                 && key !== 'complexElementInstance'
                 && key !== 'complexElementInstanceRef') {
-                let elementGlobal = this._profile[key];
+                const elementGlobal = this._profile[key];
                 if (Array.isArray(elementGlobal)) {
-                    for (let _key in elementGlobal) {
+                    for (const _key in elementGlobal) {
                         if (ref === elementGlobal[_key]._ID) {
                             this._logger.info('Single global element found: ' + elementGlobal[_key]._ID);
                             this.processElementInstance(cache, elementGlobal[_key]);
@@ -250,7 +250,7 @@ export class DynamicGUIService {
     // Process complex element instance references
     private processComplexElementInstanceRefs(cache: Cache, complexElementInstances: any, parentXPath: string) {
         if (Array.isArray(complexElementInstances)) {
-            for (let key in complexElementInstances) {
+            for (const key in complexElementInstances) {
                 if (complexElementInstances[key])
                     this.processElementGroupRef(cache, complexElementInstances[key], parentXPath);
             }
@@ -260,12 +260,12 @@ export class DynamicGUIService {
     }
 
     private processElementGroupRef(cache: Cache, complexElementInstance: any, parentXPath: string) {
-        let complexElementID = complexElementInstance._complexElementRef;
-        for (let key in this._profile) {
+        const complexElementID = complexElementInstance._complexElementRef;
+        for (const key in this._profile) {
             if (key === 'complexElementInstance') {
-                let complexElementInstancesGlobal = this._profile[key];
+                const complexElementInstancesGlobal = this._profile[key];
                 if (Array.isArray(complexElementInstancesGlobal)) {
-                    for (let _key in complexElementInstancesGlobal) {
+                    for (const _key in complexElementInstancesGlobal) {
                         if (complexElementID === complexElementInstancesGlobal[_key]._complexElementID) {
                             this.processComplexElementInstance(
                                 cache, complexElementInstancesGlobal[_key], parentXPath, true
@@ -289,7 +289,7 @@ export class DynamicGUIService {
         global: boolean
     ) {
         if (Array.isArray(complexElementInstances)) {
-            for (let key in complexElementInstances) {
+            for (const key in complexElementInstances) {
                 if (complexElementInstances[key])
                     this.processComplexElementInstance(cache, complexElementInstances[key], parentXPath, global);
             }
@@ -304,7 +304,7 @@ export class DynamicGUIService {
         parentXPath: string,
         global: boolean
     ) {
-        let elements = complexElementInstance.elements;
+        const elements = complexElementInstance.elements;
         let xPath: string = complexElementInstance._XPath;
         if (global) {
             let sliceLength: number = parentXPath.length;
@@ -315,13 +315,13 @@ export class DynamicGUIService {
             this._logger.info('Element group: sliced XPath: ' + xPath);
         }
 
-        let xpath: XPathElement[] = this.splitXPath(xPath);
+        const xpath: XPathElement[] = this.splitXPath(xPath);
         let configuration = new DynamicGUIConfiguration();
         configuration = this.setConfigurationValues(complexElementInstance, configuration);
         this._elementConfig[complexElementInstance._complexElementID] = configuration;
         cache.profileID = complexElementInstance._complexElementID;
-        let _cache = this._XMLDocument.add(cache, xpath, configuration);
-        for (let key in elements) {
+        const _cache = this._XMLDocument.add(cache, xpath, configuration);
+        for (const key in elements) {
             if (key.indexOf('elementInstance') === 0) {
                 this.processElementInstances(_cache, elements[key]);
             } else if (key === 'complexElementInstanceRef') {
@@ -335,7 +335,7 @@ export class DynamicGUIService {
     // 0Process element instances
     private processElementInstances(cache: Cache, elements: any) {
         if (Array.isArray(elements)) {
-            for (let key in elements) {
+            for (const key in elements) {
                 if (elements[key])
                     this.processElementInstance(cache, elements[key]);
             }
@@ -350,9 +350,9 @@ export class DynamicGUIService {
         configuration.valueDefault = null;
         configuration = this.setConfigurationValues(element, configuration);
         this._elementConfig[element._ID] = configuration;
-        let xpath = element._XPath;
+        const xpath = element._XPath;
         cache.profileID = element._ID;
-        let xpathElement: XPathElement[] = this.splitXPath(xpath);
+        const xpathElement: XPathElement[] = this.splitXPath(xpath);
         this._XMLDocument.add(cache, xpathElement, configuration);
     }
 
@@ -383,8 +383,8 @@ export class DynamicGUIService {
         }
 
         if (element['input']) {
-            let input = element['input'];
-            for (let key in input) {
+            const input = element['input'];
+            for (const key in input) {
                 if (input[key]._hide === 'true') {
                     configuration.hideField[key] = true;
                     this._logger.info('For element ' + JSON.stringify(element) + ' form field ' + key + ' is hidden');
@@ -397,13 +397,13 @@ export class DynamicGUIService {
         }
 
         if (element['occurrence']) {
-            let fixQuantity = element['occurrence'].fixQuantity;
+            const fixQuantity = element['occurrence'].fixQuantity;
             if (fixQuantity) {
                 configuration.fixQuantity = true;
             }
         }
         if (element['label']) {
-            let label = element['label'].__text;
+            const label = element['label'].__text;
             if (label) {
                 configuration.label = label;
             }
@@ -413,22 +413,22 @@ export class DynamicGUIService {
 
     private getProfile(): Observable<JSON> {
         return this.http.get('../../profiles/Profile_discovery.xml').map((response: Response) => {
-            let x2js = new X2JS();
-            let json = x2js.xml2js(response.text());
+            const x2js = new X2JS();
+            const json = x2js.xml2js(response.text());
             return json;
         });
     }
 
     private splitXPath(xPath: string): XPathElement[] {
         this._logger.info('XPath to split:' + xPath);
-        let xPathSplitted: XPathElement[] = [];
-        let elements = xPath.split('/');
-        for (let element of elements) {
-            let prefixElementName = element.split(':');
+        const xPathSplitted: XPathElement[] = [];
+        const elements = xPath.split('/');
+        for (const element of elements) {
+            const prefixElementName = element.split(':');
             if (prefixElementName.length === 2) {
                 xPathSplitted.push(new XPathElement(prefixElementName[1], prefixElementName[0].toUpperCase()));
             } else if (prefixElementName.length === 1) {
-                let xPathAttribute = prefixElementName[0].slice(1);
+                const xPathAttribute = prefixElementName[0].slice(1);
                 xPathSplitted.push(new XPathElement(xPathAttribute, '@'));
             }
 
@@ -450,7 +450,7 @@ class XMLDocument {
     }
     public add(cache: Cache, xPath: XPathElement[], configuration: DynamicGUIConfiguration): Cache {
         while (xPath.length > 0) {
-            let xpathElement = xPath.shift();
+            const xpathElement = xPath.shift();
             this._logger.info('XPath.length:' + xPath.length);
             this._logger.info(
                 '\n' + 'xpathElement:' + xpathElement.element + '\n' + 'parent:' + JSON.stringify(cache.parent)
@@ -466,18 +466,18 @@ class XMLDocument {
         xPath: XPathElement[],
         configuration: DynamicGUIConfiguration
     ): Cache {
-        let child = new Cache();
+        const child = new Cache();
         child.profileID = cache.profileID;
-        let xpath = xpathElement.element.split('[');
+        const xpath = xpathElement.element.split('[');
         let childName;
-        let attributes = {};
+        const attributes = {};
         if (xpath.length === 2) {
             childName = xpath[0];
-            let attribute = xpath[1].slice(0, -1);
-            let attributeList: string[] = attribute.split(',');
-            for (let att in attributeList) {
+            const attribute = xpath[1].slice(0, -1);
+            const attributeList: string[] = attribute.split(',');
+            for (const att in attributeList) {
                 if (attributeList[att]) {
-                    let a = att.split('=');
+                    const a = att.split('=');
                     if (a.length === 2) {
                         attributes[a[0].slice(1)] = a[1];
                     }
@@ -491,14 +491,14 @@ class XMLDocument {
             (typeof configuration.valueFix === 'undefined'
                 && typeof configuration.valueDefault === 'undefined')
         ) {
-            let childNode = this._model.createElementNS(
+            const childNode = this._model.createElementNS(
                 NAMESPACES[xpathElement.prefix],
                 xpathElement.prefix.toLowerCase() + ':' + childName
             );
             if (xPath.length === 0) {
                 childNode.setAttribute('profileID', cache.profileID);
             }
-            for (let key in attributes) {
+            for (const key in attributes) {
                 if (attributes[key])
                     childNode.setAttribute(key, attributes[key]);
             }
@@ -519,14 +519,14 @@ class XMLDocument {
                     this.setProfileIDForAttribute(cache.parent, cache.profileID);
                 } else {
                     let childNode: Element;
-                    let values = value.split(',');
-                    for (let key in values) {
+                    const values = value.split(',');
+                    for (const key in values) {
                         if (values[key]) {
                             childNode = this._model.createElementNS(
                                 NAMESPACES[xpathElement.prefix],
                                 xpathElement.prefix.toLowerCase() + ':' + xpathElement.element
                             );
-                            let textNode = this._model.createTextNode(values[key]);
+                            const textNode = this._model.createTextNode(values[key]);
                             childNode.appendChild(textNode);
                             this._logger.info(values[key] + ' pushed to ' + JSON.stringify(cache.parent));
                             childNode.setAttribute('profileID', cache.profileID);
@@ -539,7 +539,7 @@ class XMLDocument {
                     this.setProfileIDForAttribute(cache.parent, cache.profileID);
 
                 } else {
-                    let childNode = this._model.createElementNS(
+                    const childNode = this._model.createElementNS(
                         NAMESPACES[xpathElement.prefix],
                         xpathElement.prefix.toLowerCase() + ':' + xpathElement.element
                     );

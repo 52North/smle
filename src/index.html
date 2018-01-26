@@ -3,7 +3,9 @@
 
 <head>
 
-  <title><%= htmlWebpackPlugin.options.metadata.title %></title>
+  <title>
+    <%= htmlWebpackPlugin.options.metadata.title %>
+  </title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,14 +39,14 @@
 
   <app>
     <div id="loader-wrapper">
-        <div id="loader"></div>
-        <div id="title">smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺</div>
+      <div id="loader"></div>
+      <div id="title">smle<sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺</div>
     </div>
-</app>
+  </app>
   <% if (htmlWebpackPlugin.options.metadata.ENV === 'development') { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="http://<%= htmlWebpackPlugin.options.metadata.host %>:<%= htmlWebpackPlugin.options.metadata.port %>/webpack-dev-server.js"></script>
-  <% } %>
+    <!-- Webpack Dev Server reload -->
+    <script src="http://<%= htmlWebpackPlugin.options.metadata.host %>:<%= htmlWebpackPlugin.options.metadata.port %>/webpack-dev-server.js"></script>
+    <% } %>
 
 </body>
 

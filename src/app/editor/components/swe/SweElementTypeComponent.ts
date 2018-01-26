@@ -32,7 +32,7 @@ export class SweElementTypeComponent extends TypedModelComponent<SweElementType>
             return ComponentType.Unknown;
         }
 
-        let type = this.model.type;
+        const type = this.model.type;
 
         if (type instanceof SweText) {
             return ComponentType.SweText;

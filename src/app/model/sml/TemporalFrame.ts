@@ -1,5 +1,5 @@
 import { AbstractSWEIdentifiable } from '../swe/AbstractSWEIdentifiable';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 /**
  * A general temporal frame such as a mission start time or timer start time.

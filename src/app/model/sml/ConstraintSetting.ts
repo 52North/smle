@@ -2,7 +2,7 @@ import { AbstractSetting } from './AbstractSetting';
 import { AllowedTokens } from '../swe/AllowedTokens';
 import { AllowedTimes } from '../swe/AllowedTimes';
 import { AllowedValues } from '../swe/AllowedValues';
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class ConstraintSetting extends AbstractSetting {
     @DisplayName('Value')

@@ -8,13 +8,15 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     private defaultFixed: boolean = false;
     private defaultMandatory: boolean = false;
     private defaultFixedQuantity: boolean = false;
+    private defaultShowFlatten: boolean = false;
+    private defaultIsExpanded: boolean = false;
 
     constructor(
-        private config: Object
+        private config: any
     ) { }
 
     public getConfigFor(name: string): DescriptionConfig {
-        let value = this.getConfig(name);
+        const value = this.getConfig(name);
         if (value === true || typeof value === 'undefined') {
             return new TrueDescriptionConfig();
         } else if (!value) {
@@ -25,17 +27,17 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     }
 
     public isFieldVisible(name: string, formFieldType?: string): boolean {
-        let visible = this.getConfigParameter(name, 'visible');
+        const visible = this.getConfigParameter(name, 'visible');
         return (typeof visible === 'undefined') ? this.defaultVisibility : visible;
     }
 
     public isFieldFixed(name: string): boolean {
-        let fixed = this.getConfigParameter(name, 'fixed');
+        const fixed = this.getConfigParameter(name, 'fixed');
         return (typeof fixed === 'undefined') ? this.defaultFixed : fixed;
     }
 
     public isFieldMandatory(name: string): boolean {
-        let mandatory = this.getConfigParameter(name, 'mandatory');
+        const mandatory = this.getConfigParameter(name, 'mandatory');
         return (typeof mandatory === 'undefined') ? this.defaultMandatory : mandatory;
     }
 
@@ -44,8 +46,18 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     }
 
     public elementFixQuantity(name: string): boolean {
-        let fixedQuantity = this.getConfigParameter(name, 'fixedQuantity');
+        const fixedQuantity = this.getConfigParameter(name, 'fixedQuantity');
         return (typeof fixedQuantity === 'undefined') ? this.defaultFixedQuantity : fixedQuantity;
+    }
+
+    public isExpanded(): boolean {
+        const isExpanded = this.config['isExpanded'];
+        return (typeof isExpanded === 'undefined') ? this.defaultIsExpanded : isExpanded;
+    }
+
+    public showFlatten(name: string): boolean {
+        const showFlatten = this.getConfigParameter(name, 'showFlatten');
+        return (typeof showFlatten === 'undefined') ? this.defaultShowFlatten : showFlatten;
     }
 
     public getLabel(name: string): string {
@@ -54,7 +66,7 @@ export class JSONDescriptionConfig implements DescriptionConfig {
 
     private getConfigParameter(name: string, parameter: string): any {
         if (typeof name === 'undefined') return null;
-        let config = this.getConfig(name);
+        const config = this.getConfig(name);
         if (typeof config !== 'undefined'
             && config.hasOwnProperty(parameter)
             && typeof config[parameter] !== 'undefined')

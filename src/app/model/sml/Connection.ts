@@ -1,4 +1,4 @@
-import { DisplayName } from '../../decorators/DisplayName';
+import { DisplayName } from '../../common/decorators/DisplayName';
 /**
  * The explicit definition of data links between outputs, inputs, and parameters
  * of the components within an aggregate process.
