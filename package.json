@@ -114,7 +114,7 @@
     "extract-text-webpack-plugin": "2.0.0-rc.3",
     "file-loader": "^0.10.0",
     "html-webpack-plugin": "^2.21.0",
-    "http-server": "^0.9.0",
+    "http-server": "^0.11.1",
     "ie-shim": "^0.1.0",
     "imports-loader": "^0.6.5",
     "istanbul-instrumenter-loader": "^0.2.0",
