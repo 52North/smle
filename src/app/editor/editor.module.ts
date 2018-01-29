@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ModalModule } from 'angular2-modal';
-import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/src/bootstrap';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule } from 'primeng/primeng';
 
 import { DynamicElementComponent } from './components/base/dynamic-element.component';
@@ -195,8 +194,7 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         CommonModule,
         FormsModule,
         CalendarModule,
-        ModalModule.forRoot(),
-        BootstrapModalModule
+        NgbModalModule.forRoot()
     ],
     exports: [
         // basic components

@@ -1,20 +1,19 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Position } from '../../../model/sml/Position';
-import { Overlay, overlayConfigFactory } from 'angular2-modal';
-import { MapComponent, MapData } from '../basic/MapComponent';
-import { SweVector } from '../../../model/swe/SweVector';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweCoordinate } from '../../../model/swe/SweCoordinate';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweField } from '../../../model/swe/SweField';
-import { BSModalContext, Modal } from 'angular2-modal/plugins/bootstrap/src/bootstrap';
+import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { SweVector } from '../../../model/swe/SweVector';
+import { EditorComponent } from '../base/EditorComponent';
+import { MapComponent } from '../basic/MapComponent';
 
 @Component({
     selector: 'sml-position',
     templateUrl: './PositionComponent.html',
-    styleUrls: ['../styles/editor-component.scss'],
-    providers: [Modal]
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class PositionEditorComponent extends EditorComponent<Position> {
     private get latitude(): number {
@@ -58,8 +57,7 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     }
 
     constructor(
-        private modalWindow: Modal,
-        private overlay: Overlay,
+        private modalService: NgbModal,
         componentFactoryResolver: ComponentFactoryResolver,
         viewContainerRef: ViewContainerRef
     ) {
@@ -67,17 +65,15 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     }
 
     protected openMap() {
-        const mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
-
-        this.modalWindow
-            .open(MapComponent, overlayConfigFactory(mapData, BSModalContext)).then((dialogRef) => {
-                dialogRef.result.then((result) => {
-                    if (result) {
-                        this.latitude = result.lat;
-                        this.longitude = result.lng;
-                    }
-                });
-            });
+        const ref = this.modalService.open(MapComponent);
+        (ref.componentInstance as MapComponent).location = {
+            lat: this.latitude,
+            lng: this.longitude
+        };
+        ref.result.then((location: L.LatLngLiteral) => {
+            this.longitude = location.lat;
+            this.latitude = location.lng;
+        });
     }
 
     protected createModel(): Position {
