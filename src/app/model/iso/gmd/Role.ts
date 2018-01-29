@@ -45,4 +45,4 @@ export type Role =
     /**
      * party who owned the resource
      */
-    'owner'
+    'owner';

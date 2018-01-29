@@ -1,4 +1,4 @@
-import { LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, Logger, LoggerFactory } from 'typescript-logging';
+import { LFService, Logger, LoggerFactory, LoggerFactoryOptions, LogGroupRule, LogLevel } from 'typescript-logging';
 
 class ObjectAndProperty {
     private _object: any;
@@ -47,10 +47,11 @@ export class BidiMap {
     }
 
     public getProfileID(modelObject: any, objectProperty: string): string {
-        if (!modelObject || !objectProperty)
+        if (!modelObject || !objectProperty) {
             throw new Error(
                 'One or both paramerter error: modelObject' + modelObject + ' objectProperty:' + objectProperty
             );
+        }
         this._logger.info('get ProfileID for object:' + modelObject + ' and property: ' + objectProperty);
         if (this.elementToID.get(modelObject) instanceof Map) {
             const innerMap = this.elementToID.get(modelObject);

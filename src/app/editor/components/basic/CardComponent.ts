@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'card',
@@ -10,10 +10,10 @@ export class CardComponent {
     public title: string;
 
     @Input()
-    public showAll: boolean = false;
+    public showAll = false;
 
     @Input()
-    public closable: boolean = true;
+    public closable = true;
 
     @Output()
     public showAllChange: EventEmitter<boolean> = new EventEmitter<boolean>();

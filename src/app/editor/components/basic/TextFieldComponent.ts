@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 import { BaseComponent } from '../base/BaseComponent';
 
@@ -26,7 +27,7 @@ export class TextFieldComponent extends BaseComponent implements OnChanges {
     disabled: boolean;
 
     @Input()
-    showLabel: boolean = true;
+    showLabel = true;
 
     ngOnChanges(changes: SimpleChanges): any {
         // if (this.model && this.fieldName && !this.model.hasOwnProperty(this.fieldName)) {

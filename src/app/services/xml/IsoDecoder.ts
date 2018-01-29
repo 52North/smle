@@ -1,16 +1,16 @@
 import { Address } from '../../model/iso/gmd/Address';
 import { Contact } from '../../model/iso/gmd/Contact';
 import { LegalConstraints } from '../../model/iso/gmd/LegalConstraints';
-import { NAMESPACES } from './Namespaces';
 import { OnlineFunction } from '../../model/iso/gmd/OnlineFunction';
 import { OnlineResource } from '../../model/iso/gmd/OnlineResource';
 import { Phone } from '../../model/iso/gmd/Phone';
 import { ResponsibleParty } from '../../model/iso/gmd/ResponsibleParty';
 import { Restriction } from '../../model/iso/gmd/Restriction';
 import { Role } from '../../model/iso/gmd/Role';
-import { DecoderUtils } from './DecoderUtils';
-import { ReturnObject } from './ReturnObject';
 import { BidiMap } from '../dynamicGUI/BidiMap';
+import { DecoderUtils } from './DecoderUtils';
+import { NAMESPACES } from './Namespaces';
+import { ReturnObject } from './ReturnObject';
 
 export class IsoDecoder {
 
@@ -301,16 +301,16 @@ export class IsoDecoder {
 
         if (roleElem != null) {
             const role = roleElem.getAttribute('codeListValue');
-            if (role.indexOf('resourceProvider') >= 0) return 'resourceProvider';
-            if (role.indexOf('custodian') >= 0) return 'custodian';
-            if (role.indexOf('user') >= 0) return 'user';
-            if (role.indexOf('originator') >= 0) return 'originator';
-            if (role.indexOf('pointOfContact') >= 0) return 'pointOfContact';
-            if (role.indexOf('principalInvestigator') >= 0) return 'principalInvestigator';
-            if (role.indexOf('processor') >= 0) return 'processor';
-            if (role.indexOf('publisher') >= 0) return 'publisher';
-            if (role.indexOf('author') >= 0) return 'author';
-            if (role.indexOf('owner') >= 0) return 'owner';
+            if (role.indexOf('resourceProvider') >= 0) { return 'resourceProvider'; }
+            if (role.indexOf('custodian') >= 0) { return 'custodian'; }
+            if (role.indexOf('user') >= 0) { return 'user'; }
+            if (role.indexOf('originator') >= 0) { return 'originator'; }
+            if (role.indexOf('pointOfContact') >= 0) { return 'pointOfContact'; }
+            if (role.indexOf('principalInvestigator') >= 0) { return 'principalInvestigator'; }
+            if (role.indexOf('processor') >= 0) { return 'processor'; }
+            if (role.indexOf('publisher') >= 0) { return 'publisher'; }
+            if (role.indexOf('author') >= 0) { return 'author'; }
+            if (role.indexOf('owner') >= 0) { return 'owner'; }
         }
     }
 
@@ -319,11 +319,11 @@ export class IsoDecoder {
 
         if (onlineFunctionElem != null) {
             const onlineFunction = onlineFunctionElem.getAttribute('codeListValue');
-            if (onlineFunction.indexOf('download') >= 0) return 'download';
-            if (onlineFunction.indexOf('information') >= 0) return 'information';
-            if (onlineFunction.indexOf('offlineAccess') >= 0) return 'offlineAccess';
-            if (onlineFunction.indexOf('order') >= 0) return 'order';
-            if (onlineFunction.indexOf('search') >= 0) return 'search';
+            if (onlineFunction.indexOf('download') >= 0) { return 'download'; }
+            if (onlineFunction.indexOf('information') >= 0) { return 'information'; }
+            if (onlineFunction.indexOf('offlineAccess') >= 0) { return 'offlineAccess'; }
+            if (onlineFunction.indexOf('order') >= 0) { return 'order'; }
+            if (onlineFunction.indexOf('search') >= 0) { return 'search'; }
         }
     }
 
@@ -332,22 +332,30 @@ export class IsoDecoder {
 
         if (restrictionElem != null) {
             const restriction = restrictionElem.getAttribute('codeListValue');
-            if (restriction.indexOf('copyright') >= 0)
+            if (restriction.indexOf('copyright') >= 0) {
                 return new ReturnObject<Restriction>('copyright', restrictionElem);
-            if (restriction.indexOf('patent') >= 0)
+            }
+            if (restriction.indexOf('patent') >= 0) {
                 return new ReturnObject<Restriction>('patent', restrictionElem);
-            if (restriction.indexOf('patentPending') >= 0)
+            }
+            if (restriction.indexOf('patentPending') >= 0) {
                 return new ReturnObject<Restriction>('patentPending', restrictionElem);
-            if (restriction.indexOf('trademark') >= 0)
+            }
+            if (restriction.indexOf('trademark') >= 0) {
                 return new ReturnObject<Restriction>('trademark', restrictionElem);
-            if (restriction.indexOf('license') >= 0)
+            }
+            if (restriction.indexOf('license') >= 0) {
                 return new ReturnObject<Restriction>('license', restrictionElem);
-            if (restriction.indexOf('intellectualPropertyRights') >= 0)
+            }
+            if (restriction.indexOf('intellectualPropertyRights') >= 0) {
                 return new ReturnObject<Restriction>('intellectualPropertyRights', restrictionElem);
-            if (restriction.indexOf('restricted') >= 0)
+            }
+            if (restriction.indexOf('restricted') >= 0) {
                 return new ReturnObject<Restriction>('restricted', restrictionElem);
-            if (restriction.indexOf('otherRestrictions') >= 0)
+            }
+            if (restriction.indexOf('otherRestrictions') >= 0) {
                 return new ReturnObject<Restriction>('otherRestrictions', restrictionElem);
+            }
         }
     }
 
@@ -385,12 +393,12 @@ export class IsoDecoder {
     private getDecodedCharacterString(elem: Element): ReturnObject<string> {
         const charStringElem = this.utils.getElement(elem, 'CharacterString', NAMESPACES.GCO);
 
-        if (charStringElem != null) return new ReturnObject(charStringElem.textContent, charStringElem);
+        if (charStringElem != null) { return new ReturnObject(charStringElem.textContent, charStringElem); }
     }
 
     private getDecodedUrl(elem: Element): ReturnObject<string> {
         const urlElem = this.utils.getElement(elem, 'URL', NAMESPACES.GMD);
 
-        if (urlElem != null) return new ReturnObject(urlElem.textContent, urlElem);
+        if (urlElem != null) { return new ReturnObject(urlElem.textContent, urlElem); }
     }
 }

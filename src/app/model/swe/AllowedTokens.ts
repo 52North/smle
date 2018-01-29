@@ -1,5 +1,5 @@
-import { AbstractAllowedValues } from './AbstractAllowedValues';
 import { DisplayName } from '../../common/decorators/DisplayName';
+import { AbstractAllowedValues } from './AbstractAllowedValues';
 
 /**
  * Defines permitted values for the component, as an enumerated list of tokens
@@ -10,7 +10,7 @@ export class AllowedTokens extends AbstractAllowedValues {
     values: string[] = [];
 
     @DisplayName('Pattern')
-    pattern: string = '';
+    pattern = '';
 
     toString() {
         return 'Allowed tokens';

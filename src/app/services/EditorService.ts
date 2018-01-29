@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess, Term } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 import { XmlService } from '../services/XmlService';
-import { Observable, Observer } from 'rxjs';
 import { DescriptionConfigService } from './DescriptionConfigService';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { EditorMode } from './EditorMode';
 import { DynamicGUIService } from './dynamicGUI/DynamicGUIService';
 import { DynamicGUIObject } from './dynamicGUI/DynamicGUIObject';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 export enum DescriptionType {
     PhysicalSystem = 1,
     PhysicalComponent = 2,
@@ -43,16 +44,18 @@ export class EditorService {
         this.editorMode = EditorMode.Default;
         return new Observable<AbstractProcess>((observer: Observer<AbstractProcess>) => {
             if (id) {
-                this.service.getDescription(id).then((desc) => {
-                    this.description = desc;
-                    observer.next(this.description);
-                    observer.complete();
-                }).catch((error) => {
-                    observer.error(error);
-                    observer.complete();
-                });
+                this.service.getDescription(id).subscribe(
+                    (desc) => {
+                        this.description = desc;
+                        observer.next(this.description);
+                        observer.complete();
+                    },
+                    (error) => {
+                        observer.error(error);
+                        observer.complete();
+                    });
             } else {
-                if (!this.description) this.description = null;
+                if (!this.description) { this.description = null; }
                 observer.next(this.description);
                 observer.complete();
             }

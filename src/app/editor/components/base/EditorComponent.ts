@@ -18,7 +18,7 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     public onReset(): void {
         this.closeChild();
         for (const prop in this.model) {
-            if (this.model[prop]) delete this.model[prop];
+            if (this.model[prop]) { delete this.model[prop]; }
         }
         this.extendModel();
     }

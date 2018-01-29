@@ -14,13 +14,13 @@ export class EditorComponent implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
     public editorMode: EditorMode;
-    public actionBarNeeded: boolean = false;
+    public actionBarNeeded = false;
 
-    public visualizerExpanded: boolean = false;
+    public visualizerExpanded = false;
 
     public descriptionType: DescriptionType;
     public descriptionLoadingError: string;
-    public descriptionIsLoading: boolean = true;
+    public descriptionIsLoading = true;
 
     constructor(
         private editorService: EditorService,

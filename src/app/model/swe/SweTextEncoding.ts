@@ -1,5 +1,5 @@
-import { SweEncoding } from './SweEncoding';
 import { DisplayName } from '../../common/decorators/DisplayName';
+import { SweEncoding } from './SweEncoding';
 
 /**
  * Parameters of the text encoding method
@@ -10,25 +10,25 @@ export class SweTextEncoding extends SweEncoding {
      * collapsed with separators when parsing the data stream
      */
     @DisplayName('Collapse whitespace')
-    collapseWhiteSpace: boolean = true;
+    collapseWhiteSpace = true;
     /**
      * Character used as the decimal separator
      */
     @DisplayName('Decimal separator')
-    decimalSeperator: string = '.';
+    decimalSeperator = '.';
     /**
      * Character sequence used as the token separator (i.e. between two successive
      *  values)
      */
     @DisplayName('Token separator')
-    tokenSeperator: string = ';';
+    tokenSeperator = ';';
     /**
      * Character sequence used as the block separator (i.e. between two successive
      * blocks in the data set. The end of a block is reached once all values from
      * the data tree have been encoded once)
      */
     @DisplayName('Block separator')
-    blockSeperator: string = '@@';
+    blockSeperator = '@@';
 
     toString() {
         return 'SWE text encoding';

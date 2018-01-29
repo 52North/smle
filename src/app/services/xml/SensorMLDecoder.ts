@@ -216,17 +216,17 @@ export class SensorMLDecoder {
 
     public decodePosition(elem: Element): ReturnObject<Position> {
         const point = this.gmlDecoder.decodePoint(elem);
-        if (point != null) return point;
+        if (point != null) { return point; }
         const text = this.sweDecoder.decodeText(elem);
-        if (text != null) return text;
+        if (text != null) { return text; }
         const vector = this.sweDecoder.decodeVector(elem);
-        if (vector != null) return vector;
+        if (vector != null) { return vector; }
         const dataRecord = this.sweDecoder.decodeDataRecord(elem);
-        if (dataRecord != null) return dataRecord;
+        if (dataRecord != null) { return dataRecord; }
         const matrix = this.sweDecoder.decodeMatrix(elem);
-        if (matrix != null) return matrix;
+        if (matrix != null) { return matrix; }
         const dataArray = this.sweDecoder.decodeDataArray(elem);
-        if (dataArray != null) return dataArray;
+        if (dataArray != null) { return dataArray; }
         // TODO decode if process
     }
 
@@ -357,7 +357,7 @@ export class SensorMLDecoder {
 
     public decodeModes(elem: Element): ReturnObject<AbstractModes> {
         const modeChoice = this.decodeModeChoice(elem);
-        if (modeChoice != null) return new ReturnObject(modeChoice, elem);
+        if (modeChoice != null) { return new ReturnObject(modeChoice, elem); }
     }
 
     public decodeModeChoice(elem: Element): ModeChoice {

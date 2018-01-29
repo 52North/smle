@@ -1,21 +1,19 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { SensorMLXmlService } from '../services/SensorMLXmlService';
-import { AbstractProcess } from '../model/sml';
 import 'rxjs/add/operator/toPromise';
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { AbstractProcess } from '../model/sml';
+import { SensorMLXmlService } from '../services/SensorMLXmlService';
 
 @Injectable()
 export class SampleDataLoader {
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) { }
+
+    loadSample(url: string): Observable<AbstractProcess> {
+        return this.http.get(url, { responseType: 'text' }).map((response: string) => new SensorMLXmlService().deserialize(response));
     }
 
-    loadSample(url: string): Promise<AbstractProcess> {
-        return this.http.get(url).toPromise().then(this.extractProcess);
-    }
-
-    private extractProcess(res: Response) {
-        const body = res.text();
-        return new SensorMLXmlService().deserialize(body);
-    }
 }

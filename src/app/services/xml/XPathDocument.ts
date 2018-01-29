@@ -5,15 +5,15 @@ export class XPathDocument {
     private static MEDIA_TYPE = 'application/xml';
 
     public static parse(xml: string): XPathDocument {
-        let parser = new DOMParser();
-        let document = parser.parseFromString(xml, XPathDocument.MEDIA_TYPE);
+        const parser = new DOMParser();
+        const document = parser.parseFromString(xml, XPathDocument.MEDIA_TYPE);
         return new XPathDocument(document);
     }
 
     constructor(public document: Document) { }
 
     public eval(expr: string, context?: Node): boolean | string | number | Node | Node[] {
-        let result = this._eval(expr, context);
+        const result = this._eval(expr, context);
 
         switch (result.resultType) {
             case XPathResult.FIRST_ORDERED_NODE_TYPE:
@@ -40,7 +40,7 @@ export class XPathDocument {
     }
 
     private parseSnapshot(result: XPathResult): Node[] {
-        let array: Node[] = new Array<Node>(result.snapshotLength);
+        const array: Node[] = new Array<Node>(result.snapshotLength);
         for (let i = 0; i < result.snapshotLength; ++i) {
             array[i] = result.snapshotItem(i);
         }
@@ -48,7 +48,7 @@ export class XPathDocument {
     }
 
     private parseIterator(result: XPathResult): Node[] {
-        let array: Node[] = [];
+        const array: Node[] = [];
         let node: Node = result.iterateNext();
         while (node != null) {
             array.push(node);
@@ -59,7 +59,7 @@ export class XPathDocument {
 
     private _eval(expression: string, context?: Node) {
         context = context || this.document.documentElement;
-        let resolver: XPathNSResolver = {
+        const resolver: XPathNSResolver = {
             lookupNamespaceURI(prefix: string): string {
                 return new SensorMLNamespaceResolver().getNamespace(prefix);
             }

@@ -1,11 +1,10 @@
-
 import { XmlService } from './XmlService';
 
 export abstract class AbstractXmlService<T> extends XmlService<T> {
   serialize(description: T, prettify: boolean) {
     const serializer = new XMLSerializer();
     let document = this.encode(description);
-    if (prettify) document = this.prettyPrint(document);
+    if (prettify) { document = this.prettyPrint(document); }
     return serializer.serializeToString(document);
   }
 

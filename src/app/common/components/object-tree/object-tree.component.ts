@@ -12,7 +12,7 @@ const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \
 })
 export class ObjectTreeComponent implements OnChanges, DoCheck {
     @Input()
-    shouldRebuildTree: boolean = true;
+    shouldRebuildTree = true;
 
     @Input()
     model: AbstractProcess;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { DescriptionRepository } from '../services/DescriptionRepository';
 
 @Component({
@@ -27,8 +28,7 @@ export class SamplesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._service.getDescriptions()
-            .then((ids) => this.descriptions = ids);
+        this._service.getDescriptions().subscribe((ids) => this.descriptions = ids);
     }
 
 }

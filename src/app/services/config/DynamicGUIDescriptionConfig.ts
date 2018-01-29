@@ -24,7 +24,7 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
     public isFieldMandatory(name: string, model?: any, fieldName?: string): boolean {
         const value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (!model || !fieldName) return false;
+            if (!model || !fieldName) { return false; }
             const elementConfig = this.getElementConfig(model, fieldName, 'requireValue');
             if (typeof elementConfig === 'undefined') {
                 if (value) {
@@ -41,7 +41,7 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
     public existInForm(name: string, model?: any, fieldName?: string): boolean {
         const value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (!model || !fieldName) return false;
+            if (!model || !fieldName) { return false; }
             const elementConfig = this.getElementConfig(model, fieldName, 'existInForm');
             if (typeof elementConfig === 'undefined') {
                 if (value) {
@@ -69,7 +69,7 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
     public isFieldFixed(name: string, model?: any, fieldName?: string): boolean {
         const value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (!model || !fieldName) return false;
+            if (!model || !fieldName) { return false; }
             const elementConfig = this.getElementConfig(model, fieldName, 'fixValue');
             if (typeof elementConfig === 'undefined') {
                 if (value) {
@@ -86,7 +86,7 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
     public elementFixQuantity(name: string, model?: any, fieldName?: string): boolean {
         const value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (!model || !fieldName) return false;
+            if (!model || !fieldName) { return false; }
             const elementConfig = this.getElementConfig(model, fieldName, 'fixQuantity');
             if (typeof elementConfig === 'undefined') {
                 if (value) {
@@ -103,7 +103,7 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
     public isFieldVisible(name: string, formFieldType?: string, model?: any, fieldName?: string): boolean {
         const value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (!model || !fieldName) return false;
+            if (!model || !fieldName) { return false; }
             const elementConfig = this.getElementConfig(model, fieldName, 'hideField', formFieldType);
             if (typeof elementConfig === 'undefined') {
                 this._logger.info(name + ' has no element configuration!');
@@ -127,7 +127,7 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
     public getLabel(name: string, model?: any, fieldName?: string): string {
         const value = this.getValue(name);
         if (this.dynamicGUI) {
-            if (!model || !fieldName) return undefined;
+            if (!model || !fieldName) { return undefined; }
             const elementConfig = this.getElementConfig(model, fieldName, 'label');
             if (typeof elementConfig === 'undefined') {
                 if (value) {
@@ -166,7 +166,7 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
 
     private getElementConfig(model: any, fieldName: string, configType: string, formField?: string): any {
         if (configType === 'hideField') {
-            if (!formField) throw new Error('Form field not exist, but configType === hideField');
+            if (!formField) { throw new Error('Form field not exist, but configType === hideField'); }
         }
         const profileID = this._profileIDMap.getProfileID(model, fieldName);
 

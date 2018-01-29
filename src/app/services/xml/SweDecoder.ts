@@ -53,49 +53,49 @@ export class SweDecoder {
     }
     public decodeDataComponent(elem: Element): ReturnObject<AbstractDataComponent> {
         const vector = this.decodeVector(elem);
-        if (vector != null) return vector;
+        if (vector != null) { return vector; }
 
         const dataRecord = this.decodeDataRecord(elem);
-        if (dataRecord != null) return dataRecord;
+        if (dataRecord != null) { return dataRecord; }
 
         const matrix = this.decodeMatrix(elem);
-        if (matrix != null) return matrix;
+        if (matrix != null) { return matrix; }
 
         const dataArray = this.decodeDataArray(elem);
-        if (dataArray != null) return dataArray;
+        if (dataArray != null) { return dataArray; }
 
         const dataChoice = this.decodeDataChoice(elem);
-        if (dataChoice != null) return dataChoice;
+        if (dataChoice != null) { return dataChoice; }
 
         const quantityRange = this.decodeQuantityRange(elem);
-        if (quantityRange != null) return quantityRange;
+        if (quantityRange != null) { return quantityRange; }
 
         const timeRange = this.decodeTimeRange(elem);
-        if (timeRange != null) return timeRange;
+        if (timeRange != null) { return timeRange; }
 
         const countRange = this.decodeCountRange(elem);
-        if (countRange != null) return countRange;
+        if (countRange != null) { return countRange; }
 
         const categoryRange = this.decodeCategoryRange(elem);
-        if (categoryRange != null) return categoryRange;
+        if (categoryRange != null) { return categoryRange; }
 
         const sweBoolean = this.decodeBoolean(elem);
-        if (sweBoolean != null) return sweBoolean;
+        if (sweBoolean != null) { return sweBoolean; }
 
         const count = this.decodeCount(elem);
-        if (count != null) return count;
+        if (count != null) { return count; }
 
         const quantity = this.decodeQuantity(elem);
-        if (quantity != null) return quantity;
+        if (quantity != null) { return quantity; }
 
         const time = this.decodeTime(elem);
-        if (time != null) return time;
+        if (time != null) { return time; }
 
         const category = this.decodeCategory(elem);
-        if (category != null) return category;
+        if (category != null) { return category; }
 
         const text = this.decodeText(elem);
-        if (text != null) return text;
+        if (text != null) { return text; }
     }
 
     public decodeCoordinate(node: Element): ReturnObject<SweCoordinate> {
@@ -263,13 +263,13 @@ export class SweDecoder {
     public decodeAbstractEncoding(elem: Element): ReturnObject<SweEncoding> {
 
         const textEncoding = this.decodeTextEncoding(elem);
-        if (textEncoding != null) return textEncoding;
+        if (textEncoding != null) { return textEncoding; }
 
         const binaryEncoding = this.decodeBinaryEncoding(elem);
-        if (binaryEncoding != null) return binaryEncoding;
+        if (binaryEncoding != null) { return binaryEncoding; }
 
         const xmlEncoding = this.decodeXmlEncoding(elem);
-        if (xmlEncoding != null) return xmlEncoding;
+        if (xmlEncoding != null) { return xmlEncoding; }
 
         throw new Error('Unsupported encoding type');
     }
@@ -719,13 +719,13 @@ export class SweDecoder {
 
     public decodeConstraint(elem: Element): ReturnObject<AllowedTimes | AllowedTokens | AllowedValues> {
         const allowedTimes = this.decodeAllowedTimes(elem);
-        if (allowedTimes != null) return allowedTimes;
+        if (allowedTimes != null) { return allowedTimes; }
 
         const allowedTokens = this.decodeAllowedTokens(elem);
-        if (allowedTokens != null) return allowedTokens;
+        if (allowedTokens != null) { return allowedTokens; }
 
         const allowedValues = this.decodeAllowedValues(elem);
-        if (allowedValues != null) return allowedValues;
+        if (allowedValues != null) { return allowedValues; }
 
         throw new Error('Unsupported constraint type');
     }
@@ -1088,16 +1088,16 @@ export class SweDecoder {
 
     public decodeQuality(elem: Element): ReturnObject<SweQuality> {
         const quantity = this.decodeQuantity(elem);
-        if (quantity != null) return quantity;
+        if (quantity != null) { return quantity; }
 
         const quantityRange = this.decodeQuantityRange(elem);
-        if (quantityRange != null) return quantityRange;
+        if (quantityRange != null) { return quantityRange; }
 
         const category = this.decodeCategory(elem);
-        if (category != null) return category;
+        if (category != null) { return category; }
 
         const text = this.decodeText(elem);
-        if (text != null) return text;
+        if (text != null) { return text; }
     }
 
     public decodeAbstractSwe(elem: Element, component: AbstractSWE): void {

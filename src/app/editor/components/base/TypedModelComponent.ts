@@ -15,7 +15,7 @@ export abstract class TypedModelComponent<T>
     public config: DescriptionConfig;
 
     @Input()
-    public isShowAll: boolean = false;
+    public isShowAll = false;
 
     @Output()
     public openAsChild: EventEmitter<ChildMetadata<any>> = new EventEmitter<ChildMetadata<any>>();

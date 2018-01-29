@@ -11,7 +11,7 @@ export class ExpandWrapperComponent {
     public title: string;
 
     @Input()
-    public expanded: boolean = false;
+    public expanded = false;
 
     public toggle(): void {
         this.expanded = !this.expanded;

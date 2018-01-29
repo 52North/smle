@@ -10,7 +10,7 @@ import { AllowedValues } from '../../../model/swe/AllowedValues';
     templateUrl: './AllowedValuesComponent.html'
 })
 export class AllowedValuesComponent extends TypedModelComponent<AllowedValues> {
-    private singleItem: number = 0;
+    private singleItem = 0;
     private pairItem: [number, number] = [0, 0];
 
     protected createModel(): AllowedValues {
