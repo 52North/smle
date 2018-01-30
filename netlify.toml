@@ -1,9 +1,5 @@
 [build]
   command = "yarn build"
   publish = "dist"
-
-[context.production.environment]
-  YARN_VERSION = "1.3.2"
-
-[context.production.environment]
   YARN_FLAGS = ""
+  YARN_VERSION = "1.3.2"
