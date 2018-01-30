@@ -14,13 +14,13 @@ import { APP_PROVIDERS } from './providers';
 import { ROUTES } from './routes';
 import { SamplesComponent } from './samples/samples.component';
 import { ConfigurationService } from './services/ConfigurationService';
+import { CommonSmleModule } from './common/common.module';
 
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    SamplesComponent,
-    EditorComponent
+    SamplesComponent
   ],
   imports: [
     BrowserModule,

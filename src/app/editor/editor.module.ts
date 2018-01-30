@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule } from 'primeng/primeng';
 
+import { CommonSmleModule } from '../common/common.module';
 import { DynamicElementComponent } from './components/base/dynamic-element.component';
 import { HostDirective } from './components/base/host.directive';
 import { CardComponent } from './components/basic/CardComponent';
@@ -91,6 +92,7 @@ import { SweTimeRangeComponent } from './components/swe/SweTimeRangeComponent';
 import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponent';
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
+import { EditorComponent } from './editor';
 
 
 @NgModule({
@@ -188,12 +190,14 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         SweTimeRangeComponent,
         SweXmlEncodingComponent,
         TimePositionComponent,
-        UnitOfMeasureComponent
+        UnitOfMeasureComponent,
+        EditorComponent
     ],
     imports: [
         CommonModule,
         FormsModule,
         CalendarModule,
+        CommonSmleModule,
         NgbModalModule.forRoot()
     ],
     exports: [
@@ -308,7 +312,8 @@ import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent'
         AddressComponent,
         OnlineResourceComponent,
         NestedCardComponent,
-        DynamicElementComponent
+        DynamicElementComponent,
+        EditorComponent
     ]
 })
 export class EditorModule { }

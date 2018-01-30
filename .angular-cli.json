@@ -26,6 +26,7 @@
         "../node_modules/primeng/resources/themes/bootstrap/theme.css",
         "../node_modules/primeng/resources/primeng.min.css",
         "../node_modules/leaflet/dist/leaflet.css",
+        "../node_modules/angular-tree-component/dist/angular-tree-component.css",
         "styles.scss"
       ],
       "scripts": [
