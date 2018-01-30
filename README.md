@@ -9,12 +9,12 @@
 The editor provides a user-friendly way to edit complex SensorML descriptions in a web application which runs in the browser. It is based on different input types and UI components.
 
 Features:
-* access to configured SOS instances
+ * access to configured SOS instances
  * to insert new SensorML documents
  * edit or update registered SensorML documents
  * remove SensorML documents
-* SensorML documents can be uploaded for editing
-* edited SensorML documents can be downloaded
+ * SensorML documents can be uploaded for editing
+ * edited SensorML documents can be downloaded
 
 The following main frameworks are used to provide this application:
 
@@ -38,7 +38,17 @@ The latest demo version of smle is available [here](http://52north.github.io/sml
 
 1.	`git clone` this repository
 2.	run `npm install` to get all dependencies
-3.	run `npm run start` to start application in the development mode. The application will be bundled via Webpack and the web server will start on `localhost:3000`
+3.	run `npm start` to start application in the development mode. The application will be bundled via Webpack and the web server will start on `localhost:4200`
+
+## Usage
+
+### Development server
+
+Run `ng serve` or `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Documentation
 
