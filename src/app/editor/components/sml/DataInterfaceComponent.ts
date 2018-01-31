@@ -1,6 +1,8 @@
-import { ComponentFactoryResolver, ViewContainerRef, Component } from '@angular/core';
-import { EditorComponent, ChildMetadata } from '../base';
+import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+
 import { DataInterface } from '../../../model/sml/DataInterface';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-data-interface',

@@ -1,7 +1,7 @@
 import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
 
-import { ChildMetadata } from '../base';
 import { NestedCardComponent } from '../basic/NestedCardComponent';
+import { ChildMetadata } from './ChildMetadata';
 import { NestedChildMetadata } from './NestedChildMetadata';
 import { TypedModelComponent } from './TypedModelComponent';
 

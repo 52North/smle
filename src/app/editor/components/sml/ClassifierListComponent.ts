@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { Term } from '../../../model/sml/Term';
-import { TermComponent } from './TermComponent';
+
 import { ClassifierList } from '../../../model/sml/ClassifierList';
-import { ChildMetadata, TypedModelComponent } from '../base';
+import { Term } from '../../../model/sml/Term';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { TermComponent } from './TermComponent';
 
 @Component({
     selector: 'sml-classifier-list',

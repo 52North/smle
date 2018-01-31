@@ -1,19 +1,21 @@
 import { Component, Type } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
-import { OutputList, Output, DataInterface, ObservableProperty } from '../../../model/sml';
-import { OutputComponent } from './OutputComponent';
+
+import { DataInterface, ObservableProperty, Output, OutputList } from '../../../model/sml';
 import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataArray,
+    SweDataRecord,
+    SweQuantity,
+    SweQuantityRange,
     SweText,
     SweTime,
-    SweCount,
-    SweBoolean,
-    SweQuantity,
-    SweCategory,
     SweTimeRange,
-    SweQuantityRange,
-    SweDataRecord,
-    SweDataArray
 } from '../../../model/swe';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { OutputComponent } from './OutputComponent';
 
 @Component({
     selector: 'sml-output-list',

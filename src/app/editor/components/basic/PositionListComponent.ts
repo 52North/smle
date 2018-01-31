@@ -8,7 +8,8 @@ import { SweQuantity } from '../../../model/swe/SweQuantity';
 import { SweVector } from '../../../model/swe/SweVector';
 import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
 import { TrueDescriptionConfig } from '../../../services/config/TrueDescriptionConfig';
-import { ChildMetadata, TypedModelComponent } from '../base';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { PositionEditorComponent } from '../sml/PositionComponent';
 
 @Component({

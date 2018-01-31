@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { Term } from '../../../model/sml/Term';
 import { ConfigurationService } from '../../../services/ConfigurationService';
-import { ChildMetadata, TypedModelComponent } from '../base';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { VocabBasedTermComponent } from '../extensions/vocab-based-term/vocab-based-term.component';
 import { TermComponent } from './TermComponent';
 

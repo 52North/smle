@@ -1,12 +1,14 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { Contact } from '../../../../model/iso/gmd/Contact';
-import { AddressComponent } from './AddressComponent';
-import { PhoneComponent } from './PhoneComponent';
-import { OnlineResourceComponent } from './OnlineResourceComponent';
-import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
+
 import { Address } from '../../../../model/iso/gmd/Address';
+import { Contact } from '../../../../model/iso/gmd/Contact';
+import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
 import { Phone } from '../../../../model/iso/gmd/Phone';
-import { EditorComponent, ChildMetadata } from '../../base';
+import { ChildMetadata } from '../../base/ChildMetadata';
+import { EditorComponent } from '../../base/EditorComponent';
+import { AddressComponent } from './AddressComponent';
+import { OnlineResourceComponent } from './OnlineResourceComponent';
+import { PhoneComponent } from './PhoneComponent';
 
 @Component({
     selector: 'iso-contact',

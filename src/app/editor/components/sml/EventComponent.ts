@@ -1,25 +1,27 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { KeywordListComponent } from '../sml/KeywordListComponent';
-import { IdentifierListComponent } from './IdentifierListComponent';
-import { ClassifierListComponent } from './ClassifierListComponent';
-import { DocumentListComponent } from './DocumentListComponent';
-import { ContactListComponent } from './ContactListComponent';
-import { Event } from '../../../model/sml/Event';
-import { EditorComponent, ChildMetadata } from '../base';
-import { NestedChildMetadata } from '../base/NestedChildMetadata';
-import { NestedCardComponent } from '../basic/NestedCardComponent';
-import { IdentifierList } from '../../../model/sml/IdentifierList';
+
+import { CodeWithAuthority } from '../../../model/gml/CodeWithAuthority';
+import { TimeInstant } from '../../../model/gml/TimeInstant';
+import { TimePeriod } from '../../../model/gml/TimePeriod';
 import { ClassifierList } from '../../../model/sml/ClassifierList';
 import { ContactList } from '../../../model/sml/ContactList';
 import { DocumentList } from '../../../model/sml/DocumentList';
+import { Event } from '../../../model/sml/Event';
+import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { KeywordList } from '../../../model/sml/KeywordList';
-import { CodeWithAuthority } from '../../../model/gml/CodeWithAuthority';
-import { TimePeriod } from '../../../model/gml/TimePeriod';
-import { TimeInstant } from '../../../model/gml/TimeInstant';
+import { Settings } from '../../../model/sml/Settings';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { EditorComponent } from '../base/EditorComponent';
+import { NestedChildMetadata } from '../base/NestedChildMetadata';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 import { TimeInstantComponent } from '../gml/TimeInstantComponent';
 import { TimePeriodComponent } from '../gml/TimePeriodComponent';
+import { KeywordListComponent } from '../sml/KeywordListComponent';
+import { ClassifierListComponent } from './ClassifierListComponent';
+import { ContactListComponent } from './ContactListComponent';
+import { DocumentListComponent } from './DocumentListComponent';
+import { IdentifierListComponent } from './IdentifierListComponent';
 import { SettingsComponent } from './SettingsComponent';
-import { Settings } from '../../../model/sml/Settings';
 
 @Component({
     selector: 'sml-event',

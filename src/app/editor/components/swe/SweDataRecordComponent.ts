@@ -1,19 +1,21 @@
 import { Component, Type } from '@angular/core';
-import { ChildMetadata, TypedModelComponent } from '../base';
+
 import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataArray,
     SweDataRecord,
     SweField,
+    SweQuantity,
+    SweQuantityRange,
     SweText,
     SweTime,
-    SweCount,
-    SweBoolean,
-    SweQuantity,
-    SweCategory,
     SweTimeRange,
-    SweQuantityRange,
-    SweDataArray
 } from '../../../model/swe';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { SweFieldComponent } from '../sml/NamedSweDataComponentComponent';
 
 @Component({

@@ -1,22 +1,24 @@
 import { Component, Type } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
+
 import { Characteristic } from '../../../model/sml/Characteristic';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
-import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
-import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
 import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataArray,
+    SweDataRecord,
+    SweQuantity,
+    SweQuantityRange,
     SweText,
     SweTime,
-    SweCount,
-    SweBoolean,
-    SweQuantity,
-    SweCategory,
     SweTimeRange,
-    SweQuantityRange,
-    SweDataArray,
-    SweDataRecord
 } from '../../../model/swe';
+import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
 
 @Component({
     selector: 'sml-characteristic-list',

@@ -13,7 +13,7 @@ import {
     SweTime,
     SweTimeRange,
 } from '../../../model/swe';
-import { EditorComponent } from '../base';
+import { EditorComponent } from '../base/EditorComponent';
 
 export enum InputOrOutputOrParameterType {
     Unknown = 0,

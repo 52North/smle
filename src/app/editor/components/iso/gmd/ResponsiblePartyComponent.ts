@@ -1,8 +1,10 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
+
 import { Contact } from '../../../../model/iso/gmd/Contact';
+import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
+import { ChildMetadata } from '../../base/ChildMetadata';
+import { EditorComponent } from '../../base/EditorComponent';
 import { ContactComponent } from './ContactComponent';
-import { EditorComponent, ChildMetadata } from '../../base';
 
 @Component({
     selector: 'iso-responsible-party',

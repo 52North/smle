@@ -1,30 +1,32 @@
-import { Component, Type } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { DescribedObject } from '../../../model/sml/DescribedObject';
-import { KeywordList } from '../../../model/sml/KeywordList';
-import { IdentifierList } from '../../../model/sml/IdentifierList';
-import { ClassifierList } from '../../../model/sml/ClassifierList';
-import { DocumentList } from '../../../model/sml/DocumentList';
-import { KeywordListComponent } from './KeywordListComponent';
-import { IdentifierListComponent } from './IdentifierListComponent';
-import { ClassifierListComponent } from './ClassifierListComponent';
-import { DocumentListComponent } from './DocumentListComponent';
-import { ContactListComponent } from './ContactListComponent';
-import { ContactList } from '../../../model/sml/ContactList';
-import { EventList } from '../../../model/sml/EventList';
-import { EventListComponent } from './EventListComponent';
-import { ChildMetadata, TypedModelComponent } from '../base';
-import { NestedChildMetadata } from '../base/NestedChildMetadata';
-import { CharacteristicList } from '../../../model/sml/CharacteristicList';
-import { CharacteristicListComponent } from './CharacteristicListComponent';
-import { CapabilityList } from '../../../model/sml/CapabilityList';
-import { CapabilityListComponent } from './CapabilityListComponent';
+import { Component, Type } from '@angular/core';
+
 import { AbstractTime } from '../../../model/gml/AbstractTime';
 import { TimeInstant } from '../../../model/gml/TimeInstant';
 import { TimePeriod } from '../../../model/gml/TimePeriod';
+import { CapabilityList } from '../../../model/sml/CapabilityList';
+import { CharacteristicList } from '../../../model/sml/CharacteristicList';
+import { ClassifierList } from '../../../model/sml/ClassifierList';
+import { ContactList } from '../../../model/sml/ContactList';
+import { DescribedObject } from '../../../model/sml/DescribedObject';
+import { DocumentList } from '../../../model/sml/DocumentList';
+import { EventList } from '../../../model/sml/EventList';
+import { IdentifierList } from '../../../model/sml/IdentifierList';
+import { KeywordList } from '../../../model/sml/KeywordList';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { NestedChildMetadata } from '../base/NestedChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 import { TimeInstantComponent } from '../gml/TimeInstantComponent';
 import { TimePeriodComponent } from '../gml/TimePeriodComponent';
-import { NestedCardComponent } from '../basic/NestedCardComponent';
+import { CapabilityListComponent } from './CapabilityListComponent';
+import { CharacteristicListComponent } from './CharacteristicListComponent';
+import { ClassifierListComponent } from './ClassifierListComponent';
+import { ContactListComponent } from './ContactListComponent';
+import { DocumentListComponent } from './DocumentListComponent';
+import { EventListComponent } from './EventListComponent';
+import { IdentifierListComponent } from './IdentifierListComponent';
+import { KeywordListComponent } from './KeywordListComponent';
 
 @Component({
     selector: 'sml-described-object',

@@ -1,5 +1,6 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, Input, Type } from '@angular/core';
-import { EditorComponent } from '../base';
+import { Component, ComponentFactoryResolver, Input, Type, ViewContainerRef } from '@angular/core';
+
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-identifier-list',

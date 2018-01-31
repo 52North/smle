@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { EventList } from '../../../model/sml/EventList';
-import { EventComponent } from './EventComponent';
+
 import { Event } from '../../../model/sml/Event';
-import { TypedModelComponent, ChildMetadata } from '../base';
+import { EventList } from '../../../model/sml/EventList';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { EventComponent } from './EventComponent';
 
 @Component({
     selector: 'sml-event-list',

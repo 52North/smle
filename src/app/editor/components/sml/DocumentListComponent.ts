@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
-import { DocumentList } from '../../../model/sml/DocumentList';
+
 import { OnlineResource } from '../../../model/iso/gmd/OnlineResource';
+import { DocumentList } from '../../../model/sml/DocumentList';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';
 
 @Component({

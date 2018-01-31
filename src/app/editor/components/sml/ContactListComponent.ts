@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { ContactList } from '../../../model/sml';
+
 import { ResponsibleParty } from '../../../model/iso';
+import { ContactList } from '../../../model/sml';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ResponsiblePartyComponent } from '../iso/gmd/ResponsiblePartyComponent';
-import { ChildMetadata, TypedModelComponent } from '../base';
 
 @Component({
     selector: 'sml-contact-list',
