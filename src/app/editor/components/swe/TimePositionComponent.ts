@@ -1,6 +1,7 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
-import { TypedModelComponent } from '../base/TypedModelComponent';
+
 import { TimePosition } from '../../../model/swe/TimePosition';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'swe-time-position',
@@ -8,7 +9,7 @@ import { TimePosition } from '../../../model/swe/TimePosition';
     styles: ['label {display: inline-block; margin-bottom: 0;} label:not(:only-child) {margin-bottom: 8px;}']
 })
 export class TimePositionComponent extends TypedModelComponent<TimePosition> implements OnChanges {
-    private dateValue: Date = new Date();
+    public dateValue: Date = new Date();
 
     ngOnChanges(changes: SimpleChanges) {
         const modelChange = changes['model'];
@@ -27,11 +28,11 @@ export class TimePositionComponent extends TypedModelComponent<TimePosition> imp
         }
     }
 
-    protected onChecked(value) {
+    public onChecked(value) {
         this.modelChange.emit(value);
     }
 
-    private isDate() {
+    public isDate() {
         return this.model instanceof Date;
     }
 }

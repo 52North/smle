@@ -16,19 +16,19 @@ import { MapComponent } from '../basic/MapComponent';
     styleUrls: ['../styles/editor-component.scss']
 })
 export class PositionEditorComponent extends EditorComponent<Position> {
-    private get latitude(): number {
+    public get latitude(): number {
         return this.getFieldValue('location', 'Lat');
     }
 
-    private set latitude(value: number) {
+    public set latitude(value: number) {
         this.setFieldValue('location', 'Lat', value);
     }
 
-    private get longitude(): number {
+    public get longitude(): number {
         return this.getFieldValue('location', 'Lon');
     }
 
-    private set longitude(value: number) {
+    public set longitude(value: number) {
         this.setFieldValue('location', 'Lon', value);
     }
 
@@ -40,19 +40,19 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         this.setFieldValue('location', 'Alt', value);
     }
 
-    private get trueHeading(): number {
+    public get trueHeading(): number {
         return this.getFieldValue('orientation', 'TrueHeading');
     }
 
-    private set trueHeading(value: number) {
+    public set trueHeading(value: number) {
         this.setFieldValue('orientation', 'TrueHeading', value);
     }
 
-    private get pitch(): number {
+    public get pitch(): number {
         return this.getFieldValue('orientation', 'Pitch');
     }
 
-    private set pitch(value: number) {
+    public set pitch(value: number) {
         this.setFieldValue('orientation', 'Pitch', value);
     }
 

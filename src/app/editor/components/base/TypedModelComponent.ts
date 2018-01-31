@@ -1,4 +1,5 @@
-import { Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 import { BaseComponent } from './BaseComponent';
 import { ChildMetadata } from './ChildMetadata';
@@ -30,7 +31,7 @@ export abstract class TypedModelComponent<T>
         jQuery.extend(this.model, this._storeProfileModel);
     }
 
-    protected openNewChild(childMetadata: ChildMetadata<any>) {
+    public openNewChild(childMetadata: ChildMetadata<any>) {
         this.openAsChild.emit(childMetadata);
     }
 

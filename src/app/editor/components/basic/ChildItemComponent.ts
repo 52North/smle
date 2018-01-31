@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 
 @Component({
@@ -40,7 +41,7 @@ export class ChildItemComponent {
         this.select.emit(null);
     }
 
-    protected isNotFixed() {
+    public isNotFixed() {
         return !!this.config ? !this.config.isFieldFixed(this.configName) : true;
     }
 }

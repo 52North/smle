@@ -1,8 +1,9 @@
-import { ViewContainerRef, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-import { TypedModelComponent } from './TypedModelComponent';
+import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
+
 import { ChildMetadata } from '../base';
-import { NestedChildMetadata } from './NestedChildMetadata';
 import { NestedCardComponent } from '../basic/NestedCardComponent';
+import { NestedChildMetadata } from './NestedChildMetadata';
+import { TypedModelComponent } from './TypedModelComponent';
 
 export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     private parentComponent: EditorComponent<any>;
@@ -23,15 +24,27 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
         this.extendModel();
     }
 
-    protected get hasChild(): boolean {
+    public get hasChild(): boolean {
         return !!this.childComponentRef;
     }
 
-    protected get hasParent(): boolean {
-        return !!this.parentComponent;
+    public close() {
+        if (this.childComponentRef) {
+            this.childComponentRef.instance.close();
+        }
+
+        if (this.parentComponent) {
+            this.parentComponent.destroyChild();
+        }
     }
 
-    protected openNewChild(childMetadata: ChildMetadata<any>) {
+    public closeChild() {
+        if (this.childComponentRef) {
+            this.childComponentRef.instance.close();
+        }
+    }
+
+    public openNewChild(childMetadata: ChildMetadata<any>) {
         const model = childMetadata.model;
         const componentType = childMetadata.componentType;
         const config = childMetadata.config;
@@ -57,25 +70,13 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
         }
     }
 
-    protected close() {
-        if (this.childComponentRef) {
-            this.childComponentRef.instance.close();
-        }
-
-        if (this.parentComponent) {
-            this.parentComponent.destroyChild();
-        }
+    public get hasParent(): boolean {
+        return !!this.parentComponent;
     }
 
     protected closeChildWithModel(model: any) {
         if (model === this.getActiveChildModel() && model) {
             this.closeChild();
-        }
-    }
-
-    protected closeChild() {
-        if (this.childComponentRef) {
-            this.childComponentRef.instance.close();
         }
     }
 

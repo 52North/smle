@@ -10,7 +10,7 @@ import { EditorComponent } from '../base/EditorComponent';
 })
 export class StatusSettingComponent extends EditorComponent<StatusSetting> implements OnInit {
 
-    private valueSelected: boolean;
+    public valueSelected: boolean;
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
@@ -20,11 +20,12 @@ export class StatusSettingComponent extends EditorComponent<StatusSetting> imple
         this.valueSelected = this.model.value === 'enabled' ? true : false;
     }
 
+    public updateValue(temp: any) {
+        this.model.value = !this.valueSelected ? 'enabled' : 'disabled';
+    }
+
     protected createModel(): StatusSetting {
         return new StatusSetting();
     }
 
-    protected updateValue(temp: any) {
-        this.model.value = !this.valueSelected ? 'enabled' : 'disabled';
-    }
 }

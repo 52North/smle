@@ -15,7 +15,6 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
         private _elementConfig: any,
         private _profileIDMap: BidiMap,
         private dynamicGUI: boolean) {
-        //  alert(JSON.stringify(config));
         this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
             .addLogGroupRule(new LogGroupRule(new RegExp('.+'), LogLevel.Info)));
         this._logger = this._loggerFactory.getLogger('JSONDescriptionConfig');

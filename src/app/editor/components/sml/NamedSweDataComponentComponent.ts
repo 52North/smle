@@ -1,17 +1,18 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, AfterContentInit, OnInit } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { AfterContentInit, Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
+import { SweBoolean } from '../../../model/swe/SweBoolean';
+import { SweCategory } from '../../../model/swe/SweCategory';
+import { SweCount } from '../../../model/swe/SweCount';
+import { SweDataArray } from '../../../model/swe/SweDataArray';
+import { SweDataRecord } from '../../../model/swe/SweDataRecord';
+import { SweField } from '../../../model/swe/SweField';
+import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 import { SweText } from '../../../model/swe/SweText';
 import { SweTime } from '../../../model/swe/SweTime';
-import { SweCount } from '../../../model/swe/SweCount';
-import { SweBoolean } from '../../../model/swe/SweBoolean';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweCategory } from '../../../model/swe/SweCategory';
 import { SweTimeRange } from '../../../model/swe/SweTimeRange';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
-import { SweDataArray } from '../../../model/swe/SweDataArray';
-import { SweField } from '../../../model/swe/SweField';
+import { EditorComponent } from '../base/EditorComponent';
 
 export enum ComponentType {
     Unknown = 0,
@@ -29,7 +30,7 @@ export enum ComponentType {
 
 abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> implements AfterContentInit {
     protected componentType: ComponentType;
-    protected title: string;
+    public title: string;
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);

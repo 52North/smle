@@ -53,11 +53,11 @@ export class MapComponent implements AfterViewInit {
         window.setTimeout(() => this.map.invalidateSize(), 10);
     }
 
-    protected close(): void {
+    public close(): void {
         this.activeModal.close();
     }
 
-    protected saveAndClose(): void {
+    public saveAndClose(): void {
         const centerLatLng = this.marker.getLatLng();
         const center = {
             lat: centerLatLng.lat,

@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+import { Component, DoCheck, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { getDisplayName } from '../../decorators/DisplayName';
 
@@ -17,12 +18,12 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
     @Input()
     model: AbstractProcess;
 
-    protected options = {
+    public options = {
         expandedField: 'isExpanded'
     };
 
     private prevModel: string;
-    private nodes: Array<INode> = [];
+    public nodes: Array<INode> = [];
 
     private static getNodes(object: any, oldNodes: Array<INode>, parentId: string): Array<INode> {
         let nodes: Array<INode>;
@@ -166,7 +167,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         }
     }
 
-    protected onToggle(event) {
+    public onToggle(event) {
         const path = event.node.path;
         let nodes = this.nodes;
 

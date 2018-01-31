@@ -1,6 +1,7 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, Input } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { Component, ComponentFactoryResolver, Input, ViewContainerRef } from '@angular/core';
+
 import { TimePeriod } from '../../../model/gml/TimePeriod';
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'gml-time-period',
@@ -19,11 +20,11 @@ export class TimePeriodComponent extends EditorComponent<TimePeriod> {
     }
 
 
-    protected onChangeBegin(date: Date) {
+    public onChangeBegin(date: Date) {
         this.model.begin = date;
     }
 
-    protected onChangeEnd(date: Date) {
+    public onChangeEnd(date: Date) {
         this.model.end = date;
     }
 
