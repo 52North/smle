@@ -78,7 +78,7 @@ export class DecoderUtils {
         return mapProfileID;
     }
 
-    private getMatchingChildElements(root: Element, elemName: string, elemNamespace: string): Element[] {
+    public getMatchingChildElements(root: Element, elemName: string, elemNamespace: string): Element[] {
         const childNodes = root.childNodes;
         const matches = new Array<Element>();
         for (let i = 0; i < childNodes.length; i++) {

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as L from 'leaflet';
 
 @Component({
