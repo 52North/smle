@@ -18,6 +18,8 @@ import { NumberFieldComponent } from './components/basic/NumberFieldComponent';
 import { PositionListComponent } from './components/basic/PositionListComponent';
 import { StringsComponent } from './components/basic/StringsComponent';
 import { TextFieldComponent } from './components/basic/TextFieldComponent';
+import { VocabBasedTermComponent } from './components/extensions/vocab-based-term/vocab-based-term.component';
+import { VocabSelectionComponent } from './components/extensions/vocab-selection/vocab-selection.component';
 import { AbstractFeatureComponent } from './components/gml/AbstractFeatureComponent';
 import { AbstractGMLComponent } from './components/gml/AbstractGMLComponent';
 import { CodeTypeComponent } from './components/gml/CodeTypeComponent';
@@ -93,7 +95,6 @@ import { SweXmlEncodingComponent } from './components/swe/SweXmlEncodingComponen
 import { TimePositionComponent } from './components/swe/TimePositionComponent';
 import { UnitOfMeasureComponent } from './components/swe/UnitOfMeasureComponent';
 import { EditorComponent } from './editor';
-
 
 @NgModule({
     declarations: [
@@ -191,7 +192,9 @@ import { EditorComponent } from './editor';
         SweXmlEncodingComponent,
         TimePositionComponent,
         UnitOfMeasureComponent,
-        EditorComponent
+        EditorComponent,
+        VocabBasedTermComponent,
+        VocabSelectionComponent
     ],
     imports: [
         CommonModule,
@@ -313,7 +316,9 @@ import { EditorComponent } from './editor';
         OnlineResourceComponent,
         NestedCardComponent,
         DynamicElementComponent,
-        EditorComponent
+        EditorComponent,
+        VocabBasedTermComponent,
+        VocabSelectionComponent
     ]
 })
 export class EditorModule { }

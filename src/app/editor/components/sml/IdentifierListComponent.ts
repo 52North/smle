@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { Term } from '../../../model/sml/Term';
+
 import { IdentifierList } from '../../../model/sml/IdentifierList';
-import { TermComponent } from './TermComponent';
+import { Term } from '../../../model/sml/Term';
+import { ConfigurationService } from '../../../services/ConfigurationService';
 import { ChildMetadata, TypedModelComponent } from '../base';
+import { VocabBasedTermComponent } from '../extensions/vocab-based-term/vocab-based-term.component';
+import { TermComponent } from './TermComponent';
 
 @Component({
     selector: 'sml-identifier-list',
@@ -11,15 +14,27 @@ import { ChildMetadata, TypedModelComponent } from '../base';
 })
 export class IdentifierListComponent extends TypedModelComponent<IdentifierList> {
 
+    constructor(
+        private configuration: ConfigurationService
+    ) {
+        super();
+    }
+
     protected createModel(): IdentifierList {
         return new IdentifierList();
     }
 
     protected openNewIdentifierItem(item: Term) {
-        const metadata = new ChildMetadata(
-            TermComponent, item, this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term')
-        );
-        this.openNewChild(metadata);
+        const config = this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term');
+        this.configuration.getConfig().subscribe(smleConfig => {
+            let metadata;
+            if (smleConfig.showIdentifierVocabularySelection) {
+                metadata = new ChildMetadata<VocabBasedTermComponent>(VocabBasedTermComponent, item, config);
+            } else {
+                metadata = new ChildMetadata<TermComponent>(TermComponent, item, config);
+            }
+            this.openNewChild(metadata);
+        });
     }
 
     protected onAddIdentifier(): void {
