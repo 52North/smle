@@ -14,6 +14,9 @@ export class VocabEntryComponent {
   @Input()
   public entry: VocabularyEntry;
 
+  @Input()
+  public selectNarrowButtonLabel = 'Select by narrower';
+
   @Output()
   public selected: EventEmitter<VocabularyEntry> = new EventEmitter();
 

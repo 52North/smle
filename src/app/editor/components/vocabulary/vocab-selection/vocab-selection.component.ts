@@ -23,6 +23,9 @@ export class VocabSelectionComponent implements OnInit {
   public loading: boolean;
   public narrower: string[];
 
+  public title: string;
+  public selectNarrowButtonLabel: string;
+
   public history: VocabularyEntry[] = [];
 
   private firstSelection: VocabularyEntry;
@@ -36,6 +39,7 @@ export class VocabSelectionComponent implements OnInit {
 
   ngOnInit() {
     this.loadBaseVocabularyList();
+    this.createBaseTitle();
   }
 
   public onSelected(item: VocabularyEntry) {
@@ -69,19 +73,34 @@ export class VocabSelectionComponent implements OnInit {
     this.onNarrowSelected(this.history.pop());
   }
 
-  private setNarrowerList(item: VocabularyEntry) {
-    this.page = 1;
-    this.narrower = item.narrower.filter(e => e.startsWith('http://vocab'));
-  }
-
   public cancel() {
     this.activeModal.close();
+  }
+
+  private setNarrowerList(item: VocabularyEntry) {
+    this.title = item.label;
+    this.page = 1;
+    this.narrower = item.narrower.filter(e => e.startsWith('http://vocab'));
   }
 
   private loadBaseVocabularyList() {
     this.list = null;
     this.loading = true;
     this.vocab.getVocabList(this.vocabType).subscribe(res => this.list = res, error => { }, () => this.loading = false);
+  }
+
+  private createBaseTitle() {
+    switch (this.vocabType) {
+      case VocabularyType.Classifier:
+        this.title = 'classifier';
+        this.selectNarrowButtonLabel = 'Select classifier value';
+        break;
+      case VocabularyType.Identifier:
+        this.title = 'identifier';
+        break;
+      default:
+        break;
+    }
   }
 
 }
