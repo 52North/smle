@@ -20,18 +20,13 @@ export class VocabNarrowerEntryComponent implements OnInit {
   public narrowerSelected: EventEmitter<VocabularyEntry> = new EventEmitter();
 
   public narrower: VocabularyEntry;
-  public hideAll: boolean;
 
   constructor(
     private vocab: VocabularyService
   ) { }
 
   ngOnInit() {
-    if (this.url.startsWith('http://vocab')) {
-      this.vocab.getNarrower(this.url).subscribe(res => this.narrower = res);
-    } else {
-      this.hideAll = true;
-    }
+    this.vocab.getNarrower(this.url).subscribe(res => this.narrower = res);
   }
 
   public onSelected(entry: VocabularyEntry) {

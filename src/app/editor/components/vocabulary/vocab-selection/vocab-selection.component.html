@@ -13,10 +13,12 @@
   </div>
   <div *ngIf="narrower">
     <div class="list-group">
-      <div *ngFor="let item of narrower; let i=index">
-        <vocab-narrower-entry *ngIf="i<5" [url]="item" (selected)="onSelectedANarrower($event)" (narrowerSelected)="onNarrowSelected($event)"></vocab-narrower-entry>
+      <div *ngFor="let item of narrower | paginate: { itemsPerPage: 10, currentPage: page }">
+        <vocab-narrower-entry [url]="item" (selected)="onSelectedANarrower($event)" (narrowerSelected)="onNarrowSelected($event)"></vocab-narrower-entry>
       </div>
     </div>
+    <ngb-pagination class="d-flex justify-content-center" [collectionSize]="narrower.length" [(page)]="page" [maxSize]="3" [rotate]="true"
+      [boundaryLinks]="true"></ngb-pagination>
   </div>
 </div>
 <div class="modal-footer">

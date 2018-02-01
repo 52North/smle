@@ -25,6 +25,8 @@ export class VocabSelectionComponent implements OnInit {
 
   private firstSelection: VocabularyEntry;
 
+  public page = 1;
+
   constructor(
     private activeModal: NgbActiveModal,
     private vocab: VocabularyService
@@ -60,7 +62,7 @@ export class VocabSelectionComponent implements OnInit {
   public onNarrowSelected(item: VocabularyEntry) {
     if (!this.firstSelection) { this.firstSelection = item; }
     this.list = null;
-    this.narrower = item.narrower;
+    this.narrower = item.narrower.filter(e => e.startsWith('http://vocab'));
   }
 
   public cancel() {

@@ -30,6 +30,7 @@
     "jquery": "^2.2.4",
     "leaflet": "1.1.0",
     "moment": "^2.20.1",
+    "ngx-pagination": "^3.0.3",
     "popper.js": "^1.12.9",
     "primeng": "^4.1.1",
     "rxjs": "^5.5.6",
