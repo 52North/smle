@@ -1,0 +1,7 @@
+<nav aria-label="breadcrumb" *ngIf="breadcrumbs?.length">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" [ngClass]="{'active': last}" *ngFor="let bc of breadcrumbs; let last = last; let i = index;">
+      <a (click)="onSelectBreadcrumb(i)">{{bc.label}}</a>
+    </li>
+  </ol>
+</nav>

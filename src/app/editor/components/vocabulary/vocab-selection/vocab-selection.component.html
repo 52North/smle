@@ -5,6 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
+  <vocab-breadcrumb [breadcrumbs]="history" (selectBreadcrumb)="onBreadcrumbSelected($event)"></vocab-breadcrumb>
   <div *ngIf="loading">loading...</div>
   <div class="list-group" *ngIf="list">
     <div *ngFor="let item of list">

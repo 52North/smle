@@ -23,6 +23,8 @@ export class VocabSelectionComponent implements OnInit {
   public loading: boolean;
   public narrower: string[];
 
+  public history: VocabularyEntry[] = [];
+
   private firstSelection: VocabularyEntry;
 
   public page = 1;
@@ -33,12 +35,7 @@ export class VocabSelectionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loading = true;
-    this.vocab.getVocabList(this.vocabType).subscribe(
-      res => this.list = res,
-      error => { },
-      () => this.loading = false
-    );
+    this.loadBaseVocabularyList();
   }
 
   public onSelected(item: VocabularyEntry) {
@@ -61,12 +58,30 @@ export class VocabSelectionComponent implements OnInit {
 
   public onNarrowSelected(item: VocabularyEntry) {
     if (!this.firstSelection) { this.firstSelection = item; }
+    this.history.push(item);
     this.list = null;
+    this.setNarrowerList(item);
+  }
+
+  public onBreadcrumbSelected(idx: number) {
+    this.history = this.history.slice(0, idx + 1);
+    this.page = 1;
+    this.onNarrowSelected(this.history.pop());
+  }
+
+  private setNarrowerList(item: VocabularyEntry) {
+    this.page = 1;
     this.narrower = item.narrower.filter(e => e.startsWith('http://vocab'));
   }
 
   public cancel() {
     this.activeModal.close();
+  }
+
+  private loadBaseVocabularyList() {
+    this.list = null;
+    this.loading = true;
+    this.vocab.getVocabList(this.vocabType).subscribe(res => this.list = res, error => { }, () => this.loading = false);
   }
 
 }
