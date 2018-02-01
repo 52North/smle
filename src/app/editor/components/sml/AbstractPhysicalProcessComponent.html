@@ -1,11 +1,11 @@
 <sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
 <expand-wrapper [title]="getDisplayName('position')" [expanded]="config.getConfigFor('sml:position').isExpanded()">
-  <div class="form-group" *ngIf="config.existInForm('sml:position',model,'position') &&(isShowAll || config.isFieldVisible('sml:position','textField',model,'position'))">
+  <div *ngIf="config.existInForm('sml:position',model,'position') &&(isShowAll || config.isFieldVisible('sml:position','textField',model,'position'))">
     <position-list (openAsChild)="openNewChild($event)" [config]="config.getConfigFor('sml:position')" [(model)]="model.position"></position-list>
   </div>
 </expand-wrapper>
 <expand-wrapper [title]="getDisplayName('attachedTo')" [expanded]="config.getConfigFor('sml:attachedTo').isExpanded()">
-  <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:attachedTo')">
+  <div *ngIf="isShowAll || config.isFieldVisible('sml:attachedTo')">
     <div *ngIf="model.attachedTo" class="plain-text">{{model.attachedTo}}</div>
   </div>
 </expand-wrapper>

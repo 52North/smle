@@ -1,17 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule } from 'primeng/primeng';
 
 import { CommonSmleModule } from '../common/common.module';
 import { BASE_COMPONENTS } from './components/base';
 import { BASIC_COMPONENTS, BASIC_DIRECTIVES } from './components/basic';
-import { EXTENSION_COMPONENTS } from './components/extensions';
 import { GML_COMPONENTS } from './components/gml';
 import { ISO_COMPONENTS } from './components/iso';
 import { SML_COMPONENTS } from './components/sml';
 import { SWE_COMPONENTS } from './components/swe';
+import { VOCABULARY_COMPONENTS } from './components/vocabulary';
 import { EditorComponent } from './editor';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { EditorComponent } from './editor';
         BASE_COMPONENTS,
         BASIC_COMPONENTS,
         BASIC_DIRECTIVES,
-        EXTENSION_COMPONENTS,
+        VOCABULARY_COMPONENTS,
         EditorComponent,
         GML_COMPONENTS,
         ISO_COMPONENTS,
@@ -31,6 +31,7 @@ import { EditorComponent } from './editor';
         CommonModule,
         CommonSmleModule,
         FormsModule,
+        NgbPopoverModule.forRoot(),
         NgbModalModule.forRoot()
     ],
     exports: [
@@ -41,7 +42,7 @@ import { EditorComponent } from './editor';
     ],
     entryComponents: [
         BASIC_COMPONENTS,
-        EXTENSION_COMPONENTS,
+        VOCABULARY_COMPONENTS,
         EditorComponent,
         GML_COMPONENTS,
         ISO_COMPONENTS,

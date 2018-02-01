@@ -63,6 +63,7 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
         this.childComponentRef = this.viewContainerRef.createComponent(component);
         this.childComponentRef.instance.model = model;
         this.childComponentRef.instance.config = config;
+        this.childComponentRef.instance.componentOptions = childMetadata.options;
         this.childComponentRef.instance.parentComponent = this;
         if (childMetadata instanceof NestedChildMetadata) {
             (this.childComponentRef.instance as NestedCardComponent).componentType = childMetadata.contentType;

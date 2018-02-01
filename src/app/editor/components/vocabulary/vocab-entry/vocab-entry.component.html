@@ -1,0 +1,13 @@
+<div *ngIf="!entry">loading...</div>
+<div *ngIf="entry">
+  <a class="list-group-item list-group-item-action align-items-start" (click)="select(entry)" ngbPopover="{{entry.description}}"
+    placement="auto" triggers="mouseenter:mouseleave">
+    <div>{{entry.label}}</div>
+    <div class="text-right" *ngIf="entry.narrower.length">
+      <button type="button" class="btn btn-primary btn-sm" (click)="selectByNarrower(entry);$event.stopPropagation();">
+        <span>Select by narrower</span>
+        <i class="fa fa-fw fa-angle-right"></i>
+      </button>
+    </div>
+  </a>
+</div>

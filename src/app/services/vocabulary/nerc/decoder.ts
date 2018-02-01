@@ -20,14 +20,25 @@ export class NercVocabularyDecoderService extends AbstractXmlService<VocabularyE
     const entries: VocabularyEntry[] = [];
 
     const collection = this.utils.getElement(elem, 'Collection', NERC_NAMESPACES.SKOS);
-    this.utils.getMatchingChildElements(collection, 'member', NERC_NAMESPACES.SKOS).forEach(entry => {
-      const concept = this.utils.getElement(entry, 'Concept', NERC_NAMESPACES.SKOS);
-      const uri = this.utils.getAttributeOfElement(entry, 'Concept', NERC_NAMESPACES.SKOS, 'about', NERC_NAMESPACES.RDF).value;
-      const label = this.utils.getElement(concept, 'prefLabel', NERC_NAMESPACES.SKOS).textContent;
-      const description = this.utils.getElement(concept, 'definition', NERC_NAMESPACES.SKOS).textContent;
-      entries.push({ label, uri, description });
-    });
-
+    if (collection) {
+      this.utils.getMatchingChildElements(collection, 'member', NERC_NAMESPACES.SKOS)
+        .forEach(entry => entries.push(this.createVocabularEntry(entry)));
+    } else {
+      entries.push(this.createVocabularEntry(elem));
+    }
     return entries;
+  }
+
+  private createVocabularEntry(entry: Element): VocabularyEntry {
+    const concept = this.utils.getElement(entry, 'Concept', NERC_NAMESPACES.SKOS);
+    const uri = this.utils.getAttributeOfElement(entry, 'Concept', NERC_NAMESPACES.SKOS, 'about', NERC_NAMESPACES.RDF).value;
+    const label = this.utils.getElement(concept, 'prefLabel', NERC_NAMESPACES.SKOS).textContent;
+    const description = this.utils.getElement(concept, 'definition', NERC_NAMESPACES.SKOS).textContent;
+    const narrower = this.utils.getMatchingChildElements(concept, 'narrower', NERC_NAMESPACES.SKOS).map(narr => {
+      if (narr.hasAttributeNS(NERC_NAMESPACES.RDF, 'resource')) {
+        return narr.getAttributeNS(NERC_NAMESPACES.RDF, 'resource');
+      }
+    });
+    return { label, uri, description, narrower };
   }
 }

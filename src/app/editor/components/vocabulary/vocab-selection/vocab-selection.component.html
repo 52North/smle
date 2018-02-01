@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title">Select vocabulary entry</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div *ngIf="loading">loading...</div>
+  <div class="list-group" *ngIf="list">
+    <div *ngFor="let item of list">
+      <vocab-entry [entry]="item" (selected)="onSelected($event)" (narrowerSelected)="onNarrowSelected($event)"></vocab-entry>
+    </div>
+  </div>
+  <div *ngIf="narrower">
+    <div class="list-group">
+      <div *ngFor="let item of narrower; let i=index">
+        <vocab-narrower-entry *ngIf="i<5" [url]="item" (selected)="onSelectedANarrower($event)" (narrowerSelected)="onNarrowSelected($event)"></vocab-narrower-entry>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="cancel()">Cancel</button>
+</div>

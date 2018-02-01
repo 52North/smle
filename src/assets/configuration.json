@@ -1,3 +1,4 @@
 {
-    "showIdentifierVocabularySelection": true
+    "showIdentifierVocabularySelection": true,
+    "showClassifierVocabularySelection": true
 }

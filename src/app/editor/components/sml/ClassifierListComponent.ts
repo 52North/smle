@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 
 import { ClassifierList } from '../../../model/sml/ClassifierList';
 import { Term } from '../../../model/sml/Term';
-import { ChildMetadata } from '../base/ChildMetadata';
+import { ConfigurationService } from '../../../services/ConfigurationService';
+import { VocabularyType } from '../../../services/vocabulary/model';
+import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { TermComponent } from './TermComponent';
 
@@ -13,14 +15,25 @@ import { TermComponent } from './TermComponent';
 })
 export class ClassifierListComponent extends TypedModelComponent<ClassifierList> {
 
+    constructor(
+        private configuration: ConfigurationService
+    ) {
+        super();
+    }
+
     protected createModel(): ClassifierList {
         return new ClassifierList();
     }
 
     protected openNewClassifierItem(item: Term) {
-        this.openNewChild(
-            new ChildMetadata(TermComponent, item, this.config.getConfigFor('sml:classifiers').getConfigFor('sml:Term'))
-        );
+        const config = this.config.getConfigFor('sml:classifier').getConfigFor('sml:Term');
+        this.configuration.getConfig().subscribe(smleConfig => {
+            let options: ChildMetadataOptions;
+            if (smleConfig.showClassifierVocabularySelection) {
+                options = { vocabType: VocabularyType.Classifier };
+            }
+            this.openNewChild(new ChildMetadata<TermComponent>(TermComponent, item, config, options));
+        });
     }
 
     protected onAddClassifier(): void {

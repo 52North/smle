@@ -1,5 +1,5 @@
 <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
-<div class="form-group" *ngIf="config.existInForm('sml:output',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:output','textField',model,'identifier'))">
+<div *ngIf="config.existInForm('sml:output',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:output','textField',model,'identifier'))">
     <label for="setValue">{{getDisplayName('output')}}</label>
     <list [list]="model.outputs" (select)="openNewOutput($event)" (remove)="onRemoveOutput($event)" (add)="onAddOutput()">
         <list-add-section>

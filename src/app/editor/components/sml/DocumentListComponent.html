@@ -1,6 +1,6 @@
 <form>
     <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
-    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:document')">
+    <div *ngIf="isShowAll || config.isFieldVisible('sml:document')">
         <label for="documents">{{getDisplayName('documents')}}</label>
         <list [list]="model.documents" (select)="openNewOnlineResourceItem($event)" (remove)="onRemove($event)" (add)="onAdd()"></list>
     </div>

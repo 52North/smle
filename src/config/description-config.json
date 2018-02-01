@@ -53,13 +53,13 @@
       }
     },
     "sml:classification": {
+      "isExpanded": true,
       "sml:ClassifierList": {
         "@:definition": false,
         "showFlatten": true,
-        "sml:classifiers": {
+        "sml:classifier": {
           "sml:Term": {
             "@:codeSpace": false,
-            "@:definition": false,
             "swe:id": false
           }
         },
@@ -167,14 +167,13 @@
       }
     },
     "sml:identification": {
-      "isExpanded": true,
+      "isExpanded": false,
       "sml:IdentifierList": {
         "@:definition": false,
         "showFlatten": true,
-        "sml:identifiers": {
+        "sml:identifier": {
           "sml:Term": {
             "@:codeSpace": false,
-            "@:definition": false,
             "swe:id": false
           }
         },

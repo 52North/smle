@@ -1,6 +1,6 @@
 <form>
     <sml-abstract-named-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-named-metadata-list>
-    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:characteristics')">
+    <div *ngIf="isShowAll || config.isFieldVisible('sml:characteristics')">
         <label for="characteristics">{{getDisplayName('characteristics')}}</label>
         <list [list]="model.characteristics" (select)="openNewCharacteristicItem($event)" (remove)="onRemoveCharacteristic($event)" (add)="onAddCharacteristic()">
             <list-add-section>

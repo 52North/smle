@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 export interface Configuration {
     showIdentifierVocabularySelection: boolean;
+    showClassifierVocabularySelection: boolean;
 }
 
 @Injectable()
