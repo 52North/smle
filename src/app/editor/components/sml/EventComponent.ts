@@ -1,4 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { CodeWithAuthority } from '../../../model/gml/CodeWithAuthority';
 import { TimeInstant } from '../../../model/gml/TimeInstant';
@@ -17,6 +18,7 @@ import { NestedCardComponent } from '../basic/NestedCardComponent';
 import { TimeInstantComponent } from '../gml/TimeInstantComponent';
 import { TimePeriodComponent } from '../gml/TimePeriodComponent';
 import { KeywordListComponent } from '../sml/KeywordListComponent';
+import { SelectionResult, VocabSelectionComponent } from '../vocabulary/vocab-selection/vocab-selection.component';
 import { ClassifierListComponent } from './ClassifierListComponent';
 import { ContactListComponent } from './ContactListComponent';
 import { DocumentListComponent } from './DocumentListComponent';
@@ -24,186 +26,203 @@ import { IdentifierListComponent } from './IdentifierListComponent';
 import { SettingsComponent } from './SettingsComponent';
 
 @Component({
-    selector: 'sml-event',
-    templateUrl: './EventComponent.html',
-    styleUrls: ['../styles/editor-component.scss']
+  selector: 'sml-event',
+  templateUrl: './EventComponent.html',
+  styleUrls: ['../styles/editor-component.scss']
 })
 export class EventComponent extends EditorComponent<Event> {
-    constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
-        super(componentFactoryResolver, viewContainerRef);
-    }
 
-    protected createModel(): Event {
-        return new Event();
-    }
+  constructor(
+    componentFactoryResolver: ComponentFactoryResolver,
+    viewContainerRef: ViewContainerRef,
+    private modalService: NgbModal
+  ) {
+    super(componentFactoryResolver, viewContainerRef);
+  }
 
-    protected createDefinition() {
-        this.model.definition = new CodeWithAuthority('', '');
-    }
+  protected createModel(): Event {
+    return new Event();
+  }
 
-    protected resetDefinition() {
-        this.model.definition = null;
-    }
+  protected createDefinition() {
+    this.model.definition = new CodeWithAuthority('', '');
+  }
 
-    protected openNewKeywordListItem(item: KeywordList) {
-        this.openNewChild(
-            new NestedChildMetadata(
-                NestedCardComponent,
-                KeywordListComponent,
-                'Keyword list',
-                item,
-                this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
-            )
-        );
-    }
+  protected resetDefinition() {
+    this.model.definition = null;
+  }
 
-    protected onAddKeywordList() {
-        this.model.keywords.push(new KeywordList());
-    }
+  protected openNewKeywordListItem(item: KeywordList) {
+    this.openNewChild(
+      new NestedChildMetadata(
+        NestedCardComponent,
+        KeywordListComponent,
+        'Keyword list',
+        item,
+        this.config.getConfigFor('sml:keywords').getConfigFor('sml:KeywordList')
+      )
+    );
+  }
 
-    protected onRemoveKeywordList(index: number) {
-        this.model.keywords.splice(index, 1);
-    }
+  protected onAddKeywordList() {
+    this.model.keywords.push(new KeywordList());
+  }
 
-    protected openNewIdentifierListItem(item: IdentifierList) {
-        this.openNewChild(
-            new NestedChildMetadata(
-                NestedCardComponent,
-                IdentifierListComponent,
-                'Identifier list',
-                item,
-                this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
-            )
-        );
-    }
+  protected onRemoveKeywordList(index: number) {
+    this.model.keywords.splice(index, 1);
+  }
 
-    protected onAddIdentifierList() {
-        this.model.identification.push(new IdentifierList());
-    }
+  protected openNewIdentifierListItem(item: IdentifierList) {
+    this.openNewChild(
+      new NestedChildMetadata(
+        NestedCardComponent,
+        IdentifierListComponent,
+        'Identifier list',
+        item,
+        this.config.getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')
+      )
+    );
+  }
 
-    protected onRemoveIdentifierList(index: number) {
-        this.model.identification.splice(index, 1);
-    }
+  protected onAddIdentifierList() {
+    this.model.identification.push(new IdentifierList());
+  }
 
-    protected openNewClassifierListItem(item: ClassifierList) {
-        this.openNewChild(
-            new NestedChildMetadata(
-                NestedCardComponent,
-                ClassifierListComponent,
-                'Classifier list',
-                item,
-                this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
-            )
-        );
-    }
+  protected onRemoveIdentifierList(index: number) {
+    this.model.identification.splice(index, 1);
+  }
 
-    protected onAddClassifierList() {
-        this.model.classification.push(new ClassifierList());
-    }
+  protected openNewClassifierListItem(item: ClassifierList) {
+    this.openNewChild(
+      new NestedChildMetadata(
+        NestedCardComponent,
+        ClassifierListComponent,
+        'Classifier list',
+        item,
+        this.config.getConfigFor('sml:classification').getConfigFor('sml:ClassifierList')
+      )
+    );
+  }
 
-    protected onRemoveClassifierList(index: number) {
-        this.model.classification.splice(index, 1);
-    }
+  protected onAddClassifierList() {
+    this.model.classification.push(new ClassifierList());
+  }
 
-    protected openNewContactListItem(item: ContactList) {
-        this.openNewChild(
-            new NestedChildMetadata(
-                NestedCardComponent,
-                ContactListComponent,
-                'Contact list',
-                item,
-                this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
-            )
-        );
-    }
+  protected onRemoveClassifierList(index: number) {
+    this.model.classification.splice(index, 1);
+  }
 
-    protected onAddContactList() {
-        this.model.contacts.push(new ContactList());
-    }
+  protected openNewContactListItem(item: ContactList) {
+    this.openNewChild(
+      new NestedChildMetadata(
+        NestedCardComponent,
+        ContactListComponent,
+        'Contact list',
+        item,
+        this.config.getConfigFor('sml:contacts').getConfigFor('sml:ContactList')
+      )
+    );
+  }
 
-    protected onRemoveContactList(index: number) {
-        this.model.contacts.splice(index, 1);
-    }
+  protected onAddContactList() {
+    this.model.contacts.push(new ContactList());
+  }
 
-    protected openNewDocumentListItem(item: DocumentList) {
-        this.openNewChild(
-            new NestedChildMetadata(
-                NestedCardComponent,
-                DocumentListComponent,
-                'Document list',
-                item,
-                this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
-            )
-        );
-    }
+  protected onRemoveContactList(index: number) {
+    this.model.contacts.splice(index, 1);
+  }
 
-    protected onAddDocumentList() {
-        this.model.documentation.push(new DocumentList());
-    }
+  protected openNewDocumentListItem(item: DocumentList) {
+    this.openNewChild(
+      new NestedChildMetadata(
+        NestedCardComponent,
+        DocumentListComponent,
+        'Document list',
+        item,
+        this.config.getConfigFor('sml:documentation').getConfigFor('sml:DocumentList')
+      )
+    );
+  }
 
-    protected onRemoveDocumentList(index: number) {
-        this.model.documentation.splice(index, 1);
-    }
+  protected onAddDocumentList() {
+    this.model.documentation.push(new DocumentList());
+  }
 
-    protected isPeriod(time: TimePeriod | any): boolean {
-        return typeof time.begin !== 'undefined' && typeof time.end !== 'undefined';
-    }
+  protected onRemoveDocumentList(index: number) {
+    this.model.documentation.splice(index, 1);
+  }
 
-    public openTimeInstant(item: TimeInstant): void {
-        this.openNewChild(
-            new ChildMetadata(
-                TimeInstantComponent,
-                item,
-                this.config.getConfigFor('sml:time').getConfigFor('sml:timeInstant')
-            )
-        );
-    }
+  protected isPeriod(time: TimePeriod | any): boolean {
+    return typeof time.begin !== 'undefined' && typeof time.end !== 'undefined';
+  }
 
-    public openTimePeriod(item: TimePeriod): void {
-        this.openNewChild(
-            new ChildMetadata(
-                TimePeriodComponent,
-                item,
-                this.config.getConfigFor('sml:time').getConfigFor('sml:timePeriod')
-            )
-        );
-    }
+  public openTimeInstant(item: TimeInstant): void {
+    this.openNewChild(
+      new ChildMetadata(
+        TimeInstantComponent,
+        item,
+        this.config.getConfigFor('sml:time').getConfigFor('sml:timeInstant')
+      )
+    );
+  }
 
-    public createTime(): void {
-        const time = new TimeInstant();
-        time.time = new Date();
-        this.model.time = time;
-    }
+  public openTimePeriod(item: TimePeriod): void {
+    this.openNewChild(
+      new ChildMetadata(
+        TimePeriodComponent,
+        item,
+        this.config.getConfigFor('sml:time').getConfigFor('sml:timePeriod')
+      )
+    );
+  }
 
-    public createPeriod(): void {
-        const period = new TimePeriod();
-        period.begin = new Date();
-        period.end = new Date();
-        this.model.time = period;
-    }
+  public createTime(): void {
+    const time = new TimeInstant();
+    time.time = new Date();
+    this.model.time = time;
+  }
 
-    public resetTime() {
-        this.model.time = null;
-    }
+  public createPeriod(): void {
+    const period = new TimePeriod();
+    period.begin = new Date();
+    period.end = new Date();
+    this.model.time = period;
+  }
 
-    protected openSettings() {
-        this.openNewChild(
-            new NestedChildMetadata(
-                NestedCardComponent,
-                SettingsComponent,
-                'Settings',
-                this.model.configuration,
-                this.config.getConfigFor('sml:settings')
-            )
-        );
-    }
+  public resetTime() {
+    this.model.time = null;
+  }
 
-    protected removeSettings() {
-        this.model.configuration = null;
-    }
+  protected openSettings() {
+    this.openNewChild(
+      new NestedChildMetadata(
+        NestedCardComponent,
+        SettingsComponent,
+        'Settings',
+        this.model.configuration,
+        this.config.getConfigFor('sml:settings')
+      )
+    );
+  }
 
-    protected createSettings() {
-        this.model.configuration = new Settings();
-    }
+  protected removeSettings() {
+    this.model.configuration = null;
+  }
+
+  protected createSettings() {
+    this.model.configuration = new Settings();
+  }
+
+  protected onClickVocabSelection() {
+    const ref = this.modalService.open(VocabSelectionComponent);
+    (ref.componentInstance as VocabSelectionComponent).vocabType = this.componentOptions.vocabularyType;
+    ref.result.then((result: SelectionResult) => {
+      if (result) {
+        this.model.definition = new CodeWithAuthority(result.definition, '');
+        this.model.label = result.label;
+        this.model.description = result.description;
+      }
+    });
+  }
 
 }

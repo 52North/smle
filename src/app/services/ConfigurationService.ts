@@ -5,6 +5,10 @@ import { Observable } from 'rxjs/Observable';
 export interface Configuration {
     showIdentifierVocabularySelection: boolean;
     showClassifierVocabularySelection: boolean;
+    showCharacteristicVocabularySelection: boolean;
+    showHistoryVocabularySelection: boolean;
+    showCapabilityVocabularySelection: boolean;
+    showContactVocabularySelection: boolean;
 }
 
 @Injectable()

@@ -5,7 +5,7 @@
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'@:definition'" [fieldName]="'definition'"></text-field>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'sml:value'" [fieldName]="'value'"></text-field>
     <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
-    <div class="text-center" *ngIf="componentOptions?.vocabType !== null">
+    <div class="text-center" *ngIf="componentOptions?.vocabularyType !== null">
       <button type="button" class="btn btn-primary" (click)="onClickVocabSelection()">Select by Vocabulary</button>
     </div>
   </form>

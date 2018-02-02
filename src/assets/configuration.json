@@ -1,4 +1,8 @@
 {
-    "showIdentifierVocabularySelection": true,
-    "showClassifierVocabularySelection": true
+  "showIdentifierVocabularySelection": true,
+  "showClassifierVocabularySelection": true,
+  "showCharacteristicVocabularySelection": true,
+  "showHistoryVocabularySelection": true,
+  "showCapabilityVocabularySelection": true,
+  "showContactVocabularySelection": true
 }

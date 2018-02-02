@@ -1,25 +1,21 @@
-<card [verticalMode]="hasChild" [title]="'Responsible Party'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <form>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'gmd:individualName'" [fieldName]="'individualName'"></text-field>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'gmd:organisationName'" [fieldName]="'organisationName'"></text-field>
-        <text-field [isShowAll]="isShowAll" [configName]="'gmd:positionName'" [config]="config" [model]="model" [fieldName]="'positionName'"></text-field>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('contactInfo')">
-            <child-item [model]="model.contactInfo" [itemTitle]="getDisplayName('contactInfo')" (add)="onAddContact()" (remove)="onRemoveContact()" (select)="openNewContactInfoItem(model.contactInfo)"></child-item>
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('role')">
-            <label for="function">{{getDisplayName('role')}}</label>
-            <select class="form-control" [(ngModel)]="model.role" name="role">
-                <option value="resourceProvider">Resource Provider</option>
-                <option value="custodian">Custodian</option>
-                <option value="user">User</option>
-                <option value="originator">Originator</option>
-                <option value="pointOfContact">Point Of Contact</option>
-                <option value="principalInvestigator">Principal Investigator</option>
-                <option value="processor">Processor</option>
-                <option value="publisher">Publisher</option>
-                <option value="author">Author</option>
-                <option value="owner">Owner</option>
-            </select>
-        </div>
-    </form>
+<card [verticalMode]="hasChild" [title]="'Responsible Party'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+  <form>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'gmd:individualName'" [fieldName]="'individualName'"></text-field>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'gmd:organisationName'" [fieldName]="'organisationName'"></text-field>
+    <text-field [isShowAll]="isShowAll" [configName]="'gmd:positionName'" [config]="config" [model]="model" [fieldName]="'positionName'"></text-field>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('contactInfo')">
+      <child-item [model]="model.contactInfo" [itemTitle]="getDisplayName('contactInfo')" (add)="onAddContact()" (remove)="onRemoveContact()"
+        (select)="openNewContactInfoItem(model.contactInfo)"></child-item>
+    </div>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('role')">
+      <label for="function">{{getDisplayName('role')}}</label>
+      <select class="form-control" [(ngModel)]="model.role" name="role">
+        <option *ngFor="let role of defaultRoles" value="{{role.value}}">{{role.label}}</option>
+      </select>
+    </div>
+    <div class="text-center" *ngIf="componentOptions?.vocabularyType !== null">
+      <button type="button" class="btn btn-primary" (click)="onClickVocabSelection()">Select by Vocabulary</button>
+    </div>
+  </form>
 </card>

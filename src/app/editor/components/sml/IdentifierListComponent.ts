@@ -9,36 +9,36 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 import { TermComponent } from './TermComponent';
 
 @Component({
-    selector: 'sml-identifier-list',
-    templateUrl: './IdentifierListComponent.html',
-    styleUrls: ['../styles/editor-component.scss']
+  selector: 'sml-identifier-list',
+  templateUrl: './IdentifierListComponent.html',
+  styleUrls: ['../styles/editor-component.scss']
 })
 export class IdentifierListComponent extends TypedModelComponent<IdentifierList> {
 
-    constructor(
-        private configuration: ConfigurationService
-    ) {
-        super();
-    }
+  constructor(
+    private configuration: ConfigurationService
+  ) {
+    super();
+  }
 
-    protected createModel(): IdentifierList {
-        return new IdentifierList();
-    }
+  protected createModel(): IdentifierList {
+    return new IdentifierList();
+  }
 
-    protected openNewIdentifierItem(item: Term) {
-        const config = this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term');
-        this.configuration.getConfig().subscribe(smleConfig => {
-            let options: ChildMetadataOptions;
-            if (smleConfig.showIdentifierVocabularySelection) { options = { vocabType: VocabularyType.Identifier }; }
-            this.openNewChild(new ChildMetadata(TermComponent, item, config, options));
-        });
-    }
+  protected openNewIdentifierItem(item: Term) {
+    const config = this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term');
+    this.configuration.getConfig().subscribe(smleConfig => {
+      let options: ChildMetadataOptions;
+      if (smleConfig.showIdentifierVocabularySelection) { options = { vocabularyType: VocabularyType.Identifier }; }
+      this.openNewChild(new ChildMetadata(TermComponent, item, config, options));
+    });
+  }
 
-    protected onAddIdentifier(): void {
-        this.model.identifiers.push(new Term());
-    }
+  protected onAddIdentifier(): void {
+    this.model.identifiers.push(new Term());
+  }
 
-    protected onRemoveIdentifier(index: number): void {
-        this.model.identifiers.splice(index, 1);
-    }
+  protected onRemoveIdentifier(index: number): void {
+    this.model.identifiers.splice(index, 1);
+  }
 }

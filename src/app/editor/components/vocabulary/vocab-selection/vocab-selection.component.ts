@@ -7,6 +7,7 @@ import { VocabularyService } from '../../../../services/vocabulary/vocabulary.se
 
 export interface SelectionResult {
   definition?: string;
+  description?: string;
   label?: string;
   value?: string;
 }
@@ -46,6 +47,7 @@ export class VocabSelectionComponent implements OnInit {
     const result: SelectionResult = {
       definition: item.uri,
       label: item.label,
+      description: item.description,
       value: ''
     };
     this.activeModal.close(result);
@@ -55,6 +57,7 @@ export class VocabSelectionComponent implements OnInit {
     const result: SelectionResult = {
       definition: this.firstSelection.uri,
       label: this.firstSelection.label,
+      description: item.description,
       value: item.label
     };
     this.activeModal.close(result);
@@ -97,6 +100,18 @@ export class VocabSelectionComponent implements OnInit {
         break;
       case VocabularyType.Identifier:
         this.title = 'identifier';
+        break;
+      case VocabularyType.Characteristic:
+        this.title = 'characteristic';
+        break;
+      case VocabularyType.Capability:
+        this.title = 'capability';
+        break;
+      case VocabularyType.Contact:
+        this.title = 'contact';
+        break;
+      case VocabularyType.HistoryEvent:
+        this.title = 'history event';
         break;
       default:
         break;

@@ -16,7 +16,9 @@ import {
     SweTimeRange,
 } from '../../../model/swe';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
-import { ChildMetadata } from '../base/ChildMetadata';
+import { ConfigurationService } from '../../../services/ConfigurationService';
+import { VocabularyType } from '../../../services/vocabulary/model';
+import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
 
@@ -39,14 +41,25 @@ export class CharacteristicListComponent extends TypedModelComponent<Characteris
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
+    constructor(
+        private configuration: ConfigurationService
+    ) {
+        super();
+    }
+
     protected createModel(): CharacteristicList {
         return new CharacteristicList();
     }
 
     protected openNewCharacteristicItem(item: Characteristic) {
-        this.openNewChild(
-            new ChildMetadata(NamedSweDataComponentComponent, item, this.config.getConfigFor('sml:characteristic'))
-        );
+        const config = this.config.getConfigFor('sml:characteristic');
+        this.configuration.getConfig().subscribe(smleConfig => {
+            let options: ChildMetadataOptions;
+            if (smleConfig.showCharacteristicVocabularySelection) {
+                options = { vocabularyType: VocabularyType.Characteristic };
+            }
+            this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
+        });
     }
 
     protected onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {

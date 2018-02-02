@@ -1,4 +1,8 @@
 export enum VocabularyType {
     Identifier,
-    Classifier
+    Classifier,
+    Characteristic,
+    HistoryEvent,
+    Capability,
+    Contact
 }

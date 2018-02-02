@@ -22,6 +22,14 @@ export class VocabularyService {
         return this.getIdentificationList();
       case VocabularyType.Classifier:
         return this.getClassificationList();
+      case VocabularyType.Characteristic:
+        return this.getCharacteristicList();
+      case VocabularyType.Capability:
+        return this.getCapabilityList();
+      case VocabularyType.Contact:
+        return this.getContactList();
+      case VocabularyType.HistoryEvent:
+        return this.getHistoryEventList();
       default:
         break;
     }
@@ -37,6 +45,22 @@ export class VocabularyService {
 
   private getClassificationList(): Observable<VocabularyEntry[]> {
     return this.requestVocabEntries('W06/current/');
+  }
+
+  private getCharacteristicList(): Observable<VocabularyEntry[]> {
+    return this.requestVocabEntries('W05/current/');
+  }
+
+  private getCapabilityList(): Observable<VocabularyEntry[]> {
+    return this.requestVocabEntries('W04/current/');
+  }
+
+  private getContactList(): Observable<VocabularyEntry[]> {
+    return this.requestVocabEntries('W08/current/');
+  }
+
+  private getHistoryEventList(): Observable<VocabularyEntry[]> {
+    return this.requestVocabEntries('W03/current/');
   }
 
   private requestVocabEntries(path: string) {
