@@ -1,17 +1,18 @@
 import { Component, Type } from '@angular/core';
-import { TypedModelComponent } from '../base';
-import { NestedChildMetadata } from '../base/NestedChildMetadata';
-import { NestedCardComponent } from '../basic/NestedCardComponent';
+
+import { InputList, OutputList, ParameterList, Settings } from '../../../model/sml';
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
-import { SettingsComponent } from './SettingsComponent';
-import { Settings, ParameterList, OutputList, InputList } from '../../../model/sml';
-import { ParameterListComponent } from './ParameterListComponent';
-import { OutputListComponent } from './OutputListComponent';
+import { NestedChildMetadata } from '../base/NestedChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { NestedCardComponent } from '../basic/NestedCardComponent';
 import { InputListComponent } from './InputListComponent';
+import { OutputListComponent } from './OutputListComponent';
+import { ParameterListComponent } from './ParameterListComponent';
+import { SettingsComponent } from './SettingsComponent';
 
 @Component({
     selector: 'sml-abstract-process',
-    template: require('./AbstractProcessComponent.html')
+    templateUrl: './AbstractProcessComponent.html'
 })
 export class AbstractProcessComponent extends TypedModelComponent<AbstractProcess> {
 
@@ -27,11 +28,11 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
     protected openSettings() {
         this.openNewChild(
             new NestedChildMetadata(
-              NestedCardComponent,
-              SettingsComponent,
-              'Settings',
-              this.model.configuration,
-              this.config.getConfigFor('settings')
+                NestedCardComponent,
+                SettingsComponent,
+                'Settings',
+                this.model.configuration,
+                this.config.getConfigFor('settings')
             )
         );
     }

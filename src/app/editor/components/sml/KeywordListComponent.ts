@@ -4,8 +4,8 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'swe-keyword-list',
-    template: require('./KeywordListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './KeywordListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class KeywordListComponent extends TypedModelComponent<KeywordList> {
 

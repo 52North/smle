@@ -4,7 +4,7 @@ import { SweEncoding } from '../../../model/swe/SweEncoding';
 
 @Component({
     selector: 'swe-encoding',
-    template: require('./SweEncodingComponent.html')
+    templateUrl: './SweEncodingComponent.html'
 })
 export class SweEncodingComponent extends TypedModelComponent<SweEncoding> {
     protected createModel(): SweEncoding {

@@ -1,18 +1,20 @@
-import { Position } from '../../../model/sml/Position';
-import { SweVector } from '../../../model/swe/SweVector';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { Component } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
-import { TrueDescriptionConfig } from '../../../services/config/TrueDescriptionConfig';
-import { PositionEditorComponent } from '../sml/PositionComponent';
+
+import { Position } from '../../../model/sml/Position';
 import { SweCoordinate } from '../../../model/swe/SweCoordinate';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
+import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweField } from '../../../model/swe/SweField';
+import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { SweVector } from '../../../model/swe/SweVector';
+import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
+import { TrueDescriptionConfig } from '../../../services/config/TrueDescriptionConfig';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { PositionEditorComponent } from '../sml/PositionComponent';
 
 @Component({
     selector: 'position-list',
-    template: require('./PositionListComponent.html')
+    templateUrl: './PositionListComponent.html'
 })
 export class PositionListComponent extends TypedModelComponent<Array<Position>> {
 
@@ -20,11 +22,11 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         return [];
     }
 
-    protected removeItem(index: number) {
+    public removeItem(index: number) {
         this.model.splice(index, 1);
     }
 
-    protected openChild(item: Position) {
+    public openChild(item: Position) {
         this.openNewChild(new ChildMetadata(PositionEditorComponent, item, new TrueDescriptionConfig()));
         // this.openNewChild(new ChildMetadata(
         //     PositionEditorComponent,
@@ -34,7 +36,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         // ));
     }
 
-    protected getPositionLabel(positionItem: Position): string {
+    public getPositionLabel(positionItem: Position): string {
         if (positionItem instanceof SweVector) {
             return 'Vector';
         } else if (positionItem instanceof SweDataRecord) {
@@ -44,7 +46,7 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         }
     }
 
-    protected getPositionValue(positionItem: Position): string {
+    public getPositionValue(positionItem: Position): string {
         if (positionItem instanceof SweVector) {
             const value = [];
             positionItem.coordinates.forEach((entry) => {
@@ -58,14 +60,14 @@ export class PositionListComponent extends TypedModelComponent<Array<Position>> 
         }
     }
 
-    protected addVector() {
+    public addVector() {
         const newItem = this.createPositionLocation();
 
         this.addModelIfNotExist();
         this.model.push(newItem);
     }
 
-    protected addDataRecord() {
+    public addDataRecord() {
         const newItem = this.createPositionDataRecord();
 
         this.addModelIfNotExist();

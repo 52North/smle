@@ -4,7 +4,7 @@ import { TimeInstant } from '../../../model/gml/TimeInstant';
 
 @Component({
     selector: 'gml-time-instant',
-    template: require('./TimeInstantComponent.html')
+    templateUrl: './TimeInstantComponent.html'
 })
 export class TimeInstantComponent extends EditorComponent<TimeInstant> {
     @Input()

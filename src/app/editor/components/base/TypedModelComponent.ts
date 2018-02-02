@@ -1,7 +1,8 @@
-import { Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 import { BaseComponent } from './BaseComponent';
-import { ChildMetadata } from './ChildMetadata';
+import { ChildMetadata, ChildMetadataOptions } from './ChildMetadata';
 
 declare var jQuery: any;
 
@@ -15,7 +16,10 @@ export abstract class TypedModelComponent<T>
     public config: DescriptionConfig;
 
     @Input()
-    public isShowAll: boolean = false;
+    public isShowAll = false;
+
+    @Input()
+    public componentOptions: ChildMetadataOptions;
 
     @Output()
     public openAsChild: EventEmitter<ChildMetadata<any>> = new EventEmitter<ChildMetadata<any>>();
@@ -30,7 +34,7 @@ export abstract class TypedModelComponent<T>
         jQuery.extend(this.model, this._storeProfileModel);
     }
 
-    protected openNewChild(childMetadata: ChildMetadata<any>) {
+    public openNewChild(childMetadata: ChildMetadata<any>) {
         this.openAsChild.emit(childMetadata);
     }
 

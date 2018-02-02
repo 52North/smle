@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, Directive } from '@angular/core';
+import { Component, Directive, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'list',
-    styles: [require('../styles/basic-component.scss')],
-    template: require('./ListComponent.html')
+    styleUrls: ['../styles/basic-component.scss'],
+    templateUrl: './ListComponent.html'
 })
 export class ListComponent {
 
@@ -20,7 +20,7 @@ export class ListComponent {
     public fixLength: boolean;
 
     @Input()
-    public noSelect: boolean = false;
+    public noSelect = false;
 
     @Input()
     public shouldItemVisible: (value: any) => boolean;

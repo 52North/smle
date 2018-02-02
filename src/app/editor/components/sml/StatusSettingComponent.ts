@@ -1,15 +1,16 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+
 import { StatusSetting } from '../../../model/sml/StatusSetting';
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-status-setting',
-    template: require('./StatusSettingComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './StatusSettingComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class StatusSettingComponent extends EditorComponent<StatusSetting> implements OnInit {
 
-    private valueSelected: boolean;
+    public valueSelected: boolean;
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
@@ -19,11 +20,12 @@ export class StatusSettingComponent extends EditorComponent<StatusSetting> imple
         this.valueSelected = this.model.value === 'enabled' ? true : false;
     }
 
+    public updateValue(temp: any) {
+        this.model.value = !this.valueSelected ? 'enabled' : 'disabled';
+    }
+
     protected createModel(): StatusSetting {
         return new StatusSetting();
     }
 
-    protected updateValue(temp: any) {
-        this.model.value = !this.valueSelected ? 'enabled' : 'disabled';
-    }
 }

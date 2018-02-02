@@ -1,15 +1,16 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+
 import { ValueSetting } from '../../../model/sml/ValueSetting';
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-value-setting',
-    template: require('./ValueSettingComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './ValueSettingComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class ValueSettingComponent extends EditorComponent<ValueSetting> implements OnInit {
 
-    private selectedType: string;
+    public selectedType: string;
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);

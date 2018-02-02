@@ -4,7 +4,7 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'swe-abstract-identifiable',
-    template: require('./AbstractSWEIdentifiableComponent.html')
+    templateUrl: './AbstractSWEIdentifiableComponent.html'
 })
 export class AbstractSWEIdentifiableComponent extends TypedModelComponent<AbstractSWEIdentifiable> {
     protected createModel(): AbstractSWEIdentifiable {

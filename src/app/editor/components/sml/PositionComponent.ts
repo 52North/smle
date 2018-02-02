@@ -1,35 +1,34 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Position } from '../../../model/sml/Position';
-import { Overlay, overlayConfigFactory } from 'angular2-modal';
-import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
-import { MapComponent, MapData } from '../basic/MapComponent';
-import { SweVector } from '../../../model/swe/SweVector';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweCoordinate } from '../../../model/swe/SweCoordinate';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { SweDataRecord } from '../../../model/swe/SweDataRecord';
 import { SweField } from '../../../model/swe/SweField';
+import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { SweVector } from '../../../model/swe/SweVector';
+import { EditorComponent } from '../base/EditorComponent';
+import { MapComponent } from '../basic/MapComponent';
 
 @Component({
     selector: 'sml-position',
-    template: require('./PositionComponent.html'),
-    styles: [require('../styles/editor-component.scss')],
-    providers: [Modal]
+    templateUrl: './PositionComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class PositionEditorComponent extends EditorComponent<Position> {
-    private get latitude(): number {
+    public get latitude(): number {
         return this.getFieldValue('location', 'Lat');
     }
 
-    private set latitude(value: number) {
+    public set latitude(value: number) {
         this.setFieldValue('location', 'Lat', value);
     }
 
-    private get longitude(): number {
+    public get longitude(): number {
         return this.getFieldValue('location', 'Lon');
     }
 
-    private set longitude(value: number) {
+    public set longitude(value: number) {
         this.setFieldValue('location', 'Lon', value);
     }
 
@@ -41,25 +40,24 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         this.setFieldValue('location', 'Alt', value);
     }
 
-    private get trueHeading(): number {
+    public get trueHeading(): number {
         return this.getFieldValue('orientation', 'TrueHeading');
     }
 
-    private set trueHeading(value: number) {
+    public set trueHeading(value: number) {
         this.setFieldValue('orientation', 'TrueHeading', value);
     }
 
-    private get pitch(): number {
+    public get pitch(): number {
         return this.getFieldValue('orientation', 'Pitch');
     }
 
-    private set pitch(value: number) {
+    public set pitch(value: number) {
         this.setFieldValue('orientation', 'Pitch', value);
     }
 
     constructor(
-        private modalWindow: Modal,
-        private overlay: Overlay,
+        private modalService: NgbModal,
         componentFactoryResolver: ComponentFactoryResolver,
         viewContainerRef: ViewContainerRef
     ) {
@@ -67,17 +65,15 @@ export class PositionEditorComponent extends EditorComponent<Position> {
     }
 
     protected openMap() {
-        const mapData: MapData = new MapData({ lat: this.latitude, lng: this.longitude });
-
-        this.modalWindow
-            .open(MapComponent, overlayConfigFactory(mapData, BSModalContext)).then((dialogRef) => {
-                dialogRef.result.then((result) => {
-                    if (result) {
-                        this.latitude = result.lat;
-                        this.longitude = result.lng;
-                    }
-                });
-            });
+        const ref = this.modalService.open(MapComponent);
+        (ref.componentInstance as MapComponent).location = {
+            lat: this.latitude,
+            lng: this.longitude
+        };
+        ref.result.then((location: L.LatLngLiteral) => {
+            this.longitude = location.lat;
+            this.latitude = location.lng;
+        });
     }
 
     protected createModel(): Position {

@@ -1,23 +1,25 @@
 import { Component, Type } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
-import { InputList, Input, DataInterface, ObservableProperty } from '../../../model/sml';
-import { InputComponent } from './InputComponent';
+
+import { DataInterface, Input, InputList, ObservableProperty } from '../../../model/sml';
 import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataArray,
+    SweDataRecord,
+    SweQuantity,
+    SweQuantityRange,
     SweText,
     SweTime,
-    SweCount,
-    SweBoolean,
-    SweQuantity,
-    SweCategory,
     SweTimeRange,
-    SweQuantityRange,
-    SweDataArray,
-    SweDataRecord
 } from '../../../model/swe';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { InputComponent } from './InputComponent';
 
 @Component({
     selector: 'sml-input-list',
-    template: require('./InputListComponent.html')
+    templateUrl: './InputListComponent.html'
 })
 export class InputListComponent extends TypedModelComponent<InputList> {
 

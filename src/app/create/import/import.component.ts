@@ -5,8 +5,8 @@ import { AbstractProcess } from '../../model/sml';
 
 @Component({
   selector: 'import-description',
-  template: require('./import.component.html'),
-  styles: [require('./import.component.scss')]
+  templateUrl: './import.component.html',
+  styleUrls: ['./import.component.scss']
 })
 export class ImportComponent {
 

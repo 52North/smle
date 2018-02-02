@@ -4,7 +4,7 @@ import { AllowedTokens } from '../../../model/swe/AllowedTokens';
 
 @Component({
     selector: 'swe-allowed-tokens',
-    template: require('./AllowedTokensComponent.html')
+    templateUrl: './AllowedTokensComponent.html'
 })
 export class AllowedTokensComponent extends TypedModelComponent<AllowedTokens> {
     protected createModel(): AllowedTokens {

@@ -4,7 +4,7 @@ import { ObservableProperty } from '../../../model/sml/ObservableProperty';
 
 @Component({
     selector: 'sml-observable-property',
-    template: require('./ObservablePropertyComponent.html')
+    templateUrl: './ObservablePropertyComponent.html'
 })
 export class ObservablePropertyComponent extends TypedModelComponent<ObservableProperty> {
 

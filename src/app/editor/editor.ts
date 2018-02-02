@@ -1,28 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { AbstractProcess } from '../model/sml';
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
-import { EditorService, DescriptionType } from '../services/EditorService';
-import { EditorMode } from '../services/EditorMode';
-import { PROCEDURE_ID_PARAM, SOS_URL_PARAM } from '../routes';
 import { DynamicGUIService } from '../services/dynamicGUI/DynamicGUIService';
+import { EditorMode } from '../services/EditorMode';
+import { DescriptionType, EditorService } from '../services/EditorService';
+
+export const PROCEDURE_ID_PARAM = 'procedureId';
+export const SOS_URL_PARAM = 'sosUrl';
 
 @Component({
     selector: 'editor',
-    template: require('./editor.html'),
-    styles: [require('./editor.scss')]
+    templateUrl: './editor.html',
+    styleUrls: ['./editor.scss']
 })
 export class EditorComponent implements OnInit {
     public description: AbstractProcess;
     public config: DescriptionConfig;
     public editorMode: EditorMode;
-    public actionBarNeeded: boolean = false;
+    public actionBarNeeded = false;
 
-    public visualizerExpanded: boolean = false;
+    public visualizerExpanded = false;
 
     public descriptionType: DescriptionType;
     public descriptionLoadingError: string;
-    public descriptionIsLoading: boolean = true;
+    public descriptionIsLoading = true;
 
     constructor(
         private editorService: EditorService,

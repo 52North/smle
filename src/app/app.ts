@@ -1,18 +1,10 @@
-import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 
-/*
- * App Component
- * Top Level Component
- */
 @Component({
-    selector: 'app',
-    providers: [],
-    encapsulation: ViewEncapsulation.None,
-    viewProviders: [],
-    styles: [require('./app.scss')],
-    template: require('./app.html')
+  selector: 'app-root',
+  templateUrl: './app.html',
+  styleUrls: ['./app.scss']
 })
-export class ApplicationComponent {
-    constructor(viewContainer: ViewContainerRef) {
-    }
+export class AppComponent {
+  title = 'app';
 }

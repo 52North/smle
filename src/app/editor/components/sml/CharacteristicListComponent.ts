@@ -1,27 +1,31 @@
 import { Component, Type } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
+
 import { Characteristic } from '../../../model/sml/Characteristic';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
-import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
-import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
 import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataArray,
+    SweDataRecord,
+    SweQuantity,
+    SweQuantityRange,
     SweText,
     SweTime,
-    SweCount,
-    SweBoolean,
-    SweQuantity,
-    SweCategory,
     SweTimeRange,
-    SweQuantityRange,
-    SweDataArray,
-    SweDataRecord
 } from '../../../model/swe';
+import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
+import { ConfigurationService } from '../../../services/ConfigurationService';
+import { VocabularyType } from '../../../services/vocabulary/model';
+import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { NamedSweDataComponentComponent } from './NamedSweDataComponentComponent';
 
 @Component({
     selector: 'sml-characteristic-list',
-    template: require('./CharacteristicListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './CharacteristicListComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class CharacteristicListComponent extends TypedModelComponent<CharacteristicList> {
     protected options = [
@@ -37,14 +41,25 @@ export class CharacteristicListComponent extends TypedModelComponent<Characteris
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
+    constructor(
+        private configuration: ConfigurationService
+    ) {
+        super();
+    }
+
     protected createModel(): CharacteristicList {
         return new CharacteristicList();
     }
 
     protected openNewCharacteristicItem(item: Characteristic) {
-        this.openNewChild(
-            new ChildMetadata(NamedSweDataComponentComponent, item, this.config.getConfigFor('sml:characteristic'))
-        );
+        const config = this.config.getConfigFor('sml:characteristic');
+        this.configuration.getConfig().subscribe(smleConfig => {
+            let options: ChildMetadataOptions;
+            if (smleConfig.showCharacteristicVocabularySelection) {
+                options = { vocabularyType: VocabularyType.Characteristic };
+            }
+            this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
+        });
     }
 
     protected onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {

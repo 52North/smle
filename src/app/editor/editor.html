@@ -1,20 +1,21 @@
 <div *ngIf="descriptionLoadingError" class="alert alert-danger text-center" role="alert">
-    <div>An exception ocurred while loading a description:
-    </div>
-    <div>
-        <pre>{{descriptionLoadingError}}</pre>
-    </div>
+  <div>An exception ocurred while loading a description:
+  </div>
+  <div>
+    <pre>{{descriptionLoadingError}}</pre>
+  </div>
 </div>
 
 <div class="row editor actionBar">
-    <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description && !!config" [ngSwitch]="descriptionType">
-        <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
-        <sml-physical-component *ngSwitchCase="2" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-component>
-        <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')"></sml-simple-process>
-        <sml-physical-system *ngSwitchCase="4" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
-    </div>
+  <div class="components-container" [ngClass]="{'col-sm-12': !visualizerExpanded, 'col-sm-9': visualizerExpanded}" *ngIf="!!description && !!config"
+    [ngSwitch]="descriptionType">
+    <sml-physical-system *ngSwitchCase="1" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
+    <sml-physical-component *ngSwitchCase="2" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-component>
+    <sml-simple-process *ngSwitchCase="3" [model]="description" [config]="config.getConfigFor('description')"></sml-simple-process>
+    <sml-physical-system *ngSwitchCase="4" [model]="description" [config]="config.getConfigFor('description')"></sml-physical-system>
+  </div>
 
-    <!-- <a class="btn-link visualizer-open-button" *ngIf="!!description" (click)="visualizerExpanded = true">Show tree</a>
+  <!-- <a class="btn-link visualizer-open-button" *ngIf="!!description" (click)="visualizerExpanded = true">Show tree</a>
     <div class="visualizer-container col-sm-3" [class.expanded]="visualizerExpanded" *ngIf="!!description">
         <object-tree class="description-visualizer" [model]="description"></object-tree>
         <a class="btn-link visualizer-close-button" (click)="visualizerExpanded = false">Hide tree</a>
@@ -23,10 +24,10 @@
 </div>
 
 <div class="row">
-    <div class="footer-buttons container" *ngIf="!!description">
-        <div class="col-md-12 center-block">
-            <a class="btn btn-primary" (click)="publishDescription()" *loggedIn>Publish Description</a>
-            <a class="btn btn-primary" (click)="provideDownload()">Download Description</a>
-        </div>
+  <div class="footer-buttons container" *ngIf="!!description">
+    <div class="col-md-12 center-block">
+      <button class="btn btn-primary" (click)="publishDescription()" *loggedIn>Publish Description</button>
+      <button class="btn btn-primary" (click)="provideDownload()">Download Description</button>
     </div>
+  </div>
 </div>

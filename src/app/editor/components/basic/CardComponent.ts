@@ -1,19 +1,19 @@
-import { Component, Input, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'card',
-    template: require('./CardComponent.html'),
-    styles: [require('../styles/card-component.scss')]
+    templateUrl: './CardComponent.html',
+    styleUrls: ['../styles/card-component.scss']
 })
 export class CardComponent {
     @Input()
     public title: string;
 
     @Input()
-    public showAll: boolean = false;
+    public showAll = false;
 
     @Input()
-    public closable: boolean = true;
+    public closable = true;
 
     @Output()
     public showAllChange: EventEmitter<boolean> = new EventEmitter<boolean>();

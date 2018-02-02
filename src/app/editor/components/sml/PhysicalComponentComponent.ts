@@ -4,8 +4,8 @@ import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-physical-component',
-    template: require('./PhysicalComponentComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './PhysicalComponentComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class PhysicalComponentComponent extends EditorComponent<PhysicalComponent> {
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

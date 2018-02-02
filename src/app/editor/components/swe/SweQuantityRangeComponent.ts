@@ -4,7 +4,7 @@ import { SweQuantityRange, UnitOfMeasure, AllowedValues } from '../../../model/s
 
 @Component({
     selector: 'swe-quantity-range',
-    template: require('./SweQuantityRangeComponent.html')
+    templateUrl: './SweQuantityRangeComponent.html'
 })
 export class SweQuantityRangeComponent extends TypedModelComponent<SweQuantityRange> {
     protected createModel(): SweQuantityRange {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Response, URLSearchParams, Jsonp } from '@angular/http';
+import { Jsonp, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+
 import { ConfigurationService } from '../services/ConfigurationService';
 
 @Injectable()
@@ -12,7 +13,9 @@ export class TemplatesService {
         private jsonp: Jsonp,
         private configurationSrvc: ConfigurationService
     ) {
-        this.templatesUrl = this.configurationSrvc.config.templatesUrl;
+        this.configurationSrvc.getConfig().subscribe(config => {
+            this.templatesUrl = config.templatesUrl;
+        });
     }
 
     search(searchTerm: string): Observable<Result> {

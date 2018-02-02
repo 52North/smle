@@ -21,7 +21,7 @@ import { SweEncoding } from '../../../model/swe/SweEncoding';
 
 @Component({
     selector: 'swe-data-array',
-    template: require('./SweDataArrayComponent.html')
+    templateUrl: './SweDataArrayComponent.html'
 })
 export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> implements AfterContentInit {
     protected options = [

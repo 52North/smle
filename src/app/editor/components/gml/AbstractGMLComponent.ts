@@ -5,7 +5,7 @@ import { CodeType } from '../../../model/gml/CodeType';
 
 @Component({
     selector: 'gml-abstract',
-    template: require('./AbstractGMLComponent.html')
+    templateUrl: './AbstractGMLComponent.html'
 })
 export class AbstractGMLComponent extends TypedModelComponent<AbstractGML> {
     protected createModel(): AbstractGML {

@@ -1,6 +1,6 @@
 <form>
     <sml-abstract-named-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-named-metadata-list>
-    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:capabilities')">
+    <div *ngIf="isShowAll || config.isFieldVisible('sml:capabilities')">
         <label for="capabilities">{{getDisplayName('capabilities')}}</label>
         <list [list]="model.capabilities" (select)="openNewCapabilityItem($event)" (remove)="onRemoveCapability($event)" (add)="onAddCapability()">
             <list-add-section>

@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 
 @Component({
     selector: 'child-item',
-    styles: [require('../styles/basic-component.scss')],
-    template: require('./ChildItemComponent.html')
+    styleUrls: ['../styles/basic-component.scss'],
+    templateUrl: './ChildItemComponent.html'
 })
 export class ChildItemComponent {
     @Input()
@@ -40,7 +41,7 @@ export class ChildItemComponent {
         this.select.emit(null);
     }
 
-    protected isNotFixed() {
+    public isNotFixed() {
         return !!this.config ? !this.config.isFieldFixed(this.configName) : true;
     }
 }

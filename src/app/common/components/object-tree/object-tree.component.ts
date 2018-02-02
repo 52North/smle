@@ -1,4 +1,5 @@
-import { Component, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
+import { Component, DoCheck, Input, OnChanges, SimpleChanges } from '@angular/core';
+
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { getDisplayName } from '../../decorators/DisplayName';
 
@@ -7,22 +8,22 @@ const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \
 
 @Component({
     selector: 'object-tree',
-    template: require('./object-tree.component.html'),
-    styles: [require('./object-tree.component.scss')]
+    templateUrl: './object-tree.component.html',
+    styleUrls: ['./object-tree.component.scss']
 })
 export class ObjectTreeComponent implements OnChanges, DoCheck {
     @Input()
-    shouldRebuildTree: boolean = true;
+    shouldRebuildTree = true;
 
     @Input()
     model: AbstractProcess;
 
-    protected options = {
+    public options = {
         expandedField: 'isExpanded'
     };
 
     private prevModel: string;
-    private nodes: Array<INode> = [];
+    public nodes: Array<INode> = [];
 
     private static getNodes(object: any, oldNodes: Array<INode>, parentId: string): Array<INode> {
         let nodes: Array<INode>;
@@ -166,7 +167,7 @@ export class ObjectTreeComponent implements OnChanges, DoCheck {
         }
     }
 
-    protected onToggle(event) {
+    public onToggle(event) {
         const path = event.node.path;
         let nodes = this.nodes;
 

@@ -4,7 +4,7 @@ import { SweCategory } from '../../../model/swe/SweCategory';
 
 @Component({
     selector: 'swe-category',
-    template: require('./SweCategoryComponent.html')
+    templateUrl: './SweCategoryComponent.html'
 })
 export class SweCategoryComponent extends TypedModelComponent<SweCategory> {
     protected createModel(): SweCategory {

@@ -1,16 +1,20 @@
-import * as smlLib from '../../model/sml';
-import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { DynamicGUIDescriptionConfig } from '../config/DynamicGUIDescriptionConfig';
-import { LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger } from 'typescript-logging';
-import { SensorMLDocumentEncoder } from './../xml/SensorMLDocumentEncoder';
-import { SensorMLDocumentDecoder } from './../xml/SensorMLDocumentDecoder';
+import { LFService, Logger, LoggerFactory, LoggerFactoryOptions, LogGroupRule, LogLevel } from 'typescript-logging';
+
+import * as smlLib from '../../model/sml';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
+import { DynamicGUIDescriptionConfig } from '../config/DynamicGUIDescriptionConfig';
 import { NAMESPACES } from './../xml/Namespaces';
+import { SensorMLDocumentDecoder } from './../xml/SensorMLDocumentDecoder';
+import { SensorMLDocumentEncoder } from './../xml/SensorMLDocumentEncoder';
 import { BidiMap } from './BidiMap';
-import { DynamicGUIObject } from './DynamicGUIObject';
 import { DynamicGUIConfiguration } from './DynamicGUIConfiguration';
+import { DynamicGUIObject } from './DynamicGUIObject';
+
 declare var X2JS: any;
 
 class XPathElement {
@@ -55,6 +59,130 @@ class Cache {
     }
 }
 
+class XMLDocument {
+    private _loggerFactory: LoggerFactory;
+    private _logger: Logger;
+    private _model: Document;
+    constructor(model: Document) {
+        this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
+            .addLogGroupRule(new LogGroupRule(new RegExp('.+'), LogLevel.Info)));
+        this._logger = this._loggerFactory.getLogger('InsertElements');
+        this._model = model;
+    }
+    public add(cache: Cache, xPath: XPathElement[], configuration: DynamicGUIConfiguration): Cache {
+        while (xPath.length > 0) {
+            const xpathElement = xPath.shift();
+            this._logger.info('XPath.length:' + xPath.length);
+            this._logger.info(
+                '\n' + 'xpathElement:' + xpathElement.element + '\n' + 'parent:' + JSON.stringify(cache.parent)
+            );
+            cache = this.insertChild(cache, xpathElement, xPath, configuration);
+        }
+        return cache;
+    }
+
+    private insertChild(
+        cache: Cache,
+        xpathElement: XPathElement,
+        xPath: XPathElement[],
+        configuration: DynamicGUIConfiguration
+    ): Cache {
+        const child = new Cache();
+        child.profileID = cache.profileID;
+        const xpath = xpathElement.element.split('[');
+        let childName;
+        const attributes = {};
+        if (xpath.length === 2) {
+            childName = xpath[0];
+            const attribute = xpath[1].slice(0, -1);
+            const attributeList: string[] = attribute.split(',');
+            for (const att in attributeList) {
+                if (attributeList[att]) {
+                    const a = att.split('=');
+                    if (a.length === 2) {
+                        attributes[a[0].slice(1)] = a[1];
+                    }
+                }
+            }
+        } else {
+            childName = xpathElement.element;
+        }
+
+        if (xPath.length > 0 ||
+            (typeof configuration.valueFix === 'undefined'
+                && typeof configuration.valueDefault === 'undefined')
+        ) {
+            const childNode = this._model.createElementNS(
+                NAMESPACES[xpathElement.prefix],
+                xpathElement.prefix.toLowerCase() + ':' + childName
+            );
+            if (xPath.length === 0) {
+                childNode.setAttribute('profileID', cache.profileID);
+            }
+            for (const key in attributes) {
+                if (attributes[key]) { childNode.setAttribute(key, attributes[key]); }
+            }
+            cache.parent.appendChild(childNode);
+            this._logger.info('New child: ' + childNode.tagName + ' appended');
+            child.parent = childNode;
+
+        } else {
+            if (configuration.valueFix !== null || configuration.valueDefault !== null) {
+                let value;
+                if (configuration.valueFix !== null) {
+                    value = configuration.valueFix;
+                } else {
+                    value = configuration.valueDefault;
+                }
+                if (xpathElement.prefix === '@') {
+                    cache.parent.setAttribute(xpathElement.element, value);
+                    this.setProfileIDForAttribute(cache.parent, cache.profileID);
+                } else {
+                    let childNode: Element;
+                    const values = value.split(',');
+                    for (const key in values) {
+                        if (values[key]) {
+                            childNode = this._model.createElementNS(
+                                NAMESPACES[xpathElement.prefix],
+                                xpathElement.prefix.toLowerCase() + ':' + xpathElement.element
+                            );
+                            const textNode = this._model.createTextNode(values[key]);
+                            childNode.appendChild(textNode);
+                            this._logger.info(values[key] + ' pushed to ' + JSON.stringify(cache.parent));
+                            childNode.setAttribute('profileID', cache.profileID);
+                            cache.parent.appendChild(childNode);
+                        }
+                    }
+                }
+            } else {
+                if (xpathElement.prefix === '@') {
+                    this.setProfileIDForAttribute(cache.parent, cache.profileID);
+
+                } else {
+                    const childNode = this._model.createElementNS(
+                        NAMESPACES[xpathElement.prefix],
+                        xpathElement.prefix.toLowerCase() + ':' + xpathElement.element
+                    );
+                    childNode.setAttribute('profileID', cache.profileID);
+                    cache.parent.appendChild(childNode);
+                }
+            }
+
+        }
+        return child;
+    }
+
+    private setProfileIDForAttribute(parent: Element, profileID: string) {
+        let i = 0;
+        while (true) {
+            if (parent.getAttribute('profileID_' + i) === null) {
+                return parent.setAttribute('profileID_' + i, profileID);
+            }
+            i = i + 1;
+        }
+    }
+}
+
 @Injectable()
 export class DynamicGUIService {
     private _loggerFactory: LoggerFactory;
@@ -67,7 +195,7 @@ export class DynamicGUIService {
     private _sensorMlDecoder: SensorMLDocumentDecoder = new SensorMLDocumentDecoder();
     private _profileIDMap: BidiMap;
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
         this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
             .addLogGroupRule(new LogGroupRule(new RegExp('.+'), LogLevel.Info)));
         this._logger = this._loggerFactory.getLogger('DynamicGuiService');
@@ -153,8 +281,7 @@ export class DynamicGUIService {
     private processFormComponents(formComponents: any) {
         if (Array.isArray(formComponents)) {
             for (const key in formComponents) {
-                if (formComponents[key])
-                    this.processFormComponent(formComponents[key]);
+                if (formComponents[key]) { this.processFormComponent(formComponents[key]); }
             }
         }
         this.processFormComponent(formComponents);
@@ -180,8 +307,7 @@ export class DynamicGUIService {
                 const abstractElements = this._profile[key];
                 if (Array.isArray(abstractElements)) {
                     for (const _key in abstractElements) {
-                        if (abstractElements[_key])
-                            this.processGeneralElementDescription(abstractElements[_key]);
+                        if (abstractElements[_key]) { this.processGeneralElementDescription(abstractElements[_key]); }
                     }
                 } else {
                     this.processGeneralElementDescription(abstractElements);
@@ -214,8 +340,7 @@ export class DynamicGUIService {
     private processElementInstanceRefs(cache: Cache, elements: any) {
         if (Array.isArray(elements)) {
             for (const key in elements) {
-                if (elements[key])
-                    this.processElementInstanceRef(cache, elements[key]);
+                if (elements[key]) { this.processElementInstanceRef(cache, elements[key]); }
             }
         } else {
             this.processElementInstanceRef(cache, elements);
@@ -251,8 +376,9 @@ export class DynamicGUIService {
     private processComplexElementInstanceRefs(cache: Cache, complexElementInstances: any, parentXPath: string) {
         if (Array.isArray(complexElementInstances)) {
             for (const key in complexElementInstances) {
-                if (complexElementInstances[key])
+                if (complexElementInstances[key]) {
                     this.processElementGroupRef(cache, complexElementInstances[key], parentXPath);
+                }
             }
         } else {
             this.processElementGroupRef(cache, complexElementInstances, parentXPath);
@@ -290,8 +416,9 @@ export class DynamicGUIService {
     ) {
         if (Array.isArray(complexElementInstances)) {
             for (const key in complexElementInstances) {
-                if (complexElementInstances[key])
+                if (complexElementInstances[key]) {
                     this.processComplexElementInstance(cache, complexElementInstances[key], parentXPath, global);
+                }
             }
         } else {
             this.processComplexElementInstance(cache, complexElementInstances, parentXPath, global);
@@ -336,8 +463,7 @@ export class DynamicGUIService {
     private processElementInstances(cache: Cache, elements: any) {
         if (Array.isArray(elements)) {
             for (const key in elements) {
-                if (elements[key])
-                    this.processElementInstance(cache, elements[key]);
+                if (elements[key]) { this.processElementInstance(cache, elements[key]); }
             }
         } else {
             this.processElementInstance(cache, elements);
@@ -412,9 +538,9 @@ export class DynamicGUIService {
     }
 
     private getProfile(): Observable<JSON> {
-        return this.http.get('../../profiles/Profile_discovery.xml').map((response: Response) => {
+        return this.http.get('../../profiles/Profile_discovery.xml', { responseType: 'text' }).map((xml: string) => {
             const x2js = new X2JS();
-            const json = x2js.xml2js(response.text());
+            const json = x2js.xml2js(xml);
             return json;
         });
     }
@@ -435,130 +561,5 @@ export class DynamicGUIService {
         }
         this._logger.info('New splitted XPath: ' + JSON.stringify(xPathSplitted));
         return xPathSplitted;
-    }
-}
-
-class XMLDocument {
-    private _loggerFactory: LoggerFactory;
-    private _logger: Logger;
-    private _model: Document;
-    constructor(model: Document) {
-        this._loggerFactory = LFService.createLoggerFactory(new LoggerFactoryOptions()
-            .addLogGroupRule(new LogGroupRule(new RegExp('.+'), LogLevel.Info)));
-        this._logger = this._loggerFactory.getLogger('InsertElements');
-        this._model = model;
-    }
-    public add(cache: Cache, xPath: XPathElement[], configuration: DynamicGUIConfiguration): Cache {
-        while (xPath.length > 0) {
-            const xpathElement = xPath.shift();
-            this._logger.info('XPath.length:' + xPath.length);
-            this._logger.info(
-                '\n' + 'xpathElement:' + xpathElement.element + '\n' + 'parent:' + JSON.stringify(cache.parent)
-            );
-            cache = this.insertChild(cache, xpathElement, xPath, configuration);
-        }
-        return cache;
-    }
-
-    private insertChild(
-        cache: Cache,
-        xpathElement: XPathElement,
-        xPath: XPathElement[],
-        configuration: DynamicGUIConfiguration
-    ): Cache {
-        const child = new Cache();
-        child.profileID = cache.profileID;
-        const xpath = xpathElement.element.split('[');
-        let childName;
-        const attributes = {};
-        if (xpath.length === 2) {
-            childName = xpath[0];
-            const attribute = xpath[1].slice(0, -1);
-            const attributeList: string[] = attribute.split(',');
-            for (const att in attributeList) {
-                if (attributeList[att]) {
-                    const a = att.split('=');
-                    if (a.length === 2) {
-                        attributes[a[0].slice(1)] = a[1];
-                    }
-                }
-            }
-        } else {
-            childName = xpathElement.element;
-        }
-
-        if (xPath.length > 0 ||
-            (typeof configuration.valueFix === 'undefined'
-                && typeof configuration.valueDefault === 'undefined')
-        ) {
-            const childNode = this._model.createElementNS(
-                NAMESPACES[xpathElement.prefix],
-                xpathElement.prefix.toLowerCase() + ':' + childName
-            );
-            if (xPath.length === 0) {
-                childNode.setAttribute('profileID', cache.profileID);
-            }
-            for (const key in attributes) {
-                if (attributes[key])
-                    childNode.setAttribute(key, attributes[key]);
-            }
-            cache.parent.appendChild(childNode);
-            this._logger.info('New child: ' + childNode.tagName + ' appended');
-            child.parent = childNode;
-
-        } else {
-            if (configuration.valueFix !== null || configuration.valueDefault !== null) {
-                let value;
-                if (configuration.valueFix !== null) {
-                    value = configuration.valueFix;
-                } else {
-                    value = configuration.valueDefault;
-                }
-                if (xpathElement.prefix === '@') {
-                    cache.parent.setAttribute(xpathElement.element, value);
-                    this.setProfileIDForAttribute(cache.parent, cache.profileID);
-                } else {
-                    let childNode: Element;
-                    const values = value.split(',');
-                    for (const key in values) {
-                        if (values[key]) {
-                            childNode = this._model.createElementNS(
-                                NAMESPACES[xpathElement.prefix],
-                                xpathElement.prefix.toLowerCase() + ':' + xpathElement.element
-                            );
-                            const textNode = this._model.createTextNode(values[key]);
-                            childNode.appendChild(textNode);
-                            this._logger.info(values[key] + ' pushed to ' + JSON.stringify(cache.parent));
-                            childNode.setAttribute('profileID', cache.profileID);
-                            cache.parent.appendChild(childNode);
-                        }
-                    }
-                }
-            } else {
-                if (xpathElement.prefix === '@') {
-                    this.setProfileIDForAttribute(cache.parent, cache.profileID);
-
-                } else {
-                    const childNode = this._model.createElementNS(
-                        NAMESPACES[xpathElement.prefix],
-                        xpathElement.prefix.toLowerCase() + ':' + xpathElement.element
-                    );
-                    childNode.setAttribute('profileID', cache.profileID);
-                    cache.parent.appendChild(childNode);
-                }
-            }
-
-        }
-        return child;
-    }
-
-    private setProfileIDForAttribute(parent: Element, profileID: string) {
-        let i = 0;
-        while (true) {
-            if (parent.getAttribute('profileID_' + i) === null) {
-                return parent.setAttribute('profileID_' + i, profileID);
-            }
-            i = i + 1;
-        }
     }
 }

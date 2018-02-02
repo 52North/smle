@@ -4,7 +4,7 @@ import { SweQuantity } from '../../../model/swe/SweQuantity';
 
 @Component({
     selector: 'swe-quantity',
-    template: require('./SweQuantityComponent.html')
+    templateUrl: './SweQuantityComponent.html'
 })
 export class SweQuantityComponent extends TypedModelComponent<SweQuantity> {
     protected createModel(): SweQuantity {

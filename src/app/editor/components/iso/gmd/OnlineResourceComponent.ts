@@ -4,8 +4,8 @@ import { EditorComponent } from '../../base/EditorComponent';
 
 @Component({
     selector: 'iso-online-resource',
-    template: require('./OnlineResourceComponent.html'),
-    styles: [require('../../styles/editor-component.scss')]
+    templateUrl: './OnlineResourceComponent.html',
+    styleUrls: ['../../styles/editor-component.scss']
 })
 export class OnlineResourceComponent extends EditorComponent<OnlineResource> {
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

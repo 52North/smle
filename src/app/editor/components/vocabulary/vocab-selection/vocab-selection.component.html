@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title">Select {{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <vocab-breadcrumb [breadcrumbs]="history" (selectBreadcrumb)="onBreadcrumbSelected($event)"></vocab-breadcrumb>
+  <div *ngIf="loading">loading...</div>
+  <div class="list-group" *ngIf="list">
+    <div *ngFor="let item of list">
+      <vocab-entry [entry]="item" [selectNarrowButtonLabel]="selectNarrowButtonLabel" (selected)="onSelected($event)" (narrowerSelected)="onNarrowSelected($event)"></vocab-entry>
+    </div>
+  </div>
+  <div *ngIf="narrower">
+    <div class="list-group">
+      <div *ngFor="let item of narrower | paginate: { itemsPerPage: 10, currentPage: page }">
+        <vocab-narrower-entry [url]="item" (selected)="onSelectedANarrower($event)" (narrowerSelected)="onNarrowSelected($event)"></vocab-narrower-entry>
+      </div>
+    </div>
+    <ngb-pagination class="d-flex justify-content-center" [collectionSize]="narrower.length" [(page)]="page" [maxSize]="3" [rotate]="true"
+      [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="cancel()">Cancel</button>
+</div>

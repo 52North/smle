@@ -1,18 +1,19 @@
-import { ComponentFactoryResolver, ViewContainerRef, AfterContentInit, OnInit } from '@angular/core';
-import { EditorComponent } from '../base';
-import { InputOrOutputOrParameter, DataInterface, ObservableProperty } from '../../../model/sml';
+import { AfterContentInit, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+
+import { DataInterface, InputOrOutputOrParameter, ObservableProperty } from '../../../model/sml';
 import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataArray,
+    SweDataRecord,
+    SweQuantity,
+    SweQuantityRange,
     SweText,
     SweTime,
-    SweCount,
-    SweBoolean,
-    SweQuantity,
-    SweCategory,
     SweTimeRange,
-    SweQuantityRange,
-    SweDataRecord,
-    SweDataArray
 } from '../../../model/swe';
+import { EditorComponent } from '../base/EditorComponent';
 
 export enum InputOrOutputOrParameterType {
     Unknown = 0,
@@ -34,7 +35,7 @@ export abstract class AbstractInputOrOutputOrParameterComponent<T extends InputO
     extends EditorComponent<T> implements AfterContentInit, OnInit {
 
     protected valueType: InputOrOutputOrParameterType;
-    protected title: string;
+    public title: string;
 
     constructor(
         componentFactoryResolver: ComponentFactoryResolver,

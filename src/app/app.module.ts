@@ -1,52 +1,42 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ApplicationComponent } from './app';
-import { ROUTES } from './routes';
-import { APP_PROVIDERS } from './providers';
-import { EditorModule } from './editor/editor.module';
-import { CreateModule } from './create/create.module';
+import { RouterModule } from '@angular/router';
+
+import { AppComponent } from './app';
 import { CommonSmleModule } from './common/common.module';
+import { CreateModule } from './create/create.module';
+import { EditorModule } from './editor/editor.module';
+import { APP_PROVIDERS } from './providers';
+import { ROUTES } from './routes';
+import { SamplesComponent } from './samples/samples.component';
 import { SosModule } from './sos/sos.module';
 import { TemplatesModule } from './templates/templates.module';
-import { SamplesComponent } from './samples/samples.component';
-import { EditorComponent } from './editor/editor';
-import { ConfigurationService } from './services/ConfigurationService';
 
-import '../styles/styles.scss';
-
-export function getAppModule(conf) {
-    @NgModule({
-        bootstrap: [ApplicationComponent],
-        declarations: [
-            ApplicationComponent,
-            SamplesComponent,
-            EditorComponent
-        ],
-        imports: [
-            BrowserModule,
-            BrowserAnimationsModule,
-            FormsModule,
-            HttpModule,
-            EditorModule,
-            SosModule,
-            TemplatesModule,
-            CreateModule,
-            CommonModule,
-            CommonSmleModule,
-            RouterModule.forRoot(ROUTES, { useHash: true })
-        ],
-        providers: [
-            APP_PROVIDERS,
-            ConfigurationService,
-            { provide: 'smle.config', useValue: conf }
-        ]
-    })
-    class AppModule { }
-
-    return AppModule;
-}
+@NgModule({
+    bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        SamplesComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientModule,
+        EditorModule,
+        SosModule,
+        TemplatesModule,
+        CreateModule,
+        CommonModule,
+        CommonSmleModule,
+        RouterModule.forRoot(ROUTES)
+    ],
+    providers: [
+        APP_PROVIDERS
+    ]
+})
+export class AppModule { }

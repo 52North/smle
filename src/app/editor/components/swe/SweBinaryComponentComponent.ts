@@ -4,8 +4,8 @@ import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'swe-binary-component',
-    template: require('./SweBinaryComponentComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './SweBinaryComponentComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class SweBinaryComponentComponent extends EditorComponent<SweBinaryComponent> {
     constructor(

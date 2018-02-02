@@ -4,7 +4,7 @@ import { AbstractAllowedValues } from '../../../model/swe/AbstractAllowedValues'
 
 @Component({
     selector: 'swe-abstract-allowed-values',
-    template: require('./AbstractAllowedValuesComponent.html')
+    templateUrl: './AbstractAllowedValuesComponent.html'
 })
 export class AbstractAllowedValuesComponent extends TypedModelComponent<AbstractAllowedValues> {
     protected createModel(): AbstractAllowedValues {

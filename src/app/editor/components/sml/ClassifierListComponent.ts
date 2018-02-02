@@ -1,31 +1,46 @@
 import { Component } from '@angular/core';
-import { Term } from '../../../model/sml/Term';
-import { TermComponent } from './TermComponent';
+
 import { ClassifierList } from '../../../model/sml/ClassifierList';
-import { ChildMetadata, TypedModelComponent } from '../base';
+import { Term } from '../../../model/sml/Term';
+import { ConfigurationService } from '../../../services/ConfigurationService';
+import { VocabularyType } from '../../../services/vocabulary/model';
+import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { TermComponent } from './TermComponent';
 
 @Component({
-    selector: 'sml-classifier-list',
-    template: require('./ClassifierListComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+  selector: 'sml-classifier-list',
+  templateUrl: './ClassifierListComponent.html',
+  styleUrls: ['../styles/editor-component.scss']
 })
 export class ClassifierListComponent extends TypedModelComponent<ClassifierList> {
 
-    protected createModel(): ClassifierList {
-        return new ClassifierList();
-    }
+  constructor(
+    private configuration: ConfigurationService
+  ) {
+    super();
+  }
 
-    protected openNewClassifierItem(item: Term) {
-        this.openNewChild(
-            new ChildMetadata(TermComponent, item, this.config.getConfigFor('sml:classifiers').getConfigFor('sml:Term'))
-        );
-    }
+  protected createModel(): ClassifierList {
+    return new ClassifierList();
+  }
 
-    protected onAddClassifier(): void {
-        this.model.classifiers.push(new Term());
-    }
+  protected openNewClassifierItem(item: Term) {
+    const config = this.config.getConfigFor('sml:classifier').getConfigFor('sml:Term');
+    this.configuration.getConfig().subscribe(smleConfig => {
+      let options: ChildMetadataOptions;
+      if (smleConfig.showClassifierVocabularySelection) {
+        options = { vocabularyType: VocabularyType.Classifier };
+      }
+      this.openNewChild(new ChildMetadata(TermComponent, item, config, options));
+    });
+  }
 
-    protected onRemoveClassifier(index: number): void {
-        this.model.classifiers.splice(index, 1);
-    }
+  protected onAddClassifier(): void {
+    this.model.classifiers.push(new Term());
+  }
+
+  protected onRemoveClassifier(index: number): void {
+    this.model.classifiers.splice(index, 1);
+  }
 }

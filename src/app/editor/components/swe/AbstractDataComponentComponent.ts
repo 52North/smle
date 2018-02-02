@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'swe-abstract-data',
-    template: require('./AbstractDataComponentComponent.html')
+    templateUrl: './AbstractDataComponentComponent.html'
 })
 export class AbstractDataComponentComponent extends TypedModelComponent<AbstractDataComponent> {
     protected createModel(): AbstractDataComponent {

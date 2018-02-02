@@ -4,12 +4,12 @@ import { FalseDescriptionConfig } from './FalseDescriptionConfig';
 
 export class JSONDescriptionConfig implements DescriptionConfig {
 
-    private defaultVisibility: boolean = true;
-    private defaultFixed: boolean = false;
-    private defaultMandatory: boolean = false;
-    private defaultFixedQuantity: boolean = false;
-    private defaultShowFlatten: boolean = false;
-    private defaultIsExpanded: boolean = false;
+    private defaultVisibility = true;
+    private defaultFixed = false;
+    private defaultMandatory = false;
+    private defaultFixedQuantity = false;
+    private defaultShowFlatten = false;
+    private defaultIsExpanded = false;
 
     constructor(
         private config: any
@@ -65,13 +65,14 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     }
 
     private getConfigParameter(name: string, parameter: string): any {
-        if (typeof name === 'undefined') return null;
+        if (typeof name === 'undefined') { return null; }
         const config = this.getConfig(name);
         if (typeof config !== 'undefined'
             && config.hasOwnProperty(parameter)
-            && typeof config[parameter] !== 'undefined')
+            && typeof config[parameter] !== 'undefined') {
             return config[parameter];
-        if (typeof config === 'boolean') return config;
+        }
+        if (typeof config === 'boolean') { return config; }
     }
 
     private getConfig(name: string): any {

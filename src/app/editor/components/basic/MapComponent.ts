@@ -1,38 +1,34 @@
-import { Component, AfterViewInit } from '@angular/core';
-import { DialogRef, ModalComponent } from 'angular2-modal';
-import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
-
-declare var L: any;
-
-export class MapData extends BSModalContext {
-    constructor(public center: { lng: number, lat: number }) {
-        super();
-    }
-}
+import { AfterViewInit, Component, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import * as L from 'leaflet';
 
 @Component({
     selector: 'map',
-    template: require('./MapComponent.html')
+    templateUrl: './MapComponent.html'
 })
-export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
-    private map: any;
+export class MapComponent implements AfterViewInit {
+
+    private map: L.Map;
     private marker: any;
 
-    constructor(public dialog: DialogRef<MapData>) {
-    }
+    @Input()
+    public location: L.LatLngLiteral;
+
+    constructor(
+        private activeModal: NgbActiveModal
+    ) { }
 
     ngAfterViewInit(): void {
-        const center = this.dialog.context.center;
-
         this.map = new L.Map('map', {
-            center: [center.lat, center.lng],
+            center: this.location,
             zoom: 10,
+            doubleClickZoom: false,
             layers: [new L.TileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors'
             })]
         });
 
-        this.marker = L.marker(center, {
+        this.marker = L.marker(this.location, {
             icon: L.icon({
                 iconUrl: require('../../../../../node_modules/leaflet/dist/images/marker-icon.png'),
                 shadowUrl: require('../../../../../node_modules/leaflet/dist/images/marker-shadow.png'),
@@ -40,11 +36,11 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
                 iconAnchor: [12.5, 41]
             }),
             draggable: true
-        }).bindPopup(this.getCoordText(center), {
+        }).bindPopup(this.getCoordText(this.location), {
             offset: L.point(12, 6)
         }).addTo(this.map);
 
-        this.map.on('dblclick', (e) => {
+        this.map.on('click', (e: L.LeafletMouseEvent) => {
             this.marker.setLatLng(e.latlng);
             this.updateMarkerText(e.latlng);
         });
@@ -53,20 +49,21 @@ export class MapComponent implements ModalComponent<MapData>, AfterViewInit {
             const markerCoords = this.marker.getLatLng();
             this.updateMarkerText(markerCoords);
         });
+
+        window.setTimeout(() => this.map.invalidateSize(), 10);
     }
 
-    protected close(): void {
-        this.dialog.close();
+    public close(): void {
+        this.activeModal.close();
     }
 
-    protected saveAndClose(): void {
+    public saveAndClose(): void {
         const centerLatLng = this.marker.getLatLng();
         const center = {
             lat: centerLatLng.lat,
             lng: centerLatLng.lng
         };
-
-        this.dialog.close(center);
+        this.activeModal.close(center);
     }
 
     private updateMarkerText(markerCoords) {

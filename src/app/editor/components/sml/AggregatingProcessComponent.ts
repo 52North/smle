@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { TypedModelComponent } from '../base/TypedModelComponent';
+
 import { AggregatingProcess } from '../../../model/sml';
 import { ConnectDescriptionService } from '../../../sos/connect/connect.service';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
   selector: 'sml-aggregating-process',
-  template: require('./AggregatingProcessComponent.html')
+  templateUrl: './AggregatingProcessComponent.html'
 })
 export class AggregatingProcessComponent extends TypedModelComponent<AggregatingProcess> {
 

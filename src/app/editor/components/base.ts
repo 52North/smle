@@ -1,4 +1,7 @@
-export * from './base/BaseComponent';
-export * from './base/ChildMetadata';
-export * from './base/EditorComponent';
-export * from './base/TypedModelComponent';
+import { DynamicElementComponent } from './base/dynamic-element.component';
+import { HostDirective } from './base/host.directive';
+
+export const BASE_COMPONENTS = [
+    DynamicElementComponent,
+    HostDirective
+];

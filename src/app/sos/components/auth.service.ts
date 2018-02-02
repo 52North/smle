@@ -1,6 +1,7 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
 import { ConfigurationService } from '../../services/ConfigurationService';
 
 @Injectable()
@@ -16,21 +17,22 @@ export class AuthService {
     private oauthCallbackUrl: string;
 
     constructor(
-        private http: Http,
+        private http: HttpClient,
         private configurationService: ConfigurationService
     ) {
-        const config = this.configurationService.config;
-        this.authUrl = config.authUrl;
-        this.logOutUrl = config.logOutUrl;
-        this.userInfoUrl = config.userInfoUrl;
-        this.oauthCallbackUrl = config.oauthCallbackUrl;
-        this.getUserInfo();
+        this.configurationService.getConfig().subscribe(config => {
+            this.authUrl = config.authUrl;
+            this.logOutUrl = config.logOutUrl;
+            this.userInfoUrl = config.userInfoUrl;
+            this.oauthCallbackUrl = config.oauthCallbackUrl;
+            this.getUserInfo();
+        });
     }
 
     public logIn() {
         window.open(this.authUrl, '_blank');
         const listener = (event) => {
-            if (event.origin !== this.oauthCallbackUrl) return;
+            if (event.origin !== this.oauthCallbackUrl) { return; }
             window.removeEventListener('message', listener, true);
             this.getUserInfo();
         };
@@ -52,11 +54,10 @@ export class AuthService {
     }
 
     private getUserInfo() {
-        this.http.get(this.userInfoUrl, { withCredentials: true })
+        this.http.get<{ user: UserInfo }>(this.userInfoUrl, { withCredentials: true })
             .map((res) => {
-                const json = res.json();
-                if (json.user) {
-                    this.loggedInUser = json.user as UserInfo;
+                if (res.user) {
+                    this.loggedInUser = res.user as UserInfo;
                     this.logInChangesEvent.emit(true);
                 }
             })
@@ -65,7 +66,7 @@ export class AuthService {
     }
 
     private handleError(res: Response) {
-        if (res.status === 0) return Observable.throw('Could not reach the service!');
+        if (res.status === 0) { return Observable.throw('Could not reach the service!'); }
     }
 }
 

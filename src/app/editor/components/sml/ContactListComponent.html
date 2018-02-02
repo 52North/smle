@@ -1,4 +1,4 @@
-<div class="form-group" *ngIf="config.existInForm('sml:contact',model,'contacts') &&(isShowAll || config.isFieldVisible('sml:contact','textField',model,'contacts'))">
+<div *ngIf="config.existInForm('sml:contact',model,'contacts') &&(isShowAll || config.isFieldVisible('sml:contact','textField',model,'contacts'))">
     <label for="contacts">{{getDisplayName('contacts')}}</label>
     <list [list]="model.contacts" (select)="openNewResponsiblePartyItem($event)" (remove)="onRemove($event)" (add)="onAdd()"></list>
 </div>

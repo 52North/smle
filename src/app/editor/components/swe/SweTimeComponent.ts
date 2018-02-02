@@ -4,7 +4,7 @@ import { SweTime } from '../../../model/swe/SweTime';
 
 @Component({
     selector: 'swe-time',
-    template: require('./SweTimeComponent.html')
+    templateUrl: './SweTimeComponent.html'
 })
 export class SweTimeComponent extends TypedModelComponent<SweTime> {
     protected createModel(): SweTime {

@@ -4,7 +4,7 @@ import { SweBoolean } from '../../../model/swe/SweBoolean';
 
 @Component({
     selector: 'swe-boolean',
-    template: require('./SweBooleanComponent.html')
+    templateUrl: './SweBooleanComponent.html'
 })
 export class SweBooleanComponent extends TypedModelComponent<SweBoolean> {
     protected createModel(): SweBoolean {

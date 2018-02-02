@@ -1,23 +1,37 @@
-import { Injectable, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+export interface Configuration {
+    showIdentifierVocabularySelection: boolean;
+    showClassifierVocabularySelection: boolean;
+    showCharacteristicVocabularySelection: boolean;
+    showHistoryVocabularySelection: boolean;
+    showCapabilityVocabularySelection: boolean;
+    showContactVocabularySelection: boolean;
+    sosUrl: string;
+    proxyUrl: string;
+    authUrl: string;
+    logOutUrl: string;
+    userInfoUrl: string;
+    templatesUrl: string;
+    oauthCallbackUrl: string;
+}
 
 @Injectable()
 export class ConfigurationService {
 
-    public config: Configuration;
+    private config: Configuration;
 
     constructor(
-        @Inject('smle.config') config: any
-    ) {
-        this.config = config as Configuration;
-    }
-}
+        private http: HttpClient
+    ) { }
 
-export class Configuration {
-    public sosUrl: string;
-    public proxyUrl: string;
-    public authUrl: string;
-    public logOutUrl: string;
-    public userInfoUrl: string;
-    public templatesUrl: string;
-    public oauthCallbackUrl: string;
+    public getConfig(): Observable<Configuration> {
+        if (this.config) {
+            return Observable.of(this.config);
+        } else {
+            return this.http.get<Configuration>('./assets/configuration.json');
+        }
+    }
 }

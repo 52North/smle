@@ -4,7 +4,7 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'swe-abstract',
-    template: require('./AbstractSWEComponent.html')
+    templateUrl: './AbstractSWEComponent.html'
 })
 export class AbstractSWEComponent extends TypedModelComponent<AbstractSWE> {
     protected createModel(): AbstractSWE {

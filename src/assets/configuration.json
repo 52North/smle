@@ -1,0 +1,15 @@
+{
+  "showIdentifierVocabularySelection": true,
+  "showClassifierVocabularySelection": true,
+  "showCharacteristicVocabularySelection": true,
+  "showHistoryVocabularySelection": true,
+  "showCapabilityVocabularySelection": true,
+  "showContactVocabularySelection": true,
+  "sosUrl": "http://localhost:3002/52n-sos-webapp/service",
+  "proxyUrl": "http://localhost:3001/api/proxy",
+  "authUrl": "http://localhost:3001/auth/wp",
+  "logOutUrl": "http://localhost:3001/auth/logout",
+  "userInfoUrl": "http://localhost:3001/auth/info",
+  "templatesUrl": "http://localhost:3005/solr/yellowPages",
+  "oauthCallbackUrl": "http://localhost:3000"
+}

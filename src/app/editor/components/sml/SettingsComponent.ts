@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
-import { Settings, ValueSetting, ModeSetting, StatusSetting } from '../../../model/sml';
-import { ValueSettingComponent } from './ValueSettingComponent';
+
+import { ModeSetting, Settings, StatusSetting, ValueSetting } from '../../../model/sml';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ModeSettingComponent } from './ModeSettingComponent';
 import { StatusSettingComponent } from './StatusSettingComponent';
+import { ValueSettingComponent } from './ValueSettingComponent';
 
 @Component({
     selector: 'sml-settings',
-    template: require('./SettingsComponent.html')
+    templateUrl: './SettingsComponent.html'
 })
 export class SettingsComponent extends TypedModelComponent<Settings> {
 

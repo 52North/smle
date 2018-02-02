@@ -3,8 +3,8 @@ import { Parameter } from '../../../model/sml/Parameter';
 import { AbstractInputOrOutputOrParameterComponent } from '../basic/AbstractInputOrOutputOrParameterComponent';
 
 @Component({
-    template: require('../basic/AbstractInputOrOutputOrParameterComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: '../basic/AbstractInputOrOutputOrParameterComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class ParameterComponent extends AbstractInputOrOutputOrParameterComponent<Parameter> {
 

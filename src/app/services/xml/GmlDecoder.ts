@@ -28,10 +28,10 @@ export class GmlDecoder {
 
     public decodeTime(elem: Element): ReturnObject<AbstractTime> {
         const timeInstant = this.decodeTimeInstant(elem);
-        if (timeInstant != null) return timeInstant;
+        if (timeInstant != null) { return timeInstant; }
 
         const timePeriod = this.decodeTimePeriod(elem);
-        if (timePeriod != null) return timePeriod;
+        if (timePeriod != null) { return timePeriod; }
     }
 
     public decodeTimeInstant(elem: Element): ReturnObject<AbstractTime> {

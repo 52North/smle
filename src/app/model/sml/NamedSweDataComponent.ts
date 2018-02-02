@@ -3,7 +3,7 @@ import { DisplayName } from '../../common/decorators/DisplayName';
 
 export class NamedSweDataComponent {
     @DisplayName('Name')
-    name: string = '';
+    name = '';
 
     @DisplayName('Component')
     component: AbstractDataComponent;

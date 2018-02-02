@@ -1,17 +1,17 @@
 import {
     Component,
-    Input,
-    ViewChild,
     ComponentFactoryResolver,
+    EventEmitter,
+    Input,
     OnChanges,
+    Output,
     SimpleChanges,
     Type,
-    Output,
-    EventEmitter
+    ViewChild,
 } from '@angular/core';
-import { HostDirective } from './host.directive';
+
 import { ChildMetadata } from './ChildMetadata';
-import { TypedModelComponent } from './TypedModelComponent';
+import { HostDirective } from './host.directive';
 
 @Component({
     selector: 'dynamic-element',
@@ -31,7 +31,7 @@ export class DynamicElementComponent implements OnChanges {
     public config: any;
 
     @Input()
-    public isShowAll: boolean = false;
+    public isShowAll = false;
 
     @Output()
     public openAsChild: EventEmitter<ChildMetadata<any>> = new EventEmitter<ChildMetadata<any>>();
@@ -82,8 +82,8 @@ export class DynamicElementComponent implements OnChanges {
     }
 
     public isModelSet(): boolean {
-        if (Array.isArray(this.model) && this.model.length > 0) return true;
-        if (!Array.isArray(this.model) && this.model) return true;
+        if (Array.isArray(this.model) && this.model.length > 0) { return true; }
+        if (!Array.isArray(this.model) && this.model) { return true; }
         return false;
     }
 

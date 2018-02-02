@@ -14,7 +14,7 @@ import { ComponentType } from '../sml/NamedSweDataComponentComponent';
 
 @Component({
     selector: 'swe-element-type',
-    template: require('./SweElementTypeComponent.html')
+    templateUrl: './SweElementTypeComponent.html'
 })
 export class SweElementTypeComponent extends TypedModelComponent<SweElementType> implements AfterContentInit {
     private typeType: ComponentType;

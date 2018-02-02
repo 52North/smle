@@ -5,7 +5,7 @@ const DATE_TIME_SEPARATOR = ' ';
 
 @Component({
     selector: 'date-picker',
-    template: require('./DatePickerComponent.html')
+    templateUrl: './DatePickerComponent.html'
 })
 export class DatePickerComponent implements OnChanges {
     @Input()
@@ -19,9 +19,9 @@ export class DatePickerComponent implements OnChanges {
     public modelChange: EventEmitter<Date> = new EventEmitter<Date>();
 
     protected dateTimeString: string;
-    protected dateFormat: string = 'dd.mm.yy';
-    protected timeFormat: string = 'HH:mm';
-    private momentDateFormat: string = 'DD.MM.YYYY';
+    protected dateFormat = 'dd.mm.yy';
+    protected timeFormat = 'HH:mm';
+    private momentDateFormat = 'DD.MM.YYYY';
 
     public ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
         const modelChange = changes['model'];

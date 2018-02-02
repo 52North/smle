@@ -1,8 +1,12 @@
-import { AbstractProcess } from '../model/sml';
-import { CodeType } from '../model/gml';
+import 'rxjs/add/observable/of';
+
 import { Injectable } from '@angular/core';
-import { DescriptionRepository } from './DescriptionRepository';
+import { Observable } from 'rxjs/Observable';
+
+import { CodeType } from '../model/gml';
+import { AbstractProcess } from '../model/sml';
 import { SampleDataLoader } from '../services/SampleDataLoader';
+import { DescriptionRepository } from './DescriptionRepository';
 
 @Injectable()
 export class InMemoryDescriptionRepository extends DescriptionRepository {
@@ -22,38 +26,38 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
         super();
     }
 
-    getDescriptions(): Promise<Array<string>> {
+    getDescriptions(): Observable<Array<string>> {
         let list = this._samples;
         list = list.concat(Object.keys(this._descriptions));
-        return Promise.resolve(list);
+        return Observable.of(list);
     }
 
-    getDescription(id: string): Promise<AbstractProcess> {
+    getDescription(id: string): Observable<AbstractProcess> {
         if (this._samples.indexOf(id) > -1) {
             return this.dataloader.loadSample('./examples/' + id + '.xml');
         }
         if (!this._descriptions[id]) {
-            return Promise.reject<AbstractProcess>(new Error('does not exist'));
+            return Observable.throw(new Error('does not exist'));
         }
-        return Promise.resolve(this._descriptions[id]);
+        return Observable.of(this._descriptions[id]);
     }
 
-    saveDescription(description: AbstractProcess): Promise<void> {
+    saveDescription(description: AbstractProcess): Observable<void> {
         const id = this._getId(description);
         if (this._descriptions[id]) {
-            return Promise.reject(new Error('already saved'));
+            return Observable.throw(new Error('already saved'));
         }
         this._descriptions[id] = description;
-        return Promise.resolve();
+        return Observable.of();
     }
 
-    updateDescription(description: AbstractProcess): Promise<void> {
+    updateDescription(description: AbstractProcess): Observable<void> {
         const id = this._getId(description);
         if (!this._descriptions[id]) {
-            return Promise.reject(new Error('not yet saved'));
+            return Observable.throw(new Error('not yet saved'));
         }
         this._descriptions[id] = description;
-        return Promise.resolve();
+        return Observable.of();
     }
 
     private _getId(description: AbstractProcess): string {

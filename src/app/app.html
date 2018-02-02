@@ -1,39 +1,51 @@
 <header>
-    <div class="logos">
-        <a class="n52" href="https://52north.org/" target="_blank"></a>
-        <a class="plocan" href="http://www.plocan.eu/" target="_blank"></a>
-        <a class="fixo3" href="http://www.fixo3.eu/" target="_blank"></a>
-        <a class="nexos" href="http://www.nexosproject.eu/" target="_blank"></a>
-    </div>
-    <div>
-        <nav class="navbar navbar-dark bg-inverse">
-            <a class="navbar-brand" [routerLink]="['/']">
-                smle<sub>/ˈsmaɪli/</sub>
-                — The Friendly SensorML Editor ☺
-            </a>
-            <ul class="nav navbar-nav">
-                <li router-active="active" class="nav-item">
-                    <a class="nav-link" [routerLink]="['/create']">New</a>
-                </li>
-                <li router-active="active" class="nav-item">
-                    <a class="nav-link" [routerLink]="['/fetch']">Edit/View</a>
-                </li>
-                <li router-active="active" class="nav-item" *loggedIn>
-                    <a class="nav-link" [routerLink]="['/delete']">Delete</a>
-                </li>
-                <li router-active="active" class="nav-item">
-                    <a class="nav-link" [routerLink]="['/templates']">Create from Template</a>
-                </li>
-            </ul>
-            <div class="nav navbar-nav" style="float: right;">
-                <a class="nav-link">
-                    <proxy-authentication></proxy-authentication>
-                </a>
-            </div>
-        </nav>
-    </div>
+  <div class="logos">
+    <a class="n52" href="https://52north.org/" target="_blank"></a>
+    <a class="plocan" href="http://www.plocan.eu/" target="_blank"></a>
+    <a class="fixo3" href="http://www.fixo3.eu/" target="_blank"></a>
+    <a class="nexos" href="http://www.nexosproject.eu/" target="_blank"></a>
+  </div>
+  <div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand" href="https://52north.org/">
+        <img src="assets/img/favicon.ico" width="32" height="32" class="d-inline-block align-top" alt="">
+      </a>
+      <a class="navbar-brand" [routerLink]="['/']">
+        smle
+        <sub>/ˈsmaɪli/</sub>
+        — The Friendly SensorML Editor ☺
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li router-active="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/create']">New</a>
+          </li>
+          <li router-active="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/fetch']">Edit/View</a>
+          </li>
+          <li router-active="active" class="nav-item" *loggedIn>
+            <a class="nav-link" [routerLink]="['/delete']">Delete</a>
+          </li>
+          <li router-active="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/templates']">Create from Template</a>
+          </li>
+        </ul>
+        <div class="nav navbar-nav" style="float: right;">
+          <a class="nav-link">
+            <proxy-authentication></proxy-authentication>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
 </header>
 <main class="container-fluid">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </main>
 <footer></footer>

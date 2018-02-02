@@ -1,6 +1,6 @@
 <form>
     <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
-    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('sml:classifiers')">
+    <div *ngIf="isShowAll || config.isFieldVisible('sml:classifiers')">
         <label for="classifiers">{{getDisplayName('classifiers')}}</label>
         <list [list]="model.classifiers" (select)="openNewClassifierItem($event)" (remove)="onRemoveClassifier($event)" (add)="onAddClassifier()"></list>
     </div>

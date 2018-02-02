@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import { ChildMetadata, TypedModelComponent } from '../base';
-import { SweBinaryEncoding } from '../../../model/swe/SweBinaryEncoding';
+
 import { SweBinaryBlock } from '../../../model/swe/SweBinaryBlock';
 import { SweBinaryComponent } from '../../../model/swe/SweBinaryComponent';
+import { SweBinaryEncoding } from '../../../model/swe/SweBinaryEncoding';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { SweBinaryBlockComponent } from './SweBinaryBlockComponent';
 import { SweBinaryComponentComponent } from './SweBinaryComponentComponent';
 
 @Component({
     selector: 'swe-binary-encoding',
-    template: require('./SweBinaryEncodingComponent.html')
+    templateUrl: './SweBinaryEncodingComponent.html'
 })
 export class SweBinaryEncodingComponent extends TypedModelComponent<SweBinaryEncoding> {
     protected createModel(): SweBinaryEncoding {

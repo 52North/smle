@@ -4,8 +4,8 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'sml-abstract-setting',
-    template: require('./AbstractSettingComponent.html'),
-    styles: [require('../styles/editor-component.scss')]
+    templateUrl: './AbstractSettingComponent.html',
+    styleUrls: ['../styles/editor-component.scss']
 })
 export class AbstractSettingComponent extends TypedModelComponent<AbstractSetting> {
     protected createModel(): AbstractSetting {

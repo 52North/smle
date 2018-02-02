@@ -1,8 +1,8 @@
 <form>
-    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'codeSpace'" [configName]="'@:codeSpace'"></text-field>
-    <div class="form-group" *ngIf="config.existInForm('sml:keyword',model,'keyword') &&(isShowAll || config.isFieldVisible('sml:keyword','textField',model,'keyword'))">
-        <label for="keywords">Keywords</label>
-        <strings [list]="model.keywords" [fieldName]="'keyword'" [configName]="'sml:keyword'" [config]="config"></strings>
-    </div>
-    <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
+  <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'codeSpace'" [configName]="'@:codeSpace'"></text-field>
+  <div *ngIf="config.existInForm('sml:keyword',model,'keyword') &&(isShowAll || config.isFieldVisible('sml:keyword','textField',model,'keyword'))">
+    <label for="keywords">Keywords</label>
+    <strings [list]="model.keywords" [fieldName]="'keyword'" [configName]="'sml:keyword'" [config]="config"></strings>
+  </div>
+  <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
 </form>

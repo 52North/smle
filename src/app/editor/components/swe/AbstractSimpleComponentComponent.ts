@@ -4,7 +4,7 @@ import { AbstractSimpleComponent } from '../../../model/swe/AbstractSimpleCompon
 
 @Component({
     selector: 'swe-abstract-simple-component',
-    template: require('./AbstractSimpleComponentComponent.html')
+    templateUrl: './AbstractSimpleComponentComponent.html'
 })
 export class AbstractSimpleComponentComponent extends TypedModelComponent<AbstractSimpleComponent> {
     protected createModel(): AbstractSimpleComponent {

@@ -1,0 +1,8 @@
+:host {
+    background-color: aqua;
+    li.breadcrumb-item {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

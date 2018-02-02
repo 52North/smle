@@ -4,7 +4,7 @@ import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'sml-abstract-named-metadata-list',
-    template: require('./AbstractNamedMetadataListComponent.html')
+    templateUrl: './AbstractNamedMetadataListComponent.html'
 })
 export class AbstractNamedMetadataListComponent extends TypedModelComponent<AbstractNamedMetadataList> {
     protected createModel(): AbstractNamedMetadataList {

@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess, Term } from '../model/sml';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+
+import { AbstractProcess, PhysicalComponent, PhysicalSystem, SimpleProcess, Term } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
+import { XmlService } from '../services/XmlService';
 import { PublishDescriptionService } from '../sos/publish/publish.service';
 import { SosService } from '../sos/sos.service';
-import { XmlService } from '../services/XmlService';
-import { Observable, Observer } from 'rxjs';
-import { DescriptionConfigService } from './DescriptionConfigService';
 import { DescriptionConfig } from './config/DescriptionConfig';
-import { EditorMode } from './EditorMode';
-import { DynamicGUIService } from './dynamicGUI/DynamicGUIService';
+import { DescriptionConfigService } from './DescriptionConfigService';
 import { DynamicGUIObject } from './dynamicGUI/DynamicGUIObject';
+import { DynamicGUIService } from './dynamicGUI/DynamicGUIService';
+import { EditorMode } from './EditorMode';
 
 export enum DescriptionType {
     PhysicalSystem = 1,
@@ -48,16 +50,18 @@ export class EditorService {
         this.editorMode = EditorMode.Default;
         return new Observable<AbstractProcess>((observer: Observer<AbstractProcess>) => {
             if (id) {
-                this.service.getDescription(id).then((desc) => {
-                    this.description = desc;
-                    observer.next(this.description);
-                    observer.complete();
-                }).catch((error) => {
-                    observer.error(error);
-                    observer.complete();
-                });
+                this.service.getDescription(id).subscribe(
+                    (desc) => {
+                        this.description = desc;
+                        observer.next(this.description);
+                        observer.complete();
+                    },
+                    (error) => {
+                        observer.error(error);
+                        observer.complete();
+                    });
             } else {
-                if (!this.description) this.description = null;
+                if (!this.description) { this.description = null; }
                 observer.next(this.description);
                 observer.complete();
             }

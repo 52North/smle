@@ -4,7 +4,7 @@ import { EditorService } from '../../services/EditorService';
 
 @Component({
     selector: 'new-description',
-    template: require('./new.component.html')
+    templateUrl: './new.component.html'
 })
 export class NewComponent {
     public descriptionTypes: string[] = [

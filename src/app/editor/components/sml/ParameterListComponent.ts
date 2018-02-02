@@ -1,23 +1,25 @@
 import { Component, Type } from '@angular/core';
-import { TypedModelComponent, ChildMetadata } from '../base';
-import { ParameterList, Parameter, DataInterface, ObservableProperty } from '../../../model/sml';
-import { ParameterComponent } from './ParameterComponent';
+
+import { DataInterface, ObservableProperty, Parameter, ParameterList } from '../../../model/sml';
 import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataArray,
+    SweDataRecord,
+    SweQuantity,
+    SweQuantityRange,
     SweText,
     SweTime,
-    SweCount,
-    SweBoolean,
-    SweQuantity,
-    SweCategory,
     SweTimeRange,
-    SweQuantityRange,
-    SweDataRecord,
-    SweDataArray
 } from '../../../model/swe';
+import { ChildMetadata } from '../base/ChildMetadata';
+import { TypedModelComponent } from '../base/TypedModelComponent';
+import { ParameterComponent } from './ParameterComponent';
 
 @Component({
     selector: 'sml-parameter-list',
-    template: require('./ParameterListComponent.html')
+    templateUrl: './ParameterListComponent.html'
 })
 export class ParameterListComponent extends TypedModelComponent<ParameterList> {
 
