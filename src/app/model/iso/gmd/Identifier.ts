@@ -1,5 +1,5 @@
-import { Citation } from './Citation';
 import { DisplayName } from '../../../common/decorators/DisplayName';
+import { Citation } from './Citation';
 
 export class Identifier {
     @DisplayName('Authority')

@@ -1,9 +1,9 @@
-import { IsoDate } from './IsoDate';
-import { Identifier } from './Identifier';
-import { ResponsibleParty } from './ResponsibleParty';
-import { PresentationForm } from './PresentationForm';
-import { Series } from './Series';
 import { DisplayName } from '../../../common/decorators/DisplayName';
+import { Identifier } from './Identifier';
+import { IsoDate } from './IsoDate';
+import { PresentationForm } from './PresentationForm';
+import { ResponsibleParty } from './ResponsibleParty';
+import { Series } from './Series';
 
 export class Citation {
     @DisplayName('Title')
