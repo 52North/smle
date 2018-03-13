@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
@@ -30,8 +30,8 @@ export enum ComponentType {
   SweDataArray = 10
 }
 
-abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> implements AfterContentInit {
-  protected componentType: ComponentType;
+abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> implements OnInit {
+  public componentType: ComponentType;
   public title: string;
 
   constructor(
@@ -42,7 +42,7 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
     super(componentFactoryResolver, viewContainerRef);
   }
 
-  ngAfterContentInit(): any {
+  public ngOnInit() {
     this.componentType = this.getComponentType();
   }
 
@@ -51,7 +51,6 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
     (ref.componentInstance as VocabSelectionComponent).vocabType = this.componentOptions.vocabularyType;
     ref.result.then((result: SelectionResult) => { if (result) { this.setVocabularyResult(result); } });
   }
-
 
   protected abstract setVocabularyResult(result: SelectionResult);
 
@@ -106,7 +105,7 @@ export class NamedSweDataComponentComponent extends AbstractNamedComponentCompon
   }
 
   public ngOnInit() {
-    console.log(this.model);
+    super.ngOnInit();
     if (this.model && this.model.component) {
       this.title = this.model.component.toString();
     } else {
