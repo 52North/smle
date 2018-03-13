@@ -1,8 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
 
-declare var jQuery: any;
-
 @Pipe({
     name: 'toSensorml',
     pure: false
