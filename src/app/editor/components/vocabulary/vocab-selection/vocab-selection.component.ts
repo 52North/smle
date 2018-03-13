@@ -58,7 +58,7 @@ export class VocabSelectionComponent implements OnInit {
       definition: this.firstSelection.uri,
       label: this.firstSelection.label,
       description: item.description,
-      value: item.label
+      value: item.uri
     };
     this.activeModal.close(result);
   }
