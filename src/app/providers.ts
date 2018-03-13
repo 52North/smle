@@ -1,8 +1,6 @@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CachingInterceptor, HttpCache, LocalHttpCache, LocalOngoingHttpCache, OnGoingHttpCache } from '@helgoland/caching';
 
-import { CachingInterceptor, HttpCache, OnGoingHttpCache } from './services/caching/caching-interceptor';
-import { LocalHttpCache } from './services/caching/local-http-cache';
-import { LocalOngoingHttpCache } from './services/caching/local-ongoing-http-cache';
 import { ConfigurationService } from './services/ConfigurationService';
 import { DescriptionConfigService } from './services/DescriptionConfigService';
 import { DescriptionRepository } from './services/DescriptionRepository';

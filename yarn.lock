@@ -158,6 +158,10 @@
   dependencies:
     tslib "^1.7.1"
 
+"@helgoland/caching@^0.0.1-alpha.38":
+  version "0.0.1-alpha.38"
+  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.38.tgz#bb1b0883cef09b7c31f61556286aa37d5e147f62"
+
 "@ng-bootstrap/ng-bootstrap@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-1.0.0.tgz#8f2ae70db2fe1dcbf5e0acb49dc2b1bbba2be8d2"
