@@ -6,3 +6,10 @@ export enum VocabularyType {
     Capability,
     Contact
 }
+
+export interface VocabularyEntry {
+    label: string;
+    uri: string;
+    description: string;
+    narrower: string[];
+}

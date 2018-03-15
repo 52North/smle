@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { VocabularyType } from '../../../../services/vocabulary/model';
-import { VocabularyEntry } from '../../../../services/vocabulary/nerc/model';
+import { VocabularyEntry, VocabularyType } from '../../../../services/vocabulary/model';
 import { VocabularyService } from '../../../../services/vocabulary/vocabulary.service';
 
 export interface SelectionResult {
@@ -29,6 +28,8 @@ export class VocabSelectionComponent implements OnInit {
 
   public history: VocabularyEntry[] = [];
 
+  public searchterm: string;
+
   private firstSelection: VocabularyEntry;
 
   public page = 1;
@@ -39,8 +40,16 @@ export class VocabSelectionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loadBaseVocabularyList();
     this.createBaseTitle();
+  }
+
+  public triggerSearch() {
+    if (this.searchterm) {
+      this.list = null;
+      this.loading = true;
+      this.vocab.searchVocabEntries(this.vocabType, this.searchterm)
+        .subscribe(res => this.list = res, error => { }, () => this.loading = false);
+    }
   }
 
   public onSelected(item: VocabularyEntry) {
@@ -86,7 +95,7 @@ export class VocabSelectionComponent implements OnInit {
     this.narrower = item.narrower.filter(e => e.startsWith('http://vocab'));
   }
 
-  private loadBaseVocabularyList() {
+  private navigateEntries() {
     this.list = null;
     this.loading = true;
     this.vocab.getVocabList(this.vocabType).subscribe(res => this.list = res, error => { }, () => this.loading = false);

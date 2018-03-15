@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { VocabularyEntry } from '../../../../services/vocabulary/nerc/model';
+import { VocabularyEntry } from '../../../../services/vocabulary/model';
 import { VocabularyService } from '../../../../services/vocabulary/vocabulary.service';
 
 @Component({

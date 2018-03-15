@@ -5,9 +5,9 @@
   <div class="row">
     <div class="col-auto label">
       <span>{{entry.label}}</span>
+      <i class="fa fa-fw fa-question" ngbPopover="{{entry.description}}" placement="auto" triggers="mouseenter:mouseleave"></i>
     </div>
     <div class="col-auto ml-auto" *ngIf="entry.narrower.length">
-      <i class="fa fa-fw fa-question" ngbPopover="{{entry.description}}" placement="auto" triggers="mouseenter:mouseleave"></i>
       <button type="button" class="btn btn-primary btn-sm" (click)="selectByNarrower(entry);$event.stopPropagation();">
         <span>{{selectNarrowButtonLabel}}</span>
         <i class="fa fa-fw fa-angle-right"></i>

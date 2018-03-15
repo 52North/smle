@@ -1,7 +1,7 @@
 import { AbstractXmlService } from '../../AbstractXmlService';
 import { DecoderUtils } from '../../xml/DecoderUtils';
-import { VocabularyEntry } from './model';
-import { NERC_NAMESPACES } from './namespaces';
+import { VocabularyEntry } from '../model';
+import { NERC_NAMESPACES } from './model';
 
 export class NercVocabularyDecoderService extends AbstractXmlService<VocabularyEntry[]> {
 
