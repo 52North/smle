@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { HelgolandCachingModule } from '@helgoland/caching';
+import { HttpService } from '@helgoland/core';
 
 import { AppComponent } from './app';
 import { CreateModule } from './create/create.module';
@@ -27,10 +29,12 @@ import { SamplesComponent } from './samples/samples.component';
     EditorModule,
     CreateModule,
     CommonModule,
+    HelgolandCachingModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    HttpService
   ]
 })
 export class AppModule { }

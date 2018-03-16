@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpService } from '@helgoland/core';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import { Observer } from 'rxjs/Observer';
@@ -17,7 +17,7 @@ export class NercVocabularyService implements VocabularyService {
   private sparqlUrl = 'http://vocab.nerc.ac.uk/sparql/sparql';
 
   constructor(
-    private httpClient: HttpClient
+    private httpService: HttpService
   ) { }
 
   public getVocabList(type: VocabularyType): Observable<VocabularyEntry[]> {
@@ -87,7 +87,7 @@ export class NercVocabularyService implements VocabularyService {
       // Open Questions:
       //    - How can I search on specific collections (e.g. http://vocab.nerc.ac.uk/collection/W06/current/ )
       //    - How can I group a result list when I search with the narrower parameter
-      this.httpClient
+      this.httpService.client()
         .get<NercSparqlResponse>(this.sparqlUrl, {
           params: {
             query: 'BASE <http://vocab.nerc.ac.uk/collection/> ' +
@@ -148,13 +148,13 @@ export class NercVocabularyService implements VocabularyService {
   }
 
   private requestVocabEntries(path: string): Observable<VocabularyEntry[]> {
-    return this.httpClient
+    return this.httpService.client()
       .get(this.proxyUrl + this.nercUrl + path, { responseType: 'text' })
       .map(res => new NercVocabularyDecoderService().deserialize(res));
   }
 
   private requestVocabEntry(url: string): Observable<VocabularyEntry> {
-    return this.httpClient
+    return this.httpService.client()
       .get(this.proxyUrl + url, { responseType: 'text' })
       .map(res => {
         const list = new NercVocabularyDecoderService().deserialize(res);

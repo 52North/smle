@@ -159,8 +159,19 @@
     tslib "^1.7.1"
 
 "@helgoland/caching@^0.0.1-alpha.38":
-  version "0.0.1-alpha.38"
-  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.38.tgz#bb1b0883cef09b7c31f61556286aa37d5e147f62"
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.39.tgz#3fec44922de1dd716b20bb47a476b2ab7fea364c"
+
+"@helgoland/core@^0.0.1-alpha.39":
+  version "0.0.1-alpha.39"
+  resolved "https://registry.yarnpkg.com/@helgoland/core/-/core-0.0.1-alpha.39.tgz#2e3b7b35a26a47bae68d92bbc9199012847806de"
+  dependencies:
+    "@ngx-translate/core" "^9.1.1"
+    "@types/deep-equal" "^0.0.30"
+    "@types/geojson" "^7946.0.1"
+    class-transformer "^0.1.9"
+    deep-equal "^1.0.1"
+    moment "^2.20.1"
 
 "@ng-bootstrap/ng-bootstrap@^1.0.0":
   version "1.0.1"
@@ -183,13 +194,21 @@
     tree-kill "^1.0.0"
     webpack-sources "^1.1.0"
 
+"@ngx-translate/core@^9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-9.1.1.tgz#ae103928836b8a9e069fd2e2e76fa2198cc7e628"
+
 "@schematics/angular@~0.1.12":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.1.17.tgz#084a7cbe2de6f94a856bd08d95c9d35ef8905e2b"
   dependencies:
     typescript "~2.6.2"
 
-"@types/geojson@*":
+"@types/deep-equal@^0.0.30":
+  version "0.0.30"
+  resolved "https://registry.yarnpkg.com/@types/deep-equal/-/deep-equal-0.0.30.tgz#c14df825c9201a1804980e7ebc3ef30e137bb64c"
+
+"@types/geojson@*", "@types/geojson@^7946.0.1":
   version "7946.0.2"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.2.tgz#0bd0a01ef04e813c2b7580318da9e37c2eadea9c"
 
@@ -1151,6 +1170,10 @@ clap@^1.0.9:
   resolved "https://registry.yarnpkg.com/clap/-/clap-1.2.3.tgz#4f36745b32008492557f46412d66d50cb99bce51"
   dependencies:
     chalk "^1.1.3"
+
+class-transformer@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.1.9.tgz#29977c528233ca014e6fd9523327ebd31d11ca54"
 
 clean-css@4.1.x:
   version "4.1.9"
