@@ -1,5 +1,5 @@
 <gml-abstract-feature [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract-feature>
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'language'" [configName]="'sml:language'"></text-field>
+<text-field *ngIf="!config.getConfigFor('sml:language').isHidden()" [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'language'" [configName]="'sml:language'"></text-field>
 <expand-wrapper *ngIf="!config.getConfigFor('sml:keywords').isHidden()" [title]="getDisplayName('keywords')" [expanded]="config.getConfigFor('sml:keywords').isExpanded()">
   <div *ngIf="config.existInForm('sml:keywords',model,'keywords') && (isShowAll || config.isFieldVisible('sml:keywords','textField',model,'keywords'))">
     <list *ngIf="!config.getConfigFor('sml:keywords').showFlatten('sml:KeywordList')" [list]="model.keywords" [fixLength]="config.getConfigFor('sml:keywords').elementFixQuantity('sml:KeywordList')"
