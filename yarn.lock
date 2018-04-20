@@ -158,13 +158,13 @@
   dependencies:
     tslib "^1.7.1"
 
-"@helgoland/caching@^0.0.1-alpha.38":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.39.tgz#3fec44922de1dd716b20bb47a476b2ab7fea364c"
+"@helgoland/caching@^0.0.1-alpha.41":
+  version "0.0.1-alpha.41"
+  resolved "https://registry.yarnpkg.com/@helgoland/caching/-/caching-0.0.1-alpha.41.tgz#e0b53fda289345aeeb614aa4f960f316c042d913"
 
-"@helgoland/core@^0.0.1-alpha.39":
-  version "0.0.1-alpha.39"
-  resolved "https://registry.yarnpkg.com/@helgoland/core/-/core-0.0.1-alpha.39.tgz#2e3b7b35a26a47bae68d92bbc9199012847806de"
+"@helgoland/core@^0.0.1-alpha.41":
+  version "0.0.1-alpha.41"
+  resolved "https://registry.yarnpkg.com/@helgoland/core/-/core-0.0.1-alpha.41.tgz#71ff54fa4bd835802e88a7acd33682cb0636e935"
   dependencies:
     "@ngx-translate/core" "^9.1.1"
     "@types/deep-equal" "^0.0.30"
