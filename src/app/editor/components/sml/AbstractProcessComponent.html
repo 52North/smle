@@ -1,9 +1,9 @@
 <sml-described-object [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-described-object>
-<expand-wrapper [title]="getDisplayName('typeOf')">
+<expand-wrapper *ngIf="!config.getConfigFor('sml:typeOf').isHidden()" [title]="getDisplayName('typeOf')">
   <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'typeOf'" [configName]="'sml:typeOf'"
     [showLabel]="false"></text-field>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('configuration')" [expanded]="config.getConfigFor('sml:configuration').isExpanded()">
+<expand-wrapper *ngIf="!config.getConfigFor('sml:configuration').isHidden()" [title]="getDisplayName('configuration')" [expanded]="config.getConfigFor('sml:configuration').isExpanded()">
   <div *ngIf="isShowAll || config.isFieldVisible('sml:configuration')">
     <child-item *ngIf="!config.getConfigFor('sml:configuration').showFlatten('settings')" [model]="model.configuration" [itemTitle]="getDisplayName('configuration')"
       (add)="createSettings()" (remove)="removeSettings()" (select)="openSettings()">
@@ -14,7 +14,7 @@
     </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('parameters')" [expanded]="config.getConfigFor('sml:parameters').isExpanded()">
+<expand-wrapper *ngIf="!config.getConfigFor('sml:parameters').isHidden()" [title]="getDisplayName('parameters')" [expanded]="config.getConfigFor('sml:parameters').isExpanded()">
   <div *ngIf="isShowAll || config.isFieldVisible('sml:parameters')">
     <child-item *ngIf="!config.getConfigFor('sml:parameters').showFlatten('sml:ParameterList')" [model]="model.parameters" [itemTitle]="getDisplayName('parameters')"
       [config]="config" [configName]="'sml:parameters'" (add)="createParameters()" (remove)="removeParameters()" (select)="openParameters()">
@@ -25,7 +25,7 @@
     </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('outputs')" [expanded]="config.getConfigFor('sml:outputs').isExpanded()">
+<expand-wrapper *ngIf="!config.getConfigFor('sml:outputs').isHidden()" [title]="getDisplayName('outputs')" [expanded]="config.getConfigFor('sml:outputs').isExpanded()">
   <div *ngIf="isShowAll || config.isFieldVisible('sml:outputs')">
     <child-item *ngIf="!config.getConfigFor('sml:outputs').showFlatten('sml:OutputList')" [model]="model.outputs" [itemTitle]="getDisplayName('outputs')"
       (add)="createOutputs()" (remove)="removeOutputs()" (select)="openOutputs()">
@@ -36,7 +36,7 @@
     </dynamic-element>
   </div>
 </expand-wrapper>
-<expand-wrapper [title]="getDisplayName('inputs')" [expanded]="config.getConfigFor('sml:inputs').isExpanded()">
+<expand-wrapper *ngIf="!config.getConfigFor('sml:inputs').isHidden()" [title]="getDisplayName('inputs')" [expanded]="config.getConfigFor('sml:inputs').isExpanded()">
   <div *ngIf="isShowAll || config.isFieldVisible('sml:inputs')">
     <child-item *ngIf="!config.getConfigFor('sml:inputs').showFlatten('sml:InputList')" [model]="model.inputs" [itemTitle]="getDisplayName('inputs')"
       (add)="createInputs()" (remove)="removeInputs()" (select)="openInputs()">

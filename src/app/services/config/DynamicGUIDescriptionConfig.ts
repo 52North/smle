@@ -60,6 +60,11 @@ export class DynamicGUIDescriptionConfig implements DescriptionConfig {
         return false;
     }
 
+    public isHidden(): boolean {
+        // TODO needs to be implemented
+        return false;
+    }
+
     public showFlatten(name: string): boolean {
         // TODO needs to be implemented
         return false;

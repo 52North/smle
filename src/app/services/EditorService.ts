@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess, Term } from '../model/sml';
+import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess, Term, AggregateProcess } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 import { XmlService } from '../services/XmlService';
 import { DescriptionConfigService } from './DescriptionConfigService';
@@ -14,7 +14,8 @@ export enum DescriptionType {
     PhysicalSystem = 1,
     PhysicalComponent = 2,
     SimpleProcess = 3,
-    DynamicGUI = 4
+    DynamicGUI = 4,
+    AggregateProcess = 5
 }
 
 @Injectable()
@@ -104,6 +105,8 @@ export class EditorService {
             return DescriptionType.PhysicalComponent;
         } else if (this.description instanceof SimpleProcess) {
             return DescriptionType.SimpleProcess;
+        } else if (this.description instanceof AggregateProcess) {
+            return DescriptionType.AggregateProcess;
         } else {
             return DescriptionType.DynamicGUI;
         }

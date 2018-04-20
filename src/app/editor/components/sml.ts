@@ -3,6 +3,7 @@ import { AbstractNamedMetadataListComponent } from './sml/AbstractNamedMetadataL
 import { AbstractPhysicalProcessComponent } from './sml/AbstractPhysicalProcessComponent';
 import { AbstractProcessComponent } from './sml/AbstractProcessComponent';
 import { AbstractSettingComponent } from './sml/AbstractSettingComponent';
+import { AggregateProcessComponent } from './sml/AggregateProcessComponent';
 import { AggregatingProcessComponent } from './sml/AggregatingProcessComponent';
 import { CapabilityListComponent } from './sml/CapabilityListComponent';
 import { CharacteristicListComponent } from './sml/CharacteristicListComponent';
@@ -39,6 +40,7 @@ export const SML_COMPONENTS = [
     AbstractPhysicalProcessComponent,
     AbstractProcessComponent,
     AbstractSettingComponent,
+    AggregateProcessComponent,
     AggregatingProcessComponent,
     CapabilityListComponent,
     CharacteristicListComponent,

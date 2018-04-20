@@ -16,6 +16,9 @@ export class FalseDescriptionConfig implements DescriptionConfig {
     isExpanded(): boolean {
         return false;
     }
+    isHidden(): boolean {
+        return true;
+    }
     showFlatten(name: string): boolean {
         return false;
     }

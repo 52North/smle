@@ -5,6 +5,7 @@ export interface DescriptionConfig {
     isFieldMandatory(name: string, model?: any, fieldName?: string): boolean;
     existInForm(name: string, model?: any, fieldName?: string): boolean;
     isExpanded(): boolean;
+    isHidden(): boolean;
     showFlatten(name: string): boolean;
     elementFixQuantity(name: string): boolean;
     getLabel(name: string): string;

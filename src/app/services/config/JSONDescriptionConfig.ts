@@ -10,6 +10,7 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     private defaultFixedQuantity = false;
     private defaultShowFlatten = false;
     private defaultIsExpanded = false;
+    private defaultIsHidden = false;
 
     constructor(
         private config: any
@@ -53,6 +54,11 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     public isExpanded(): boolean {
         const isExpanded = this.config['isExpanded'];
         return (typeof isExpanded === 'undefined') ? this.defaultIsExpanded : isExpanded;
+    }
+
+    public isHidden(): boolean {
+        const isHidden = this.config['isHidden'];
+        return (typeof isHidden === 'undefined') ? this.defaultIsHidden : isHidden;
     }
 
     public showFlatten(name: string): boolean {
