@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { SweDataStream } from '../../../model/swe';
+import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
@@ -13,4 +14,7 @@ export class SweDataStreamComponent extends TypedModelComponent<SweDataStream> {
         return new SweDataStream();
     }
 
+    protected delegateOpenNewChild(childMetadata: ChildMetadata<any>) {
+        this.openAsChild.emit(childMetadata);
+    }
 }

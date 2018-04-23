@@ -1,8 +1,7 @@
 <swe-abstract-identifiable [model]="model" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll"></swe-abstract-identifiable>
-<swe-data-stream [model]="model" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll"></swe-data-stream>
-<div class="form-group" *ngIf="config.existInForm('sml:interfaceParameters',model,'interfaceParameters') &&(isShowAll || config.isFieldVisible('sml:interfaceParameters','textField',model,'interfaceParameters'))">
-  <label for="classification">{{getDisplayName('interfaceParameters')}}</label>
-  <div class="nested-element">
-    <swe-data-record [model]="model.interfaceParameters" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll" (openAsChild)="delegateOpenNewChild($event)"></swe-data-record>
-  </div>
-</div>
+<swe-data-stream [model]="model.data" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll" (openAsChild)="delegateOpenNewChild($event)"></swe-data-stream>
+<expand-wrapper *ngIf="config.existInForm('sml:interfaceParameters',model,'interfaceParameters') &&(isShowAll || config.isFieldVisible('sml:interfaceParameters','textField',model,'interfaceParameters'))"
+  [title]="getDisplayName('interfaceParameters')" [expanded]="config.getConfigFor('sml:interfaceParameters').isExpanded()">
+  <swe-data-record [model]="model.interfaceParameters" [config]="config.getConfigFor('sml:interfaceParameters')" [isShowAll]="isShowAll"
+    (openAsChild)="delegateOpenNewChild($event)"></swe-data-record>
+</expand-wrapper>
