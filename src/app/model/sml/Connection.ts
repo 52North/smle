@@ -16,6 +16,10 @@ export class Connection {
     destination: string;
 
     toString() {
-        return 'Connection';
+        if (this.source && this.destination) {
+            return this.source + ' → ' + this.destination;
+        } else {
+            return 'empty connection';
+        }
     }
 }

@@ -1,14 +1,22 @@
-<div>
-  <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('components')">
-    <label for="components">{{getDisplayName('components')}}</label>
-    <div>
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let component of model.components.components" class="list-group-item">
-          <div class="plain-text">{{component.name}}</div>
-          <br>
-          <div class="plain-text">{{component.href}}</div>
-        </li>
-      </ul>
-    </div>
+<expand-wrapper *ngIf="!config.getConfigFor('sml:components').isHidden()" [title]="getDisplayName('components')" [expanded]="config.getConfigFor('sml:components').isExpanded()">
+  <div *ngIf="isShowAll || config.isFieldVisible('sml:components')">
+    <child-item *ngIf="!config.getConfigFor('sml:components').showFlatten('sml:ComponentList')" [model]="model.components" [itemTitle]="getDisplayName('components')"
+      [config]="config" [configName]="'sml:components'" (add)="createComponents()" (remove)="removeComponents()" (select)="openComponents()">
+    </child-item>
+    <dynamic-element *ngIf="config.getConfigFor('sml:components').showFlatten('sml:ComponentList')" [componentType]="componentListComponent"
+      [model]="model.components" [config]="config.getConfigFor('sml:components').getConfigFor('sml:ComponentList')" [isShowAll]="isShowAll"
+      (openAsChild)="openNewChild($event)">
+    </dynamic-element>
   </div>
-</div>
+</expand-wrapper>
+<expand-wrapper *ngIf="!config.getConfigFor('sml:connections').isHidden()" [title]="getDisplayName('connections')" [expanded]="config.getConfigFor('sml:connections').isExpanded()">
+  <div *ngIf="isShowAll || config.isFieldVisible('sml:connections')">
+    <child-item *ngIf="!config.getConfigFor('sml:connections').showFlatten('sml:ConnectionList')" [model]="model.connections" [itemTitle]="getDisplayName('connections')"
+      [config]="config" [configName]="'sml:connections'" (add)="createConnections()" (remove)="removeConnections()" (select)="openConnections()">
+    </child-item>
+    <dynamic-element *ngIf="config.getConfigFor('sml:connections').showFlatten('sml:ConnectionList')" [componentType]="connectionListComponent"
+      [model]="model.connections" [config]="config.getConfigFor('sml:connections').getConfigFor('sml:ConnectionList')" [isShowAll]="isShowAll"
+      (openAsChild)="openNewChild($event)">
+    </dynamic-element>
+  </div>
+</expand-wrapper>
