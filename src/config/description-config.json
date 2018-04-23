@@ -48,7 +48,75 @@
       "isExpanded": true
     },
     "sml:components": {
-      "isExpanded": true
+      "isExpanded": true,
+      "sml:ComponentList": {
+        "swe:id": false,
+        "sml:component": {
+          "gml:description": {
+            "isHidden": true
+          },
+          "gml:descriptionReference": {
+            "isHidden": true
+          },
+          "sml:language": {
+            "isHidden": true
+          },
+          "sml:identification": {
+            "isExpanded": true
+          },
+          "sml:outputs": {
+            "isExpanded": true
+          },
+          "sml:position": {
+            "isExpanded": true
+          },
+          "sml:keywords": {
+            "isHidden": true
+          },
+          "sml:classification": {
+            "isHidden": true
+          },
+          "sml:validTime": {
+            "isHidden": true
+          },
+          "sml:characteristics": {
+            "isHidden": true
+          },
+          "sml:capabilities": {
+            "isHidden": true
+          },
+          "sml:contacts": {
+            "isHidden": true
+          },
+          "sml:documentation": {
+            "isHidden": true
+          },
+          "sml:history": {
+            "isHidden": true
+          },
+          "sml:typeOf": {
+            "isHidden": true
+          },
+          "sml:configuration": {
+            "isHidden": true
+          },
+          "sml:parameters": {
+            "isHidden": true
+          },
+          "sml:inputs": {
+            "isHidden": true
+          },
+          "sml:attachedTo": {
+            "isHidden": true
+          },
+          "sml:components": {
+            "isHidden": true
+          },
+          "sml:connections": {
+            "isHidden": true
+          }
+        }
+      }
     },
     "sml:characteristics": {
       "isHidden": true,
