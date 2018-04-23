@@ -1,12 +1,21 @@
 {
   "description": {
-    "gml:description": false,
-    "gml:descriptionReference": false,
+    "gml:id": {
+      "isHidden": true
+    },
+    "gml:description": {
+      "isHidden": true
+    },
+    "gml:descriptionReference": {
+      "isHidden": true
+    },
     "gml:identifier": {
+      "isHidden": true,
       "@:codeSpace": false
     },
     "location": false,
     "sml:capabilities": {
+      "isHidden": true,
       "sml:CapabilitiesList": {
         "@:definition": false,
         "showFlatten": true,
@@ -29,7 +38,20 @@
         "swe:label": false
       }
     },
+    "sml:configuration": {
+      "isHidden": true
+    },
+    "sml:typeOf": {
+      "isHidden": true
+    },
+    "sml:connections": {
+      "isExpanded": true
+    },
+    "sml:components": {
+      "isExpanded": true
+    },
     "sml:characteristics": {
+      "isHidden": true,
       "sml:CharacteristicList": {
         "@:definition": false,
         "showFlatten": true,
@@ -53,6 +75,7 @@
       }
     },
     "sml:classification": {
+      "isHidden": true,
       "isExpanded": true,
       "sml:ClassifierList": {
         "@:definition": false,
@@ -70,11 +93,13 @@
       }
     },
     "sml:contacts": {
+      "isHidden": true,
       "sml:ContactList": {
         "showFlatten": true
       }
     },
     "sml:documentation": {
+      "isHidden": true,
       "showFlatten": true,
       "sml:DocumentList": {
         "@:definition": false,
@@ -87,6 +112,7 @@
       }
     },
     "sml:history": {
+      "isHidden": true,
       "sml:EventList": {
         "@:definition": false,
         "showFlatten": true,
@@ -167,6 +193,7 @@
       }
     },
     "sml:identification": {
+      "isHidden": true,
       "isExpanded": false,
       "sml:IdentifierList": {
         "@:definition": false,
@@ -184,6 +211,7 @@
       }
     },
     "sml:inputs": {
+      "isHidden": true,
       "sml:InputList": {
         "showFlatten": true,
         "sml:input": {
@@ -198,11 +226,12 @@
       }
     },
     "sml:keywords": {
+      "isHidden": true,
       "isExpanded": false,
       "sml:KeywordList": {
         "@:codeSpace": false,
         "@:definition": false,
-        "fixedQuantity": false,
+        "fixedQua": false,
         "showFlatten": true,
         "swe:description": false,
         "swe:id": false,
@@ -210,8 +239,11 @@
         "swe:label": false
       }
     },
-    "sml:language": false,
+    "sml:language": {
+      "isHidden": true
+    },
     "sml:outputs": {
+      "isHidden": true,
       "sml:OutputList": {
         "showFlatten": true,
         "sml:output": {
@@ -227,6 +259,7 @@
       }
     },
     "sml:parameters": {
+      "isHidden": true,
       "sml:ParameterList": {
         "showFlatten": true,
         "sml:parameter": {
@@ -241,6 +274,7 @@
       }
     },
     "sml:validTime": {
+      "isHidden": true,
       "gml:timeInstant": {
         "gml:description": false,
         "gml:descriptionReference": false,

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2018-2018 52°North Initiative for Geospatial Open Source
+    Software GmbH
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License version 2 as published
+    by the Free Software Foundation.
+
+    If the program is linked with libraries which are licensed under one of
+    the following licenses, the combination of the program with the linked
+    library is not considered a "derivative work" of the program:
+
+        - Apache License, version 2.0
+        - Apache Software License, version 1.0
+        - GNU Lesser General Public License, version 3
+        - Mozilla Public License, versions 1.0, 1.1 and 2.0
+        - Common Development and Distribution License (CDDL), version 1.0
+
+    Therefore the distribution of the program linked with libraries licensed
+    under the aforementioned licenses, is permitted by the copyright holders
+    if the distribution is compliant with both the GNU General Public
+    License version 2 and the aforementioned licenses.
+
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+    Public License for more details.
+
+-->
+<sml:AggregateProcess gml:id="sdc" 
+    xmlns:swe="http://www.opengis.net/swe/2.0" 
+    xmlns:sml="http://www.opengis.net/sensorml/2.0" 
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:om="http://www.opengis.net/om/2.0"
+    xmlns:sams="http://www.opengis.net/samplingSpatial/2.0"
+    xmlns:sf="http://www.opengis.net/sampling/2.0"
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:gco="http://www.isotc211.org/2005/gco" 
+    xmlns:gmd="http://www.isotc211.org/2005/gmd" 
+    xsi:schemaLocation="http://www.opengis.net/sensorml/2.0 http://schemas.opengis.net/sensorML/2.0/sensorML.xsd http://www.opengis.net/samplingSpatial/2.0 http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd">
+   <sml:components>
+      <sml:ComponentList>
+         <sml:component name="source_output">
+            <sml:PhysicalSystem gml:id="marine-weather">
+               <gml:identifier codeSpace="uniqueID">AIRMAR-RINVILLE-1</gml:identifier>
+               <sml:identification>
+                  <sml:IdentifierList>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0002/">
+                           <sml:label>Long name</sml:label>
+                           <sml:value>Marine Institute - AIRMAR Weather Station</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0006/">
+                           <sml:label>Short name</sml:label>
+                           <sml:value>Marine Institute - AIRMAR WX Series WeatherStation</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0012/">
+                           <sml:label>Manufacturer</sml:label>
+                           <sml:value>AIRMAR</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0003/">
+                           <sml:label>Model name</sml:label>
+                           <sml:value>300WX</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0005/">
+                           <sml:label>Serial number</sml:label>
+                           <sml:value>4252</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                  </sml:IdentifierList>
+               </sml:identification>
+               <sml:featuresOfInterest>
+                  <sml:FeatureList definition="http://www.opengis.net/def/featureOfInterest/identifier">
+                     <swe:label>Marine Institute</swe:label>
+                     <sml:feature>
+                        <sams:SF_SpatialSamplingFeature gml:id="airmar-rinville-1">
+                            <gml:identifier codeSpace="">Marine Institute</gml:identifier>
+                            <gml:name>Marine Intitute Ireland</gml:name>
+                            <sf:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint" />
+                            <sf:sampledFeature xlink:href="http://www.opengis.net/def/nil/OGC/0/unknown" />
+                            <sams:shape>
+                                <gml:Point gml:id="point-airmar-rinville-1">
+                                    <gml:pos srsName="http://www.opengis.net/def/crs/EPSG/0/4326">53.247642 -8.977098</gml:pos>
+                                </gml:Point>
+                            </sams:shape>
+                        </sams:SF_SpatialSamplingFeature>
+                    </sml:feature>
+                  </sml:FeatureList>
+               </sml:featuresOfInterest>
+               <sml:outputs>
+                  <sml:OutputList>
+                     <sml:output name="streamOutput">
+                        <sml:DataInterface>
+                           <sml:data>
+                              <swe:DataStream>
+                                 <swe:elementType name="weatherOutputStream">
+                                    <swe:DataRecord>
+                                       <swe:field name="datetime">
+                                          <swe:Time definition="http://www.opengis.net/def/property/OGC/0/PhenomenonTime">
+                                             <swe:label>Date and time</swe:label>
+                                             <swe:description>Date-time is a time stamp from a Global Positioning System receiver at the cable observatory shore station in the format YYYY-MM-DDThh:mm:ss.sss .</swe:description>
+                                             <swe:uom/>
+                                          </swe:Time>
+                                       </swe:field>
+                                       <swe:field name="instrument_id">
+                                          <swe:Text>
+                                             <swe:label>Instrument ID</swe:label>
+                                             <swe:description>Instrument-ID is a unique identifier for the instrument based on its manufacturer, model number and serial number</swe:description>
+                                          </swe:Text>
+                                       </swe:field>
+                                        <swe:field name="AirTemperature">
+                                            <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/B39/current/airtemp/">
+                                                <swe:label>air temperature</swe:label>
+                                                <swe:description>Air temperature is the bulk temperature of the air, not the surface (skin) temperature.
+                                                </swe:description>
+                                                <swe:uom code="degC" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPAA/" xlink:title="Degrees Celsius" />
+                                            </swe:Quantity>
+                                        </swe:field>
+                                        <swe:field name="RelativeHumidity">
+                                            <swe:Quantity  definition="http://vocab.nerc.ac.uk/collection/B39/current/humidity/">
+                                                <swe:label>relative_humidity</swe:label>
+                                                <swe:description>The ratio of the amount of water vapour in the air compared to the maximum amount of water vapour  that can theoretically be held at the air's temperature
+                                                </swe:description>
+                                                <swe:uom code="%" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPCT/" xlink:title="Percent" />
+                                            </swe:Quantity>
+                                        </swe:field>
+                                        <swe:field name="DewPoint">
+                                            <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/P01/current/CDEWZZ01/">
+                                                <swe:label>DewPoint</swe:label>
+                                                <swe:description>The temperature to which air must cool to
+                                                    become saturated with water vapour</swe:description>
+                                                <swe:uom code="degC" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPAA/" xlink:title="Degrees Celsius" />
+                                            </swe:Quantity>
+                                        </swe:field>
+                                        <swe:field name="WindDirection">
+                                            <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/B39/current/truewinddir/">
+                                                <swe:label>earthrelativewinddirection</swe:label>
+                                                <swe:description>Direction from of wind relative to True North {wind direction} in the atmosphere by in-situ anemometer</swe:description>
+                                                <swe:uom code="degT" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UABB/" xlink:title="Degrees True" />
+                                            </swe:Quantity>
+                                        </swe:field>
+                                        <swe:field name="WindSpeed">
+                                            <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/B39/current/truewindspeed/">
+                                                <swe:label> earth relative wind speed</swe:label>
+                                                <swe:description>Speed of wind {wind speed} in the atmosphere by in-situ anemometer</swe:description>
+                                                <swe:uom code="m/s" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UVAA/" xlink:title="Metres per second" />
+                                            </swe:Quantity>
+                                        </swe:field>
+                                    </swe:DataRecord>
+                                 </swe:elementType>
+                                 <swe:encoding>
+								 <!-- Abhängig vom EncodingTypen den Processor wählen.-->
+								 <!-- Es gibt \{TextEncoding} auch: {XmlEncoding, BinaryEncoding}-->
+                                    <swe:TextEncoding tokenSeparator=";" blockSeparator="\n"/>
+                                 </swe:encoding>
+                                 <swe:values/>
+                              </swe:DataStream>
+                           </sml:data>
+                           <sml:interfaceParameters>
+                              <swe:DataRecord definition="https://52north.org/swe-ingestion/mqtt/3.1">
+                                 <swe:field name="mqtt_broker_url">
+                                    <swe:Text definition="https://52north.org/swe-ingestion/mqtt/3.1#url">
+                                       <swe:value>tcp://nexos.dev.52north.org:1884</swe:value>
+                                    </swe:Text>
+                                 </swe:field>
+                                 <swe:field name="mqtt_broker_password">
+                                    <swe:Text definition="https://52north.org/swe-ingestion/mqtt/3.1#password">
+                                       <swe:value>password</swe:value>
+                                    </swe:Text>
+                                 </swe:field>
+                                 <swe:field name="mqtt_broker_username">
+                                    <swe:Text definition="https://52north.org/swe-ingestion/mqtt/3.1#username">
+                                       <swe:value>username</swe:value>
+                                    </swe:Text>
+                                 </swe:field>
+                                 <swe:field name="mqtt_broker_topics">
+                                    <swe:Text definition="https://52north.org/swe-ingestion/mqtt/3.1#topics">
+                                       <swe:value>airmar-rinville-1</swe:value>
+                                    </swe:Text>
+                                 </swe:field>
+                              </swe:DataRecord>
+                           </sml:interfaceParameters>
+                        </sml:DataInterface>
+                     </sml:output>
+                  </sml:OutputList>
+               </sml:outputs>
+               <sml:position>
+                  <swe:Vector referenceFrame="urn:ogc:def:crs:EPSG::4326">
+                     <swe:coordinate name="easting">
+                        <swe:Quantity axisID="x">
+                           <swe:uom code="degree"/>
+                           <swe:value>-8.977098</swe:value>
+                        </swe:Quantity>
+                     </swe:coordinate>
+                     <swe:coordinate name="northing">
+                        <swe:Quantity axisID="y">
+                           <swe:uom code="degree"/>
+                           <swe:value>53.247642</swe:value>
+                        </swe:Quantity>
+                     </swe:coordinate>
+                     <swe:coordinate name="altitude">
+                        <swe:Quantity axisID="z">
+                           <swe:uom code="m"/>
+                           <swe:value>17.0</swe:value>
+                        </swe:Quantity>
+                     </swe:coordinate>
+                  </swe:Vector>
+               </sml:position>
+            </sml:PhysicalSystem>
+         </sml:component>
+         <sml:component name="sos_input">
+            <sml:PhysicalSystem gml:id="marine-weather-sos">
+               <gml:identifier codeSpace="uniqueID">AIRMAR-RINVILLE-1</gml:identifier>
+               <sml:identification>
+                  <sml:IdentifierList>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0002/">
+                           <sml:label>Long name</sml:label>
+                           <sml:value>Marine Institute - AIRMAR Weather Station</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0006/">
+                           <sml:label>Short name</sml:label>
+                           <sml:value>Marine Institute - AIRMAR WX Series WeatherStation</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0012/">
+                           <sml:label>Manufacturer</sml:label>
+                           <sml:value>AIRMAR</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0003/">
+                           <sml:label>Model name</sml:label>
+                           <sml:value>300WX</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                     <sml:identifier>
+                        <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0005/">
+                           <sml:label>Serial number</sml:label>
+                           <sml:value>4252</sml:value>
+                        </sml:Term>
+                     </sml:identifier>
+                  </sml:IdentifierList>
+               </sml:identification>
+               <sml:featuresOfInterest>
+                  <sml:FeatureList definition="http://www.opengis.net/def/featureOfInterest/identifier">
+                     <swe:label>Marine Institute</swe:label>
+                     <sml:feature>
+                        <sams:SF_SpatialSamplingFeature gml:id="sf-airmar-rinville-1">
+                            <gml:identifier codeSpace="">Marine Institute</gml:identifier>
+                            <gml:name>Marine Intitute Ireland</gml:name>
+                            <sf:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint" />
+                            <sf:sampledFeature xlink:href="http://www.opengis.net/def/nil/OGC/0/unknown" />
+                            <sams:shape>
+                                <gml:Point gml:id="p-airmar-rinville-1">
+                                    <gml:pos srsName="http://www.opengis.net/def/crs/EPSG/0/4326">53.247642 -8.977098</gml:pos>
+                                </gml:Point>
+                            </sams:shape>
+                        </sams:SF_SpatialSamplingFeature>
+                    </sml:feature>
+                  </sml:FeatureList>
+               </sml:featuresOfInterest>
+               <sml:outputs>
+                  <sml:OutputList>
+                     <sml:output name="AirTemperature">
+                        <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/B39/current/airtemp/">
+                           <swe:label>air temperature</swe:label>
+                           <swe:description>Air temperature is the bulk temperature of the air, not the surface (skin) temperature.</swe:description>
+                           <swe:uom code="degC" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPAA/" xlink:title="Degrees Celsius"/>
+                        </swe:Quantity>
+                     </sml:output>
+                     <sml:output name="RelativeHumidity">
+                        <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/B39/current/humidity/">
+                           <swe:label>relative_humidity</swe:label>
+                           <swe:description>The ratio of the amount of water vapour in the air compared to the maximum amount of water vapour that can theoretically be held at the air's temperature</swe:description>
+                           <swe:uom code="%" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPCT/" xlink:title="Percent" />
+                        </swe:Quantity>
+                     </sml:output>
+                     <sml:output name="DewPoint">
+                        <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/P01/current/CDEWZZ01/">
+                           <swe:label>DewPoint</swe:label>
+                           <swe:description>The temperature to which air must cool to become saturated with water vapour</swe:description>
+                           <swe:uom code="degC" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UPAA/" xlink:title="Degrees Celsius"/>
+                        </swe:Quantity>
+                     </sml:output>
+                     <sml:output name="WindDirection">
+                        <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/B39/current/truewinddir/">
+                           <swe:label>earthrelativewinddirection</swe:label>
+                           <swe:description>Direction from of wind relative to True North {wind direction} in the atmosphere by in-situ anemometer</swe:description>
+                           <swe:uom code="degT" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UABB/" xlink:title="Degrees True" />
+                        </swe:Quantity>
+                     </sml:output>
+                     <sml:output name="WindSpeed">
+                        <swe:Quantity definition="http://vocab.nerc.ac.uk/collection/B39/current/truewindspeed/">
+                           <swe:label>	earth relative wind speed</swe:label>
+                           <swe:description>Speed of wind {wind speed} in the atmosphere by in-situ anemometer</swe:description>
+                           <swe:uom code="m/s" xlink:href="http://vocab.nerc.ac.uk/collection/P06/current/UVAA/" xlink:title="Metres per second" />
+                        </swe:Quantity>
+                     </sml:output>
+                  </sml:OutputList>
+               </sml:outputs>
+               <sml:position>
+                  <swe:Vector referenceFrame="urn:ogc:def:crs:EPSG::4326">
+                     <swe:coordinate name="easting">
+                        <swe:Quantity axisID="x">
+                           <swe:uom code="degree"/>
+                           <swe:value>-8.977098</swe:value>
+                        </swe:Quantity>
+                     </swe:coordinate>
+                     <swe:coordinate name="northing">
+                        <swe:Quantity axisID="y">
+                           <swe:uom code="degree"/>
+                           <swe:value>53.247642</swe:value>
+                        </swe:Quantity>
+                     </swe:coordinate>
+                     <swe:coordinate name="altitude">
+                        <swe:Quantity axisID="z">
+                           <swe:uom code="m"/>
+                           <swe:value>17.0</swe:value>
+                        </swe:Quantity>
+                     </swe:coordinate>
+                  </swe:Vector>
+               </sml:position>
+            </sml:PhysicalSystem>
+         </sml:component>
+      </sml:ComponentList>
+   </sml:components>
+   <sml:connections>
+      <sml:ConnectionList>
+         <sml:connection>
+            <sml:Link>
+               <sml:source ref="components/marine-weather/outputs/AirTemperature"/>
+               <sml:destination ref="components/marine-weather-sos/outputs/AirTemperature"/>
+            </sml:Link>
+         </sml:connection>
+         <sml:connection>
+            <sml:Link>
+               <sml:source ref="components/marine-weather/outputs/RelativeHumidity"/>
+               <sml:destination ref="components/marine-weather-sos/outputs/RelativeHumidity"/>
+            </sml:Link>
+         </sml:connection>
+         <sml:connection>
+            <sml:Link>
+               <sml:source ref="components/marine-weather/outputs/DewPoint"/>
+               <sml:destination ref="components/marine-weather-sos/outputs/DewPoint"/>
+            </sml:Link>
+         </sml:connection>
+         <sml:connection>
+            <sml:Link>
+               <sml:source ref="components/marine-weather/outputs/WindDirection"/>
+               <sml:destination ref="components/marine-weather-sos/outputs/WindDirection"/>
+            </sml:Link>
+         </sml:connection>
+         <sml:connection>
+            <sml:Link>
+               <sml:source ref="components/marine-weather/outputs/WindSpeed"/>
+               <sml:destination ref="components/marine-weather-sos/outputs/WindSpeed"/>
+            </sml:Link>
+         </sml:connection>
+      </sml:ConnectionList>
+   </sml:connections>
+</sml:AggregateProcess>
