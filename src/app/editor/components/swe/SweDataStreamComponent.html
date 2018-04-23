@@ -1,0 +1,15 @@
+<div>
+  <label>DataStream</label>
+  <div class="nested-element">
+    <label>ElementType</label>
+    <div class="nested-element">
+      <swe-element-type [model]="model.data.elementType" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll"
+        (openAsChild)="delegateOpenNewChild($event)"></swe-element-type>
+    </div>
+    <label>Encoding</label>
+    <div class="nested-element">
+      <swe-text-encoding [model]="model.data.encoding" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll"
+        (openAsChild)="delegateOpenNewChild($event)"></swe-text-encoding>
+    </div>
+  </div>
+</div>
