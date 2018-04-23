@@ -23,8 +23,8 @@ export class MapComponent implements AfterViewInit {
             center: this.location,
             zoom: 10,
             doubleClickZoom: false,
-            layers: [new L.TileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors'
+            layers: [new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
             })]
         });
 

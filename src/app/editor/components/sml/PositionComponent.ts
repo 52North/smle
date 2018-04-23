@@ -32,12 +32,28 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         this.setFieldValue('location', 'Lon', value);
     }
 
-    private get altitude(): number {
-        return this.getFieldValue('location', 'Alt');
+    public get easting(): number {
+        return this.getFieldValue('location', 'easting');
     }
 
-    private set altitude(value: number) {
-        this.setFieldValue('location', 'Alt', value);
+    public set easting(value: number) {
+        this.setFieldValue('location', 'easting', value);
+    }
+
+    public get northing(): number {
+        return this.getFieldValue('location', 'northing');
+    }
+
+    public set northing(value: number) {
+        this.setFieldValue('location', 'northing', value);
+    }
+
+    public get altitude(): number {
+        return this.getFieldValue('location', 'altitude');
+    }
+
+    public set altitude(value: number) {
+        this.setFieldValue('location', 'altitude', value);
     }
 
     public get trueHeading(): number {
@@ -66,14 +82,29 @@ export class PositionEditorComponent extends EditorComponent<Position> {
 
     protected openMap() {
         const ref = this.modalService.open(MapComponent);
-        (ref.componentInstance as MapComponent).location = {
-            lat: this.latitude,
-            lng: this.longitude
-        };
-        ref.result.then((location: L.LatLngLiteral) => {
-            this.longitude = location.lat;
-            this.latitude = location.lng;
-        });
+        if (this.northing && this.easting) {
+            (ref.componentInstance as MapComponent).location = {
+                lat: this.northing,
+                lng: this.easting
+            };
+            ref.result.then((location: L.LatLngLiteral) => {
+                if (location) {
+                    this.northing = location.lat;
+                    this.easting = location.lng;
+                }
+            });
+        } else {
+            (ref.componentInstance as MapComponent).location = {
+                lat: this.latitude,
+                lng: this.longitude
+            };
+            ref.result.then((location: L.LatLngLiteral) => {
+                if (location) {
+                    this.longitude = location.lat;
+                    this.latitude = location.lng;
+                }
+            });
+        }
     }
 
     protected createModel(): Position {
