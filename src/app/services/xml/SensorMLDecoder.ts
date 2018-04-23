@@ -1,23 +1,19 @@
+import { AbstractTime } from '../../model/gml/AbstractTime';
 import { AbstractAlgorithm } from '../../model/sml/AbstractAlgorithm';
-import { AbstractDataComponent } from '../../model/swe/AbstractDataComponent';
 import { AbstractMetadataList } from '../../model/sml/AbstractMetadataList';
 import { AbstractModes } from '../../model/sml/AbstractModes';
 import { AbstractNamedMetadataList } from '../../model/sml/AbstractNamedMetadataList';
 import { AbstractPhysicalProcess } from '../../model/sml/AbstractPhysicalProcess';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
-import { AbstractTime } from '../../model/gml/AbstractTime';
 import { AggregateProcess } from '../../model/sml/AggregateProcess';
 import { AggregatingProcess } from '../../model/sml/AggregatingProcess';
-import { AllowedTimes } from '../../model/swe/AllowedTimes';
-import { AllowedTokens } from '../../model/swe/AllowedTokens';
-import { AllowedValues } from '../../model/swe/AllowedValues';
 import { ArrayValueSetting } from '../../model/sml/ArrayValueSetting';
 import { Axis } from '../../model/sml/Axis';
 import { CapabilityList } from '../../model/sml/CapabilityList';
 import { CharacteristicList } from '../../model/sml/CharacteristicList';
 import { ClassifierList } from '../../model/sml/ClassifierList';
-import { ComponentList } from '../../model/sml/ComponentList';
 import { Component } from '../../model/sml/Component';
+import { ComponentList } from '../../model/sml/ComponentList';
 import { Connection } from '../../model/sml/Connection';
 import { ConnectionList } from '../../model/sml/ConnectionList';
 import { ConstraintSetting } from '../../model/sml/ConstraintSetting';
@@ -28,17 +24,14 @@ import { DocumentList } from '../../model/sml/DocumentList';
 import { Event } from '../../model/sml/Event';
 import { EventList } from '../../model/sml/EventList';
 import { FeatureList } from '../../model/sml/FeatureList';
-import { GmlDecoder } from './GmlDecoder';
 import { IdentifierList } from '../../model/sml/IdentifierList';
 import { InputList } from '../../model/sml/InputList';
 import { InputOrOutputOrParameter } from '../../model/sml/InputOrOutputOrParameter';
-import { IsoDecoder } from './IsoDecoder';
 import { KeywordList } from '../../model/sml/KeywordList';
 import { Mode } from '../../model/sml/Mode';
 import { ModeChoice } from '../../model/sml/ModeChoice';
 import { ModeSetting } from '../../model/sml/ModeSetting';
 import { NamedSweDataComponent } from '../../model/sml/NamedSweDataComponent';
-import { NAMESPACES } from './Namespaces';
 import { ObservableProperty } from '../../model/sml/ObservableProperty';
 import { OutputList } from '../../model/sml/OutputList';
 import { ParameterList } from '../../model/sml/ParameterList';
@@ -51,16 +44,23 @@ import { Settings } from '../../model/sml/Settings';
 import { SimpleProcess } from '../../model/sml/SimpleProcess';
 import { SpatialFrame } from '../../model/sml/SpatialFrame';
 import { StatusSetting } from '../../model/sml/StatusSetting';
-import { SweDataRecord } from '../../model/swe/SweDataRecord';
-import { SweDataStream } from '../../model/swe/SweDataStream';
-import { SweDecoder } from './SweDecoder';
-import { SweEncoding } from '../../model/swe/SweEncoding';
 import { TemporalFrame } from '../../model/sml/TemporalFrame';
 import { Term } from '../../model/sml/Term';
 import { ValueSetting } from '../../model/sml/ValueSetting';
-import { DecoderUtils } from './DecoderUtils';
-import { ReturnObject } from './ReturnObject';
+import { AbstractDataComponent } from '../../model/swe/AbstractDataComponent';
+import { AllowedTimes } from '../../model/swe/AllowedTimes';
+import { AllowedTokens } from '../../model/swe/AllowedTokens';
+import { AllowedValues } from '../../model/swe/AllowedValues';
+import { SweDataRecord } from '../../model/swe/SweDataRecord';
+import { SweDataStream } from '../../model/swe/SweDataStream';
+import { SweEncoding } from '../../model/swe/SweEncoding';
 import { BidiMap } from '../dynamicGUI/BidiMap';
+import { DecoderUtils } from './DecoderUtils';
+import { GmlDecoder } from './GmlDecoder';
+import { IsoDecoder } from './IsoDecoder';
+import { NAMESPACES } from './Namespaces';
+import { ReturnObject } from './ReturnObject';
+import { SweDecoder } from './SweDecoder';
 
 export class SensorMLDecoder {
 
@@ -79,22 +79,42 @@ export class SensorMLDecoder {
         this.isoDecoder.profileIDMap = profileIDMap;
         this.sweDecoder.profileIDMap = profileIDMap;
     }
-    public decodeDocument(elem: Element, process: AbstractProcess): void {
+    public decodeElement(element: Element): AbstractProcess {
+        const process = this.createProcessOfElement(element);
         if (process instanceof SimpleProcess) {
-            this.decodeSimpleProcess(elem, process);
+            this.decodeSimpleProcess(element, process);
         } else if (process instanceof AggregateProcess) {
-            this.decodeAggregateProcess(elem, process);
+            this.decodeAggregateProcess(element, process);
         } else if (process instanceof PhysicalSystem) {
-            this.decodePhysicalSystem(elem, process);
+            this.decodePhysicalSystem(element, process);
         } else if (process instanceof PhysicalComponent) {
-            this.decodePhysicalComponent(elem, process);
+            this.decodePhysicalComponent(element, process);
         } else {
             throw new Error('Unsupported process type');
         }
+        return process;
     }
+
+    private createProcessOfElement(element: Element): AbstractProcess {
+        if (this.utils.getElement(element, SimpleProcess.NAME, NAMESPACES.SML)) {
+            return new SimpleProcess();
+        }
+        if (this.utils.getElement(element, AggregateProcess.NAME, NAMESPACES.SML)) {
+            return new AggregateProcess();
+        }
+        if (this.utils.getElement(element, PhysicalComponent.NAME, NAMESPACES.SML)) {
+            return new PhysicalComponent();
+        }
+        if (this.utils.getElement(element, PhysicalSystem.NAME, NAMESPACES.SML)) {
+            return new PhysicalSystem();
+        }
+        throw new Error('Unsupported process type');
+    }
+
     public getMapWithProfileIDs() {
         return this._profileIDMap;
     }
+
     public decodeSimpleProcess(elem: Element, object: SimpleProcess): void {
         this.decodeAbstractProcess(elem, object);
         this.decodeProcessMethodProcess(elem, object);
@@ -489,25 +509,14 @@ export class SensorMLDecoder {
 
     public decodeComponent(elem: Element): ReturnObject<Component> {
         const component = new Component();
-
         if (elem.hasAttribute('name')) {
             component.name = elem.getAttribute('name');
             this._profileIDMap = this.utils.processProfileID(elem, component, 'name', this._profileIDMap);
 
         }
-
-        if (elem.hasAttributeNS(NAMESPACES.XLINK, 'href')) {
-            component.href = elem.getAttributeNS(NAMESPACES.XLINK, 'href');
-            this._profileIDMap = this.utils.processProfileID(elem, component, 'href', this._profileIDMap);
-
+        if (elem.children.length === 1) {
+            component.abstractProcess = this.decodeElement(elem.children[0]);
         }
-
-        if (elem.hasAttributeNS(NAMESPACES.XLINK, 'title')) {
-            component.title = elem.getAttributeNS(NAMESPACES.XLINK, 'title');
-            this._profileIDMap = this.utils.processProfileID(elem, component, 'title', this._profileIDMap);
-
-        }
-
         return new ReturnObject(component, elem);
     }
 

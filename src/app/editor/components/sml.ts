@@ -8,6 +8,8 @@ import { AggregatingProcessComponent } from './sml/AggregatingProcessComponent';
 import { CapabilityListComponent } from './sml/CapabilityListComponent';
 import { CharacteristicListComponent } from './sml/CharacteristicListComponent';
 import { ClassifierListComponent } from './sml/ClassifierListComponent';
+import { ComponentComponent } from './sml/ComponentComponent';
+import { ComponentListComponent } from './sml/ComponentListComponent';
 import { ConnectionComponent } from './sml/ConnectionComponent';
 import { ConnectionListComponent } from './sml/ConnectionListComponent';
 import { ContactListComponent } from './sml/ContactListComponent';
@@ -47,6 +49,8 @@ export const SML_COMPONENTS = [
     CapabilityListComponent,
     CharacteristicListComponent,
     ClassifierListComponent,
+    ComponentComponent,
+    ComponentListComponent,
     ConnectionComponent,
     ConnectionListComponent,
     ContactListComponent,

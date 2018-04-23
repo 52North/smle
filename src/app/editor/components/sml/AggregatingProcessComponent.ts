@@ -4,8 +4,8 @@ import { AggregatingProcess, ComponentList, ConnectionList } from '../../../mode
 import { NestedChildMetadata } from '../base/NestedChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { NestedCardComponent } from '../basic/NestedCardComponent';
+import { ComponentListComponent } from './ComponentListComponent';
 import { ConnectionListComponent } from './ConnectionListComponent';
-import { ParameterListComponent } from './ParameterListComponent';
 
 @Component({
     selector: 'sml-aggregating-process',
@@ -14,7 +14,7 @@ import { ParameterListComponent } from './ParameterListComponent';
 export class AggregatingProcessComponent extends TypedModelComponent<AggregatingProcess> {
 
     public connectionListComponent: Type<any> = ConnectionListComponent;
-    public componentListComponent: Type<any> = ParameterListComponent; // TODO ComponentListComponent
+    public componentListComponent: Type<any> = ComponentListComponent;
 
     protected createModel(): AggregatingProcess {
         return undefined;
@@ -44,7 +44,7 @@ export class AggregatingProcessComponent extends TypedModelComponent<Aggregating
         this.openNewChild(
             new NestedChildMetadata(
                 NestedCardComponent,
-                ParameterListComponent, // TODO ComponentsListComponent
+                ComponentListComponent,
                 'Component list',
                 this.model.components,
                 this.config.getConfigFor('sml:components').getConfigFor('sml:ComponentList')

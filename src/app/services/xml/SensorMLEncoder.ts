@@ -780,12 +780,14 @@ export class SensorMLEncoder {
                 if (component.name) {
                     componentNode.setAttribute('name', component.name);
                 }
-                if (component.href) {
-                    componentNode.setAttributeNS(NAMESPACES.XLINK, 'xlink:href', component.href);
-                }
-                if (component.title) {
-                    componentNode.setAttributeNS(NAMESPACES.XLINK, 'xlink:title', component.title);
-                }
+                // TODO set new abstract process element
+                
+                // if (component.href) {
+                //     componentNode.setAttributeNS(NAMESPACES.XLINK, 'xlink:href', component.href);
+                // }
+                // if (component.title) {
+                //     componentNode.setAttributeNS(NAMESPACES.XLINK, 'xlink:title', component.title);
+                // }
                 node.appendChild(componentNode);
             });
         }

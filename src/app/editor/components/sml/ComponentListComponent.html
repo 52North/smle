@@ -1,0 +1,7 @@
+<form>
+  <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
+  <div *ngIf="isShowAll || config.isFieldVisible('sml:components')">
+    <label for="components">{{getDisplayName('components')}}</label>
+    <list [list]="model.components" (select)="openNewComponentItem($event)" (remove)="onRemoveComponent($event)" (add)="onAddComponent()"></list>
+  </div>
+</form>
