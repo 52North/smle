@@ -65,7 +65,26 @@
             "isExpanded": true
           },
           "sml:outputs": {
-            "isExpanded": true
+            "isExpanded": true,
+            "sml:OutputList": {
+              "showFlatten": true,
+              "sml:output": {
+                "@:axisId": false,
+                "@:definition": false,
+                "@:optional": false,
+                "@:referenceFrame": false,
+                "@:updatable": false,
+                "swe:id": false,
+                "swe:identifier": false,
+                "sml:DataInterface": {
+                  "swe:id": false,
+                  "swe:identifier": false,
+                  "swe:label": false,
+                  "swe:description": false
+                }
+              },
+              "swe:id": false
+            }
           },
           "sml:position": {
             "isExpanded": true
