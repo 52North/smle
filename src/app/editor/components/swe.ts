@@ -16,6 +16,7 @@ import { SweCategoryComponent } from './swe/SweCategoryComponent';
 import { SweCountComponent } from './swe/SweCountComponent';
 import { SweDataArrayComponent } from './swe/SweDataArrayComponent';
 import { SweDataRecordComponent } from './swe/SweDataRecordComponent';
+import { SweDataStreamComponent } from './swe/SweDataStreamComponent';
 import { SweElementTypeComponent } from './swe/SweElementTypeComponent';
 import { SweEncodingComponent } from './swe/SweEncodingComponent';
 import { SweQuantityComponent } from './swe/SweQuantityComponent';
@@ -47,6 +48,7 @@ export const SWE_COMPONENTS = [
     SweCountComponent,
     SweDataArrayComponent,
     SweDataRecordComponent,
+    SweDataStreamComponent,
     SweElementTypeComponent,
     SweEncodingComponent,
     SweQuantityComponent,

@@ -197,7 +197,7 @@ export class SweDecoder {
     }
 
     public decodeDataStream(elem: Element): ReturnObject<SweDataStream> {
-        const dataStreamElem = this.utils.getElement(elem, 'DataStream', NAMESPACES.SML);
+        const dataStreamElem = this.utils.getElement(elem, 'DataStream', NAMESPACES.SWE);
         if (dataStreamElem != null) {
             const dataStream = new SweDataStream();
 
@@ -216,11 +216,13 @@ export class SweDecoder {
                 );
             }
 
-            const returnObject2: ReturnObject<SweEncoding> = this.decodeAbstractEncoding(dataStreamElem);
-            if (returnObject2) {
-                dataStream.encoding = returnObject2.value;
+            const encodingElem: ReturnObject<SweEncoding> = this.decodeAbstractEncoding(
+                this.utils.getElement(dataStreamElem, 'encoding', NAMESPACES.SWE)
+            );
+            if (encodingElem) {
+                dataStream.encoding = encodingElem.value;
                 this._profileIDMap = this.utils.processProfileID(
-                    returnObject2.docElement, dataStream, 'encoding', this._profileIDMap
+                    encodingElem.docElement, dataStream, 'encoding', this._profileIDMap
                 );
             }
             return new ReturnObject(dataStream, dataStreamElem);

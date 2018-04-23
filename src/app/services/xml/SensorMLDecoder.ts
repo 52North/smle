@@ -320,39 +320,39 @@ export class SensorMLDecoder {
                     inputListRo.docElement, object, 'inputs', this._profileIDMap
                 );
             }
+        }
 
-            const outputsElem = this.utils.getElement(elem, 'outputs', NAMESPACES.SML);
-            if (outputsElem != null) {
-                const outputListRo: ReturnObject<OutputList> = this.decodeOutputList(outputsElem);
-                if (outputListRo) {
-                    object.outputs = outputListRo.value;
-                    this._profileIDMap = this.utils.processProfileID(
-                        outputListRo.docElement, object, 'outputs', this._profileIDMap
-                    );
-                }
+        const outputsElem = this.utils.getElement(elem, 'outputs', NAMESPACES.SML);
+        if (outputsElem != null) {
+            const outputListRo: ReturnObject<OutputList> = this.decodeOutputList(outputsElem);
+            if (outputListRo) {
+                object.outputs = outputListRo.value;
+                this._profileIDMap = this.utils.processProfileID(
+                    outputListRo.docElement, object, 'outputs', this._profileIDMap
+                );
             }
+        }
 
 
-            const parameters = this.utils.getElement(elem, 'parameters', NAMESPACES.SML);
-            if (parameters != null) {
-                const parameterListRo: ReturnObject<ParameterList> = this.decodeParameterList(parameters);
-                if (parameterListRo) {
-                    object.parameters = parameterListRo.value;
-                    this._profileIDMap = this.utils.processProfileID(
-                        parameterListRo.docElement, object, 'parameters', this._profileIDMap
-                    );
-                }
+        const parameters = this.utils.getElement(elem, 'parameters', NAMESPACES.SML);
+        if (parameters != null) {
+            const parameterListRo: ReturnObject<ParameterList> = this.decodeParameterList(parameters);
+            if (parameterListRo) {
+                object.parameters = parameterListRo.value;
+                this._profileIDMap = this.utils.processProfileID(
+                    parameterListRo.docElement, object, 'parameters', this._profileIDMap
+                );
             }
+        }
 
-            object.modes = this.utils.getDecodedList(
-                elem, 'modes', NAMESPACES.SML, this._profileIDMap, (mode) => this.decodeModes(mode)
-            );
+        object.modes = this.utils.getDecodedList(
+            elem, 'modes', NAMESPACES.SML, this._profileIDMap, (mode) => this.decodeModes(mode)
+        );
 
-            if (elem.hasAttribute('definition')) {
-                object.definition = elem.getAttribute('definition');
-                this._profileIDMap = this.utils.processProfileID(elem, object, 'definition', this._profileIDMap);
+        if (elem.hasAttribute('definition')) {
+            object.definition = elem.getAttribute('definition');
+            this._profileIDMap = this.utils.processProfileID(elem, object, 'definition', this._profileIDMap);
 
-            }
         }
     }
 
