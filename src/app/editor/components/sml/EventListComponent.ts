@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
+import { configuration } from '../../../configuration';
 import { Event } from '../../../model/sml/Event';
 import { EventList } from '../../../model/sml/EventList';
-import { ConfigurationService } from '../../../services/ConfigurationService';
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
@@ -15,9 +15,7 @@ import { EventComponent } from './EventComponent';
 })
 export class EventListComponent extends TypedModelComponent<EventList> {
 
-  constructor(
-    private configuration: ConfigurationService
-  ) {
+  constructor() {
     super();
   }
 
@@ -27,13 +25,11 @@ export class EventListComponent extends TypedModelComponent<EventList> {
 
   protected openNewEventItem(item: Event) {
     const config = this.config.getConfigFor('sml:events');
-    this.configuration.getConfig().subscribe(smleConfig => {
-      let options: ChildMetadataOptions;
-      if (smleConfig.showHistoryVocabularySelection) {
-        options = { vocabularyType: VocabularyType.HistoryEvent };
-      }
-      this.openNewChild(new ChildMetadata(EventComponent, item, config, options));
-    });
+    let options: ChildMetadataOptions;
+    if (configuration.showHistoryVocabularySelection) {
+      options = { vocabularyType: VocabularyType.HistoryEvent };
+    }
+    this.openNewChild(new ChildMetadata(EventComponent, item, config, options));
   }
 
   protected onAddEvent(): void {

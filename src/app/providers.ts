@@ -1,4 +1,3 @@
-import { ConfigurationService } from './services/ConfigurationService';
 import { DescriptionConfigService } from './services/DescriptionConfigService';
 import { DescriptionRepository } from './services/DescriptionRepository';
 import { DynamicGUIService } from './services/dynamicGUI/DynamicGUIService';
@@ -15,7 +14,6 @@ export const APP_PROVIDERS: any[] = [
     { provide: XmlService, useClass: SensorMLXmlService },
     SampleDataLoader,
     DescriptionConfigService,
-    ConfigurationService,
     EditorService,
     DynamicGUIService,
     { provide: VocabularyService, useClass: NercVocabularyService }

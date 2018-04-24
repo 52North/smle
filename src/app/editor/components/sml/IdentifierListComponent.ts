@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
+import { configuration } from '../../../configuration';
 import { IdentifierList } from '../../../model/sml/IdentifierList';
 import { Term } from '../../../model/sml/Term';
-import { ConfigurationService } from '../../../services/ConfigurationService';
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
@@ -15,9 +15,7 @@ import { TermComponent } from './TermComponent';
 })
 export class IdentifierListComponent extends TypedModelComponent<IdentifierList> {
 
-  constructor(
-    private configuration: ConfigurationService
-  ) {
+  constructor() {
     super();
   }
 
@@ -27,11 +25,9 @@ export class IdentifierListComponent extends TypedModelComponent<IdentifierList>
 
   protected openNewIdentifierItem(item: Term) {
     const config = this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term');
-    this.configuration.getConfig().subscribe(smleConfig => {
-      let options: ChildMetadataOptions;
-      if (smleConfig.showIdentifierVocabularySelection) { options = { vocabularyType: VocabularyType.Identifier }; }
-      this.openNewChild(new ChildMetadata(TermComponent, item, config, options));
-    });
+    let options: ChildMetadataOptions;
+    if (configuration.showIdentifierVocabularySelection) { options = { vocabularyType: VocabularyType.Identifier }; }
+    this.openNewChild(new ChildMetadata(TermComponent, item, config, options));
   }
 
   protected onAddIdentifier(): void {

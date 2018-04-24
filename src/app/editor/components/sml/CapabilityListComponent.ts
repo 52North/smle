@@ -1,5 +1,6 @@
 import { Component, Type } from '@angular/core';
 
+import { configuration } from '../../../configuration';
 import { Capability } from '../../../model/sml/Capability';
 import { CapabilityList } from '../../../model/sml/CapabilityList';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
@@ -16,7 +17,6 @@ import {
   SweTimeRange,
 } from '../../../model/swe';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
-import { ConfigurationService } from '../../../services/ConfigurationService';
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
@@ -42,12 +42,9 @@ export class CapabilityListComponent extends TypedModelComponent<CapabilityList>
     { name: (new SweDataArray()).toString(), type: SweDataArray }
   ];
 
-  constructor(
-    private configuration: ConfigurationService
-  ) {
+  constructor() {
     super();
   }
-
 
   protected createModel(): CapabilityList {
     return new CapabilityList();
@@ -55,13 +52,11 @@ export class CapabilityListComponent extends TypedModelComponent<CapabilityList>
 
   protected openNewCapabilityItem(item: Capability) {
     const config = this.config.getConfigFor('sml:capabilities');
-    this.configuration.getConfig().subscribe(smleConfig => {
-      let options: ChildMetadataOptions;
-      if (smleConfig.showCapabilityVocabularySelection) {
-        options = { vocabularyType: VocabularyType.Capability };
-      }
-      this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
-    });
+    let options: ChildMetadataOptions;
+    if (configuration.showCapabilityVocabularySelection) {
+      options = { vocabularyType: VocabularyType.Capability };
+    }
+    this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
   }
 
   protected onAddCapability(characteristicType: Type<AbstractDataComponent>): void {

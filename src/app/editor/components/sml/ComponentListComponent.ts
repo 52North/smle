@@ -1,7 +1,6 @@
 import * as angularCore from '@angular/core';
 
 import { Component, ComponentList } from '../../../model/sml';
-import { ConfigurationService } from '../../../services/ConfigurationService';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ComponentComponent } from './ComponentComponent';
@@ -13,9 +12,7 @@ import { ComponentComponent } from './ComponentComponent';
 })
 export class ComponentListComponent extends TypedModelComponent<ComponentList> {
 
-  constructor(
-    private configuration: ConfigurationService
-  ) {
+  constructor() {
     super();
   }
 
