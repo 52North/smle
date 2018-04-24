@@ -115,7 +115,6 @@
                               "swe:identifier": false,
                               "swe:value": false,
                               "swe:referenceTime": false,
-                              "swe:uom": false,
                               "swe:constraint": false,
                               "@:optional": false,
                               "@:updatable": false,
