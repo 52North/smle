@@ -1,26 +1,26 @@
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'"></text-field>
+<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'name'" [configName]="'@:name'"></text-field>
 <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('type')">
     <label for="type">{{getDisplayName('type')}}</label>
     <div class="nested-element" [ngSwitch]="typeType">
-        <swe-text *ngSwitchCase="1" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-text *ngSwitchCase="1" [model]="model.type" [config]="config.getConfigFor('swe:Text')"
                   [isShowAll]="isShowAll"></swe-text>
-        <swe-time *ngSwitchCase="2" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-time *ngSwitchCase="2" [model]="model.type" [config]="config.getConfigFor('swe:Time')"
                   [isShowAll]="isShowAll"></swe-time>
-        <swe-count *ngSwitchCase="3" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-count *ngSwitchCase="3" [model]="model.type" [config]="config.getConfigFor('swe:Count')"
                    [isShowAll]="isShowAll"></swe-count>
-        <swe-boolean *ngSwitchCase="4" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-boolean *ngSwitchCase="4" [model]="model.type" [config]="config.getConfigFor('swe:Boolean')"
                      [isShowAll]="isShowAll"></swe-boolean>
-        <swe-quantity *ngSwitchCase="5" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-quantity *ngSwitchCase="5" [model]="model.type" [config]="config.getConfigFor('swe:Quantity')"
                       [isShowAll]="isShowAll"></swe-quantity>
-        <swe-category *ngSwitchCase="6" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-category *ngSwitchCase="6" [model]="model.type" [config]="config.getConfigFor('swe:Category')"
                       [isShowAll]="isShowAll"></swe-category>
-        <swe-time-range *ngSwitchCase="7" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-time-range *ngSwitchCase="7" [model]="model.type" [config]="config.getConfigFor('swe:TimeRange')"
                         [isShowAll]="isShowAll"></swe-time-range>
-        <swe-quantity-range *ngSwitchCase="8" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-quantity-range *ngSwitchCase="8" [model]="model.type" [config]="config.getConfigFor('swe:Quantity')"
                             [isShowAll]="isShowAll"></swe-quantity-range>
-        <swe-data-record *ngSwitchCase="9" [model]="model.type" [config]="config.getConfigFor('type')"
+        <swe-data-record *ngSwitchCase="9" [model]="model.type" [config]="config.getConfigFor('swe:DataRecord')"
                          [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></swe-data-record>
-        <!--<swe-data-array *ngSwitchCase="10" [model]="model.type" [config]="config.getConfigFor('type')"-->
+        <!--<swe-data-array *ngSwitchCase="10" [model]="model.type" [config]="config.getConfigFor('swe:DataArray')"-->
                         <!--[isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></swe-data-array>-->
     </div>
 </div>

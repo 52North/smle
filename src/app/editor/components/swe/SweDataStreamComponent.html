@@ -1,11 +1,7 @@
-<expand-wrapper [title]="getDisplayName('data stream')" [expanded]="config.getConfigFor('swe:DataStream').isExpanded()">
+<expand-wrapper [title]="getDisplayName('data stream')" [expanded]="config.isExpanded()">
   <label>ElementType</label>
   <div class="nested-element">
-    <swe-element-type [model]="model.elementType" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll"
-      (openAsChild)="delegateOpenNewChild($event)"></swe-element-type>
+    <swe-element-type [model]="model.elementType" [config]="config.getConfigFor('swe:elementType')" [isShowAll]="isShowAll" (openAsChild)="delegateOpenNewChild($event)"></swe-element-type>
   </div>
-  <label>Encoding</label>
-  <div class="nested-element">
-    <swe-text-encoding [model]="model.encoding" [config]="config.getConfigFor('sml:DataInterface')" [isShowAll]="isShowAll"></swe-text-encoding>
-  </div>
+  <swe-text-encoding [model]="model.encoding" [config]="config.getConfigFor('swe:encoding')" [isShowAll]="isShowAll"></swe-text-encoding>
 </expand-wrapper>

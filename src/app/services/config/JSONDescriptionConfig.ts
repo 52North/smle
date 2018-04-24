@@ -17,7 +17,7 @@ export class JSONDescriptionConfig implements DescriptionConfig {
     ) { }
 
     public getConfigFor(name: string): DescriptionConfig {
-        const value = this.getConfig(name);
+        const value = this.getConfig(name) || this.getConfig('*');
         if (value === true || typeof value === 'undefined') {
             return new TrueDescriptionConfig();
         } else if (!value) {
