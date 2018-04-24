@@ -68,7 +68,13 @@
               "swe:id": false,
               "swe:identifier": false,
               "swe:label": false,
-              "swe:description": false
+              "swe:description": false,
+              "sml:identifier": {
+                "sml:Term": {
+                  "@:codeSpace": false,
+                  "swe:id": false
+                }
+              }
             }
           },
           "sml:outputs": {
@@ -90,7 +96,7 @@
                   "swe:description": false,
                   "sml:data": {
                     "swe:DataStream": {
-                      "isExpanded": false,
+                      "isExpanded": true,
                       "swe:encoding": {
                         "swe:id": false
                       },
