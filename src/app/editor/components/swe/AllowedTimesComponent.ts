@@ -9,8 +9,8 @@ import { TimePosition } from '../../../model/swe/TimePosition';
     styles: ['.input-wrapper__last {margin-bottom: -12px;} .row:first-child {margin-bottom: 8px;}']
 })
 export class AllowedTimesComponent extends TypedModelComponent<AllowedTimes> {
-    private singleItem: TimePosition = 'now';
-    private pairItem: [TimePosition, TimePosition] = ['now', 'now'];
+    public singleItem: TimePosition = 'now';
+    public pairItem: [TimePosition, TimePosition] = ['now', 'now'];
 
     protected createModel(): AllowedTimes {
         return new AllowedTimes();
