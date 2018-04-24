@@ -11,6 +11,7 @@ import { HttpService } from '@helgoland/core';
 import { AppComponent } from './app';
 import { CreateModule } from './create/create.module';
 import { EditorModule } from './editor/editor.module';
+import { IngestionModule } from './ingestion/ingestion.module';
 import { APP_PROVIDERS } from './providers';
 import { ROUTES } from './routes';
 import { SamplesComponent } from './samples/samples.component';
@@ -29,6 +30,7 @@ import { SamplesComponent } from './samples/samples.component';
     EditorModule,
     CreateModule,
     CommonModule,
+    IngestionModule,
     HelgolandCachingModule,
     RouterModule.forRoot(ROUTES)
   ],
