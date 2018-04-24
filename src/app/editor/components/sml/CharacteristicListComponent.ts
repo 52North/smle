@@ -1,5 +1,6 @@
 import { Component, Type } from '@angular/core';
 
+import { configuration } from '../../../configuration';
 import { Characteristic } from '../../../model/sml/Characteristic';
 import { CharacteristicList } from '../../../model/sml/CharacteristicList';
 import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
@@ -16,7 +17,6 @@ import {
     SweTimeRange,
 } from '../../../model/swe';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
-import { ConfigurationService } from '../../../services/ConfigurationService';
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
@@ -41,9 +41,7 @@ export class CharacteristicListComponent extends TypedModelComponent<Characteris
         { name: (new SweDataArray()).toString(), type: SweDataArray }
     ];
 
-    constructor(
-        private configuration: ConfigurationService
-    ) {
+    constructor() {
         super();
     }
 
@@ -53,13 +51,11 @@ export class CharacteristicListComponent extends TypedModelComponent<Characteris
 
     protected openNewCharacteristicItem(item: Characteristic) {
         const config = this.config.getConfigFor('sml:characteristic');
-        this.configuration.getConfig().subscribe(smleConfig => {
-            let options: ChildMetadataOptions;
-            if (smleConfig.showCharacteristicVocabularySelection) {
-                options = { vocabularyType: VocabularyType.Characteristic };
-            }
-            this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
-        });
+        let options: ChildMetadataOptions;
+        if (configuration.showCharacteristicVocabularySelection) {
+            options = { vocabularyType: VocabularyType.Characteristic };
+        }
+        this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
     }
 
     protected onAddCharacteristic(characteristicType: Type<AbstractDataComponent>): void {

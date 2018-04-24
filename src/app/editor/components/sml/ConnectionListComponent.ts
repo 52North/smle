@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { Connection } from '../../../model/sml';
 import { ConnectionList } from '../../../model/sml/ConnectionList';
-import { ConfigurationService } from '../../../services/ConfigurationService';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ConnectionComponent } from './ConnectionComponent';
@@ -14,9 +13,7 @@ import { ConnectionComponent } from './ConnectionComponent';
 })
 export class ConnectionListComponent extends TypedModelComponent<ConnectionList> {
 
-  constructor(
-    private configuration: ConfigurationService
-  ) {
+  constructor() {
     super();
   }
 
