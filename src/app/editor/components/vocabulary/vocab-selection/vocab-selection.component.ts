@@ -95,7 +95,7 @@ export class VocabSelectionComponent implements OnInit {
     this.narrower = item.narrower.filter(e => e.startsWith('http://vocab'));
   }
 
-  private navigateEntries() {
+  public navigateEntries() {
     this.list = null;
     this.loading = true;
     this.vocab.getVocabList(this.vocabType).subscribe(res => this.list = res, error => { }, () => this.loading = false);

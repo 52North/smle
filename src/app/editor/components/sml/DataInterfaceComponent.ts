@@ -21,7 +21,7 @@ export class DataInterfaceComponent extends EditorComponent<DataInterface> {
         return new DataInterface();
     }
 
-    protected delegateOpenNewChild(childMetadata: ChildMetadata<any>) {
+    public delegateOpenNewChild(childMetadata: ChildMetadata<any>) {
         this.openAsChild.emit(childMetadata);
     }
 }

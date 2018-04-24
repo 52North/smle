@@ -80,7 +80,7 @@ export class PositionEditorComponent extends EditorComponent<Position> {
         super(componentFactoryResolver, viewContainerRef);
     }
 
-    protected openMap() {
+    public openMap() {
         const ref = this.modalService.open(MapComponent);
         if (this.northing && this.easting) {
             (ref.componentInstance as MapComponent).location = {
