@@ -52,7 +52,7 @@ export class EditorComponent implements OnInit {
 
     private updateEditor() {
         if (this.editorService.getDescription() == null) {
-            this.router.navigate(['/create']);
+            this.router.navigate(['/']);
         }
         this.description = this.editorService.getDescription();
         this.descriptionType = this.editorService.getDescriptionType();
