@@ -130,7 +130,7 @@ export class NamedSweDataComponentComponent extends AbstractNamedComponentCompon
   templateUrl: './NamedSweDataComponentComponent.html',
   styleUrls: ['../styles/editor-component.scss']
 })
-export class SweFieldComponent extends AbstractNamedComponentComponent<SweField> {
+export class SweFieldComponent extends AbstractNamedComponentComponent<SweField> implements OnInit {
 
   constructor(
     componentFactoryResolver: ComponentFactoryResolver,
@@ -139,6 +139,10 @@ export class SweFieldComponent extends AbstractNamedComponentComponent<SweField>
   ) {
     super(componentFactoryResolver, viewContainerRef, modalService);
     this.title = 'Swe Field';
+  }
+
+  public ngOnInit() {
+    super.ngOnInit();
   }
 
   protected createModel(): SweField {
