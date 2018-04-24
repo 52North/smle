@@ -8,6 +8,7 @@ import { StreamsComponent } from './streams/streams.component';
 import { StreamService } from './streams/streams.service';
 
 const ROUTES: Routes = [
+  { path: '', component: StreamsComponent },
   { path: 'streams', component: StreamsComponent }
 ];
 
