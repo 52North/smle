@@ -1,5 +1,8 @@
-<smle-checkbox [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'collapseWhiteSpace'"></smle-checkbox>
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'decimalSeperator'"></text-field>
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'tokenSeperator'"></text-field>
-<text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'blockSeperator'"></text-field>
-<swe-encoding [isShowAll]="isShowAll" [config]="config" [model]="model"></swe-encoding>
+<label>Text-Encoding</label>
+<div class="nested-element">
+  <smle-checkbox [isShowAll]="isShowAll" [config]="config" [model]="model" fieldName="collapseWhiteSpace" [configName]="'@collapseWhiteSpace'"></smle-checkbox>
+  <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" fieldName="decimalSeperator" [configName]="'@decimalSeperator'"></text-field>
+  <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" fieldName="tokenSeperator" [configName]="'@tokenSeperator'"></text-field>
+  <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" fieldName="blockSeperator" [configName]="'@blockSeperator'"></text-field>
+  <swe-encoding [isShowAll]="isShowAll" [config]="config" [model]="model"></swe-encoding>
+</div>

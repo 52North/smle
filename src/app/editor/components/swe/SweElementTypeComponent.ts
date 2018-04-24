@@ -1,15 +1,16 @@
-import { Component, AfterContentInit } from '@angular/core';
-import { TypedModelComponent } from '../base/TypedModelComponent';
+import { AfterContentInit, Component } from '@angular/core';
+
+import { SweBoolean } from '../../../model/swe/SweBoolean';
+import { SweCategory } from '../../../model/swe/SweCategory';
+import { SweCount } from '../../../model/swe/SweCount';
 import { SweDataRecord } from '../../../model/swe/SweDataRecord';
+import { SweElementType } from '../../../model/swe/SweElementType';
+import { SweQuantity } from '../../../model/swe/SweQuantity';
+import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
 import { SweText } from '../../../model/swe/SweText';
 import { SweTime } from '../../../model/swe/SweTime';
-import { SweCount } from '../../../model/swe/SweCount';
-import { SweBoolean } from '../../../model/swe/SweBoolean';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweCategory } from '../../../model/swe/SweCategory';
 import { SweTimeRange } from '../../../model/swe/SweTimeRange';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
-import { SweElementType } from '../../../model/swe/SweElementType';
+import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ComponentType } from '../sml/NamedSweDataComponentComponent';
 
 @Component({
@@ -17,7 +18,8 @@ import { ComponentType } from '../sml/NamedSweDataComponentComponent';
     templateUrl: './SweElementTypeComponent.html'
 })
 export class SweElementTypeComponent extends TypedModelComponent<SweElementType> implements AfterContentInit {
-    private typeType: ComponentType;
+
+    public typeType: ComponentType;
 
     ngAfterContentInit(): any {
         this.typeType = this.getTypeType();
