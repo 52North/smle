@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { AbstractProcess } from '../../model/sml';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
+import { ingestionConfig } from '../ingestion.config.service';
 
 export interface Stream {
   name: string;
@@ -15,8 +16,6 @@ interface StreamsResponse {
   streams: Stream[];
 }
 
-const CNC_URL = 'http://oceans.dev.52north.org/cnc/api/streams/';
-
 @Injectable()
 export class StreamService {
 
@@ -25,7 +24,7 @@ export class StreamService {
   ) { }
 
   public getStreams(): Observable<Stream[]> {
-    return this.http.get<StreamsResponse>(CNC_URL, {})
+    return this.http.get<StreamsResponse>(ingestionConfig.cncUrl, {})
       .map(res => res.streams);
   }
 
@@ -33,7 +32,7 @@ export class StreamService {
     const headers: HttpHeaders = new HttpHeaders({
       'Accept': 'application/xml'
     });
-    return this.http.get(CNC_URL + stream.name, { headers, responseType: 'text' })
+    return this.http.get(ingestionConfig.cncUrl + stream.name, { headers, responseType: 'text' })
       .map(res => new SensorMLXmlService().deserialize(res));
   }
 
