@@ -150,6 +150,16 @@
                       }
                     }
                   }
+                },
+                "*": {
+                  "swe:value": false,
+                  "swe:id": false,
+                  "swe:identifier": false,
+                  "swe:constraint": false,
+                  "@:optional": false,
+                  "@:updatable": false,
+                  "@:referenceFrame": false,
+                  "@:axisId": false
                 }
               },
               "swe:id": false
