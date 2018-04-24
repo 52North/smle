@@ -62,7 +62,14 @@
             "isHidden": true
           },
           "sml:identification": {
-            "isExpanded": true
+            "isExpanded": true,
+            "sml:IdentifierList": {
+              "@:definition": false,
+              "swe:id": false,
+              "swe:identifier": false,
+              "swe:label": false,
+              "swe:description": false
+            }
           },
           "sml:outputs": {
             "isExpanded": true,
@@ -80,7 +87,64 @@
                   "swe:id": false,
                   "swe:identifier": false,
                   "swe:label": false,
-                  "swe:description": false
+                  "swe:description": false,
+                  "sml:data": {
+                    "swe:DataStream": {
+                      "isExpanded": false,
+                      "swe:encoding": {
+                        "swe:id": false
+                      },
+                      "swe:elementType": {
+                        "*": {
+                          "swe:id": false,
+                          "swe:identifier": false,
+                          "swe:label": false,
+                          "swe:description": false,
+                          "@:definition": false,
+                          "@:optional": false,
+                          "@:updatable": false,
+                          "*": {
+                            "*": {
+                              "swe:id": false,
+                              "swe:identifier": false,
+                              "swe:value": false,
+                              "swe:referenceTime": false,
+                              "swe:uom": false,
+                              "swe:constraint": false,
+                              "@:optional": false,
+                              "@:updatable": false,
+                              "@:referenceFrame": false,
+                              "@:axisId": false
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "sml:interfaceParameters": {
+                    "isExpanded": true,
+                    "swe:id": false,
+                    "swe:identifier": false,
+                    "swe:label": false,
+                    "swe:description": false,
+                    "@:optional": false,
+                    "@:updatable": false,
+                    "*": {
+                      "*": {
+                        "swe:id": false,
+                        "swe:identifier": false,
+                        "swe:label": false,
+                        "swe:description": false,
+                        "swe:referenceTime": false,
+                        "swe:uom": false,
+                        "swe:constraint": false,
+                        "@:optional": false,
+                        "@:updatable": false,
+                        "@:referenceFrame": false,
+                        "@:axisId": false
+                      }
+                    }
+                  }
                 }
               },
               "swe:id": false
