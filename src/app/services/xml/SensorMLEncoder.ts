@@ -1,8 +1,8 @@
+import { Point } from '../../model/gml';
 import { AbstractAlgorithm } from '../../model/sml/AbstractAlgorithm';
 import { AbstractMetadataList } from '../../model/sml/AbstractMetadataList';
 import { AbstractModes } from '../../model/sml/AbstractModes';
 import { AbstractPhysicalProcess } from '../../model/sml/AbstractPhysicalProcess';
-import { AbstractDataComponent } from '../../model/swe/AbstractDataComponent';
 import { AbstractProcess } from '../../model/sml/AbstractProcess';
 import { AggregateProcess } from '../../model/sml/AggregateProcess';
 import { AggregatingProcess } from '../../model/sml/AggregatingProcess';
@@ -19,36 +19,36 @@ import { DocumentList } from '../../model/sml/DocumentList';
 import { Event } from '../../model/sml/Event';
 import { EventList } from '../../model/sml/EventList';
 import { FeatureList } from '../../model/sml/FeatureList';
-import { GmlEncoder } from './GmlEncoder';
 import { IdentifierList } from '../../model/sml/IdentifierList';
 import { InputList } from '../../model/sml/InputList';
 import { InputOrOutputOrParameter } from '../../model/sml/InputOrOutputOrParameter';
-import { IsoEncoder } from './IsoEncoder';
 import { KeywordList } from '../../model/sml/KeywordList';
 import { Mode } from '../../model/sml/Mode';
 import { ModeChoice } from '../../model/sml/ModeChoice';
-import { NAMESPACES } from './Namespaces';
 import { ObservableProperty } from '../../model/sml/ObservableProperty';
 import { OutputList } from '../../model/sml/OutputList';
 import { ParameterList } from '../../model/sml/ParameterList';
 import { PhysicalComponent } from '../../model/sml/PhysicalComponent';
 import { PhysicalSystem } from '../../model/sml/PhysicalSystem';
-import { Point } from '../../model/gml';
 import { Position } from '../../model/sml/Position';
 import { ProcessMethod } from '../../model/sml/ProcessMethod';
 import { ProcessMethodProcess } from '../../model/sml/ProcessMethodProcess';
 import { Settings } from '../../model/sml/Settings';
 import { SimpleProcess } from '../../model/sml/SimpleProcess';
 import { SpatialFrame } from '../../model/sml/SpatialFrame';
+import { TemporalFrame } from '../../model/sml/TemporalFrame';
+import { Term } from '../../model/sml/Term';
+import { AbstractDataComponent } from '../../model/swe/AbstractDataComponent';
 import { SweDataArray } from '../../model/swe/SweDataArray';
 import { SweDataComponent } from '../../model/swe/SweDataComponent';
 import { SweDataRecord } from '../../model/swe/SweDataRecord';
-import { SweEncoder } from './SweEncoder';
 import { SweMatrix } from '../../model/swe/SweMatrix';
 import { SweText } from '../../model/swe/SweText';
 import { SweVector } from '../../model/swe/SweVector';
-import { TemporalFrame } from '../../model/sml/TemporalFrame';
-import { Term } from '../../model/sml/Term';
+import { GmlEncoder } from './GmlEncoder';
+import { IsoEncoder } from './IsoEncoder';
+import { NAMESPACES } from './Namespaces';
+import { SweEncoder } from './SweEncoder';
 
 export class SensorMLEncoder {
 
@@ -770,28 +770,37 @@ export class SensorMLEncoder {
         return node;
     }
 
-    public encodeComponentList(object: ComponentList, document: Document): Node {
+    public encodeComponentList(componentList: ComponentList, document: Document): Node {
         const node = document.createElementNS(NAMESPACES.SML, 'sml:ComponentList');
-        this.sweEncoder.encodeAbstractSwe(node, object, document);
+        this.sweEncoder.encodeAbstractSwe(node, componentList, document);
 
-        if (object.components) {
-            object.components.forEach((component) => {
+        if (componentList.components) {
+            componentList.components.forEach((component) => {
                 const componentNode = document.createElementNS(NAMESPACES.SML, 'sml:component');
                 if (component.name) {
                     componentNode.setAttribute('name', component.name);
                 }
-                // TODO set new abstract process element
-                
-                // if (component.href) {
-                //     componentNode.setAttributeNS(NAMESPACES.XLINK, 'xlink:href', component.href);
-                // }
-                // if (component.title) {
-                //     componentNode.setAttributeNS(NAMESPACES.XLINK, 'xlink:title', component.title);
-                // }
+                if (component.abstractProcess) {
+                    componentNode.appendChild(this.createAbstractProcess(component.abstractProcess, document));
+                }
                 node.appendChild(componentNode);
             });
         }
         return node;
+    }
+
+    private createAbstractProcess(process: AbstractProcess, document: Document): Node {
+        if (process instanceof SimpleProcess) {
+            return this.encodeSimpleProcess(process, document);
+        } else if (process instanceof AggregateProcess) {
+            return this.encodeAggregateProcess(process, document);
+        } else if (process instanceof PhysicalComponent) {
+            return this.encodePhysicalComponent(process, document);
+        } else if (process instanceof PhysicalSystem) {
+            return this.encodePhysicalSystem(process, document);
+        } else {
+            throw new Error('Unsupported process type');
+        }
     }
 
     public encodeAbstractPhysicalProcess(node: Element, object: AbstractPhysicalProcess, document: Document): void {
