@@ -290,24 +290,24 @@ export class SweDecoder {
                 );
             }
 
-            if (textEncodingElem.hasAttribute('decimalSeperator')) {
-                textEncoding.decimalSeperator = textEncodingElem.getAttribute('decimalSeperator');
+            if (textEncodingElem.hasAttribute('decimalSeparator')) {
+                textEncoding.decimalSeparator = textEncodingElem.getAttribute('decimalSeparator');
                 this._profileIDMap = this.utils.processProfileID(
-                    textEncodingElem, textEncoding, 'decimalSeperator', this._profileIDMap
+                    textEncodingElem, textEncoding, 'decimalSeparator', this._profileIDMap
                 );
             }
 
-            if (textEncodingElem.hasAttribute('tokenSeperator')) {
-                textEncoding.tokenSeperator = textEncodingElem.getAttribute('tokenSeperator');
+            if (textEncodingElem.hasAttribute('tokenSeparator')) {
+                textEncoding.tokenSeparator = textEncodingElem.getAttribute('tokenSeparator');
                 this._profileIDMap = this.utils.processProfileID(
-                    textEncodingElem, textEncoding, 'tokenSeperator', this._profileIDMap
+                    textEncodingElem, textEncoding, 'tokenSeparator', this._profileIDMap
                 );
             }
 
-            if (textEncodingElem.hasAttribute('blockSeperator')) {
-                textEncoding.blockSeperator = textEncodingElem.getAttribute('blockSeperator');
+            if (textEncodingElem.hasAttribute('blockSeparator')) {
+                textEncoding.blockSeparator = textEncodingElem.getAttribute('blockSeparator');
                 this._profileIDMap = this.utils.processProfileID(
-                    textEncodingElem, textEncoding, 'blockSeperator', this._profileIDMap
+                    textEncodingElem, textEncoding, 'blockSeparator', this._profileIDMap
                 );
             }
 
