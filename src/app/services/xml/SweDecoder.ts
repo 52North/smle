@@ -561,16 +561,18 @@ export class SweDecoder {
         const uomElem = this.utils.getElement(elem, 'uom', NAMESPACES.SWE);
         if (uomElem != null) {
             const uom = new UnitOfMeasure();
-
             if (uomElem.hasAttribute('code')) {
                 uom.code = uomElem.getAttribute('code');
                 this._profileIDMap = this.utils.processProfileID(elem, uom, 'code', this._profileIDMap);
 
             }
-            if (uomElem.hasAttribute('href')) {
-                uom.href = uomElem.getAttribute('href');
+            if (uomElem.hasAttributeNS(NAMESPACES.XLINK, 'href')) {
+                uom.href = uomElem.getAttributeNS(NAMESPACES.XLINK, 'href');
                 this._profileIDMap = this.utils.processProfileID(elem, uom, 'href', this._profileIDMap);
-
+            }
+            if (uomElem.hasAttributeNS(NAMESPACES.XLINK, 'title')) {
+                uom.title = uomElem.getAttributeNS(NAMESPACES.XLINK, 'title');
+                this._profileIDMap = this.utils.processProfileID(elem, uom, 'title', this._profileIDMap);
             }
             return new ReturnObject(uom, uomElem);
         }

@@ -6,6 +6,9 @@ export class UnitOfMeasure {
     @DisplayName('Href')
     href: string;
 
+    @DisplayName('Title')
+    title: string;
+
     toString() {
         return this.code || 'Unit of measure';
     }

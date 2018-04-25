@@ -15,7 +15,7 @@ export abstract class AbstractDataComponent extends AbstractSWEIdentifiable {
      * Specifies that data for this component can be omitted in the datastream
      */
     @DisplayName('Optional')
-    optional = false;
+    optional: boolean;
     /**
      * Specifies if the value of a data component can be updated externally
      * (i.e. is variable)
