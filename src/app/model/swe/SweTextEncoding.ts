@@ -15,20 +15,20 @@ export class SweTextEncoding extends SweEncoding {
      * Character used as the decimal separator
      */
     @DisplayName('Decimal separator')
-    decimalSeperator = '.';
+    decimalSeparator = '.';
     /**
      * Character sequence used as the token separator (i.e. between two successive
      *  values)
      */
     @DisplayName('Token separator')
-    tokenSeperator = ';';
+    tokenSeparator = ';';
     /**
      * Character sequence used as the block separator (i.e. between two successive
      * blocks in the data set. The end of a block is reached once all values from
      * the data tree have been encoded once)
      */
     @DisplayName('Block separator')
-    blockSeperator = '@@';
+    blockSeparator = '@@';
 
     toString() {
         return 'SWE text encoding';

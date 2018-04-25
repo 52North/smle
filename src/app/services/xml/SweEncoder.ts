@@ -188,16 +188,16 @@ export class SweEncoder {
             node.setAttribute('collapseWhiteSpace', encoding.collapseWhiteSpace.toString());
         }
 
-        if (encoding.decimalSeperator) {
-            node.setAttribute('decimalSeperator', encoding.decimalSeperator);
+        if (encoding.decimalSeparator) {
+            node.setAttribute('decimalSeparator', encoding.decimalSeparator);
         }
 
-        if (encoding.tokenSeperator) {
-            node.setAttribute('tokenSeperator', encoding.tokenSeperator);
+        if (encoding.tokenSeparator) {
+            node.setAttribute('tokenSeparator', encoding.tokenSeparator);
         }
 
-        if (encoding.blockSeperator) {
-            node.setAttribute('blockSeperator', encoding.blockSeperator);
+        if (encoding.blockSeparator) {
+            node.setAttribute('blockSeparator', encoding.blockSeparator);
         }
 
         return node;
