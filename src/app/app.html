@@ -21,9 +21,9 @@
       <li router-active="active" class="nav-item">
         <a class="nav-link" [routerLink]="['/editor']">Editor</a>
       </li> -->
-      <!-- <li router-active="active" class="nav-item">
-        <a class="nav-link" [routerLink]="['/samples']">Samples</a>
-      </li> -->
+      <li router-active="active" class="nav-item">
+        <a class="nav-link" (click)="createNew()">New</a>
+      </li>
       <li router-active="active" class="nav-item">
         <a class="nav-link" [routerLink]="['/streams']">Streams</a>
       </li>

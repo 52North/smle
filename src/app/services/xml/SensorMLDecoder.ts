@@ -364,12 +364,12 @@ export class SensorMLDecoder {
 
             this.decodeAbstractMetadataList(featureListElem, featureList);
             // featureList.features =
-            //   this.utils.getDecodedList(featureListElem, 'feature', NAMESPACES.SML, (feature) => {
-            //   debugger;
-            //   let temp = new AbstractFeature();
-            //   this.gmlDecoder.decodeAbstractFeature(feature);
-            //   return
-            // })
+            //     this.utils.getDecodedList(featureListElem, 'feature', NAMESPACES.SML, this._profileIDMap, (feature) => {
+            //         debugger;
+            //         let temp = new AbstractFeature();
+            //         this.gmlDecoder.decodeAbstractFeature(feature);
+            //         return [];
+            //     });
 
             return new ReturnObject(featureList, featureListElem);
         }

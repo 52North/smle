@@ -20,7 +20,8 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
         'lisaInstance',
         'lisaInstance_standardConform',
         'physicalSystemInstance_standardConform',
-        'AggregateProcess-Weather'
+        'AggregateProcess-Weather',
+        'ingestion-template'
     ];
 
     constructor(private dataloader: SampleDataLoader) {
