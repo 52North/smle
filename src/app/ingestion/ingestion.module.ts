@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CommonSmleModule } from '../common/common.module';
+import { CreateNewButtonComponent } from './create-new-button/create-new-button.component';
 import { PublishButtonComponent } from './publish-button/publish-button.component';
 import { PublishModalComponent } from './publish-modal/publish-modal.component';
 import { CncService } from './services/cnc.service';
@@ -18,13 +19,15 @@ const ROUTES: Routes = [
   declarations: [
     StreamsComponent,
     PublishButtonComponent,
-    PublishModalComponent
+    PublishModalComponent,
+    CreateNewButtonComponent
   ],
   entryComponents: [
     PublishModalComponent
   ],
   exports: [
-    PublishButtonComponent
+    PublishButtonComponent,
+    CreateNewButtonComponent
   ],
   imports: [
     CommonModule,

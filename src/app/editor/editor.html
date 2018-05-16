@@ -27,8 +27,8 @@
 
 <div class="row">
   <div class="footer-buttons container" *ngIf="!!description">
-    <app-publish-button [process]="description"></app-publish-button>
     <div class="mx-auto" style="width: 100%;">
+      <app-publish-button [process]="description"></app-publish-button>
       <button class="btn btn-primary" (click)="provideDownload()">Download</button>
     </div>
   </div>

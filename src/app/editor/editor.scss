@@ -12,12 +12,10 @@
 .visualizer-container {
   height: 100%;
   float: right;
-
   .visualizer-close-button {
     right: 30px;
     top: 0;
   }
-
   .description-visualizer {
     position: absolute;
     left: 0;
@@ -30,7 +28,6 @@
     padding: 10px;
     height: 100%;
   }
-
   &:not(.expanded) {
     display: none;
   }
@@ -46,19 +43,15 @@ pre {
 
 .row.editor {
   height: 100%;
-
   &.actionBar {
     height: 95%;
   }
-
   .dropdown-item {
     cursor: pointer;
   }
-
   .type-selector-container {
     padding-top: 15px;
   }
-
   .components-container {
     height: 100%;
     padding-top: 5px;

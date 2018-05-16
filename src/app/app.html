@@ -21,9 +21,7 @@
       <li router-active="active" class="nav-item">
         <a class="nav-link" [routerLink]="['/editor']">Editor</a>
       </li> -->
-      <li router-active="active" class="nav-item">
-        <a class="nav-link" (click)="createNew()">New</a>
-      </li>
+      <app-create-new-button></app-create-new-button>
       <li router-active="active" class="nav-item">
         <a class="nav-link" [routerLink]="['/streams']">Streams</a>
       </li>

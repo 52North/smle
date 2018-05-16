@@ -1,7 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { EditorService } from './services/EditorService';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
@@ -10,13 +8,6 @@ import { EditorService } from './services/EditorService';
 })
 export class AppComponent {
 
-  constructor(
-    protected editorService: EditorService
-  ) { }
+  constructor() { }
 
-  public createNew() {
-    this.editorService.getDescriptionForId('ingestion-template').subscribe((desc) => {
-      if (desc != null) { this.editorService.openEditorWithDescription(desc); }
-    });
-  }
 }
