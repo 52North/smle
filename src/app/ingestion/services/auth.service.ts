@@ -34,6 +34,8 @@ export class AuthService {
   }
 
   public logout(): void {
+    this.redirectUrl = null;
+    this.cncService.clearToken();
     this.isLoggedIn = false;
   }
 

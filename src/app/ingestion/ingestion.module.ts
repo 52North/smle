@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonSmleModule } from '../common/common.module';
 import { CreateNewButtonComponent } from './create-new-button/create-new-button.component';
 import { LoginViewComponent } from './login-view/login-view.component';
+import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { PublishButtonComponent } from './publish-button/publish-button.component';
 import { PublishModalComponent } from './publish-modal/publish-modal.component';
 import { AuthGuard, AuthService } from './services/auth.service';
@@ -24,14 +25,16 @@ const ROUTES: Routes = [
     PublishButtonComponent,
     PublishModalComponent,
     CreateNewButtonComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    LogoutButtonComponent
   ],
   entryComponents: [
     PublishModalComponent
   ],
   exports: [
     PublishButtonComponent,
-    CreateNewButtonComponent
+    CreateNewButtonComponent,
+    LogoutButtonComponent
   ],
   imports: [
     CommonModule,

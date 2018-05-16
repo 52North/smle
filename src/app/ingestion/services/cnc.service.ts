@@ -37,6 +37,10 @@ export class CncService {
       });
   }
 
+  public clearToken(): void {
+    this.basicAuthToken = '';
+  }
+
   public getStreams(): Observable<Stream[]> {
     return this.http.get<StreamsResponse>(ingestionConfig.cncUrl + STREAMS_ENDPOINT, { headers: this.createBasicAuthHeader() })
       .map(res => res.streams);
