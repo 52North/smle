@@ -1,0 +1,15 @@
+<h2 class="text-center">Please log in before you can use smle</h2>
+<div class="mx-auto" style="width: 300px;">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" id="username" [(ngModel)]="username" class="form-control">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" [(ngModel)]="password" class="form-control">
+  </div>
+  <a class="btn btn-primary btn-block" role="button" (click)="login()">Login</a>
+</div>
+<div *ngIf="loginfailed" class="text-center login-failed" style="color: red;">
+  The credentials are wrong - please try again...
+</div>

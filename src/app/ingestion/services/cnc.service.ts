@@ -16,16 +16,26 @@ interface StreamsResponse {
   streams: Stream[];
 }
 
-const USERNAME = 'cnc-user';
-const PASSWORD = 'cnc-non-secure-basic-auth-password';
 const STREAMS_ENDPOINT = 'streams/';
 
 @Injectable()
 export class CncService {
 
+  private basicAuthToken: string;
+
   constructor(
     private http: HttpClient
   ) { }
+
+  public tryBasicAuth(username: string, password: string): Observable<boolean> {
+    const token = 'Basic ' + btoa(username + ':' + password);
+    const headers = new HttpHeaders({ 'Authorization': token });
+    return this.http.get(ingestionConfig.cncUrl, { headers })
+      .map(res => {
+        this.basicAuthToken = token;
+        return true;
+      });
+  }
 
   public getStreams(): Observable<Stream[]> {
     return this.http.get<StreamsResponse>(ingestionConfig.cncUrl + STREAMS_ENDPOINT, { headers: this.createBasicAuthHeader() })
@@ -45,9 +55,7 @@ export class CncService {
   }
 
   private createBasicAuthHeader(): HttpHeaders {
-    return new HttpHeaders({
-      'Authorization': 'Basic ' + btoa(USERNAME + ':' + PASSWORD)
-    });
+    return new HttpHeaders({ 'Authorization': this.basicAuthToken });
   }
 
 }
