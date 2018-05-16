@@ -4,8 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CommonSmleModule } from '../common/common.module';
+import { PublishButtonComponent } from './publish-button/publish-button.component';
+import { PublishModalComponent } from './publish-modal/publish-modal.component';
+import { CncService } from './services/cnc.service';
 import { StreamsComponent } from './streams/streams.component';
-import { StreamService } from './streams/streams.service';
 
 const ROUTES: Routes = [
   { path: '', component: StreamsComponent },
@@ -14,7 +16,15 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
-    StreamsComponent
+    StreamsComponent,
+    PublishButtonComponent,
+    PublishModalComponent
+  ],
+  entryComponents: [
+    PublishModalComponent
+  ],
+  exports: [
+    PublishButtonComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +33,7 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES)
   ],
   providers: [
-    StreamService
+    CncService
   ]
 })
 export class IngestionModule { }

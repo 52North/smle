@@ -1,5 +1,4 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Connection } from '../../../model/sml';
 import { EditorComponent } from '../base/EditorComponent';
@@ -13,8 +12,7 @@ export class ConnectionComponent extends EditorComponent<Connection> {
 
   constructor(
     componentFactoryResolver: ComponentFactoryResolver,
-    viewContainerRef: ViewContainerRef,
-    private modalService: NgbModal
+    viewContainerRef: ViewContainerRef
   ) {
     super(componentFactoryResolver, viewContainerRef);
   }

@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="publishedStream">Successfully published stream</h4>
+  <h4 class="modal-title" *ngIf="publishError">Error occured while publish stream</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div *ngIf="publishedStream">
+    <div>
+      <b>Name:</b>
+      <div>{{publishedStream.name}}</div>
+    </div>
+    <div>
+      <b>Status:</b>
+      <div>{{publishedStream.status}}</div>
+    </div>
+    <div>
+      <b>Definition:</b>
+      <div>{{publishedStream.definition}}</div>
+    </div>
+  </div>
+  <div *ngIf="publishError">
+    <pre>{{publishError | json}}</pre>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Close</button>
+</div>

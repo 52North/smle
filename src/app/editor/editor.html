@@ -27,9 +27,9 @@
 
 <div class="row">
   <div class="footer-buttons container" *ngIf="!!description">
-    <div class="col-md-12 center-block">
-      <!-- <a class="btn btn-primary" (click)="publishDescription()" *ngIf="editorMode === 1">Publish Description</a> -->
-      <button class="btn btn-primary" (click)="provideDownload()">Download Description</button>
+    <app-publish-button [process]="description"></app-publish-button>
+    <div class="mx-auto" style="width: 100%;">
+      <button class="btn btn-primary" (click)="provideDownload()">Download</button>
     </div>
   </div>
 </div>

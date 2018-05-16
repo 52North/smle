@@ -26,7 +26,7 @@ export class EditorComponent implements OnInit {
         private editorService: EditorService,
         private router: Router,
         private route: ActivatedRoute
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         const snapshot = this.route.snapshot;
