@@ -225,6 +225,15 @@ export class SweDecoder {
                     encodingElem.docElement, dataStream, 'encoding', this._profileIDMap
                 );
             }
+
+            const values = this.utils.getElement(dataStreamElem, 'values', NAMESPACES.SWE);
+            if (values) {
+                dataStream.values = {};
+                this._profileIDMap = this.utils.processProfileID(
+                    encodingElem.docElement, dataStream, 'values', this._profileIDMap
+                );
+            }
+
             return new ReturnObject(dataStream, dataStreamElem);
         }
     }

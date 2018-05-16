@@ -838,7 +838,8 @@ export class SweEncoder {
         }
 
         if (dataStream.values) {
-
+            const valuesNode = document.createElementNS(NAMESPACES.SWE, 'swe:values');
+            node.appendChild(valuesNode);
         }
         return node;
     }

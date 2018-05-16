@@ -10,7 +10,7 @@ export class SweTextEncoding extends SweEncoding {
      * collapsed with separators when parsing the data stream
      */
     @DisplayName('Collapse whitespace')
-    collapseWhiteSpace = true;
+    collapseWhiteSpace: boolean;
     /**
      * Character used as the decimal separator
      */
