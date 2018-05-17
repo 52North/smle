@@ -73,10 +73,20 @@ export class VocabSelectionComponent implements OnInit {
   }
 
   public onNarrowSelected(item: VocabularyEntry) {
-    if (!this.firstSelection) { this.firstSelection = item; }
-    this.history.push(item);
+    if (item.hasNarrower && !item.narrower) {
+      this.loading = true;
+      this.vocab.getNarrower(item.uri).subscribe(res => {
+        if (!this.firstSelection) { this.firstSelection = res; }
+        this.history.push(res);
+        this.setNarrowerList(res);
+        this.loading = false;
+      });
+    } else {
+      if (!this.firstSelection) { this.firstSelection = item; }
+      this.history.push(item);
+      this.setNarrowerList(item);
+    }
     this.list = null;
-    this.setNarrowerList(item);
   }
 
   public onBreadcrumbSelected(idx: number) {
