@@ -19,7 +19,6 @@ export class TimePeriodComponent extends EditorComponent<TimePeriod> {
         return undefined;
     }
 
-
     public onChangeBegin(date: Date) {
         this.model.begin = date;
     }

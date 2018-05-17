@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
-import * as moment from 'moment';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChange } from '@angular/core';
+import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 const DATE_TIME_SEPARATOR = ' ';
 
@@ -8,36 +8,50 @@ const DATE_TIME_SEPARATOR = ' ';
     templateUrl: './DatePickerComponent.html'
 })
 export class DatePickerComponent implements OnChanges {
+
     @Input()
     public model: Date;
+
     @Input()
     public minDateTime: Date;
+
     @Input()
     public maxDateTime: Date;
 
     @Output()
     public modelChange: EventEmitter<Date> = new EventEmitter<Date>();
 
-    protected dateTimeString: string;
-    protected dateFormat = 'dd.mm.yy';
-    protected timeFormat = 'HH:mm';
-    private momentDateFormat = 'DD.MM.YYYY';
+    public dateTime: NgbDateStruct;
+    public minDate: NgbDateStruct;
+    public maxDate: NgbDateStruct;
 
     public ngOnChanges(changes: { [propertyName: string]: SimpleChange }): any {
-        const modelChange = changes['model'];
-        if (!modelChange) {
-            return;
+        if (changes['model']) {
+            const newDate = new NgbDateDateAdapter().fromModel(this.model);
+            if (!this.dateTime ||
+                (this.dateTime.year !== newDate.year || this.dateTime.month !== newDate.month || this.dateTime.day !== newDate.day)
+            ) {
+                this.dateTime = newDate;
+            }
         }
 
-        const dateTime = this.model;
-        if (dateTime) {
-            this.dateTimeString =
-                this.getFormattedDate(dateTime) + DATE_TIME_SEPARATOR + this.getFormattedTime(dateTime);
+        if (changes['minDateTime']) {
+            this.minDate = new NgbDateDateAdapter().fromModel(this.minDateTime);
         }
+
+        if (changes['maxDateTime']) {
+            this.maxDate = new NgbDateDateAdapter().fromModel(this.maxDateTime);
+        }
+    }
+
+    public onDataChanged(date: NgbDateStruct) {
+        this.model = new NgbDateDateAdapter().toModel(date);
+        this.modelChange.emit(this.model);
     }
 
     public onClearDateEntry() {
         this.model = null;
+        this.dateTime = null;
         this.modelChange.emit(this.model);
     }
 
@@ -45,27 +59,21 @@ export class DatePickerComponent implements OnChanges {
         this.model = new Date();
         this.modelChange.emit(this.model);
     }
+}
 
-    protected onStringDateChange(newDateTimeString: string): void {
-        const parsedDate = moment(newDateTimeString, this.momentDateFormat + ' ' + this.timeFormat).toDate();
-        this.dateTimeString = newDateTimeString;
-        this.modelChange.emit(parsedDate);
+class NgbDateDateAdapter extends NgbDateAdapter<Date> {
+    fromModel(value: Date): NgbDateStruct {
+        if (value) {
+            return {
+                day: value.getDate(),
+                month: value.getMonth() + 1,
+                year: value.getFullYear()
+            };
+        }
+        return null;
     }
-
-    private getTimeObject(dateTime: Date): any {
-        return {
-            hour: dateTime.getHours(),
-            minute: dateTime.getMinutes()
-        };
+    toModel(date: NgbDateStruct): Date {
+        if (date) { return new Date(date.year, date.month - 1, date.day); }
+        return null;
     }
-
-    private getFormattedDate(dateTime: Date): string {
-        return moment(dateTime).format(this.momentDateFormat);
-    }
-
-    private getFormattedTime(dateTime: Date): string {
-        const timeObject = this.getTimeObject(dateTime);
-        return moment(timeObject).format(this.timeFormat);
-    }
-
 }
