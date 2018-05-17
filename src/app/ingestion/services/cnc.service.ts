@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AbstractProcess } from '../../model/sml';
 import { SensorMLXmlService } from '../../services/SensorMLXmlService';
@@ -30,11 +31,11 @@ export class CncService {
   public tryBasicAuth(username: string, password: string): Observable<boolean> {
     const token = 'Basic ' + btoa(username + ':' + password);
     const headers = new HttpHeaders({ 'Authorization': token });
-    return this.http.get(ingestionConfig.cncUrl, { headers })
-      .map(res => {
+    return this.http.get(ingestionConfig.cncUrl, { headers }).pipe(
+      map(res => {
         this.basicAuthToken = token;
         return true;
-      });
+      }));
   }
 
   public clearToken(): void {
@@ -42,14 +43,14 @@ export class CncService {
   }
 
   public getStreams(): Observable<Stream[]> {
-    return this.http.get<StreamsResponse>(ingestionConfig.cncUrl + STREAMS_ENDPOINT, { headers: this.createBasicAuthHeader() })
-      .map(res => res.streams);
+    return this.http.get<StreamsResponse>(ingestionConfig.cncUrl + STREAMS_ENDPOINT, { headers: this.createBasicAuthHeader() }).pipe(
+      map(res => res.streams));
   }
 
   public getStreamDescription(stream: Stream): Observable<AbstractProcess> {
     const headers = this.createBasicAuthHeader().append('Accept', 'application/xml');
-    return this.http.get(ingestionConfig.cncUrl + STREAMS_ENDPOINT + stream.name, { headers, responseType: 'text' })
-      .map(res => new SensorMLXmlService().deserialize(res));
+    return this.http.get(ingestionConfig.cncUrl + STREAMS_ENDPOINT + stream.name, { headers, responseType: 'text' }).pipe(
+      map(res => new SensorMLXmlService().deserialize(res)));
   }
 
   public publishDescription(desc: AbstractProcess): Observable<Stream> {

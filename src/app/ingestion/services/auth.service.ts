@@ -1,8 +1,7 @@
-import 'rxjs/add/operator/do';
-
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { CncService } from './cnc.service';
 
@@ -18,8 +17,8 @@ export class AuthService {
   ) { }
 
   public login(username: string, password: string): Observable<boolean> {
-    return this.cncService.tryBasicAuth(username, password)
-      .do(
+    return this.cncService.tryBasicAuth(username, password).pipe(
+      tap(
         res => {
           this.isLoggedIn = true;
           if (this.redirectUrl) {
@@ -30,7 +29,7 @@ export class AuthService {
           return true;
         },
         error => false
-      );
+      ));
   }
 
   public logout(): void {
