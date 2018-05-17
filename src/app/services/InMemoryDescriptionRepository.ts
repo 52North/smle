@@ -1,7 +1,5 @@
-import 'rxjs/add/observable/of';
-
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 
 import { CodeType } from '../model/gml';
 import { AbstractProcess } from '../model/sml';
@@ -29,7 +27,7 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
     getDescriptions(): Observable<Array<string>> {
         let list = this._samples;
         list = list.concat(Object.keys(this._descriptions));
-        return Observable.of(list);
+        return observableOf(list);
     }
 
     getDescription(id: string): Observable<AbstractProcess> {
@@ -37,27 +35,27 @@ export class InMemoryDescriptionRepository extends DescriptionRepository {
             return this.dataloader.loadSample('./examples/' + id + '.xml');
         }
         if (!this._descriptions[id]) {
-            return Observable.throw(new Error('does not exist'));
+            return observableThrowError(new Error('does not exist'));
         }
-        return Observable.of(this._descriptions[id]);
+        return observableOf(this._descriptions[id]);
     }
 
     saveDescription(description: AbstractProcess): Observable<void> {
         const id = this._getId(description);
         if (this._descriptions[id]) {
-            return Observable.throw(new Error('already saved'));
+            return observableThrowError(new Error('already saved'));
         }
         this._descriptions[id] = description;
-        return Observable.of();
+        return observableOf();
     }
 
     updateDescription(description: AbstractProcess): Observable<void> {
         const id = this._getId(description);
         if (!this._descriptions[id]) {
-            return Observable.throw(new Error('not yet saved'));
+            return observableThrowError(new Error('not yet saved'));
         }
         this._descriptions[id] = description;
-        return Observable.of();
+        return observableOf();
     }
 
     private _getId(description: AbstractProcess): string {

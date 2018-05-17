@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AbstractProcess, PhysicalSystem, PhysicalComponent, SimpleProcess, Term, AggregateProcess } from '../model/sml';
+import { Observable, Observer } from 'rxjs';
+
+import { AbstractProcess, AggregateProcess, PhysicalComponent, PhysicalSystem, SimpleProcess, Term } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
 import { XmlService } from '../services/XmlService';
-import { DescriptionConfigService } from './DescriptionConfigService';
 import { DescriptionConfig } from './config/DescriptionConfig';
-import { EditorMode } from './EditorMode';
-import { DynamicGUIService } from './dynamicGUI/DynamicGUIService';
+import { DescriptionConfigService } from './DescriptionConfigService';
 import { DynamicGUIObject } from './dynamicGUI/DynamicGUIObject';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+import { DynamicGUIService } from './dynamicGUI/DynamicGUIService';
+import { EditorMode } from './EditorMode';
+
 export enum DescriptionType {
     PhysicalSystem = 1,
     PhysicalComponent = 2,

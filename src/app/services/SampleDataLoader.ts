@@ -1,8 +1,7 @@
-import 'rxjs/add/operator/toPromise';
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { AbstractProcess } from '../model/sml';
 import { SensorMLXmlService } from '../services/SensorMLXmlService';
@@ -13,7 +12,9 @@ export class SampleDataLoader {
     constructor(private http: HttpClient) { }
 
     loadSample(url: string): Observable<AbstractProcess> {
-        return this.http.get(url, { responseType: 'text' }).map((response: string) => new SensorMLXmlService().deserialize(response));
+        return this.http.get(url, { responseType: 'text' }).pipe(
+            map((response: string) => new SensorMLXmlService().deserialize(response))
+        );
     }
 
 }

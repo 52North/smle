@@ -1,8 +1,7 @@
-import 'rxjs/add/operator/map';
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LFService, Logger, LoggerFactory, LoggerFactoryOptions, LogGroupRule, LogLevel } from 'typescript-logging';
 
 import * as smlLib from '../../model/sml';
@@ -205,7 +204,7 @@ export class DynamicGUIService {
     }
 
     public getModelAndConfiguration(): Observable<any> {
-        return this.getProfile().map((json: any) => {
+        return this.getProfile().pipe(map((json: any) => {
             this._logger.info('JSON profile:' + JSON.stringify(json));
             if (json.profile) {
                 this._profile = json.profile;
@@ -229,7 +228,7 @@ export class DynamicGUIService {
                 this._globalConfig, this._elementConfig, this._profileIDMap, true
             );
             return returnObject;
-        });
+        }));
     }
 
     public setModel(modelClass: string) {
@@ -538,11 +537,11 @@ export class DynamicGUIService {
     }
 
     private getProfile(): Observable<JSON> {
-        return this.http.get('../../profiles/Profile_discovery.xml', { responseType: 'text' }).map((xml: string) => {
+        return this.http.get('../../profiles/Profile_discovery.xml', { responseType: 'text' }).pipe(map((xml: string) => {
             const x2js = new X2JS();
             const json = x2js.xml2js(xml);
             return json;
-        });
+        }));
     }
 
     private splitXPath(xPath: string): XPathElement[] {

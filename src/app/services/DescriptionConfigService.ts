@@ -1,9 +1,7 @@
-import 'rxjs/add/operator/toPromise';
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
+import { Observable, Observer } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { DynamicGUIDescriptionConfig } from './config/DynamicGUIDescriptionConfig';
@@ -38,12 +36,12 @@ export class DescriptionConfigService {
     }
 
     private loadConfiguration(location: string): Observable<DescriptionConfig> {
-        return this.http.get(location).map(response => {
+        return this.http.get(location).pipe(map(response => {
             try {
                 return new JSONDescriptionConfig(response);
             } catch (error) {
                 console.error('error while creating configuration: ' + error);
             }
-        });
+        }));
     }
 }

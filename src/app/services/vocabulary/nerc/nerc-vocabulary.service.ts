@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '@helgoland/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of as observableOf } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { VocabularyEntry, VocabularyType } from '../model';
 import { VocabularyService } from '../vocabulary.service';
 import { NercVocabularyDecoderService } from './decoder';
 import { NercSparqlResponse } from './model';
+
 
 @Injectable()
 export class NercVocabularyService implements VocabularyService {
@@ -33,7 +35,7 @@ export class NercVocabularyService implements VocabularyService {
       case VocabularyType.HistoryEvent:
         return this.getHistoryEventList();
       default:
-        return Observable.of([]);
+        return observableOf([]);
     }
   }
 
@@ -56,7 +58,7 @@ export class NercVocabularyService implements VocabularyService {
       case VocabularyType.HistoryEvent:
         return this.searchHistoryEventEntries(searchTerm);
       default:
-        return Observable.of([]);
+        return observableOf([]);
     }
   }
 
@@ -83,7 +85,7 @@ export class NercVocabularyService implements VocabularyService {
             'GROUP BY ?uri ?id ?label ?definition',
           output: 'json'
         }
-      }).map(res => this.mapSparqlResponse(res));
+      }).pipe(map(res => this.mapSparqlResponse(res)));
   }
 
   private searchHistoryEventEntries(searchTerm: string): Observable<VocabularyEntry[]> {
@@ -109,7 +111,7 @@ export class NercVocabularyService implements VocabularyService {
             'GROUP BY ?uri ?id ?label ?definition',
           output: 'json'
         }
-      }).map(res => this.mapSparqlResponse(res));
+      }).pipe(map(res => this.mapSparqlResponse(res)));
   }
 
   private searchContactEntries(searchTerm: string): Observable<VocabularyEntry[]> {
@@ -135,7 +137,7 @@ export class NercVocabularyService implements VocabularyService {
             'GROUP BY ?uri ?id ?label ?definition',
           output: 'json'
         }
-      }).map(res => this.mapSparqlResponse(res));
+      }).pipe(map(res => this.mapSparqlResponse(res)));
   }
 
   private searchCapabilityEntries(searchTerm: string): Observable<VocabularyEntry[]> {
@@ -161,7 +163,7 @@ export class NercVocabularyService implements VocabularyService {
             'GROUP BY ?uri ?id ?label ?definition',
           output: 'json'
         }
-      }).map(res => this.mapSparqlResponse(res));
+      }).pipe(map(res => this.mapSparqlResponse(res)));
   }
 
   private searchCharacteristicEntries(searchTerm: string): Observable<VocabularyEntry[]> {
@@ -187,7 +189,7 @@ export class NercVocabularyService implements VocabularyService {
             'GROUP BY ?uri ?id ?label ?definition',
           output: 'json'
         }
-      }).map(res => this.mapSparqlResponse(res));
+      }).pipe(map(res => this.mapSparqlResponse(res)));
   }
 
   private searchClassificationEntries(searchTerm: string): Observable<VocabularyEntry[]> {
@@ -215,7 +217,7 @@ export class NercVocabularyService implements VocabularyService {
             'LIMIT 999',
           output: 'json'
         }
-      }).map(res => this.mapSparqlResponse(res));
+      }).pipe(map(res => this.mapSparqlResponse(res)));
   }
 
   private getIdentificationList(): Observable<VocabularyEntry[]> {
@@ -255,21 +257,21 @@ export class NercVocabularyService implements VocabularyService {
 
   private requestVocabEntries(path: string): Observable<VocabularyEntry[]> {
     return this.httpService.client()
-      .get(this.proxyUrl + this.nercUrl + path, { responseType: 'text' })
-      .map(res => new NercVocabularyDecoderService().deserialize(res));
+      .get(this.proxyUrl + this.nercUrl + path, { responseType: 'text' }).pipe(
+        map(res => new NercVocabularyDecoderService().deserialize(res)));
   }
 
   private requestVocabEntry(url: string): Observable<VocabularyEntry> {
     return this.httpService.client()
-      .get(this.proxyUrl + url, { responseType: 'text' })
-      .map(res => {
-        const list = new NercVocabularyDecoderService().deserialize(res);
-        if (list.length === 1) {
-          return list[0];
-        } else {
-          return null;
-        }
-      });
+      .get(this.proxyUrl + url, { responseType: 'text' }).pipe(
+        map(res => {
+          const list = new NercVocabularyDecoderService().deserialize(res);
+          if (list.length === 1) {
+            return list[0];
+          } else {
+            return null;
+          }
+        }));
   }
 
 }
