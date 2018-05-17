@@ -670,7 +670,7 @@ export class SweEncoder {
 
         if (allowedTimes.values) {
             allowedTimes.values.forEach((allowedTime) => {
-                let value: string;
+                let value: any;
                 if (allowedTime instanceof Date) {
                     value = allowedTime.toISOString();
                 } else if (allowedTime instanceof String) {
