@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body">
   <div class="input-group search">
-    <input type="text" class="form-control" placeholder="Search vocabulary..." [(ngModel)]="searchterm" (keydown.enter)="triggerSearch()">
+    <input type="text" class="form-control" placeholder="Search vocabulary by term..." [(ngModel)]="searchterm" (keydown.enter)="triggerSearch()">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="button" (click)="triggerSearch()">Search</button>
     </div>
@@ -14,7 +14,11 @@
   <div class="navigate-entries">
     <button type="button" class="btn btn-block" (click)="navigateEntries()">Navigate entries</button>
   </div>
-  <div class="loading" *ngIf="loading">loading...</div>
+  <div class="loading" *ngIf="loading">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+    </div>
+  </div>
   <div class="results">
     <vocab-breadcrumb [breadcrumbs]="history" (selectBreadcrumb)="onBreadcrumbSelected($event)"></vocab-breadcrumb>
     <div class="list-group" *ngIf="list">

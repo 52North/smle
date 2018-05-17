@@ -21,6 +21,10 @@ export interface NercSparqlResponse {
       definition: {
         type: string,
         value: string
+      },
+      count: {
+        type: string,
+        value: string
       }
     }[]
   };

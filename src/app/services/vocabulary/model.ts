@@ -11,5 +11,6 @@ export interface VocabularyEntry {
     label: string;
     uri: string;
     description: string;
-    narrower: string[];
+    hasNarrower?: boolean;
+    narrower?: string[];
 }
