@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Stream } from '../services/cnc.service';
@@ -15,11 +16,13 @@ export class PublishModalComponent {
   public publishError: any;
 
   constructor(
-    protected activeModel: NgbActiveModal
+    protected activeModel: NgbActiveModal,
+    protected router: Router
   ) { }
 
   public close() {
     this.activeModel.close();
+    this.router.navigate(['/streams']);
   }
 
 }

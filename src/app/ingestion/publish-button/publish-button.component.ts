@@ -34,19 +34,27 @@ export class PublishButtonComponent {
 
   public publish() {
     this.publishing = true;
-    this.cncService.publishDescription(this.process).subscribe(
-      stream => {
-        this.cncService.setDeployStatusDescription(stream.name, DeployStatus.deployed).subscribe(res => {
-          const ref = this.modalService.open(PublishModalComponent);
-          (ref.componentInstance as PublishModalComponent).publishedStream = stream;
-          this.publishing = false;
-        });
-      },
-      error => {
+    if (this.isUpdatable()) {
+      this.cncService.updateDescription(this.getStreamId(), this.process).subscribe(stream => {
         const ref = this.modalService.open(PublishModalComponent);
-        (ref.componentInstance as PublishModalComponent).publishError = error;
+        (ref.componentInstance as PublishModalComponent).publishedStream = stream;
         this.publishing = false;
-      }
-    );
+      });
+    } else {
+      this.cncService.publishDescription(this.process).subscribe(
+        stream => {
+          this.cncService.setDeployStatusDescription(stream.name, DeployStatus.deployed).subscribe(res => {
+            const ref = this.modalService.open(PublishModalComponent);
+            (ref.componentInstance as PublishModalComponent).publishedStream = stream;
+            this.publishing = false;
+          });
+        },
+        error => {
+          const ref = this.modalService.open(PublishModalComponent);
+          (ref.componentInstance as PublishModalComponent).publishError = error;
+          this.publishing = false;
+        }
+      );
+    }
   }
 }

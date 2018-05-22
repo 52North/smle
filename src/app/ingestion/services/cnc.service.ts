@@ -64,6 +64,11 @@ export class CncService {
     return this.http.post<Stream>(ingestionConfig.cncUrl + STREAMS_ENDPOINT, body, { headers });
   }
 
+  public deleteDescription(id: string): Observable<void> {
+    const headers = this.createBasicAuthHeader();
+    return this.http.delete<void>(ingestionConfig.cncUrl + STREAMS_ENDPOINT + id, { headers });
+  }
+
   public updateDescription(id: string, desc: AbstractProcess): Observable<Stream> {
     const body = new SensorMLXmlService().serialize(desc, true);
     const headers = this.createBasicAuthHeader().append('Content-Type', 'application/xml');

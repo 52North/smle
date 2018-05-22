@@ -8,7 +8,7 @@
     <label for="password">Password</label>
     <input type="password" id="password" [(ngModel)]="password" class="form-control">
   </div>
-  <a class="btn btn-primary btn-block" role="button" (click)="login()">Login</a>
+  <button class="btn btn-primary btn-block" role="button" (click)="login()">Login</button>
 </div>
 <div *ngIf="loginfailed" class="text-center login-failed" style="color: red;">
   The credentials are wrong - please try again...

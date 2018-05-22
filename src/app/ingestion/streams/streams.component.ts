@@ -21,9 +21,14 @@ export class StreamsComponent implements OnInit {
     this.cncService.getStreams().subscribe((res) => this.streams = res);
   }
 
-  public selectStream(stream: Stream) {
+  public editStream(stream: Stream) {
     this.cncService.getStreamDescription(stream.name)
       .subscribe(res => this.ingestionHandler.openEditorWithStreamId(stream.name));
+  }
+
+  public deleteStream(stream: Stream) {
+    this.cncService.deleteDescription(stream.name)
+      .subscribe(response => this.cncService.getStreams().subscribe(streams => this.streams = streams));
   }
 
 }
