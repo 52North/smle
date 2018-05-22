@@ -22,17 +22,17 @@ export enum DescriptionType {
 @Injectable()
 export class EditorService {
 
-    private description: AbstractProcess;
-    private procedureId: string;
-    private sosUrl: string;
-    private editorMode: EditorMode;
+    protected description: AbstractProcess;
+    protected procedureId: string;
+    protected sosUrl: string;
+    protected editorMode: EditorMode;
 
     constructor(
-        private service: DescriptionRepository,
-        private router: Router,
-        private xmlService: XmlService<AbstractProcess>,
-        private configService: DescriptionConfigService,
-        private dynamicGUIService: DynamicGUIService
+        protected service: DescriptionRepository,
+        protected router: Router,
+        protected xmlService: XmlService<AbstractProcess>,
+        protected configService: DescriptionConfigService,
+        protected dynamicGUIService: DynamicGUIService
     ) { }
 
     openEditorWithDescription(desc: AbstractProcess) {
@@ -48,8 +48,7 @@ export class EditorService {
             if (id) {
                 this.service.getDescription(id).subscribe(
                     (desc) => {
-                        this.description = desc;
-                        observer.next(this.description);
+                        observer.next(desc);
                         observer.complete();
                     },
                     (error) => {
