@@ -3,6 +3,23 @@ import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 const DATE_TIME_SEPARATOR = ' ';
 
+class NgbDateDateAdapter extends NgbDateAdapter<Date> {
+    fromModel(value: Date): NgbDateStruct {
+        if (value) {
+            return {
+                day: value.getDate(),
+                month: value.getMonth() + 1,
+                year: value.getFullYear()
+            };
+        }
+        return null;
+    }
+    toModel(date: NgbDateStruct): Date {
+        if (date) { return new Date(date.year, date.month - 1, date.day); }
+        return null;
+    }
+}
+
 @Component({
     selector: 'date-picker',
     templateUrl: './DatePickerComponent.html'
@@ -58,22 +75,5 @@ export class DatePickerComponent implements OnChanges {
     public onCreateDateEntry() {
         this.model = new Date();
         this.modelChange.emit(this.model);
-    }
-}
-
-class NgbDateDateAdapter extends NgbDateAdapter<Date> {
-    fromModel(value: Date): NgbDateStruct {
-        if (value) {
-            return {
-                day: value.getDate(),
-                month: value.getMonth() + 1,
-                year: value.getFullYear()
-            };
-        }
-        return null;
-    }
-    toModel(date: NgbDateStruct): Date {
-        if (date) { return new Date(date.year, date.month - 1, date.day); }
-        return null;
     }
 }
