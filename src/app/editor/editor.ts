@@ -33,6 +33,7 @@ export class EditorComponent implements OnInit {
         if (snapshot.params['id']) {
             this.editorService.getDescriptionForId(snapshot.params['id']).subscribe((desc) => {
                 if (desc != null) {
+                    this.editorService.setDescription(desc);
                     this.updateEditor();
                 }
             }, (error) => {
