@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EditorService } from '../../services/EditorService';
 import { CncService, Stream } from '../services/cnc.service';
+import { IngestionHandlerService } from '../services/handler.service';
 
 @Component({
   selector: 'streams',
@@ -14,7 +14,7 @@ export class StreamsComponent implements OnInit {
 
   constructor(
     private cncService: CncService,
-    private editorService: EditorService
+    private ingestionHandler: IngestionHandlerService
   ) { }
 
   ngOnInit() {
@@ -22,8 +22,8 @@ export class StreamsComponent implements OnInit {
   }
 
   public selectStream(stream: Stream) {
-    this.cncService.getStreamDescription(stream)
-      .subscribe(res => this.editorService.openEditorWithDescription(res));
+    this.cncService.getStreamDescription(stream.name)
+      .subscribe(res => this.ingestionHandler.openEditorWithStreamId(stream.name));
   }
 
 }

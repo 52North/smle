@@ -11,6 +11,7 @@ import { PublishButtonComponent } from './publish-button/publish-button.componen
 import { PublishModalComponent } from './publish-modal/publish-modal.component';
 import { AuthGuard, AuthService } from './services/auth.service';
 import { CncService } from './services/cnc.service';
+import { IngestionHandlerService } from './services/handler.service';
 import { StreamsComponent } from './streams/streams.component';
 
 const ROUTES: Routes = [
@@ -45,7 +46,8 @@ const ROUTES: Routes = [
   providers: [
     CncService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    IngestionHandlerService
   ]
 })
 export class IngestionModule { }

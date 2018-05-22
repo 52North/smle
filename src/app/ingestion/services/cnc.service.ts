@@ -13,6 +13,11 @@ export interface Stream {
   definition: string;
 }
 
+export enum DeployStatus {
+  deployed = 'deployed',
+  undeployed = 'undeployed'
+}
+
 interface StreamsResponse {
   streams: Stream[];
 }
@@ -47,9 +52,9 @@ export class CncService {
       map(res => res.streams));
   }
 
-  public getStreamDescription(stream: Stream): Observable<AbstractProcess> {
+  public getStreamDescription(id: string): Observable<AbstractProcess> {
     const headers = this.createBasicAuthHeader().append('Accept', 'application/xml');
-    return this.http.get(ingestionConfig.cncUrl + STREAMS_ENDPOINT + stream.name, { headers, responseType: 'text' }).pipe(
+    return this.http.get(ingestionConfig.cncUrl + STREAMS_ENDPOINT + id, { headers, responseType: 'text' }).pipe(
       map(res => new SensorMLXmlService().deserialize(res)));
   }
 
@@ -57,6 +62,17 @@ export class CncService {
     const body = new SensorMLXmlService().serialize(desc, true);
     const headers = this.createBasicAuthHeader().append('Content-Type', 'application/xml');
     return this.http.post<Stream>(ingestionConfig.cncUrl + STREAMS_ENDPOINT, body, { headers });
+  }
+
+  public updateDescription(id: string, desc: AbstractProcess): Observable<Stream> {
+    const body = new SensorMLXmlService().serialize(desc, true);
+    const headers = this.createBasicAuthHeader().append('Content-Type', 'application/xml');
+    return this.http.put<Stream>(ingestionConfig.cncUrl + STREAMS_ENDPOINT + id, body, { headers });
+  }
+
+  public setDeployStatusDescription(id: string, deployStatus: DeployStatus): Observable<void> {
+    const headers = this.createBasicAuthHeader();
+    return this.http.put<void>(ingestionConfig.cncUrl + STREAMS_ENDPOINT + id, { status: deployStatus }, { headers });
   }
 
   private createBasicAuthHeader(): HttpHeaders {

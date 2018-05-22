@@ -65,6 +65,9 @@ pre {
 
 .footer-buttons {
   height: 5%;
+  app-publish-button {
+    padding-right: 10px;
+  }
 }
 
 :host {
