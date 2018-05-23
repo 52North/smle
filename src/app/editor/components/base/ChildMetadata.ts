@@ -4,7 +4,12 @@ import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 import { VocabularyType } from '../../../services/vocabulary/model';
 
 export interface ChildMetadataOptions {
-    vocabularyType: VocabularyType;
+    vocabularyConfig: VocabularyConfig;
+}
+
+export interface VocabularyConfig {
+    type: VocabularyType;
+    navigation: boolean;
 }
 
 export class ChildMetadata<T> {

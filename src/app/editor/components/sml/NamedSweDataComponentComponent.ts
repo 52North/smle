@@ -48,7 +48,7 @@ abstract class AbstractNamedComponentComponent<T> extends EditorComponent<T> imp
 
   public onClickVocabSelection() {
     const ref = this.modalService.open(VocabSelectionComponent);
-    (ref.componentInstance as VocabSelectionComponent).vocabType = this.componentOptions.vocabularyType;
+    (ref.componentInstance as VocabSelectionComponent).vocabularyConfig = this.componentOptions.vocabularyConfig;
     ref.result.then((result: SelectionResult) => { if (result) { this.setVocabularyResult(result); } });
   }
 

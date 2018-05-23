@@ -3,6 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { VocabularyEntry, VocabularyType } from '../../../../services/vocabulary/model';
 import { VocabularyService } from '../../../../services/vocabulary/vocabulary.service';
+import { VocabularyConfig } from '../../base/ChildMetadata';
 
 export interface SelectionResult {
   definition?: string;
@@ -18,7 +19,7 @@ export interface SelectionResult {
 })
 export class VocabSelectionComponent implements OnInit {
 
-  public vocabType: VocabularyType;
+  public vocabularyConfig: VocabularyConfig;
   public list: VocabularyEntry[];
   public loading: boolean;
   public narrower: string[];
@@ -47,7 +48,7 @@ export class VocabSelectionComponent implements OnInit {
     if (this.searchterm) {
       this.list = null;
       this.loading = true;
-      this.vocab.searchVocabEntries(this.vocabType, this.searchterm)
+      this.vocab.searchVocabEntries(this.vocabularyConfig.type, this.searchterm)
         .subscribe(res => this.list = res, error => { }, () => this.loading = false);
     }
   }
@@ -108,11 +109,11 @@ export class VocabSelectionComponent implements OnInit {
   public navigateEntries() {
     this.list = null;
     this.loading = true;
-    this.vocab.getVocabList(this.vocabType).subscribe(res => this.list = res, error => { }, () => this.loading = false);
+    this.vocab.getVocabList(this.vocabularyConfig.type).subscribe(res => this.list = res, error => { }, () => this.loading = false);
   }
 
   private createBaseTitle() {
-    switch (this.vocabType) {
+    switch (this.vocabularyConfig.type) {
       case VocabularyType.Classifier:
         this.title = 'classifier';
         this.selectNarrowButtonLabel = 'Select classifier value';
@@ -133,6 +134,7 @@ export class VocabSelectionComponent implements OnInit {
         this.title = 'history event';
         break;
       default:
+        this.title = '...';
         break;
     }
   }

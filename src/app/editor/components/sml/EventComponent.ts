@@ -215,7 +215,7 @@ export class EventComponent extends EditorComponent<Event> {
 
   protected onClickVocabSelection() {
     const ref = this.modalService.open(VocabSelectionComponent);
-    (ref.componentInstance as VocabSelectionComponent).vocabType = this.componentOptions.vocabularyType;
+    (ref.componentInstance as VocabSelectionComponent).vocabularyConfig = this.componentOptions.vocabularyConfig;
     ref.result.then((result: SelectionResult) => {
       if (result) {
         this.model.definition = new CodeWithAuthority(result.definition, '');

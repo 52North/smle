@@ -14,6 +14,7 @@ import {
     SweTimeRange,
 } from '../../../model/swe';
 import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
+import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { SweFieldComponent } from '../sml/NamedSweDataComponentComponent';
@@ -41,7 +42,10 @@ export class SweDataRecordComponent extends TypedModelComponent<SweDataRecord> {
     }
 
     protected openNewFieldItem(item: SweField) {
-        const metadata = new ChildMetadata(SweFieldComponent, item, this.config.getConfigFor('swe:field'));
+        const metadata = new ChildMetadata(
+            SweFieldComponent, item, this.config.getConfigFor('swe:field'),
+            { vocabularyConfig: { type: VocabularyType.ObservedProperty, navigation: false } }
+        );
         this.openNewChild(metadata);
     }
 

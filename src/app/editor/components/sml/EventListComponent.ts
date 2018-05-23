@@ -27,7 +27,7 @@ export class EventListComponent extends TypedModelComponent<EventList> {
     const config = this.config.getConfigFor('sml:events');
     let options: ChildMetadataOptions;
     if (configuration.showHistoryVocabularySelection) {
-      options = { vocabularyType: VocabularyType.HistoryEvent };
+      options = { vocabularyConfig: { type: VocabularyType.HistoryEvent, navigation: true } };
     }
     this.openNewChild(new ChildMetadata(EventComponent, item, config, options));
   }

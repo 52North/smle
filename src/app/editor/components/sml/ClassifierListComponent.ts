@@ -27,7 +27,7 @@ export class ClassifierListComponent extends TypedModelComponent<ClassifierList>
     const config = this.config.getConfigFor('sml:classifier').getConfigFor('sml:Term');
     let options: ChildMetadataOptions;
     if (configuration.showClassifierVocabularySelection) {
-      options = { vocabularyType: VocabularyType.Classifier };
+      options = { vocabularyConfig: { type: VocabularyType.Classifier, navigation: true } };
     }
     this.openNewChild(new ChildMetadata(TermComponent, item, config, options));
   }
