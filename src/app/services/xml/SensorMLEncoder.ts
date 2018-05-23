@@ -432,7 +432,7 @@ export class SensorMLEncoder {
             node.appendChild(configurationNode);
         }
 
-        if (object.featureOfInterest && object.featureOfInterest.features.length > 0) {
+        if (object.featureOfInterest && object.featureOfInterest.feature.length > 0) {
             const featureOfInterestNode = document.createElementNS(NAMESPACES.SML, 'sml:featuresOfInterest');
             featureOfInterestNode.appendChild(this.encodeFeatureList(object.featureOfInterest, document));
             node.appendChild(featureOfInterestNode);
@@ -601,10 +601,10 @@ export class SensorMLEncoder {
 
         this.encodeAbstractMetadataList(node, object, document);
 
-        if (object.features) {
-            object.features.forEach((feature) => {
+        if (object.feature) {
+            object.feature.forEach((feature) => {
                 const featureNode = document.createElementNS(NAMESPACES.SML, 'sml:feature');
-                featureNode.appendChild(this.gmlEncoder.encodeFeature(feature, document));
+                this.gmlEncoder.encodeFeature(featureNode, feature, document);
                 node.appendChild(featureNode);
             });
         }

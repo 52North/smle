@@ -1,13 +1,15 @@
 import { AbstractFeature } from '../../model/gml/AbstractFeature';
 import { AbstractGML } from '../../model/gml/AbstractGML';
+import { AbstractTime } from '../../model/gml/AbstractTime';
+import { AssociationAttributeGroup } from '../../model/gml/AssociationAttributeGroup';
 import { CodeType } from '../../model/gml/CodeType';
 import { Envelope } from '../../model/gml/Envelope';
-import { NAMESPACES } from './Namespaces';
 import { Point } from '../../model/gml/Point';
 import { Referenced } from '../../model/gml/Referenced';
-import { AbstractTime } from '../../model/gml/AbstractTime';
 import { TimeInstant } from '../../model/gml/TimeInstant';
 import { TimePeriod } from '../../model/gml/TimePeriod';
+import { FeatureProperty } from '../../model/sml/FeatureProperty';
+import { NAMESPACES } from './Namespaces';
 
 export class GmlEncoder {
 
@@ -75,6 +77,16 @@ export class GmlEncoder {
         }
     }
 
+    public encodeAssociationAttributeGroup(node: Element, object: AssociationAttributeGroup): Node {
+        if (object.href) {
+            node.setAttributeNS(NAMESPACES.XLINK, 'xlink:href', object.href);
+        }
+        if (object.title) {
+            node.setAttributeNS(NAMESPACES.XLINK, 'xlink:title', object.title);
+        }
+        return node;
+    }
+
     public encodeIdentifier(object: CodeType, document: Document): Node {
         const node = document.createElementNS(NAMESPACES.GML, 'gml:identifier');
         this.encodeCodeType(node, object, document);
@@ -96,9 +108,9 @@ export class GmlEncoder {
         }
     }
 
-    public encodeFeature(object: AbstractFeature, document: Document): Node {
-        // todo handle feature encoding
-        throw new Error('Not yet implemented');
+    public encodeFeature(node: Element, object: FeatureProperty, document: Document): Node {
+        this.encodeAssociationAttributeGroup(node, object);
+        return node;
     }
 
     public encodePoint(object: Point, document: Document): Node {

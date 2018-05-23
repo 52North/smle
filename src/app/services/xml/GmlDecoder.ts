@@ -1,16 +1,17 @@
 import { AbstractFeature } from '../../model/gml/AbstractFeature';
 import { AbstractGML } from '../../model/gml/AbstractGML';
+import { AbstractTime } from '../../model/gml/AbstractTime';
+import { AssociationAttributeGroup } from '../../model/gml/AssociationAttributeGroup';
 import { CodeType } from '../../model/gml/CodeType';
 import { Envelope } from '../../model/gml/Envelope';
-import { NAMESPACES } from './Namespaces';
 import { Point } from '../../model/gml/Point';
 import { Referenced } from '../../model/gml/Referenced';
 import { TimeInstant } from '../../model/gml/TimeInstant';
 import { TimePeriod } from '../../model/gml/TimePeriod';
-import { AbstractTime } from '../../model/gml/AbstractTime';
-import { DecoderUtils } from './DecoderUtils';
-import { ReturnObject } from './ReturnObject';
 import { BidiMap } from '../dynamicGUI/BidiMap';
+import { DecoderUtils } from './DecoderUtils';
+import { NAMESPACES } from './Namespaces';
+import { ReturnObject } from './ReturnObject';
 
 export class GmlDecoder {
 
@@ -72,6 +73,18 @@ export class GmlDecoder {
 
             }
             return new ReturnObject(period, timeElem);
+        }
+    }
+
+    public decodeAssociationAttributeGroup(elem: Element, object: AssociationAttributeGroup): void {
+        if (elem.hasAttributeNS(NAMESPACES.XLINK, 'href')) {
+            object.href = elem.getAttributeNS(NAMESPACES.XLINK, 'href');
+            this._profileIDMap = this.utils.processProfileID(elem, object, 'href', this._profileIDMap);
+        }
+
+        if (elem.hasAttributeNS(NAMESPACES.XLINK, 'title')) {
+            object.title = elem.getAttributeNS(NAMESPACES.XLINK, 'title');
+            this._profileIDMap = this.utils.processProfileID(elem, object, 'title', this._profileIDMap);
         }
     }
 

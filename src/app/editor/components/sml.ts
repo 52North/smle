@@ -18,6 +18,8 @@ import { DescribedObjectComponent } from './sml/DescribedObjectComponent';
 import { DocumentListComponent } from './sml/DocumentListComponent';
 import { EventComponent } from './sml/EventComponent';
 import { EventListComponent } from './sml/EventListComponent';
+import { FeatureOfInterestListComponent } from './sml/FeatureOfInterestListComponent';
+import { FeaturePropertyComponent } from './sml/FeaturePropertyComponent';
 import { IdentifierListComponent } from './sml/IdentifierListComponent';
 import { InputComponent } from './sml/InputComponent';
 import { InputListComponent } from './sml/InputListComponent';
@@ -59,6 +61,8 @@ export const SML_COMPONENTS = [
     DocumentListComponent,
     EventComponent,
     EventListComponent,
+    FeatureOfInterestListComponent,
+    FeaturePropertyComponent,
     IdentifierListComponent,
     InputComponent,
     InputListComponent,

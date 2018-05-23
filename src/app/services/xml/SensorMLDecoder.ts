@@ -24,6 +24,7 @@ import { DocumentList } from '../../model/sml/DocumentList';
 import { Event } from '../../model/sml/Event';
 import { EventList } from '../../model/sml/EventList';
 import { FeatureList } from '../../model/sml/FeatureList';
+import { FeatureProperty } from '../../model/sml/FeatureProperty';
 import { IdentifierList } from '../../model/sml/IdentifierList';
 import { InputList } from '../../model/sml/InputList';
 import { InputOrOutputOrParameter } from '../../model/sml/InputOrOutputOrParameter';
@@ -363,13 +364,18 @@ export class SensorMLDecoder {
             this._profileIDMap = this.utils.processProfileID(featureListElem, featureList, '', this._profileIDMap);
 
             this.decodeAbstractMetadataList(featureListElem, featureList);
-            // featureList.features =
-            //   this.utils.getDecodedList(featureListElem, 'feature', NAMESPACES.SML, (feature) => {
-            //   debugger;
-            //   let temp = new AbstractFeature();
-            //   this.gmlDecoder.decodeAbstractFeature(feature);
-            //   return
-            // })
+
+            featureList.feature =
+                this.utils.getDecodedList<FeatureProperty>(
+                    featureListElem,
+                    'feature',
+                    NAMESPACES.SML,
+                    this._profileIDMap,
+                    (feature) => {
+                        const featureProperty = new FeatureProperty();
+                        this.gmlDecoder.decodeAssociationAttributeGroup(feature, featureProperty);
+                        return new ReturnObject(featureProperty, feature);
+                    });
 
             return new ReturnObject(featureList, featureListElem);
         }

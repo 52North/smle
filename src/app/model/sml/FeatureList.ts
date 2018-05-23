@@ -1,10 +1,10 @@
-import { AbstractMetadataList } from './AbstractMetadataList';
-import { AbstractFeature } from '../gml/AbstractFeature';
 import { DisplayName } from '../../common/decorators/DisplayName';
+import { AbstractMetadataList } from './AbstractMetadataList';
+import { FeatureProperty } from './FeatureProperty';
 
 export class FeatureList extends AbstractMetadataList {
     @DisplayName('Features')
-    features: AbstractFeature[] = [];
+    feature: FeatureProperty[] = [];
 
     toString() {
         return 'Feature list';
