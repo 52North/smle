@@ -1,10 +1,11 @@
 import { Component, Type } from '@angular/core';
 
-import { InputList, OutputList, ParameterList, Settings } from '../../../model/sml';
+import { FeatureList, InputList, OutputList, ParameterList, Settings } from '../../../model/sml';
 import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { NestedChildMetadata } from '../base/NestedChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { NestedCardComponent } from '../basic/NestedCardComponent';
+import { FeatureOfInterestListComponent } from './FeatureOfInterestListComponent';
 import { InputListComponent } from './InputListComponent';
 import { OutputListComponent } from './OutputListComponent';
 import { ParameterListComponent } from './ParameterListComponent';
@@ -20,6 +21,7 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
     public parameterListComponent: Type<any> = ParameterListComponent;
     public outputListComponent: Type<any> = OutputListComponent;
     public inputListComponent: Type<any> = InputListComponent;
+    public featureOfInterestComponent: Type<any> = FeatureOfInterestListComponent;
 
     protected createModel(): AbstractProcess {
         return undefined;
@@ -43,6 +45,26 @@ export class AbstractProcessComponent extends TypedModelComponent<AbstractProces
 
     protected createSettings() {
         this.model.configuration = new Settings();
+    }
+
+    protected openFeatureOfInterest() {
+        this.openNewChild(
+            new NestedChildMetadata(
+                NestedCardComponent,
+                FeatureOfInterestListComponent,
+                'FeatureList',
+                this.model.featureOfInterest,
+                this.config.getConfigFor('sml:featureOfInterest').getConfigFor('sml:FeatureOfInterest')
+            )
+        );
+    }
+
+    protected removeFeatureOfInterest() {
+        this.model.featureOfInterest = null;
+    }
+
+    protected createFeatureOfInterest() {
+        this.model.featureOfInterest = new FeatureList();
     }
 
     protected openParameters() {

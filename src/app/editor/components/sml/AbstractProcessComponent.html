@@ -14,6 +14,17 @@
     </dynamic-element>
   </div>
 </expand-wrapper>
+<expand-wrapper *ngIf="!config.getConfigFor('sml:featureOfInterest').isHidden()" [title]="getDisplayName('featureOfInterest')" [expanded]="config.getConfigFor('sml:featureOfInterest').isExpanded()">
+  <div *ngIf="isShowAll || config.isFieldVisible('sml:featureOfInterest')">
+    <child-item *ngIf="!config.getConfigFor('sml:featureOfInterest').showFlatten('sml:FeatureList')" [model]="model.featureOfInterest" [itemTitle]="getDisplayName('featureOfInterest')"
+      (add)="createFeatureOfInterest()" (remove)="removeFeatureOfInterest()" (select)="openFeatureOfInterest()">
+    </child-item>
+    <dynamic-element *ngIf="config.getConfigFor('sml:featureOfInterest').showFlatten('sml:FeatureList')" [componentType]="featureOfInterestComponent"
+      [model]="model.featureOfInterest" [config]="config.getConfigFor('sml:featureOfInterest').getConfigFor('sml:FeatureList')" [isShowAll]="isShowAll"
+      (openAsChild)="openNewChild($event)">
+    </dynamic-element>
+  </div>
+</expand-wrapper>
 <expand-wrapper *ngIf="!config.getConfigFor('sml:parameters').isHidden()" [title]="getDisplayName('parameters')" [expanded]="config.getConfigFor('sml:parameters').isExpanded()">
   <div *ngIf="isShowAll || config.isFieldVisible('sml:parameters')">
     <child-item *ngIf="!config.getConfigFor('sml:parameters').showFlatten('sml:ParameterList')" [model]="model.parameters" [itemTitle]="getDisplayName('parameters')"
