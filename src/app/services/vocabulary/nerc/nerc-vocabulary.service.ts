@@ -35,6 +35,7 @@ export class NercVocabularyService implements VocabularyService {
       case VocabularyType.HistoryEvent:
         return this.getHistoryEventList();
       default:
+        console.error('Could not find VocabularyType: ' + type);
         return observableOf([]);
     }
   }
@@ -57,7 +58,10 @@ export class NercVocabularyService implements VocabularyService {
         return this.searchContactEntries(searchTerm);
       case VocabularyType.HistoryEvent:
         return this.searchHistoryEventEntries(searchTerm);
+      case VocabularyType.ObservedProperty:
+        return this.searchObservedProperty(searchTerm);
       default:
+        console.error('Could not find VocabularyType: ' + type);
         return observableOf([]);
     }
   }
@@ -83,6 +87,33 @@ export class NercVocabularyService implements VocabularyService {
             ')' +
             '}' +
             'GROUP BY ?uri ?id ?label ?definition',
+          output: 'json'
+        }
+      }).pipe(map(res => this.mapSparqlResponse(res)));
+  }
+
+  private searchObservedProperty(searchTerm: string): Observable<VocabularyEntry[]> {
+    return this.httpService.client()
+      .get<NercSparqlResponse>(this.sparqlUrl, {
+        params: {
+          query:
+            'BASE <http://vocab.nerc.ac.uk/collection/> ' +
+            'PREFIX dc:<http://purl.org/dc/elements/1.1/> ' +
+            'PREFIX skos:<http://www.w3.org/2004/02/skos/core#> ' +
+            'PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ' +
+            'SELECT DISTINCT ?uri ?id ?label ?definition ' +
+            'WHERE { ' +
+            '?uri skos:prefLabel  ?label ; ' +
+            'dc:identifier   ?id ; ' +
+            'skos:definition ?definition . ' +
+            '<P01/current/> skos:member  ?uri. ' +
+            'VALUES ?query { "temperature" } ' +
+            'FILTER (CONTAINS(LCASE(?uri),        LCASE(?query)) ' +
+            '|| CONTAINS(LCASE(?id),         LCASE(?query)) ' +
+            '|| CONTAINS(LCASE(?label),      LCASE(?query)) ' +
+            '|| CONTAINS(LCASE(?definition), LCASE(?query))) ' +
+            '} ' +
+            'ORDER BY ?id',
           output: 'json'
         }
       }).pipe(map(res => this.mapSparqlResponse(res)));
@@ -246,11 +277,15 @@ export class NercVocabularyService implements VocabularyService {
 
   private mapSparqlResponse(response: NercSparqlResponse) {
     return response.results.bindings.map(entry => {
+      let hasNarrower = false;
+      if (entry.count && entry.count.value) {
+        hasNarrower = parseInt(entry.count.value, 10) > 0;
+      }
       return {
         label: entry.label.value,
         uri: entry.uri.value,
         description: entry.definition.value,
-        hasNarrower: parseInt(entry.count.value, 10) > 0 ? true : false
+        hasNarrower
       };
     });
   }

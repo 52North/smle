@@ -53,7 +53,7 @@ export class CharacteristicListComponent extends TypedModelComponent<Characteris
         const config = this.config.getConfigFor('sml:characteristic');
         let options: ChildMetadataOptions;
         if (configuration.showCharacteristicVocabularySelection) {
-            options = { vocabularyType: VocabularyType.Characteristic };
+            options = { vocabularyConfig: { type: VocabularyType.Characteristic, navigation: true } };
         }
         this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
     }

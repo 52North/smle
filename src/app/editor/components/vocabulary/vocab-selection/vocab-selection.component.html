@@ -11,7 +11,7 @@
       <button class="btn btn-outline-secondary" type="button" (click)="triggerSearch()">Search</button>
     </div>
   </div>
-  <div class="navigate-entries">
+  <div class="navigate-entries" *ngIf="vocabularyConfig.navigation">
     <button type="button" class="btn btn-block" (click)="navigateEntries()">Navigate entries</button>
   </div>
   <div class="loading" *ngIf="loading">

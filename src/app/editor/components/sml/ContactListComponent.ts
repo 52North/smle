@@ -36,7 +36,7 @@ export class ContactListComponent extends TypedModelComponent<ContactList> {
     const newLocal = this.config.getConfigFor('sml:contact').getConfigFor('gmd:CI_ResponsibleParty');
     let options: ChildMetadataOptions;
     if (configuration.showContactVocabularySelection) {
-      options = { vocabularyType: VocabularyType.Contact };
+      options = { vocabularyConfig: { type: VocabularyType.Contact, navigation: true } };
     }
     this.openNewChild(new ChildMetadata(ResponsiblePartyComponent, item, newLocal, options));
   }

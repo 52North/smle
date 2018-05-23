@@ -54,7 +54,7 @@ export class CapabilityListComponent extends TypedModelComponent<CapabilityList>
     const config = this.config.getConfigFor('sml:capabilities');
     let options: ChildMetadataOptions;
     if (configuration.showCapabilityVocabularySelection) {
-      options = { vocabularyType: VocabularyType.Capability };
+      options = { vocabularyConfig: { type: VocabularyType.Capability, navigation: true } };
     }
     this.openNewChild(new ChildMetadata(NamedSweDataComponentComponent, item, config, options));
   }

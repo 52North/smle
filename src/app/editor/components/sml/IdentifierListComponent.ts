@@ -26,7 +26,9 @@ export class IdentifierListComponent extends TypedModelComponent<IdentifierList>
   protected openNewIdentifierItem(item: Term) {
     const config = this.config.getConfigFor('sml:identifier').getConfigFor('sml:Term');
     let options: ChildMetadataOptions;
-    if (configuration.showIdentifierVocabularySelection) { options = { vocabularyType: VocabularyType.Identifier }; }
+    if (configuration.showIdentifierVocabularySelection) {
+      options = { vocabularyConfig: { type: VocabularyType.Identifier, navigation: true } };
+    }
     this.openNewChild(new ChildMetadata(TermComponent, item, config, options));
   }
 

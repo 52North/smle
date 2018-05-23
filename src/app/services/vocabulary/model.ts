@@ -4,7 +4,8 @@ export enum VocabularyType {
     Characteristic,
     HistoryEvent,
     Capability,
-    Contact
+    Contact,
+    ObservedProperty
 }
 
 export interface VocabularyEntry {

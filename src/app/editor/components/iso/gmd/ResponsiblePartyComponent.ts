@@ -51,7 +51,7 @@ export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty>
 
   public onClickVocabSelection() {
     const ref = this.modalService.open(VocabSelectionComponent);
-    (ref.componentInstance as VocabSelectionComponent).vocabType = this.componentOptions.vocabularyType;
+    (ref.componentInstance as VocabSelectionComponent).vocabularyConfig = this.componentOptions.vocabularyConfig;
     ref.result.then((result: SelectionResult) => {
       if (result) {
         const match = this.defaultRoles.find(e => e.value === result.label || e.label === result.label);
