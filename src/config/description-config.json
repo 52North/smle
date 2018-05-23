@@ -41,6 +41,9 @@
     "sml:configuration": {
       "isHidden": true
     },
+    "sml:featureOfInterest": {
+      "isHidden": true
+    },
     "sml:typeOf": {
       "isHidden": true
     },
@@ -67,6 +70,24 @@
           "sml:identification": {
             "isExpanded": true,
             "sml:IdentifierList": {
+              "showFlatten": true,
+              "@:definition": false,
+              "swe:id": false,
+              "swe:identifier": false,
+              "swe:label": false,
+              "swe:description": false,
+              "sml:identifier": {
+                "sml:Term": {
+                  "@:codeSpace": false,
+                  "swe:id": false
+                }
+              }
+            }
+          },
+          "sml:featureOfInterest": {
+            "isExpanded": true,
+            "sml:FeatureList": {
+              "showFlatten": true,
               "@:definition": false,
               "swe:id": false,
               "swe:identifier": false,
