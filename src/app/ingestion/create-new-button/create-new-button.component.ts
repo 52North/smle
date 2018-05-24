@@ -14,7 +14,7 @@ export class CreateNewButtonComponent {
   ) { }
 
   public createNew() {
-    this.editorService.getDescriptionForId('ingestion-template').subscribe((desc) => {
+    this.editorService.getDescriptionForId('template').subscribe((desc) => {
       if (desc != null) { this.editorService.openEditorWithDescription(desc); }
     });
   }
