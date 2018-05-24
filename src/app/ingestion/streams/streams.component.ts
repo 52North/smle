@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CncService, Stream } from '../services/cnc.service';
 import { IngestionHandlerService } from '../services/handler.service';
@@ -14,7 +15,8 @@ export class StreamsComponent implements OnInit {
 
   constructor(
     private cncService: CncService,
-    private ingestionHandler: IngestionHandlerService
+    private ingestionHandler: IngestionHandlerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,10 @@ export class StreamsComponent implements OnInit {
   public editStream(stream: Stream) {
     this.cncService.getStreamDescription(stream.name)
       .subscribe(res => this.ingestionHandler.openEditorWithStreamId(stream.name));
+  }
+
+  public showStatistics(stream: Stream) {
+    this.router.navigate(['/statistics', stream.name]);
   }
 
   public deleteStream(stream: Stream) {

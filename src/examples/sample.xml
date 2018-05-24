@@ -81,7 +81,7 @@
           </sml:identification>
           <sml:featuresOfInterest>
             <sml:FeatureList>
-              <sml:feature xlink:href="Marine Institute" xlink:title="Marine Institute"/>
+              <sml:feature xlink:href="MarineInstitute" xlink:title="Marine Institute"/>
             </sml:FeatureList>
           </sml:featuresOfInterest>
           <sml:outputs>
@@ -241,7 +241,7 @@
           </sml:identification>
           <sml:featuresOfInterest>
             <sml:FeatureList>
-              <sml:feature xlink:href="Marine Institute" xlink:title="Marine Institute"/>
+              <sml:feature xlink:href="MarineInstitute" xlink:title="Marine Institute"/>
             </sml:FeatureList>
           </sml:featuresOfInterest>
           <sml:outputs>

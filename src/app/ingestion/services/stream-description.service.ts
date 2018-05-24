@@ -14,8 +14,8 @@ import { IngestionHandlerService } from './handler.service';
 export class StreamDescriptionService extends DescriptionRepository {
 
   private _samples: string[] = [
-    'AggregateProcess-Weather',
-    'ingestion-template'
+    'sample',
+    'template'
   ];
 
   constructor(

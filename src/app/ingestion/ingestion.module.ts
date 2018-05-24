@@ -12,11 +12,14 @@ import { PublishModalComponent } from './publish-modal/publish-modal.component';
 import { AuthGuard, AuthService } from './services/auth.service';
 import { CncService } from './services/cnc.service';
 import { IngestionHandlerService } from './services/handler.service';
+import { StatisticsComponent } from './statistics/statistics.component';
 import { StreamsComponent } from './streams/streams.component';
 
 const ROUTES: Routes = [
   { path: '', component: StreamsComponent, canActivate: [AuthGuard] },
   { path: 'streams', component: StreamsComponent, canActivate: [AuthGuard] },
+  { path: 'statistics', redirectTo: 'streams' },
+  { path: 'statistics/:id', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginViewComponent }
 ];
 
@@ -27,7 +30,8 @@ const ROUTES: Routes = [
     PublishModalComponent,
     CreateNewButtonComponent,
     LoginViewComponent,
-    LogoutButtonComponent
+    LogoutButtonComponent,
+    StatisticsComponent
   ],
   entryComponents: [
     PublishModalComponent

@@ -11,7 +11,8 @@
           <small class="mb-1 card-text">{{stream.definition}}</small>
         </div>
         <div class="card-footer">
-          <button class="btn btn-primary" (click)="editStream(stream)">Edit</button>
+          <button class="btn btn-primary mr-2" (click)="editStream(stream)">Edit</button>
+          <button class="btn btn-primary mr-2" (click)="showStatistics(stream)">Statistics</button>
           <button class="btn btn-danger" style="float: right;" (click)="deleteStream(stream)">Delete</button>
         </div>
       </div>
