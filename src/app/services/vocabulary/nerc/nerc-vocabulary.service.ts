@@ -107,7 +107,7 @@ export class NercVocabularyService implements VocabularyService {
             'dc:identifier   ?id ; ' +
             'skos:definition ?definition . ' +
             '<P01/current/> skos:member  ?uri. ' +
-            'VALUES ?query { "temperature" } ' +
+            'VALUES ?query { "' + searchTerm + '" } ' +
             'FILTER (CONTAINS(LCASE(?uri),        LCASE(?query)) ' +
             '|| CONTAINS(LCASE(?id),         LCASE(?query)) ' +
             '|| CONTAINS(LCASE(?label),      LCASE(?query)) ' +
