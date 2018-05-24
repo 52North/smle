@@ -153,6 +153,5 @@ export class SweFieldComponent extends AbstractNamedComponentComponent<SweField>
     this.model.component.definition = result.definition;
     this.model.component.label = result.label;
     this.model.component.description = result.description;
-    this.model.name = result.label;
   }
 }
