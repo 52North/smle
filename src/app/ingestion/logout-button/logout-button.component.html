@@ -1,3 +1,4 @@
-<li class="nav-item" *ngIf="authService.isLoggedIn">
+<!-- <li class="nav-item" *ngIf="authService.isLoggedIn">
   <a class="nav-link" (click)="logout()">Logout</a>
-</li>
+</li> -->
+<button *ngIf="authService.isLoggedIn" class="btn btn-outline-warning mr-2" (click)="logout()">Logout</button>

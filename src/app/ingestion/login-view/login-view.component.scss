@@ -1,6 +1,21 @@
-.btn {
-    margin-top: 15px;
+.content {
+  display: flex;
+  flex-direction: row;
+  .left,
+  .right {
+    margin-top: 50px;
+      flex: 1;
+      width: 50%;
+      .login {
+          max-width: 300px;
+      }
+  }
 }
+
+.btn {
+  margin-top: 15px;
+}
+
 .login-failed {
-    margin-top: 15px;
+  margin-top: 15px;
 }

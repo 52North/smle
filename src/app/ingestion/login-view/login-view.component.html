@@ -1,15 +1,24 @@
-<h2 class="text-center">Please log in before you can use smle</h2>
-<div class="mx-auto" style="width: 300px;">
-  <div>
-    <label for="username">Username</label>
-    <input type="text" id="username" [(ngModel)]="username" class="form-control">
+<h2 class="text-center">Please log in before you can use the SWE-Ingestion-Service</h2>
+<div class="content">
+  <div class="left">
+    <div class="login mx-auto">
+      <img src="https://www.seadatanet.org/var/storage/images/media/seadatanet2-media/about-us/seadatacloud/logo_sdc_layer/8700-1-eng-GB/LOGO_SDC_Layer_opengraphimage.png" width="100%">
+    </div>
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" [(ngModel)]="password" class="form-control">
+  <div class="right">
+    <div class="login mx-auto">
+      <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" [(ngModel)]="username" class="form-control">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="password" class="form-control">
+      </div>
+      <button class="btn btn-primary btn-block" role="button" (click)="login()">Login</button>
+    </div>
   </div>
-  <button class="btn btn-primary btn-block" role="button" (click)="login()">Login</button>
-</div>
-<div *ngIf="loginfailed" class="text-center login-failed" style="color: red;">
-  The credentials are wrong - please try again...
+  <div *ngIf="loginfailed" class="text-center login-failed" style="color: red;">
+    The credentials are wrong - please try again...
+  </div>
 </div>

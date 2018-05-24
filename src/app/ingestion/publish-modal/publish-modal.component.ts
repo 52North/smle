@@ -22,7 +22,9 @@ export class PublishModalComponent {
 
   public close() {
     this.activeModel.close();
-    this.router.navigate(['/streams']);
+    if (this.publishedStream) {
+      this.router.navigate(['/streams']);
+    }
   }
 
 }
