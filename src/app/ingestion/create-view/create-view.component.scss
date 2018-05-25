@@ -1,0 +1,10 @@
+:host {
+    .list-group {
+        margin-top: 50px;
+        .list-group-item {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }    
+}

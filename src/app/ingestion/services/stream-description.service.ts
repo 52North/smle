@@ -15,7 +15,8 @@ export class StreamDescriptionService extends DescriptionRepository {
 
   private _samples: string[] = [
     'sample',
-    'template'
+    'mqtt-template',
+    'csv-template'
   ];
 
   constructor(

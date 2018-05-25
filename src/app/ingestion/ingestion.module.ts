@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { CommonSmleModule } from '../common/common.module';
 import { CreateNewButtonComponent } from './create-new-button/create-new-button.component';
+import { CreateViewComponent } from './create-view/create-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { PublishButtonComponent } from './publish-button/publish-button.component';
@@ -19,6 +20,7 @@ const ROUTES: Routes = [
   { path: '', component: StreamsComponent, canActivate: [AuthGuard] },
   { path: 'streams', component: StreamsComponent, canActivate: [AuthGuard] },
   { path: 'statistics', redirectTo: 'streams' },
+  { path: 'create', component: CreateViewComponent, canActivate: [AuthGuard] },
   { path: 'statistics/:id', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginViewComponent }
 ];
@@ -31,7 +33,8 @@ const ROUTES: Routes = [
     CreateNewButtonComponent,
     LoginViewComponent,
     LogoutButtonComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    CreateViewComponent
   ],
   entryComponents: [
     PublishModalComponent

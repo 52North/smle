@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { EditorService } from '../../services/EditorService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-new-button',
@@ -10,13 +9,11 @@ import { EditorService } from '../../services/EditorService';
 export class CreateNewButtonComponent {
 
   constructor(
-    protected editorService: EditorService
+    private router: Router
   ) { }
 
   public createNew() {
-    this.editorService.getDescriptionForId('template').subscribe((desc) => {
-      if (desc != null) { this.editorService.openEditorWithDescription(desc); }
-    });
+    this.router.navigate(['/create']);
   }
 
 }
