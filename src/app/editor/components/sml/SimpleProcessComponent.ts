@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+
 import { SimpleProcess } from '../../../model/sml/SimpleProcess';
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-simple-process',
@@ -8,6 +9,9 @@ import { SimpleProcess } from '../../../model/sml/SimpleProcess';
     styleUrls: ['../styles/editor-component.scss']
 })
 export class SimpleProcessComponent extends EditorComponent<SimpleProcess> {
+
+    public title = 'Simple Process';
+
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
     }

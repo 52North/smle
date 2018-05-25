@@ -16,6 +16,9 @@ import { MapComponent } from '../basic/MapComponent';
     styleUrls: ['../styles/editor-component.scss']
 })
 export class PositionEditorComponent extends EditorComponent<Position> {
+
+    public title = 'Position';
+
     public get latitude(): number {
         return this.getFieldValue('location', 'Lat');
     }

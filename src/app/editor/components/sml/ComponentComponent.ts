@@ -13,6 +13,8 @@ import { DescriptionType } from '../../../services/EditorService';
 })
 export class ComponentComponent extends EditorComponent<Component> implements OnInit {
 
+  public title = 'Component';
+
   public descriptionType: DescriptionType;
 
   constructor(

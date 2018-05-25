@@ -1,4 +1,4 @@
-<card [verticalMode]="hasChild" [title]="'Event'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
+<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
   <form>
     <swe-abstract-identifiable [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-identifiable>
     <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('definition')">
@@ -68,7 +68,7 @@
           (select)="openSettings()"></child-item>
       </div>
     </div>
-    <div class="text-center" *ngIf="componentOptions?.vocabularyType !== null">
+    <div class="text-center" *ngIf="componentOptions?.vocabularyConfig !== null">
       <button type="button" class="btn btn-primary" (click)="onClickVocabSelection()">Select by Vocabulary</button>
     </div>
   </form>

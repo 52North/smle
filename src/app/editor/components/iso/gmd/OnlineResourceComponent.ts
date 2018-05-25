@@ -1,4 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+
 import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
 import { EditorComponent } from '../../base/EditorComponent';
 
@@ -8,6 +9,9 @@ import { EditorComponent } from '../../base/EditorComponent';
     styleUrls: ['../../styles/editor-component.scss']
 })
 export class OnlineResourceComponent extends EditorComponent<OnlineResource> {
+
+    public title = 'Online Resource';
+
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
     }

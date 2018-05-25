@@ -16,6 +16,9 @@ import { PhoneComponent } from './PhoneComponent';
     styleUrls: ['../../styles/editor-component.scss']
 })
 export class ContactComponent extends EditorComponent<Contact> {
+
+    public title = 'Contact';
+
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
     }

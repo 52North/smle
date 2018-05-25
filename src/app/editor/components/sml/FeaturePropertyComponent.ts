@@ -9,6 +9,8 @@ import { EditorComponent } from '../base/EditorComponent';
 })
 export class FeaturePropertyComponent extends EditorComponent<FeatureProperty> {
 
+    public title = 'Feature property';
+
     constructor(
         componentFactoryResolver: ComponentFactoryResolver,
         viewContainerRef: ViewContainerRef

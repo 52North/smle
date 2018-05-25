@@ -3,7 +3,7 @@ import { Component, ComponentFactoryResolver, Input, Type, ViewContainerRef } fr
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
-    selector: 'sml-identifier-list',
+    selector: 'nested-card',
     templateUrl: './NestedCardComponent.html',
     styleUrls: ['../styles/editor-component.scss']
 })

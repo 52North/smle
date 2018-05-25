@@ -15,6 +15,8 @@ import { ContactComponent } from './ContactComponent';
 })
 export class ResponsiblePartyComponent extends EditorComponent<ResponsibleParty> {
 
+  public title = 'Responsible Party';
+
   protected defaultRoles = [
     { label: 'Resource Provider', value: 'resourceProvider' },
     { label: 'Custodian', value: 'custodian' },

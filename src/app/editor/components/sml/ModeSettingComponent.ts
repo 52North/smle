@@ -1,6 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { EditorComponent } from '../base/EditorComponent';
+
 import { ModeSetting } from '../../../model/sml/ModeSetting';
+import { EditorComponent } from '../base/EditorComponent';
 
 @Component({
     selector: 'sml-mode-setting',
@@ -8,6 +9,8 @@ import { ModeSetting } from '../../../model/sml/ModeSetting';
     styleUrls: ['../styles/editor-component.scss']
 })
 export class ModeSettingComponent extends EditorComponent<ModeSetting> {
+
+    public title = 'Mode setting';
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
