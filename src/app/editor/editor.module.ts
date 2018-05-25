@@ -7,7 +7,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CalendarModule } from 'primeng/primeng';
 
 import { CommonSmleModule } from '../common/common.module';
-import { IngestionModule } from '../ingestion/ingestion.module';
 import { BASE_COMPONENTS } from './components/base';
 import { BASIC_COMPONENTS, BASIC_DIRECTIVES } from './components/basic';
 import { GML_COMPONENTS } from './components/gml';
@@ -34,7 +33,6 @@ import { EditorComponent } from './editor';
         CommonModule,
         CommonSmleModule,
         FormsModule,
-        IngestionModule,
         NgbModule.forRoot(),
         NgxPaginationModule,
         NgbPaginationModule.forRoot(),
@@ -42,6 +40,7 @@ import { EditorComponent } from './editor';
         NgbModalModule.forRoot()
     ],
     exports: [
+        BASE_COMPONENTS,
         BASIC_COMPONENTS,
         GML_COMPONENTS,
         SML_COMPONENTS,

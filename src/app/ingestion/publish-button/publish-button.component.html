@@ -1,4 +1,4 @@
-<button class="btn btn-primary mx-auto" (click)="publish()">
+<button class="btn btn-primary mr-2" (click)="publish()">
   <i *ngIf="publishing" class="fa fa-spinner fa-pulse fa-fw"></i>
   <span *ngIf="!isUpdatable()">Publish</span>
   <span *ngIf="isUpdatable()">Update {{getStreamId()}}</span>

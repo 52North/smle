@@ -4,10 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CommonSmleModule } from '../common/common.module';
+import { EditorModule } from '../editor/editor.module';
 import { CreateNewButtonComponent } from './create-new-button/create-new-button.component';
 import { CreateViewComponent } from './create-view/create-view.component';
+import { EditorWorkflowViewComponent } from './editor-workflow-view/editor-workflow-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
+import { ModalComponentOpenerComponent } from './modal-component-opener/modal-component-opener.component';
 import { PublishButtonComponent } from './publish-button/publish-button.component';
 import { PublishModalComponent } from './publish-modal/publish-modal.component';
 import { AuthGuard, AuthService } from './services/auth.service';
@@ -17,12 +20,14 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { StreamsComponent } from './streams/streams.component';
 
 const ROUTES: Routes = [
-  { path: '', component: StreamsComponent, canActivate: [AuthGuard] },
   { path: 'streams', component: StreamsComponent, canActivate: [AuthGuard] },
   { path: 'statistics', redirectTo: 'streams' },
-  { path: 'create', component: CreateViewComponent, canActivate: [AuthGuard] },
+  { path: 'create', component: CreateViewComponent },
   { path: 'statistics/:id', component: StatisticsComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginViewComponent }
+  { path: 'login', component: LoginViewComponent },
+  { path: 'workflow', component: EditorWorkflowViewComponent },
+  { path: 'workflow/:id', component: EditorWorkflowViewComponent },
+  { path: '', component: StreamsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -34,10 +39,13 @@ const ROUTES: Routes = [
     LoginViewComponent,
     LogoutButtonComponent,
     StatisticsComponent,
-    CreateViewComponent
+    CreateViewComponent,
+    EditorWorkflowViewComponent,
+    ModalComponentOpenerComponent
   ],
   entryComponents: [
-    PublishModalComponent
+    PublishModalComponent,
+    ModalComponentOpenerComponent
   ],
   exports: [
     PublishButtonComponent,
@@ -48,6 +56,7 @@ const ROUTES: Routes = [
     CommonModule,
     FormsModule,
     CommonSmleModule,
+    EditorModule,
     RouterModule.forRoot(ROUTES)
   ],
   providers: [

@@ -1,0 +1,17 @@
+<div class="container" *ngIf="description && config">
+  <sml-identifier-list [model]="description.components.components[0].abstractProcess.identification[0]" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')"
+    (openAsChild)="openChild($event)"></sml-identifier-list>
+</div>
+
+<div class="container">
+  <div class="footer-buttons container" *ngIf="!!description">
+    <div class="mx-auto" style="width: 100%;">
+      <app-publish-button [process]="description"></app-publish-button>
+      <button class="btn btn-primary" (click)="provideDownload()">Download</button>
+    </div>
+  </div>
+</div>
+
+<!-- <pre *ngIf="description">{{description.components.components[0].abstractProcess.identification | json}}</pre> -->
+
+<!-- <pre>{{config?.config?.description['sml:components']['sml:ComponentList']['sml:component']['sml:identification'] | json}}</pre> -->
