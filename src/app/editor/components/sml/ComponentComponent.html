@@ -8,5 +8,9 @@
       <sml-abstract-physical-process [model]="model.abstractProcess" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-physical-process>
       <sml-aggregating-process [model]="model.abstractProcess" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-aggregating-process>
     </div>
+    <div *ngSwitchCase="3">
+      <h3 style="text-align: center;">Simple Process</h3>
+      <sml-abstract-process [model]="model.abstractProcess" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
+    </div>
   </div>
 </card>

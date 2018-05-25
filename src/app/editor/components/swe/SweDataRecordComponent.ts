@@ -24,6 +24,7 @@ import { SweFieldComponent } from '../sml/NamedSweDataComponentComponent';
     templateUrl: './SweDataRecordComponent.html'
 })
 export class SweDataRecordComponent extends TypedModelComponent<SweDataRecord> {
+
     protected options = [
         { name: 'SweText', type: SweText },
         { name: 'SweTime', type: SweTime },
