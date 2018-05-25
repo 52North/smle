@@ -8,8 +8,11 @@ import { EditorComponent } from '../base/EditorComponent';
     templateUrl: './TimePeriodComponent.html'
 })
 export class TimePeriodComponent extends EditorComponent<TimePeriod> {
+
     @Input()
     public model: TimePeriod;
+
+    public title = 'Period';
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);

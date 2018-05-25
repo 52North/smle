@@ -10,6 +10,8 @@ import { EditorComponent } from '../base/EditorComponent';
 })
 export class ConnectionComponent extends EditorComponent<Connection> {
 
+  public title = 'Connection';
+
   constructor(
     componentFactoryResolver: ComponentFactoryResolver,
     viewContainerRef: ViewContainerRef

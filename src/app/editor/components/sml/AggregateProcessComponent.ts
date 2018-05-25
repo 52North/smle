@@ -9,6 +9,9 @@ import { EditorComponent } from '../base/EditorComponent';
     styleUrls: ['../styles/editor-component.scss']
 })
 export class AggregateProcessComponent extends EditorComponent<AggregateProcess> {
+
+    public title = 'Aggregate Process';
+
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
     }

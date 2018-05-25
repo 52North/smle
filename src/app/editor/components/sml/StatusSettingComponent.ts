@@ -10,6 +10,8 @@ import { EditorComponent } from '../base/EditorComponent';
 })
 export class StatusSettingComponent extends EditorComponent<StatusSetting> implements OnInit {
 
+    public title = 'Status setting';
+
     public valueSelected: boolean;
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {

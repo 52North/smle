@@ -1,4 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+
 import { Phone } from '../../../../model/iso/gmd/Phone';
 import { EditorComponent } from '../../base/EditorComponent';
 
@@ -8,6 +9,9 @@ import { EditorComponent } from '../../base/EditorComponent';
     styleUrls: ['../../styles/editor-component.scss']
 })
 export class PhoneComponent extends EditorComponent<Phone> {
+
+    public title = 'Phone';
+
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
     }

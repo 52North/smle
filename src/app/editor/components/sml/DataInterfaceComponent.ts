@@ -10,6 +10,8 @@ import { EditorComponent } from '../base/EditorComponent';
 })
 export class DataInterfaceComponent extends EditorComponent<DataInterface> {
 
+    public title = 'Data interface';
+
     constructor(
         componentFactoryResolver: ComponentFactoryResolver,
         viewContainerRef: ViewContainerRef

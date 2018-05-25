@@ -32,6 +32,8 @@ import { SettingsComponent } from './SettingsComponent';
 })
 export class EventComponent extends EditorComponent<Event> {
 
+  public title = 'Event';
+
   constructor(
     componentFactoryResolver: ComponentFactoryResolver,
     viewContainerRef: ViewContainerRef,

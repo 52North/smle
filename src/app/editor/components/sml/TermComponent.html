@@ -1,11 +1,11 @@
-<card [verticalMode]="hasChild" [title]="'Term'" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
+<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
   <form>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'sml:label'" [fieldName]="'label'"></text-field>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'@:codeSpace'" [fieldName]="'codeSpace'"></text-field>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'@:definition'" [fieldName]="'definition'"></text-field>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [configName]="'sml:value'" [fieldName]="'value'"></text-field>
     <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
-    <div class="text-center" *ngIf="componentOptions?.vocabularyType !== null">
+    <div class="text-center" *ngIf="componentOptions?.vocabularyConfig !== null">
       <button type="button" class="btn btn-primary" (click)="onClickVocabSelection()">Select by Vocabulary</button>
     </div>
   </form>

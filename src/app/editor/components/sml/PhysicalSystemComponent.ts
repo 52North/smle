@@ -1,4 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+
 import { PhysicalSystem } from '../../../model/sml/PhysicalSystem';
 import { EditorComponent } from '../base/EditorComponent';
 
@@ -8,6 +9,9 @@ import { EditorComponent } from '../base/EditorComponent';
     styleUrls: ['../styles/editor-component.scss']
 })
 export class PhysicalSystemComponent extends EditorComponent<PhysicalSystem> {
+
+    public title = 'Physical System';
+
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
         super(componentFactoryResolver, viewContainerRef);
     }

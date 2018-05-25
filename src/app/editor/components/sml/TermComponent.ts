@@ -12,6 +12,8 @@ import { SelectionResult, VocabSelectionComponent } from '../vocabulary/vocab-se
 })
 export class TermComponent extends EditorComponent<Term> {
 
+  public title = 'Term';
+
   constructor(
     componentFactoryResolver: ComponentFactoryResolver,
     viewContainerRef: ViewContainerRef,

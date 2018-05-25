@@ -10,6 +10,8 @@ import { EditorComponent } from '../base/EditorComponent';
 })
 export class ValueSettingComponent extends EditorComponent<ValueSetting> implements OnInit {
 
+    public title = 'Value setting';
+
     public selectedType: string;
 
     constructor(componentFactoryResolver: ComponentFactoryResolver, viewContainerRef: ViewContainerRef) {
