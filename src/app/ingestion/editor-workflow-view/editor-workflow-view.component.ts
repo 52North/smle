@@ -33,18 +33,11 @@ export class EditorWorkflowViewComponent extends EditorComponent implements OnIn
   }
 
   public openChild(childMetadata: ChildMetadata<any>) {
-
-    const model = childMetadata.model;
-    const componentType = childMetadata.componentType;
-    const config = childMetadata.config;
-
     const ref = this.modalService.open(ModalComponentOpenerComponent);
-
-    (ref.componentInstance as ModalComponentOpenerComponent).componentType = componentType;
-    (ref.componentInstance as ModalComponentOpenerComponent).config = config;
-    (ref.componentInstance as ModalComponentOpenerComponent).model = model;
+    (ref.componentInstance as ModalComponentOpenerComponent).componentType = childMetadata.componentType;
+    (ref.componentInstance as ModalComponentOpenerComponent).config = childMetadata.config;
+    (ref.componentInstance as ModalComponentOpenerComponent).model = childMetadata.model;
+    (ref.componentInstance as ModalComponentOpenerComponent).options = childMetadata.options;
   }
-
-
 
 }

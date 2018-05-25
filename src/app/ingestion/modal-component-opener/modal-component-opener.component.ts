@@ -1,7 +1,9 @@
 import { AfterContentInit, Component, ComponentFactoryResolver, Type, ViewChild } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { ChildMetadataOptions } from '../../editor/components/base/ChildMetadata';
 import { HostDirective } from '../../editor/components/base/host.directive';
+import { DescriptionConfig } from '../../services/config/DescriptionConfig';
 
 @Component({
   selector: 'app-modal-component-opener',
@@ -12,7 +14,9 @@ export class ModalComponentOpenerComponent implements AfterContentInit {
 
   public componentType: Type<any>;
   public model: any;
-  public config: any;
+  public config: DescriptionConfig;
+  public options: ChildMetadataOptions;
+  public title: string;
 
   @ViewChild(HostDirective)
   public listItemHost: HostDirective;
@@ -33,6 +37,8 @@ export class ModalComponentOpenerComponent implements AfterContentInit {
       componentRef.instance.model = this.model;
     }
     componentRef.instance.config = this.config;
+    componentRef.instance.componentOptions = this.options;
+    this.title = componentRef.instance.title;
   }
 
   public close() {
