@@ -1,15 +1,16 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <form>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('phone')">
-            <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">{{getDisplayName('phone')}}</a>
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('address')">
-            <a class="btn btn-link" (click)="openNewAddressItem(model.address)">{{getDisplayName('address')}}</a>
-        </div>
-        <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('onlineResource')">
-            <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">{{getDisplayName('onlineResource')}}</a>
-        </div>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'contactInstructions'"></text-field>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'hoursOfService'"></text-field>
-    </form>
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+  <form>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('phone')">
+      <a class="btn btn-link" (click)="openNewPhoneItem(model.phone)">{{getDisplayName('phone')}}</a>
+    </div>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('address')">
+      <a class="btn btn-link" (click)="openNewAddressItem(model.address)">{{getDisplayName('address')}}</a>
+    </div>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('onlineResource')">
+      <a class="btn btn-link" (click)="openNewOnlineResourceItem(model.onlineResource)">{{getDisplayName('onlineResource')}}</a>
+    </div>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'contactInstructions'"></text-field>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'hoursOfService'"></text-field>
+  </form>
 </card>

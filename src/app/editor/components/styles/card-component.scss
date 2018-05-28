@@ -1,65 +1,59 @@
 :host {
-  display: inline-block;
-  height: 100%;
-  width: 66vw;
-  margin: 0;
-  vertical-align: top;
-
   &.vertical-mode {
     margin-right: -60vw;
   }
-
-  .card {
+  .card-wrapper {
+    display: inline-block;
     height: 100%;
-    z-index: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    box-shadow: -1px 1px 5px 0 #CCCCCC;
-
-    .card-header {
-      &:not(.vertical) {
-        height: 50px;
-        flex-grow: 0;
-        flex-shrink: 0;
-      }
-
-      &.vertical {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        box-sizing: border-box;
-        z-index: 10;
-        border-bottom: none;
-
-        .title {
-          display: inline-block;
+    width: 66vw;
+    margin: 0;
+    vertical-align: top;
+    .card {
+      height: 100%;
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      box-shadow: -1px 1px 5px 0 #CCCCCC;
+      .card-header {
+        &:not(.vertical) {
+          height: 50px;
+          flex-grow: 0;
+          flex-shrink: 0;
+        }
+        &.vertical {
           position: absolute;
-          top: 50%;
-          padding: 0;
-          transform-origin: left center;
-          margin-left: 10px;
-          transform: rotate(-90deg);
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          box-sizing: border-box;
+          z-index: 10;
+          border-bottom: none;
+          .title {
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            padding: 0;
+            transform-origin: left center;
+            margin-left: 10px;
+            transform: rotate(-90deg);
+          }
         }
       }
-    }
-
-    .card-block {
-      overflow-y: auto;
-      flex-grow: 1;
-      flex-shrink: 1;
-      padding: 10px;
+      .card-block {
+        overflow-y: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+        padding: 10px;
+      }
     }
   }
   @media(max-width: 750px) {
     width: 495px;
-
     &.vertical-mode {
       margin-right: -450px;
     }
-
     .card {
       .card-header {
         &.vertical {

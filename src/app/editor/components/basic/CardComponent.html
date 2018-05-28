@@ -1,24 +1,32 @@
-<div class="card">
-  <div class="card-header bg-light" [class.vertical]="verticalMode">
-    <a *ngIf="verticalMode" class="btn btn-link title" (click)="onCloseChild()">{{title}}</a>
-    <div *ngIf="!verticalMode" class="pull-left">
-      <strong class="title">{{title}}</strong>
-    </div>
-    <div *ngIf="!verticalMode" class="pull-right">
-      <label class="c-input c-checkbox">
-        <input type="checkbox" [ngModel]="showAll" (ngModelChange)="onShowAllChange($event)" name="showAll">
-        <span class="c-indicator"></span>
-        Show all
-      </label>
-      <a class="btn btn-link" (click)="onReset()">
-        <i class="fa fa-fw fa-undo"></i> Reset
-      </a>
-      <a *ngIf="closable" class="btn btn-link" (click)="onClose()">
-        <i class="fa fa-fw fa-close"></i> Close
-      </a>
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
+
+<ng-container *ngIf="showCard;else content">
+  <div class="card-wrapper">
+    <div class="card">
+      <div class="card-header bg-light" [class.vertical]="verticalMode">
+        <a *ngIf="verticalMode" class="btn btn-link title" (click)="onCloseChild()">{{title}}</a>
+        <div *ngIf="!verticalMode" class="pull-left">
+          <strong class="title">{{title}}</strong>
+        </div>
+        <div *ngIf="!verticalMode" class="pull-right">
+          <label class="c-input c-checkbox">
+            <input type="checkbox" [ngModel]="showAll" (ngModelChange)="onShowAllChange($event)" name="showAll">
+            <span class="c-indicator"></span>
+            Show all
+          </label>
+          <a class="btn btn-link" (click)="onReset()">
+            <i class="fa fa-fw fa-undo"></i> Reset
+          </a>
+          <a *ngIf="closable" class="btn btn-link" (click)="onClose()">
+            <i class="fa fa-fw fa-close"></i> Close
+          </a>
+        </div>
+      </div>
+      <div class="card-block">
+        <ng-template *ngTemplateOutlet="content"></ng-template>
+      </div>
     </div>
   </div>
-  <div class="card-block">
-    <ng-content></ng-content>
-  </div>
-</div>
+</ng-container>

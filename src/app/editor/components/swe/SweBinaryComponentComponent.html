@@ -1,12 +1,12 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()"
-      (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <form>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'encryption'"></text-field>
-        <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'significantBits'"></number-field>
-        <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'bitLength'"></number-field>
-        <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'byteLength'"></number-field>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'dataType'"></text-field>
-        <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'ref'"></text-field>
-        <swe-abstract [isShowAll]="isShowAll" [config]="config" [model]="model"></swe-abstract>
-    </form>
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+  <form>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'encryption'"></text-field>
+    <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'significantBits'"></number-field>
+    <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'bitLength'"></number-field>
+    <number-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'byteLength'"></number-field>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'dataType'"></text-field>
+    <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" [fieldName]="'ref'"></text-field>
+    <swe-abstract [isShowAll]="isShowAll" [config]="config" [model]="model"></swe-abstract>
+  </form>
 </card>

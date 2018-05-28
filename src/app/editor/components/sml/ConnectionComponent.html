@@ -1,4 +1,5 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
   <form>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" configName="sml:source" fieldName="source"></text-field>
     <text-field [isShowAll]="isShowAll" [config]="config" [model]="model" configName="sml:destination" fieldName="destination"></text-field>
