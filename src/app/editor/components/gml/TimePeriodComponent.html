@@ -1,13 +1,14 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <gml-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract>
-    <div class="form-group">
-        <label for="description">Period begin</label>
-        <div class="row">
-          <date-picker class="col-sm-12" [(model)]="model.begin" [maxDateTime]="model.end" (modelChange)="onChangeBegin($event)"></date-picker>
-        </div>
-        <label for="description">Period end</label>
-        <div class="row">
-          <date-picker class="col-sm-12" [(model)]="model.end" [minDateTime]="model.begin" (modelChange)="onChangeEnd($event)"></date-picker>
-        </div>
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+  <gml-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract>
+  <div class="form-group">
+    <label for="description">Period begin</label>
+    <div class="row">
+      <date-picker class="col-sm-12" [(model)]="model.begin" [maxDateTime]="model.end" (modelChange)="onChangeBegin($event)"></date-picker>
     </div>
+    <label for="description">Period end</label>
+    <div class="row">
+      <date-picker class="col-sm-12" [(model)]="model.end" [minDateTime]="model.begin" (modelChange)="onChangeEnd($event)"></date-picker>
+    </div>
+  </div>
 </card>

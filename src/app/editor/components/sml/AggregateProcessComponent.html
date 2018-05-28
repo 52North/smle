@@ -1,4 +1,5 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll" [closable]="hasParent">
-    <sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
-    <sml-aggregating-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-aggregating-process>
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll" [closable]="hasParent">
+  <sml-abstract-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-abstract-process>
+  <sml-aggregating-process [model]="model" [config]="config" [isShowAll]="isShowAll" (openAsChild)="openNewChild($event)"></sml-aggregating-process>
 </card>

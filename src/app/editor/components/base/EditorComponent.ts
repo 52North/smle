@@ -9,6 +9,7 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     private parentComponent: EditorComponent<any>;
     private childComponentRef: ComponentRef<EditorComponent<any>>;
     public abstract title: string;
+    public carded = true;
 
     constructor(
         private componentFactoryResolver: ComponentFactoryResolver,

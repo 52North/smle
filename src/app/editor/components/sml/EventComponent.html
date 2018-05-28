@@ -1,4 +1,5 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
   <form>
     <swe-abstract-identifiable [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract-identifiable>
     <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('definition')">

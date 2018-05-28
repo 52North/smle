@@ -10,6 +10,9 @@ export class CardComponent {
     public title: string;
 
     @Input()
+    public showCard = true;
+
+    @Input()
     public showAll = false;
 
     @Input()

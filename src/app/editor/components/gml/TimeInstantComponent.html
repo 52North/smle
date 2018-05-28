@@ -1,9 +1,10 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <gml-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract>
-    <div class="form-group">
-        <label for="time">{{getDisplayName('time')}}</label>
-        <div class="row">
-            <date-picker class="col-sm-12" [(model)]="model.time"></date-picker>
-        </div>
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+  <gml-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></gml-abstract>
+  <div class="form-group">
+    <label for="time">{{getDisplayName('time')}}</label>
+    <div class="row">
+      <date-picker class="col-sm-12" [(model)]="model.time"></date-picker>
     </div>
+  </div>
 </card>

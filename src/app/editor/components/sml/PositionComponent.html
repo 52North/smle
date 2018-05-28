@@ -1,53 +1,53 @@
-<card [verticalMode]="hasChild" [title]="title" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()" [(showAll)]="isShowAll">
-    <div *ngIf="(latitude || latitude === null || latitude === 0) && (longitude || longitude === null || longitude === 0)">
-      <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
-        <label for="latitude">Latitude</label>
-        <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
-          [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="latitude" name="latitude">
-      </div>
-      <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
-        <label for="longitude">Longitude</label>
-        <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
-          [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="longitude" name="longitude">
-      </div>
-    </div>
-    <div *ngIf="(easting || easting === null || easting === 0)">
-      <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
-        <label for="easting">Easting</label>
-        <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
-          [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="easting" name="easting">
-      </div>
-    </div>
-    <div *ngIf="(northing || northing === null || northing === 0)">
-      <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
-        <label for="northing">Northing</label>
-        <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
-          [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="northing" name="northing">
-      </div>
-    </div>
-    <div *ngIf="(altitude || altitude === null || altitude === 0)&&config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))"
-      class="form-group">
-      <label for="altitude">Altitude</label>
+<card [verticalMode]="hasChild" [title]="title" [showCard]="carded" (reset)="onReset()" (close)="close()" (closeChild)="closeChild()"
+  [(showAll)]="isShowAll">
+  <div *ngIf="(latitude || latitude === null || latitude === 0) && (longitude || longitude === null || longitude === 0)">
+    <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
+      <label for="latitude">Latitude</label>
       <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
-        class="form-control" [(ngModel)]="altitude" name="altitude">
+        [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="latitude" name="latitude">
     </div>
-    <div class="form-group">
-      <button class="btn btn-secondary" type="button" (click)="openMap()">
-        <i class="fa fa-globe"></i>
-        Open map
-      </button>
+    <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
+      <label for="longitude">Longitude</label>
+      <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
+        [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="longitude" name="longitude">
     </div>
-    <div *ngIf="(trueHeading || trueHeading === null || trueHeading === 0) && (pitch || pitch === null || pitch === 0)">
-      <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
-        <label for="trueHeading">True Heading</label>
-        <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
-          [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="trueHeading" name="trueHeading">
-      </div>
-      <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
-        <label for="pitch">Pitch</label>
-        <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
-          [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="pitch" name="pitch">
-      </div>
+  </div>
+  <div *ngIf="(easting || easting === null || easting === 0)">
+    <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
+      <label for="easting">Easting</label>
+      <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
+        [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="easting" name="easting">
     </div>
-  </card>
-  
+  </div>
+  <div *ngIf="(northing || northing === null || northing === 0)">
+    <div class="form-group" *ngIf="config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))">
+      <label for="northing">Northing</label>
+      <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
+        [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="northing" name="northing">
+    </div>
+  </div>
+  <div *ngIf="(altitude || altitude === null || altitude === 0)&&config.existInForm('swe:value',model,'value') &&(isShowAll || config.isFieldVisible('swe:value','numberField',model,'value'))"
+    class="form-group">
+    <label for="altitude">Altitude</label>
+    <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value',model,'value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
+      class="form-control" [(ngModel)]="altitude" name="altitude">
+  </div>
+  <div class="form-group">
+    <button class="btn btn-secondary" type="button" (click)="openMap()">
+      <i class="fa fa-globe"></i>
+      Open map
+    </button>
+  </div>
+  <div *ngIf="(trueHeading || trueHeading === null || trueHeading === 0) && (pitch || pitch === null || pitch === 0)">
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
+      <label for="trueHeading">True Heading</label>
+      <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
+        [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="trueHeading" name="trueHeading">
+    </div>
+    <div class="form-group" *ngIf="isShowAll || config.isFieldVisible('swe:value','numberField')">
+      <label for="pitch">Pitch</label>
+      <input type="number" [class.valueRequired]="config.isFieldMandatory('swe:value')" [readonly]="config.isFieldFixed('swe:value',model,'value')"
+        [required]="config.isFieldMandatory('swe:value')" class="form-control" [(ngModel)]="pitch" name="pitch">
+    </div>
+  </div>
+</card>
