@@ -47,14 +47,14 @@
       <!-- FileTimestampFilter -->
       <!-- CSV PRocessor -->
       <sml:component name="source_output">
-        <sml:PhysicalSystem gml:id="marine-fluo">
+        <sml:PhysicalSystem gml:id="dwd-opendata">
           <sml:outputs>
             <sml:OutputList>
               <sml:output name="streamOutput">
                 <sml:DataInterface>
                   <sml:data>
                     <swe:DataStream>
-                      <swe:elementType name="fluorometerOutputStream">
+                      <swe:elementType name="dwdOutputStream">
                         <swe:DataRecord>
                           <swe:field name="date">
                             <swe:Time definition="http://www.opengis.net/def/property/OGC/0/PhenomenonTime#date">
@@ -303,7 +303,7 @@
                       </swe:field>
                       <swe:field name="ftp_filename-pattern">
                         <swe:Text definition="https://52north.org/swe-ingestion/ftp#filename-pattern">
-                          <swe:value>*01-BEOB.csv</swe:value>
+                          <swe:value>01001-BEOB.csv</swe:value>
                         </swe:Text>
                       </swe:field>
                     </swe:DataRecord>
@@ -784,12 +784,26 @@
           </sml:outputs>
           <sml:parameters>
             <sml:ParameterList>
-              <sml:parameter name="configuration">
+              <sml:parameter name="file-filter-config">
                 <swe:Count definition="https://52north.org/swe-ingestion/csv-file-filter#header-line-count">
                   <swe:label>Header Line Count</swe:label>
                   <swe:description>The number of lines to strip from the csv file</swe:description>
                   <swe:value>3</swe:value>
                 </swe:Count>
+              </sml:parameter>
+              <sml:parameter name="configuration3">
+                <swe:Text definition="https://52north.org/swe-ingestion/csv-timestamp-filter#date-column-format">
+                  <swe:label>Format of date</swe:label>
+                  <swe:description>The format of the date</swe:description>
+                  <swe:value>dd.MM.yy</swe:value>
+                </swe:Text>
+              </sml:parameter>
+              <sml:parameter name="configuration5">
+                <swe:Text definition="https://52north.org/swe-ingestion/csv-timestamp-filter#time-column-format">
+                  <swe:label>Format of time</swe:label>
+                  <swe:description>The format of the time in UTC</swe:description>
+                  <swe:value>hh:mm</swe:value>
+                </swe:Text>
               </sml:parameter>
             </sml:ParameterList>
           </sml:parameters>
