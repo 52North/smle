@@ -38,6 +38,7 @@ export class ModalComponentOpenerComponent implements AfterContentInit {
     }
     componentRef.instance.config = this.config;
     componentRef.instance.componentOptions = this.options;
+    componentRef.instance.carded = false;
     this.title = componentRef.instance.title;
   }
 

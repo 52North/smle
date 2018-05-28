@@ -48,7 +48,10 @@
       "isHidden": true
     },
     "sml:connections": {
-      "isExpanded": true
+      "isExpanded": true, 
+      "sml:ConnectionList": {
+        "swe:id": false
+      }
     },
     "sml:components": {
       "isExpanded": true,

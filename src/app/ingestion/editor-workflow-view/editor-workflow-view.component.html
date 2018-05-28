@@ -1,16 +1,242 @@
-<div class="container" *ngIf="description && config">
-  <sml-identifier-list [model]="description.components.components[0].abstractProcess.identification[0]" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')"
-    (openAsChild)="openChild($event)"></sml-identifier-list>
+<div class="row" *ngIf="description && config">
+  <div class="col-3">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-output-tab" data-toggle="pill" href="#v-pills-output" role="tab">
+        <div>Output</div>
+        <small>short description</small>
+      </a>
+      <a class="nav-link" id="v-pills-input-tab" data-toggle="pill" href="#v-pills-input" role="tab">
+        <div>Input</div>
+        <small>short description</small>
+      </a>
+      <a class="nav-link" id="v-pills-connection-tab" data-toggle="pill" href="#v-pills-connection" role="tab">
+        <div>Connection</div>
+        <small>short description</small>
+      </a>
+    </div>
+  </div>
+  <div class="col-9">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-output" role="tabpanel">
+        <div class="accordion" id="accordion">
+
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Common
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[0]?.abstractProcess">
+                  <gml-abstract [model]="description.components.components[0].abstractProcess" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component')"></gml-abstract>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                  aria-controls="collapseTwo">
+                  Identification
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[0]?.abstractProcess?.identification[0]">
+                  <sml-identifier-list [model]="description.components.components[0].abstractProcess.identification[0]" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')"
+                    (openAsChild)="openChild($event)"></sml-identifier-list>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                  aria-controls="collapseThree">
+                  FeatureOfInterest
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[0]?.abstractProcess?.featureOfInterest">
+                  <sml-feature-of-interest-list [model]="description.components.components[0].abstractProcess.featureOfInterest" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:featureOfInterest').getConfigFor('sml:FeatureList')"
+                    (openAsChild)="openChild($event)"></sml-feature-of-interest-list>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingFour">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"
+                  aria-controls="collapseFour">
+                  Outputs
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[0]?.abstractProcess?.outputs">
+                  <swe-element-type [model]="description.components.components[0].abstractProcess.outputs.outputs[0].value.data.elementType"
+                    [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:outputs').getConfigFor('sml:OutputList').getConfigFor('sml:output').getConfigFor('sml:DataInterface').getConfigFor('sml:data').getConfigFor('swe:DataStream').getConfigFor('swe:elementType')"
+                    (openAsChild)="openChild($event)"></swe-element-type>
+                  <swe-text-encoding [model]="description.components.components[0].abstractProcess.outputs.outputs[0].value.data.encoding"
+                    [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:outputs').getConfigFor('sml:OutputList').getConfigFor('sml:output').getConfigFor('sml:DataInterface').getConfigFor('sml:data').getConfigFor('swe:DataStream').getConfigFor('swe:encoding')"></swe-text-encoding>
+                  <swe-data-record [model]="description.components.components[0].abstractProcess.outputs.outputs[0].value.interfaceParameters"
+                    [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:outputs').getConfigFor('sml:OutputList').getConfigFor('sml:output').getConfigFor('sml:DataInterface').getConfigFor('sml:interfaceParameters')"
+                    (openAsChild)="openChild($event)"></swe-data-record>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingFive">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"
+                  aria-controls="collapseFive">
+                  Position
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[0]?.abstractProcess?.position">
+                  <sml-position [model]="description.components.components[0].abstractProcess.position[0]" [carded]="false" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:position')"
+                    (openAsChild)="openChild($event)"></sml-position>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="v-pills-input" role="tabpanel">
+
+        <div class="accordion" id="accordion2">
+
+          <div class="card">
+            <div class="card-header" id="headingOne2">
+              <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
+                  Common
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne2" class="collapse show" aria-labelledby="headingOne2" data-parent="#accordion2">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[1]?.abstractProcess">
+                  <gml-abstract [model]="description.components.components[1].abstractProcess" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component')"></gml-abstract>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingTwo2">
+              <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo2" aria-expanded="false" aria-controls="collapseTwo2">
+                  Identification
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo2" data-parent="#accordion2">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[1]?.abstractProcess?.identification[0]">
+                  <sml-identifier-list [model]="description.components.components[1].abstractProcess.identification[0]" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:identification').getConfigFor('sml:IdentifierList')"
+                    (openAsChild)="openChild($event)"></sml-identifier-list>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingThree2">
+              <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree2" aria-expanded="false" aria-controls="collapseThree2">
+                  FeatureOfInterest
+                </button>
+              </h5>
+            </div>
+            <div id="collapseThree2" class="collapse" aria-labelledby="headingThree2" data-parent="#accordion2">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[1]?.abstractProcess?.featureOfInterest">
+                  <sml-feature-of-interest-list [model]="description.components.components[1].abstractProcess.featureOfInterest" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:featureOfInterest').getConfigFor('sml:FeatureList')"
+                    (openAsChild)="openChild($event)"></sml-feature-of-interest-list>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingFour2">
+              <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour2" aria-expanded="false" aria-controls="collapseFour2">
+                  Outputs
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFour2" class="collapse" aria-labelledby="headingFour2" data-parent="#accordion2">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[1]?.abstractProcess?.outputs">
+                  <sml-output-list [model]="description.components.components[1].abstractProcess.outputs" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:outputs').getConfigFor('sml:OutputList').getConfigFor('sml:output')"
+                    (openAsChild)="openChild($event)"></sml-output-list>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" id="headingFive2">
+              <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFive2" aria-expanded="false" aria-controls="collapseFive2">
+                  Position
+                </button>
+              </h5>
+            </div>
+            <div id="collapseFive2" class="collapse" aria-labelledby="headingFive2" data-parent="#accordion2">
+              <div class="card-body">
+                <div *ngIf="description?.components?.components[1]?.abstractProcess?.position">
+                  <h4>Position:</h4>
+                  <sml-position [model]="description.components.components[1].abstractProcess.position[0]" [carded]="false" [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component').getConfigFor('sml:position')"
+                    (openAsChild)="openChild($event)"></sml-position>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="v-pills-connection" role="tabpanel">
+        <div *ngIf="description?.connections">
+          <sml-connection-list [model]="description.connections" [config]="config.getConfigFor('description').getConfigFor('sml:connections').getConfigFor('sml:ConnectionList')"
+            (openAsChild)="openChild($event)"></sml-connection-list>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <div class="footer-buttons container" *ngIf="!!description">
     <div class="mx-auto" style="width: 100%;">
       <app-publish-button [process]="description"></app-publish-button>
       <button class="btn btn-primary" (click)="provideDownload()">Download</button>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- <pre *ngIf="description">{{description.components.components[0].abstractProcess.identification | json}}</pre> -->
 

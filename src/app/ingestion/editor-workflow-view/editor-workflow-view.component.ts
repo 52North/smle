@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ChildMetadata } from '../../editor/components/base/ChildMetadata';
 import { HostDirective } from '../../editor/components/base/host.directive';
 import { EditorComponent } from '../../editor/editor';
+import { AggregateProcess } from '../../model/sml';
 import { EditorService } from '../../services/EditorService';
 import { ModalComponentOpenerComponent } from '../modal-component-opener/modal-component-opener.component';
 
@@ -14,6 +15,8 @@ import { ModalComponentOpenerComponent } from '../modal-component-opener/modal-c
   styleUrls: ['./editor-workflow-view.component.scss']
 })
 export class EditorWorkflowViewComponent extends EditorComponent implements OnInit {
+
+  public description: AggregateProcess;
 
   @ViewChild(HostDirective)
   public listItemHost: HostDirective;
