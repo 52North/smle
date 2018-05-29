@@ -43,8 +43,8 @@
   <sml:components>
     <sml:ComponentList>
       <sml:component name="source_output">
-        <sml:PhysicalSystem gml:id="marine-weather">
-          <gml:identifier codeSpace="uniqueID">AIRMAR-RINVILLE-1</gml:identifier>
+        <sml:PhysicalSystem gml:id="">
+          <gml:identifier codeSpace="uniqueID"></gml:identifier>
           <sml:identification>
             <sml:IdentifierList>
               <!-- <sml:identifier>
@@ -80,21 +80,8 @@
             </sml:IdentifierList>
           </sml:identification>
           <sml:featuresOfInterest>
-            <sml:FeatureList definition="http://www.opengis.net/def/featureOfInterest/identifier">
-              <swe:label>Marine Institute</swe:label>
-              <sml:feature>
-                <sams:SF_SpatialSamplingFeature gml:id="airmar-rinville-1">
-                  <gml:identifier codeSpace="">Marine Institute</gml:identifier>
-                  <gml:name>Marine Intitute Ireland</gml:name>
-                  <sf:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint" />
-                  <sf:sampledFeature xlink:href="http://www.opengis.net/def/nil/OGC/0/unknown" />
-                  <sams:shape>
-                    <gml:Point gml:id="point-airmar-rinville-1">
-                      <gml:pos srsName="http://www.opengis.net/def/crs/EPSG/0/4326">53.247642 -8.977098</gml:pos>
-                    </gml:Point>
-                  </sams:shape>
-                </sams:SF_SpatialSamplingFeature>
-              </sml:feature>
+            <sml:FeatureList>
+              <sml:feature xlink:href="Sample" xlink:title="Sample"/>
             </sml:FeatureList>
           </sml:featuresOfInterest>
           <sml:outputs>
@@ -103,7 +90,7 @@
                 <sml:DataInterface>
                   <sml:data>
                     <swe:DataStream>
-                      <swe:elementType name="weatherOutputStream">
+                      <swe:elementType name="sampleOutputStream">
                         <swe:DataRecord>
                           <!-- <swe:field name="datetime">
                             <swe:Time definition="http://www.opengis.net/def/property/OGC/0/PhenomenonTime">
@@ -216,8 +203,8 @@
         </sml:PhysicalSystem>
       </sml:component>
       <sml:component name="sos_input">
-        <sml:PhysicalSystem gml:id="marine-weather-sos">
-          <gml:identifier codeSpace="uniqueID">AIRMAR-RINVILLE-1</gml:identifier>
+        <sml:PhysicalSystem gml:id="">
+          <gml:identifier codeSpace="uniqueID"></gml:identifier>
           <sml:identification>
             <sml:IdentifierList>
               <!-- <sml:identifier>
@@ -253,21 +240,8 @@
             </sml:IdentifierList>
           </sml:identification>
           <sml:featuresOfInterest>
-            <sml:FeatureList definition="http://www.opengis.net/def/featureOfInterest/identifier">
-              <swe:label>Marine Institute</swe:label>
-              <sml:feature>
-                <sams:SF_SpatialSamplingFeature gml:id="sf-airmar-rinville-1">
-                  <gml:identifier codeSpace="">Marine Institute</gml:identifier>
-                  <gml:name>Marine Intitute Ireland</gml:name>
-                  <sf:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint" />
-                  <sf:sampledFeature xlink:href="http://www.opengis.net/def/nil/OGC/0/unknown" />
-                  <sams:shape>
-                    <gml:Point gml:id="p-airmar-rinville-1">
-                      <gml:pos srsName="http://www.opengis.net/def/crs/EPSG/0/4326">53.247642 -8.977098</gml:pos>
-                    </gml:Point>
-                  </sams:shape>
-                </sams:SF_SpatialSamplingFeature>
-              </sml:feature>
+            <sml:FeatureList>
+              <sml:feature xlink:href="Sample" xlink:title="Sample"/>
             </sml:FeatureList>
           </sml:featuresOfInterest>
           <sml:outputs>
@@ -314,19 +288,19 @@
               <swe:coordinate name="easting">
                 <swe:Quantity axisID="x">
                   <swe:uom code="degree"/>
-                  <swe:value>-8.977098</swe:value>
+                  <swe:value></swe:value>
                 </swe:Quantity>
               </swe:coordinate>
               <swe:coordinate name="northing">
                 <swe:Quantity axisID="y">
                   <swe:uom code="degree"/>
-                  <swe:value>53.247642</swe:value>
+                  <swe:value></swe:value>
                 </swe:Quantity>
               </swe:coordinate>
               <swe:coordinate name="altitude">
                 <swe:Quantity axisID="z">
                   <swe:uom code="m"/>
-                  <swe:value>17.0</swe:value>
+                  <swe:value></swe:value>
                 </swe:Quantity>
               </swe:coordinate>
             </swe:Vector>

@@ -86,29 +86,29 @@
                     <swe:DataRecord definition="https://52north.org/swe-ingestion/ftp">
                       <swe:field name="ftp_host">
                         <swe:Text definition="https://52north.org/swe-ingestion/ftp#host">
-                          <swe:value>please enter the ftp host here</swe:value>
+                          <swe:value> -- please enter the ftp host here -- </swe:value>
                         </swe:Text>
                       </swe:field>
                       <!-- optional, default: guest -->
                       <swe:field name="ftp_password">
                         <swe:Text definition="https://52north.org/swe-ingestion/ftp#password">
-                          <swe:value>guest</swe:value>
+                          <swe:value> -- please enter the ftp password here -- </swe:value>
                         </swe:Text>
                       </swe:field>
                       <!-- optional, default: anonymous -->
                       <swe:field name="ftp_username">
                         <swe:Text definition="https://52north.org/swe-ingestion/ftp#username">
-                          <swe:value>anonymous</swe:value>
+                          <swe:value> -- please enter the ftp username here -- </swe:value>
                         </swe:Text>
                       </swe:field>
                       <swe:field name="ftp_remote-dir">
                         <swe:Text definition="https://52north.org/swe-ingestion/ftp#remote-dir">
-                          <swe:value>/weather/weather_reports/poi</swe:value>
+                          <swe:value> -- please enter the ftp remote dir here -- </swe:value>
                         </swe:Text>
                       </swe:field>
                       <swe:field name="ftp_filename-pattern">
                         <swe:Text definition="https://52north.org/swe-ingestion/ftp#filename-pattern">
-                          <swe:value>01001-BEOB.csv</swe:value>
+                          <swe:value> -- please enter the filename pattern host here -- </swe:value>
                         </swe:Text>
                       </swe:field>
                     </swe:DataRecord>
@@ -193,7 +193,7 @@
                 <swe:Count definition="https://52north.org/swe-ingestion/csv-file-filter#header-line-count">
                   <swe:label>Header Line Count</swe:label>
                   <swe:description>The number of lines to strip from the csv file</swe:description>
-                  <swe:value>3</swe:value>
+                  <swe:value></swe:value>
                 </swe:Count>
               </sml:parameter>
               <sml:parameter name="configuration3">
@@ -223,31 +223,7 @@
               <sml:identifier>
                 <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0002/">
                   <sml:label>Long name</sml:label>
-                  <sml:value>Galway Bay Cable Observatory Fluorometer</sml:value>
-                </sml:Term>
-              </sml:identifier>
-              <sml:identifier>
-                <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0006/">
-                  <sml:label>Short name</sml:label>
-                  <sml:value>Galway Bay Cable Observatory Fluorometer</sml:value>
-                </sml:Term>
-              </sml:identifier>
-              <sml:identifier>
-                <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0012/">
-                  <sml:label>Manufacturer</sml:label>
-                  <sml:value>WetLabs</sml:value>
-                </sml:Term>
-              </sml:identifier>
-              <sml:identifier>
-                <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0003/">
-                  <sml:label>Model name</sml:label>
-                  <sml:value>ECO-FLNTU</sml:value>
-                </sml:Term>
-              </sml:identifier>
-              <sml:identifier>
-                <sml:Term definition="http://vocab.nerc.ac.uk/collection/W07/current/IDEN0005/">
-                  <sml:label>Serial number</sml:label>
-                  <sml:value>3137</sml:value>
+                  <sml:value></sml:value>
                 </sml:Term>
               </sml:identifier>
             </sml:IdentifierList>
@@ -274,14 +250,8 @@
             <sml:OutputList>
               <sml:output name="Fluorescence">
                 <swe:Count definition="http://vocab.nerc.ac.uk/collection/B39/current/fluorescence/">
-                  <swe:label>Fluorescence</swe:label>
+                  <swe:label>Fluorescence (as example)</swe:label>
                   <swe:description>Chlorophyll fluorometer instrument output (counts) (no units)</swe:description>
-                </swe:Count>
-              </sml:output>
-              <sml:output name="Turbidity">
-                <swe:Count definition="http://vocab.nerc.ac.uk/collection/P01/current/TURBXXXX/">
-                  <swe:label>Turbidity</swe:label>
-                  <swe:description>Optical scattering turbidity sensor instrument output (counts) (no units)</swe:description>
                 </swe:Count>
               </sml:output>
             </sml:OutputList>
@@ -291,19 +261,19 @@
               <swe:coordinate name="easting">
                 <swe:Quantity axisID="x">
                   <swe:uom code="degree"/>
-                  <swe:value>-9.26629</swe:value>
+                  <swe:value></swe:value>
                 </swe:Quantity>
               </swe:coordinate>
               <swe:coordinate name="northing">
                 <swe:Quantity axisID="y">
                   <swe:uom code="degree"/>
-                  <swe:value>53.22733</swe:value>
+                  <swe:value></swe:value>
                 </swe:Quantity>
               </swe:coordinate>
               <swe:coordinate name="altitude">
                 <swe:Quantity axisID="z">
                   <swe:uom code="m"/>
-                  <swe:value>52.0</swe:value>
+                  <swe:value></swe:value>
                 </swe:Quantity>
               </swe:coordinate>
             </swe:Vector>
@@ -318,12 +288,6 @@
         <sml:Link>
           <sml:source ref="components/marine-fluo/outputs/Fluorescence"/>
           <sml:destination ref="components/marine-fluo-sos/outputs/Fluorescence"/>
-        </sml:Link>
-      </sml:connection>
-      <sml:connection>
-        <sml:Link>
-          <sml:source ref="components/marine-fluo/outputs/Turbidity"/>
-          <sml:destination ref="components/marine-fluo-sos/outputs/Turbidity"/>
         </sml:Link>
       </sml:connection>
     </sml:ConnectionList>
