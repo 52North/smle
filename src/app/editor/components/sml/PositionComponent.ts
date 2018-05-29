@@ -85,7 +85,7 @@ export class PositionEditorComponent extends EditorComponent<Position> {
 
     public openMap() {
         const ref = this.modalService.open(MapComponent);
-        if (this.northing && this.easting) {
+        if (typeof this.northing !== 'undefined' && typeof this.easting !== 'undefined') {
             (ref.componentInstance as MapComponent).location = {
                 lat: this.northing,
                 lng: this.easting
