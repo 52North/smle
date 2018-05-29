@@ -64,6 +64,9 @@
           "@sml:name": {
             "fixed": true
           },
+          "gml:identifier": {
+            "isHidden": true
+          },
           "gml:descriptionReference": {
             "isHidden": true
           },

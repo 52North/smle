@@ -47,6 +47,18 @@ export class EditorWorkflowViewComponent extends EditorComponent implements OnIn
     (ref.componentInstance as ModalComponentOpenerComponent).options = childMetadata.options;
   }
 
+  public changeOutputIdentifer(text: string) {
+    this.outputProcess.identifier.value = text;
+  }
+
+  public changeCsvIdentifer(text: string) {
+    this.csvProcess.identifier.value = text;
+  }
+
+  public changeInputIdentifer(text: string) {
+    this.inputProcess.identifier.value = text;
+  }
+
   protected updateEditor() {
     super.updateEditor();
     if (this.description.components && this.description.components.components) {
