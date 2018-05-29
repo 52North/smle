@@ -51,7 +51,7 @@ export class EditorComponent implements OnInit {
         this.editorService.provideDownload(this.description);
     }
 
-    private updateEditor() {
+    protected updateEditor() {
         if (this.editorService.getDescription() == null) {
             this.router.navigate(['/']);
         }

@@ -27,7 +27,9 @@
             </div>
         </div>
         <a class="btn btn-link" *ngIf="!!model.encoding" (click)="removeEncoding()">Remove</a>
-        <swe-text-encoding *ngIf="!!model.encoding && encodingType === 'text'" [isShowAll]="isShowAll" [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-text-encoding>
+        <div class="nested-element">
+            <swe-text-encoding *ngIf="!!model.encoding && encodingType === 'text'" [isShowAll]="isShowAll" [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-text-encoding>
+        </div>
         <swe-binary-encoding *ngIf="!!model.encoding && encodingType === 'binary'" [isShowAll]="isShowAll" [config]="config.getConfigFor('encoding')" [model]="model.encoding" (openAsChild)="openNewChild($event)"></swe-binary-encoding>
         <swe-xml-encoding *ngIf="!!model.encoding && encodingType === 'xml'" [isShowAll]="isShowAll" [config]="config.getConfigFor('encoding')" [model]="model.encoding"></swe-xml-encoding>
     </div>

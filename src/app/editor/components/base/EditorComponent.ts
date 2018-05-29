@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, ViewContainerRef, Input } from '@angular/core';
 
 import { NestedCardComponent } from '../basic/NestedCardComponent';
 import { ChildMetadata } from './ChildMetadata';
@@ -9,6 +9,8 @@ export abstract class EditorComponent<T> extends TypedModelComponent<T> {
     private parentComponent: EditorComponent<any>;
     private childComponentRef: ComponentRef<EditorComponent<any>>;
     public abstract title: string;
+
+    @Input()
     public carded = true;
 
     constructor(

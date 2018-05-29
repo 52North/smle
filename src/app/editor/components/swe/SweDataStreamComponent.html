@@ -3,5 +3,8 @@
   <div class="nested-element">
     <swe-element-type [model]="model.elementType" [config]="config.getConfigFor('swe:elementType')" [isShowAll]="isShowAll" (openAsChild)="delegateOpenNewChild($event)"></swe-element-type>
   </div>
-  <swe-text-encoding [model]="model.encoding" [config]="config.getConfigFor('swe:encoding')" [isShowAll]="isShowAll"></swe-text-encoding>
+  <div class="nested-element">
+    <label>Text-Encoding</label>
+    <swe-text-encoding [model]="model.encoding" [config]="config.getConfigFor('swe:encoding')" [isShowAll]="isShowAll"></swe-text-encoding>
+  </div>
 </expand-wrapper>

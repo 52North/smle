@@ -3,6 +3,7 @@ import { Output } from '../../../model/sml';
 import { AbstractInputOrOutputOrParameterComponent } from '../basic/AbstractInputOrOutputOrParameterComponent';
 
 @Component({
+    selector: 'sml-output',
     templateUrl: '../basic/AbstractInputOrOutputOrParameterComponent.html',
     styleUrls: ['../styles/editor-component.scss']
 })

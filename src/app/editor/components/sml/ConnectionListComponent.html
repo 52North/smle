@@ -1,7 +1,7 @@
 <form>
   <swe-abstract [model]="model" [config]="config" [isShowAll]="isShowAll"></swe-abstract>
   <div *ngIf="isShowAll || config.isFieldVisible('sml:connections')">
-    <label for="connections">{{getDisplayName('connections')}}</label>
+    <!-- <label for="connections">{{getDisplayName('connections')}}</label> -->
     <list [list]="model.connections" (select)="openNewConnectionItem($event)" (remove)="onRemoveConnection($event)" (add)="onAddConnection()"></list>
   </div>
 </form>
