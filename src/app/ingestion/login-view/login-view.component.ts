@@ -9,8 +9,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginViewComponent {
 
-  public username: string;
-  public password: string;
+  public username = 'cnc-user';
+  public password = 'cnc-non-secure-basic-auth-password';
   public loginfailed = false;
 
   constructor(
