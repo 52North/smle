@@ -314,7 +314,7 @@
           </sml:outputs>
         </sml:PhysicalSystem>
       </sml:component>
-      <sml:component name="the_name_needs_to_be_present_and_must_not_contain_spaces">
+      <sml:component name="csv_parameter">
         <sml:SimpleProcess gml:id="csvFileFilter">
           <sml:inputs>
             <sml:InputList>
