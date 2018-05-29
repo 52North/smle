@@ -11,7 +11,7 @@ export class IngestionHandlerService {
   ) { }
 
   public openEditorWithStreamId(id: string) {
-    this.router.navigate(['/editor', id]);
+    this.router.navigate(['/workflow', id]);
   }
 
 }

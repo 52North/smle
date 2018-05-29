@@ -22,11 +22,11 @@ import { StreamsComponent } from './streams/streams.component';
 const ROUTES: Routes = [
   { path: 'streams', component: StreamsComponent, canActivate: [AuthGuard] },
   { path: 'statistics', redirectTo: 'streams' },
-  { path: 'create', component: CreateViewComponent },
+  { path: 'create', component: CreateViewComponent, canActivate: [AuthGuard] },
   { path: 'statistics/:id', component: StatisticsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginViewComponent },
-  { path: 'workflow', component: EditorWorkflowViewComponent },
-  { path: 'workflow/:id', component: EditorWorkflowViewComponent },
+  { path: 'workflow', component: EditorWorkflowViewComponent, canActivate: [AuthGuard] },
+  { path: 'workflow/:id', component: EditorWorkflowViewComponent, canActivate: [AuthGuard] },
   { path: '', component: StreamsComponent, canActivate: [AuthGuard] }
 ];
 

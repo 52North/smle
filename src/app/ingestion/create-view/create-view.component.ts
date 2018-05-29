@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { EditorService } from '../../services/EditorService';
 
@@ -10,12 +11,13 @@ import { EditorService } from '../../services/EditorService';
 export class CreateViewComponent {
 
   constructor(
-    private editorService: EditorService
+    private editorService: EditorService,
+    private router: Router
   ) { }
 
-  public openTemplate(template: string) {
+  public openTemplateWorkflow(template: string) {
     this.editorService.getDescriptionForId(template).subscribe((desc) => {
-      if (desc != null) { this.editorService.openEditorWithDescription(desc); }
+      if (desc != null) { this.editorService.setDescription(desc); this.router.navigate(['/workflow']); }
     });
   }
 
