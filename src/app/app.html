@@ -1,38 +1,51 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" href="https://52north.org/">
-    <img src="/favicon.ico" width="32" height="32" class="d-inline-block align-top" alt="">
-  </a>
-  <a class="navbar-brand">
-    smle
-    <sub>/ˈsmaɪli/</sub>
-    — The Friendly SensorML Editor ☺
-  </a>
+<header class="bg-dark">
+  <img src="https://odip.github.io/MarineProfilesForSWE/images/seadatacloud.png" height="112" style="float: right;">
+  <nav class="navbar navbar-expand-md navbar-light">
+    <a class="navbar-brand" href="https://52north.org/">
+      <img src="/favicon.ico" width="32" height="32" class="d-inline-block align-top" alt="">
+    </a>
+    <a class="navbar-brand text-white">
+      smle
+      <sub>/ˈsmaɪli/</sub>
+      — The Friendly SensorML Editor ☺
+    </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
 
-</nav>
-<div class="navbar navbar-expand-md navbar-dark bg-dark">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <!-- <li router-active="active" class="nav-item">
-        <a class="nav-link" [routerLink]="['/create']">New</a>
-      </li>
-      <li router-active="active" class="nav-item">
-        <a class="nav-link" [routerLink]="['/editor']">Editor</a>
-      </li> -->
-      <app-create-new-button></app-create-new-button>
-      <!-- <li router-active="active" class="nav-item">
-        <a class="nav-link" [routerLink]="['/streams']">View Existing Ingestion Workflows</a>
-      </li> -->
-      <button class="btn btn-outline-light mr-2" [routerLink]="['/streams']">View Existing Ingestion Workflows</button>
-    </ul>
-    <app-logout-button></app-logout-button>
+  </nav>
+  <div class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!-- <li router-active="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/create']">New</a>
+          </li>
+          <li router-active="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/editor']">Editor</a>
+          </li> -->
+        <app-create-new-button></app-create-new-button>
+        <!-- <li router-active="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/streams']">View Existing Ingestion Workflows</a>
+          </li> -->
+        <button class="btn btn-outline-light mr-2" [routerLink]="['/streams']">View Existing Ingestion Workflows</button>
+      </ul>
+      <app-logout-button></app-logout-button>
+    </div>
   </div>
-</div>
-<main class="container-fluid">
-  <router-outlet></router-outlet>
+</header>
+
+<main class="bg-white">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </main>
-<footer></footer>
+
+<footer class="bg-dark">
+  <div class="container">
+    <div text-center class="text-white text-center" style="padding: 10px;">This tool was developed as part of the
+      <a href="http://seadatacloud.org">SeaDataCloud</a> project. SeaDataCloud is funded by the Horizon 2020 Framework Programme for Research and Innovation
+      (H2020-INFRAIA-2016-1) of the European Union under grant agreement number 730960.</div>
+  </div>
+</footer>

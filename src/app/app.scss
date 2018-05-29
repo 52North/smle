@@ -1,7 +1,18 @@
+header {
+  position: sticky;
+  top: 0;
+  height: 112;
+  z-index: 10;
+}
+
 main {
-  top: 130px;
-  position: absolute;
-  bottom: 10px;
+  padding: 10px 0px;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
 }
 
 fetch-description {

@@ -125,7 +125,8 @@
                     "swe:DataStream": {
                       "isExpanded": true,
                       "swe:encoding": {
-                        "swe:id": false
+                        "swe:id": false,
+                        "@collapseWhiteSpace": false
                       },
                       "swe:elementType": {
                         "*": {
