@@ -43,7 +43,7 @@ export class SweDataArrayComponent extends TypedModelComponent<SweDataArray> imp
         { name: 'SweBinaryEncoding', type: SweBinaryEncoding }
     ];
 
-    private encodingType: string;
+    public encodingType: string;
 
     protected createModel(): SweDataArray {
         return new SweDataArray();

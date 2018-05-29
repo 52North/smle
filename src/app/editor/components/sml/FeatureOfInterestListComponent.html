@@ -1,5 +1,5 @@
 <sml-abstract-metadata-list [model]="model" [config]="config" [isShowAll]="isShowAll"></sml-abstract-metadata-list>
 <div *ngIf="config.existInForm('sml:feature',model,'identifer') &&(isShowAll || config.isFieldVisible('sml:feature','textField',model,'identifier'))">
-  <label for="setValue">{{getDisplayName('feature')}}</label>
+  <!-- <label for="setValue">{{getDisplayName('feature')}}</label> -->
   <list [list]="model.feature" (select)="openNewFeatureProperty($event)" (remove)="onRemoveFeatureProperty($event)" (add)="onAddFeatureProperty()"></list>
 </div>
