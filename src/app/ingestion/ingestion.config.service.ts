@@ -1,5 +1,6 @@
 export interface IngestionConfiguration {
   cncUrl: string;
+  kibanaUrl: string;
 }
 
 export let ingestionConfig: IngestionConfiguration;

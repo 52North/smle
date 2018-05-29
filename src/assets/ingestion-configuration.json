@@ -1,3 +1,4 @@
 {
-  "cncUrl": "http://localhost:8082/cnc/api/"
+  "cncUrl": "http://localhost:8082/cnc/api/",
+  "kibanaUrl": "http://localhost:5601/app/kibana#/"
 }
