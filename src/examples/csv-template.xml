@@ -78,7 +78,7 @@
                       <swe:encoding>
                         <!-- Abhängig vom EncodingTypen den Processor wählen.-->
                         <!-- Es gibt \{TextEncoding} auch: {XmlEncoding, BinaryEncoding}-->
-                        <swe:TextEncoding tokenSeparator=";" blockSeparator="\n"/>
+                        <swe:TextEncoding tokenSeparator=";" blockSeparator="\n" decimalSeparator=","/>
                       </swe:encoding>
                       <swe:values/>
                     </swe:DataStream>
@@ -152,7 +152,7 @@
                       <swe:encoding>
                         <!-- Abhängig vom EncodingTypen den Processor wählen.-->
                         <!-- Es gibt \{TextEncoding} auch: {XmlEncoding, BinaryEncoding}-->
-                        <swe:TextEncoding tokenSeparator=";" blockSeparator="\n"/>
+                        <swe:TextEncoding tokenSeparator=";" blockSeparator="\n" decimalSeparator=","/>
                       </swe:encoding>
                       <swe:values/>
                     </swe:DataStream>
@@ -167,7 +167,7 @@
                 <sml:DataInterface>
                   <sml:data>
                     <swe:DataStream>
-                      <swe:elementType name="fluorometerOutputStream">
+                      <swe:elementType name="">
                         <swe:DataRecord>
                           <swe:field name="date">
                             <swe:Time definition="http://www.opengis.net/def/property/OGC/0/PhenomenonTime#date">
@@ -180,7 +180,7 @@
                       <swe:encoding>
                         <!-- Abhängig vom EncodingTypen den Processor wählen.-->
                         <!-- Es gibt \{TextEncoding} auch: {XmlEncoding, BinaryEncoding}-->
-                        <swe:TextEncoding tokenSeparator=";" blockSeparator="\n"/>
+                        <swe:TextEncoding tokenSeparator=";" blockSeparator="\n" decimalSeparator=","/>
                       </swe:encoding>
                       <swe:values/>
                     </swe:DataStream>
@@ -209,7 +209,7 @@
                 <swe:Text definition="https://52north.org/swe-ingestion/csv-timestamp-filter#time-column-format">
                   <swe:label>Format of time</swe:label>
                   <swe:description>The format of the time in UTC</swe:description>
-                  <swe:value>hh:mm</swe:value>
+                  <swe:value>HH:mm</swe:value>
                 </swe:Text>
               </sml:parameter>
             </sml:ParameterList>
@@ -217,9 +217,10 @@
           <sml:method xlink:href="https://52north.org/swe-ingestion/csv-file-filter"/>
         </sml:SimpleProcess>
       </sml:component>
+
       <sml:component name="sos_input">
-        <sml:PhysicalSystem gml:id="">
-          <gml:identifier codeSpace="uniqueID"></gml:identifier>
+        <sml:PhysicalSystem gml:id="dwd-opendata-weather">
+          <gml:identifier codeSpace="uniqueID">DWD-OPENDATA-10315</gml:identifier>
           <sml:identification>
             <sml:IdentifierList>
               <sml:identifier>
@@ -231,30 +232,16 @@
             </sml:IdentifierList>
           </sml:identification>
           <sml:featuresOfInterest>
-            <sml:FeatureList definition="http://www.opengis.net/def/featureOfInterest/identifier">
-              <swe:label>Galway Bay Cable Observatory</swe:label>
-              <sml:feature>
-                <sams:SF_SpatialSamplingFeature gml:id="sf_galway-bay-cable-observatory">
-                  <gml:identifier codeSpace="">Galway Bay Cable Observatory</gml:identifier>
-                  <gml:name>Galway Bay Cable Observatory</gml:name>
-                  <sf:type xlink:href="http://www.opengis.net/def/samplingFeatureType/OGC-OM/2.0/SF_SamplingPoint" />
-                  <sf:sampledFeature xlink:href="http://www.opengis.net/def/nil/OGC/0/unknown" />
-                  <sams:shape>
-                    <gml:Point gml:id="p-galway-bay-cable-observatory">
-                      <gml:pos srsName="http://www.opengis.net/def/crs/EPSG/0/4326">53.22733 -9.26629</gml:pos>
-                    </gml:Point>
-                  </sams:shape>
-                </sams:SF_SpatialSamplingFeature>
-              </sml:feature>
+            <sml:FeatureList>
+              <sml:feature xlink:href="" xlink:title="" />
             </sml:FeatureList>
           </sml:featuresOfInterest>
           <sml:outputs>
             <sml:OutputList>
-              <sml:output name="Fluorescence">
-                <swe:Count definition="http://vocab.nerc.ac.uk/collection/B39/current/fluorescence/">
-                  <swe:label>Fluorescence (as example)</swe:label>
-                  <swe:description>Chlorophyll fluorometer instrument output (counts) (no units)</swe:description>
-                </swe:Count>
+              <sml:output name="cloud_coverage">
+                <swe:Quantity definition="http://asdfasdf/cloud_coverage">
+                  <swe:uom code="%" />
+                </swe:Quantity>
               </sml:output>
             </sml:OutputList>
           </sml:outputs>
