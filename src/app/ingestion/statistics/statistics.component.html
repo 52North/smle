@@ -1,6 +1,26 @@
 <div class="statistics-content">
-  <iframe [src]="sanitizedUrl" height="90%" width="100%"></iframe>
+  <iframe *ngIf="sanitizedUrl" [src]="sanitizedUrl" height="90%" width="100%"></iframe>
   <div class="footer">
-    <button class="btn btn-primary mr-2" (click)="toStreams()">Streamlist</button>
+    <button class="btn btn-primary mr-2" (click)="toStreams()">Back to Existing Ingestion Workflows</button>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle mr-2" role="button" id="dropdownTime" data-toggle="dropdown">
+        Select time period
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownTime">
+        <button class="dropdown-item" (click)="setTime('7d')">Last 7 days</button>
+        <button class="dropdown-item" (click)="setTime('1d')">Last day</button>
+        <button class="dropdown-item" (click)="setTime('5h')">Last 5 hours</button>
+      </div>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" role="button" id="dropdownInterval" data-toggle="dropdown">
+        Select aggregation interval
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownInterval">
+        <a class="dropdown-item" (click)="setInterval('h')">One hour</a>
+        <a class="dropdown-item" (click)="setInterval('30m')">30 minutes</a>
+        <a class="dropdown-item" (click)="setInterval('15m')">15 minutes</a>
+      </div>
+    </div>
   </div>
 </div>

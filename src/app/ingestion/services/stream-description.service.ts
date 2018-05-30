@@ -14,8 +14,9 @@ import { IngestionHandlerService } from './handler.service';
 export class StreamDescriptionService extends DescriptionRepository {
 
   private _samples: string[] = [
-    'sample',
+    'mqtt-sample',
     'mqtt-template',
+    'csv-sample',
     'csv-template'
   ];
 

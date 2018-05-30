@@ -1,0 +1,95 @@
+<h2 class="">Help for smle
+  <sub>/ˈsmaɪli/</sub> — The Friendly SensorML Editor ☺</h2>
+<h3 class="text-center">Ingestion Workflow Version</h3>
+<p>
+  With this editor you can handle ingestion workflows. In this short help you can get information in the following sections:
+</p>
+<ul>
+  <li>
+    <a [routerLink]="['/help']" fragment="create">Create a new ingestion workflow</a>
+  </li>
+  <li>
+    <a [routerLink]="['/help']" fragment="list">View existing ingestion workflows</a>
+  </li>
+  <li>
+    <a [routerLink]="['/help']" fragment="statistics">View statistics to existing ingestion workflow</a>
+  </li>
+  <li>
+    <a [routerLink]="['/help']" fragment="edit">Edit an ingestion workflow</a>
+  </li>
+</ul>
+
+<h4 id="create">Create a new ingestion workflow</h4>
+<p>Currently you have the option to select between two different templates to create a new ingestion workflow as you can see
+  in the picture below:</p>
+<figure>
+  <img src="./assets/images/create_workflow.png" class="figure-img img-fluid rounded">
+  <figcaption class="figure-caption text-center">Tamplate selection to create a new ingestion workflow</figcaption>
+</figure>
+
+<h4 id="list">View existing ingestion workflows</h4>
+<p>Here you can do following steps with the existing ingestion workflows: </p>
+<ul>
+  <li>
+    <b>Edit</b> - Change the ingestion workflow</li>
+  <li>
+    <b>Delete</b> - Remove the specific ingestion workflow</li>
+  <li>
+    <b>Statistics</b> - See insertion statistics about the specific ingestion workflow</li>
+</ul>
+<figure>
+  <img src="./assets/images/workflow_list.png" class="figure-img img-fluid rounded">
+  <figcaption class="figure-caption text-center">List of existing ingestion workflows</figcaption>
+</figure>
+
+<h4 id="statistics">View statistics to existing ingestion workflow</h4>
+<figure>
+  <img src="./assets/images/statistics.png" class="figure-img img-fluid rounded">
+  <figcaption class="figure-caption text-center">Statistics view of a selected ingestion workflow</figcaption>
+</figure>
+
+<h4 id="edit">Edit an ingestion workflow</h4>
+<figure>
+  <img src="./assets/images/edit1.png" class="figure-img img-fluid rounded">
+  <figcaption class="figure-caption text-center">Editor menu with the different sections</figcaption>
+</figure>
+<p>
+  The editor of an ingestion workflow ist divided in different sections (which are presented in a menu on the left side):
+</p>
+<ul>
+  <li>
+    <b>Source Description</b> - in this section the output source is described</li>
+  <li>
+    <b>CSV Parameters</b> - if the template is for a CSV ingestion workflow here the structure of the CSV is described</li>
+  <li>
+    <b>SOS inputs</b> - inputs which describes the inputs in the SOS</li>
+  <li>
+    <b>Mapping Outputs - Inputs</b> - the mapping between the defined outputs and the inputs</li>
+</ul>
+
+<p>
+  At different sections in the Editor is the possibility to select the configuration by the
+  <a href="https://www.bodc.ac.uk/resources/products/web_services/vocab/">NERC Vocabulary Server</a> as you can see for example here:
+</p>
+<figure>
+  <img src="./assets/images/vocabulary-button.png" class="figure-img img-fluid rounded">
+  <figcaption class="figure-caption text-center">Vocabulary selection</figcaption>
+</figure>
+<figure>
+  <img src="./assets/images/vocabulary-results.png" class="figure-img img-fluid rounded">
+  <figcaption class="figure-caption text-center">Vocabulary results</figcaption>
+</figure>
+
+<p>
+  Here you see the configuration of the MQTT specific elements:
+</p>
+<figure>
+  <img src="./assets/images/mqtt-configuration.png" class="figure-img img-fluid rounded">
+</figure>
+
+<p>
+  And the configuration of the CSV parameters looks similar to the following screen shot:
+</p>
+<figure>
+  <img src="./assets/images/csv-parameter.png" class="figure-img img-fluid rounded">
+</figure>

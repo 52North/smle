@@ -8,6 +8,7 @@ import { EditorModule } from '../editor/editor.module';
 import { CreateNewButtonComponent } from './create-new-button/create-new-button.component';
 import { CreateViewComponent } from './create-view/create-view.component';
 import { EditorWorkflowViewComponent } from './editor-workflow-view/editor-workflow-view.component';
+import { HelpViewComponent } from './help-view/help-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { LogoutButtonComponent } from './logout-button/logout-button.component';
 import { ModalComponentOpenerComponent } from './modal-component-opener/modal-component-opener.component';
@@ -27,6 +28,7 @@ const ROUTES: Routes = [
   { path: 'login', component: LoginViewComponent },
   { path: 'workflow', component: EditorWorkflowViewComponent, canActivate: [AuthGuard] },
   { path: 'workflow/:id', component: EditorWorkflowViewComponent, canActivate: [AuthGuard] },
+  { path: 'help', component: HelpViewComponent },
   { path: '', component: StreamsComponent, canActivate: [AuthGuard] }
 ];
 
@@ -41,7 +43,8 @@ const ROUTES: Routes = [
     StatisticsComponent,
     CreateViewComponent,
     EditorWorkflowViewComponent,
-    ModalComponentOpenerComponent
+    ModalComponentOpenerComponent,
+    HelpViewComponent
   ],
   entryComponents: [
     PublishModalComponent,

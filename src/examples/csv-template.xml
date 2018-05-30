@@ -47,7 +47,8 @@
       <!-- FileTimestampFilter -->
       <!-- CSV PRocessor -->
       <sml:component name="source_output">
-        <sml:PhysicalSystem gml:id="dwd-opendata">
+        <sml:PhysicalSystem gml:id="">
+          <gml:identifier codeSpace="uniqueID"></gml:identifier>
           <sml:identification>
             <sml:IdentifierList>
               <sml:identifier>
@@ -120,7 +121,8 @@
         </sml:PhysicalSystem>
       </sml:component>
       <sml:component name="csv_parameter">
-        <sml:SimpleProcess gml:id="csvFileFilter">
+        <sml:SimpleProcess gml:id="">
+          <gml:identifier codeSpace="uniqueID"></gml:identifier>
           <sml:identification>
             <sml:IdentifierList>
               <sml:identifier>
@@ -216,8 +218,8 @@
         </sml:SimpleProcess>
       </sml:component>
       <sml:component name="sos_input">
-        <sml:PhysicalSystem gml:id="dwd-opendata-weather">
-          <gml:identifier codeSpace="uniqueID">DWD-OPENDATA-163</gml:identifier>
+        <sml:PhysicalSystem gml:id="">
+          <gml:identifier codeSpace="uniqueID"></gml:identifier>
           <sml:identification>
             <sml:IdentifierList>
               <sml:identifier>
