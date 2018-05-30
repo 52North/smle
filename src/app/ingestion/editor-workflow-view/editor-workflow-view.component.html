@@ -35,8 +35,12 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
                 <div *ngIf="outputProcess">
+                  <span>
+                    <label>Ingestion Workflow Name</label>
+                  </span>
                   <text-field [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component')"
-                    (changed)="changeOutputIdentifer($event)" [model]="outputProcess" [configName]="'gml:id'" [fieldName]="'Ingestion Workflow Name'"></text-field>
+                    (changed)="changeOutputIdentifer($event)" [model]="outputProcess" [configName]="'gml:id'" [fieldName]="'gmlId'"
+                    [showLabel]="false"></text-field>
                 </div>
               </div>
             </div>
@@ -139,8 +143,12 @@
             <div id="collapseOneCsv" class="collapse show" aria-labelledby="headingOneCsv" data-parent="#accordionCsv">
               <div class="card-body">
                 <div *ngIf="csvProcess">
+                  <span>
+                    <label>Ingestion Workflow Name</label>
+                  </span>
                   <text-field [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component')"
-                    (changed)="changeCsvIdentifer($event)" [model]="csvProcess" [configName]="'gml:id'" [fieldName]="'Ingestion Workflow Name'"></text-field>
+                    (changed)="changeCsvIdentifer($event)" [model]="csvProcess" [configName]="'gml:id'" [fieldName]="'gmlId'"
+                    [showLabel]="false"></text-field>
                 </div>
               </div>
             </div>
@@ -224,8 +232,12 @@
             <div id="collapseOneInput" class="collapse show" aria-labelledby="headingOneInput" data-parent="#accordionInput">
               <div class="card-body">
                 <div *ngIf="inputProcess">
+                  <span>
+                    <label>Ingestion Workflow Name</label>
+                  </span>
                   <text-field [config]="config.getConfigFor('description').getConfigFor('sml:components').getConfigFor('sml:ComponentList').getConfigFor('sml:component')"
-                    (changed)="changeInputIdentifer($event)" [model]="inputProcess" [configName]="'gml:id'" [fieldName]="'Ingestion Workflow Name'"></text-field>
+                    (changed)="changeInputIdentifer($event)" [model]="inputProcess" [configName]="'gml:id'" [fieldName]="'gmlId'"
+                    [showLabel]="false"></text-field>
                 </div>
               </div>
             </div>
@@ -322,9 +334,9 @@
 
 <ul class="nav justify-content-center footer-buttons">
   <li class="nav-item">
-      <app-publish-button [process]="description"></app-publish-button>
+    <app-publish-button [process]="description"></app-publish-button>
   </li>
   <li class="nav-item">
-      <button class="btn btn-primary" (click)="provideDownload()">Download</button>
+    <button class="btn btn-primary" (click)="provideDownload()">Download</button>
   </li>
 </ul>
