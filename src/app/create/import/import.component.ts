@@ -27,7 +27,8 @@ export class ImportComponent {
 
     myReader.onloadend = (e) => {
       try {
-        this.description = new SensorMLXmlService().deserialize(myReader.result);
+        const readerResult = myReader.result as string;
+        this.description = new SensorMLXmlService().deserialize(readerResult); // myReader.result);
       } catch (error) {
         this.error = error.message;
       }

@@ -6,7 +6,7 @@ export class XPathDocument {
 
     public static parse(xml: string): XPathDocument {
         const parser = new DOMParser();
-        const document = parser.parseFromString(xml, XPathDocument.MEDIA_TYPE);
+        const document = parser.parseFromString(xml, 'application/xml'); // XPathDocument.MEDIA_TYPE);
         return new XPathDocument(document);
     }
 

@@ -1,5 +1,5 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Contact } from '../../../../model/iso/gmd/Contact';
 import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';

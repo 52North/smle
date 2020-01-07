@@ -36,7 +36,7 @@ export class DynamicElementComponent implements OnChanges {
     @Output()
     public openAsChild: EventEmitter<ChildMetadata<any>> = new EventEmitter<ChildMetadata<any>>();
 
-    @ViewChild(HostDirective)
+    @ViewChild(HostDirective, {static: true})
     public listItemHost: HostDirective;
 
     public publicsubscription: any;
