@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { PhysicalSystem, PhysicalComponent, SimpleProcess } from '../model/sml';
+import { PhysicalSystem, PhysicalComponent, SimpleProcess } from '@helgoland/sensorml';
+
 import { EditorService } from '../services/EditorService';
 
 @Component({

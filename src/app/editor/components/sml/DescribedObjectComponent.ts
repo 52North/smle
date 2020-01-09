@@ -1,18 +1,20 @@
 import { DatePipe } from '@angular/common';
 import { Component, Type } from '@angular/core';
+import {
+    AbstractTime,
+    TimeInstant,
+    TimePeriod,
+    CapabilityList,
+    CharacteristicList,
+    ClassifierList,
+    ContactList,
+    DescribedObject,
+    DocumentList,
+    EventList,
+    IdentifierList,
+    KeywordList
+} from '@helgoland/sensorml';
 
-import { AbstractTime } from '../../../model/gml/AbstractTime';
-import { TimeInstant } from '../../../model/gml/TimeInstant';
-import { TimePeriod } from '../../../model/gml/TimePeriod';
-import { CapabilityList } from '../../../model/sml/CapabilityList';
-import { CharacteristicList } from '../../../model/sml/CharacteristicList';
-import { ClassifierList } from '../../../model/sml/ClassifierList';
-import { ContactList } from '../../../model/sml/ContactList';
-import { DescribedObject } from '../../../model/sml/DescribedObject';
-import { DocumentList } from '../../../model/sml/DocumentList';
-import { EventList } from '../../../model/sml/EventList';
-import { IdentifierList } from '../../../model/sml/IdentifierList';
-import { KeywordList } from '../../../model/sml/KeywordList';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { NestedChildMetadata } from '../base/NestedChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';

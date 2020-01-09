@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Phone } from '@helgoland/sensorml';
 
-import { Phone } from '../../../../model/iso/gmd/Phone';
 import { EditorComponent } from '../../base/EditorComponent';
 
 @Component({

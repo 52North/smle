@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { ModeSetting } from '@helgoland/sensorml';
 
-import { ModeSetting } from '../../../model/sml/ModeSetting';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { ModeSetting, Settings, StatusSetting, ValueSetting } from '@helgoland/sensorml';
 
-import { ModeSetting, Settings, StatusSetting, ValueSetting } from '../../../model/sml';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ModeSettingComponent } from './ModeSettingComponent';

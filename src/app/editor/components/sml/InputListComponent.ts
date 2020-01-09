@@ -1,7 +1,9 @@
 import { Component, Type } from '@angular/core';
-
-import { DataInterface, Input, InputList, ObservableProperty } from '../../../model/sml';
 import {
+    DataInterface,
+    Input,
+    InputList,
+    ObservableProperty,
     SweBoolean,
     SweCategory,
     SweCount,
@@ -12,7 +14,8 @@ import {
     SweText,
     SweTime,
     SweTimeRange,
-} from '../../../model/swe';
+} from '@helgoland/sensorml';
+
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { InputComponent } from './InputComponent';

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractSWE } from '../../../model/swe/AbstractSWE';
+import { AbstractSWE } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

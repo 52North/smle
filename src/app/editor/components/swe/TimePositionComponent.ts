@@ -1,6 +1,6 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { TimePosition } from '@helgoland/sensorml';
 
-import { TimePosition } from '../../../model/swe/TimePosition';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

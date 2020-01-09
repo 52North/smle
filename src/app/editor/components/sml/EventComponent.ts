@@ -1,16 +1,18 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  CodeWithAuthority,
+  TimeInstant,
+  TimePeriod,
+  ClassifierList,
+  ContactList,
+  DocumentList,
+  Event,
+  IdentifierList,
+  KeywordList,
+  Settings
+} from '@helgoland/sensorml';
 
-import { CodeWithAuthority } from '../../../model/gml/CodeWithAuthority';
-import { TimeInstant } from '../../../model/gml/TimeInstant';
-import { TimePeriod } from '../../../model/gml/TimePeriod';
-import { ClassifierList } from '../../../model/sml/ClassifierList';
-import { ContactList } from '../../../model/sml/ContactList';
-import { DocumentList } from '../../../model/sml/DocumentList';
-import { Event } from '../../../model/sml/Event';
-import { IdentifierList } from '../../../model/sml/IdentifierList';
-import { KeywordList } from '../../../model/sml/KeywordList';
-import { Settings } from '../../../model/sml/Settings';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { EditorComponent } from '../base/EditorComponent';
 import { NestedChildMetadata } from '../base/NestedChildMetadata';

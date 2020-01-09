@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweText } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweText } from '../../../model/swe/SweText';
 
 @Component({
     selector: 'swe-text',

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { IdentifierList, Term } from '@helgoland/sensorml';
 
 import { configuration } from '../../../configuration';
-import { IdentifierList } from '../../../model/sml/IdentifierList';
-import { Term } from '../../../model/sml/Term';
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';

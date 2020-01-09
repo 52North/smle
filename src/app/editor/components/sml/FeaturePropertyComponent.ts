@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { FeatureProperty } from '@helgoland/sensorml';
 
-import { FeatureProperty } from '../../../model/sml/FeatureProperty';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

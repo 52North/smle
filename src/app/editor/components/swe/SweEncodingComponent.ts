@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweEncoding } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweEncoding } from '../../../model/swe/SweEncoding';
 
 @Component({
     selector: 'swe-encoding',

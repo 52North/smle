@@ -1,6 +1,6 @@
 import { Component, Type } from '@angular/core';
+import { AggregatingProcess, ComponentList, ConnectionList } from '@helgoland/sensorml';
 
-import { AggregatingProcess, ComponentList, ConnectionList } from '../../../model/sml';
 import { NestedChildMetadata } from '../base/NestedChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { NestedCardComponent } from '../basic/NestedCardComponent';

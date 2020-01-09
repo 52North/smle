@@ -1,6 +1,6 @@
 import * as angularCore from '@angular/core';
+import { Component, ComponentList } from '@helgoland/sensorml';
 
-import { Component, ComponentList } from '../../../model/sml';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ComponentComponent } from './ComponentComponent';

@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { PhysicalComponent } from '@helgoland/sensorml';
 
-import { PhysicalComponent } from '../../../model/sml/PhysicalComponent';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

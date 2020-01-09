@@ -1,18 +1,19 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NamedSweDataComponent,
+  SweBoolean,
+  SweCategory,
+  SweCount,
+  SweDataArray,
+  SweDataRecord,
+  SweField,
+  SweQuantity,
+  SweQuantityRange,
+  SweText,
+  SweTime,
+  SweTimeRange } from '@helgoland/sensorml';
 
-import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
-import { SweBoolean } from '../../../model/swe/SweBoolean';
-import { SweCategory } from '../../../model/swe/SweCategory';
-import { SweCount } from '../../../model/swe/SweCount';
-import { SweDataArray } from '../../../model/swe/SweDataArray';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
-import { SweField } from '../../../model/swe/SweField';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
-import { SweText } from '../../../model/swe/SweText';
-import { SweTime } from '../../../model/swe/SweTime';
-import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 import { EditorComponent } from '../base/EditorComponent';
 import { SelectionResult, VocabSelectionComponent } from '../vocabulary/vocab-selection/vocab-selection.component';
 

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { ResponsibleParty, ContactList } from '@helgoland/sensorml';
 
 import { configuration } from '../../../configuration';
-import { ResponsibleParty } from '../../../model/iso';
-import { ContactList } from '../../../model/sml';
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';

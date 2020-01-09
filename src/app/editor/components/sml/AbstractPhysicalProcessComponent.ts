@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractPhysicalProcess } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractPhysicalProcess } from '../../../model/sml/AbstractPhysicalProcess';
 
 @Component({
     selector: 'sml-abstract-physical-process',

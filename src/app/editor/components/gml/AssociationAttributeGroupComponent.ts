@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { AssociationAttributeGroup } from '@helgoland/sensorml';
 
-import { AssociationAttributeGroup } from '../../../model/gml/AssociationAttributeGroup';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

@@ -1,5 +1,4 @@
 import { Component, AfterContentInit, Type } from '@angular/core';
-import { TypedModelComponent } from '../base/TypedModelComponent';
 import {
     SweText,
     SweTime,
@@ -10,14 +9,16 @@ import {
     SweTimeRange,
     SweQuantityRange,
     SweDataArray,
-    SweDataRecord
-} from '../../../model/swe';
-import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
-import { SweElementType } from '../../../model/swe/SweElementType';
-import { SweXmlEncoding } from '../../../model/swe/SweXmlEncoding';
-import { SweTextEncoding } from '../../../model/swe/SweTextEncoding';
-import { SweBinaryEncoding } from '../../../model/swe/SweBinaryEncoding';
-import { SweEncoding } from '../../../model/swe/SweEncoding';
+    SweDataRecord,
+    AbstractDataComponent,
+    SweElementType,
+    SweXmlEncoding,
+    SweTextEncoding,
+    SweBinaryEncoding,
+    SweEncoding
+} from '@helgoland/sensorml';
+
+import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'swe-data-array',

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractSetting } from '../../../model/sml/AbstractSetting';
+import { AbstractSetting } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

@@ -1,9 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { Address, Contact, OnlineResource, Phone } from '@helgoland/sensorml';
 
-import { Address } from '../../../../model/iso/gmd/Address';
-import { Contact } from '../../../../model/iso/gmd/Contact';
-import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
-import { Phone } from '../../../../model/iso/gmd/Phone';
 import { ChildMetadata } from '../../base/ChildMetadata';
 import { EditorComponent } from '../../base/EditorComponent';
 import { AddressComponent } from './AddressComponent';

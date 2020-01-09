@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweCategory } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweCategory } from '../../../model/swe/SweCategory';
 
 @Component({
     selector: 'swe-category',

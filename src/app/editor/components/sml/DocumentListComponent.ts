@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { OnlineResource, DocumentList } from '@helgoland/sensorml';
 
-import { OnlineResource } from '../../../model/iso/gmd/OnlineResource';
-import { DocumentList } from '../../../model/sml/DocumentList';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { OnlineResourceComponent } from '../iso/gmd/OnlineResourceComponent';

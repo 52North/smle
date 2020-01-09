@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
+import { SweBinaryBlock, SweBinaryComponent, SweBinaryEncoding } from '@helgoland/sensorml';
 
-import { SweBinaryBlock } from '../../../model/swe/SweBinaryBlock';
-import { SweBinaryComponent } from '../../../model/swe/SweBinaryComponent';
-import { SweBinaryEncoding } from '../../../model/swe/SweBinaryEncoding';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { SweBinaryBlockComponent } from './SweBinaryBlockComponent';

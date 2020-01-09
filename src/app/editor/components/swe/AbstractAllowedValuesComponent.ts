@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractAllowedValues } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractAllowedValues } from '../../../model/swe/AbstractAllowedValues';
 
 @Component({
     selector: 'swe-abstract-allowed-values',

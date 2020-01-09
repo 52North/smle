@@ -1,15 +1,17 @@
 import { AfterContentInit, Component } from '@angular/core';
+import {
+    SweBoolean,
+    SweCategory,
+    SweCount,
+    SweDataRecord,
+    SweElementType,
+    SweQuantity,
+    SweQuantityRange,
+    SweText,
+    SweTime,
+    SweTimeRange
+} from '@helgoland/sensorml';
 
-import { SweBoolean } from '../../../model/swe/SweBoolean';
-import { SweCategory } from '../../../model/swe/SweCategory';
-import { SweCount } from '../../../model/swe/SweCount';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
-import { SweElementType } from '../../../model/swe/SweElementType';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweQuantityRange } from '../../../model/swe/SweQuantityRange';
-import { SweText } from '../../../model/swe/SweText';
-import { SweTime } from '../../../model/swe/SweTime';
-import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ComponentType } from '../sml/NamedSweDataComponentComponent';
 

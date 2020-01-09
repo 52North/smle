@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweTimeRange } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweTimeRange } from '../../../model/swe/SweTimeRange';
 
 @Component({
     selector: 'swe-time-range',

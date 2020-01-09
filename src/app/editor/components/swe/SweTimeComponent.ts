@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweTime } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweTime } from '../../../model/swe/SweTime';
 
 @Component({
     selector: 'swe-time',

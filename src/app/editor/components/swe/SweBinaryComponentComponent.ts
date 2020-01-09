@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { SweBinaryComponent } from '@helgoland/sensorml';
 
-import { SweBinaryComponent } from '../../../model/swe/SweBinaryComponent';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

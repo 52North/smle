@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { DataInterface } from '@helgoland/sensorml';
 
-import { DataInterface } from '../../../model/sml/DataInterface';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { EditorComponent } from '../base/EditorComponent';
 

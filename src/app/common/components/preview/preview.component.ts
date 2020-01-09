@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractProcess } from '../../../model/sml';
+import { AbstractProcess } from '@helgoland/sensorml';
 
 @Component({
   selector: 'preview-description',

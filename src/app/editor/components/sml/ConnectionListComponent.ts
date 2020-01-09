@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { Connection, ConnectionList } from '@helgoland/sensorml';
 
-import { Connection } from '../../../model/sml';
-import { ConnectionList } from '../../../model/sml/ConnectionList';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { ConnectionComponent } from './ConnectionComponent';

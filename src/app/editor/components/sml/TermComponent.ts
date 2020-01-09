@@ -1,7 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Term } from '@helgoland/sensorml';
 
-import { Term } from '../../../model/sml/Term';
 import { EditorComponent } from '../base/EditorComponent';
 import { SelectionResult, VocabSelectionComponent } from '../vocabulary/vocab-selection/vocab-selection.component';
 

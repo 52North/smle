@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AbstractProcess } from '../model/sml';
+import { AbstractProcess } from '@helgoland/sensorml';
+
 import { DescriptionConfig } from '../services/config/DescriptionConfig';
 import { EditorService, DescriptionType } from '../services/EditorService';
 import { EditorMode } from '../services/EditorMode';

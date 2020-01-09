@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweQuantityRange, UnitOfMeasure, AllowedValues } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweQuantityRange, UnitOfMeasure, AllowedValues } from '../../../model/swe';
 
 @Component({
     selector: 'swe-quantity-range',

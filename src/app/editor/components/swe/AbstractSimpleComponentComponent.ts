@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractSimpleComponent } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractSimpleComponent } from '../../../model/swe/AbstractSimpleComponent';
 
 @Component({
     selector: 'swe-abstract-simple-component',

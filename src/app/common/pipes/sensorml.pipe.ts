@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SensorMLXmlService } from '../../services/SensorMLXmlService';
+import { SensorMLXmlService } from '@helgoland/sensorml';
 
 @Pipe({
     name: 'toSensorml',

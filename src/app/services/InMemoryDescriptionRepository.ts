@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { AbstractProcess, CodeType } from '@helgoland/sensorml';
 
-import { CodeType } from '../model/gml';
-import { AbstractProcess } from '../model/sml';
 import { SampleDataLoader } from '../services/SampleDataLoader';
 import { DescriptionRepository } from './DescriptionRepository';
 

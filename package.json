@@ -24,6 +24,7 @@
     "@angular/router": "^8.2.14",
     "@helgoland/caching": "^1.0.0-beta.11",
     "@helgoland/core": "^1.0.0-beta.11",
+    "@helgoland/sensorml": "file:../helgoland-toolbox/helgoland-sensorml-1.0.0-beta.11.tgz",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "@types/leaflet": "^1.5.7",
     "angular-tree-component": "^8.5.2",

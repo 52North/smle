@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractProcess, SensorMLXmlService } from '@helgoland/sensorml';
+
 import { EditorService } from '../../services/EditorService';
-import { SensorMLXmlService } from '../../services/SensorMLXmlService';
-import { AbstractProcess } from '../../model/sml';
 
 @Component({
   selector: 'import-description',
