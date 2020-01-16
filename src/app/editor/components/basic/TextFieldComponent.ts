@@ -39,6 +39,8 @@ export class TextFieldComponent extends BaseComponent implements OnChanges {
     }
 
     public onChange(text: string) {
+        // update value
+        this.model[this.fieldName] = text;
         this.changed.emit(text);
     }
 }

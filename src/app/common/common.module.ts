@@ -19,7 +19,7 @@ import { TreeNodeComponent } from './components/object-tree/tree-node.component'
   imports: [
     CommonModule,
     FormsModule,
-    TreeModule
+    TreeModule.Root()
   ],
   exports: [
     SensorMLPipe,
