@@ -1,4 +1,5 @@
 import { EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as cloneDeep from 'lodash/cloneDeep';
 
 import { DescriptionConfig } from '../../../services/config/DescriptionConfig';
 import { BaseComponent } from './BaseComponent';
@@ -39,6 +40,6 @@ export abstract class TypedModelComponent<T>
     }
 
     ngOnInit(): void {
-        this._storeProfileModel = Object.assign({}, this.model);
+        this._storeProfileModel = cloneDeep(this.model);
     }
 }
