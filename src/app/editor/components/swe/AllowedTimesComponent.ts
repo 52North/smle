@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { AllowedTimes, TimePosition } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AllowedTimes } from '../../../model/swe/AllowedTimes';
-import { TimePosition } from '../../../model/swe/TimePosition';
 
 @Component({
     selector: 'swe-allowed-times',

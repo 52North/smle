@@ -1,10 +1,8 @@
 import { Component, Type } from '@angular/core';
-
-import { configuration } from '../../../configuration';
-import { Capability } from '../../../model/sml/Capability';
-import { CapabilityList } from '../../../model/sml/CapabilityList';
-import { NamedSweDataComponent } from '../../../model/sml/NamedSweDataComponent';
 import {
+  Capability,
+  CapabilityList,
+  NamedSweDataComponent,
   SweBoolean,
   SweCategory,
   SweCount,
@@ -15,8 +13,10 @@ import {
   SweText,
   SweTime,
   SweTimeRange,
-} from '../../../model/swe';
-import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
+  AbstractDataComponent
+} from '@helgoland/sensorml';
+
+import { configuration } from '../../../configuration';
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata, ChildMetadataOptions } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';

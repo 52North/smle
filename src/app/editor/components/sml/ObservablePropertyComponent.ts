@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { ObservableProperty } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { ObservableProperty } from '../../../model/sml/ObservableProperty';
 
 @Component({
     selector: 'sml-observable-property',

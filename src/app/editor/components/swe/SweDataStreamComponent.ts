@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { SweDataStream } from '@helgoland/sensorml';
 
-import { SweDataStream } from '../../../model/swe';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 

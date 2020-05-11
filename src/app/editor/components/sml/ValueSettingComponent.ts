@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+import { ValueSetting } from '@helgoland/sensorml';
 
-import { ValueSetting } from '../../../model/sml/ValueSetting';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

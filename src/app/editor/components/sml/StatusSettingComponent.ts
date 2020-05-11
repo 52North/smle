@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
+import { StatusSetting } from '@helgoland/sensorml';
 
-import { StatusSetting } from '../../../model/sml/StatusSetting';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

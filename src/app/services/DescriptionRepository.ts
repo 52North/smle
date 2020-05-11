@@ -1,7 +1,5 @@
 import { Observable } from 'rxjs';
-
-import { AbstractProcess } from '../model/sml';
-
+import { AbstractProcess } from '@helgoland/sensorml';
 
 export abstract class DescriptionRepository {
     /**

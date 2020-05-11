@@ -1,7 +1,8 @@
 import { AfterContentInit, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
-
-import { DataInterface, InputOrOutputOrParameter, ObservableProperty } from '../../../model/sml';
 import {
+    DataInterface,
+    InputOrOutputOrParameter,
+    ObservableProperty,
     SweBoolean,
     SweCategory,
     SweCount,
@@ -11,8 +12,9 @@ import {
     SweQuantityRange,
     SweText,
     SweTime,
-    SweTimeRange,
-} from '../../../model/swe';
+    SweTimeRange
+} from '@helgoland/sensorml';
+
 import { EditorComponent } from '../base/EditorComponent';
 
 export enum InputOrOutputOrParameterType {

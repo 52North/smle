@@ -1,12 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Position, SweCoordinate, SweDataRecord, SweField, SweQuantity, SweVector } from '@helgoland/sensorml';
 
-import { Position } from '../../../model/sml/Position';
-import { SweCoordinate } from '../../../model/swe/SweCoordinate';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
-import { SweField } from '../../../model/swe/SweField';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweVector } from '../../../model/swe/SweVector';
 import { EditorComponent } from '../base/EditorComponent';
 import { MapComponent } from '../basic/MapComponent';
 

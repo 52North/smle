@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractFeature } from '../../../model/gml/AbstractFeature';
+import { AbstractFeature } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

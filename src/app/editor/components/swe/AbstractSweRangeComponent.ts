@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractSweRange } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractSweRange } from '../../../model/swe/AbstractSweRange';
 
 @Component({
     selector: 'swe-abstract-range',

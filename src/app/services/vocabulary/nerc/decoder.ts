@@ -1,5 +1,5 @@
-import { AbstractXmlService } from '../../AbstractXmlService';
-import { DecoderUtils } from '../../xml/DecoderUtils';
+import { AbstractXmlService, DecoderUtils } from '@helgoland/sensorml';
+
 import { VocabularyEntry } from '../model';
 import { NERC_NAMESPACES } from './model';
 

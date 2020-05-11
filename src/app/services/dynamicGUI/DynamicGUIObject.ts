@@ -1,4 +1,5 @@
-import { AbstractProcess } from '../../model/sml/AbstractProcess';
+import { AbstractProcess } from '@helgoland/sensorml';
+
 import { DynamicGUIDescriptionConfig } from '../config/DynamicGUIDescriptionConfig';
 
 export class DynamicGUIObject {

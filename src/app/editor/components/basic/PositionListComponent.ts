@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
+import { Position, SweCoordinate, SweDataRecord, SweField, SweQuantity, SweVector, UnitOfMeasure } from '@helgoland/sensorml';
 
-import { Position } from '../../../model/sml/Position';
-import { SweCoordinate } from '../../../model/swe/SweCoordinate';
-import { SweDataRecord } from '../../../model/swe/SweDataRecord';
-import { SweField } from '../../../model/swe/SweField';
-import { SweQuantity } from '../../../model/swe/SweQuantity';
-import { SweVector } from '../../../model/swe/SweVector';
-import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
 import { TrueDescriptionConfig } from '../../../services/config/TrueDescriptionConfig';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';

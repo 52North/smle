@@ -1,7 +1,5 @@
 import { Component, DoCheck, Input, OnChanges, SimpleChanges } from '@angular/core';
-
-import { AbstractProcess } from '../../../model/sml/AbstractProcess';
-import { getDisplayName } from '../../decorators/DisplayName';
+import { AbstractProcess, getDisplayName } from '@helgoland/sensorml';
 
 const emailRegex = new RegExp('^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$');
 const urlRegex = new RegExp('^(https?:\/\/)([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?');

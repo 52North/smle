@@ -8,6 +8,9 @@ import {
     SimpleChanges,
     Type,
     ViewChild,
+    ComponentFactory,
+    ComponentRef,
+    ViewContainerRef,
 } from '@angular/core';
 
 import { ChildMetadata } from './ChildMetadata';
@@ -36,10 +39,14 @@ export class DynamicElementComponent implements OnChanges {
     @Output()
     public openAsChild: EventEmitter<ChildMetadata<any>> = new EventEmitter<ChildMetadata<any>>();
 
-    @ViewChild(HostDirective)
+    @ViewChild(HostDirective, { static: true })
     public listItemHost: HostDirective;
 
     public publicsubscription: any;
+
+    private componentFactory: ComponentFactory<any>;
+    private componentRef: ComponentRef<any>;
+    private viewContainerRef: ViewContainerRef;
 
     constructor(private _componentFactoryResolver: ComponentFactoryResolver) { }
 
@@ -65,18 +72,18 @@ export class DynamicElementComponent implements OnChanges {
     }
 
     public loadComponent() {
-        const componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.componentType);
-        const viewContainerRef = this.listItemHost.viewContainerRef;
-        viewContainerRef.clear();
-        const componentRef = viewContainerRef.createComponent(componentFactory);
+        this.componentFactory = this._componentFactoryResolver.resolveComponentFactory(this.componentType);
+        this.viewContainerRef = this.listItemHost.viewContainerRef;
+        this.viewContainerRef.clear();
+        this.componentRef = this.viewContainerRef.createComponent(this.componentFactory);
         if (Array.isArray(this.model)) {
-            componentRef.instance.model = this.model[0];
+            this.componentRef.instance.model = this.model[0];
         } else {
-            componentRef.instance.model = this.model;
+            this.componentRef.instance.model = this.model;
         }
-        componentRef.instance.config = this.config;
-        componentRef.instance.isShowAll = this.isShowAll;
-        componentRef.instance.openAsChild.subscribe((childMetadata) => {
+        this.componentRef.instance.config = this.config;
+        this.componentRef.instance.isShowAll = this.isShowAll;
+        this.componentRef.instance.openAsChild.subscribe((childMetadata) => {
             this.openAsChild.emit(childMetadata);
         });
     }
@@ -84,7 +91,14 @@ export class DynamicElementComponent implements OnChanges {
     public isModelSet(): boolean {
         if (Array.isArray(this.model) && this.model.length > 0) { return true; }
         if (!Array.isArray(this.model) && this.model) { return true; }
+        this.removeComponent();
         return false;
+    }
+
+    private removeComponent() {
+        if (this.componentRef) {
+            this.componentRef.destroy();
+        }
     }
 
 }

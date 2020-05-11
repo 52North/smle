@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { FeatureList, FeatureProperty } from '@helgoland/sensorml';
 
-import { FeatureList } from '../../../model/sml';
-import { FeatureProperty } from '../../../model/sml/FeatureProperty';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { FeaturePropertyComponent } from './FeaturePropertyComponent';

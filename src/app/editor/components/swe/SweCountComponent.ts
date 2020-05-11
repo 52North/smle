@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweCount } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweCount } from '../../../model/swe/SweCount';
 
 @Component({
     selector: 'swe-count',

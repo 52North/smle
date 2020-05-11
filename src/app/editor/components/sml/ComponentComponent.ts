@@ -1,8 +1,8 @@
 import * as ngCore from '@angular/core';
 import { ComponentFactoryResolver, ViewContainerRef, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, PhysicalSystem, PhysicalComponent, SimpleProcess, AggregateProcess } from '@helgoland/sensorml';
 
-import { Component, PhysicalSystem, PhysicalComponent, SimpleProcess, AggregateProcess } from '../../../model/sml';
 import { EditorComponent } from '../base/EditorComponent';
 import { DescriptionType } from '../../../services/EditorService';
 

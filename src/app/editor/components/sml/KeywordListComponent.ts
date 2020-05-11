@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { KeywordList } from '../../../model/sml/KeywordList';
+import { KeywordList } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

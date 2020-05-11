@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { SweBoolean } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { SweBoolean } from '../../../model/swe/SweBoolean';
 
 @Component({
     selector: 'swe-boolean',

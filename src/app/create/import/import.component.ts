@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractProcess, SensorMLXmlService } from '@helgoland/sensorml';
+
 import { EditorService } from '../../services/EditorService';
-import { SensorMLXmlService } from '../../services/SensorMLXmlService';
-import { AbstractProcess } from '../../model/sml';
 
 @Component({
   selector: 'import-description',
@@ -27,7 +27,8 @@ export class ImportComponent {
 
     myReader.onloadend = (e) => {
       try {
-        this.description = new SensorMLXmlService().deserialize(myReader.result);
+        const readerResult = myReader.result as string;
+        this.description = new SensorMLXmlService().deserialize(readerResult); // myReader.result);
       } catch (error) {
         this.error = error.message;
       }

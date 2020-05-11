@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { CodeType } from '../../../model/gml/CodeType';
+import { CodeType } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

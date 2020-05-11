@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Input, ViewContainerRef } from '@angular/core';
+import { TimePeriod } from '@helgoland/sensorml';
 
-import { TimePeriod } from '../../../model/gml/TimePeriod';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

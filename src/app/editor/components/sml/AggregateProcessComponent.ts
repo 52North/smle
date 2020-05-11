@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { AggregateProcess } from '@helgoland/sensorml';
 
-import { AggregateProcess } from '../../../model/sml';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

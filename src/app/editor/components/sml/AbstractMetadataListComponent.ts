@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractMetadataList } from '../../../model/sml/AbstractMetadataList';
+import { AbstractMetadataList } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

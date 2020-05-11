@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AbstractGML } from '../../../model/gml/AbstractGML';
+import { AbstractGML, CodeType } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { CodeType } from '../../../model/gml/CodeType';
 
 @Component({
     selector: 'gml-abstract',

@@ -1,4 +1,4 @@
-import { getDisplayName } from '../../../common/decorators/DisplayName';
+import { getDisplayName } from '@helgoland/sensorml';
 
 export class BaseComponent {
     public model: any;

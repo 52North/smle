@@ -10,7 +10,8 @@
             <div class="list-label" *ngIf="!noSelect">
                 <a class="btn btn-link" *ngIf="itemLabelFunc" (click)="onClick(item, i)">
                     <span class="item-label">{{itemLabelFunc.call(item, item, index, list)}}</span>
-                    <span *ngIf="itemValueFunc" class="item-value">({{itemValueFunc.call(item, item, index, list)}})</span>
+                    <span *ngIf="itemValueFunc"
+                        class="item-value">({{itemValueFunc.call(item, item, index, list)}})</span>
                 </a>
                 <a class="btn btn-link" *ngIf="!itemLabelFunc" (click)="onClick(item, i)">
                     <span *ngIf="item.getLabel" class="item-label">{{item.getLabel()}}</span>

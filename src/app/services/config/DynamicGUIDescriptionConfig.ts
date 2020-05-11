@@ -1,8 +1,9 @@
+import { BidiMap } from '@helgoland/sensorml';
+
 import { DefaultDescriptionConfig } from './DefaultDescriptionConfig';
 import { DescriptionConfig } from './DescriptionConfig';
 import { TrueDescriptionConfig } from './TrueDescriptionConfig';
 import { FalseDescriptionConfig } from './FalseDescriptionConfig';
-import { BidiMap } from '../dynamicGUI/BidiMap';
 import { DynamicGUIConfiguration } from '../dynamicGUI/DynamicGUIConfiguration';
 import { LFService, LoggerFactoryOptions, LogLevel, LogGroupRule, LoggerFactory, Logger } from 'typescript-logging';
 

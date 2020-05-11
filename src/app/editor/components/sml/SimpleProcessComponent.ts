@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { SimpleProcess } from '@helgoland/sensorml';
 
-import { SimpleProcess } from '../../../model/sml/SimpleProcess';
 import { EditorComponent } from '../base/EditorComponent';
 
 @Component({

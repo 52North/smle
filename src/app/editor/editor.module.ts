@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbModalModule, NgbModule, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap/pagination/pagination.module';
+import { NgbModalModule, NgbModule, NgbPopoverModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { CalendarModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/calendar';
 
 import { CommonSmleModule } from '../common/common.module';
 import { BASE_COMPONENTS } from './components/base';
@@ -33,11 +32,11 @@ import { EditorComponent } from './editor';
         CommonModule,
         CommonSmleModule,
         FormsModule,
-        NgbModule.forRoot(),
+        NgbModule,
         NgxPaginationModule,
-        NgbPaginationModule.forRoot(),
-        NgbPopoverModule.forRoot(),
-        NgbModalModule.forRoot()
+        NgbPaginationModule,
+        NgbPopoverModule,
+        NgbModalModule
     ],
     exports: [
         BASIC_COMPONENTS,

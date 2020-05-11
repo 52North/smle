@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { UnitOfMeasure } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { UnitOfMeasure } from '../../../model/swe/UnitOfMeasure';
 
 @Component({
     selector: 'swe-unit-of-measure',

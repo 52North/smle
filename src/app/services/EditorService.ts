@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Observer } from 'rxjs';
+import { AbstractProcess, AggregateProcess, PhysicalComponent, PhysicalSystem, SimpleProcess, Term, XmlService } from '@helgoland/sensorml';
 
-import { AbstractProcess, AggregateProcess, PhysicalComponent, PhysicalSystem, SimpleProcess, Term } from '../model/sml';
 import { DescriptionRepository } from '../services/DescriptionRepository';
-import { XmlService } from '../services/XmlService';
 import { DescriptionConfig } from './config/DescriptionConfig';
 import { DescriptionConfigService } from './DescriptionConfigService';
 import { DynamicGUIObject } from './dynamicGUI/DynamicGUIObject';

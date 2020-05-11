@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { OnlineResource } from '@helgoland/sensorml';
 
-import { OnlineResource } from '../../../../model/iso/gmd/OnlineResource';
 import { EditorComponent } from '../../base/EditorComponent';
 
 @Component({

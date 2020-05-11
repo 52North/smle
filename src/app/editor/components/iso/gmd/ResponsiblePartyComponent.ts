@@ -1,8 +1,7 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Contact, ResponsibleParty } from '@helgoland/sensorml';
 
-import { Contact } from '../../../../model/iso/gmd/Contact';
-import { ResponsibleParty } from '../../../../model/iso/gmd/ResponsibleParty';
 import { ChildMetadata } from '../../base/ChildMetadata';
 import { EditorComponent } from '../../base/EditorComponent';
 import { SelectionResult, VocabSelectionComponent } from '../../vocabulary/vocab-selection/vocab-selection.component';

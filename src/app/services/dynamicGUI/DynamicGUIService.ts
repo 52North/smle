@@ -3,14 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LFService, Logger, LoggerFactory, LoggerFactoryOptions, LogGroupRule, LogLevel } from 'typescript-logging';
+import * as smlLib from '@helgoland/sensorml';
+import { AbstractProcess, BidiMap, NAMESPACES, SensorMLDocumentDecoder, SensorMLDocumentEncoder } from '@helgoland/sensorml';
 
-import * as smlLib from '../../model/sml';
-import { AbstractProcess } from '../../model/sml/AbstractProcess';
-import { DynamicGUIDescriptionConfig } from '../config/DynamicGUIDescriptionConfig';
-import { NAMESPACES } from './../xml/Namespaces';
-import { SensorMLDocumentDecoder } from './../xml/SensorMLDocumentDecoder';
-import { SensorMLDocumentEncoder } from './../xml/SensorMLDocumentEncoder';
-import { BidiMap } from './BidiMap';
+import { DynamicGUIDescriptionConfig } from './../config/DynamicGUIDescriptionConfig';
 import { DynamicGUIConfiguration } from './DynamicGUIConfiguration';
 import { DynamicGUIObject } from './DynamicGUIObject';
 

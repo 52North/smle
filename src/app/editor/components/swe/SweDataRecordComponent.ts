@@ -1,5 +1,4 @@
 import { Component, Type } from '@angular/core';
-
 import {
     SweBoolean,
     SweCategory,
@@ -12,8 +11,9 @@ import {
     SweText,
     SweTime,
     SweTimeRange,
-} from '../../../model/swe';
-import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
+    AbstractDataComponent
+} from '@helgoland/sensorml';
+
 import { VocabularyType } from '../../../services/vocabulary/model';
 import { ChildMetadata } from '../base/ChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';

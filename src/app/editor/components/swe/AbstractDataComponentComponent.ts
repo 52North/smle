@@ -1,6 +1,7 @@
-import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AbstractDataComponent } from '../../../model/swe/AbstractDataComponent';
 import { Component } from '@angular/core';
+import { AbstractDataComponent } from '@helgoland/sensorml';
+
+import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({
     selector: 'swe-abstract-data',

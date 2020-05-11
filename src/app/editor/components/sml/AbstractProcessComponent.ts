@@ -1,7 +1,6 @@
 import { Component, Type } from '@angular/core';
+import { FeatureList, InputList, OutputList, ParameterList, Settings, AbstractProcess } from '@helgoland/sensorml';
 
-import { FeatureList, InputList, OutputList, ParameterList, Settings } from '../../../model/sml';
-import { AbstractProcess } from '../../../model/sml/AbstractProcess';
 import { NestedChildMetadata } from '../base/NestedChildMetadata';
 import { TypedModelComponent } from '../base/TypedModelComponent';
 import { NestedCardComponent } from '../basic/NestedCardComponent';

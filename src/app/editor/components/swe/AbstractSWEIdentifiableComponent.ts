@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AbstractSWEIdentifiable } from '../../../model/swe/AbstractSWEIdentifiable';
+import { AbstractSWEIdentifiable } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
 
 @Component({

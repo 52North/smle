@@ -1,5 +1,6 @@
 import { Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
-import { Output } from '../../../model/sml';
+import { Output } from '@helgoland/sensorml';
+
 import { AbstractInputOrOutputOrParameterComponent } from '../basic/AbstractInputOrOutputOrParameterComponent';
 
 @Component({

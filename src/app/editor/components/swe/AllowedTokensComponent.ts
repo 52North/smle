@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { AllowedTokens } from '@helgoland/sensorml';
+
 import { TypedModelComponent } from '../base/TypedModelComponent';
-import { AllowedTokens } from '../../../model/swe/AllowedTokens';
 
 @Component({
     selector: 'swe-allowed-tokens',
